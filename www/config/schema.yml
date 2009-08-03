@@ -1,0 +1,144 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  afiliacion:
+    _attributes: { phpName: Afiliacion }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    fecha_inicio: { type: DATE, required: false }
+    fecha_fin: { type: DATE, required: false }
+    partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_a_partido: [partido_id] }
+  eleccion:
+    _attributes: { phpName: Eleccion }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    fecha: { type: DATE, required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  eleccion_institucion:
+    _attributes: { phpName: EleccionInstitucion }
+    eleccion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_institucion: [institucion_id], fk_eleccion: [eleccion_id] }
+  enlace:
+    _attributes: { phpName: Enlace }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    url: { type: VARCHAR, size: '150', required: true }
+    tipo: { type: INTEGER, size: '11', required: false }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    orden: { type: INTEGER, size: '11', required: false }
+    mostrar: { type: CHAR, size: '1', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_e_partido: [partido_id], fk_e_politico: [politico_id] }
+  imagen:
+    _attributes: { phpName: Imagen }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    tipo: { type: CHAR, size: '1', required: false }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    opinion_id: { type: INTEGER, size: '11', required: false, foreignTable: opinion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_i_partido: [partido_id], fk_i_politico: [politico_id], fk_i_opinion: [opinion_id] }
+  institucion:
+    _attributes: { phpName: Institucion }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    region_id: { type: INTEGER, size: '11', required: false, foreignTable: region, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_region: [region_id] }
+  lista:
+    _attributes: { phpName: Lista }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_l_partido: [partido_id], fk_l_eleccion: [eleccion_id] }
+  media:
+    _attributes: { phpName: Media }
+    idmedia: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    tipo: { type: CHAR, size: '1', required: false }
+    idpolitico: { type: INTEGER, size: '11', required: false }
+    idpartido: { type: INTEGER, size: '11', required: false }
+  opinion:
+    _attributes: { phpName: Opinion }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    valor: { type: INTEGER, size: '11', required: false }
+    texto: { type: VARCHAR, size: '500', required: false }
+    usuario_id: { type: INTEGER, size: '11', required: true, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    opinion_id: { type: INTEGER, size: '11', required: false, foreignTable: opinion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_o_usuario: [usuario_id], fk_o_partido: [partido_id], fk_o_politico: [politico_id], fk_opinion: [opinion_id] }
+  partido:
+    _attributes: { phpName: Partido }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    abreviatura: { type: VARCHAR, size: '8', required: false }
+    color: { type: VARCHAR, size: '8', required: false }
+    web: { type: VARCHAR, size: '150', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  partido_afiliacion:
+    _attributes: { phpName: PartidoAfiliacion }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    afiliacion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: afiliacion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_paa_partido: [partido_id], fk_paa_afiliacion: [afiliacion_id] }
+  politico:
+    _attributes: { phpName: Politico }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    alias: { type: VARCHAR, size: '45', required: false }
+    nombre: { type: VARCHAR, size: '45', required: true }
+    apellidos: { type: VARCHAR, size: '150', required: true }
+    sexo: { type: CHAR, size: '1', required: false }
+    fecha_nacimiento: { type: DATE, required: false }
+    pais: { type: VARCHAR, size: '45', required: false }
+    formacion: { type: VARCHAR, size: '255', required: false }
+    residencia: { type: VARCHAR, size: '45', required: false }
+    presentacion: { type: VARCHAR, size: '500', required: false }
+    usuario_id: { type: INTEGER, size: '11', required: false, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_usuario: [usuario_id] }
+  politico_afiliacion:
+    _attributes: { phpName: PoliticoAfiliacion }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    afiliacion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: afiliacion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_poa_politico: [politico_id], fk_poa_afiliacion: [afiliacion_id] }
+  politico_lista:
+    _attributes: { phpName: PoliticoLista }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_politico: [politico_id], fk_lista: [lista_id] }
+  promocion:
+    _attributes: { phpName: Promocion }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    fecha_inicio: { type: DATE, required: true }
+    fecha_fin: { type: DATE, required: true }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_pr_partido: [partido_id], fk_pr_politico: [politico_id] }
+  region:
+    _attributes: { phpName: Region }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    created_at: { type: TIMESTAMP, required: false }
+  usuario:
+    _attributes: { phpName: Usuario }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    email: { type: VARCHAR, size: '150', required: true }
+    clave: { type: VARCHAR, size: '45', required: true }
+    acepta_mensajes: { type: CHAR, size: '1', required: false }
+    nombre: { type: VARCHAR, size: '45', required: true }
+    apellidos: { type: VARCHAR, size: '150', required: false }
+    fecha_nacimiento: { type: DATE, required: false }
+    pais: { type: VARCHAR, size: '45', required: false }
+    formacion: { type: VARCHAR, size: '255', required: false }
+    residencia: { type: VARCHAR, size: '45', required: false }
+    presentacion: { type: VARCHAR, size: '500', required: false }
+    created_at: { type: TIMESTAMP, required: false }

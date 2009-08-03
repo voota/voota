@@ -1,0 +1,31 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Eleccion
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          eleccion
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:
+        fecha: { date_format: dd/MM/yyyy }
+      list:
+        title:   Elecciones
+        display: [id,nombre,fecha]
+
+      filter:  ~
+      form:    ~
+      form:
+        display:
+          #"Datos de las elecciones": [nombre,fecha,eleccion_institucion_list]
+          "Datos de las elecciones": [nombre,fecha,eleccion_institucion_list]
+
+      edit:
+        title:   Elecci&oacute;n
+      new:
+        title:   Nueva elecci&oacute;n

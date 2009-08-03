@@ -1,0 +1,79 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  eleccion:
+    _attributes: { phpName: Eleccion }
+    id: ~ 
+    nombre: { type: VARCHAR, size: '150', required: false }
+    fecha: { type: DATE, required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  institucion:
+    _attributes: { phpName: Institucion }
+    id: ~ 
+    nombre: { type: VARCHAR, size: '150', required: false }
+    region_id: { type: INTEGER, size: '11', required: false, foreignTable: region, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_region: [region_id] }
+  lista:
+    _attributes: { phpName: Lista }
+    id: ~ 
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    eleccion_id: { type: INTEGER, size: '11', required: false, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_partido: [partido_id], fk_eleccion: [eleccion_id] }
+  media:
+    _attributes: { phpName: Media }
+    idmedia: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    tipo: { type: CHAR, size: '1', required: false }
+    idpolitico: { type: INTEGER, size: '11', required: false }
+    idpartido: { type: INTEGER, size: '11', required: false }
+  partido:
+    _attributes: { phpName: Partido }
+    id: ~ 
+    nombre: { type: VARCHAR, size: '150', required: false }
+    abreviatura: { type: VARCHAR, size: '8', required: false }
+    color: { type: VARCHAR, size: '8', required: false }
+    web: { type: VARCHAR, size: '150', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  politico:
+    _attributes: { phpName: Politico }
+    id: ~ 
+    alias: { type: VARCHAR, size: '45', required: false }
+    nombre: { type: VARCHAR, size: '45', required: false }
+    apellidos: { type: VARCHAR, size: '150', required: false }
+    sexo: { type: CHAR, size: '1', required: false }
+    fecha_nacimiento: { type: DATE, required: false }
+    pais: { type: VARCHAR, size: '45', required: false }
+    formacion: { type: VARCHAR, size: '255', required: false }
+    residencia: { type: VARCHAR, size: '45', required: false }
+    presentacion: { type: VARCHAR, size: '500', required: false }
+    usuario_id: { type: INTEGER, size: '11', required: false, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_usuario: [usuario_id] }
+  politico_lista:
+    _attributes: { phpName: PoliticoLista }
+    id: ~ 
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_politico: [politico_id], fk_lista: [lista_id] }
+  region:
+    _attributes: { phpName: Region }
+    id: ~ 
+    nombre: { type: VARCHAR, size: '150', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  usuario:
+    _attributes: { phpName: Usuario }
+    id: ~ 
+    email: { type: VARCHAR, size: '150', required: false }
+    clave: { type: VARCHAR, size: '45', required: false }
+    acepta_mensajes: { type: CHAR, size: '1', required: false }
+    nombre: { type: VARCHAR, size: '45', required: false }
+    apellidos: { type: VARCHAR, size: '150', required: false }
+    fecha_nacimiento: { type: DATE, required: false }
+    pais: { type: VARCHAR, size: '45', required: false }
+    formacion: { type: VARCHAR, size: '255', required: false }
+    residencia: { type: VARCHAR, size: '45', required: false }
+    presentacion: { type: VARCHAR, size: '500', required: false }
+    created_at: { type: TIMESTAMP, required: false }

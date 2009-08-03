@@ -1,0 +1,84 @@
+politico_lista:
+  class: sfPropelRouteCollection
+  options:
+    model:                PoliticoLista
+    module:               politico_lista
+    prefix_path:          politico_lista
+    column:               id
+    with_wildcard_routes: true
+
+region:
+  class: sfPropelRouteCollection
+  options:
+    model:                Region
+    module:               region
+    prefix_path:          region
+    column:               id
+    with_wildcard_routes: true
+
+institucion:
+  class: sfPropelRouteCollection
+  options:
+    model:                Institucion
+    module:               institucion
+    prefix_path:          institucion
+    column:               id
+    with_wildcard_routes: true
+
+usuario:
+  class: sfPropelRouteCollection
+  options:
+    model:                Usuario
+    module:               usuario
+    prefix_path:          usuario
+    column:               id
+    with_wildcard_routes: true
+
+lista:
+  class: sfPropelRouteCollection
+  options:
+    model:                Lista
+    module:               lista
+    prefix_path:          lista
+    column:               id
+    with_wildcard_routes: true
+
+eleccion:
+  class: sfPropelRouteCollection
+  options:
+    model:                Eleccion
+    module:               eleccion
+    prefix_path:          eleccion
+    column:               id
+    with_wildcard_routes: true
+
+partido:
+  class: sfPropelRouteCollection
+  options:
+    model:                Partido
+    module:               partido
+    prefix_path:          partido
+    column:               id
+    with_wildcard_routes: true
+
+politico:
+  class: sfPropelRouteCollection
+  options:
+    model:                Politico
+    module:               politico
+    prefix_path:          politico
+    column:               id
+    with_wildcard_routes: true
+
+# default rules
+homepage:
+  url:   /
+  param: { module: politico, action: index }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+ 
+default:
+  url:   /:module/:action/*

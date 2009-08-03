@@ -1,0 +1,27 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Region
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          region
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Regiones
+        display: [id,nombre]
+
+      filter:  ~
+      form:
+        display:
+          "Datos de la regi&oacute;n": [nombre]
+      new:
+        title:   Nueva regi&oacute;n
+      edit:
+        title:   Regi&oacute;n

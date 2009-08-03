@@ -1,0 +1,29 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Institucion
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          institucion
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:
+        display:
+          "Datos de la institucui&oacute;n": [nombre,region_id]
+
+      edit:
+        title:   Instituci&oacute;n
+      new:
+        title:   Nueva instituci&oacute;n
+
+      list:
+        title:   Instituciones
+        display: [id,nombre,_region]

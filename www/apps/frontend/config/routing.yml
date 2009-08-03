@@ -1,0 +1,46 @@
+# default rules
+homepage_redirect:
+  url:   /
+  param: { module: home, action: indexWithoutCulture }
+
+homepage:
+  url:   /:sf_culture
+  param: { module: home, action: index }
+  requirements: { sf_culture: (?:es|ca) }
+
+usuario:
+  url:   /:username
+  param: { module: usuario, action: show }
+
+politico_es:
+  url: /:sf_culture/politico/:id
+  param: { module: politico, action: show }
+  requirements: { sf_culture: (?:es) }
+
+politico_ca:
+  url: /:sf_culture/politic/:id
+  param: { module: politico, action: show }
+  requirements: { sf_culture: (?:ca) }
+
+partido_es:
+  url: /:sf_culture/partido/:id
+  param: { module: partido, action: show }
+  requirements: { sf_culture: (?:es) }
+
+partido_ca:
+  url: /:sf_culture/partit/:id
+  param: { module: partido, action: show }
+  requirements: { sf_culture: (?:ca) }
+
+
+
+# default_index:
+#   url:   /:module
+#   param: { action: index }
+
+#default_culture:
+#  url:   /:sf_culture/:module/:action/*
+#  requirements: { sf_culture: (?:es|ca) }
+
+# default:
+#   url:   /:module/:action/*

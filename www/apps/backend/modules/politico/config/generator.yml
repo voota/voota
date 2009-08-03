@@ -1,0 +1,30 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Politico
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          politico
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:
+        display: 
+          "Datos voota": [alias,formacion,presentacion,usuario_id]
+          "Datos personales": [nombre,apellidos,sexo,fecha_nacimiento,residencia]
+      edit:    
+        title:   Pol&iacute;tico
+      new:
+        title:   Nuevo pol&iacute;tico
+
+      list:
+        title:   Pol&iacute;ticos
+        display: [id,alias,nombre,apellidos,_usuario]
+

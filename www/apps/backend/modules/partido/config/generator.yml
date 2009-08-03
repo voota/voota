@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Partido
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          partido
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   Partidos
+        display: [nombre,abreviatura,color,web]
+          
+      filter:  ~
+      form:
+        display:
+          "Datos Partido": [nombre,abreviatura,color,web]
+      edit:
+        title:   Partido
+
+      new:
+        title:   Nuevo partido

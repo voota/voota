@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Lista
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          lista
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields: ~
+      filter:  ~
+      display: ~
+      form:
+        display:
+          "Datos de la lista": [partido_id,eleccion_id,politico_lista_list]
+
+      edit:
+        title:   Lista
+      new:
+        title:   Nueva lista
+      list:
+        title:   Listas por partido y elecci&oacute;n
+        display: [id,_partido,_eleccion]
