@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base static class for performing query and update operations on the 'media' table.
+ * Base static class for performing query and update operations on the 'voto' table.
  *
  * 
  *
@@ -11,16 +11,16 @@
  *
  * @package    lib.model.om
  */
-abstract class BaseMediaPeer {
+abstract class BaseVotoPeer {
 
 	/** the default database name for this class */
 	const DATABASE_NAME = 'propel';
 
 	/** the table name for this class */
-	const TABLE_NAME = 'media';
+	const TABLE_NAME = 'voto';
 
 	/** A class that can be returned by this peer. */
-	const CLASS_DEFAULT = 'lib.model.Media';
+	const CLASS_DEFAULT = 'lib.model.Voto';
 
 	/** The total number of columns. */
 	const NUM_COLUMNS = 4;
@@ -28,23 +28,23 @@ abstract class BaseMediaPeer {
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
 
-	/** the column name for the IDMEDIA field */
-	const IDMEDIA = 'media.IDMEDIA';
+	/** the column name for the ID field */
+	const ID = 'voto.ID';
 
-	/** the column name for the TIPO field */
-	const TIPO = 'media.TIPO';
+	/** the column name for the UID field */
+	const UID = 'voto.UID';
 
-	/** the column name for the IDPOLITICO field */
-	const IDPOLITICO = 'media.IDPOLITICO';
+	/** the column name for the VALOR field */
+	const VALOR = 'voto.VALOR';
 
-	/** the column name for the IDPARTIDO field */
-	const IDPARTIDO = 'media.IDPARTIDO';
+	/** the column name for the CREATED_AT field */
+	const CREATED_AT = 'voto.CREATED_AT';
 
 	/**
-	 * An identiy map to hold any loaded instances of Media objects.
+	 * An identiy map to hold any loaded instances of Voto objects.
 	 * This must be public so that other peer classes can access this when hydrating from JOIN
 	 * queries.
-	 * @var        array Media[]
+	 * @var        array Voto[]
 	 */
 	public static $instances = array();
 
@@ -61,10 +61,10 @@ abstract class BaseMediaPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Idmedia', 'Tipo', 'Idpolitico', 'Idpartido', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('idmedia', 'tipo', 'idpolitico', 'idpartido', ),
-		BasePeer::TYPE_COLNAME => array (self::IDMEDIA, self::TIPO, self::IDPOLITICO, self::IDPARTIDO, ),
-		BasePeer::TYPE_FIELDNAME => array ('idmedia', 'tipo', 'idpolitico', 'idpartido', ),
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Uid', 'Valor', 'CreatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'uid', 'valor', 'createdAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::UID, self::VALOR, self::CREATED_AT, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'uid', 'valor', 'created_at', ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -75,10 +75,10 @@ abstract class BaseMediaPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Idmedia' => 0, 'Tipo' => 1, 'Idpolitico' => 2, 'Idpartido' => 3, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('idmedia' => 0, 'tipo' => 1, 'idpolitico' => 2, 'idpartido' => 3, ),
-		BasePeer::TYPE_COLNAME => array (self::IDMEDIA => 0, self::TIPO => 1, self::IDPOLITICO => 2, self::IDPARTIDO => 3, ),
-		BasePeer::TYPE_FIELDNAME => array ('idmedia' => 0, 'tipo' => 1, 'idpolitico' => 2, 'idpartido' => 3, ),
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Uid' => 1, 'Valor' => 2, 'CreatedAt' => 3, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'uid' => 1, 'valor' => 2, 'createdAt' => 3, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::UID => 1, self::VALOR => 2, self::CREATED_AT => 3, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'uid' => 1, 'valor' => 2, 'created_at' => 3, ),
 		BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
 	);
 
@@ -89,7 +89,7 @@ abstract class BaseMediaPeer {
 	public static function getMapBuilder()
 	{
 		if (self::$mapBuilder === null) {
-			self::$mapBuilder = new MediaMapBuilder();
+			self::$mapBuilder = new VotoMapBuilder();
 		}
 		return self::$mapBuilder;
 	}
@@ -139,12 +139,12 @@ abstract class BaseMediaPeer {
 	 *		$c->addJoin(TablePeer::alias("alias1", TablePeer::PRIMARY_KEY_COLUMN), TablePeer::PRIMARY_KEY_COLUMN);
 	 * </code>
 	 * @param      string $alias The alias for the current table.
-	 * @param      string $column The column name for current table. (i.e. MediaPeer::COLUMN_NAME).
+	 * @param      string $column The column name for current table. (i.e. VotoPeer::COLUMN_NAME).
 	 * @return     string
 	 */
 	public static function alias($alias, $column)
 	{
-		return str_replace(MediaPeer::TABLE_NAME.'.', $alias.'.', $column);
+		return str_replace(VotoPeer::TABLE_NAME.'.', $alias.'.', $column);
 	}
 
 	/**
@@ -161,13 +161,13 @@ abstract class BaseMediaPeer {
 	public static function addSelectColumns(Criteria $criteria)
 	{
 
-		$criteria->addSelectColumn(MediaPeer::IDMEDIA);
+		$criteria->addSelectColumn(VotoPeer::ID);
 
-		$criteria->addSelectColumn(MediaPeer::TIPO);
+		$criteria->addSelectColumn(VotoPeer::UID);
 
-		$criteria->addSelectColumn(MediaPeer::IDPOLITICO);
+		$criteria->addSelectColumn(VotoPeer::VALOR);
 
-		$criteria->addSelectColumn(MediaPeer::IDPARTIDO);
+		$criteria->addSelectColumn(VotoPeer::CREATED_AT);
 
 	}
 
@@ -187,27 +187,27 @@ abstract class BaseMediaPeer {
 		// We need to set the primary table name, since in the case that there are no WHERE columns
 		// it will be impossible for the BasePeer::createSelectSql() method to determine which
 		// tables go into the FROM clause.
-		$criteria->setPrimaryTableName(MediaPeer::TABLE_NAME);
+		$criteria->setPrimaryTableName(VotoPeer::TABLE_NAME);
 
 		if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
 			$criteria->setDistinct();
 		}
 
 		if (!$criteria->hasSelectClause()) {
-			MediaPeer::addSelectColumns($criteria);
+			VotoPeer::addSelectColumns($criteria);
 		}
 
 		$criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
 		$criteria->setDbName(self::DATABASE_NAME); // Set the correct dbName
 
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 
-    foreach (sfMixer::getCallables('BaseMediaPeer:doCount:doCount') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doCount:doCount') as $callable)
     {
-      call_user_func($callable, 'BaseMediaPeer', $criteria, $con);
+      call_user_func($callable, 'BaseVotoPeer', $criteria, $con);
     }
 
 
@@ -227,7 +227,7 @@ abstract class BaseMediaPeer {
 	 *
 	 * @param      Criteria $criteria object used to create the SELECT statement.
 	 * @param      PropelPDO $con
-	 * @return     Media
+	 * @return     Voto
 	 * @throws     PropelException Any exceptions caught during processing will be
 	 *		 rethrown wrapped into a PropelException.
 	 */
@@ -235,7 +235,7 @@ abstract class BaseMediaPeer {
 	{
 		$critcopy = clone $criteria;
 		$critcopy->setLimit(1);
-		$objects = MediaPeer::doSelect($critcopy, $con);
+		$objects = VotoPeer::doSelect($critcopy, $con);
 		if ($objects) {
 			return $objects[0];
 		}
@@ -252,7 +252,7 @@ abstract class BaseMediaPeer {
 	 */
 	public static function doSelect(Criteria $criteria, PropelPDO $con = null)
 	{
-		return MediaPeer::populateObjects(MediaPeer::doSelectStmt($criteria, $con));
+		return VotoPeer::populateObjects(VotoPeer::doSelectStmt($criteria, $con));
 	}
 	/**
 	 * Prepares the Criteria object and uses the parent doSelect() method to execute a PDOStatement.
@@ -270,19 +270,19 @@ abstract class BaseMediaPeer {
 	public static function doSelectStmt(Criteria $criteria, PropelPDO $con = null)
 	{
 
-    foreach (sfMixer::getCallables('BaseMediaPeer:doSelectStmt:doSelectStmt') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doSelectStmt:doSelectStmt') as $callable)
     {
-      call_user_func($callable, 'BaseMediaPeer', $criteria, $con);
+      call_user_func($callable, 'BaseVotoPeer', $criteria, $con);
     }
 
 
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		if (!$criteria->hasSelectClause()) {
 			$criteria = clone $criteria;
-			MediaPeer::addSelectColumns($criteria);
+			VotoPeer::addSelectColumns($criteria);
 		}
 
 		// Set the correct dbName
@@ -300,14 +300,14 @@ abstract class BaseMediaPeer {
 	 * to the cache in order to ensure that the same objects are always returned by doSelect*()
 	 * and retrieveByPK*() calls.
 	 *
-	 * @param      Media $value A Media object.
+	 * @param      Voto $value A Voto object.
 	 * @param      string $key (optional) key to use for instance map (for performance boost if key was already calculated externally).
 	 */
-	public static function addInstanceToPool(Media $obj, $key = null)
+	public static function addInstanceToPool(Voto $obj, $key = null)
 	{
 		if (Propel::isInstancePoolingEnabled()) {
 			if ($key === null) {
-				$key = (string) $obj->getIdmedia();
+				$key = (string) $obj->getId();
 			} // if key === null
 			self::$instances[$key] = $obj;
 		}
@@ -321,18 +321,18 @@ abstract class BaseMediaPeer {
 	 * methods in your stub classes -- you may need to explicitly remove objects
 	 * from the cache in order to prevent returning objects that no longer exist.
 	 *
-	 * @param      mixed $value A Media object or a primary key value.
+	 * @param      mixed $value A Voto object or a primary key value.
 	 */
 	public static function removeInstanceFromPool($value)
 	{
 		if (Propel::isInstancePoolingEnabled() && $value !== null) {
-			if (is_object($value) && $value instanceof Media) {
-				$key = (string) $value->getIdmedia();
+			if (is_object($value) && $value instanceof Voto) {
+				$key = (string) $value->getId();
 			} elseif (is_scalar($value)) {
 				// assume we've been passed a primary key
 				$key = (string) $value;
 			} else {
-				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Media object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
+				$e = new PropelException("Invalid value passed to removeInstanceFromPool().  Expected primary key or Voto object; got " . (is_object($value) ? get_class($value) . ' object.' : var_export($value,true)));
 				throw $e;
 			}
 
@@ -347,7 +347,7 @@ abstract class BaseMediaPeer {
 	 * a multi-column primary key, a serialize()d version of the primary key will be returned.
 	 *
 	 * @param      string $key The key (@see getPrimaryKeyHash()) for this instance.
-	 * @return     Media Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
+	 * @return     Voto Found object or NULL if 1) no instance exists for specified key or 2) instance pooling has been disabled.
 	 * @see        getPrimaryKeyHash()
 	 */
 	public static function getInstanceFromPool($key)
@@ -401,12 +401,12 @@ abstract class BaseMediaPeer {
 		$results = array();
 	
 		// set the class once to avoid overhead in the loop
-		$cls = MediaPeer::getOMClass();
+		$cls = VotoPeer::getOMClass();
 		$cls = substr('.'.$cls, strrpos('.'.$cls, '.') + 1);
 		// populate the object(s)
 		while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-			$key = MediaPeer::getPrimaryKeyHashFromRow($row, 0);
-			if (null !== ($obj = MediaPeer::getInstanceFromPool($key))) {
+			$key = VotoPeer::getPrimaryKeyHashFromRow($row, 0);
+			if (null !== ($obj = VotoPeer::getInstanceFromPool($key))) {
 				// We no longer rehydrate the object, since this can cause data loss.
 				// See http://propel.phpdb.org/trac/ticket/509
 				// $obj->hydrate($row, 0, true); // rehydrate
@@ -416,7 +416,7 @@ abstract class BaseMediaPeer {
 				$obj = new $cls();
 				$obj->hydrate($row);
 				$results[] = $obj;
-				MediaPeer::addInstanceToPool($obj, $key);
+				VotoPeer::addInstanceToPool($obj, $key);
 			} // if key exists
 		}
 		$stmt->closeCursor();
@@ -450,13 +450,13 @@ abstract class BaseMediaPeer {
 	 */
 	public static function getOMClass()
 	{
-		return MediaPeer::CLASS_DEFAULT;
+		return VotoPeer::CLASS_DEFAULT;
 	}
 
 	/**
-	 * Method perform an INSERT on the database, given a Media or Criteria object.
+	 * Method perform an INSERT on the database, given a Voto or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or Media object containing data that is used to create the INSERT statement.
+	 * @param      mixed $values Criteria or Voto object containing data that is used to create the INSERT statement.
 	 * @param      PropelPDO $con the PropelPDO connection to use
 	 * @return     mixed The new primary key.
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -465,9 +465,9 @@ abstract class BaseMediaPeer {
 	public static function doInsert($values, PropelPDO $con = null)
 	{
 
-    foreach (sfMixer::getCallables('BaseMediaPeer:doInsert:pre') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doInsert:pre') as $callable)
     {
-      $ret = call_user_func($callable, 'BaseMediaPeer', $values, $con);
+      $ret = call_user_func($callable, 'BaseVotoPeer', $values, $con);
       if (false !== $ret)
       {
         return $ret;
@@ -476,13 +476,17 @@ abstract class BaseMediaPeer {
 
 
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 		} else {
-			$criteria = $values->buildCriteria(); // build Criteria from Media object
+			$criteria = $values->buildCriteria(); // build Criteria from Voto object
+		}
+
+		if ($criteria->containsKey(VotoPeer::ID) && $criteria->keyContainsValue(VotoPeer::ID) ) {
+			throw new PropelException('Cannot insert a value for auto-increment primary key ('.VotoPeer::ID.')');
 		}
 
 
@@ -501,18 +505,18 @@ abstract class BaseMediaPeer {
 		}
 
 		
-    foreach (sfMixer::getCallables('BaseMediaPeer:doInsert:post') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doInsert:post') as $callable)
     {
-      call_user_func($callable, 'BaseMediaPeer', $values, $con, $pk);
+      call_user_func($callable, 'BaseVotoPeer', $values, $con, $pk);
     }
 
     return $pk;
 	}
 
 	/**
-	 * Method perform an UPDATE on the database, given a Media or Criteria object.
+	 * Method perform an UPDATE on the database, given a Voto or Criteria object.
 	 *
-	 * @param      mixed $values Criteria or Media object containing data that is used to create the UPDATE statement.
+	 * @param      mixed $values Criteria or Voto object containing data that is used to create the UPDATE statement.
 	 * @param      PropelPDO $con The connection to use (specify PropelPDO connection object to exert more control over transactions).
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 * @throws     PropelException Any exceptions caught during processing will be
@@ -521,9 +525,9 @@ abstract class BaseMediaPeer {
 	public static function doUpdate($values, PropelPDO $con = null)
 	{
 
-    foreach (sfMixer::getCallables('BaseMediaPeer:doUpdate:pre') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doUpdate:pre') as $callable)
     {
-      $ret = call_user_func($callable, 'BaseMediaPeer', $values, $con);
+      $ret = call_user_func($callable, 'BaseVotoPeer', $values, $con);
       if (false !== $ret)
       {
         return $ret;
@@ -532,7 +536,7 @@ abstract class BaseMediaPeer {
 
 
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		$selectCriteria = new Criteria(self::DATABASE_NAME);
@@ -540,10 +544,10 @@ abstract class BaseMediaPeer {
 		if ($values instanceof Criteria) {
 			$criteria = clone $values; // rename for clarity
 
-			$comparison = $criteria->getComparison(MediaPeer::IDMEDIA);
-			$selectCriteria->add(MediaPeer::IDMEDIA, $criteria->remove(MediaPeer::IDMEDIA), $comparison);
+			$comparison = $criteria->getComparison(VotoPeer::ID);
+			$selectCriteria->add(VotoPeer::ID, $criteria->remove(VotoPeer::ID), $comparison);
 
-		} else { // $values is Media object
+		} else { // $values is Voto object
 			$criteria = $values->buildCriteria(); // gets full criteria
 			$selectCriteria = $values->buildPkeyCriteria(); // gets criteria w/ primary key(s)
 		}
@@ -554,30 +558,30 @@ abstract class BaseMediaPeer {
 		$ret = BasePeer::doUpdate($selectCriteria, $criteria, $con);
 	
 
-    foreach (sfMixer::getCallables('BaseMediaPeer:doUpdate:post') as $callable)
+    foreach (sfMixer::getCallables('BaseVotoPeer:doUpdate:post') as $callable)
     {
-      call_user_func($callable, 'BaseMediaPeer', $values, $con, $ret);
+      call_user_func($callable, 'BaseVotoPeer', $values, $con, $ret);
     }
 
     return $ret;
   }
 
 	/**
-	 * Method to DELETE all rows from the media table.
+	 * Method to DELETE all rows from the voto table.
 	 *
 	 * @return     int The number of affected rows (if supported by underlying database driver).
 	 */
 	public static function doDeleteAll($con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		$affectedRows = 0; // initialize var to track total num of affected rows
 		try {
 			// use transaction because $criteria could contain info
 			// for more than one table or we could emulating ON DELETE CASCADE, etc.
 			$con->beginTransaction();
-			$affectedRows += BasePeer::doDeleteAll(MediaPeer::TABLE_NAME, $con);
+			$affectedRows += BasePeer::doDeleteAll(VotoPeer::TABLE_NAME, $con);
 			$con->commit();
 			return $affectedRows;
 		} catch (PropelException $e) {
@@ -587,9 +591,9 @@ abstract class BaseMediaPeer {
 	}
 
 	/**
-	 * Method perform a DELETE on the database, given a Media or Criteria object OR a primary key value.
+	 * Method perform a DELETE on the database, given a Voto or Criteria object OR a primary key value.
 	 *
-	 * @param      mixed $values Criteria or Media object or primary key or array of primary keys
+	 * @param      mixed $values Criteria or Voto object or primary key or array of primary keys
 	 *              which is used to create the DELETE statement
 	 * @param      PropelPDO $con the connection to use
 	 * @return     int 	The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -600,20 +604,20 @@ abstract class BaseMediaPeer {
 	 public static function doDelete($values, PropelPDO $con = null)
 	 {
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 
 		if ($values instanceof Criteria) {
 			// invalidate the cache for all objects of this type, since we have no
 			// way of knowing (without running a query) what objects should be invalidated
 			// from the cache based on this Criteria.
-			MediaPeer::clearInstancePool();
+			VotoPeer::clearInstancePool();
 
 			// rename for clarity
 			$criteria = clone $values;
-		} elseif ($values instanceof Media) {
+		} elseif ($values instanceof Voto) {
 			// invalidate the cache for this single object
-			MediaPeer::removeInstanceFromPool($values);
+			VotoPeer::removeInstanceFromPool($values);
 			// create criteria based on pk values
 			$criteria = $values->buildPkeyCriteria();
 		} else {
@@ -622,11 +626,11 @@ abstract class BaseMediaPeer {
 
 
 			$criteria = new Criteria(self::DATABASE_NAME);
-			$criteria->add(MediaPeer::IDMEDIA, (array) $values, Criteria::IN);
+			$criteria->add(VotoPeer::ID, (array) $values, Criteria::IN);
 
 			foreach ((array) $values as $singleval) {
 				// we can invalidate the cache for this single object
-				MediaPeer::removeInstanceFromPool($singleval);
+				VotoPeer::removeInstanceFromPool($singleval);
 			}
 		}
 
@@ -651,24 +655,24 @@ abstract class BaseMediaPeer {
 	}
 
 	/**
-	 * Validates all modified columns of given Media object.
+	 * Validates all modified columns of given Voto object.
 	 * If parameter $columns is either a single column name or an array of column names
 	 * than only those columns are validated.
 	 *
 	 * NOTICE: This does not apply to primary or foreign keys for now.
 	 *
-	 * @param      Media $obj The object to validate.
+	 * @param      Voto $obj The object to validate.
 	 * @param      mixed $cols Column name or array of column names.
 	 *
 	 * @return     mixed TRUE if all columns are valid or the error message of the first invalid column.
 	 */
-	public static function doValidate(Media $obj, $cols = null)
+	public static function doValidate(Voto $obj, $cols = null)
 	{
 		$columns = array();
 
 		if ($cols) {
-			$dbMap = Propel::getDatabaseMap(MediaPeer::DATABASE_NAME);
-			$tableMap = $dbMap->getTable(MediaPeer::TABLE_NAME);
+			$dbMap = Propel::getDatabaseMap(VotoPeer::DATABASE_NAME);
+			$tableMap = $dbMap->getTable(VotoPeer::TABLE_NAME);
 
 			if (! is_array($cols)) {
 				$cols = array($cols);
@@ -684,11 +688,11 @@ abstract class BaseMediaPeer {
 
 		}
 
-		$res =  BasePeer::doValidate(MediaPeer::DATABASE_NAME, MediaPeer::TABLE_NAME, $columns);
+		$res =  BasePeer::doValidate(VotoPeer::DATABASE_NAME, VotoPeer::TABLE_NAME, $columns);
     if ($res !== true) {
         $request = sfContext::getInstance()->getRequest();
         foreach ($res as $failed) {
-            $col = MediaPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
+            $col = VotoPeer::translateFieldname($failed->getColumn(), BasePeer::TYPE_COLNAME, BasePeer::TYPE_PHPNAME);
         }
     }
 
@@ -700,23 +704,23 @@ abstract class BaseMediaPeer {
 	 *
 	 * @param      int $pk the primary key.
 	 * @param      PropelPDO $con the connection to use
-	 * @return     Media
+	 * @return     Voto
 	 */
 	public static function retrieveByPK($pk, PropelPDO $con = null)
 	{
 
-		if (null !== ($obj = MediaPeer::getInstanceFromPool((string) $pk))) {
+		if (null !== ($obj = VotoPeer::getInstanceFromPool((string) $pk))) {
 			return $obj;
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
-		$criteria = new Criteria(MediaPeer::DATABASE_NAME);
-		$criteria->add(MediaPeer::IDMEDIA, $pk);
+		$criteria = new Criteria(VotoPeer::DATABASE_NAME);
+		$criteria->add(VotoPeer::ID, $pk);
 
-		$v = MediaPeer::doSelect($criteria, $con);
+		$v = VotoPeer::doSelect($criteria, $con);
 
 		return !empty($v) > 0 ? $v[0] : null;
 	}
@@ -732,30 +736,30 @@ abstract class BaseMediaPeer {
 	public static function retrieveByPKs($pks, PropelPDO $con = null)
 	{
 		if ($con === null) {
-			$con = Propel::getConnection(MediaPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		$objs = null;
 		if (empty($pks)) {
 			$objs = array();
 		} else {
-			$criteria = new Criteria(MediaPeer::DATABASE_NAME);
-			$criteria->add(MediaPeer::IDMEDIA, $pks, Criteria::IN);
-			$objs = MediaPeer::doSelect($criteria, $con);
+			$criteria = new Criteria(VotoPeer::DATABASE_NAME);
+			$criteria->add(VotoPeer::ID, $pks, Criteria::IN);
+			$objs = VotoPeer::doSelect($criteria, $con);
 		}
 		return $objs;
 	}
 
-} // BaseMediaPeer
+} // BaseVotoPeer
 
 // This is the static code needed to register the MapBuilder for this table with the main Propel class.
 //
-// NOTE: This static code cannot call methods on the MediaPeer class, because it is not defined yet.
-// If you need to use overridden methods, you can add this code to the bottom of the MediaPeer class:
+// NOTE: This static code cannot call methods on the VotoPeer class, because it is not defined yet.
+// If you need to use overridden methods, you can add this code to the bottom of the VotoPeer class:
 //
-// Propel::getDatabaseMap(MediaPeer::DATABASE_NAME)->addTableBuilder(MediaPeer::TABLE_NAME, MediaPeer::getMapBuilder());
+// Propel::getDatabaseMap(VotoPeer::DATABASE_NAME)->addTableBuilder(VotoPeer::TABLE_NAME, VotoPeer::getMapBuilder());
 //
 // Doing so will effectively overwrite the registration below.
 
-Propel::getDatabaseMap(BaseMediaPeer::DATABASE_NAME)->addTableBuilder(BaseMediaPeer::TABLE_NAME, BaseMediaPeer::getMapBuilder());
+Propel::getDatabaseMap(BaseVotoPeer::DATABASE_NAME)->addTableBuilder(BaseVotoPeer::TABLE_NAME, BaseVotoPeer::getMapBuilder());
 

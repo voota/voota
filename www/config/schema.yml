@@ -2,14 +2,6 @@ propel:
   _attributes:
     package: lib.model
     defaultIdMethod: native
-  afiliacion:
-    _attributes: { phpName: Afiliacion }
-    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    fecha_inicio: { type: DATE, required: false }
-    fecha_fin: { type: DATE, required: false }
-    partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_a_partido: [partido_id] }
   eleccion:
     _attributes: { phpName: Eleccion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -21,7 +13,7 @@ propel:
     eleccion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_institucion: [institucion_id], fk_eleccion: [eleccion_id] }
+    _indexes: { fk_eleccion: [eleccion_id], fk_institucion: [institucion_id] }
   enlace:
     _attributes: { phpName: Enlace }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -33,6 +25,11 @@ propel:
     mostrar: { type: CHAR, size: '1', required: false }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_e_partido: [partido_id], fk_e_politico: [politico_id] }
+  geo:
+    _attributes: { phpName: Geo }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    created_at: { type: TIMESTAMP, required: false }
   imagen:
     _attributes: { phpName: Imagen }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -46,7 +43,7 @@ propel:
     _attributes: { phpName: Institucion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
-    region_id: { type: INTEGER, size: '11', required: false, foreignTable: region, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    region_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_region: [region_id] }
   lista:
@@ -81,18 +78,15 @@ propel:
     color: { type: VARCHAR, size: '8', required: false }
     web: { type: VARCHAR, size: '150', required: false }
     created_at: { type: TIMESTAMP, required: false }
-  partido_afiliacion:
-    _attributes: { phpName: PartidoAfiliacion }
-    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    afiliacion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: afiliacion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_paa_partido: [partido_id], fk_paa_afiliacion: [afiliacion_id] }
+    partido_id: { type: INTEGER, size: '11', required: false }
   politico:
     _attributes: { phpName: Politico }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    url_key: { type: VARCHAR, size: '45', required: true }
     alias: { type: VARCHAR, size: '45', required: false }
     nombre: { type: VARCHAR, size: '45', required: true }
     apellidos: { type: VARCHAR, size: '150', required: true }
+    email: { type: VARCHAR, size: '45', required: false }
     sexo: { type: CHAR, size: '1', required: false }
     fecha_nacimiento: { type: DATE, required: false }
     pais: { type: VARCHAR, size: '45', required: false }
@@ -101,17 +95,14 @@ propel:
     presentacion: { type: VARCHAR, size: '500', required: false }
     usuario_id: { type: INTEGER, size: '11', required: false, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
+    politicocol: { type: VARCHAR, size: '45', required: false }
+    partido_id: { type: INTEGER, size: '11', required: false }
     _indexes: { fk_usuario: [usuario_id] }
-  politico_afiliacion:
-    _attributes: { phpName: PoliticoAfiliacion }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    afiliacion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: afiliacion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_poa_politico: [politico_id], fk_poa_afiliacion: [afiliacion_id] }
   politico_lista:
     _attributes: { phpName: PoliticoLista }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    orden: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_politico: [politico_id], fk_lista: [lista_id] }
   promocion:
@@ -123,11 +114,6 @@ propel:
     politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_pr_partido: [partido_id], fk_pr_politico: [politico_id] }
-  region:
-    _attributes: { phpName: Region }
-    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre: { type: VARCHAR, size: '150', required: true }
-    created_at: { type: TIMESTAMP, required: false }
   usuario:
     _attributes: { phpName: Usuario }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -141,4 +127,10 @@ propel:
     formacion: { type: VARCHAR, size: '255', required: false }
     residencia: { type: VARCHAR, size: '45', required: false }
     presentacion: { type: VARCHAR, size: '500', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+  voto:
+    _attributes: { phpName: Voto }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    uid: { type: VARCHAR, size: '20', required: false }
+    valor: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }

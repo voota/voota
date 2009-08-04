@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base class that represents a row from the 'promocion' table.
+ * Base class that represents a row from the 'voto' table.
  *
  * 
  *
@@ -11,16 +11,16 @@
  *
  * @package    lib.model.om
  */
-abstract class BasePromocion extends BaseObject  implements Persistent {
+abstract class BaseVoto extends BaseObject  implements Persistent {
 
 
-  const PEER = 'PromocionPeer';
+  const PEER = 'VotoPeer';
 
 	/**
 	 * The Peer class.
 	 * Instance provides a convenient way of calling static methods on a class
 	 * that calling code may not be able to identify.
-	 * @var        PromocionPeer
+	 * @var        VotoPeer
 	 */
 	protected static $peer;
 
@@ -31,44 +31,22 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	protected $id;
 
 	/**
-	 * The value for the fecha_inicio field.
+	 * The value for the uid field.
 	 * @var        string
 	 */
-	protected $fecha_inicio;
+	protected $uid;
 
 	/**
-	 * The value for the fecha_fin field.
-	 * @var        string
-	 */
-	protected $fecha_fin;
-
-	/**
-	 * The value for the partido_id field.
+	 * The value for the valor field.
 	 * @var        int
 	 */
-	protected $partido_id;
-
-	/**
-	 * The value for the politico_id field.
-	 * @var        int
-	 */
-	protected $politico_id;
+	protected $valor;
 
 	/**
 	 * The value for the created_at field.
 	 * @var        string
 	 */
 	protected $created_at;
-
-	/**
-	 * @var        Partido
-	 */
-	protected $aPartido;
-
-	/**
-	 * @var        Politico
-	 */
-	protected $aPolitico;
 
 	/**
 	 * Flag to prevent endless save loop, if this object is referenced
@@ -85,7 +63,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	protected $alreadyInValidation = false;
 
 	/**
-	 * Initializes internal state of BasePromocion object.
+	 * Initializes internal state of BaseVoto object.
 	 * @see        applyDefaults()
 	 */
 	public function __construct()
@@ -115,99 +93,23 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	}
 
 	/**
-	 * Get the [optionally formatted] temporal [fecha_inicio] column value.
+	 * Get the [uid] column value.
 	 * 
-	 *
-	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
-	 *							If format is NULL, then the raw DateTime object will be returned.
-	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
-	 * @throws     PropelException - if unable to parse/validate the date/time value.
+	 * @return     string
 	 */
-	public function getFechaInicio($format = 'Y-m-d')
+	public function getUid()
 	{
-		if ($this->fecha_inicio === null) {
-			return null;
-		}
-
-
-		if ($this->fecha_inicio === '0000-00-00') {
-			// while technically this is not a default value of NULL,
-			// this seems to be closest in meaning.
-			return null;
-		} else {
-			try {
-				$dt = new DateTime($this->fecha_inicio);
-			} catch (Exception $x) {
-				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_inicio, true), $x);
-			}
-		}
-
-		if ($format === null) {
-			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
-			return $dt;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $dt->format('U'));
-		} else {
-			return $dt->format($format);
-		}
+		return $this->uid;
 	}
 
 	/**
-	 * Get the [optionally formatted] temporal [fecha_fin] column value.
-	 * 
-	 *
-	 * @param      string $format The date/time format string (either date()-style or strftime()-style).
-	 *							If format is NULL, then the raw DateTime object will be returned.
-	 * @return     mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00
-	 * @throws     PropelException - if unable to parse/validate the date/time value.
-	 */
-	public function getFechaFin($format = 'Y-m-d')
-	{
-		if ($this->fecha_fin === null) {
-			return null;
-		}
-
-
-		if ($this->fecha_fin === '0000-00-00') {
-			// while technically this is not a default value of NULL,
-			// this seems to be closest in meaning.
-			return null;
-		} else {
-			try {
-				$dt = new DateTime($this->fecha_fin);
-			} catch (Exception $x) {
-				throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->fecha_fin, true), $x);
-			}
-		}
-
-		if ($format === null) {
-			// Because propel.useDateTimeClass is TRUE, we return a DateTime object.
-			return $dt;
-		} elseif (strpos($format, '%') !== false) {
-			return strftime($format, $dt->format('U'));
-		} else {
-			return $dt->format($format);
-		}
-	}
-
-	/**
-	 * Get the [partido_id] column value.
+	 * Get the [valor] column value.
 	 * 
 	 * @return     int
 	 */
-	public function getPartidoId()
+	public function getValor()
 	{
-		return $this->partido_id;
-	}
-
-	/**
-	 * Get the [politico_id] column value.
-	 * 
-	 * @return     int
-	 */
-	public function getPoliticoId()
-	{
-		return $this->politico_id;
+		return $this->valor;
 	}
 
 	/**
@@ -252,7 +154,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 * Set the value of [id] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     Promocion The current object (for fluent API support)
+	 * @return     Voto The current object (for fluent API support)
 	 */
 	public function setId($v)
 	{
@@ -262,164 +164,58 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 
 		if ($this->id !== $v) {
 			$this->id = $v;
-			$this->modifiedColumns[] = PromocionPeer::ID;
+			$this->modifiedColumns[] = VotoPeer::ID;
 		}
 
 		return $this;
 	} // setId()
 
 	/**
-	 * Sets the value of [fecha_inicio] column to a normalized version of the date/time value specified.
+	 * Set the value of [uid] column.
 	 * 
-	 * @param      mixed $v string, integer (timestamp), or DateTime value.  Empty string will
-	 *						be treated as NULL for temporal objects.
-	 * @return     Promocion The current object (for fluent API support)
+	 * @param      string $v new value
+	 * @return     Voto The current object (for fluent API support)
 	 */
-	public function setFechaInicio($v)
+	public function setUid($v)
 	{
-		// we treat '' as NULL for temporal objects because DateTime('') == DateTime('now')
-		// -- which is unexpected, to say the least.
-		if ($v === null || $v === '') {
-			$dt = null;
-		} elseif ($v instanceof DateTime) {
-			$dt = $v;
-		} else {
-			// some string/numeric value passed; we normalize that so that we can
-			// validate it.
-			try {
-				if (is_numeric($v)) { // if it's a unix timestamp
-					$dt = new DateTime('@'.$v, new DateTimeZone('UTC'));
-					// We have to explicitly specify and then change the time zone because of a
-					// DateTime bug: http://bugs.php.net/bug.php?id=43003
-					$dt->setTimeZone(new DateTimeZone(date_default_timezone_get()));
-				} else {
-					$dt = new DateTime($v);
-				}
-			} catch (Exception $x) {
-				throw new PropelException('Error parsing date/time value: ' . var_export($v, true), $x);
-			}
+		if ($v !== null) {
+			$v = (string) $v;
 		}
 
-		if ( $this->fecha_inicio !== null || $dt !== null ) {
-			// (nested ifs are a little easier to read in this case)
-
-			$currNorm = ($this->fecha_inicio !== null && $tmpDt = new DateTime($this->fecha_inicio)) ? $tmpDt->format('Y-m-d') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d') : null;
-
-			if ( ($currNorm !== $newNorm) // normalized values don't match 
-					)
-			{
-				$this->fecha_inicio = ($dt ? $dt->format('Y-m-d') : null);
-				$this->modifiedColumns[] = PromocionPeer::FECHA_INICIO;
-			}
-		} // if either are not null
-
-		return $this;
-	} // setFechaInicio()
-
-	/**
-	 * Sets the value of [fecha_fin] column to a normalized version of the date/time value specified.
-	 * 
-	 * @param      mixed $v string, integer (timestamp), or DateTime value.  Empty string will
-	 *						be treated as NULL for temporal objects.
-	 * @return     Promocion The current object (for fluent API support)
-	 */
-	public function setFechaFin($v)
-	{
-		// we treat '' as NULL for temporal objects because DateTime('') == DateTime('now')
-		// -- which is unexpected, to say the least.
-		if ($v === null || $v === '') {
-			$dt = null;
-		} elseif ($v instanceof DateTime) {
-			$dt = $v;
-		} else {
-			// some string/numeric value passed; we normalize that so that we can
-			// validate it.
-			try {
-				if (is_numeric($v)) { // if it's a unix timestamp
-					$dt = new DateTime('@'.$v, new DateTimeZone('UTC'));
-					// We have to explicitly specify and then change the time zone because of a
-					// DateTime bug: http://bugs.php.net/bug.php?id=43003
-					$dt->setTimeZone(new DateTimeZone(date_default_timezone_get()));
-				} else {
-					$dt = new DateTime($v);
-				}
-			} catch (Exception $x) {
-				throw new PropelException('Error parsing date/time value: ' . var_export($v, true), $x);
-			}
+		if ($this->uid !== $v) {
+			$this->uid = $v;
+			$this->modifiedColumns[] = VotoPeer::UID;
 		}
 
-		if ( $this->fecha_fin !== null || $dt !== null ) {
-			// (nested ifs are a little easier to read in this case)
-
-			$currNorm = ($this->fecha_fin !== null && $tmpDt = new DateTime($this->fecha_fin)) ? $tmpDt->format('Y-m-d') : null;
-			$newNorm = ($dt !== null) ? $dt->format('Y-m-d') : null;
-
-			if ( ($currNorm !== $newNorm) // normalized values don't match 
-					)
-			{
-				$this->fecha_fin = ($dt ? $dt->format('Y-m-d') : null);
-				$this->modifiedColumns[] = PromocionPeer::FECHA_FIN;
-			}
-		} // if either are not null
-
 		return $this;
-	} // setFechaFin()
+	} // setUid()
 
 	/**
-	 * Set the value of [partido_id] column.
+	 * Set the value of [valor] column.
 	 * 
 	 * @param      int $v new value
-	 * @return     Promocion The current object (for fluent API support)
+	 * @return     Voto The current object (for fluent API support)
 	 */
-	public function setPartidoId($v)
+	public function setValor($v)
 	{
 		if ($v !== null) {
 			$v = (int) $v;
 		}
 
-		if ($this->partido_id !== $v) {
-			$this->partido_id = $v;
-			$this->modifiedColumns[] = PromocionPeer::PARTIDO_ID;
-		}
-
-		if ($this->aPartido !== null && $this->aPartido->getId() !== $v) {
-			$this->aPartido = null;
+		if ($this->valor !== $v) {
+			$this->valor = $v;
+			$this->modifiedColumns[] = VotoPeer::VALOR;
 		}
 
 		return $this;
-	} // setPartidoId()
-
-	/**
-	 * Set the value of [politico_id] column.
-	 * 
-	 * @param      int $v new value
-	 * @return     Promocion The current object (for fluent API support)
-	 */
-	public function setPoliticoId($v)
-	{
-		if ($v !== null) {
-			$v = (int) $v;
-		}
-
-		if ($this->politico_id !== $v) {
-			$this->politico_id = $v;
-			$this->modifiedColumns[] = PromocionPeer::POLITICO_ID;
-		}
-
-		if ($this->aPolitico !== null && $this->aPolitico->getId() !== $v) {
-			$this->aPolitico = null;
-		}
-
-		return $this;
-	} // setPoliticoId()
+	} // setValor()
 
 	/**
 	 * Sets the value of [created_at] column to a normalized version of the date/time value specified.
 	 * 
 	 * @param      mixed $v string, integer (timestamp), or DateTime value.  Empty string will
 	 *						be treated as NULL for temporal objects.
-	 * @return     Promocion The current object (for fluent API support)
+	 * @return     Voto The current object (for fluent API support)
 	 */
 	public function setCreatedAt($v)
 	{
@@ -456,7 +252,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 					)
 			{
 				$this->created_at = ($dt ? $dt->format('Y-m-d H:i:s') : null);
-				$this->modifiedColumns[] = PromocionPeer::CREATED_AT;
+				$this->modifiedColumns[] = VotoPeer::CREATED_AT;
 			}
 		} // if either are not null
 
@@ -501,11 +297,9 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		try {
 
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-			$this->fecha_inicio = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-			$this->fecha_fin = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->partido_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
-			$this->politico_id = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
-			$this->created_at = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->uid = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+			$this->valor = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+			$this->created_at = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -515,10 +309,10 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 			}
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 6; // 6 = PromocionPeer::NUM_COLUMNS - PromocionPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 4; // 4 = VotoPeer::NUM_COLUMNS - VotoPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
-			throw new PropelException("Error populating Promocion object", $e);
+			throw new PropelException("Error populating Voto object", $e);
 		}
 	}
 
@@ -538,12 +332,6 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	public function ensureConsistency()
 	{
 
-		if ($this->aPartido !== null && $this->partido_id !== $this->aPartido->getId()) {
-			$this->aPartido = null;
-		}
-		if ($this->aPolitico !== null && $this->politico_id !== $this->aPolitico->getId()) {
-			$this->aPolitico = null;
-		}
 	} // ensureConsistency
 
 	/**
@@ -567,13 +355,13 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(PromocionPeer::DATABASE_NAME, Propel::CONNECTION_READ);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_READ);
 		}
 
 		// We don't need to alter the object instance pool; we're just modifying this instance
 		// already in the pool.
 
-		$stmt = PromocionPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
+		$stmt = VotoPeer::doSelectStmt($this->buildPkeyCriteria(), $con);
 		$row = $stmt->fetch(PDO::FETCH_NUM);
 		$stmt->closeCursor();
 		if (!$row) {
@@ -583,8 +371,6 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 
 		if ($deep) {  // also de-associate any related objects?
 
-			$this->aPartido = null;
-			$this->aPolitico = null;
 		} // if (deep)
 	}
 
@@ -600,7 +386,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	public function delete(PropelPDO $con = null)
 	{
 
-    foreach (sfMixer::getCallables('BasePromocion:delete:pre') as $callable)
+    foreach (sfMixer::getCallables('BaseVoto:delete:pre') as $callable)
     {
       $ret = call_user_func($callable, $this, $con);
       if ($ret)
@@ -615,12 +401,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(PromocionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		
 		$con->beginTransaction();
 		try {
-			PromocionPeer::doDelete($this, $con);
+			VotoPeer::doDelete($this, $con);
 			$this->setDeleted(true);
 			$con->commit();
 		} catch (PropelException $e) {
@@ -629,7 +415,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		}
 	
 
-    foreach (sfMixer::getCallables('BasePromocion:delete:post') as $callable)
+    foreach (sfMixer::getCallables('BaseVoto:delete:post') as $callable)
     {
       call_user_func($callable, $this, $con);
     }
@@ -651,7 +437,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	public function save(PropelPDO $con = null)
 	{
 
-    foreach (sfMixer::getCallables('BasePromocion:save:pre') as $callable)
+    foreach (sfMixer::getCallables('BaseVoto:save:pre') as $callable)
     {
       $affectedRows = call_user_func($callable, $this, $con);
       if (is_int($affectedRows))
@@ -661,7 +447,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
     }
 
 
-    if ($this->isNew() && !$this->isColumnModified(PromocionPeer::CREATED_AT))
+    if ($this->isNew() && !$this->isColumnModified(VotoPeer::CREATED_AT))
     {
       $this->setCreatedAt(time());
     }
@@ -671,19 +457,19 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		}
 
 		if ($con === null) {
-			$con = Propel::getConnection(PromocionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
+			$con = Propel::getConnection(VotoPeer::DATABASE_NAME, Propel::CONNECTION_WRITE);
 		}
 		
 		$con->beginTransaction();
 		try {
 			$affectedRows = $this->doSave($con);
 			$con->commit();
-    foreach (sfMixer::getCallables('BasePromocion:save:post') as $callable)
+    foreach (sfMixer::getCallables('BaseVoto:save:post') as $callable)
     {
       call_user_func($callable, $this, $con, $affectedRows);
     }
 
-			PromocionPeer::addInstanceToPool($this);
+			VotoPeer::addInstanceToPool($this);
 			return $affectedRows;
 		} catch (PropelException $e) {
 			$con->rollBack();
@@ -708,33 +494,14 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		if (!$this->alreadyInSave) {
 			$this->alreadyInSave = true;
 
-			// We call the save method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
-			if ($this->aPartido !== null) {
-				if ($this->aPartido->isModified() || $this->aPartido->isNew()) {
-					$affectedRows += $this->aPartido->save($con);
-				}
-				$this->setPartido($this->aPartido);
-			}
-
-			if ($this->aPolitico !== null) {
-				if ($this->aPolitico->isModified() || $this->aPolitico->isNew()) {
-					$affectedRows += $this->aPolitico->save($con);
-				}
-				$this->setPolitico($this->aPolitico);
-			}
-
 			if ($this->isNew() ) {
-				$this->modifiedColumns[] = PromocionPeer::ID;
+				$this->modifiedColumns[] = VotoPeer::ID;
 			}
 
 			// If this object has been modified, then save it to the database.
 			if ($this->isModified()) {
 				if ($this->isNew()) {
-					$pk = PromocionPeer::doInsert($this, $con);
+					$pk = VotoPeer::doInsert($this, $con);
 					$affectedRows += 1; // we are assuming that there is only 1 row per doInsert() which
 										 // should always be true here (even though technically
 										 // BasePeer::doInsert() can insert multiple rows).
@@ -743,7 +510,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 
 					$this->setNew(false);
 				} else {
-					$affectedRows += PromocionPeer::doUpdate($this, $con);
+					$affectedRows += VotoPeer::doUpdate($this, $con);
 				}
 
 				$this->resetModified(); // [HL] After being saved an object is no longer 'modified'
@@ -815,25 +582,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 			$failureMap = array();
 
 
-			// We call the validate method on the following object(s) if they
-			// were passed to this object by their coresponding set
-			// method.  This object relates to these object(s) by a
-			// foreign key reference.
-
-			if ($this->aPartido !== null) {
-				if (!$this->aPartido->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aPartido->getValidationFailures());
-				}
-			}
-
-			if ($this->aPolitico !== null) {
-				if (!$this->aPolitico->validate($columns)) {
-					$failureMap = array_merge($failureMap, $this->aPolitico->getValidationFailures());
-				}
-			}
-
-
-			if (($retval = PromocionPeer::doValidate($this, $columns)) !== true) {
+			if (($retval = VotoPeer::doValidate($this, $columns)) !== true) {
 				$failureMap = array_merge($failureMap, $retval);
 			}
 
@@ -856,7 +605,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function getByName($name, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = PromocionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = VotoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		$field = $this->getByPosition($pos);
 		return $field;
 	}
@@ -875,18 +624,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 				return $this->getId();
 				break;
 			case 1:
-				return $this->getFechaInicio();
+				return $this->getUid();
 				break;
 			case 2:
-				return $this->getFechaFin();
+				return $this->getValor();
 				break;
 			case 3:
-				return $this->getPartidoId();
-				break;
-			case 4:
-				return $this->getPoliticoId();
-				break;
-			case 5:
 				return $this->getCreatedAt();
 				break;
 			default:
@@ -908,14 +651,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function toArray($keyType = BasePeer::TYPE_PHPNAME, $includeLazyLoadColumns = true)
 	{
-		$keys = PromocionPeer::getFieldNames($keyType);
+		$keys = VotoPeer::getFieldNames($keyType);
 		$result = array(
 			$keys[0] => $this->getId(),
-			$keys[1] => $this->getFechaInicio(),
-			$keys[2] => $this->getFechaFin(),
-			$keys[3] => $this->getPartidoId(),
-			$keys[4] => $this->getPoliticoId(),
-			$keys[5] => $this->getCreatedAt(),
+			$keys[1] => $this->getUid(),
+			$keys[2] => $this->getValor(),
+			$keys[3] => $this->getCreatedAt(),
 		);
 		return $result;
 	}
@@ -932,7 +673,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function setByName($name, $value, $type = BasePeer::TYPE_PHPNAME)
 	{
-		$pos = PromocionPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
+		$pos = VotoPeer::translateFieldName($name, $type, BasePeer::TYPE_NUM);
 		return $this->setByPosition($pos, $value);
 	}
 
@@ -951,18 +692,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 				$this->setId($value);
 				break;
 			case 1:
-				$this->setFechaInicio($value);
+				$this->setUid($value);
 				break;
 			case 2:
-				$this->setFechaFin($value);
+				$this->setValor($value);
 				break;
 			case 3:
-				$this->setPartidoId($value);
-				break;
-			case 4:
-				$this->setPoliticoId($value);
-				break;
-			case 5:
 				$this->setCreatedAt($value);
 				break;
 		} // switch()
@@ -987,14 +722,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
 	{
-		$keys = PromocionPeer::getFieldNames($keyType);
+		$keys = VotoPeer::getFieldNames($keyType);
 
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-		if (array_key_exists($keys[1], $arr)) $this->setFechaInicio($arr[$keys[1]]);
-		if (array_key_exists($keys[2], $arr)) $this->setFechaFin($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setPartidoId($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setPoliticoId($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setCreatedAt($arr[$keys[5]]);
+		if (array_key_exists($keys[1], $arr)) $this->setUid($arr[$keys[1]]);
+		if (array_key_exists($keys[2], $arr)) $this->setValor($arr[$keys[2]]);
+		if (array_key_exists($keys[3], $arr)) $this->setCreatedAt($arr[$keys[3]]);
 	}
 
 	/**
@@ -1004,14 +737,12 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function buildCriteria()
 	{
-		$criteria = new Criteria(PromocionPeer::DATABASE_NAME);
+		$criteria = new Criteria(VotoPeer::DATABASE_NAME);
 
-		if ($this->isColumnModified(PromocionPeer::ID)) $criteria->add(PromocionPeer::ID, $this->id);
-		if ($this->isColumnModified(PromocionPeer::FECHA_INICIO)) $criteria->add(PromocionPeer::FECHA_INICIO, $this->fecha_inicio);
-		if ($this->isColumnModified(PromocionPeer::FECHA_FIN)) $criteria->add(PromocionPeer::FECHA_FIN, $this->fecha_fin);
-		if ($this->isColumnModified(PromocionPeer::PARTIDO_ID)) $criteria->add(PromocionPeer::PARTIDO_ID, $this->partido_id);
-		if ($this->isColumnModified(PromocionPeer::POLITICO_ID)) $criteria->add(PromocionPeer::POLITICO_ID, $this->politico_id);
-		if ($this->isColumnModified(PromocionPeer::CREATED_AT)) $criteria->add(PromocionPeer::CREATED_AT, $this->created_at);
+		if ($this->isColumnModified(VotoPeer::ID)) $criteria->add(VotoPeer::ID, $this->id);
+		if ($this->isColumnModified(VotoPeer::UID)) $criteria->add(VotoPeer::UID, $this->uid);
+		if ($this->isColumnModified(VotoPeer::VALOR)) $criteria->add(VotoPeer::VALOR, $this->valor);
+		if ($this->isColumnModified(VotoPeer::CREATED_AT)) $criteria->add(VotoPeer::CREATED_AT, $this->created_at);
 
 		return $criteria;
 	}
@@ -1026,9 +757,9 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 */
 	public function buildPkeyCriteria()
 	{
-		$criteria = new Criteria(PromocionPeer::DATABASE_NAME);
+		$criteria = new Criteria(VotoPeer::DATABASE_NAME);
 
-		$criteria->add(PromocionPeer::ID, $this->id);
+		$criteria->add(VotoPeer::ID, $this->id);
 
 		return $criteria;
 	}
@@ -1059,20 +790,16 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 * If desired, this method can also make copies of all associated (fkey referrers)
 	 * objects.
 	 *
-	 * @param      object $copyObj An object of Promocion (or compatible) type.
+	 * @param      object $copyObj An object of Voto (or compatible) type.
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
 	 * @throws     PropelException
 	 */
 	public function copyInto($copyObj, $deepCopy = false)
 	{
 
-		$copyObj->setFechaInicio($this->fecha_inicio);
+		$copyObj->setUid($this->uid);
 
-		$copyObj->setFechaFin($this->fecha_fin);
-
-		$copyObj->setPartidoId($this->partido_id);
-
-		$copyObj->setPoliticoId($this->politico_id);
+		$copyObj->setValor($this->valor);
 
 		$copyObj->setCreatedAt($this->created_at);
 
@@ -1092,7 +819,7 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 * objects.
 	 *
 	 * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-	 * @return     Promocion Clone of current object.
+	 * @return     Voto Clone of current object.
 	 * @throws     PropelException
 	 */
 	public function copy($deepCopy = false)
@@ -1111,116 +838,14 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 	 * same instance for all member of this class. The method could therefore
 	 * be static, but this would prevent one from overriding the behavior.
 	 *
-	 * @return     PromocionPeer
+	 * @return     VotoPeer
 	 */
 	public function getPeer()
 	{
 		if (self::$peer === null) {
-			self::$peer = new PromocionPeer();
+			self::$peer = new VotoPeer();
 		}
 		return self::$peer;
-	}
-
-	/**
-	 * Declares an association between this object and a Partido object.
-	 *
-	 * @param      Partido $v
-	 * @return     Promocion The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setPartido(Partido $v = null)
-	{
-		if ($v === null) {
-			$this->setPartidoId(NULL);
-		} else {
-			$this->setPartidoId($v->getId());
-		}
-
-		$this->aPartido = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Partido object, it will not be re-added.
-		if ($v !== null) {
-			$v->addPromocion($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Partido object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Partido The associated Partido object.
-	 * @throws     PropelException
-	 */
-	public function getPartido(PropelPDO $con = null)
-	{
-		if ($this->aPartido === null && ($this->partido_id !== null)) {
-			$c = new Criteria(PartidoPeer::DATABASE_NAME);
-			$c->add(PartidoPeer::ID, $this->partido_id);
-			$this->aPartido = PartidoPeer::doSelectOne($c, $con);
-			/* The following can be used additionally to
-			   guarantee the related object contains a reference
-			   to this object.  This level of coupling may, however, be
-			   undesirable since it could result in an only partially populated collection
-			   in the referenced object.
-			   $this->aPartido->addPromocions($this);
-			 */
-		}
-		return $this->aPartido;
-	}
-
-	/**
-	 * Declares an association between this object and a Politico object.
-	 *
-	 * @param      Politico $v
-	 * @return     Promocion The current object (for fluent API support)
-	 * @throws     PropelException
-	 */
-	public function setPolitico(Politico $v = null)
-	{
-		if ($v === null) {
-			$this->setPoliticoId(NULL);
-		} else {
-			$this->setPoliticoId($v->getId());
-		}
-
-		$this->aPolitico = $v;
-
-		// Add binding for other direction of this n:n relationship.
-		// If this object has already been added to the Politico object, it will not be re-added.
-		if ($v !== null) {
-			$v->addPromocion($this);
-		}
-
-		return $this;
-	}
-
-
-	/**
-	 * Get the associated Politico object
-	 *
-	 * @param      PropelPDO Optional Connection object.
-	 * @return     Politico The associated Politico object.
-	 * @throws     PropelException
-	 */
-	public function getPolitico(PropelPDO $con = null)
-	{
-		if ($this->aPolitico === null && ($this->politico_id !== null)) {
-			$c = new Criteria(PoliticoPeer::DATABASE_NAME);
-			$c->add(PoliticoPeer::ID, $this->politico_id);
-			$this->aPolitico = PoliticoPeer::doSelectOne($c, $con);
-			/* The following can be used additionally to
-			   guarantee the related object contains a reference
-			   to this object.  This level of coupling may, however, be
-			   undesirable since it could result in an only partially populated collection
-			   in the referenced object.
-			   $this->aPolitico->addPromocions($this);
-			 */
-		}
-		return $this->aPolitico;
 	}
 
 	/**
@@ -1237,16 +862,14 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
 		if ($deep) {
 		} // if ($deep)
 
-			$this->aPartido = null;
-			$this->aPolitico = null;
 	}
 
 
   public function __call($method, $arguments)
   {
-    if (!$callable = sfMixer::getCallable('BasePromocion:'.$method))
+    if (!$callable = sfMixer::getCallable('BaseVoto:'.$method))
     {
-      throw new sfException(sprintf('Call to undefined method BasePromocion::%s', $method));
+      throw new sfException(sprintf('Call to undefined method BaseVoto::%s', $method));
     }
 
     array_unshift($arguments, $this);
@@ -1255,4 +878,4 @@ abstract class BasePromocion extends BaseObject  implements Persistent {
   }
 
 
-} // BasePromocion
+} // BaseVoto
