@@ -9,21 +9,65 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class homeActions extends sfActions{
-  public function executeIndexWithoutCulture(sfWebRequest $request) {
+  var $uid;
+  var $culture;
+  var $first;
+  
+  private function readCookie( $request ) {
+  	global $culture;
+  	global $uid;
+  	global $first;
+  	
   	// Si no viene el idioma en la url
   	// 1: Cookie 
-	if ($vootaCookie = $request->getCookie('voota')){
-		$culture = $vootaCookie;
+	if ($cookie = $request->getCookie('voota')){
+		$value = unserialize(base64_decode($cookie));
+		
+		$uid =  $value[0];
+		$culture = $value[1];
+		$first = false;
 	}
 	else {
 	  	// 2: Idioma del navegador 
 	  	$culture = $request->getPreferredCulture(array('es', 'ca', 'en'));
-  		# $this->getResponse()->setCookie('voota', $culture);
+	  	$uid = util::generateUID();
+	  	$value[0] = $uid;
+	  	$value[1] = $culture;
+	  	$cookie = base64_encode(serialize($value));
+	  	$this->getResponse()->setCookie('voota', $cookie);
+		$first = true;
 	}
-	  	  	
+  }
+	
+  public function executeIndexWithoutCulture(sfWebRequest $request) {
+  	global $culture;
+  	
+	$this->readCookie($this->getRequest());
   	$this->redirect( "/$culture" );
   }
   
   public function executeIndex(sfWebRequest $request) {
+  	global $uid;
+  	global $first;
+  	
+  	$this->readCookie($this->getRequest());
+  	
+  	$this->getResponse()->setTitle("Voota. Tú tienes la última palabra", false);
+  	
+  	$v = $this->request->getParameter("v");
+  	if ((!$first) && $v && ($v == 0 || $v == 1)){
+  		$criteria = new Criteria();
+  		$criteria->add(VotoPeer::UID, $uid);
+  		
+  		$voto = VotoPeer::doSelect($criteria);
+  		if (!$voto) {
+  			$voto = new Voto();
+  			$voto->setUid( $uid );
+  			$voto->setValor( $v );
+  			
+  			VotoPeer::doInsert( $voto );
+  		}
+  	}
+  	
   }
 }
