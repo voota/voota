@@ -4,7 +4,6 @@
 <?php include_title() ?>
     <?php // include_http_metas() ?>
     <?php // include_metas() ?>
-<?php use_stylesheet('voota.css') ?>
 <?php echo javascript_include_tag('voota') ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -18,7 +17,8 @@
 <META NAME="Revisit" CONTENT="15 days">
 <META NAME="Distribution" CONTENT="Global">
 <META NAME="Robots" CONTENT="All">
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" >
+<link rel="stylesheet" type="text/css" media="screen" href="/css/voota.css" >
 </head>
 <body>
 <!-- CONTAINER -->
