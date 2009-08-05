@@ -1,31 +1,30 @@
 @charset "utf-8";
 /* CSS Document */
-html, body { /* overflow: hidden; */ margin: 0 auto; padding: 0; width:100%; }
-#header { height: 92px; position: relative; top: 0;  text-align: left; padding: 0 0 0 4em; font-family: Georgia, "Times New Roman", Times, serif;}
+html, body { /* overflow: hidden; */ margin: 0 auto; padding: 0; width:100%; font-family: Georgia, "Times New Roman", Times, serif;}
+#header { position: relative; top: 0;  text-align: left; padding:1em; }
 #container {margin: 0 auto; width:960px;} 
-#main { position: relative; left: 0; right: 0; background-image: url(/images/bgMain.gif); background-repeat:repeat-x; padding-top:5%; padding-left:10%}
+#main { position: relative; left: 0; right: 0; background-image: url(../images/bgMain.gif); background-repeat:repeat-x; padding-top:1%; padding-left:10%}
 #sidenav { height: 100%; background: #00f; float: left; width: 200px; background-color:#0099CC }
 #content { height: 100%; /* overflow: visible; */ }
-#footer { position: relative; bottom: -10px; left: 0px; text-align:center; padding-top: 20px;}
+#footer { position: relative; left: 0px; text-align:center; padding-top: 1em;}
 #nav { list-style:inside; font-size: 1.2em; font-style: normal; font-weight:100;}
-#navi {  list-style:none; margin:3em 0 3em 3em; padding:0 0.5em 0 0.5em; border:1px solid #CCCCCC; height:64px; width: 70%;}
+#navi {  list-style:none; margin:3em 0 3em 3em; padding:0 0.5em 0 0.5em; border:1px solid #CCCCCC; height:64px; width: 70%; font-size: 0.7em;}
 #navi li { 	margin:2px; padding:20px;  float:left;  }
 #line { height:1px; border-top:1px dotted #343434; margin-bottom:0.6em;}
-.cC {background-color:#343434; padding:0.8em; color: white; margin-bottom:1em}
-.cC a {color: white;}
-h1 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 2.5em; font-weight:100; margin:0px;}
-h2 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 1.2em; font-style: normal; font-weight:100;}
-h3 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 2.5em; font-style: normal; }
-h4 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 2.5em; font-style: normal; }
-h5 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 2.5em; font-style: normal; }
-h6 { font-family: Georgia, "Times New Roman", Times, serif; font-size: 0.8em; font-weight:100; margin:0px;}
-img { border:none;}
+#caja {list-style:none;}
+#caja li { 	margin:2px;  float:left;  }
+#clearFix { clear:both; }
+h1 { font-size: 2.5em; font-weight:100; margin:0px;}
+h2 { font-size: 1.2em;  font-weight:100;}
+h3 { font-size: 2.5em; }
+h4 { font-size: 2.5em; }
+h5 { font-size: 0.9em; color:#9b9b9b }
+h6 { font-size: 0.7em; font-weight:100; margin:0px;}
+img { border:none; vertical-align:middle}
 li { margin: 0.5em 0; padding: 0.3em;}
+.cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.7em;}
+.cC a {color: white;}
 
-address {
-  margin-top: 1em;
-  padding-top: 1em;
-  border-top: thin dotted }
 
 
 
