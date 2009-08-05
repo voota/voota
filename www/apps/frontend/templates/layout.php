@@ -5,6 +5,8 @@
     <?php // include_http_metas() ?>
     <?php // include_metas() ?>
 <?php use_stylesheet('voota.css') ?>
+<?php echo javascript_include_tag('voota') ?>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META NAME="Title" CONTENT="Voota">
 <META NAME="Author" CONTENT="Voota">

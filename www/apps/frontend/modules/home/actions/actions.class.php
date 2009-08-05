@@ -34,7 +34,7 @@ class homeActions extends sfActions{
 	  	$value[0] = $uid;
 	  	$value[1] = $culture;
 	  	$cookie = base64_encode(serialize($value));
-	  	$this->getResponse()->setCookie('voota', $cookie);
+	  	$this->getResponse()->setCookie('voota', $cookie, time()+60*60*24* 60);
 		$first = true;
 	}
   }
@@ -52,22 +52,30 @@ class homeActions extends sfActions{
   	
   	$this->readCookie($this->getRequest());
   	
-  	$this->getResponse()->setTitle("Voota. Tú tienes la última palabra", false);
+	$this->main_slot = "feedback";	
   	
-  	$v = $this->request->getParameter("v");
-  	if ((!$first) && $v && ($v == 0 || $v == 1)){
-  		$criteria = new Criteria();
-  		$criteria->add(VotoPeer::UID, $uid);
-  		
-  		$voto = VotoPeer::doSelect($criteria);
-  		if (!$voto) {
+  	# returning user ?
+  	$criteria = new Criteria();
+  	$criteria->add(VotoPeer::UID, $uid);  	
+  	$voto = VotoPeer::doSelect($criteria);
+  	if (!$voto) {
+  		$v = $this->request->getParameter("v");
+  		# valid vote?
+	  	if ((!$first) && $v && ($v == 1 || $v == 2)){
   			$voto = new Voto();
   			$voto->setUid( $uid );
-  			$voto->setValor( $v );
+  			$voto->setValor( $v - 1 );
   			
   			VotoPeer::doInsert( $voto );
-  		}
-  	}
+	  	}
+	  	else {
+	  		$this->main_slot = "hands";
+	  	}
+   	}
+  
+  	
+  	$this->getResponse()->setTitle("Voota. Tú tienes la última palabra", false);
+  	
   	
   }
 }
