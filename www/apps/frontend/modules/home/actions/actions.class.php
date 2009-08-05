@@ -69,6 +69,19 @@ class homeActions extends sfActions{
   			VotoPeer::doInsert( $voto );
 	  	}
 	  	else {
+			$con = sfContext::getInstance()->getDatabaseConnection('propel'); 
+			$query = 'SELECT COUNT(*) AS total, SUM(VALOR) AS valor FROM voto';
+			$stmt = $con->prepare($query);
+			$stmt->execute();
+			while($row = $stmt->fetch()) {
+				$total_up = $row[1];
+				$total = $row[0];
+				
+				$this->up_per = round (100 * $total_up / $total);
+				$this->down_per = 100 - $this->up_per;  
+  			}
+			
+	  		
 	  		$this->main_slot = "hands";
 	  	}
    	}
