@@ -21,12 +21,12 @@
   <input name="v" type="radio" id="up" value="2" checked onClick="thumb_up()">
   <a href="#" onClick="thumb_up()"><img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up"></a>
   <br>
-  <h6>A favor, yeah</h6> </li>
+  <h6><label for="up">A favor, yeah</label></h6> </li>
 
 <li>
  <input name="v" type="radio" id="down" value="1" onClick="thumb_down()">
   <a href="#" onClick="thumb_down()"><img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"></a> <br>
-  <h6>En contra, buu</h6>
+  <h6><label for="down">En contra, buu</label></h6>
 </li>
 <li>
 <h5>Positivos <?php echo $up_per?>% / Negativos <?php echo $down_per?>%</h5>
