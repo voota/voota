@@ -87,7 +87,7 @@ class homeActions extends sfActions{
    	}
   
   	
-  	$this->getResponse()->setTitle("Voota. Tú tienes la última palabra", false);
+  	$this->getResponse()->setTitle("Voota. ". $this->getContext()->getI18N()->__('Tú tienes la última palabra'), false);
   	
   	
   }

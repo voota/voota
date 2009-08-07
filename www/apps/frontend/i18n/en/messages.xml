@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="en" datatype="plaintext" original="messages" date="2009-08-07T18:03:50Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>Tú tienes la última palabra</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>Voota y &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>Coomparte opiniones sobre los políticos de España.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>De momento: Congreso, Senado y Parlamento de Cataluña.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>Estamos preparando todo el tinglado, muy proonto en tu pantalla.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>Voota tiene un blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>Icono Blog Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Enlace Blog Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Voota en Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Icono Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>Enlace Voota en Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Voota en Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Icono Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Enlace Voota en Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>¿Te gusta la idea?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Icono Up</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Icono mano Up</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>A favor, yeah</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Icono Down</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Icono mano Down</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>En contra, buu</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="22">
+        <source>Positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>Negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>¿Te gusta la idea? Aceptamos sugerencias en</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>o</source>
+        <target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
