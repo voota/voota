@@ -38,9 +38,6 @@
   	<copy file="${project.dir}/metadata/pootle/voota/en/messages.xlf"
   		tofile="${project.dir}/www/apps/frontend/i18n/en/messages.xml"
   		overwrite="true" />
-  	<copy file="${project.dir}/metadata/pootle/voota/es/messages.xlf"
-  		tofile="${project.dir}/www/apps/frontend/i18n/es/messages.xml"
-  		overwrite="true" />
   </target>
   <target name="clear">
   	<echo>Clearing cache ...</echo>
