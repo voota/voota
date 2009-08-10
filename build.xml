@@ -8,7 +8,7 @@
 	<property name="repository.user" value="" />
 	<property name="repository.pass" value="" />
 
-  <target name="update" depends="updatesvn, i18n">
+  <target name="update" depends="updatesvn, i18n, clear">
   	<echo>Deployed on test.</echo>
   </target>
   <target name="createbranch" >
