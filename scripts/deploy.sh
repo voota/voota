@@ -4,7 +4,7 @@ URL=http://trac.voota.org/svn/voota
 DEST=/var/www/voota
 TEST=1
 PROD=2
-ENV=$PROD
+ENV=$TEST
 
 cd $DEST
 if [ $ENV -eq $TEST ] ; then
