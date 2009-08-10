@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<project name="voota" basedir="." default="prod">
+<project name="voota" basedir="." default="update">
 
 	<property name="project.dir" value="/var/www/voota" />
 	<property name="repository.url" value="http://trac.voota.org/svn/voota" />
@@ -8,12 +8,18 @@
 	<property name="repository.user" value="" />
 	<property name="repository.pass" value="" />
 
-  <target name="test" depends="update, i18n">
+  <target name="update" depends="updatesvn, i18n">
   	<echo>Deployed on test.</echo>
+  </target>
+  <target name="createbranch" >
+  	<echo>Branch created.</echo>
+  </target>
+  <target name="switch" >
+  	<echo>Switched.</echo>
   </target>
 
 
-  <target name="update">
+  <target name="updatesvn">
   	<echo>Updating from svn ...</echo>
   	<exec command="svn update" dir="${project.dir}" />
   </target>
