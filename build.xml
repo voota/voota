@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="voota" basedir="." default="prod">
+
+	<property name="project.dir" value="/var/www/voota" />
+	<property name="repository.url" value="http://trac.voota.org/svn/voota" />
+	<!-- Username and password, blank since the above can be accessed anon -->
+	<property name="repository.user" value="" />
+	<property name="repository.pass" value="" />
+
+  <target name="test" depends="update, i18n">
+  	<echo>Deployed on test.</echo>
+  </target>
+
+
+  <target name="update">
+  	<echo>Updating from svn ...</echo>
+  	<exec command="svn update" dir="${project.dir}" />
+  </target>
+  <target name="release">
+  	<input propertyname="release"
+  			defaultValue="trunk" promptChar="?">
+  		Release name
+  	</input>
+  	<echo>Releasing to '${release}' ...</echo>
+  </target>
+  <target name="i18n">
+  	<echo>Updating i18n ...</echo>
+  	<copy file="${project.dir}/metadata/pootle/voota/ca/messages.xlf"
+  		tofile="${project.dir}/www/apps/frontend/i18n/ca/messages.xml"
+  		overwrite="true" />
+  	<copy file="${project.dir}/metadata/pootle/voota/en/messages.xlf"
+  		tofile="${project.dir}/www/apps/frontend/i18n/en/messages.xml"
+  		overwrite="true" />
+  	<copy file="${project.dir}/metadata/pootle/voota/es/messages.xlf"
+  		tofile="${project.dir}/www/apps/frontend/i18n/es/messages.xml"
+  		overwrite="true" />
+  </target>
+</project>
+
+
