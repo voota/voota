@@ -6,7 +6,7 @@ homepage_redirect:
 homepage:
   url:   /:sf_culture
   param: { module: home, action: index }
-  requirements: { sf_culture: (?:es|ca) }
+  requirements: { sf_culture: (?:es|ca|en) }
 
 usuario:
   url:   /:username
