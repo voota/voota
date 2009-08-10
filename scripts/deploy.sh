@@ -45,4 +45,5 @@ if [ $ENV -eq $PROD ] ; then
 fi
 
 cd $DEST/www
+chmod -R 777 $DEST/metadata/pootle
 php symfony cc
