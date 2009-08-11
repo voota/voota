@@ -6,7 +6,7 @@
     <body>
       <trans-unit id="1">
         <source>Tú tienes la última palabra</source>
-        <target state="needs-review-translation">You decide</target>
+        <target state="needs-review-translation">You have the last word</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Voota y &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
