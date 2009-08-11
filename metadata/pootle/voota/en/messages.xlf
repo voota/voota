@@ -66,11 +66,11 @@
       </trans-unit>
       <trans-unit id="16">
         <source>Icono Up</source>
-        <target/>
+        <target state="needs-review-translation">up icon</target>
       </trans-unit>
       <trans-unit id="17">
         <source>Icono mano Up</source>
-        <target/>
+        <target state="needs-review-translation">up hand icon</target>
       </trans-unit>
       <trans-unit id="18">
         <source>A favor, yeah</source>
