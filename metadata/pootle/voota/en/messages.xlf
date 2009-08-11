@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
   <file source-language="ES" target-language="en" datatype="plaintext" original="messages" date="2009-08-07T18:03:50Z" product-name="messages">
@@ -6,7 +6,7 @@
     <body>
       <trans-unit id="1">
         <source>Tú tienes la última palabra</source>
-        <target/>
+        <target state="needs-review-translation">You decide</target>
       </trans-unit>
       <trans-unit id="2">
         <source>Voota y &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
