@@ -11,6 +11,11 @@
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/backend.php" />
   </target>
+  <target name="admin" depends="update">
+  	<delete file="${project.dir}/www/web/frontend_dev.php" />
+  	<delete file="${project.dir}/www/web/backend_dev.php" />
+  	<delete file="${project.dir}/www/web/index.php" />
+  </target>
   <target name="update" depends="updatesvn, i18n, clear">
   	<echo>Deployed on test.</echo>
   </target>
