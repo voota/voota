@@ -25,13 +25,6 @@
   	<echo>Updating from svn ...</echo>
   	<exec command="svn update" dir="${project.dir}" />
   </target>
-  <target name="release">
-  	<input propertyname="release"
-  			defaultValue="trunk" promptChar="?">
-  		Release name
-  	</input>
-  	<echo>Releasing to '${release}' ...</echo>
-  </target>
   <target name="i18n">
   	<echo>Updating i18n ...</echo>
   	<copy file="${project.dir}/metadata/pootle/voota/ca/messages.xlf"
@@ -44,6 +37,10 @@
   <target name="clear">
   	<echo>Clearing cache ...</echo>
   	<exec command="php symfony cc" dir="${project.dir}/www" />
+  </target>
+  <target name="switchsvn">
+	<input propertyname="branch">svn branch to switch to</input>
+  	<exec command="svn switch ${branch}" dir="${project.dir}" />
   </target>
 </project>
 
