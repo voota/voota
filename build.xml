@@ -2,24 +2,28 @@
 
 <project name="voota" basedir="." default="update">
 
-	<property name="project.dir" value="/var/www/voota" />
 	<property name="repository.url" value="http://trac.voota.org/svn/voota" />
-	<!-- Username and password, blank since the above can be accessed anon -->
 
+  <target name="prepare">
+	<property name="project.dir" value="/var/www/voota" />
+  </target>
+  <target name="prepare_admin">
+	<property name="project.dir" value="/var/www/voota_admin" />
+  </target>
   <target name="prod" depends="update">
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/backend.php" />
   </target>
-  <target name="admin" depends="update">
+  <target name="admin" depends="prepare_admin, updatesvn, i18n, clear">
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/index.php" />
   </target>
-  <target name="update" depends="updatesvn, i18n, clear">
-  	<echo>Deployed on test.</echo>
+  <target name="update" depends="prepare, updatesvn, i18n, clear">
+  	<echo>Updated.</echo>
   </target>
-  <target name="switch" depends="switchsvn, update">
+  <target name="switch" depends="prepare, switchsvn, update">
   	<echo>Switched.</echo>
   </target>
 
