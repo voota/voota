@@ -5,8 +5,6 @@
 	<property name="project.dir" value="/var/www/voota" />
 	<property name="repository.url" value="http://trac.voota.org/svn/voota" />
 	<!-- Username and password, blank since the above can be accessed anon -->
-	<property name="repository.user" value="" />
-	<property name="repository.pass" value="" />
 
   <target name="prod" depends="update">
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
@@ -40,7 +38,7 @@
   </target>
   <target name="switchsvn">
 	<input propertyname="branch">svn branch to switch to</input>
-  	<exec command="svn switch ${branch}" dir="${project.dir}" />
+  	<exec command="svn switch ${repository.url}/branches/${branch}" dir="${project.dir}" />
   </target>
 </project>
 
