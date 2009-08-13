@@ -14,7 +14,7 @@
   <target name="update" depends="updatesvn, i18n, clear">
   	<echo>Deployed on test.</echo>
   </target>
-  <target name="switch" >
+  <target name="switch" depends="switchsvn, update">
   	<echo>Switched.</echo>
   </target>
 
