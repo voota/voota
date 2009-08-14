@@ -7,15 +7,6 @@ politico_lista:
     column:               id
     with_wildcard_routes: true
 
-region:
-  class: sfPropelRouteCollection
-  options:
-    model:                Region
-    module:               region
-    prefix_path:          region
-    column:               id
-    with_wildcard_routes: true
-
 institucion:
   class: sfPropelRouteCollection
   options:
