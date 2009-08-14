@@ -22,8 +22,8 @@ class BasesfGuardUserForm extends BaseFormPropel
       'last_login'                    => new sfWidgetFormDateTime(),
       'is_active'                     => new sfWidgetFormInputCheckbox(),
       'is_super_admin'                => new sfWidgetFormInputCheckbox(),
-      'sf_guard_user_permission_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'sfGuardPermission')),
       'sf_guard_user_group_list'      => new sfWidgetFormPropelChoiceMany(array('model' => 'sfGuardGroup')),
+      'sf_guard_user_permission_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(
@@ -36,8 +36,8 @@ class BasesfGuardUserForm extends BaseFormPropel
       'last_login'                    => new sfValidatorDateTime(array('required' => false)),
       'is_active'                     => new sfValidatorBoolean(),
       'is_super_admin'                => new sfValidatorBoolean(),
-      'sf_guard_user_permission_list' => new sfValidatorPropelChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
       'sf_guard_user_group_list'      => new sfValidatorPropelChoiceMany(array('model' => 'sfGuardGroup', 'required' => false)),
+      'sf_guard_user_permission_list' => new sfValidatorPropelChoiceMany(array('model' => 'sfGuardPermission', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -61,17 +61,6 @@ class BasesfGuardUserForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['sf_guard_user_permission_list']))
-    {
-      $values = array();
-      foreach ($this->object->getsfGuardUserPermissions() as $obj)
-      {
-        $values[] = $obj->getPermissionId();
-      }
-
-      $this->setDefault('sf_guard_user_permission_list', $values);
-    }
-
     if (isset($this->widgetSchema['sf_guard_user_group_list']))
     {
       $values = array();
@@ -83,49 +72,25 @@ class BasesfGuardUserForm extends BaseFormPropel
       $this->setDefault('sf_guard_user_group_list', $values);
     }
 
+    if (isset($this->widgetSchema['sf_guard_user_permission_list']))
+    {
+      $values = array();
+      foreach ($this->object->getsfGuardUserPermissions() as $obj)
+      {
+        $values[] = $obj->getPermissionId();
+      }
+
+      $this->setDefault('sf_guard_user_permission_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->savesfGuardUserPermissionList($con);
     $this->savesfGuardUserGroupList($con);
-  }
-
-  public function savesfGuardUserPermissionList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['sf_guard_user_permission_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (is_null($con))
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(sfGuardUserPermissionPeer::USER_ID, $this->object->getPrimaryKey());
-    sfGuardUserPermissionPeer::doDelete($c, $con);
-
-    $values = $this->getValue('sf_guard_user_permission_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new sfGuardUserPermission();
-        $obj->setUserId($this->object->getPrimaryKey());
-        $obj->setPermissionId($value);
-        $obj->save();
-      }
-    }
+    $this->savesfGuardUserPermissionList($con);
   }
 
   public function savesfGuardUserGroupList($con = null)
@@ -158,6 +123,41 @@ class BasesfGuardUserForm extends BaseFormPropel
         $obj = new sfGuardUserGroup();
         $obj->setUserId($this->object->getPrimaryKey());
         $obj->setGroupId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function savesfGuardUserPermissionList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['sf_guard_user_permission_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(sfGuardUserPermissionPeer::USER_ID, $this->object->getPrimaryKey());
+    sfGuardUserPermissionPeer::doDelete($c, $con);
+
+    $values = $this->getValue('sf_guard_user_permission_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new sfGuardUserPermission();
+        $obj->setUserId($this->object->getPrimaryKey());
+        $obj->setPermissionId($value);
         $obj->save();
       }
     }
