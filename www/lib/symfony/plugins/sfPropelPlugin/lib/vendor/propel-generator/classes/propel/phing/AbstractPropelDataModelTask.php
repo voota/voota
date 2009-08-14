@@ -561,7 +561,8 @@ abstract class AbstractPropelDataModelTask extends Task {
 				foreach ($addDb->getTables() as $addTable) {
 					$table = $db->getTable($addTable->getName());
 					if ($table) {
-						throw new BuildException('Duplicate table found: ' . $addDbName . '.');
+						throw new BuildException('Duplicate table found: ' . $addDbName . '.' . $addTable->getName() . '.');
+//						throw new BuildException('Duplicate table found: ' . $addDbName . '.');
 					}
 					$db->addTable($addTable);
 				}
