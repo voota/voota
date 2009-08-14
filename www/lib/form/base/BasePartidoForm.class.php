@@ -13,23 +13,25 @@ class BasePartidoForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                      => new sfWidgetFormInputHidden(),
-      'nombre'                  => new sfWidgetFormInput(),
-      'abreviatura'             => new sfWidgetFormInput(),
-      'color'                   => new sfWidgetFormInput(),
-      'web'                     => new sfWidgetFormInput(),
-      'created_at'              => new sfWidgetFormDateTime(),
-      'partido_afiliacion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Afiliacion')),
+      'id'                 => new sfWidgetFormInputHidden(),
+      'nombre'             => new sfWidgetFormInput(),
+      'abreviatura'        => new sfWidgetFormInput(),
+      'color'              => new sfWidgetFormInput(),
+      'web'                => new sfWidgetFormInput(),
+      'created_at'         => new sfWidgetFormDateTime(),
+      'partido_id'         => new sfWidgetFormInput(),
+      'partido_lista_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Lista')),
     ));
 
     $this->setValidators(array(
-      'id'                      => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'nombre'                  => new sfValidatorString(array('max_length' => 150)),
-      'abreviatura'             => new sfValidatorString(array('max_length' => 8, 'required' => false)),
-      'color'                   => new sfValidatorString(array('max_length' => 8, 'required' => false)),
-      'web'                     => new sfValidatorString(array('max_length' => 150, 'required' => false)),
-      'created_at'              => new sfValidatorDateTime(array('required' => false)),
-      'partido_afiliacion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Afiliacion', 'required' => false)),
+      'id'                 => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
+      'nombre'             => new sfValidatorString(array('max_length' => 150)),
+      'abreviatura'        => new sfValidatorString(array('max_length' => 8, 'required' => false)),
+      'color'              => new sfValidatorString(array('max_length' => 8, 'required' => false)),
+      'web'                => new sfValidatorString(array('max_length' => 150, 'required' => false)),
+      'created_at'         => new sfValidatorDateTime(array('required' => false)),
+      'partido_id'         => new sfValidatorInteger(array('required' => false)),
+      'partido_lista_list' => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('partido[%s]');
@@ -49,15 +51,15 @@ class BasePartidoForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['partido_afiliacion_list']))
+    if (isset($this->widgetSchema['partido_lista_list']))
     {
       $values = array();
-      foreach ($this->object->getPartidoAfiliacions() as $obj)
+      foreach ($this->object->getPartidoListas() as $obj)
       {
-        $values[] = $obj->getAfiliacionId();
+        $values[] = $obj->getListaId();
       }
 
-      $this->setDefault('partido_afiliacion_list', $values);
+      $this->setDefault('partido_lista_list', $values);
     }
 
   }
@@ -66,17 +68,17 @@ class BasePartidoForm extends BaseFormPropel
   {
     parent::doSave($con);
 
-    $this->savePartidoAfiliacionList($con);
+    $this->savePartidoListaList($con);
   }
 
-  public function savePartidoAfiliacionList($con = null)
+  public function savePartidoListaList($con = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    if (!isset($this->widgetSchema['partido_afiliacion_list']))
+    if (!isset($this->widgetSchema['partido_lista_list']))
     {
       // somebody has unset this widget
       return;
@@ -88,17 +90,17 @@ class BasePartidoForm extends BaseFormPropel
     }
 
     $c = new Criteria();
-    $c->add(PartidoAfiliacionPeer::PARTIDO_ID, $this->object->getPrimaryKey());
-    PartidoAfiliacionPeer::doDelete($c, $con);
+    $c->add(PartidoListaPeer::PARTIDO_ID, $this->object->getPrimaryKey());
+    PartidoListaPeer::doDelete($c, $con);
 
-    $values = $this->getValue('partido_afiliacion_list');
+    $values = $this->getValue('partido_lista_list');
     if (is_array($values))
     {
       foreach ($values as $value)
       {
-        $obj = new PartidoAfiliacion();
+        $obj = new PartidoLista();
         $obj->setPartidoId($this->object->getPrimaryKey());
-        $obj->setAfiliacionId($value);
+        $obj->setListaId($value);
         $obj->save();
       }
     }

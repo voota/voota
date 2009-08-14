@@ -15,12 +15,14 @@ class BasePoliticoListaForm extends BaseFormPropel
     $this->setWidgets(array(
       'politico_id' => new sfWidgetFormInputHidden(),
       'lista_id'    => new sfWidgetFormInputHidden(),
+      'orden'       => new sfWidgetFormInput(),
       'created_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'politico_id' => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
-      'lista_id'    => new sfValidatorPropelChoice(array('model' => 'Lista', 'column' => 'id', 'required' => false)),
+      'politico_id' => new sfValidatorPropelChoice(array('model' => 'PoliticoLista', 'column' => 'politico_id', 'required' => false)),
+      'lista_id'    => new sfValidatorPropelChoice(array('model' => 'PoliticoLista', 'column' => 'lista_id', 'required' => false)),
+      'orden'       => new sfValidatorInteger(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 

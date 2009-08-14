@@ -15,10 +15,12 @@ class BasePoliticoListaFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'orden'       => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
 
     $this->setValidators(array(
+      'orden'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
@@ -37,8 +39,9 @@ class BasePoliticoListaFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'politico_id' => 'ForeignKey',
-      'lista_id'    => 'ForeignKey',
+      'politico_id' => 'Number',
+      'lista_id'    => 'Number',
+      'orden'       => 'Number',
       'created_at'  => 'Date',
     );
   }

@@ -15,7 +15,7 @@ class BaseInstitucionForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
       'nombre'                    => new sfWidgetFormInput(),
-      'region_id'                 => new sfWidgetFormPropelChoice(array('model' => 'Region', 'add_empty' => true)),
+      'region_id'                 => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormDateTime(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Eleccion')),
     ));
@@ -23,7 +23,7 @@ class BaseInstitucionForm extends BaseFormPropel
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Institucion', 'column' => 'id', 'required' => false)),
       'nombre'                    => new sfValidatorString(array('max_length' => 150)),
-      'region_id'                 => new sfValidatorPropelChoice(array('model' => 'Region', 'column' => 'id', 'required' => false)),
+      'region_id'                 => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Eleccion', 'required' => false)),
     ));

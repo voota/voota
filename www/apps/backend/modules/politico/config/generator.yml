@@ -27,4 +27,3 @@ generator:
       list:
         title:   Pol&iacute;ticos
         display: [id,alias,nombre,apellidos,_usuario]
-

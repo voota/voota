@@ -79,6 +79,12 @@ propel:
     web: { type: VARCHAR, size: '150', required: false }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false }
+  partido_lista:
+    _attributes: { phpName: PartidoLista }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    _indexes: { fk_partido: [partido_id], fk_lista: [lista_id] }
   politico:
     _attributes: { phpName: Politico }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -95,16 +101,23 @@ propel:
     presentacion: { type: VARCHAR, size: '500', required: false }
     usuario_id: { type: INTEGER, size: '11', required: false, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    politicocol: { type: VARCHAR, size: '45', required: false }
     partido_id: { type: INTEGER, size: '11', required: false }
+    bio: { type: VARCHAR, size: '255', required: false }
     _indexes: { fk_usuario: [usuario_id] }
   politico_lista:
     _attributes: { phpName: PoliticoLista }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
     orden: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_politico: [politico_id], fk_lista: [lista_id] }
+  politico_temp:
+    _attributes: { phpName: PoliticoTemp }
+    email: { type: VARCHAR, size: '50', required: false }
+    partido: { type: VARCHAR, size: '50', required: false }
+    nombre: { type: VARCHAR, size: '50', required: false }
+    apellidos: { type: VARCHAR, size: '100', required: false }
+    bio: { type: VARCHAR, size: '255', required: false }
   promocion:
     _attributes: { phpName: Promocion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

@@ -15,21 +15,23 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre'                  => new sfWidgetFormFilterInput(),
-      'abreviatura'             => new sfWidgetFormFilterInput(),
-      'color'                   => new sfWidgetFormFilterInput(),
-      'web'                     => new sfWidgetFormFilterInput(),
-      'created_at'              => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'partido_afiliacion_list' => new sfWidgetFormPropelChoice(array('model' => 'Afiliacion', 'add_empty' => true)),
+      'nombre'             => new sfWidgetFormFilterInput(),
+      'abreviatura'        => new sfWidgetFormFilterInput(),
+      'color'              => new sfWidgetFormFilterInput(),
+      'web'                => new sfWidgetFormFilterInput(),
+      'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'partido_id'         => new sfWidgetFormFilterInput(),
+      'partido_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'nombre'                  => new sfValidatorPass(array('required' => false)),
-      'abreviatura'             => new sfValidatorPass(array('required' => false)),
-      'color'                   => new sfValidatorPass(array('required' => false)),
-      'web'                     => new sfValidatorPass(array('required' => false)),
-      'created_at'              => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'partido_afiliacion_list' => new sfValidatorPropelChoice(array('model' => 'Afiliacion', 'required' => false)),
+      'nombre'             => new sfValidatorPass(array('required' => false)),
+      'abreviatura'        => new sfValidatorPass(array('required' => false)),
+      'color'              => new sfValidatorPass(array('required' => false)),
+      'web'                => new sfValidatorPass(array('required' => false)),
+      'created_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'partido_id'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'partido_lista_list' => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('partido_filters[%s]');
@@ -39,7 +41,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
     parent::setup();
   }
 
-  public function addPartidoAfiliacionListColumnCriteria(Criteria $criteria, $field, $values)
+  public function addPartidoListaListColumnCriteria(Criteria $criteria, $field, $values)
   {
     if (!is_array($values))
     {
@@ -51,14 +53,14 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       return;
     }
 
-    $criteria->addJoin(PartidoAfiliacionPeer::PARTIDO_ID, PartidoPeer::ID);
+    $criteria->addJoin(PartidoListaPeer::PARTIDO_ID, PartidoPeer::ID);
 
     $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(PartidoAfiliacionPeer::AFILIACION_ID, $value);
+    $criterion = $criteria->getNewCriterion(PartidoListaPeer::LISTA_ID, $value);
 
     foreach ($values as $value)
     {
-      $criterion->addOr($criteria->getNewCriterion(PartidoAfiliacionPeer::AFILIACION_ID, $value));
+      $criterion->addOr($criteria->getNewCriterion(PartidoListaPeer::LISTA_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -72,13 +74,14 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'                      => 'Number',
-      'nombre'                  => 'Text',
-      'abreviatura'             => 'Text',
-      'color'                   => 'Text',
-      'web'                     => 'Text',
-      'created_at'              => 'Date',
-      'partido_afiliacion_list' => 'ManyKey',
+      'id'                 => 'Number',
+      'nombre'             => 'Text',
+      'abreviatura'        => 'Text',
+      'color'              => 'Text',
+      'web'                => 'Text',
+      'created_at'         => 'Date',
+      'partido_id'         => 'Number',
+      'partido_lista_list' => 'ManyKey',
     );
   }
 }
