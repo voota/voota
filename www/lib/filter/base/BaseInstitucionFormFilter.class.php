@@ -16,14 +16,14 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
   {
     $this->setWidgets(array(
       'nombre'                    => new sfWidgetFormFilterInput(),
-      'region_id'                 => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
+      'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'nombre'                    => new sfValidatorPass(array('required' => false)),
-      'region_id'                 => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
+      'geo_id'                    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
       'created_at'                => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
     ));
@@ -70,7 +70,7 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
     return array(
       'id'                        => 'Number',
       'nombre'                    => 'Text',
-      'region_id'                 => 'ForeignKey',
+      'geo_id'                    => 'ForeignKey',
       'created_at'                => 'Date',
       'eleccion_institucion_list' => 'ManyKey',
     );

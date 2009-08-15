@@ -15,39 +15,41 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'url_key'          => new sfWidgetFormFilterInput(),
-      'alias'            => new sfWidgetFormFilterInput(),
-      'nombre'           => new sfWidgetFormFilterInput(),
-      'apellidos'        => new sfWidgetFormFilterInput(),
-      'email'            => new sfWidgetFormFilterInput(),
-      'sexo'             => new sfWidgetFormFilterInput(),
-      'fecha_nacimiento' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'pais'             => new sfWidgetFormFilterInput(),
-      'formacion'        => new sfWidgetFormFilterInput(),
-      'residencia'       => new sfWidgetFormFilterInput(),
-      'presentacion'     => new sfWidgetFormFilterInput(),
-      'usuario_id'       => new sfWidgetFormPropelChoice(array('model' => 'Usuario', 'add_empty' => true)),
-      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'partido_id'       => new sfWidgetFormFilterInput(),
-      'bio'              => new sfWidgetFormFilterInput(),
+      'url_key'             => new sfWidgetFormFilterInput(),
+      'alias'               => new sfWidgetFormFilterInput(),
+      'nombre'              => new sfWidgetFormFilterInput(),
+      'apellidos'           => new sfWidgetFormFilterInput(),
+      'email'               => new sfWidgetFormFilterInput(),
+      'sexo'                => new sfWidgetFormFilterInput(),
+      'fecha_nacimiento'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'pais'                => new sfWidgetFormFilterInput(),
+      'formacion'           => new sfWidgetFormFilterInput(),
+      'residencia'          => new sfWidgetFormFilterInput(),
+      'presentacion'        => new sfWidgetFormFilterInput(),
+      'usuario_id'          => new sfWidgetFormPropelChoice(array('model' => 'Usuario', 'add_empty' => true)),
+      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'partido_id'          => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'bio'                 => new sfWidgetFormFilterInput(),
+      'politico_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'url_key'          => new sfValidatorPass(array('required' => false)),
-      'alias'            => new sfValidatorPass(array('required' => false)),
-      'nombre'           => new sfValidatorPass(array('required' => false)),
-      'apellidos'        => new sfValidatorPass(array('required' => false)),
-      'email'            => new sfValidatorPass(array('required' => false)),
-      'sexo'             => new sfValidatorPass(array('required' => false)),
-      'fecha_nacimiento' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'pais'             => new sfValidatorPass(array('required' => false)),
-      'formacion'        => new sfValidatorPass(array('required' => false)),
-      'residencia'       => new sfValidatorPass(array('required' => false)),
-      'presentacion'     => new sfValidatorPass(array('required' => false)),
-      'usuario_id'       => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Usuario', 'column' => 'id')),
-      'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'partido_id'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'bio'              => new sfValidatorPass(array('required' => false)),
+      'url_key'             => new sfValidatorPass(array('required' => false)),
+      'alias'               => new sfValidatorPass(array('required' => false)),
+      'nombre'              => new sfValidatorPass(array('required' => false)),
+      'apellidos'           => new sfValidatorPass(array('required' => false)),
+      'email'               => new sfValidatorPass(array('required' => false)),
+      'sexo'                => new sfValidatorPass(array('required' => false)),
+      'fecha_nacimiento'    => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'pais'                => new sfValidatorPass(array('required' => false)),
+      'formacion'           => new sfValidatorPass(array('required' => false)),
+      'residencia'          => new sfValidatorPass(array('required' => false)),
+      'presentacion'        => new sfValidatorPass(array('required' => false)),
+      'usuario_id'          => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Usuario', 'column' => 'id')),
+      'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'partido_id'          => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
+      'bio'                 => new sfValidatorPass(array('required' => false)),
+      'politico_lista_list' => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('politico_filters[%s]');
@@ -55,6 +57,31 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
+  }
+
+  public function addPoliticoListaListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(PoliticoListaPeer::LISTA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(PoliticoListaPeer::LISTA_ID, $value));
+    }
+
+    $criteria->add($criterion);
   }
 
   public function getModelName()
@@ -65,22 +92,23 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'               => 'Number',
-      'url_key'          => 'Text',
-      'alias'            => 'Text',
-      'nombre'           => 'Text',
-      'apellidos'        => 'Text',
-      'email'            => 'Text',
-      'sexo'             => 'Text',
-      'fecha_nacimiento' => 'Date',
-      'pais'             => 'Text',
-      'formacion'        => 'Text',
-      'residencia'       => 'Text',
-      'presentacion'     => 'Text',
-      'usuario_id'       => 'ForeignKey',
-      'created_at'       => 'Date',
-      'partido_id'       => 'Number',
-      'bio'              => 'Text',
+      'id'                  => 'Number',
+      'url_key'             => 'Text',
+      'alias'               => 'Text',
+      'nombre'              => 'Text',
+      'apellidos'           => 'Text',
+      'email'               => 'Text',
+      'sexo'                => 'Text',
+      'fecha_nacimiento'    => 'Date',
+      'pais'                => 'Text',
+      'formacion'           => 'Text',
+      'residencia'          => 'Text',
+      'presentacion'        => 'Text',
+      'usuario_id'          => 'ForeignKey',
+      'created_at'          => 'Date',
+      'partido_id'          => 'ForeignKey',
+      'bio'                 => 'Text',
+      'politico_lista_list' => 'ManyKey',
     );
   }
 }

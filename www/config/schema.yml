@@ -13,7 +13,7 @@ propel:
     eleccion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_eleccion: [eleccion_id], fk_institucion: [institucion_id] }
+    _indexes: { fk_ele_inst_eleccion: [eleccion_id], fk_ele_inst_institucion: [institucion_id] }
   enlace:
     _attributes: { phpName: Enlace }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -43,9 +43,9 @@ propel:
     _attributes: { phpName: Institucion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
-    region_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    geo_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_region: [region_id] }
+    _indexes: { fk_geo: [geo_id] }
   lista:
     _attributes: { phpName: Lista }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -78,7 +78,8 @@ propel:
     color: { type: VARCHAR, size: '8', required: false }
     web: { type: VARCHAR, size: '150', required: false }
     created_at: { type: TIMESTAMP, required: false }
-    partido_id: { type: INTEGER, size: '11', required: false }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_partido_partido: [partido_id] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
     partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -101,23 +102,24 @@ propel:
     presentacion: { type: VARCHAR, size: '500', required: false }
     usuario_id: { type: INTEGER, size: '11', required: false, foreignTable: usuario, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    partido_id: { type: INTEGER, size: '11', required: false }
-    bio: { type: VARCHAR, size: '255', required: false }
-    _indexes: { fk_usuario: [usuario_id] }
+    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    bio: { type: CLOB, required: false }
+    imagen: { type: VARCHAR, size: '50', required: false }
+    _indexes: { fk_usuario: [usuario_id], fk_politico_partido: [partido_id] }
   politico_lista:
     _attributes: { phpName: PoliticoLista }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
-    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     orden: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_politico: [politico_id], fk_lista: [lista_id] }
+    _indexes: { fk_politico: [politico_id], fk_politico_lista_lista: [lista_id] }
   politico_temp:
     _attributes: { phpName: PoliticoTemp }
     email: { type: VARCHAR, size: '50', required: false }
     partido: { type: VARCHAR, size: '50', required: false }
     nombre: { type: VARCHAR, size: '50', required: false }
     apellidos: { type: VARCHAR, size: '100', required: false }
-    bio: { type: VARCHAR, size: '255', required: false }
+    bio: { type: CLOB, required: false }
   promocion:
     _attributes: { phpName: Promocion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

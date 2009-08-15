@@ -10,7 +10,26 @@
  */
 class PoliticoForm extends BasePoliticoForm
 {
+  protected static $generos = array('N' => '?', 'H' => 'Hombre', 'M' => 'Mujer');
+
+
   public function configure()
   {
-  }
+
+    $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
+	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
+   'label'     => 'Imagen Principal',
+   'file_src'  => '/uploads/politicos/'.$this->getObject()->getImagen(),
+   'is_image'  => true,
+   'edit_mode' => !$this->isNew(),
+   'template'  => '<div>%file%  <img src="/uploads/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
+	));
+	
+	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
+   'required'   => false,
+   'mime_types' => 'web_images',
+   'path' => sfConfig::get('sf_upload_dir').'/politicos',
+   'validated_file_class' => 'sfResizedFile',
+	));
+ }
 }

@@ -39,8 +39,8 @@ class BasePoliticoListaFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'politico_id' => 'Number',
-      'lista_id'    => 'Number',
+      'politico_id' => 'ForeignKey',
+      'lista_id'    => 'ForeignKey',
       'orden'       => 'Number',
       'created_at'  => 'Date',
     );

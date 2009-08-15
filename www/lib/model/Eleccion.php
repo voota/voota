@@ -4,6 +4,6 @@ class Eleccion extends BaseEleccion
 {
   public function __toString()
   {
-    return $this->getNombre();  // getTitle() se hereda de BaseArticle
+    return $this->getAbreviatura();  // getTitle() se hereda de BaseArticle
   }
 }

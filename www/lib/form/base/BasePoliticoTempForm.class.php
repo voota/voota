@@ -17,7 +17,7 @@ class BasePoliticoTempForm extends BaseFormPropel
       'partido'   => new sfWidgetFormInput(),
       'nombre'    => new sfWidgetFormInput(),
       'apellidos' => new sfWidgetFormInput(),
-      'bio'       => new sfWidgetFormInput(),
+      'bio'       => new sfWidgetFormTextarea(),
       'id'        => new sfWidgetFormInputHidden(),
     ));
 
@@ -26,7 +26,7 @@ class BasePoliticoTempForm extends BaseFormPropel
       'partido'   => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'nombre'    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'apellidos' => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'bio'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'bio'       => new sfValidatorString(array('required' => false)),
       'id'        => new sfValidatorPropelChoice(array('model' => 'PoliticoTemp', 'column' => 'id', 'required' => false)),
     ));
 
