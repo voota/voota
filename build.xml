@@ -50,6 +50,12 @@
 	<input propertyname="branch">svn branch to switch to</input>
   	<exec command="svn switch ${repository.url}/branches/${branch}" dir="${project.dir}" />
   </target>
+  <target name="makedirs" depends="prepare">
+  	<echo>${project.dir}/www/web/uploads/politicos</echo>
+	<mkdir dir="${project.dir}/www/web/uploads/politicos" />
+  	<exec command="chmod 777 www/web/uploads/politicos" dir="${project.dir}" />
+  </target>
+  
 </project>
 
 
