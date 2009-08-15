@@ -13,4 +13,12 @@ require_once dirname(__FILE__).'/../lib/politicoGeneratorHelper.class.php';
  */
 class politicoActions extends autoPoliticoActions
 {
+	
+	public function executeEdit(sfWebRequest $request) {
+		$imageFileName = getcwd().'/uploads/politicos/'.$this->getRoute()->getObject()->getImagen();
+		$img = new sfImage( $imageFileName );
+		$img->voota( $imageFileName );
+		
+		parent::executeEdit( $request );
+	}
 }

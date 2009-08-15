@@ -17,7 +17,7 @@ generator:
       filter:  ~
       form:
         display:
-          "Datos de la institucui&oacute;n": [nombre,region_id]
+          "Datos de la institucui&oacute;n": [nombre,geo_id]
 
       edit:
         title:   Instituci&oacute;n
@@ -26,4 +26,4 @@ generator:
 
       list:
         title:   Instituciones
-        display: [id,nombre,_region]
+        display: [id,nombre,_geo]
