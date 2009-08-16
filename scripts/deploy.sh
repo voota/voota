@@ -1,7 +1,7 @@
 #!/bin/sh
 
 DEST=/var/www/voota
-DEST=/var/www/voota_admin
+DEST_ADMIN=/var/www/voota_admin
 
 if [ $ENV -eq $TEST ] ; then
   if [ $# -eq 0 ] ; then
