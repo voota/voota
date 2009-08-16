@@ -13,25 +13,25 @@ class BaseOpinionForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'id'          => new sfWidgetFormInputHidden(),
-      'valor'       => new sfWidgetFormInput(),
-      'texto'       => new sfWidgetFormInput(),
-      'usuario_id'  => new sfWidgetFormPropelChoice(array('model' => 'Usuario', 'add_empty' => false)),
-      'partido_id'  => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
-      'politico_id' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
-      'opinion_id'  => new sfWidgetFormPropelChoice(array('model' => 'Opinion', 'add_empty' => true)),
-      'created_at'  => new sfWidgetFormDateTime(),
+      'id'                       => new sfWidgetFormInputHidden(),
+      'valor'                    => new sfWidgetFormInput(),
+      'texto'                    => new sfWidgetFormInput(),
+      'sf_guard_user_profile_id' => new sfWidgetFormPropelChoice(array('model' => 'SfGuardUserProfile', 'add_empty' => false)),
+      'partido_id'               => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'politico_id'              => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
+      'opinion_id'               => new sfWidgetFormPropelChoice(array('model' => 'Opinion', 'add_empty' => true)),
+      'created_at'               => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorPropelChoice(array('model' => 'Opinion', 'column' => 'id', 'required' => false)),
-      'valor'       => new sfValidatorInteger(array('required' => false)),
-      'texto'       => new sfValidatorString(array('max_length' => 500, 'required' => false)),
-      'usuario_id'  => new sfValidatorPropelChoice(array('model' => 'Usuario', 'column' => 'id')),
-      'partido_id'  => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'politico_id' => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
-      'opinion_id'  => new sfValidatorPropelChoice(array('model' => 'Opinion', 'column' => 'id', 'required' => false)),
-      'created_at'  => new sfValidatorDateTime(array('required' => false)),
+      'id'                       => new sfValidatorPropelChoice(array('model' => 'Opinion', 'column' => 'id', 'required' => false)),
+      'valor'                    => new sfValidatorInteger(array('required' => false)),
+      'texto'                    => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'sf_guard_user_profile_id' => new sfValidatorPropelChoice(array('model' => 'SfGuardUserProfile', 'column' => 'id')),
+      'partido_id'               => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
+      'politico_id'              => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
+      'opinion_id'               => new sfValidatorPropelChoice(array('model' => 'Opinion', 'column' => 'id', 'required' => false)),
+      'created_at'               => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('opinion[%s]');

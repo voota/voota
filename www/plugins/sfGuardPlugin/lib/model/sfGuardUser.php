@@ -17,4 +17,8 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+  public function __toString()
+  {
+    return $this->getUsername();  // getTitle() se hereda de BaseArticle
+  }
 }

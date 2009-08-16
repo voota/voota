@@ -53,6 +53,9 @@
   <target name="deploy_test" depends="prepare">
   	<exec command="ssh root@r25797.ovh.net ${project.dir}/scripts/deploy.sh\ test" dir="${project.dir}"  passthru="true"/>
   </target>
+  <target name="deploy_test" depends="prepare">
+  	<exec command="ssh -i $HOME/Documentos/sergio.pem ubuntu@aneto.voota.es ${project.dir}/scripts/deploy.sh\ prod" dir="${project.dir}"  passthru="true"/>
+  </target>
 
   <target name="updatesvn">
   	<echo>Updating from svn ...</echo>

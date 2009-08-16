@@ -43,6 +43,9 @@ class sfGuardUserAdminForm extends BasesfGuardUserForm
 
       $this->mergeForm($profileForm);
     }
+    
+    $this->widgetSchema['acepta_mensajes'] = new sfWidgetFormInputCheckbox();
+    $this->widgetSchema['presentacion'] = new sfWidgetFormTextarea();
   }
 
   public function updateObject($values = null)
