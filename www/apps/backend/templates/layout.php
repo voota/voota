@@ -17,7 +17,6 @@ Administraci&oacute;n
 <?php if ($sf_user->isAuthenticated()): ?>
 <p>
 <div>
-<?php echo link_to('usuarios', 'usuario/index') ?> 
 <?php echo link_to('politicos', 'politico/index') ?> 
 <?php echo link_to('partidos', 'partido/index') ?> 
 <?php echo link_to('elecciones', 'eleccion/index') ?> 

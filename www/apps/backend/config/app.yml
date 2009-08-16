@@ -7,3 +7,6 @@ all:
     mime_type:
       auto_detect: true
       library: gd_mime_type # Fileinfo (PECL), MIME_Type (PEAR)
+  sf_guard_plugin:
+    profile_class:      SfGuardUserProfile
+    profile_field_name: user_id

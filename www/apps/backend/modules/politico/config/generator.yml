@@ -19,7 +19,7 @@ generator:
         display: [nombre,apellidos,email,partido_id, bio]
       form:
         display: 
-          "Datos voota": [alias,formacion,presentacion,usuario_id]
+          "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id]
           "Datos personales": [imagen,nombre,apellidos,partido_id,email,sexo,fecha_nacimiento,residencia,_bio_preview,bio]
         fields:
           bio:      
