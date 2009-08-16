@@ -27,11 +27,14 @@
   <target name="switch" depends="prepare, switchsvn, update">
   	<echo>Switched.</echo>
   </target>
-
+  <target name="clear" depends="prepare">
+  	<echo>Clearing cache ...</echo>
+  	<exec command="php symfony cc" dir="${project.dir}/www"  passthru="true"/>
+  </target>
 
   <target name="updatesvn">
   	<echo>Updating from svn ...</echo>
-  	<exec command="svn update" dir="${project.dir}" />
+  	<exec command="svn update" dir="${project.dir}"  passthru="true" />
   </target>
   <target name="i18n">
   	<echo>Updating i18n ...</echo>
@@ -42,18 +45,14 @@
   		tofile="${project.dir}/www/apps/frontend/i18n/en/messages.xml"
   		overwrite="true" />
   </target>
-  <target name="clear">
-  	<echo>Clearing cache ...</echo>
-  	<exec command="php symfony cc" dir="${project.dir}/www" />
-  </target>
-  <target name="switchsvn">
+   <target name="switchsvn">
 	<input propertyname="branch">svn branch to switch to</input>
-  	<exec command="svn switch ${repository.url}/branches/${branch}" dir="${project.dir}" />
+  	<exec command="svn switch ${repository.url}/branches/${branch}" dir="${project.dir}"  passthru="true"/>
   </target>
   <target name="makedirs" depends="prepare">
   	<echo>${project.dir}/www/web/uploads/politicos</echo>
 	<mkdir dir="${project.dir}/www/web/uploads/politicos" />
-  	<exec command="chmod 777 www/web/uploads/politicos" dir="${project.dir}" />
+  	<exec command="chmod 777 www/web/uploads/politicos" dir="${project.dir}"  passthru="true" />
   </target>
   
 </project>
