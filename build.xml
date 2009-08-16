@@ -22,7 +22,7 @@
   	<move file="${project.dir}/www/web/backend.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
   </target>
   <target name="update" depends="prepare, updatesvn, i18n, clear">
-  	<exec command="chmod +r ./scripts/deploy.sh" dir="${project.dir}"  passthru="true" />
+  	<exec command="chmod +x ./scripts/deploy.sh" dir="${project.dir}"  passthru="true" />
   	<echo>Updated.</echo>
   </target>
   <target name="switch" depends="prepare, switchsvn, update">
