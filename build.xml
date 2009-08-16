@@ -22,6 +22,7 @@
   	<move file="${project.dir}/www/web/backend.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
   </target>
   <target name="update" depends="prepare, updatesvn, i18n, clear">
+  	<exec command="chmod +r ./scripts/deploy.sh" dir="${project.dir}"  passthru="true" />
   	<echo>Updated.</echo>
   </target>
   <target name="switch" depends="prepare, switchsvn, update">
@@ -30,6 +31,27 @@
   <target name="clear" depends="prepare">
   	<echo>Clearing cache ...</echo>
   	<exec command="php symfony cc" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="schema" depends="prepare">
+  	<echo>Rebuilding schema ...</echo>
+  	<exec command="php symfony propel:build-schema" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="model" depends="prepare">
+  	<echo>Rebuilding model ...</echo>
+  	<exec command="php symfony propel:build-model" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="forms" depends="prepare">
+  	<echo>Rebuilding forms ...</echo>
+  	<exec command="php symfony propel:build-forms" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="filters" depends="prepare">
+  	<echo>Rebuilding filters ...</echo>
+  	<exec command="php symfony propel:build-filters" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="build_symfony" depends="model,forms,filters">
+  </target>
+  <target name="deploy_test" depends="prepare">
+  	<exec command="ssh root@r25797.ovh.net ${project.dir}/scripts/deploy.sh\ test" dir="${project.dir}"  passthru="true"/>
   </target>
 
   <target name="updatesvn">
