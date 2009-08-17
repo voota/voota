@@ -2,13 +2,17 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new sfGuardTestFunctional(new sfBrowser());
 
 $browser->
-  get('/usuario/index')->
+  get('/sf_guard_user')->
+  isStatusCode(401)->    
+  signin()->  
+
+  get('/sf_guard_user')->
 
   with('request')->begin()->
-    isParameter('module', 'usuario')->
+    isParameter('module', 'sfGuardUser')->
     isParameter('action', 'index')->
   end()->
 

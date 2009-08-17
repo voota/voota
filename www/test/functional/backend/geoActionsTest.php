@@ -2,9 +2,13 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new sfGuardTestFunctional(new sfBrowser());
 
 $browser->
+  get('/geo/index')->
+  isStatusCode(401)->    
+  signin()->  
+
   get('/geo/index')->
 
   with('request')->begin()->

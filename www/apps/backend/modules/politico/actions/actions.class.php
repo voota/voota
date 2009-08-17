@@ -15,9 +15,11 @@ class politicoActions extends autoPoliticoActions
 {
 	
 	public function executeEdit(sfWebRequest $request) {
-		$imageFileName = getcwd().'/uploads/politicos/'.$this->getRoute()->getObject()->getImagen();
-		$img = new sfImage( $imageFileName );
-		$img->voota( $imageFileName );
+		$imageFileName = getcwd().'/web/uploads/politicos/'.$this->getRoute()->getObject()->getImagen();
+		if (file_exists($imageFileName)){
+			$img = new sfImage( $imageFileName );
+			$img->voota( $imageFileName );
+		}
 		
 		parent::executeEdit( $request );
 	}

@@ -4,6 +4,7 @@ include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new sfTestFunctional(new sfBrowser());
 
+/*
 $browser->
   get('/politico/index')->
 
@@ -17,3 +18,4 @@ $browser->
     checkElement('body', '!/This is a temporary page/')->
   end()
 ;
+*/

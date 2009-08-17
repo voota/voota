@@ -77,7 +77,12 @@ class homeActions extends sfActions{
 				$total_up = $row[1];
 				$total = $row[0];
 				
-				$this->up_per = round (100 * $total_up / $total);
+				if ($total != 0) {
+					$this->up_per = round (100 * $total_up / $total);
+				}
+				else {
+					$this->up_per = 0;
+				}
 				$this->down_per = 100 - $this->up_per;  
   			}
 			
