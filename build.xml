@@ -14,7 +14,6 @@
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/backend.php" />
-    <phingcall target="pruebas" />
   </target>
   <target name="admin" depends="prepare_admin, updatesvn, i18n, clear">
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
@@ -26,6 +25,7 @@
   <target name="update" depends="prepare, updatesvn, i18n, clear">
   	<exec command="chmod +x ./scripts/deploy.sh" dir="${project.dir}"  passthru="true" />
   	<echo>Updated.</echo>
+    <phingcall target="pruebas" />
   </target>
   <target name="switch" depends="prepare, switchsvn, update">
   	<echo>Switched.</echo>
