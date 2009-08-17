@@ -23,7 +23,7 @@
     <phingcall target="pruebas" />
   </target>
   <target name="update" depends="prepare, updatesvn, i18n, clear">
-  	<exec command="chmod +x ./scripts/deploy.sh" dir="${project.dir}"  passthru="true" />
+  	<exec command="chmod +x ${project.dir}/scripts/deploy.sh" passthru="true" />
   	<echo>Updated.</echo>
     <phingcall target="pruebas" />
   </target>
