@@ -103,6 +103,10 @@
       <trans-unit id="25" approved="yes">
         <source>Voota y &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
         <target>Voota i &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target></trans-unit>
+      <trans-unit id="26">
+        <source>Voota y &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
