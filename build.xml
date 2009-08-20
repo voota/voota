@@ -84,6 +84,9 @@
 	<mkdir dir="${project.dir}/www/web/uploads/politicos" />
   	<exec command="chmod 777 www/web/uploads/politicos" dir="${project.dir}"  passthru="true" />
   </target>
+  <target name="etiquetas" depends="prepare">
+  	<exec command="php symfony i18n:extract --auto-save frontend ca" dir="${project.dir}/www"  passthru="true"/>
+  </target>
   
 </project>
 

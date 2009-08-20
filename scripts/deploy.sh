@@ -2,6 +2,7 @@
 
 DEST=/var/www/voota
 DEST_ADMIN=/var/www/voota_admin
+POOTLE_DIR=/var/lib/pootle/voota
 
 if [ $ENV -eq $TEST ] ; then
   if [ $# -eq 0 ] ; then
@@ -12,6 +13,8 @@ if [ $ENV -eq $TEST ] ; then
     test)
 		cd $DEST
         phing update
+        cd $POOTLE_DIR
+        sudo -u pootle svn update
         ;;
     prod)
 		cd $DEST

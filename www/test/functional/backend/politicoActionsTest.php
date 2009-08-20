@@ -49,6 +49,6 @@ $browser->
     isStatusCode(200)->
     checkElement('body', '/The item was updated successfully./')->
   end()
-  ;
+;
 
 

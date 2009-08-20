@@ -25,8 +25,8 @@
 <div id="container">
 <!-- HEADER -->
 <div id="header">
-<h1>Voota</h1>
-<h6><?php echo __('Tú tienes la última palabra') ?></h6>
+<div id="header"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" border="0" longdesc="Enlace Home Voota"></a>
+<h6><?php echo __('Tú tienes la última palabra') ?></h6></div>
 </div>
 <!-- FIN HEADER -->
 
@@ -35,7 +35,7 @@
 
 <!-- FOOTER -->
 <div id="footer">
-<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://es.creativecommons.org/">Creative Commons</a> son amigos de toda la vida') ?></div>
+<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons</a> son amigos de toda la vida') ?></div>
 <div id="line"></div>
 <h6>Voota.es 2009</h6>
 </div>

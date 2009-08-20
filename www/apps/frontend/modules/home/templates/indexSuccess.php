@@ -11,8 +11,8 @@
 </ul>
 <ul id="navi">
 <li><a href="http://blog.voota.es"><?php echo __('Voota tiene un blog') ?></a> <img src="/images/icoBlog.gif" alt="<?php echo __('Icono Blog Voota') ?>" name="icono" id="icono" longdesc="<?php echo __('Enlace Blog Voota') ?>"></li>
-<li><a href="http://twitter.com/voota"><?php echo __('Voota en Twitter') ?></a> <img src="/images/icoTwitter.gif" alt="<?php echo __('Icono Twitter') ?>" longdesc="<?php echo __('Enlace Voota en Twitter') ?>"></li>
-<li><a href="http://www.facebook.com/pages/Voota/120100006457"><?php echo __('Voota en Facebook') ?></a> <img src="/images/icoFacebook.gif" alt="<?php echo __('Icono Facebook') ?>" width="16" height="15" longdesc="<?php echo __('Enlace Voota en Facebook') ?>"></li>
+<li><a href="http://twitter.com/voota"><?php echo __('Voota en Twitter') ?></a> <img src="/images/icoTwitter.png" alt="<?php echo __('Icono Twitter') ?>" longdesc="<?php echo __('Enlace Voota en Twitter') ?>"></li>
+<li><a href="http://www.facebook.com/pages/Voota/120100006457"><?php echo __('Voota en Facebook') ?></a> <img src="/images/icoFacebook.png" alt="<?php echo __('Icono Facebook') ?>" width="16" height="15" longdesc="<?php echo __('Enlace Voota en Facebook') ?>"></li>
 </ul>
 <?php slot('hands') ?>
 <?php echo form_tag('/es', 'name="theForm"') ?>
