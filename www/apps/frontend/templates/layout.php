@@ -35,7 +35,7 @@
 
 <!-- FOOTER -->
 <div id="footer">
-<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons</a> son amigos de toda la vida') ?></div>
+<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida') ?></div>
 <div id="line"></div>
 <h6>Voota.es 2009</h6>
 </div>
