@@ -11,7 +11,7 @@
 </ul>
 <ul id="navi">
 <li><a href="<?php echo __('http://blog.voota.es/es') ?>"><?php echo __('Voota tiene un blog') ?></a> <img src="/images/icoBlog.gif" alt="<?php echo __('Icono Blog Voota') ?>" name="icono" id="icono" longdesc="<?php echo __('Enlace Blog Voota') ?>"></li>
-<li><a href="<?php echo __('http://twitter.com/voota') ?>"><?php echo __('Voota en Twitter') ?></a> <img src="/images/icoTwitter.png" alt="<?php echo __('Icono Twitter') ?>" longdesc="<?php echo __('Enlace Voota en Twitter') ?>"></li>
+<li><a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('Voota en Twitter') ?></a> <img src="/images/icoTwitter.png" alt="<?php echo __('Icono Twitter') ?>" longdesc="<?php echo __('Enlace Voota en Twitter') ?>"></li>
 <li><a href="<?php echo __('http://www.facebook.com/pages/Voota/120100006457') ?>"><?php echo __('Voota en Facebook') ?></a> <img src="/images/icoFacebook.png" alt="<?php echo __('Icono Facebook') ?>" width="16" height="15" longdesc="<?php echo __('Enlace Voota en Facebook') ?>"></li>
 </ul>
 <?php slot('hands') ?>
@@ -37,7 +37,7 @@
 <?php end_slot('hands') ?>
 
 <?php slot('feedback') ?>
-<h2><?php echo __('¿Te gusta la idea? Aceptamos sugerencias en') ?> <a href="<?php echo __('http://www.facebook.com/pages/Voota/120100006457') ?>">facebook.com/voota</a> <?php echo __('o') ?> <a href="<?php echo __('http://twitter.com/voota') ?>"><?php echo __('twitter.com/voota') ?></a></h2>
+<h2><?php echo __('¿Te gusta la idea? Aceptamos sugerencias en') ?> <a href="<?php echo __('http://www.facebook.com/pages/Voota/120100006457') ?>">facebook.com/voota</a> <?php echo __('o') ?> <a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('twitter.com/Voota') ?></a></h2>
 <?php end_slot('feedback') ?>
 
 <?php include_slot( $main_slot ); ?>
