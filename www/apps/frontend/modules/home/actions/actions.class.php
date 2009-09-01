@@ -90,7 +90,7 @@ class homeActions extends sfActions{
 	  		$this->main_slot = "hands";
 	  	}
    	}
-  
+   	$this->langLink_slot = $this->request->getParameter("sf_culture");
   	
   	$this->getResponse()->setTitle("Voota. ". $this->getContext()->getI18N()->__('Tú tienes la última palabra'), false);
   	
