@@ -29,7 +29,7 @@
   <a href="#" onClick="thumb_down()"><img src="/images/icoDown.gif" alt="<?php echo __('Icono Down') ?>" width="27" height="36" longdesc="<?php echo __('Icono mano Down') ?>"></a> <br>
   <h6><label for="down"><?php echo __('En contra, buu') ?></label></h6>
 </li>
-<li>blog
+<li>
 <h5><?php echo __('Positivos') ?> <?php echo $up_per?>% / <?php echo __('Negativos') ?> <?php echo $down_per?>%</h5>
 </li>
 </ul>
