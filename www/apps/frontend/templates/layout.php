@@ -38,8 +38,17 @@
 <div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida') ?></div>
 
 <div class="links">
-	<a href="/es">Español</a>
-	<a href="/ca">Català</a>
+<?php slot('langLink_ca') ?>
+	català
+	<a href="/es">español</a>
+<?php end_slot('langLink_ca') ?>
+
+<?php slot('langLink_es') ?>
+	<a href="/ca">català</a>
+	español
+<?php end_slot('langLink_es') ?>
+<?php include_slot( $sf_request->getAttribute('langLink_slot') ); ?>
+
 </div>
 
 <div id="line"></div>
