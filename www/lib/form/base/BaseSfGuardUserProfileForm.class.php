@@ -44,6 +44,10 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'SfGuardUserProfile', 'column' => array('email')))
+    );
+
     $this->widgetSchema->setNameFormat('sf_guard_user_profile[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

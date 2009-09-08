@@ -17,6 +17,7 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre'                    => new sfWidgetFormInput(),
       'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormDateTime(),
+      'politico_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Politico')),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Eleccion')),
     ));
 
@@ -25,6 +26,7 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre'                    => new sfValidatorString(array('max_length' => 150)),
       'geo_id'                    => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
+      'politico_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Eleccion', 'required' => false)),
     ));
 
@@ -45,6 +47,17 @@ class BaseInstitucionForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
+    if (isset($this->widgetSchema['politico_institucion_list']))
+    {
+      $values = array();
+      foreach ($this->object->getPoliticoInstitucions() as $obj)
+      {
+        $values[] = $obj->getPoliticoId();
+      }
+
+      $this->setDefault('politico_institucion_list', $values);
+    }
+
     if (isset($this->widgetSchema['eleccion_institucion_list']))
     {
       $values = array();
@@ -62,7 +75,43 @@ class BaseInstitucionForm extends BaseFormPropel
   {
     parent::doSave($con);
 
+    $this->savePoliticoInstitucionList($con);
     $this->saveEleccionInstitucionList($con);
+  }
+
+  public function savePoliticoInstitucionList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['politico_institucion_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (is_null($con))
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(PoliticoInstitucionPeer::INSTITUCION_ID, $this->object->getPrimaryKey());
+    PoliticoInstitucionPeer::doDelete($c, $con);
+
+    $values = $this->getValue('politico_institucion_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new PoliticoInstitucion();
+        $obj->setInstitucionId($this->object->getPrimaryKey());
+        $obj->setPoliticoId($value);
+        $obj->save();
+      }
+    }
   }
 
   public function saveEleccionInstitucionList($con = null)

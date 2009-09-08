@@ -31,5 +31,6 @@ class PoliticoForm extends BasePoliticoForm
    'path' => sfConfig::get('sf_upload_dir').'/politicos',
    'validated_file_class' => 'sfResizedFile',
 	));
+	
  }
 }

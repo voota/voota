@@ -25,15 +25,6 @@ institucion:
     column:               id
     with_wildcard_routes: true
 
-usuario:
-  class: sfPropelRouteCollection
-  options:
-    model:                Usuario
-    module:               usuario
-    prefix_path:          usuario
-    column:               id
-    with_wildcard_routes: true
-
 lista:
   class: sfPropelRouteCollection
   options:

@@ -106,6 +106,13 @@ propel:
     bio: { type: CLOB, required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
     _indexes: { fk_politico_partido: [partido_id], fk_usuario: [sf_guard_user_profile_id] }
+  politico_institucion:
+    _attributes: { phpName: PoliticoInstitucion }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fecha_inicio: { type: DATE, required: false }
+    fecha_fin: { type: DATE, required: false }
+    _indexes: { fk_institucion_politico_1: [institucion_id], fk_institucion_politico_2: [politico_id] }
   politico_lista:
     _attributes: { phpName: PoliticoLista }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -145,20 +152,7 @@ propel:
     presentacion: { type: VARCHAR, size: '500', required: false }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
-  usuario:
-    _attributes: { phpName: Usuario }
-    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    email: { type: VARCHAR, size: '150', required: true }
-    clave: { type: VARCHAR, size: '45', required: true }
-    acepta_mensajes: { type: CHAR, size: '1', required: false }
-    nombre: { type: VARCHAR, size: '45', required: true }
-    apellidos: { type: VARCHAR, size: '150', required: false }
-    fecha_nacimiento: { type: DATE, required: false }
-    pais: { type: VARCHAR, size: '45', required: false }
-    formacion: { type: VARCHAR, size: '255', required: false }
-    residencia: { type: VARCHAR, size: '45', required: false }
-    presentacion: { type: VARCHAR, size: '500', required: false }
-    created_at: { type: TIMESTAMP, required: false }
+    _uniques: { uniq_user_email: [email] }
   voto:
     _attributes: { phpName: Voto }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
