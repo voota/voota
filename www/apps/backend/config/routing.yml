@@ -1,3 +1,30 @@
+sf_review_status:
+  class: sfPropelRouteCollection
+  options:
+    model:                SfReviewStatus
+    module:               sfReviewStatus
+    prefix_path:          sfReviewStatus
+    column:               id
+    with_wildcard_routes: true
+
+sf_review:
+  class: sfPropelRouteCollection
+  options:
+    model:                SfReview
+    module:               sfReview
+    prefix_path:          sfReview
+    column:               id
+    with_wildcard_routes: true
+
+sf_review_type:
+  class: sfPropelRouteCollection
+  options:
+    model:                SfReviewType
+    module:               sfReviewType
+    prefix_path:          sfReviewType
+    column:               id
+    with_wildcard_routes: true
+
 geo:
   class: sfPropelRouteCollection
   options:

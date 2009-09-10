@@ -36,9 +36,9 @@ propel:
     tipo: { type: CHAR, size: '1', required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    opinion_id: { type: INTEGER, size: '11', required: false, foreignTable: opinion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    opinion_id: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_i_partido: [partido_id], fk_i_politico: [politico_id], fk_i_opinion: [opinion_id] }
+    _indexes: { fk_i_partido: [partido_id], fk_i_politico: [politico_id] }
   institucion:
     _attributes: { phpName: Institucion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -59,17 +59,6 @@ propel:
     tipo: { type: CHAR, size: '1', required: false }
     idpolitico: { type: INTEGER, size: '11', required: false }
     idpartido: { type: INTEGER, size: '11', required: false }
-  opinion:
-    _attributes: { phpName: Opinion }
-    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    valor: { type: INTEGER, size: '11', required: false }
-    texto: { type: VARCHAR, size: '500', required: false }
-    sf_guard_user_profile_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user_profile, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    opinion_id: { type: INTEGER, size: '11', required: false, foreignTable: opinion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_o_partido: [partido_id], fk_o_politico: [politico_id], fk_opinion: [opinion_id], fk_o_usuario: [sf_guard_user_profile_id] }
   partido:
     _attributes: { phpName: Partido }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

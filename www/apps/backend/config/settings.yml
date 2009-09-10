@@ -82,7 +82,7 @@ all:
 #    standard_helpers:       [Partial, Cache, Form]
 #
 #    # Activated modules from plugins or from the symfony core
-    enabled_modules:        [default,sfGuardAuth,sfGuardUser,sfGuardGroup, sfGuardPermission]
+    enabled_modules:        [default,sfGuardAuth,sfGuardUser,sfGuardGroup,sfGuardPermission  ,sfReviewType,sfReviewStatus,sfReview]
 #
 #    # Charset used for the response
 #    charset:                utf-8

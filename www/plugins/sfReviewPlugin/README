@@ -1,4 +1,4 @@
-sfGuard plugin
+sfReview plugin
 ==============
 
 The `sfReviewPlugin` is a symfony plugin that allows users from sfGuardPlugin to leave reviews on different entities of an application.

@@ -32,6 +32,12 @@ Administración:
 <?php echo link_to('grupos', '@sf_guard_group') ?> 
 <?php echo link_to('permisos', '@sf_guard_permission') ?> 
 </div>
+<div>
+Sistema de comentarios:
+<?php echo link_to('Moderación', '@sf_review') ?> 
+<?php echo link_to('tipos', '@sf_review_type') ?> 
+<?php echo link_to('estados', '@sf_review_status') ?> 
+</div>
 </p>
 <?php endif; ?>
 
