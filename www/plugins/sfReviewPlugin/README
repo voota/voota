@@ -1,0 +1,19 @@
+sfGuard plugin
+==============
+
+The `sfReviewPlugin` is a symfony plugin that allows users from sfGuardPlugin to leave reviews on different entities of an application.
+
+
+Installation
+------------
+
+  * Install the plugin
+
+        $ symfony plugin:install sfReviewPlugin
+
+  * Rebuild your model
+
+        $ symfony propel:build-model
+        $ symfony propel:build-sql
+        $ symfony propel:build-forms
+        $ symfony propel:build-filters

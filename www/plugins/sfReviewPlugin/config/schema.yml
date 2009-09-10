@@ -1,0 +1,3 @@
+propel:
+  _attributes:      { package: plugins.sfReviewPlugin.lib.model }
+  
