@@ -49,6 +49,8 @@
     <name>sfGuardPlugin</name>
   	<channel>plugins.symfony-project.org</channel>
   	<min>3.0.0</min>
+    <max>3.2.0</max>
+    <exclude>3.2.0</exclude>
    </package>   
   </required>
 </dependencies>
