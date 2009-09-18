@@ -15,6 +15,7 @@ generator:
       fields:  ~
       list:
         title:   Last reviews
+        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value]
       filter:  ~
       form:    ~
       edit:    ~

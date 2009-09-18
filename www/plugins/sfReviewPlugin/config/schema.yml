@@ -4,26 +4,50 @@ propel:
   sf_review:
     _attributes: { phpName: SfReview }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    value: { type: INTEGER, size: '11', required: false }
+    entity_id: { type: INTEGER, size: '11', required: true }
+    value: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sf_review_type_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sf_review_status_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_review_status, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    cookie: { type: VARCHAR, size: '45', required: false }
+    ip_address: { type: VARCHAR, size: '45', required: false }
+    text: { type: VARCHAR, size: '420', required: false }
     _indexes: { fk_sf_review_1: [sf_guard_user_id], fk_sf_review_2: [sf_review_type_id], fk_sf_review_3: [sf_review_status_id] }
+    _uniques: { uniq_review: [entity_id, sf_guard_user_id, sf_review_type_id] }
   sf_review_attach:
     _attributes: { phpName: SfReviewAttach }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     sf_review_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_review, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     _indexes: { fk_sf_review_attach_1: [sf_review_id] }
-  sf_review_politico:
-    _attributes: { phpName: SfReviewPolitico }
-    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true, foreignTable: sf_review, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    politico_id: { type: INTEGER, size: '11', required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    _indexes: { fk_sf_review_politico_1: [id], fk_sf_review_politico_2: [politico_id] }
+  sf_review_moderation:
+    _attributes: { phpName: SfReviewModeration }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    changed: { type: TIMESTAMP, required: false }
+    prev_status: { type: INTEGER, size: '11', required: false }
+    reason_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_review_reason, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_review_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_review, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_guard_user_id: { type: INTEGER, size: '11', required: false }
+    _indexes: { fk_sf_review_moderation_1: [reason_id], fk_sf_review_moderation_2: [sf_review_id] }
+  sf_review_reason:
+    _attributes: { phpName: SfReviewReason }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    name: { type: VARCHAR, size: '45', required: false }
   sf_review_status:
     _attributes: { phpName: SfReviewStatus }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     name: { type: VARCHAR, size: '45', required: false }
+    published: { type: TINYINT, size: '4', required: true, defaultValue: '0' }
   sf_review_type:
     _attributes: { phpName: SfReviewType }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     name: { type: VARCHAR, size: '45', required: false }
+    max_value: { type: INTEGER, size: '11', required: false }
+  sf_review_type_entity:
+    _attributes: { phpName: SfReviewTypeEntity }
+    sf_review_type_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    entity_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    date: { type: DATE, primaryKey: true, required: true }
+    sum: { type: FLOAT, required: true, defaultValue: '0' }
+    score: { type: FLOAT, required: true, defaultValue: '0' }
+    _indexes: { fk_sf_review_type_politico_1: [sf_review_type_id] }
