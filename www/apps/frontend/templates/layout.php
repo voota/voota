@@ -2,9 +2,10 @@
 <html>
 <head>
 <?php include_title() ?>
-    <?php // include_http_metas() ?>
-    <?php // include_metas() ?>
+    <?php  include_http_metas() ?>
+    <?php  include_metas() ?>
 <?php echo javascript_include_tag('voota') ?>
+<?php echo javascript_include_tag('jq') ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META NAME="Title" CONTENT="Voota">
@@ -19,25 +20,64 @@
 <META NAME="Robots" CONTENT="All">
     <link rel="shortcut icon" href="/favicon.ico" >
 <link rel="stylesheet" type="text/css" media="screen" href="/css/voota.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="/css/interior.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="/css/jq.css" >
 </head>
 <body>
+ 
 <!-- CONTAINER -->
 <div id="container">
+
 <!-- HEADER -->
 <div id="header">
-<div id="header"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" border="0" longdesc="Enlace Home Voota"></a>
-<h6><?php echo __('Tú tienes la última palabra') ?></h6></div>
+<div class="izq"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" longdesc="Enlace Home Voota"></a>
+<h6>Tú tienes la última palabra</h6>
 </div>
+<div class="der login"><h6><a href="#">login</a> · <a href="#">Registrarse</a></h6></div>
+<div class="limpiar"></div>
+<div class="der">
+  <input name="buscar2" type="text" class="input">
+  <input name="buscar" type="button" class="button" value="Buscar">
+</div>
+</div>
+<div class="limpiar"></div>
 <!-- FIN HEADER -->
+
 
     <?php echo $sf_content ?>
 
 
+
+
+
+
+
 <!-- FOOTER -->
 <div id="footer">
-<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a><?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida') ?></div>
-
-<div class="links">
+<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://es.creativecommons.org/">Creative Commons</a> son amigos de toda la vida<a href="/"><img src="/images/icoVoota.png" alt="Icono Voota" width="34" height="34" longdesc="Enlace Voota"></a></div>
+<!-- ENLACES PIE -->
+<div class="enlacesPie">
+<h6>
+<a href="partidos.html" class="enlacesPie">Partidos</a>
+<a href="instituciones.html" class="enlacesPie">Instituciones</a>
+<a href="senado.html" class="enlacesPie">Senado</a>
+<a href="congreso.html" class="enlacesPie">Congreso</a>
+<a href="politicos.html" class="enlacesPie">Políticos</a>
+<a href="topUsuarios.html" class="enlacesPie">Top usuarios</a>
+</h6>
+</div>
+<div class="limpiar"></div>
+<div class="enlacesPie">
+<h6>
+<a href="quienesSomos.html" class="enlacesPie">Quienes somos</a>
+<a href="contactar.html" class="enlacesPie">Contactar</a>
+<a href="avisoLegal.html" class="enlacesPie">Aviso legal</a>
+<a href="blog.html" class="enlacesPie">Blog</a>
+</h6>
+</div>
+<div class="limpiar"></div>
+<div class="enlacesPie">
+<h6>
 <?php slot('langLink_ca') ?>
 	català
 	<a href="/es">español</a>
@@ -48,13 +88,16 @@
 	español
 <?php end_slot('langLink_es') ?>
 <?php include_slot( $sf_request->getAttribute('langLink_slot') ); ?>
-
+</h6>
 </div>
+<!-- FIN ENLACES PIE -->
 
 <div id="line"></div>
-<h6>Voota.es 2009</h6>
+<h6>Voota.es 2009 </h6>
 </div>
 <!--FIN FOOTER -->
+
+
 </div>
 <!-- FIN CONTAINER -->
 
