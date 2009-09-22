@@ -14,19 +14,33 @@ class BaseSfReviewForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
+      'entity_id'           => new sfWidgetFormInput(),
       'value'               => new sfWidgetFormInput(),
       'sf_guard_user_id'    => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
       'sf_review_type_id'   => new sfWidgetFormPropelChoice(array('model' => 'SfReviewType', 'add_empty' => false)),
       'sf_review_status_id' => new sfWidgetFormPropelChoice(array('model' => 'SfReviewStatus', 'add_empty' => false)),
+      'created_at'          => new sfWidgetFormDateTime(),
+      'cookie'              => new sfWidgetFormInput(),
+      'ip_address'          => new sfWidgetFormInput(),
+      'text'                => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'id'                  => new sfValidatorPropelChoice(array('model' => 'SfReview', 'column' => 'id', 'required' => false)),
-      'value'               => new sfValidatorInteger(array('required' => false)),
+      'entity_id'           => new sfValidatorInteger(),
+      'value'               => new sfValidatorInteger(),
       'sf_guard_user_id'    => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id')),
       'sf_review_type_id'   => new sfValidatorPropelChoice(array('model' => 'SfReviewType', 'column' => 'id')),
       'sf_review_status_id' => new sfValidatorPropelChoice(array('model' => 'SfReviewStatus', 'column' => 'id')),
+      'created_at'          => new sfValidatorDateTime(array('required' => false)),
+      'cookie'              => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'ip_address'          => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'text'                => new sfValidatorString(array('max_length' => 420, 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'SfReview', 'column' => array('entity_id', 'sf_guard_user_id', 'sf_review_type_id')))
+    );
 
     $this->widgetSchema->setNameFormat('sf_review[%s]');
 

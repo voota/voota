@@ -15,11 +15,13 @@ class BaseSfReviewTypeFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'name' => new sfWidgetFormFilterInput(),
+      'name'      => new sfWidgetFormFilterInput(),
+      'max_value' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'name' => new sfValidatorPass(array('required' => false)),
+      'name'      => new sfValidatorPass(array('required' => false)),
+      'max_value' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_type_filters[%s]');
@@ -37,8 +39,9 @@ class BaseSfReviewTypeFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'   => 'Number',
-      'name' => 'Text',
+      'id'        => 'Number',
+      'name'      => 'Text',
+      'max_value' => 'Number',
     );
   }
 }

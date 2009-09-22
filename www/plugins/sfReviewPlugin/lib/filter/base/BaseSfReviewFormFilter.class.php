@@ -15,17 +15,27 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'entity_id'           => new sfWidgetFormFilterInput(),
       'value'               => new sfWidgetFormFilterInput(),
       'sf_guard_user_id'    => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'sf_review_type_id'   => new sfWidgetFormPropelChoice(array('model' => 'SfReviewType', 'add_empty' => true)),
       'sf_review_status_id' => new sfWidgetFormPropelChoice(array('model' => 'SfReviewStatus', 'add_empty' => true)),
+      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'cookie'              => new sfWidgetFormFilterInput(),
+      'ip_address'          => new sfWidgetFormFilterInput(),
+      'text'                => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
+      'entity_id'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'value'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'sf_guard_user_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'sf_review_type_id'   => new sfValidatorPropelChoice(array('required' => false, 'model' => 'SfReviewType', 'column' => 'id')),
       'sf_review_status_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'SfReviewStatus', 'column' => 'id')),
+      'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'cookie'              => new sfValidatorPass(array('required' => false)),
+      'ip_address'          => new sfValidatorPass(array('required' => false)),
+      'text'                => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_filters[%s]');
@@ -44,10 +54,15 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                  => 'Number',
+      'entity_id'           => 'Number',
       'value'               => 'Number',
       'sf_guard_user_id'    => 'ForeignKey',
       'sf_review_type_id'   => 'ForeignKey',
       'sf_review_status_id' => 'ForeignKey',
+      'created_at'          => 'Date',
+      'cookie'              => 'Text',
+      'ip_address'          => 'Text',
+      'text'                => 'Text',
     );
   }
 }
