@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+
+#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(../images/bgMain.gif); background-repeat:repeat-x;}
+#contentLeft { float:left; width: 41.56em;}
+#contentRight { float:right; width: 15.81em;}
+#nombre { list-style:none; margin:0; padding:0; }
+#nombre li { float:left; margin:0; padding:0; margin-right:1.0em; }
+.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2f2f2f}
+.nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; color:#2f2f2f}
+.fotoPolitico {margin-left:3.13em; margin-top:1.50em; width:11.81em;}
+.textoPolitico {margin-left:3.13em; margin-top:1.50em; width:23.44em;}
+.margenPolitico {margin-left:0.75em; margin-top:0.60em}
+.votaPolitico {margin-top:1.88em; margin-bottom:1.00em}
+.linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
+.positivoNegativo {width:18.69em;}
+/*comentarios */
+.picoComentario {margin-left:1.75em; height:0.44em; margin-bottom:0.28em;}
+#comentarios {margin-left:0.75em; border:0.06em solid #cdcdc5; background:#ffffcd; padding-right:0.60em;}
+.lugar {color:#323232; font-weight:bold;}
+.totalComentarios {margin-left:3.13em; margin-top:1.50em;}
+/* votaciones */
+.votaSobre {margin-left:3.13em; margin-top:1.50em;}
+.confirmar {width:14.44em; margin-left:1.00em; }
+.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em;}
+.margenVota {margin-top:0.60em;}
+.enlacesPie {text-align:center; padding-bottom:1.00em;}
+/* Gente con color */
+.conColor {margin-top:2.94em;}
+.tituloColor {margin-top:2.00em;}
+.nombreColor {margin-left:0.60em; margin-top:1.00em;}
+p { margin:0; padding-bottom:1.25em;}
+
