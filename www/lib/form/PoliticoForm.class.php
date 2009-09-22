@@ -19,10 +19,10 @@ class PoliticoForm extends BasePoliticoForm
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
-   'file_src'  => '/uploads/politicos/'.$this->getObject()->getImagen(),
+   'file_src'  => '/images/politicos/cc_'.$this->getObject()->getImagen(),
    'is_image'  => true,
    'edit_mode' => !$this->isNew(),
-   'template'  => '<div>%file%  <img src="/uploads/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
+   'template'  => '<div>%file%  <img src="/images/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
 	));
 	
 	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
