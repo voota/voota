@@ -32,6 +32,26 @@ partido_ca:
   param: { module: partido, action: show }
   requirements: { sf_culture: (?:ca) }
 
+sf_guard_signin:
+  url:   /:sf_culture/login
+  param: { module: sfGuardAuth, action: signin }
+  requirements: { sf_culture: (?:es|ca) }
+
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+sf_review_form:
+  url:   /review/form
+  param: { module: review, action: form }
+
+sf_review_preview:
+  url:   /review/preview
+  param: { module: review, action: preview }
+
+sf_review_send:
+  url:   /review/send
+  param: { module: review, action: send }
 
 
 # default_index:

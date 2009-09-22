@@ -32,15 +32,15 @@ all:
     lazy_cache_key:         on        # Delays creation of a cache key until after checking whether an action or partial is cacheable
 
 all:
-#  .actions:
+  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised
 #    error_404_action:       error404  # Or when the requested URL doesn't match any route
 #
-#    login_module:           default   # To be called when a non-authenticated user
-#    login_action:           login     # Tries to access a secure page
+    login_module:           sfGuardAuth   # To be called when a non-authenticated user
+    login_action:           signin     # Tries to access a secure page
 #
-#    secure_module:          default   # To be called when a user doesn't have
-#    secure_action:          secure    # The credentials required for an action
+    secure_module:          sfGuardAuth   # To be called when a user doesn't have
+    secure_action:          secure    # The credentials required for an action
 #
 #    module_disabled_module: default   # To be called when a user requests 
 #    module_disabled_action: disabled  # A module disabled in the module.yml
@@ -81,6 +81,7 @@ all:
 #    standard_helpers:       [Partial, Cache, Form]
 #
 #    # Activated modules from plugins or from the symfony core
+    enabled_modules:        [default,sfGuardAuth]
 #    enabled_modules:        [default]
 #
 #    # Charset used for the response

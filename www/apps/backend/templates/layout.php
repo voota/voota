@@ -26,12 +26,14 @@ Administraci&oacute;n
 
 <?php echo link_to('salir', '@sf_guard_signout') ?>
 </div>
+<?php if ($sf_user->hasCredential('superadmin')) { ?>
 <div>
 Administración:
 <?php echo link_to('usuarios', '@sf_guard_user') ?> 
 <?php echo link_to('grupos', '@sf_guard_group') ?> 
 <?php echo link_to('permisos', '@sf_guard_permission') ?> 
 </div>
+<?php } ?>
 <div>
 Sistema de comentarios:
 <?php echo link_to('Moderación', '@sf_review') ?> 
