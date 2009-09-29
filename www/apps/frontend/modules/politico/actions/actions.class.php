@@ -124,7 +124,7 @@ class politicoActions extends sfVoActions
 		$imageFileName = sfConfig::get('sf_web_dir').'/images/p_unknown.png';
 	}
 	$img = new sfImage( $imageFileName );
-	$img->voota( $imageFileName );
+	$img->politico( $imageFileName );
 	
 	$this->image = "bw_" . $this->politico->getImagen();
 	
