@@ -19,6 +19,8 @@ if [ $ENV -eq $TEST ] ; then
     prod)
 		cd $DEST
         phing prod
+        ;;
+    admin)
 		cd $DEST_ADMIN
         phing admin
         ;;
