@@ -8,6 +8,7 @@
 	)) ?>
 	<?php echo input_hidden_tag('t', $reviewType) ?>
 	<?php echo input_hidden_tag('e', $reviewEntityId) ?>
+	<?php echo input_hidden_tag('v', $reviewValue) ?>
 	
 <div class="votaSobre">
 <div class="izq" id="button">

@@ -6,20 +6,11 @@
 
 
 
-<?php // Review system ?>
 <script>  
 
-var popupStatus = 0;  
 
 $(document).ready(function(){
-	$(".yeah").click(function(){
-		loadReviewBox(1, <?php echo $politico->getId(); ?>, 1);
-	});
-	$(".buu").click(function(){
-		loadReviewBox(1, <?php echo $politico->getId(); ?>, -1);
-	});
-
-	politicoReady();
+	politicoReady( <?php echo $politico->getId(); ?> );
 
 <?php if (isset($review_v) && $review_v != '') { ?>
 	loadReviewBox(1, <?php echo $politico->getId(); ?>, <?php echo $review_v ?>);
@@ -29,17 +20,7 @@ $(document).ready(function(){
 </script>
 
 
-  
-<div id="popupContact">  
-    <a id="popupContactClose">x</a>  
 
-
-	<div id="sf_review">
-	    
-	</div>
-
-
-</div>  
 
 
 <div id="backgroundPopup"></div>  
@@ -61,29 +42,38 @@ $(document).ready(function(){
 <span class="nombrePolitico"><?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</span> <span class="nombrePeque">6/10 <a href="#">?</a></span> 
 <div class="limpiar"></div>
 <div title="foto" class="izq fotoPolitico">
-
-<?php echo image_tag('politicos/'. $image, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+<?php echo image_tag('politicos/'. (file_exists(sfConfig::get('sf_upload_dir').'/politicos/'.($politico->getImagen()))?$image:'cc_p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
 
   <div class="votaPolitico">
   <h5>Voota sobre <?php echo $politico->getApellidos(); ?></h5>
 
 </div>
-<div class="izq yeah" id="buttona">
-  <input name="vooto" type="radio" id="up" value="up">
 
-  <img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up">
 
-  <br>
-  <h6>
-	A favor, yeah
-  </h6>
+
+<div id="sf_review">
+	<div class="izq yeah" id="buttona">
+	  <input name="vooto" type="radio" id="up" value="up">
+	
+	  <img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up">
+	
+	  <br>
+	  <h6>
+		A favor, yeah
+	  </h6>
+	</div>
+	<div class="der buu">
+	 <input type="radio" name="vooto" id="down" value="down">
+	  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
+	
+	  <h6>En contra, buu</h6>
+	</div>
 </div>
-<div class="der buu">
- <input type="radio" name="vooto" id="down" value="down">
-  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
 
-  <h6>En contra, buu</h6>
-</div>
+
+
+
+
 </div>
 <div title="info" class="izq textoPolitico">
 <h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> - <?php echo $politico->getPartido(); ?></h6>

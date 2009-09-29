@@ -20,7 +20,7 @@ generator:
       form:
         display: 
           "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id]
-          "Datos personales": [imagen,nombre,apellidos,partido_id,politico_institucion_list,email,sexo,fecha_nacimiento,residencia,_bio_preview,bio]
+          "Datos personales": [imagen,nombre,apellidos,partido_id,politico_institucion_list,email,sexo,fecha_nacimiento,lugar_nacimiento,residencia,_bio_preview,bio]
         fields:
           bio:      
             help: Para actualizar el preview de arriba.

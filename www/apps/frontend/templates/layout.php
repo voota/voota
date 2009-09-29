@@ -5,7 +5,6 @@
     <?php  include_http_metas() ?>
     <?php  include_metas() ?>
 <?php echo javascript_include_tag('voota') ?>
-<?php echo javascript_include_tag('jq') ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META NAME="Title" CONTENT="Voota">
@@ -21,7 +20,6 @@
     <link rel="shortcut icon" href="/favicon.ico" >
 <link rel="stylesheet" type="text/css" media="screen" href="/css/voota.css" >
 <link rel="stylesheet" type="text/css" media="screen" href="/css/interior.css" >
-<link rel="stylesheet" type="text/css" media="screen" href="/css/jq.css" >
 </head>
 <body>
  
@@ -33,12 +31,14 @@
 <div class="izq"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" longdesc="Enlace Home Voota"></a>
 <h6>Tú tienes la última palabra</h6>
 </div>
-<div class="der login"><h6><a href="#">login</a> · <a href="#">Registrarse</a></h6></div>
+<div class="der login"><h6><?php echo link_to('Acceso usuarios', 'sfGuardAuth/signin') ?></h6></div>
+<?php /* ?>
 <div class="limpiar"></div>
 <div class="der">
   <input name="buscar2" type="text" class="input">
   <input name="buscar" type="button" class="button" value="Buscar">
 </div>
+<?php */ ?>
 </div>
 <div class="limpiar"></div>
 <!-- FIN HEADER -->

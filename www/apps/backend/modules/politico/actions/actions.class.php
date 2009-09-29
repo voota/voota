@@ -22,12 +22,14 @@ class politicoActions extends autoPoliticoActions
 {
 	
 	public function executeEdit(sfWebRequest $request) {
-		$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->getRoute()->getObject()->getImagen();
-		if (file_exists($imageFileName)){
-			$img = new sfImage( $imageFileName );
-			$img->voota( $imageFileName );
+		if ($this->getRoute()->getObject()->getImagen()) {
+			$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->getRoute()->getObject()->getImagen();
+			if (file_exists($imageFileName)){
+				$img = new sfImage( $imageFileName );
+				$img->politico( $imageFileName );
+			}
 		}
-		
+				
 		parent::executeEdit( $request );
 	}
 }

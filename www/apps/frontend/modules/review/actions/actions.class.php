@@ -28,7 +28,7 @@ class reviewActions extends sfVoActions
   		$this->getUser()->setAttribute('url_back', $url);
   		$this->getUser()->setAttribute('review_v', $this->reviewValue);
   		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  		echo "(<script>document.location='/".$this->getUser()->getCulture()."/login'</script>)";die;
+  		echo "(<script>document.location='/".$this->getUser()->getCulture()."/user/login'</script>)";die;
   	}
   	
   	$criteria = new Criteria();

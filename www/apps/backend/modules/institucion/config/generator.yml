@@ -13,17 +13,10 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:    
+        display: [nombre_corto,nombre,geo,disabled,orden]
       filter:  ~
-      form:
-        display:
-          "Datos de la institucui&oacute;n": [nombre,geo_id]
-
-      edit:
-        title:   Instituci&oacute;n
-      new:
-        title:   Nueva instituci&oacute;n
-
-      list:
-        title:   Instituciones
-        display: [id,nombre,_geo]
+      form:    
+        display: [nombre_corto,nombre,geo_id,disabled,orden, imagen]
+      edit:    ~
+      new:     ~

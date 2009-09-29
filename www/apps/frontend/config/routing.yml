@@ -22,6 +22,36 @@ politico_ca:
   param: { module: politico, action: show }
   requirements: { sf_culture: (?:ca) }
 
+ranking_es_all:
+  url: /:sf_culture/politicos
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:es) }
+
+ranking_ca_all:
+  url: /:sf_culture/politics
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:ca) }
+
+ranking_es_partido:
+  url: /:sf_culture/politicos/:partido
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:es) }
+
+ranking_ca_partido:
+  url: /:sf_culture/politics/:partido
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:ca) }
+
+ranking_es:
+  url: /:sf_culture/politicos/:partido/:institucion
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:es) }
+
+ranking_ca:
+  url: /:sf_culture/politicos/:partido/:institucion
+  param: { module: politico, action: ranking }
+  requirements: { sf_culture: (?:ca) }
+
 partido_es:
   url: /:sf_culture/partido/:id
   param: { module: partido, action: show }
@@ -33,7 +63,7 @@ partido_ca:
   requirements: { sf_culture: (?:ca) }
 
 sf_guard_signin:
-  url:   /:sf_culture/login
+  url:   /:sf_culture/user/login
   param: { module: sfGuardAuth, action: signin }
   requirements: { sf_culture: (?:es|ca) }
 

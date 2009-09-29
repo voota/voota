@@ -50,12 +50,15 @@ class homeActions extends sfActions{
   	global $culture;
   	
 	$this->readCookie($this->getRequest());
-  	$this->redirect( "/$culture" );
+  	$this->redirect( "politico/ranking" );
+  	# "politico/ranking".$this->getContext()->getI18N()->__($text, $args, 'politicos')	
   }
   
   public function executeIndex(sfWebRequest $request) {
   	global $uid;
   	global $first;
+  	
+  	$this->redirect( "politico/ranking" );
   	
   	$this->readCookie($this->getRequest());
   	
