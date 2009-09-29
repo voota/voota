@@ -17,6 +17,11 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre'                    => new sfWidgetFormInput(),
       'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormDateTime(),
+      'disabled'                  => new sfWidgetFormInput(),
+      'orden'                     => new sfWidgetFormInput(),
+      'nombre_corto'              => new sfWidgetFormInput(),
+      'url'                       => new sfWidgetFormInput(),
+      'imagen'                    => new sfWidgetFormInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Politico')),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Eleccion')),
     ));
@@ -26,9 +31,18 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre'                    => new sfValidatorString(array('max_length' => 150)),
       'geo_id'                    => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
+      'disabled'                  => new sfValidatorString(array('max_length' => 1, 'required' => false)),
+      'orden'                     => new sfValidatorInteger(array('required' => false)),
+      'nombre_corto'              => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'url'                       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Eleccion', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Institucion', 'column' => array('nombre_corto')))
+    );
 
     $this->widgetSchema->setNameFormat('institucion[%s]');
 

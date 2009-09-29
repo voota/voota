@@ -26,6 +26,7 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'residencia'       => new sfWidgetFormInput(),
       'presentacion'     => new sfWidgetFormInput(),
       'created_at'       => new sfWidgetFormDateTime(),
+      'vanity'           => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -42,6 +43,7 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'residencia'       => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'presentacion'     => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'vanity'           => new sfValidatorString(array('max_length' => 45, 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

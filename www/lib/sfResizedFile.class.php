@@ -41,10 +41,9 @@ class sfResizedFile extends sfValidatedFile
 				throw new RuntimeException('You must give a "path" when you give a relative file name.');
 			}
 
-			$bwFile = $this->path.DIRECTORY_SEPARATOR.'bw_'.$file;
 			$file = $this->path.DIRECTORY_SEPARATOR.$file;
 		}
-
+		
 		// get our directory path from the destination filename
 		$directory = dirname($file);
 		if (!is_readable($directory))
@@ -70,28 +69,23 @@ class sfResizedFile extends sfValidatedFile
 			throw new Exception(sprintf('File upload path "%s" is not writable.', $directory));
 		}
 		
-		$img = new sfImage( $this->getTempName() );
-		$img->voota($file);
-		
-				
-		
-/*
-		// copy the temp file to the destination file
-		$thumbnail = new sfThumbnail(100, 100, true, true, 85, 'sfGDAdapter');
-		$thumbnail->loadFile($this->getTempName());
-		$thumbnail->save($smallFile, 'image/png');
-
-		$thumbnail = new sfThumbnail(400, 400, true, true, 85, 'sfGDAdapter');
-		$thumbnail->loadFile($this->getTempName());
-		$thumbnail->save($file, 'image/png');
-		// chmod our file
-		chmod($smallFile, $fileMode);
-		chmod($file, $fileMode);
-*/
 
 		$this->savedName = $file;
 		//return is_null($this->path) ? $file : str_replace($this->path.DIRECTORY_SEPARATOR, '', $file);
-		return parent::save($file, $fileMode, $create, $dirMode);;
+		$ret = parent::save($file, $fileMode, $create, $dirMode);
+		
+		$img = new sfImage( $file );
+
+			echo 1;die;
+		if (strpos  ( $file , "politicos" )){
+			echo 1;die;
+			$img->politico($file);
+		}
+		if (strpos  ( $file , "instituciones" )){
+			$img->institucion($file);
+		}
+		
+		return $ret;
 	}
 
 }

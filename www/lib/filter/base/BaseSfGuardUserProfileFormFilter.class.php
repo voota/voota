@@ -27,6 +27,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'residencia'       => new sfWidgetFormFilterInput(),
       'presentacion'     => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'vanity'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -42,6 +43,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'residencia'       => new sfValidatorPass(array('required' => false)),
       'presentacion'     => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'vanity'           => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -72,6 +74,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'residencia'       => 'Text',
       'presentacion'     => 'Text',
       'created_at'       => 'Date',
+      'vanity'           => 'Text',
     );
   }
 }

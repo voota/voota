@@ -30,6 +30,8 @@ class BasePoliticoForm extends BaseFormPropel
       'partido_id'                => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'bio'                       => new sfWidgetFormTextarea(),
       'imagen'                    => new sfWidgetFormInput(),
+      'vanity'                    => new sfWidgetFormInput(),
+      'lugar_nacimiento'          => new sfWidgetFormInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Institucion')),
       'politico_lista_list'       => new sfWidgetFormPropelChoiceMany(array('model' => 'Lista')),
     ));
@@ -52,6 +54,8 @@ class BasePoliticoForm extends BaseFormPropel
       'partido_id'                => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'bio'                       => new sfValidatorString(array('required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'vanity'                    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'lugar_nacimiento'          => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Institucion', 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
     ));

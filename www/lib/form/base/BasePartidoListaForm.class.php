@@ -19,8 +19,8 @@ class BasePartidoListaForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'partido_id' => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'lista_id'   => new sfValidatorPropelChoice(array('model' => 'Lista', 'column' => 'id', 'required' => false)),
+      'partido_id' => new sfValidatorPropelChoice(array('model' => 'PartidoLista', 'column' => 'partido_id', 'required' => false)),
+      'lista_id'   => new sfValidatorPropelChoice(array('model' => 'PartidoLista', 'column' => 'lista_id', 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 

@@ -31,6 +31,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'partido_id'                => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'bio'                       => new sfWidgetFormFilterInput(),
       'imagen'                    => new sfWidgetFormFilterInput(),
+      'vanity'                    => new sfWidgetFormFilterInput(),
+      'lugar_nacimiento'          => new sfWidgetFormFilterInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
@@ -52,6 +54,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'partido_id'                => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
       'bio'                       => new sfValidatorPass(array('required' => false)),
       'imagen'                    => new sfValidatorPass(array('required' => false)),
+      'vanity'                    => new sfValidatorPass(array('required' => false)),
+      'lugar_nacimiento'          => new sfValidatorPass(array('required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
@@ -138,6 +142,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'partido_id'                => 'ForeignKey',
       'bio'                       => 'Text',
       'imagen'                    => 'Text',
+      'vanity'                    => 'Text',
+      'lugar_nacimiento'          => 'Text',
       'politico_institucion_list' => 'ManyKey',
       'politico_lista_list'       => 'ManyKey',
     );

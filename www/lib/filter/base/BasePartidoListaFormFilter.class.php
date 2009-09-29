@@ -37,8 +37,8 @@ class BasePartidoListaFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'partido_id' => 'ForeignKey',
-      'lista_id'   => 'ForeignKey',
+      'partido_id' => 'Number',
+      'lista_id'   => 'Number',
       'created_at' => 'Date',
     );
   }

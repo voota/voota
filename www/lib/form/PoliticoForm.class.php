@@ -17,6 +17,14 @@ class PoliticoForm extends BasePoliticoForm
   {
 
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
+    
+    $years = range(1920,date('Y'));
+    $this->widgetSchema['fecha_nacimiento'] = new sfWidgetFormJQueryDate(array(
+    						'culture' => 'es'
+    						, 'format' => '%day%/%month%/%year%'
+    						, 'years' => array_combine($years, $years)
+    						));
+
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
    'file_src'  => '/images/politicos/cc_'.$this->getObject()->getImagen(),
