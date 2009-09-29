@@ -20,7 +20,7 @@
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/index.php" />
   	<move file="${project.dir}/www/web/backend.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
-    <phingcall target="pruebas" />
+    <phingcall target="pruebas_admin" />
   </target>
   <target name="update" depends="prepare, updatesvn, i18n, clear">
   	<exec command="chmod +x ${project.dir}/scripts/deploy.sh" passthru="true" />
@@ -63,6 +63,9 @@
   </target>
   <target name="pruebas" depends="prepare">
   	<exec command="php symfony test:all" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="pruebas_admin" depends="prepare">
+  	<exec command="php symfony test:functional backend" dir="${project.dir}/www"  passthru="true"/>
   </target>
 
   <target name="updatesvn">
