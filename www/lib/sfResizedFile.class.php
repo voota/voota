@@ -76,9 +76,7 @@ class sfResizedFile extends sfValidatedFile
 		
 		$img = new sfImage( $file );
 
-			echo 1;die;
 		if (strpos  ( $file , "politicos" )){
-			echo 1;die;
 			$img->politico($file);
 		}
 		if (strpos  ( $file , "instituciones" )){
