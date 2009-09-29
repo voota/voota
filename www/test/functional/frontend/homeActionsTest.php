@@ -13,8 +13,8 @@ $browser->
   end()->
 
   with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/Coomparte opiniones sobre los políticos de España/')->
+    isStatusCode(302)->
+    checkElement('body', '!/This is a temporary page/')->
   end()
 ;
 
@@ -27,8 +27,8 @@ $browser->
   end()->
 
   with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/Coomparteix opininions sobre els polítics d\'Espanya./')->
+    isStatusCode(302)->
+    checkElement('body', '!/This is a temporary page/')->
   end()
 ;
 
@@ -42,6 +42,6 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(302)->
-    checkElement('body', '!/Coomparteix opininions sobre els polítics d\'Espanya./')->
+    checkElement('body', '!/This is a temporary page/')->
   end()
 ;
