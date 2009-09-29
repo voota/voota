@@ -2,14 +2,17 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new sfGuardTestFunctional(new sfBrowser());
 
 $browser->
-  get('/sfReview/index')->
+  get('/sfReview')->
+  
+  isStatusCode(401)->    
+  signin()->  
+  get('/sfReview')->
 
   with('request')->begin()->
     isParameter('module', 'sfReview')->
-    isParameter('action', 'index')->
   end()->
 
   with('response')->begin()->
