@@ -45,7 +45,13 @@ propel:
     nombre: { type: VARCHAR, size: '150', required: true }
     geo_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
+    disabled: { type: CHAR, size: '1', required: false }
+    orden: { type: INTEGER, size: '11', required: false }
+    nombre_corto: { type: VARCHAR, size: '45', required: false }
+    url: { type: VARCHAR, size: '255', required: false }
+    imagen: { type: VARCHAR, size: '50', required: false }
     _indexes: { fk_geo: [geo_id] }
+    _uniques: { uniq_institucion: [nombre_corto] }
   lista:
     _attributes: { phpName: Lista }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -69,10 +75,11 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     _indexes: { fk_partido_partido: [partido_id] }
+    _uniques: { uniq_abreviatura: [abreviatura] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
-    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_partido: [partido_id], fk_lista: [lista_id] }
   politico:
@@ -94,7 +101,9 @@ propel:
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     bio: { type: CLOB, required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
-    _indexes: { fk_politico_partido: [partido_id], fk_usuario: [sf_guard_user_profile_id] }
+    vanity: { type: VARCHAR, size: '45', required: false }
+    lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
+    _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -140,6 +149,7 @@ propel:
     residencia: { type: VARCHAR, size: '45', required: false }
     presentacion: { type: VARCHAR, size: '500', required: false }
     created_at: { type: TIMESTAMP, required: false }
+    vanity: { type: VARCHAR, size: '45', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_user_email: [email] }
   voto:
