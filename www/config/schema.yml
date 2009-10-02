@@ -138,7 +138,6 @@ propel:
     _attributes: { phpName: SfGuardUserProfile }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    email: { type: VARCHAR, size: '150', required: true }
     clave: { type: VARCHAR, size: '45', required: true }
     acepta_mensajes: { type: CHAR, size: '1', required: false }
     nombre: { type: VARCHAR, size: '45', required: true }
@@ -150,8 +149,8 @@ propel:
     presentacion: { type: VARCHAR, size: '500', required: false }
     created_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
+    imagen: { type: VARCHAR, size: '50', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
-    _uniques: { uniq_user_email: [email] }
   voto:
     _attributes: { phpName: Voto }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
