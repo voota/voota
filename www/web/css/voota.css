@@ -3,15 +3,17 @@
 html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Times New Roman", Times, serif; color:#616161;}
 #header { height:8.25em;}
 #container {margin: 0 auto; min-width:45.00em; max-width:60.00em;} 
-#main { position: relative; left: 0.00em; right: 0.00em; background-image: url(../image/bgMain.gif); background-repeat:repeat-x; padding-top:1%; padding-left:10%}
-#content { height: 100%; /* overflow: visible; */ }
+#main { background-image: url(/images/bgMain.gif); background-repeat:repeat-x; }
+#content { /* overflow: visible; */ }
 #footer { position: relative; left: 0.00em; text-align:center; padding-top: 1em;}
 #line { height:0.06em; border-top:0.06em dotted #343434; margin-bottom:0.6em;}
 .enlacesPie{margin-right:1.25em; margin-left:1.25em;}
 .limpiar { clear:both; }
 .input { border: 0.06em solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; }
-.button { padding-left:1.00em; padding-right:1.00em; margin-left:0.60em; margin-right:0.60em;}
-textarea { width:14.38em; height:7.19em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:0.06em solid #8f9ba7; }
+.inputSign { border: 0.06em solid #9398ae; background: #ffffff; width:14.19em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.inputSignPeq { border: 0.06em solid #9398ae; background: #ffffff; width:2.90em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.button { padding-left:0.60em; padding-right:0.60em;}
+.textarea { width:25.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:0.06em solid #8f9ba7; }
 .der{ float:right;}
 .izq { float:left;}
 .login {margin-top:0.60em;}
@@ -24,5 +26,8 @@ h6 { font-size: 0.75em; font-weight: normal; margin:0px; margin:0; padding-botto
 img { border:none; vertical-align: middle;}
 .cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
 .cC a {color: white;}
+table { padding:0; margin:0;}
+
+
 
 

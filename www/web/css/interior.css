@@ -5,12 +5,27 @@
 #contentLeft { float:left; width: 41.56em;}
 #contentRankingLeft { float:left; width:100%}
 #contentRight { float:right; width: 15.81em;}
+#contentLeftSing { float:left; width:30.00em; margin-top:3.94em; margin-left:1.38em; height:18.75em}
+#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
+
+#contentRightSing { float:right; width:27.00em; margin-top:3.94em;}
+#contentSing { padding-left:1.31em; margin-top:1.69em; }
+.formSing { margin-top:1.00em;}
+.formSings { margin-top:1.00em; margin-left:1.44em;}
+.alingBoton {text-align:right;}
+.leftSing {  width:5.80em; padding-bottom:0.60em; padding-top:0.60em; }
+.leftSings {  padding-bottom:0.60em; padding-top:0.60em; }
+.leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
+.leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
+.leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
+.leftSing3 { padding-bottom:0.60em; padding-top:0.60em; }
 #nombre { list-style:none; margin:0; padding:0; }
 #nombre li { float:left; margin:0; padding:0; margin-right:1.0em; }
 .cabeceraRanking {background-color:#f6f6f6; height:1.69em;}
 .listaRanking { height:4.06em;}
-.ranking { text-align:right; width:11.25em; height:1.69em;}
-.nombreRanking { height:1.69em; padding-left:3.25em;}
+.ranking { text-align:right; width:6.25em; height:1.69em;}
+.nombreRanking { width:18.50em; height:1.69em; padding-left:0.90em;}
+.fotoRanking { width:6.81em; height:1.69em; padding-left:0.25em; text-align:right;}
 .votosUp { width:5.44em; text-align: right;}
 .votosDown { width:7.56em; text-align:right;}
 .votosUpTotal {  width:38.80em; text-align:right; margin-right:2.20em;}
@@ -18,6 +33,9 @@
 #paginacion { text-align:center; word-spacing:0.40em; font-weight:bold;}
 .numerosPag { font-weight:bold; font-size:0.88em;}
 .nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2f2f2f}
+.tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
+.azul {color:#2b56ff;}
+.rojo {color:#f80c1a;}
 .nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em;}
 .nombreCaja {font-family: Georgia, "Times New Roman", Times, serif; font-size:0.88em; color:#2f2f2f;}
 .fotoPolitico {margin-left:3.13em; margin-top:1.50em; width:11.81em;}
@@ -38,12 +56,16 @@
 .listadoRanking {margin-top:1.50em; width:52.56em; margin-left:1.88em; }
 .listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
 .confirmar {width:14.44em; margin-left:1.00em; }
-.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em;}
-.margenVota {margin-top:0.60em;}
+.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:17.94em;}
+.cuadroConfirmarImagen { background-image:url(../image/clonk.gif); background-repeat:no-repeat; background-position:bottom left; text-align:center;}
+.ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
+.tachado {text-decoration: line-through;}
+.margenVota {margin-top:0.60em; width:18.94em; text-align:right;}
 .enlacesPie {text-align:center; padding-bottom:1.00em;}
 /* Gente con color */
 .conColor {margin-top:2.94em;}
 .tituloColor {margin-top:2.00em;}
 .nombreColor {margin-left:0.60em; margin-top:1.00em;}
-.flechita {background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
+.flechita {background-image:url(../image/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
 p { margin:0; padding-bottom:1.25em;}
+
