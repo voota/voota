@@ -21,7 +21,7 @@ generator:
       form:
         class: sfGuardUserAdminForm
         display:
-          "Datos básicos": [username, password, password_again, email, nombre, apellidos, acepta_mensajes, fecha_nacimiento, pais, formacion, residencia, presentacion]
+          "Datos básicos": [vanity, username, password, password_again, nombre, apellidos, acepta_mensajes, fecha_nacimiento, pais, formacion, residencia, presentacion]
           "Permisos y grupos": [is_active, is_super_admin, sf_guard_user_group_list, sf_guard_user_permission_list]
       fields:
         acepta_mensajes:
