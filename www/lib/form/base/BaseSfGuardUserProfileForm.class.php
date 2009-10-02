@@ -15,7 +15,6 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'user_id'          => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
-      'email'            => new sfWidgetFormInput(),
       'clave'            => new sfWidgetFormInput(),
       'acepta_mensajes'  => new sfWidgetFormInput(),
       'nombre'           => new sfWidgetFormInput(),
@@ -27,12 +26,12 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'presentacion'     => new sfWidgetFormInput(),
       'created_at'       => new sfWidgetFormDateTime(),
       'vanity'           => new sfWidgetFormInput(),
+      'imagen'           => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorPropelChoice(array('model' => 'SfGuardUserProfile', 'column' => 'id', 'required' => false)),
       'user_id'          => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id')),
-      'email'            => new sfValidatorString(array('max_length' => 150)),
       'clave'            => new sfValidatorString(array('max_length' => 45)),
       'acepta_mensajes'  => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'nombre'           => new sfValidatorString(array('max_length' => 45)),
@@ -44,11 +43,8 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'presentacion'     => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
       'vanity'           => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'imagen'           => new sfValidatorString(array('max_length' => 50, 'required' => false)),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'SfGuardUserProfile', 'column' => array('email')))
-    );
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile[%s]');
 

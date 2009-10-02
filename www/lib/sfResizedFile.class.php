@@ -48,7 +48,6 @@ class sfResizedFile extends sfValidatedFile
 		$directory = dirname($file);
 		if (!is_readable($directory))
 		{
-			echo $directory;
 			if ($create && !mkdir($directory, $dirMode, true))
 			{
 				// failed to create the directory

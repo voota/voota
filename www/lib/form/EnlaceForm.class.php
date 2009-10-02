@@ -12,5 +12,15 @@ class EnlaceForm extends BaseEnlaceForm
 {
   public function configure()
   {
+
+  	
+	$this->widgetSchema['politico_id'] = 
+		new sfWidgetFormPropelChoice(array(
+			'model'     => 'Politico',
+			'add_empty' => false,
+			'order_by' => array('Nombre', 'asc'),
+		));
+
+
   }
 }
