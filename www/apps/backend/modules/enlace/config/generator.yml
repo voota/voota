@@ -1,0 +1,28 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Enlace
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          enlace
+    with_propel_route:     1
+
+    config:
+      actions:  ~
+      list:    
+        display: [url,tipo,partido,politico, orden]
+      filter:  ~
+      form:    
+        display: [url,tipo,partido_id,politico_id, orden]
+      edit:
+        fields:
+          url:
+            attributes: { style : "width: 40em" }
+          tipo:
+            attributes: { style : "width: 4em" }
+          orden:
+            attributes: { style : "width: 4em" }
+      new:     ~

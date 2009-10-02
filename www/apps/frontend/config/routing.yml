@@ -12,6 +12,10 @@ usuario:
   url:   /:username
   param: { module: usuario, action: show }
 
+usuario_edit:
+  url: /:sf_culture/user/edit
+  param: { module: usuario, action: edit }
+
 politico_es:
   url: /:sf_culture/politico/:id
   param: { module: politico, action: show }

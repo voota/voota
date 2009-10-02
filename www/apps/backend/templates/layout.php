@@ -18,6 +18,7 @@ Administraci&oacute;n
 <p>
 <div>
 <?php echo link_to('politicos', 'politico/index') ?> 
+<?php echo link_to('enlaces', 'enlace/index') ?> 
 <?php echo link_to('partidos', 'partido/index') ?> 
 <?php echo link_to('elecciones', 'eleccion/index') ?> 
 <?php echo link_to('instituciones', 'institucion/index') ?> 

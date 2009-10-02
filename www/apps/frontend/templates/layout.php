@@ -31,7 +31,25 @@
 <div class="izq"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" longdesc="Enlace Home Voota"></a>
 <h6>Tú tienes la última palabra</h6>
 </div>
-<div class="der login"><h6><?php echo link_to('Acceso usuarios', 'sfGuardAuth/signin') ?></h6></div>
+<div class="der login">
+
+<?php slot('not_logged') ?>
+	<h6><?php echo link_to('Acceso usuarios', 'sfGuardAuth/signin') ?></h6>
+<?php end_slot('not_logged') ?>
+
+<?php slot('logged') ?>
+<h6>
+
+<img src="image/icoBlog.gif" alt="Ico Voota"> 
+ <?php echo link_to($sf_user->isAuthenticated()?$sf_user->getUsername():'', '@usuario_edit') ?>
+ · 
+ <?php echo link_to('salir', '@sf_guard_signout') ?>
+ </h6>
+<?php end_slot('logged') ?>
+
+<?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
+
+</div>
 <?php /* ?>
 <div class="limpiar"></div>
 <div class="der">
@@ -54,7 +72,7 @@
 
 <!-- FOOTER -->
 <div id="footer">
-<div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://es.creativecommons.org/">Creative Commons</a> son amigos de toda la vida<a href="/"><img src="/images/icoVoota.png" alt="Icono Voota" width="34" height="34" longdesc="Enlace Voota"></a></div>
+<div class="cC"><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida<a href="/"><img src="/images/icoVoota.png" alt="Icono Voota" width="34" height="34" longdesc="Enlace Voota"></a></div>
 <!-- ENLACES PIE -->
 <div class="enlacesPie">
 <h6>

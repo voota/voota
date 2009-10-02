@@ -1,3 +1,12 @@
+enlace:
+  class: sfPropelRouteCollection
+  options:
+    model:                Enlace
+    module:               enlace
+    prefix_path:          enlace
+    column:               id
+    with_wildcard_routes: true
+
 sf_review_status:
   class: sfPropelRouteCollection
   options:

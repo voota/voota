@@ -16,13 +16,14 @@ generator:
         title:   Pol&iacute;ticos
         display: [id,alias,nombre,apellidos,partido,_usuario]
       filter:
-        display: [nombre,apellidos,email,partido_id, bio]
+        display: [nombre,apellidos,partido_id, bio]
       form:
         display: 
           "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id]
-          "Datos personales": [imagen,nombre,apellidos,partido_id,politico_institucion_list,email,sexo,fecha_nacimiento,lugar_nacimiento,residencia,_bio_preview,bio]
+          "Datos personales": [imagen,nombre,apellidos,partido_id,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia]
+          "Bio": [_bio_preview,bio]
         fields:
-          bio:      
+          bio:
             help: Para actualizar el preview de arriba.
             params: rich=true tinymce_options=width:330
             attributes: { style: "width: 90%; height:200px" }
