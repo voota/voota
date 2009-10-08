@@ -10,10 +10,28 @@
  */
 class EnlaceForm extends BaseEnlaceForm
 {
+  protected static $tipos_enlace = array(
+  		'1' => '11870', 
+    	'2' => 'blog',
+    	'3' => 'bloglines',
+    	'4' => 'dailymotion',
+    	'5' => 'delicious',
+    	'6' => 'facebook',
+    	'7' => 'flickr',
+    	'8' => 'google reader',
+    	'9' => 'linkedin',
+    	'10' => 'picasa',
+    	'11' => 'twitter',
+    	'12' => 'web personal',
+    	'13' => 'wikipedia',
+    	'14' => 'xing',
+    	'15' => 'youtube'
+  );
+
+
+	
   public function configure()
   {
-
-  	
 	$this->widgetSchema['politico_id'] = 
 		new sfWidgetFormPropelChoice(array(
 			'model'     => 'Politico',
@@ -21,6 +39,11 @@ class EnlaceForm extends BaseEnlaceForm
 			'order_by' => array('Nombre', 'asc'),
 		));
 
+		
+    $this->widgetSchema['tipo'] = new sfWidgetFormSelect(array('choices' => self::$tipos_enlace));
+		
+	
+		
 
   }
 }
