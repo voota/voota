@@ -13,7 +13,7 @@ generator:
     config:
       actions:  ~
       list:    
-        display: [url,tipo,partido,politico, orden]
+        display: [url,partido,politico, orden]
       filter:  ~
       form:    
         display: [url,tipo,partido_id,politico_id, orden]
@@ -21,8 +21,6 @@ generator:
         fields:
           url:
             attributes: { style : "width: 40em" }
-          tipo:
-            attributes: { style : "width: 4em" }
           orden:
             attributes: { style : "width: 4em" }
       new:     ~
