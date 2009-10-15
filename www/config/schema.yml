@@ -150,6 +150,8 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
+    sf_guard_user_profilecol: { type: VARCHAR, size: '45', required: false }
+    codigo: { type: VARCHAR, size: '45', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
   voto:
     _attributes: { phpName: Voto }
