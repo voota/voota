@@ -20,7 +20,8 @@ class sfGuardUserAdminForm extends BasesfGuardUserForm
       $this['salt'],
       $this['algorithm']
     );
-
+  	    $this->validatorSchema['username'] = new sfValidatorEmail();
+    
     $this->widgetSchema['sf_guard_user_group_list']->setLabel('Groups');
     $this->widgetSchema['sf_guard_user_permission_list']->setLabel('Permissions');
 

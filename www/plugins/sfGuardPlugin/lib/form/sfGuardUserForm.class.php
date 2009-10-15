@@ -13,7 +13,7 @@ class sfGuardUserForm extends sfGuardUserAdminForm
     $pkName = null;
 
   public function configure()
-  {
+  {  	
     parent::configure();
 
     unset(
@@ -26,6 +26,6 @@ class sfGuardUserForm extends sfGuardUserAdminForm
       $this['sf_guard_user_group_list'],
       $this['sf_guard_user_permission_list']
     );
-    
+        
   }
 }
