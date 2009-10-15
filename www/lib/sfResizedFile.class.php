@@ -81,6 +81,9 @@ class sfResizedFile extends sfValidatedFile
 		if (strpos  ( $file , "instituciones" )){
 			$img->institucion($file);
 		}
+		if (strpos  ( $file , "usuarios" )){
+			$img->usuario($file);
+		}
 		
 		return $ret;
 	}
