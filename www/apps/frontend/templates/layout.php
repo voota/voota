@@ -20,6 +20,7 @@
     <link rel="shortcut icon" href="/favicon.ico" >
 <link rel="stylesheet" type="text/css" media="screen" href="/css/voota.css" >
 <link rel="stylesheet" type="text/css" media="screen" href="/css/interior.css" >
+<link rel="stylesheet" type="text/css" media="screen" href="/css/other.css" >
 </head>
 <body>
  

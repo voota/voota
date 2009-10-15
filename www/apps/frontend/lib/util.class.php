@@ -9,8 +9,7 @@
 
 class util
 {
-	public static function generateUID(){
-      $len = 16;
+	public static function generateUID($len = 16){
       $base='ABCDEFGHKLMNOPQRSTWXYZabcdefghjkmnpqrstwxyz123456789';
       $max=strlen($base)-1;
       $activatecode='';

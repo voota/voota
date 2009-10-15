@@ -8,14 +8,6 @@ homepage:
   param: { module: home, action: index }
   requirements: { sf_culture: (?:es|ca) }
 
-usuario:
-  url:   /:username
-  param: { module: usuario, action: show }
-
-usuario_edit:
-  url: /:sf_culture/user/edit
-  param: { module: usuario, action: edit }
-
 politico_es:
   url: /:sf_culture/politico/:id
   param: { module: politico, action: show }
@@ -74,6 +66,19 @@ sf_guard_signin:
 sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
+
+usuario_confirm:
+  url:   /:sf_culture/user/confirm/:codigo
+  param: { module: sfGuardAuth, action: confirm }
+  requirements: { sf_culture: (?:es|ca) }
+
+usuario:
+  url:   /:username
+  param: { module: sfGuardAuth, action: show }
+
+usuario_edit:
+  url: /:sf_culture/user/edit
+  param: { module: sfGuardAuth, action: edit }
 
 sf_review_form:
   url:   /review/form

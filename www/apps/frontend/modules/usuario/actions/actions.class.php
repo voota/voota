@@ -21,26 +21,7 @@ define("ALL_FORM_VALUE", '0');
 
 class usuarioActions extends sfVoActions
 {
-	
-  public function executeEdit(sfWebRequest $request)
-  {
-	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
-	if ($this->getRequest('email') != ''){
-		$file = $request->getFiles('image');
-		if ($file && $file['tmp_name'] != '' && file_exists($file['tmp_name'])){
-			$arr = array_reverse( split("\.", $file['name']) );
-			$ext = $arr[0]; 
-			$fileName = sfConfig::get('sf_upload_dir').'/usuarios/' . $this->getUser()->getProfile()->getVanity() . ".$ext";
-			
-			move_uploaded_file($file['tmp_name'], $fileName);
-			
-			$img = new sfImage( $fileName );
-	
-			$img->usuario($file);
-			$this->getUser()->getProfile()->setImagen($this->getUser()->getProfile()->getVanity() . ".$ext");
-	  		//sfGuardUserProfilePeer::doUpdate( $this->getUser()->getProfile() );
-		}
-	}
-	
-  }
+
+
+
 }
