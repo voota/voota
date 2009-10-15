@@ -123,6 +123,7 @@ class politicoActions extends sfVoActions
 		// Sin imagen: Imagen genérica Voota
 		$imageFileName = sfConfig::get('sf_web_dir').'/images/p_unknown.png';
 	}
+	
 	$img = new sfImage( $imageFileName );
 	$img->politico( $imageFileName );
 	

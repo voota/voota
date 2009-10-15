@@ -106,8 +106,8 @@ propel:
     _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
+    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
     fecha_inicio: { type: DATE, required: false }
     fecha_fin: { type: DATE, required: false }
     _indexes: { fk_institucion_politico_1: [institucion_id], fk_institucion_politico_2: [politico_id] }

@@ -16,7 +16,10 @@ generator:
         title:   Pol&iacute;ticos
         display: [id,alias,nombre,apellidos,partido,_usuario]
       filter:
-        display: [nombre,apellidos,partido_id, bio]
+        display: [nombre,apellidos,partido_id, bio, politico_institucion_list]
+        fields:
+          politico_institucion_list:
+            label: Institucion
       form:
         display: 
           "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id]

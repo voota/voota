@@ -36,7 +36,7 @@ class homeActions extends sfActions{
 	}
 	else {
 	  	// 2: Idioma del navegador 
-	  	$culture = $request->getPreferredCulture(array('es', 'ca', 'en'));
+	  	$culture = $request->getPreferredCulture(array('es', 'ca'));
 	  	$uid = util::generateUID();
 	  	$value[0] = $uid;
 	  	$value[1] = $culture;
