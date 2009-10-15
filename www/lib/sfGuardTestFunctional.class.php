@@ -1,7 +1,7 @@
 <?php
 class sfGuardTestFunctional extends sfTestFunctional {
 
-  var $username = 'test';  
+  var $username = 'test@voota.es';  
   var $password = '*****';
 
   public function initialize($hostname = null, $remote = null, $options = array())
