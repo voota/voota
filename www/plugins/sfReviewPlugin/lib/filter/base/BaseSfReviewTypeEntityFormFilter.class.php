@@ -16,12 +16,10 @@ class BaseSfReviewTypeEntityFormFilter extends BaseFormFilterPropel
   {
     $this->setWidgets(array(
       'sum'               => new sfWidgetFormFilterInput(),
-      'score'             => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'sum'               => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
-      'score'             => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_type_entity_filters[%s]');
@@ -42,8 +40,8 @@ class BaseSfReviewTypeEntityFormFilter extends BaseFormFilterPropel
       'sf_review_type_id' => 'ForeignKey',
       'entity_id'         => 'Number',
       'date'              => 'Date',
+      'value'             => 'Number',
       'sum'               => 'Number',
-      'score'             => 'Number',
     );
   }
 }

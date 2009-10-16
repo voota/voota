@@ -22,7 +22,7 @@ class SfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function getReviewsByEntityAndValue($type_id, $entity_id, $value)
+  static public function getReviewsByEntityAndValue(sfWebRequest $request, $type_id, $entity_id, $value)
   {
     $criteria = new Criteria();
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
@@ -30,9 +30,35 @@ class SfReviewManager
   	$criteria->add(SfReviewPeer::VALUE, $value);
 	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
   	
-  	return SfReviewPeer::doSelect($criteria);
-
+  	/*
+	return SfReviewPeer::doSelect($criteria);
+	*/
+  	$pager = new sfPropelPager('SfReview', 5);
+    $pager->setCriteria($criteria);
+    $pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
+    $pager->init();
+    return $pager;
   	  	
+  }
+  
+  static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){
+	$query = "SELECT COUNT(*) AS count ".
+			"FROM %s ".
+			"WHERE entity_id = ? ".
+			"AND sf_review_type_id = ? ".
+			"AND value = ? ";
+	$query = sprintf($query, SfReviewPeer::TABLE_NAME);
+	
+  	$connection = Propel::getConnection();
+	$statement = $connection->prepare($query);
+	$statement->bindValue(1, $entity_id);
+	$statement->bindValue(2, $type_id);
+	$statement->bindValue(3, $value);
+	
+	$statement->execute();
+	$row = $statement->fetch();
+	
+	return $row['count'];
   }
 
   

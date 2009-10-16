@@ -16,16 +16,16 @@ class BaseSfReviewTypeEntityForm extends BaseFormPropel
       'sf_review_type_id' => new sfWidgetFormInputHidden(),
       'entity_id'         => new sfWidgetFormInputHidden(),
       'date'              => new sfWidgetFormInputHidden(),
+      'value'             => new sfWidgetFormInputHidden(),
       'sum'               => new sfWidgetFormInput(),
-      'score'             => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'sf_review_type_id' => new sfValidatorPropelChoice(array('model' => 'SfReviewType', 'column' => 'id', 'required' => false)),
       'entity_id'         => new sfValidatorPropelChoice(array('model' => 'SfReviewTypeEntity', 'column' => 'entity_id', 'required' => false)),
       'date'              => new sfValidatorPropelChoice(array('model' => 'SfReviewTypeEntity', 'column' => 'date', 'required' => false)),
+      'value'             => new sfValidatorPropelChoice(array('model' => 'SfReviewTypeEntity', 'column' => 'value', 'required' => false)),
       'sum'               => new sfValidatorNumber(),
-      'score'             => new sfValidatorNumber(),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_type_entity[%s]');

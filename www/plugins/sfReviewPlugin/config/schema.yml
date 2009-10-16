@@ -48,6 +48,6 @@ propel:
     sf_review_type_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     entity_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
     date: { type: DATE, primaryKey: true, required: true }
+    value: { type: INTEGER, size: '11', primaryKey: true, required: true }
     sum: { type: FLOAT, required: true, defaultValue: '0' }
-    score: { type: FLOAT, required: true, defaultValue: '0' }
     _indexes: { fk_sf_review_type_politico_1: [sf_review_type_id] }
