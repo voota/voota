@@ -59,7 +59,7 @@
   	<exec command="ssh -i $HOME/Documentos/sergio.pem ubuntu@aneto.voota.es ${project.dir}/scripts/deploy.sh\ prod" dir="${project.dir}"  passthru="true"/>
   </target>
   <target name="deploy_admin" depends="prepare_admin">
-  	<exec command="ssh -i $HOME/Documentos/sergio.pem ubuntu@aneto.voota.es ${project.dir}/scripts/deploy.sh\ admin" dir="${project.dir}"  passthru="true"/>
+  	<exec command="ssh -i $HOME/Documentos/sergio.pem ubuntu@aneto.voota.es ${project.dir}/scripts/deploy.sh\ admin" dir="/tmp"  passthru="true"/>
   </target>
   <target name="pruebas" depends="prepare">
   	<exec command="php symfony test:functional frontend" dir="${project.dir}/www"  passthru="true"/>

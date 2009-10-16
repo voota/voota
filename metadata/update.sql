@@ -1,12 +1,7 @@
-ALTER TABLE `voota`.`sf_guard_user_profile` ADD COLUMN `imagen` VARCHAR(50) NULL DEFAULT NULL  AFTER `vanity` 
-, DROP INDEX `uniq_user_email` 
-, ADD UNIQUE INDEX `uniq_user_email` (`email` ASC) ;
 
-ALTER TABLE `voota`.`sf_guard_user_profile` DROP COLUMN `email` 
-, DROP INDEX `uniq_user_email` ;
+ALTER TABLE `voota`.`sf_review_type_entity` DROP COLUMN `score` , ADD COLUMN `value` INT(11) NOT NULL  AFTER `date` 
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`sf_review_type_id`, `entity_id`, `date`, `value`) ;
 
-ALTER TABLE `voota`.`sf_guard_user_profile` ADD COLUMN `codigo` VARCHAR(45) NULL DEFAULT NULL  AFTER `imagen` , ADD COLUMN `sf_guard_user_profilecol` VARCHAR(45) NULL DEFAULT NULL  AFTER `imagen` ;
+ALTER TABLE `voota`.`politico` ADD COLUMN `sumd` INT(11) NOT NULL DEFAULT 0  AFTER `lugar_nacimiento` , ADD COLUMN `sumu` INT(11) NOT NULL DEFAULT 0  AFTER `lugar_nacimiento` , DROP FOREIGN KEY `fk_politico_partido` ;
 
-
-ALTER TABLE `voota`.`sf_guard_user_profile` 
-ADD UNIQUE INDEX `uniq_sf_guard_user_profile_vanity` (`vanity` ASC) ;
