@@ -55,9 +55,18 @@ $(document).ready(function(){
   <tr class="listaRanking">
     <td class="nombreRanking"><h6>
     <?php echo image_tag('politicos/cc_s_'. (file_exists(sfConfig::get('sf_upload_dir').'/politicos/'.($politico->getImagen()))?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
-     <a href="/es/politico/<?php echo $politico->getId(); ?>"><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</a></h6></td>
-    <td class="votosDown"><h6>455</h6></td>
-    <td class="votosDown"><h6>455</h6></td>
+    
+ <?php echo link_to(
+ 	"".$politico->getNombre() ." ". $politico->getApellidos() . "(" . $politico->getPartido() .")"
+ 	, 'politico/show?id='.$politico->getId()
+ ) ?>
+ 
+     
+     </h6></td>
+
+
+    <td class="votosDown"><h6><?php echo $politico->getSumu()?></h6></td>
+    <td class="votosDown"><h6><?php echo $politico->getSumd()?></h6></td>
     <td>&nbsp;</td>
   </tr>
 <?php endforeach ?>
@@ -84,27 +93,7 @@ $(document).ready(function(){
 <div class=" listadoRankingPoliticos">
 <div id="paginacion" style="">
 
-
-<?php if ($politicosPager->haveToPaginate()): ?>
-  <?php # echo link_to('&laquo;', 'politico/ranking?page='.$politicosPager->getFirstPage()) ?>
- <?php echo link_to('&lt;&lt;Anterior', 'politico/ranking?page='.$politicosPager->getPreviousPage(), array('class'  => 'numerosPag')) ?>
-  
-  <?php if ($politicosPager->getPage() > 3): ?>
-    <?php echo link_to($politicosPager->getFirstPage(), 'politico/ranking?page='.$politicosPager->getFirstPage(), array('class'  => 'numerosPag')) ?>
-    ...
-  <?php endif ?>
-  <?php $links = $politicosPager->getLinks(); foreach ($links as $page): ?>
-    <?php echo ($page == $politicosPager->getPage()) ? $page : link_to($page, 'politico/ranking?page='.$page, array('class'  => 'numerosPag')) ?>
-    <?php if ($page != $politicosPager->getCurrentMaxLink()): ?> <?php endif ?>
-  <?php endforeach ?>
-    <?php if ($politicosPager->getLastPage() != $politicosPager->getCurrentMaxLink()): ?>
-    ...
-    <?php echo link_to($politicosPager->getLastPage(), 'politico/ranking?page='.$politicosPager->getLastPage(), array('class'  => 'numerosPag')) ?>
-    <?php endif ?>
-    
-  <?php echo link_to('Siguiente&gt;&gt;', 'politico/ranking?page='.$politicosPager->getNextPage(), array('class'  => 'numerosPag')) ?>
-  <?php # echo link_to('&raquo;', 'politico/ranking?page='.$politicosPager->getLastPage()) ?>
-<?php endif ?>
+<?php include_partial('pagination_full', array('pager' => $politicosPager, 'url' => 'politico/ranking?', 'page_var' => "page")) ?>
 
 </div>
 </div>

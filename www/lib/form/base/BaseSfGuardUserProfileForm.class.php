@@ -50,6 +50,10 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'codigo'                   => new sfValidatorString(array('max_length' => 45, 'required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'SfGuardUserProfile', 'column' => array('vanity')))
+    );
+
     $this->widgetSchema->setNameFormat('sf_guard_user_profile[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

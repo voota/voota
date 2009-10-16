@@ -39,7 +39,10 @@ $(document).ready(function(){
 <div id="contentLeft">
 
 <div title="ficha">
-<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</span> <span class="nombrePeque">6/10 <a href="#">?</a></span> 
+<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</span>
+<span class="nombrePeque">
+<?php echo $politico->getSumU() ?> <a href="#">?</a>
+</span> 
 <div class="limpiar"></div>
 <div title="foto" class="izq fotoPolitico">
 <?php echo image_tag('politicos/'. (file_exists(sfConfig::get('sf_upload_dir').'/politicos/'.($politico->getImagen()))?$image:'cc_p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
@@ -87,49 +90,41 @@ $(document).ready(function(){
 </div>
 <div class="limpiar"></div>
 <div class="votaSobre">
+
 <div class="izq positivoNegativo">
-
-<div class="izq"><h5>Positivos 2%</h5></div>
-<div class="izq linePolitico"></div>
-<div class="limpiar"></div>
-
-<?php foreach($positives as $review): ?>
-	<div title="comentario">
-	<div class="margenPolitico">
-		<h6><img src="/images/icoUser.jpg" alt="Icono usuario"> <a href="#"><?php echo $review->getsfGuardUser()->getProfile()->getNombre(); ?> <?php echo $review->getsfGuardUser()->getProfile()->getApellidos(); ?></a> · <span class="lugar">Madrid · 33 años</span></h6>
-	</div>
-	<div class="margenPolitico">
-	<h6><?php echo $review->getText(); ?></h6>
-	  </div>
-	</div>
-<?php endforeach ?>
-
-
+<?php if($positives->getNbResults() > 0): ?>
+	<div class="izq"><h5>Positivos <?php echo $positivePerc; ?>%</h5></div>
+	<div class="izq linePolitico"></div>
+	<div class="limpiar"></div>
+	
+	<?php foreach($positives->getResults() as $review): ?>
+		<?php include_partial('review', array('review' => $review)) ?>
+	<?php endforeach ?>
+	
+	<?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getId().'&', 'page_var' => "pageU")) ?>
+	
+<?php endif ?>
 
 
 </div>
+
 <div class="der positivoNegativo">
-<div class="izq"><h5>Negativos 98%</h5></div>
-<div class="izq linePolitico"></div>
-<div class="limpiar"></div>
+<?php if($negatives->getNbResults() > 0): ?>
+	<div class="izq"><h5>Negativos <?php echo $negativePerc; ?>%</h5></div>
+	<div class="izq linePolitico"></div>
+	<div class="limpiar"></div>
+	
+	<?php foreach($negatives->getResults() as $review): ?>
+		<?php include_partial('review', array('review' => $review)) ?>
+	<?php endforeach ?>
 
-<?php foreach($negatives as $review): ?>
-	<div title="comentario">
-	<div class="margenPolitico">
-		<h6><img src="/images/icoUser.jpg" alt="Icono usuario"> <a href="#"><?php echo $review->getsfGuardUser()->getProfile()->getNombre(); ?> <?php echo $review->getsfGuardUser()->getProfile()->getApellidos(); ?></a> · <span class="lugar">Madrid · 33 años</span></h6>
-	</div>
-	<div class="margenPolitico">
-	<h6><?php echo $review->getText(); ?></h6>
-	  </div>
-	</div>
-<?php endforeach ?>
-
+	<?php include_partial('pagination_full', array('pager' => $positives, 'object' => $politico, 'page' => "pageD")) ?>
+	
+<?php endif ?>
+</div>
 
 </div>
-</div>
-<div class="limpiar"></div>
-<div class="totalComentarios"><h6><a href="#">Todos los comentarios que <?php echo $politico->getApellidos(); ?> tiene hasta ahora (112)</a></h6>
-</div>
+
 </div>
 <!-- FIN CONTENT LEFT -->
 <!-- CONTENT RIGHT -->
@@ -163,7 +158,7 @@ $(document).ready(function(){
   <br>
   <h6>A favor, yeah</h6> </div>
 
-<div class="izq">
+<div class="izq buu">
  <input type="radio" name="vooto" value="down">
   <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
 

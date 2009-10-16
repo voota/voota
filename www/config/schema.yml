@@ -103,11 +103,13 @@ propel:
     imagen: { type: VARCHAR, size: '50', required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
+    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
-    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: CASCADE, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fecha_inicio: { type: DATE, required: false }
     fecha_fin: { type: DATE, required: false }
     _indexes: { fk_institucion_politico_1: [institucion_id], fk_institucion_politico_2: [politico_id] }
@@ -153,6 +155,7 @@ propel:
     sf_guard_user_profilecol: { type: VARCHAR, size: '45', required: false }
     codigo: { type: VARCHAR, size: '45', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
+    _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
   voto:
     _attributes: { phpName: Voto }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

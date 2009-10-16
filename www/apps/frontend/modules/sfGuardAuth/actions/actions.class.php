@@ -4,6 +4,15 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+  public function executeReminder($request)
+  {
+  	
+  }
+  public function executeReminderSent($request)
+  {
+  	
+  }
+  
   public function executeConfirm($request)
   {
   	$codigo = $request->getParameter("codigo");
@@ -71,16 +80,21 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  try{
-		  $mailer = new Swift(new Swift_Connection_NativeMail());
-		  $message = new Swift_Message('Confirmar tu registro Voota', $mailBody, 'text/html');
+	  //try{
+		  //$mailer = new Swift(new Swift_Connection_NativeMail());
+		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
+		$smtp->setUsername('no-reply@voota.es');
+		include ("pass.php");
+		$mailer = new Swift($smtp);
+		  
+		$message = new Swift_Message('Confirmar tu registro Voota', $mailBody, 'text/html');
 		 
-		  $mailer->send($message, $user->getUsername(), 'no-reply@voota.es');
-		  $mailer->disconnect();
-	  }
-	  catch (Exception $e){
-		  $mailer->disconnect();
-	  }
+		$mailer->send($message, $user->getUsername(), 'no-reply@voota.es');
+		$mailer->disconnect();
+	  //}
+	  //catch (Exception $e){
+		//$mailer->disconnect();
+	  //}
   }
   
   public function executeEdit(sfWebRequest $request)

@@ -18,9 +18,6 @@
 <META NAME="Distribution" CONTENT="Global">
 <META NAME="Robots" CONTENT="All">
     <link rel="shortcut icon" href="/favicon.ico" >
-<link rel="stylesheet" type="text/css" media="screen" href="/css/voota.css" >
-<link rel="stylesheet" type="text/css" media="screen" href="/css/interior.css" >
-<link rel="stylesheet" type="text/css" media="screen" href="/css/other.css" >
 </head>
 <body>
  
@@ -29,7 +26,11 @@
 
 <!-- HEADER -->
 <div id="header">
-<div class="izq"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" longdesc="Enlace Home Voota"></a>
+<div class="izq">
+
+<a href="<?php echo url_for('@homepage') ?>">
+<?php echo image_tag('logoVoota.gif', 'alt=Logo Voota, size=141x55, longdesc=Logo Voota') ?>
+</a>
 <h6>Tú tienes la última palabra</h6>
 </div>
 <div class="der login">
@@ -41,8 +42,13 @@
 <?php slot('logged') ?>
 <h6>
 
-<img src="image/icoBlog.gif" alt="Ico Voota"> 
- <?php echo link_to($sf_user->isAuthenticated()?$sf_user->getUsername():'', '@usuario_edit') ?>
+
+<?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' && file_exists(sfConfig::get('sf_web_dir')."/images/usuarios/cc_s_".($sf_user->getProfile()->getImagen()))): ?>
+	<?php echo image_tag(
+		'usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="Foto '. $sf_user->getProfile()->getNombre().' ' . $sf_user->getProfile()->getApellidos() .'"') ?>
+<?php endif ?>
+
+ <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_edit') ?>
  · 
  <?php echo link_to('salir', '@sf_guard_signout') ?>
  </h6>

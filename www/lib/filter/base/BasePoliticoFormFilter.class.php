@@ -33,6 +33,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'imagen'                    => new sfWidgetFormFilterInput(),
       'vanity'                    => new sfWidgetFormFilterInput(),
       'lugar_nacimiento'          => new sfWidgetFormFilterInput(),
+      'sumu'                      => new sfWidgetFormFilterInput(),
+      'sumd'                      => new sfWidgetFormFilterInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
@@ -56,6 +58,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'imagen'                    => new sfValidatorPass(array('required' => false)),
       'vanity'                    => new sfValidatorPass(array('required' => false)),
       'lugar_nacimiento'          => new sfValidatorPass(array('required' => false)),
+      'sumu'                      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'sumd'                      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
@@ -144,6 +148,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'imagen'                    => 'Text',
       'vanity'                    => 'Text',
       'lugar_nacimiento'          => 'Text',
+      'sumu'                      => 'Number',
+      'sumd'                      => 'Number',
       'politico_institucion_list' => 'ManyKey',
       'politico_lista_list'       => 'ManyKey',
     );

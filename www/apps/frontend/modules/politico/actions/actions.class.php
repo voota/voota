@@ -104,6 +104,7 @@ class politicoActions extends sfVoActions
   {  	  	
   	$id = $request->getParameter('id');
   	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('id'));
+  	
   	$this->forward404Unless($this->politico);
   	
   	// Estabamos vootando antes del login ?
@@ -129,8 +130,16 @@ class politicoActions extends sfVoActions
 	
 	$this->image = "bw_" . $this->politico->getImagen();
 	
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue(1, $id, 1);
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue(1, $id, -1);
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1);
+	$positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, 1);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1);
+	$negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, -1);
+	
+	$totalCount = $positiveCount + $negativeCount;
+	if ($totalCount > 0) {
+		$this->positivePerc = intval( $positiveCount * 100 / ($positiveCount + $negativeCount) );
+		$this->negativePerc = 100 - $this->positivePerc;
+	}  
   }
 
   public function executeNew(sfWebRequest $request)

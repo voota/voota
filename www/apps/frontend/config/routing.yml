@@ -79,18 +79,26 @@ usuario:
 usuario_edit:
   url: /:sf_culture/user/edit
   param: { module: sfGuardAuth, action: edit }
+  
+usuario_reminder:
+  url: /:sf_culture/user/reminder 
+  param: { module: sfGuardAuth, action: reminder }
+  
+usuario_reminder_sent: 
+  url: /:sf_culture/user/reminder-sent
+  param: { module: sfGuardAuth, action: reminderSent }
 
 sf_review_form:
   url:   /review/form
-  param: { module: review, action: form }
+  param: { module: sfReviewFront, action: form }
 
 sf_review_preview:
   url:   /review/preview
-  param: { module: review, action: preview }
+  param: { module: sfReviewFront, action: preview }
 
 sf_review_send:
   url:   /review/send
-  param: { module: review, action: send }
+  param: { module: sfReviewFront, action: send }
 
 
 # default_index:
