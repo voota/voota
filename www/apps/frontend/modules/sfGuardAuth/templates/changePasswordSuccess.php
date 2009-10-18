@@ -9,14 +9,11 @@
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
-<h2>¿Olvidaste tu contraseña?</h2>
+<h2>Define tu nueva contraseña</h2>
 
 <div class="limpiar"></div>
 <div class="formSing">
-<h5>Danos tu email y te la enviamos ahora mismo</h5>
-</div>
-<div class="formSing">
-<?php echo form_tag('@usuario_reminder') ?>
+<?php echo form_tag('@usuario_change_password2') ?>
 <table>
     <?php echo $form ?>
   

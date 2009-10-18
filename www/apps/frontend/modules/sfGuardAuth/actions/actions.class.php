@@ -6,13 +6,41 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 {
   public function executeReminder($request)
   {
-  	
+    $this->form = new ReminderForm();
+    if ( $request->isMethod('post') ) {
+      $this->form->bind($request->getParameter('reminder'));
+      
+      if ($this->form->isValid()) {
+      	$user = sfGuardUserPeer::retrieveByUsername($this->form->getValue('username'));
+      	$this->sendReminder( $user );
+      	return "SentSuccess";
+      }
+    }
   }
-  public function executeReminderSent($request)
+ 
+  public function executeChangePassword($request)
   {
-  	
+  	$codigo = $request->getParameter("codigo");  	
+		
+  	$this->form = new PasswordChangeForm();
+    $this->form->bind( array('codigo' => $codigo) );
+    if ( $request->isMethod('post') ) {
+      $this->form->bind($request->getParameter('changer'));
+      if ($this->form->isValid()) {
+		$c = new Criteria();
+		$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::CODIGO, $this->form->getValue('codigo'));
+		$users = sfGuardUserPeer::doSelect($c);		
+		$this->forward404Unless(count($users) == 1);
+      	foreach ($users as $user){
+  			$user->setPassword( $this->form->getValue('password') );
+  			sfGuardUserPeer::doUpdate( $user );
+ 	  	}      
+      	return "ChangedSuccess";
+      }
+    }
   }
-  
+ 
   public function executeConfirm($request)
   {
   	$codigo = $request->getParameter("codigo");
@@ -24,7 +52,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$c->add(SfGuardUserProfilePeer::CODIGO, $codigo);
 	$users = sfGuardUserPeer::doSelect($c);
  	
-	$this->forward404Unless(count($users) > 0);
+	$this->forward404Unless(count($users) == 1);
 	
   	foreach ($users as $user){
   		$user->setIsActive(1);
@@ -81,10 +109,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  ));
 	 
 	  //try{
-		  //$mailer = new Swift(new Swift_Connection_NativeMail());
 		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
 		$smtp->setUsername('no-reply@voota.es');
 		include ("pass.php");
+		$smtp->setPassword( $smtp_pass );		
 		$mailer = new Swift($smtp);
 		  
 		$message = new Swift_Message('Confirmar tu registro Voota', $mailBody, 'text/html');
@@ -93,7 +121,28 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		$mailer->disconnect();
 	  //}
 	  //catch (Exception $e){
-		//$mailer->disconnect();
+	  //}
+  }
+  
+  private function sendReminder( $user ){
+	  $mailBody = $this->getPartial('reminderMailBody', array(
+	  	'nombre' => $user->getProfile()->getNombre(), 
+	  	"codigo" => $user->getProfile()->getCodigo()
+	  ));
+	 
+	  //try{
+		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
+		$smtp->setUsername('no-reply@voota.es');
+		include ("pass.php");
+		$smtp->setPassword( $smtp_pass );		
+		$mailer = new Swift($smtp);
+		  
+		$message = new Swift_Message('Tu contraseña en Voota', $mailBody, 'text/html');
+		 
+		$mailer->send($message, $user->getUsername(), 'no-reply@voota.es');
+		$mailer->disconnect();
+	  //}
+	  //catch (Exception $e){
 	  //}
   }
   

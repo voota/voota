@@ -17,7 +17,7 @@
 
 
 <h5>
-Te hemos enviado un email a <span class="tituloAzul"></span>
+Te hemos enviado un email a <span class="tituloAzul"><?php echo $form->getValue('username')?></span>
 </h5>
 <h5>
 Confirma tus datos sobre el enlace que aparecerá en tu bandeja de entrada.

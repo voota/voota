@@ -70,7 +70,14 @@
 
   <tr>
     <td>&nbsp;</td>
-    <td><h6><a href="olvidarContrasena.html">Olvidaste tu contraseña</a></h6></td>
+    <td><h6>
+
+ <?php echo link_to(
+ 	"Olvidaste tu contraseña"
+ 	, 'sfGuardAuth/reminder'
+ ) ?>
+      
+    </h6></td>
     </tr>
   <tr>
     <td class="leftSing">&nbsp;</td>
