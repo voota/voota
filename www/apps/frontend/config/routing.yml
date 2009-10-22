@@ -102,6 +102,15 @@ sf_review_preview:
   url:   /review/preview
   param: { module: sfReviewFront, action: preview }
 
+sf_review_send:
+  url:   /review/send
+  param: { module: sfReviewFront, action: send }
+
+about:
+  url:   /:sf_culture/about
+  param: { module: general, action: about }
+  requirements: { sf_culture: (?:es|ca) }
+
 # default_index:
 #   url:   /:module
 #   param: { action: index }

@@ -94,6 +94,8 @@
 <div class="limpiar"></div>
 <div class="enlacesPie">
 <h6>
+<a href="blog.html" class="enlacesPie"><?php echo link_to('Quiénes somos', '@about') ?></a>
+<a href="blog.html" class="enlacesPie"><?php echo link_to('Aviso legal', 'http://blog.voota.es/es/aviso-legal') ?></a>
 <a href="blog.html" class="enlacesPie"><?php echo link_to('blog', 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
 </h6>
 </div>

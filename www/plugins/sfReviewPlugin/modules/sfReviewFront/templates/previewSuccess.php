@@ -4,7 +4,7 @@
 
 	<?php echo jq_form_remote_tag(array(
 	    'update'   => 'sf_review',
-	    'url'      => 'sfReviewFront/send',
+	    'url'      => '@sf_review_send',
 		'id'	=> 'preview_frm'
 	)) ?>
 	

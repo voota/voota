@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of the Voota package.
  * (c) 2009 Sergio Viteri <sergio@voota.es>
@@ -12,12 +11,12 @@
  * politico actions.
  *
  * @package    Voota
- * @subpackage review
+ * @subpackage politico
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
- 
-class sfReviewFrontActions extends BasesfReviewFrontActions
-{
+class generalActions extends sfVoActions{
 
+  public function executeAbout(sfWebRequest $request) {
+  }
 }

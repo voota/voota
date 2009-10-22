@@ -17,13 +17,10 @@
 
 
 <h5>
-No hemos podido encontrar <span class="tituloAzul"><?php echo $form->getValue('username')?></span>
+¿Seguro que es este email?
 </h5>
 <h5>
-¿Es posible que no tengas usuario todavía? 
-</h5>
-<h5>
-Si no, comprueba que es el email con el que te diste de alta.
+Parece que no figura en nuestros datos... Mira a ver si estás registrado en Voota ;-)
 </h5>
 
 
