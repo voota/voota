@@ -20,17 +20,17 @@ class RegistrationForm extends sfVoForm
     $this->setValidators(array(
       'op'    => new sfValidatorString(array('required' => false)),    
       'username'   => new sfValidatorAnd(array(
-    	new sfValidatorString(array('required' => true), $this->messagesString),  
-        new sfValidatorEmail(array(), $this->messagesEmail),  
+    	new sfValidatorString(array('required' => true), sfVoForm::$messagesString),  
+        new sfValidatorEmail(array(), sfVoForm::$messagesEmail),  
         //new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username'), array('invalid' => 'name in use')),
        )),
-      'nombre'   => new sfValidatorString(array('required' => true), $this->messagesString),      
-      'apellidos'   => new sfValidatorString(array('required' => false), $this->messagesString),    
-      'password'    => new sfValidatorPassword(array('required' => true), $this->messagesString),
+      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::$messagesString),      
+      'apellidos'   => new sfValidatorString(array('required' => false), sfVoForm::$messagesString),    
+      'password'    => new sfValidatorPassword(array('required' => true), sfVoForm::$messagesString),
     ));
     
     //$this->validatorSchema->setPostValidator(new sfValidatorPropelUnique(array('model'=>'sfGuardUser', 'column'=>array('username'))));
-    $this->validatorSchema->setPostValidator(new sfValidatorPropelUnique(array('model'=>'sfGuardUser', 'column'=>array('username')), $this->messages));
+    $this->validatorSchema->setPostValidator(new sfValidatorPropelUnique(array('model'=>'sfGuardUser', 'column'=>array('username')), sfVoForm::$messagesUnique));
     
   }
 }
