@@ -54,18 +54,7 @@
     <div class="formSing">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
 <table>
-  <tr>
-    <td class="leftSing"><h5>Usuario</h5></td>
-    <td><input name="signin[username]" id="signin_username" type="text"></td>
-    </tr>
-  <tr>
-    <td class="leftSing"><h5>Contraseña</h5></td>
-    <td><input name="signin[password]" id="signin_password" type="password"></td>
-    </tr>
-  <tr>
-    <td class="leftSing">&nbsp;</td>
-    <td><input name="signin[remember]" id="signin_remember" type="checkbox"> recordar</td>
-    </tr>
+    <?php echo $signinform ?>
 
 
   <tr>

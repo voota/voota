@@ -130,14 +130,15 @@ $(document).ready(function(){
 <!-- CONTENT RIGHT -->
 <div id="contentRight">
 <div class="tituloColor">
+
+<?php if(count($politico->getEnlaces()) > 0): ?>
   <h5>Enlaces externos</h5>
   <div class="margenPolitico">
-
-<?php foreach($politico->getEnlaces() as $enlace): ?>
-  <h6><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></h6>
-<?php endforeach ?>
-
+	<?php foreach($politico->getEnlaces() as $enlace): ?>
+	  <h6><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></h6>
+	<?php endforeach ?>
   </div>
+<?php endif ?>
 
 </div>
 <!-- fin enlaces externos -->

@@ -12,10 +12,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       
       if ($this->form->isValid()) {
       	$user = sfGuardUserPeer::retrieveByUsername($this->form->getValue('username'));
-      	$this->sendReminder( $user );
-      	return "SentSuccess";
+      	if ($user){
+      		$this->sendReminder( $user );
+      		return "SentSuccess";
+      	}
       }
     }
+    
+    return "SentFail";
   }
  
   public function executeChangePassword($request)
@@ -63,42 +67,50 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
     $this->registrationform = new RegistrationForm();
-    if ($request->isMethod('post') && $request->getParameter('op') == 'r' )
-    {
-      $this->registrationform = new RegistrationForm();    
-      $this->registrationform->bind($request->getParameter('registration'));
-      
-      if ($this->registrationform->isValid())
-      {
-      	$user = new sfGuardUser();
-      	$user->setUsername($this->registrationform->getValue('username'));
-      	$user->setPassword($this->registrationform->getValue('password'));
-      	$user->setIsActive(0);
-      	$user->setCreatedAt(time());
-	  	$c = new Criteria();
-	  	$c->add(sfGuardUserPeer::USERNAME, $user->getUsername());
-	  	
-      	sfGuardUserPeer::doInsert( $user );
-
-	  	$user = sfGuardUserPeer::doSelect( $c );
-	  	if (count($user) == 1){
-	      	$profile = $user[0]->getProfile();
-	     	$profile->setNombre($this->registrationform->getValue('nombre'));
-	      	$profile->setApellidos($this->registrationform->getValue('apellidos'));
-	      	$profile->setCodigo( util::generateUID() );
-	      	sfGuardUserProfilePeer::doInsert( $profile );
-	      	
-	      	$this->sendWelcome( $user[0] );
-	      	
-	      	$this->user = $user[0];
-	      	
-      		return "Registered";
-	  	}
-
-      }
-    }
-    else {
-  		parent::executeSignin($request);
+    $this->signinform = new SigninForm();
+    if ($request->isMethod('post') ){
+    	// Register
+    	if ($request->getParameter('op') == 'r') {
+	      $this->registrationform = new RegistrationForm();    
+	      $this->registrationform->bind($request->getParameter('registration'));
+	      
+	      if ($this->registrationform->isValid()) {
+	      	$user = new sfGuardUser();
+	      	$user->setUsername($this->registrationform->getValue('username'));
+	      	$user->setPassword($this->registrationform->getValue('password'));
+	      	$user->setIsActive(0);
+	      	$user->setCreatedAt(time());
+		  	$c = new Criteria();
+		  	$c->add(sfGuardUserPeer::USERNAME, $user->getUsername());
+		  	
+	      	sfGuardUserPeer::doInsert( $user );
+	
+		  	$user = sfGuardUserPeer::doSelect( $c );
+		  	if (count($user) == 1){
+		      	$profile = $user[0]->getProfile();
+		     	$profile->setNombre($this->registrationform->getValue('nombre'));
+		      	$profile->setApellidos($this->registrationform->getValue('apellidos'));
+		      	$profile->setCodigo( util::generateUID() );
+		      	sfGuardUserProfilePeer::doInsert( $profile );
+		      	
+		      	$this->sendWelcome( $user[0] );
+		      	
+		      	$this->user = $user[0];
+		      	
+	      		return "Registered";
+		  	}
+		  }
+      	}
+      	// Signin
+      	else {
+	      $r = new SigninForm();    
+	      $r->bind($request->getParameter('signin'));
+	      
+	      if ($r->isValid()) {
+  			parent::executeSignin($request);
+	      }
+	      $this->signinform = $r; 
+      	}
     }
   }
   
@@ -150,7 +162,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   {
 	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	
-   	$this->profileEditForm = new ProfileEditForm(sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId()));
+	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
+   	$this->profileEditForm = new ProfileEditForm( $formData );
    	
     if ($request->isMethod('post') ){  
     	//$this->profileEditForm = new ProfileEditForm();

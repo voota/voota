@@ -13,7 +13,7 @@
 <h2>Hola <?php echo $sf_user->getProfile()->getNombre() ?>, estas son tus preferencias</h2>
 
 <div class="limpiar"></div>
-<div class="formSings">
+<div class="formSing">
 <?php echo form_tag('@usuario_edit', 'multipart=true') ?>
 <table>
     <?php echo $profileEditForm ?>

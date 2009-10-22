@@ -81,7 +81,7 @@
 <div id="footer">
 <div class="cC"><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida<a href="/"><img src="/images/icoVoota.png" alt="Icono Voota" width="34" height="34" longdesc="Enlace Voota"></a></div>
 <!-- ENLACES PIE -->
-<div class="enlacesPie">
+<!--  div class="enlacesPie">
 <h6>
 <a href="partidos.html" class="enlacesPie">Partidos</a>
 <a href="instituciones.html" class="enlacesPie">Instituciones</a>
@@ -90,14 +90,11 @@
 <a href="politicos.html" class="enlacesPie">Políticos</a>
 <a href="topUsuarios.html" class="enlacesPie">Top usuarios</a>
 </h6>
-</div>
+</div -->
 <div class="limpiar"></div>
 <div class="enlacesPie">
 <h6>
-<a href="quienesSomos.html" class="enlacesPie">Quienes somos</a>
-<a href="contactar.html" class="enlacesPie">Contactar</a>
-<a href="avisoLegal.html" class="enlacesPie">Aviso legal</a>
-<a href="blog.html" class="enlacesPie">Blog</a>
+<a href="blog.html" class="enlacesPie"><?php echo link_to('blog', 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
 </h6>
 </div>
 <div class="limpiar"></div>
