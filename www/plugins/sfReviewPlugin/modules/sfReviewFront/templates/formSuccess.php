@@ -3,12 +3,13 @@
 <?php use_helper('jQuery') ?>
 	
 	<?php echo jq_form_remote_tag(array(
-	    'update'   => 'sf_review',
+	    'update'   => $reviewBox?$reviewBox:'sf_review',
 	    'url'      => 'sfReviewFront/preview',
 	)) ?>
 	<?php echo input_hidden_tag('t', $reviewType) ?>
 	<?php echo input_hidden_tag('e', $reviewEntityId) ?>
 	<?php echo input_hidden_tag('v', $reviewValue) ?>
+	<?php echo input_hidden_tag('b', $reviewBox) ?>
 	
 <div class="votaSobre">
 <div class="izq" id="button">

@@ -27,18 +27,15 @@ function rankingReady() {
 		changeParam("p", partidoSelector.value);
 	});}
 
-function politicoReady( id ){
-	$(".yeah").click(function(){
-		loadReviewBox(1, id, 1);
-	});
-	$(".buu").click(function(){
-		loadReviewBox(1, id, -1);
-	});
+// mode: init/form
+function politicoReady( id, mode, box ){
+	loadReviewBox(1, id, -1, mode, box);
 }
 
-function loadReviewBox(t, e, v) {
-	var aUrl = '/review/form?t='+t+'&e='+e+'&v='+v+'';
-	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#sf_review').html(data);},url:aUrl}); return false;
+function loadReviewBox(t, e, v, mode, box) {
+	var aUrl = '/review/'+ mode +'?t='+t+'&e='+e+'&v='+v+'&b='+box+'';
+	//alert(aUrl);
+	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl}); return false;
 }
 
 

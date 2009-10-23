@@ -18,17 +18,28 @@
  */
 class BasesfReviewFrontActions extends sfActions
 {
+  	
+  public function executeInit(sfWebRequest $request)
+  {
+  	$this->reviewEntityId = $request->getParameter("e");
+  	$box = $request->getParameter("b");
+  	if ($box && $box != ''){
+  		$this->reviewBox = $box;
+  	}
+  }
+  
   public function executeForm(sfWebRequest $request)
   {
   	$this->reviewValue = $request->getParameter("v");
   	$this->reviewType = $request->getParameter("t");
   	$this->reviewEntityId = $request->getParameter("e");
+  	$this->reviewBox = $request->getParameter("b");
   	if (! $this->getUser()->isAuthenticated()) {
   		$url = "/".$this->getUser()->getCulture()."/politico/" . $this->reviewEntityId;		
   		$this->getUser()->setAttribute('url_back', $url);
   		$this->getUser()->setAttribute('review_v', $this->reviewValue);
   		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  		echo "(<script>document.location='/".$this->getUser()->getCulture()."/user/login'</script>)";die;
+  		echo "<script>document.location='/".$this->getUser()->getCulture()."/user/login'</script>";die;
   	}
   	
   	$criteria = new Criteria();
@@ -52,6 +63,7 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewType = $request->getParameter("t");
   	$this->reviewEntityId = $request->getParameter("e");
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
+  	$this->reviewBox = $request->getParameter("b");
   }
   
   	
@@ -73,5 +85,6 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setCreatedAt( date(DATE_ATOM) );
   	
   	SfReviewPeer::doInsert($review);
+  	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   }
 }

@@ -3,7 +3,7 @@
 <?php use_helper('jQuery') ?>
 
 	<?php echo jq_form_remote_tag(array(
-	    'update'   => 'sf_review',
+	    'update'   => $reviewBox?$reviewBox:'sf_review',
 	    'url'      => '@sf_review_send',
 		'id'	=> 'preview_frm'
 	)) ?>

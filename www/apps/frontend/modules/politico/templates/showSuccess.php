@@ -6,18 +6,24 @@
 
 
 
-<script>  
-
-
+<script type="text/javascript">
+<!--
 $(document).ready(function(){
-	politicoReady( <?php echo $politico->getId(); ?> );
-
-<?php if (isset($review_v) && $review_v != '') { ?>
-	loadReviewBox(1, <?php echo $politico->getId(); ?>, <?php echo $review_v ?>);
-<?php } ?>
+	politicoReady( 
+			<?php echo $politico->getId(); ?>,
+			'<?php echo (isset($review_v) && $review_v != '')?'form':'init';  ?>',
+			'sf_review1'
+		);
+	politicoReady( 
+			<?php echo $politico->getId(); ?>,
+			'<?php echo (isset($review_v) && $review_v != '')?'form':'init';  ?>',
+			'sf_review2'
+		);
 });
-  
+//-->
 </script>
+
+
 
 
 
@@ -54,24 +60,7 @@ $(document).ready(function(){
 
 
 
-<div id="sf_review">
-	<div class="izq yeah" id="buttona">
-	  <input name="vooto" type="radio" id="up" value="up">
-	
-	  <img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up">
-	
-	  <br>
-	  <h6>
-		A favor, yeah
-	  </h6>
-	</div>
-	<div class="der buu">
-	 <input type="radio" name="vooto" id="down" value="down">
-	  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
-	
-	  <h6>En contra, buu</h6>
-	</div>
-</div>
+<div id="sf_review1"></div>
 
 
 
@@ -151,20 +140,12 @@ $(document).ready(function(){
 <!--  FIN CONTENT RIGHT -->
 <div class="limpiar"></div>
 <div class="votaSobre"><h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5></div>
+
+
 <div class="votaSobre">
-<div class="izq yeah">
+	<div id="sf_review2"></div>
+</div>
 
-  <input name="vooto" type="radio" value="up">
-  <img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up">
-  <br>
-  <h6>A favor, yeah</h6> </div>
-
-<div class="izq buu">
- <input type="radio" name="vooto" value="down">
-  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
-
-  <h6>En contra, buu</h6>
-</div></div>
 
 
 

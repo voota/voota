@@ -1,6 +1,5 @@
 div.formSing form tr th {  text-align:left;font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold; }
-div.yeah {cursor: pointer;cursor: hand;}
-div.buu {cursor: pointer;cursor: hand;}
+div.clickable {cursor: pointer;}
 
 ul.error_list {
 	padding-left:0px;
