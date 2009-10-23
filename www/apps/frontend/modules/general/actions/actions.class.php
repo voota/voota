@@ -19,4 +19,6 @@ class generalActions extends sfVoActions{
 
   public function executeAbout(sfWebRequest $request) {
   }
+  public function executeError404(sfWebRequest $request) {
+  }
 }

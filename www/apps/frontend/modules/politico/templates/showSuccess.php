@@ -133,7 +133,7 @@ $(document).ready(function(){
 <!-- fin enlaces externos -->
 
 <!-- codigo google -->
-
+<?php include_partial('google_ads') ?>
 <!-- fin codigo google -->
 
 </div>
