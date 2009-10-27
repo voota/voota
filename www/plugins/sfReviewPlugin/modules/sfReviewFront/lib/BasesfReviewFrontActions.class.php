@@ -23,10 +23,22 @@ class BasesfReviewFrontActions extends sfActions
   {
   	$this->reviewEntityId = $request->getParameter("e");
   	$box = $request->getParameter("b");
+  	$this->reviewType = $request->getParameter("t");
   	if ($box && $box != ''){
   		$this->reviewBox = $box;
   	}
+  	if ($this->getUser()->isAuthenticated()) {
+	  	$criteria = new Criteria();
+	  	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+	  	$review = SfReviewPeer::doSelect($criteria);
+	  	if ($review) {
+	  		$this->forward('sfReviewFront', 'form');
+	  	}
+  	}
   }
+  
   
   public function executeForm(sfWebRequest $request)
   {
@@ -34,6 +46,9 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewType = $request->getParameter("t");
   	$this->reviewEntityId = $request->getParameter("e");
   	$this->reviewBox = $request->getParameter("b");
+  	$this->reviewText = '';
+  	$this->reviewId = '';
+  		
   	if (! $this->getUser()->isAuthenticated()) {
   		$url = "/".$this->getUser()->getCulture()."/politico/" . $this->reviewEntityId;		
   		$this->getUser()->setAttribute('url_back', $url);
@@ -48,8 +63,14 @@ class BasesfReviewFrontActions extends sfActions
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
   	$review = SfReviewPeer::doSelect($criteria);
   	if ($review) {
-  		return sfView::ERROR;
+  		$this->reviewValue = $review[0]->getValue();
+  		$this->reviewText = $review[0]->getText();
+  		$this->reviewId = $review[0]->getId();
   	}
+   }
+  
+  public function edit(){
+  	
   }
 	
 	
@@ -73,7 +94,18 @@ class BasesfReviewFrontActions extends sfActions
   		echo "error";die;
   	}
   	
-  	$review = new SfReview();
+  	if ($request->getParameter("i") != '') {
+	  	$criteria = new Criteria();
+	  	$criteria->add(SfReviewPeer::ENTITY_ID, $request->getParameter("e"));  	
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $request->getParameter("t"));  	
+	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
+  		$reviews = SfReviewPeer::doSelect($criteria);
+  		$review = $reviews[0];
+  	}
+  	else  {
+  		$review = new SfReview();
+  	}
   	$review->setValue( $request->getParameter("v") );
   	$review->setText( strip_tags( $request->getParameter("review_text") ) );
   	$review->setSfReviewTypeId( $request->getParameter("t") );
@@ -82,9 +114,14 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setSfGuardUserId( $this->getUser()->getGuardUser()->getId() );
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
   	$review->setCookie( $request->getCookie('symfony') );
-  	$review->setCreatedAt( date(DATE_ATOM) );
   	
-  	SfReviewPeer::doInsert($review);
+  	if ($request->getParameter("i") != '') {
+  		SfReviewPeer::doUpdate($review);
+   	}
+  	else {
+  		$review->setCreatedAt( date(DATE_ATOM) );
+  		SfReviewPeer::doInsert($review);
+  	}
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   }
 }

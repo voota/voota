@@ -95,20 +95,24 @@ usuario_change_password2:
   requirements: { sf_culture: (?:es|ca) }
 
 sf_review_form:
-  url:   /review/form
+  url:   /:sf_culture/review/form
   param: { module: sfReviewFront, action: form }
+  requirements: { sf_culture: (?:es|ca) }
 
 sf_review_preview:
-  url:   /review/preview
+  url:   /:sf_culture/review/preview
   param: { module: sfReviewFront, action: preview }
+  requirements: { sf_culture: (?:es|ca) }
 
 sf_review_send:
-  url:   /review/send
+  url:   /:sf_culture/review/send
   param: { module: sfReviewFront, action: send }
+  requirements: { sf_culture: (?:es|ca) }
   
 sf_review_init:
-  url:   /review/init
+  url:   /:sf_culture/review/init
   param: { module: sfReviewFront, action: init }
+  requirements: { sf_culture: (?:es|ca) }
 
 about:
   url:   /:sf_culture/about

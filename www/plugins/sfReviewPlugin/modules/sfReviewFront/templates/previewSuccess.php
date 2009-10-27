@@ -18,7 +18,7 @@
 	<div class="cuadroConfirmar">
 	  <h6><?php echo $reviewText ?></h6>
 	</div>
-	<div class="margenVota"><h6><a href="#">&lt;&lt; atras</a> 
+	<div class="margenVota"><h6> 
 	  <label>
 	  <input type="submit" name="button3" value="Ok, confirmar" class="button">
 	

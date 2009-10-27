@@ -33,7 +33,7 @@ function politicoReady( id, mode, box ){
 }
 
 function loadReviewBox(t, e, v, mode, box) {
-	var aUrl = '/review/'+ mode +'?t='+t+'&e='+e+'&v='+v+'&b='+box+'';
+	var aUrl = '/es/review/'+ mode +'?t='+t+'&e='+e+'&v='+v+'&b='+box+'';
 	//alert(aUrl);
 	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl}); return false;
 }

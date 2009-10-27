@@ -17,9 +17,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		return "SentSuccess";
       	}
       }
+      return "SentFail";
     }
     
-    return "SentFail";
   }
  
   public function executeChangePassword($request)

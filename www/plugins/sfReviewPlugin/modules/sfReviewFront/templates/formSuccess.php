@@ -4,12 +4,13 @@
 	
 	<?php echo jq_form_remote_tag(array(
 	    'update'   => $reviewBox?$reviewBox:'sf_review',
-	    'url'      => 'sfReviewFront/preview',
+	    'url'      => 'sfReviewFront/send',
 	)) ?>
 	<?php echo input_hidden_tag('t', $reviewType) ?>
 	<?php echo input_hidden_tag('e', $reviewEntityId) ?>
 	<?php echo input_hidden_tag('v', $reviewValue) ?>
 	<?php echo input_hidden_tag('b', $reviewBox) ?>
+	<?php echo input_hidden_tag('i', $reviewId) ?>
 	
 <div class="votaSobre">
 <div class="izq" id="button">
@@ -28,7 +29,7 @@
 
 	<div title="formulario" class="votaSobre">
 	<div class="izq">
-	  <textarea name="review_text" rows="20" cols="20" >Algo que comentar? Es el mejor momento :-)</textarea>
+	  <textarea name="review_text" rows="20" cols="20" ><?php echo $reviewText?$reviewText:"Algo que comentar? Es el mejor momento :-)" ?></textarea>
 	  <?php 
 	  /*
 	  <h6>Foto/vídeo: <a href="#">desde el equipo</a> · <a href="#">desde la web</a></h6>
