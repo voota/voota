@@ -160,7 +160,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   
   public function executeEdit(sfWebRequest $request)
   {
-	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
    	$this->profileEditForm = new ProfileEditForm( $formData );
@@ -170,6 +170,18 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
+	      	$profile = $request->getParameter('profile');
+			if ($profile['passwordNew'] != ''){
+      			// Check old password
+      			if ($this->getUser()->checkPassword($profile['passwordOld'])){
+      				$this->getUser()->setPassword($profile['passwordNew']);
+      			}
+      			else {
+      				$this->getUser()->setFlash('notice', 'Para cambiar la contraseña tienes que escribir la que tienes ahora.');
+      				return;
+      			}
+      		}
+      		
 			$imageOri = $this->profileEditForm->getObject()->getProfile()->getImagen();
       		$imagen = $this->profileEditForm->getValue('imagen');
       		//$this->profileEditForm->getObject()->setId($this->getUser()->getGuardUser()->getId());
@@ -190,7 +202,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
       		}
       		
+      		$this->getUser()->setFlash('notice', 'Se han aplicado los cambios a tu perfil');
       		$this->profileEditForm->getObject()->getProfile()->save();
+      		
 	    }
     }
 	

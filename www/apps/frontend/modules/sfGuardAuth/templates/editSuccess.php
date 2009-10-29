@@ -11,6 +11,9 @@
 <div id="contentLeftSing2">
 <div title="ficha">
 <h2>Hola <?php echo $sf_user->getProfile()->getNombre() ?>, estas son tus preferencias</h2>
+<?php if ($sf_user->hasFlash('notice')): ?>
+<h4><?php echo $sf_user->getFlash('notice') ?></h4>
+<?php endif; ?>
 
 <div class="limpiar"></div>
 <div class="formSing">

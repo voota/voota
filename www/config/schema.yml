@@ -105,6 +105,7 @@ propel:
     lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    partido_txt: { type: VARCHAR, size: '150', required: false }
     _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }

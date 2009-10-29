@@ -25,7 +25,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
 	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
 	  'passwordBis'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
-      'password_old' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
+      'passwordOld' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
     ));
     $this->widgetSchema->setNameFormat('profile[%s]');
 	$this->widgetSchema->setLabels(array(
@@ -35,7 +35,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'apellidos'    => 'Apellidos',
 	  'passwordNew'    => 'Password',
 	  'passwordBis'    => 'Password (otra vez)',
-	  'password_old'    => 'Password actual',
+	  'passwordOld'    => 'Password actual',
 	)); 
     $this->setValidators(array(
       'fecha_nacimiento'   => new sfValidatorDate(array('required' => false), sfVoForm::$messagesDate),   
@@ -56,7 +56,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'apellidos'   => new sfValidatorString(array('required' => false)),    
       'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::$messagesString),
       'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::$messagesString),
-      'password_old'    => new sfValidatorString(array('required' => false)),
+      'passwordOld'    => new sfValidatorPasswordValid(array('required' => false)),
        ));
        
 

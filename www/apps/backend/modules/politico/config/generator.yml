@@ -22,8 +22,9 @@ generator:
             label: Institucion
       form:
         display: 
-          "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id]
-          "Datos personales": [imagen,nombre,apellidos,email,partido_id,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia]
+          "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id,partido_id]
+          "Display partido": [_partido_txt]
+          "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia]
           "Bio": [_bio_preview,bio]
         fields:
           bio:
