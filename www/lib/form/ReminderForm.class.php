@@ -12,7 +12,7 @@ class ReminderForm extends sfForm
     $this->setValidators(array(
       'username'   => new sfValidatorAnd(array(
     	new sfValidatorString(array('required' => true)),  
-        new sfValidatorEmail(array(), sfVoForm::$messagesEmail),  
+        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
         //new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username'), array('invalid' => 'name in use')),
        )),
     ));

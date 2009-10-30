@@ -1,27 +1,37 @@
 <?php
 class sfVoForm extends sfForm
 {
-	static $messages = array(
-	);
-	static $messagesEmail = array(
-		'invalid' => '"%value%" no es una dirección de email válida.',
-	);
-	static $messagesString = array(
-		'required' => 'Este campo es obligatorio.',
-		'min_length' => '"%value%" es demasiado corto (%min_length% caracteres mínimo).',
-		'max_length' => '"%value%"  es demasiado largo (%max_length% caracteres máximo).',
-	);
-	static $messagesUnique = array(
-        'invalid'       => 'Este nombre ya está siendo utilizado',
-    ) ;
-	
-	static $messagesDate = array (
-		'min'=>'start date greater today.',
-		'required'=> 'Este campo es obligatorio.',
-		'invalid'=>'Esta fecha no es válida.'
-	);
-	static $messagesCompare = array(
-		'invalid' => 'La contraseña no es igual las dos veces.',
-	);
+	public static function getMessages() {
+		return array();
+	}
+	public static function getEmailMessages() {
+		return array(
+			'invalid' => sfContext::getInstance()->getI18N()->__('"%value%" no es una dirección de email válida.', array(), 'messages')
+		);
+	}
+	public static function getStringMessages() {
+		return array(
+			'required' => sfContext::getInstance()->getI18N()->__('Este campo es obligatorio.', array(), 'messages'),
+			'min_length' => sfContext::getInstance()->getI18N()->__('"%value%" es demasiado corto (%min_length% caracteres mínimo).', array(), 'messages'),
+			'max_length' => sfContext::getInstance()->getI18N()->__('"%value%"  es demasiado largo (%max_length% caracteres máximo).', array(), 'messages'),
+		);
+	}
+	public static function getUniqueMessages() {
+		return array(
+			'invalid' => sfContext::getInstance()->getI18N()->__('Este nombre ya está siendo utilizado.', array(), 'messages')
+		);
+	}
+	public static function getDateMessages() {
+		return array(
+			'min' => sfContext::getInstance()->getI18N()->__('La fecha es posterior a hoy.', array(), 'messages'),
+			'required' => sfContext::getInstance()->getI18N()->__('Este campo es obligatorio.', array(), 'messages'),
+			'invalid' => sfContext::getInstance()->getI18N()->__('Esta fecha no es válida.', array(), 'messages'),
+		);
+	}
+	public static function getCompareMessages() {
+		return array(
+			'invalid' => sfContext::getInstance()->getI18N()->__('La contraseña no es igual las dos veces.', array(), 'messages')
+		);
+	}
 	
 }

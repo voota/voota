@@ -15,6 +15,7 @@ generator:
       fields:  ~
       list:    
         display: [nombre_corto,nombre,geo,disabled,orden]
+        sort: [orden, asc]
       filter:  ~
       form:    
         display: [nombre_corto,nombre,geo_id,disabled,orden,url, imagen]

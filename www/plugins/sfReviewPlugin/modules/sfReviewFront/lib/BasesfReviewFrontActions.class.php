@@ -54,7 +54,10 @@ class BasesfReviewFrontActions extends sfActions
   		$this->getUser()->setAttribute('url_back', $url);
   		$this->getUser()->setAttribute('review_v', $this->reviewValue);
   		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  		echo "<script>document.location='/".$this->getUser()->getCulture()."/user/login'</script>";die;
+  		
+  	
+  		
+  		echo "<script>document.location='".$this->getContext()->getController()->genUrl("@sf_guard_signin", true)."'</script>";die;
   	}
   	
   	$criteria = new Criteria();

@@ -123,7 +123,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  //try{
 		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
 		$smtp->setUsername('no-reply@voota.es');
-		include ("pass.php");
+		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
 		$smtp->setPassword( $smtp_pass );		
 		$mailer = new Swift($smtp);
 		  
@@ -145,7 +145,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  //try{
 		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
 		$smtp->setUsername('no-reply@voota.es');
-		include ("pass.php");
+		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
 		$smtp->setPassword( $smtp_pass );		
 		$mailer = new Swift($smtp);
 		  

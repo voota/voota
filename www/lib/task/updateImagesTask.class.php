@@ -48,7 +48,9 @@ EOF;
     $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
 
     $s3 = new S3Voota();
-    $politicos = PoliticoPeer::doSelect(new Criteria());
+    $c = new Criteria();
+    //$c->add(PoliticoPeer::ID, 1, Criteria::EQUAL);
+    $politicos = PoliticoPeer::doSelect( $c );
     foreach ($politicos as $politico){
     	if ($politico->getImagen() != ''){
     		echo "Creating " . $politico->getImagen() ." ...\n";

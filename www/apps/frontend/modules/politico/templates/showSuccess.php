@@ -10,13 +10,13 @@
 <!--
 $(document).ready(function(){
 	politicoReady( 
+			'<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>',
 			<?php echo $politico->getId(); ?>,
-			'<?php echo (isset($review_v) && $review_v != '')?'form':'init';  ?>',
 			'sf_review1'
 		);
 	politicoReady( 
+			'<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>',
 			<?php echo $politico->getId(); ?>,
-			'<?php echo (isset($review_v) && $review_v != '')?'form':'init';  ?>',
 			'sf_review2'
 		);
 });

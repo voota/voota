@@ -15,6 +15,7 @@ generator:
       list:
         title:   Pol&iacute;ticos
         display: [id,alias,nombre,apellidos,partido,_usuario]
+        
       filter:
         display: [nombre,apellidos,partido_id, bio, politico_institucion_list]
         fields:

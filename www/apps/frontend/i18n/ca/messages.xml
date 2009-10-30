@@ -136,6 +136,10 @@
         <source>twitter.com/Voota</source>
         <target/>
       </trans-unit>
+      <trans-unit id="34">
+        <source>"%value%" no es una dirección de email válida.</source>
+        <target>"%value%" no es una dirección de email válida.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

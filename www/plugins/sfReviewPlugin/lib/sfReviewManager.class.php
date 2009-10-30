@@ -25,9 +25,12 @@ class SfReviewManager
   static public function getReviewsByEntityAndValue(sfWebRequest $request, $type_id, $entity_id, $value)
   {
     $criteria = new Criteria();
+    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
+    
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
   	$criteria->add(SfReviewPeer::VALUE, $value);
+  	$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
 	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
   	
   	/*

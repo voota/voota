@@ -14,9 +14,17 @@ generator:
       actions: ~
       fields:  ~
       list:
+        sort: [created_at, desc]
         title:   Last reviews
-        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value]
+        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value, created_at]
       filter:  ~
-      form:    ~
+      form:
+        display: 
+          "Moderation": [sf_review_status_id]
+          "Review data": [_review_data]
+        fields:
+          sf_review_status_id: 
+            label: status
+            
       edit:    ~
       new:     ~

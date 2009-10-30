@@ -2,19 +2,19 @@
 <!--
 $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah").click(function(){
 	loadReviewBox(
+			'<?php echo url_for('@sf_review_form') ?>',
 			1, 
 			<?php echo $reviewEntityId; ?>, 
 			1, 
-			'form', 
 			'<?php echo $reviewBox?$reviewBox:'sf_review' ?>'
 	)
 });
 $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>buu").click(function(){
 	loadReviewBox(
+			'<?php echo url_for('@sf_review_form') ?>',
 			1, 
 			<?php echo $reviewEntityId; ?>, 
 			-1, 
-			'form', 
 			'<?php echo $reviewBox?$reviewBox:'sf_review' ?>'
 	)
 });

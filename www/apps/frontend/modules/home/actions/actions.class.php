@@ -25,14 +25,22 @@ class homeActions extends sfVoActions{
   	global $culture;
   	
 	$this->readCookie($this->getRequest());
-  	$this->redirect( "politico/ranking" );
-  	# "politico/ranking".$this->getContext()->getI18N()->__($text, $args, 'politicos')	
+  	$this->redirect( "@homepage" );
+  	
   }
   
   public function executeIndex(sfWebRequest $request) {
   	global $uid;
   	global $first;
   	
+  	$urlBack = $this->getUser()->getAttribute('url_back');
+	if ($urlBack && $urlBack != '') {
+		$this->getUser()->setAttribute('url_back', '');
+	  	if ($this->getUser()->isAuthenticated()) {
+  			$this->redirect( $urlBack );
+	  	}
+	}
+
   	$this->redirect( "politico/ranking" );
   	
   	$this->readCookie($this->getRequest());

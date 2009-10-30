@@ -38,7 +38,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'passwordOld'    => 'Password actual',
 	)); 
     $this->setValidators(array(
-      'fecha_nacimiento'   => new sfValidatorDate(array('required' => false), sfVoForm::$messagesDate),   
+      'fecha_nacimiento'   => new sfValidatorDate(array('required' => false), sfVoForm::getDateMessages()),   
       'vanity'   => new sfValidatorString(array('required' => true)), 
       'imagen'   => new sfValidatorFile(array(
 				   'required'   => false,
@@ -49,25 +49,25 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'imagen_delete' => new sfValidatorString(array('required' => false)), 
       'username'   => new sfValidatorAnd(array(
     	new sfValidatorString(array('required' => true)),  
-        new sfValidatorEmail(array(), sfVoForm::$messagesEmail),  
+        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
         //new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username'), array('invalid' => 'name in use')),
        )),
-      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::$messagesString),      
+      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false)),    
-      'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::$messagesString),
-      'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::$messagesString),
+      'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
+      'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
       'passwordOld'    => new sfValidatorPasswordValid(array('required' => false)),
        ));
        
 
     $uniqValidator = new sfValidatorAnd(array(
-    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUser', 'column'=>array('username')), sfVoForm::$messagesUnique    ),
-    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUserProfile', 'column'=>array('vanity')), sfVoForm::$messagesUnique    )
+    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUser', 'column'=>array('username')), sfVoForm::getUniqueMessages()    ),
+    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUserProfile', 'column'=>array('vanity')), sfVoForm::getUniqueMessages()    )
     ));
        
     $postValidator = new sfValidatorAnd(array(
     	$uniqValidator,
-    	 new sfValidatorSchemaCompare('passwordNew',  sfValidatorSchemaCompare::EQUAL, 'passwordBis',  array(), sfVoForm::$messagesCompare)
+    	 new sfValidatorSchemaCompare('passwordNew',  sfValidatorSchemaCompare::EQUAL, 'passwordBis',  array(), sfVoForm::getCompareMessages())
     ));
        
     $this->validatorSchema->setPostValidator($postValidator);
