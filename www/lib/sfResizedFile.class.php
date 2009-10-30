@@ -73,10 +73,11 @@ class sfResizedFile extends sfValidatedFile
 		//return is_null($this->path) ? $file : str_replace($this->path.DIRECTORY_SEPARATOR, '', $file);
 		$ret = parent::save($file, $fileMode, $create, $dirMode);
 		
-		$img = new sfImage( $file );
+		//$img = new sfImage( $file );
 
 		if (strpos  ( $file , "politicos" )){
-			$img->politico($file);
+			$s3 = new S3Voota();
+		    $s3->createPoliticoFromFile($file);
 		}
 		if (strpos  ( $file , "instituciones" )){
 			$img->institucion($file);

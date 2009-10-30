@@ -119,16 +119,22 @@ class politicoActions extends sfVoActions
   		}	
   	} 	
     
+  	/*
 	$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->politico->getImagen();
 	if (!file_exists($imageFileName)){
 		// Sin imagen: Imagen genérica Voota
 		$imageFileName = sfConfig::get('sf_web_dir').'/images/p_unknown.png';
 	}
+	*/
 	
-	$img = new sfImage( $imageFileName );
-	$img->politico( $imageFileName );
+  	if ($this->politico->getImagen() != ''){
+  		$imageFileName = $this->politico->getImagen();
+  	}
+  	else {
+  		$imageFileName = "p_unknown.png";
+   	}
 	
-	$this->image = "bw_" . $this->politico->getImagen();
+	$this->image = "bw_$imageFileName";
 	
 	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1);
 	$positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, 1);

@@ -13,7 +13,7 @@ class sfImagePoliticoGD extends sfImageVootaGD
 		$this->fileName .= '.png';
 	}
 	
-	$destDir = sfConfig::get('sf_web_dir'). DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'politicos';
+	$destDir = '/tmp';
 	
 	$ccFile = $destDir . DIRECTORY_SEPARATOR.'cc_'.$this->fileName;
 	$bwFile = $destDir . DIRECTORY_SEPARATOR.'bw_'.$this->fileName;
@@ -24,13 +24,7 @@ class sfImagePoliticoGD extends sfImageVootaGD
   		mkdir($destDir);
   	}
 
-  	if (
-  		!file_exists($ccFile) || !file_exists($bwFile) || !file_exists($ccSmallFile) || !file_exists($bwSmallFile)
-  		|| filemtime ( $ccFile ) < filemtime( $img->getFilename() )
-  		|| filemtime ( $bwFile ) < filemtime( $img->getFilename() )
-  		|| filemtime ( $ccSmallFile ) < filemtime( $img->getFilename() )
-  		|| filemtime ( $bwSmallFile ) < filemtime( $img->getFilename() )
-  		) {
+
   			/*
 		  	$img->overlay(
 		  		new sfImage(
@@ -59,7 +53,7 @@ class sfImagePoliticoGD extends sfImageVootaGD
 			$smallImg->crop($x1, $y1, IMG_SMALL_WIDTH, IMG_SMALL_HEIGHT)->saveAs( $ccSmallFile );
 			$smallImg->greyscale()->saveAs( $bwSmallFile );
 			
-  	}  	
+  	  	
   }  
 
 }

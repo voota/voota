@@ -20,7 +20,7 @@ require_once dirname(__FILE__).'/../lib/politicoGeneratorHelper.class.php';
  */
 class politicoActions extends autoPoliticoActions
 {
-	
+/*	
 	public function executeEdit(sfWebRequest $request) {
 		if ($this->getRoute()->getObject()->getImagen()) {
 			$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->getRoute()->getObject()->getImagen();
@@ -32,4 +32,5 @@ class politicoActions extends autoPoliticoActions
 				
 		parent::executeEdit( $request );
 	}
+*/
 }

@@ -19,8 +19,8 @@ class homeActions extends sfVoActions{
   var $uid;
   var $culture;
   var $first;
+
   
-	
   public function executeIndexWithoutCulture(sfWebRequest $request) {
   	global $culture;
   	

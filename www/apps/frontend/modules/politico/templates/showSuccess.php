@@ -51,7 +51,7 @@ $(document).ready(function(){
 </span> 
 <div class="limpiar"></div>
 <div title="foto" class="izq fotoPolitico">
-<?php echo image_tag('politicos/'. (file_exists(sfConfig::get('sf_upload_dir').'/politicos/'.($politico->getImagen()))?$image:'cc_p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+<?php echo image_tag('https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
 
   <div class="votaPolitico">
   <h5>Voota sobre <?php echo $politico->getApellidos(); ?></h5>

@@ -54,7 +54,7 @@ $(document).ready(function(){
 <?php foreach($politicosPager->getResults() as $politico): ?>
   <tr class="listaRanking">
     <td class="nombreRanking"><h6>
-    <?php echo image_tag('politicos/cc_s_'. (file_exists(sfConfig::get('sf_upload_dir').'/politicos/'.($politico->getImagen()))?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+    <?php echo image_tag('https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . "(" . $politico->getPartido() .")"

@@ -1,6 +1,6 @@
 <?php
 
-class sfReviewStatsTask extends sfBaseTask
+class sfUpdateImagesTask extends sfBaseTask
 {
   protected function configure()
   {
