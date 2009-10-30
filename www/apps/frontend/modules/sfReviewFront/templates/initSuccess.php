@@ -32,7 +32,7 @@ $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>buu").click(function(){
 		A favor, yeah
 	  </h6>
 	</div>
-	<div class="der clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>buu">
+	<div class="clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>buu">
 	 <input type="radio" name="vooto" id="down" value="down">
 	  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
 	

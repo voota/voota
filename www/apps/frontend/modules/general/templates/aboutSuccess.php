@@ -10,61 +10,20 @@
 <div class="formSings">
   <h5>Equipo fundador de Voota</h5>
 </div>
-<div class="formSings">
-<div class=" izq nombreColor"><img src="image/politicos/derbaix.jpg" alt="Fotografía François Derbaix (Voota)"></div>
-  <div class="izq nombreColor"><h6><strong>François Derbaix · El de la idea</strong>    <br>
-    Belga importado en España, nacido en 1974, francófono, de Bruselas. Como echarón Valones fuera (valga el juego de palabras;) me encuentro desde el año 2000 en Madrid donde vivo con mi mujer (españolas) y dos hijas pequeñas (nacidas en 2005 y 2007).</h6></div>
-</div>
-<div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/leal.jpg" alt="Fotografía Juan Leal (Voota)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>Juan Leal · Diseño de interacción y usabilidad</strong>    <br>
-    Belga importado en España, nacido en 1974, francófono, de Bruselas. Como echarón Valones fuera (valga el juego de palabras;) me encuentro desde el año 2000 en Madrid donde vivo con mi mujer (españolas) y dos hijas pequeñas (nacidas en 2005 y 2007).</h6></div>
-</div>
-<div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/viteri.jpg" alt="Fotografía Sergio Viteri (Voota)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>Sergio Viteri · Desarrollo y tecnología</strong>    <br>
-    Belga importado en España, nacido en 1974, francófono, de Bruselas. Como echarón Valones fuera (valga el juego de palabras;) me encuentro desde el año 2000 en Madrid donde vivo con mi mujer (españolas) y dos hijas pequeñas (nacidas en 2005 y 2007).</h6></div>
-</div>
-<div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/viteri.jpg" alt="Fotografía María Ayuso (Voota)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>María Ayuso · Contabilidad</strong>    <br>
-    Belga importado en España, nacido en 1974, francófono, de Bruselas. Como echarón Valones fuera (valga el juego de palabras;) me encuentro desde el año 2000 en Madrid donde vivo con mi mujer (españolas) y dos hijas pequeñas (nacidas en 2005 y 2007).</h6></div>
-</div>
-<div class="limpiar"></div>
+
+<?php include_partial('socioabout', array('socio' => $users[2])) ?>
+<?php include_partial('socioabout', array('socio' => $users[1])) ?>
+<?php include_partial('socioabout', array('socio' => $users[5])) ?>
+<?php include_partial('socioabout', array('socio' => $users[6])) ?>
+
 <div class="formSings">
   <h5>Otra gente muy implicada en el proyecto</h5>
 </div>
 <div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/derbaix.jpg" alt="Fotografía Gaspar Llamazares (IU)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>François Derbaix</strong>    <br>
-    Wadus</h6>
-  </div>
-</div>
-<div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/derbaix.jpg" alt="Fotografía Gaspar Llamazares (IU)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>François Derbaix</strong> <br>
-Wadus</h6>
-  </div>
-</div>
-<div class="limpiar"></div>
-<div class="formSings">
-<div class="izq nombreColor"><img src="image/politicos/derbaix.jpg" alt="Fotografía Gaspar Llamazares (IU)"></div>
-  <div class="izq nombreColor">
-    <h6><strong>François Derbaix</strong> <br>
-Wadus</h6>
-  </div>
-</div>
-<div class="limpiar"></div>
+
+<?php include_partial('socioabout', array('socio' => $users[4])) ?>
+<?php include_partial('socioabout', array('socio' => $users[7])) ?>
+
 <div class="formSings">
   <h5>Y, finalmente, nuestros datos sociales</h5>
 </div>

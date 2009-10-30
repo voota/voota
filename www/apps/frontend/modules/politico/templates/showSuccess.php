@@ -142,9 +142,7 @@ $(document).ready(function(){
 <div class="votaSobre"><h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5></div>
 
 
-<div class="votaSobre">
-	<div id="sf_review2"></div>
-</div>
+<div id="sf_review2"></div>
 
 
 

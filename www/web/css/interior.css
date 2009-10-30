@@ -9,7 +9,7 @@
 #contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing { float:left; width:30.00em; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em; height:20.00em;}
+#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em; }
 #contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentRightSing { float:right; width:27.00em; margin-top:3.94em;}
 #contentSing { padding-left:1.31em; margin-top:1.69em; }
@@ -57,7 +57,7 @@
 .lugar {color:#323232; font-weight:bold;}
 .totalComentarios {margin-left:3.13em; margin-top:1.50em;}
 /* votaciones */
-.votaSobre {margin-left:3.13em; margin-top:1.50em;}
+.votaSobre_old {margin-left:3.13em; margin-top:1.50em;}
 .votaPartidos {margin-left:1.25em; margin-top:1.50em; margin-bottom:1.25em; margin-right:3.25em; float:left; width:15.63em;}
 .vootaPartidoList { margin-left:0.63em; margin-top:0.63em;}
 .listadoRanking {margin-top:1.50em; width:52.56em; margin-left:1.88em; }
