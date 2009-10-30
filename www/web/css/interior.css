@@ -7,16 +7,20 @@
 #contentRight { float:right; width: 15.81em;}
 #contentRight2 { float:right; width: 15.81em; margin-top:3.94em;}
 #contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
+#contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing { float:left; width:30.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em; height:20.00em;}
+#contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentRightSing { float:right; width:27.00em; margin-top:3.94em;}
 #contentSing { padding-left:1.31em; margin-top:1.69em; }
-.buscar { text-align:right; float:right;}
+.buscar { text-align:right; float:right; }
 .formSing { margin-top:1.00em;}
+.formSing404 { padding-top:1.00em; margin: 0 auto; width:25.00em; text-align:left;}
 .formSings { margin-top:1.00em; margin-left:1.44em;}
 .alingBoton {text-align:right;}
-.leftSing {  width:5.80em; padding-bottom:0.60em; padding-top:0.60em; }
-.leftSings {  padding-bottom:0.60em; padding-top:0.60em; }
+.leftSing {  width:5.80em; padding-bottom:0.60em; padding-top:0.60em;  }
+.leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
+.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:37px; }
 .leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
 .leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
 .leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
@@ -43,6 +47,7 @@
 .fotoPolitico {margin-left:3.13em; margin-top:1.50em; width:11.81em;}
 .textoPolitico {margin-left:3.13em; margin-top:1.50em; width:23.44em;}
 .margenPolitico {margin-left:0.75em; margin-top:0.60em}
+.margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
 .votaPolitico {margin-top:1.88em; margin-bottom:1.00em}
 .linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
 .positivoNegativo {width:18.69em;}
@@ -66,8 +71,19 @@
 .enlacesPie {text-align:center; padding-bottom:1.00em;}
 /* Gente con color */
 .conColor {margin-top:2.94em;}
+.enlacesExternosPartido {margin-top:4.94em;}
 .tituloColor {margin-top:2.00em;}
 .nombreColor {margin-left:0.60em; margin-top:1.00em;}
+.nombreColorPartido {margin-left:0.60em;}
 .flechita {background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
 p { margin:0; padding-bottom:1.25em;}
+.textoNormal {font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232;}
+.textoMayor {font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold;}
+.ancho100 { width:480px;}
+/* about */
+.aboutFoto {float:left; width:36px;}
+.aboutTexto {float:left; margin-left:10px; width:30.63em;}
+.aboutContainer {margin-top:1.75em; margin-left:1.44em;}
+.containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
+#404 { height:167px;}
 

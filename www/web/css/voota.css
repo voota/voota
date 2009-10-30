@@ -2,7 +2,7 @@
 /* CSS Document */
 html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Times New Roman", Times, serif; color:#616161;}
 #header { height:7.00em;}
-.logo { margin-top:0.50em;}
+.logo { margin-top:0.50em; float:right;}
 #container {margin: 0 auto; min-width:45.00em; max-width:60.00em;} 
 #main { background-image: url(/images/bgMain.gif); background-repeat:repeat-x; }
 #content { /* overflow: visible; */ }
@@ -13,17 +13,18 @@ html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Time
 .input { border: 0.06em solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; }
 .inputSign { border: 0.06em solid #9398ae; background: #ffffff; width:18.19em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .inputSignPeq { border: 0.06em solid #9398ae; background: #ffffff; width:2.90em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.button { padding-left:0.60em; padding-right:0.60em; margin-right:3.50em;}
+.button { width:7.00em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+.button2 { width:15.69em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
 .textarea { width:25.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:0.06em solid #8f9ba7; }
 .der{ float:right;}
 .izq { float:left;}
-.login {margin-top:0.60em;}
-h1 { font-size: 2.5em; font-weight:100; margin:0.00em;}
+.login {margin-top:0.60em; float:right;}
+h1 { font-size: 2.5em; font-weight:100; margin:0.00em; color:#2b56ff;}
 h2 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232}
 h3 { font-size: 2.5em; }
 h4 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232 }
 h5 { font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold; }
-h6 { font-size: 0.75em; font-weight: normal; margin:0px; margin:0; padding-bottom:0.5em; color:#323232; }
+h6 { font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232; }
 img { border:none; vertical-align: middle;}
 .cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
 .cC a {color: white;}

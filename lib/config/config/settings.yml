@@ -1,6 +1,6 @@
 default:
   .actions:
-    error_404_module:       general   # To be called when a 404 error is raised
+    error_404_module:       error   # To be called when a 404 error is raised
     error_404_action:       error404  # Or when the requested URL doesn't match any route
 
     login_module:           default   # To be called when a non-authenticated user

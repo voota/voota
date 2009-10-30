@@ -15,8 +15,9 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class generalActions extends sfVoActions{
+class errorActions extends sfVoActions{
 
-  public function executeAbout(sfWebRequest $request) {
+  public function executeError404(sfWebRequest $request) {
+  	echo 1;
   }
 }
