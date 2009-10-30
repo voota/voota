@@ -13,7 +13,7 @@ class sfImageUsuarioGD extends sfImageVootaGD
 		$this->fileName .= '.png';
 	}
 	
-	$destDir = sfConfig::get('sf_web_dir'). DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'usuarios';
+	$destDir = '/tmp';
 	
 	$ccFile = $destDir . DIRECTORY_SEPARATOR.'cc_'.$this->fileName;
 	$ccSmallFile = $destDir . DIRECTORY_SEPARATOR.'cc_s_'.$this->fileName;

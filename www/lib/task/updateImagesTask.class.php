@@ -13,6 +13,7 @@ class updateImagesTask extends sfBaseTask
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name', 'backend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
+      new sfCommandOption('table', null, sfCommandOption::PARAMETER_REQUIRED, 'Tipo de imagenes a procesar', 'politico'),
       // add your own options here
     ));
 
@@ -29,6 +30,19 @@ EOF;
 
   protected function execute($arguments = array(), $options = array())
   {
+  	if ($options['table'] == 'politico'){
+    	$this->politico($arguments, $options);
+   	}
+   	else if ($options['table'] == 'institucion'){
+    	$this->institucion($arguments, $options);
+   	}
+   	else {
+   		echo "No conozco esa tabla (".$options['table'].").\n";
+   	}
+  }
+
+  private function politico($arguments = array(), $options = array())
+  {
     // initialize the database connection
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
@@ -39,6 +53,21 @@ EOF;
     	if ($politico->getImagen() != ''){
     		echo "Creating " . $politico->getImagen() ." ...\n";
     		$s3->createPoliticoFromOri( $politico->getImagen() );
+    	}
+    }
+  }
+  private function institucion($arguments = array(), $options = array())
+  {
+    // initialize the database connection
+    $databaseManager = new sfDatabaseManager($this->configuration);
+    $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
+
+    $s3 = new S3Voota();
+    $instituciones = InstitucionPeer::doSelect(new Criteria());
+    foreach ($instituciones as $institucion){
+    	if ($institucion->getImagen() != ''){
+    		echo "Creating " . $institucion->getImagen() ." ...\n";
+    		$s3->createInstitucionFromOri( $institucion->getImagen() );
     	}
     }
   }

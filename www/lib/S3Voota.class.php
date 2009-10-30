@@ -26,7 +26,6 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "politicos/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->politico(  );
-			unlink ( "$file" );
 			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "politicos/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
 			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "politicos/bw_$fileName", S3::ACL_PUBLIC_READ);
@@ -45,6 +44,60 @@ class S3Voota extends S3 {
 			
 			if (($object = S3::getObject(S3Voota::getBucketOri(), $uri, "$fileOnDisk")) !== false) {
 				$this->createPoliticoFromFile( $fileOnDisk );
+				unlink ( "$fileOnDisk" );
+			}
+		}
+	}
+	
+	public function createInstitucionFromFile( $file ) {
+		$directory = dirname($file);
+		$arr = array_reverse( split("/", $file) );
+		$fileName = $arr[0];
+		$uri = "instituciones/$fileName";
+		
+		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "instituciones/$fileName", S3::ACL_PRIVATE)){
+			$img = new sfImage( $file );
+			$img->institucion(  );
+			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "instituciones/$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_$fileName" );
+		}
+		
+	}
+	public function createInstitucionFromOri( $fileName ) {
+		$uri = "instituciones/$fileName";
+		if (($info = $this->getObjectInfo(S3Voota::getBucketOri(), $uri)) !== false) {
+			$fileOnDisk = "/tmp/$fileName";
+			
+			if (($object = S3::getObject(S3Voota::getBucketOri(), $uri, "$fileOnDisk")) !== false) {
+				$this->createInstitucionFromFile( $fileOnDisk );
+				unlink ( "$fileOnDisk" );
+			}
+		}
+	}
+
+	public function createUsuarioFromFile( $file ) {
+		$directory = dirname($file);
+		$arr = array_reverse( split("/", $file) );
+		$fileName = $arr[0];
+		$uri = "usuarios/$fileName";
+		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE)){
+			$img = new sfImage( $file );
+			$img->usuario(  );
+			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_s_$fileName" );
+		}
+		
+	}
+	public function createUsuarioFromOri( $fileName ) {
+		$uri = "usuarios/$fileName";
+		if (($info = $this->getObjectInfo(S3Voota::getBucketOri(), $uri)) !== false) {
+			$fileOnDisk = "/tmp/$fileName";
+			
+			if (($object = S3::getObject(S3Voota::getBucketOri(), $uri, "$fileOnDisk")) !== false) {
+				$this->createUsuarioFromFile( $fileOnDisk );
+				unlink ( "$fileOnDisk" );
 			}
 		}
 	}

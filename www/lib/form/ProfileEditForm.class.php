@@ -15,7 +15,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'vanity'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
 			   'label'     => 'Imagen Principal',
-			   'file_src'  => '/images/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen(),
+   			   'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen(),
 			   'is_image'  => true,
 			   'edit_mode' => !$this->isNew(),
 			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',

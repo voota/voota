@@ -2,8 +2,8 @@ prod:
   .settings:
     no_script_name:         off
     logging_enabled:        off
-    s3_bucket_originals:       voota-images-ori
-    s3_bucket_public:          voota-images
+    s3_bucket_originals:       imagesvoota-ori
+    s3_bucket_public:          imagesvoota
 
 dev:
   .settings:
@@ -12,8 +12,8 @@ dev:
     cache:                  off
     no_script_name:         off
     etag:                   off
-    s3_bucket_originals:       voota-images-ori-dummy
-    s3_bucket_public:          voota-images-dummy
+    s3_bucket_originals:       imagesvoota-ori-dummy
+    s3_bucket_public:          imagesvoota-dummy
 
 test:
   .settings:
@@ -22,8 +22,8 @@ test:
     web_debug:              off
     no_script_name:         off
     etag:                   off
-    s3_bucket_originals:       voota-images-ori-dummy
-    s3_bucket_public:          voota-images-dummy
+    s3_bucket_originals:       imagesvoota-ori-dummy
+    s3_bucket_public:          imagesvoota-dummy
 
 all:
   .settings:

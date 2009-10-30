@@ -36,7 +36,7 @@ class PoliticoForm extends BasePoliticoForm
 	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
    'required'   => false,
    'mime_types' => 'web_images',
-   'path' => '/tmp/politicos',
+   'path' => sfConfig::get('sf_upload_dir').'/politicos',
    'validated_file_class' => 'sfResizedFile',
 	));
 	

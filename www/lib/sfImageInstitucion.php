@@ -13,9 +13,9 @@ class sfImageInstitucionGD extends sfImageVootaGD
 		$this->fileName .= '.png';
 	}
 	
-	$destDir = sfConfig::get('sf_web_dir'). DIRECTORY_SEPARATOR. 'images'.DIRECTORY_SEPARATOR.'instituciones';
+	$destDir = '/tmp';
 	
-	$ccFile = $destDir . DIRECTORY_SEPARATOR.''.$this->fileName;
+	$ccFile = $destDir . DIRECTORY_SEPARATOR.'cc_'.$this->fileName;
 	
   	if(!file_exists($destDir)) {
   		mkdir($destDir);
