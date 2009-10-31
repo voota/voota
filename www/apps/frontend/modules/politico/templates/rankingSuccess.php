@@ -20,9 +20,9 @@ $(document).ready(function(){
 <span class="nombrePolitico">Ranking de políticos
 <?php echo $institucion=='0'?'':"en el $institucion" ?>
 
-<?php echo ($institucion!='0' && $partido!='0')?'-':'' ?>
+<?php echo ($institucion!='0' && $partido!='all')?'-':'' ?>
 
-<?php echo $partido=='0'?'':$partido ?>
+<?php echo $partido=='all'?'':$partido ?>
 <label>
 
 <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
@@ -33,9 +33,33 @@ $(document).ready(function(){
 </span>
 <div class="limpiar"></div>
 <div><h6>
-<a href="#" onclick="changeInstitucion('0');" <?php echo $institucion=="0"?'class="flechita"':'' ?>>Todas las instituciones</a>
+  <?php 
+    if ($partido == 'all'){
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
+	  	echo link_to(
+	 	'Todas las instituciones'
+	 	, "$url"
+	 	, array('class' => $institucion=='0'?'flechita':''));
+    }
+    else {
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
+	  	echo link_to(
+	 	'Todas las instituciones'
+	 	, "$url?partido=$partido"
+	 	, array('class' => $institucion=='0'?'flechita':''));
+    }
+  ?>
 <?php foreach($instituciones as $aInstitucion): ?>
- · <a href="#" onclick="changeInstitucion('<?php echo $aInstitucion->getNombre() ?>');" <?php echo $aInstitucion->getNombre()==$institucion?'class="flechita"':'' ?>><?php echo $aInstitucion->getNombre() ?></a>
+ · 
+  <?php 
+  	$url = $sf_user->getCulture('es')?'@ranking_es':'@ranking_ca';
+  	echo link_to(
+ 	$aInstitucion->getNombreCorto()
+ 	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
+ 	, array('class' => $aInstitucion->getNombre()==$institucion?'flechita':'')
+ ) ?>
+ 
+ <!-- a href="#" onclick="changeInstitucion('<?php echo $aInstitucion->getNombre() ?>');" <?php echo $aInstitucion->getNombre()==$institucion?'class="flechita"':'' ?>><?php echo $aInstitucion->getNombre() ?></a -->
 <?php endforeach ?>
 
 </h6>

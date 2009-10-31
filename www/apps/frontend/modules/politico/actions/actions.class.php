@@ -30,37 +30,39 @@ class politicoActions extends sfVoActions
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
-  	$i = $request->getParameter("i");
   	$culture = $request->getParameter("sf_culture");
   	$partido = $request->getParameter("partido");
   	$institucion = $request->getParameter("institucion");
-  	if ($p != '' || $i != ''){
-	  	$url = "/$culture/politicos";
+  	if ($p != ''){
 	  	$p_url = "";
 	  	$i_url = "";
+	  	
 	  	if ($p != '' && $p != ALL_FORM_VALUE){
-	  		$p_url .= "/$p";
+	  		$p_url .= "$p";
 	  	}
 	  	else if ($p != ALL_FORM_VALUE && $partido && $partido != ALL_URL_STRING) {
-	  		$p_url .= "/". $partido;
-	  	}
-	  	if ($i != ''){
-	  		if ($i != ALL_FORM_VALUE){
-	  			$i_url = "/$i";
-	  		}
-	  	}
-	  	else if ($i != ALL_FORM_VALUE && $institucion) {
-  			$i_url = "/". $institucion;
+	  		$p_url .= "$partido";
 	  	}
 	  	
-	  	if ($p_url != "" ){
-	  		$url .= $p_url;
+	  	if ($institucion) {
+  			$i_url = "$institucion";
 	  	}
-	  	else if ($i_url != ""){
-	  		$url .= "/".ALL_URL_STRING;
+	  	
+	  	if ($p_url == "" && $i_url == ""){
+	  		// Todos. Sin filtro
+	  		$url = "@ranking_${culture}_all";
 	  	}
-	  	if ($i_url != ""){
-	  		$url .= $i_url;
+	  	else if ($p_url != "" && $i_url != ""){
+	  		// Filtro por partido e institucion
+	  		$url = "@ranking_${culture}?partido=$p_url&institucion=$i_url";
+	  	}
+	  	else if ($i_url == "" ){
+	  		// Filtro por partido
+	  		$url = "@ranking_${culture}_partido?partido=$p_url";
+	  	}
+	  	else if ($p_url == ""){
+	  		// Filtro por institucion
+	  		$url = "@ranking_${culture}?partido=all&institucion=$i_url";
 	  	}
 	  		  	
 	   	$this->redirect( $url );
@@ -77,6 +79,9 @@ class politicoActions extends sfVoActions
   		$this->partido = $partido; 
   		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
   	}
+  	else {
+  		$this->partido = ALL_URL_STRING; 
+   	}
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
   		$c->add(InstitucionPeer::NOMBRE, $this->institucion);

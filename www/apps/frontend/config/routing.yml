@@ -44,7 +44,7 @@ ranking_es:
   requirements: { sf_culture: (?:es) }
 
 ranking_ca:
-  url: /:sf_culture/politicos/:partido/:institucion
+  url: /:sf_culture/politics/:partido/:institucion
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:ca) }
 
