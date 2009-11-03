@@ -9,7 +9,7 @@ class RegistrationForm extends sfVoForm
       'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-      'password' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
+      'password' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
     ));
     $this->widgetSchema->setNameFormat('registration[%s]');
 	$this->widgetSchema->setLabels(array(

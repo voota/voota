@@ -8,3 +8,6 @@ ul.error_list li {
 	list-style: none outside;
 	color:#f80c1a;
 }
+#help_dialog {
+	display:none;
+}

@@ -3,12 +3,9 @@
 <?php use_helper('jQuery') ?>
 
 <script>  
-
-
 $(document).ready(function(){
 	rankingReady();
 });
-  
 </script>
 
 <div id="mainInterior">
@@ -69,9 +66,21 @@ $(document).ready(function(){
 <div class="listadoRanking">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr class="cabeceraRanking">
-    <td class="nombreRanking"><h6><a href="#">Nombre</a> <img src="/images/flechaDown.gif" alt="Flecha Down"></h6></td>
-    <td class="votosDown"><h6><a href="#">Votos </a> <img src="/images/icoMiniUp.png" alt="icono mano  up"> <img src="/images/flechaDown.gif" alt="Flecha Down"></h6></td>
-    <td class="votosDown"><h6><a href="#">Votos </a> <img src="/images/icoMiniDown.png" alt="Icono mano down"> <img src="/images/flechaDown.gif" alt="Flecha Down"></h6></td>
+    <td class="nombreRanking"><h6>Nombre</h6></td>
+    <td class="votosUp"><h6>
+    	<?php echo link_to(__('Votos'), "$route&o=".($order=='pd'?'pa':'pd'));?>
+    	<?php echo image_tag('icoMiniUp.png', 'pa') ?>
+    	<?php if (strpos($order, 'p') === 0):?>
+    		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'down':'up') ?>
+    	<?php endif?>    	
+    </h6></td>
+    <td class="votosDown"><h6>
+    	<?php echo link_to(__('Votos'), "$route&o=".($order=='nd'?'na':'nd'));?>
+    	<?php echo image_tag('icoMiniDown.png', 'down') ?>
+    	<?php if (strpos($order, 'n') === 0):?>
+    		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'down':'up') ?>
+    	<?php endif?>
+    </h6></td>
     <td>&nbsp;</td>
   </tr>
   
@@ -98,8 +107,16 @@ $(document).ready(function(){
 
   <tr>
     <td>&nbsp;</td>
-    <td class="votosDown"><h6>Total <img src="/images/icoMiniUp.png" alt="icono mano  up"> 4515</h6></td>
-    <td class="votosDown"><h6>Total <img src="/images/icoMiniUp.png" alt="icono mano  up"> 4515</h6></td>
+    <td class="votosDown"><h6>
+    Total 
+    	<?php echo image_tag('icoMiniUp.png', 'up') ?>
+    	<?php echo $totalUp?>
+    </h6></td>
+    <td class="votosDown"><h6>
+    	Total 
+    	<?php echo image_tag('icoMiniDown.png', 'down') ?>
+    	<?php echo $totalDown?>
+    </h6></td>
     <td>&nbsp;</td>
   </tr>
 </table>
@@ -117,7 +134,7 @@ $(document).ready(function(){
 <div class=" listadoRankingPoliticos">
 <div id="paginacion" style="">
 
-<?php include_partial('pagination_full', array('pager' => $politicosPager, 'url' => 'politico/ranking?', 'page_var' => "page")) ?>
+<?php include_partial('pagination_full', array('pager' => $politicosPager, 'url' => 'politico/ranking?', 'page_var' => "page", 'order' => $order)) ?>
 
 </div>
 </div>

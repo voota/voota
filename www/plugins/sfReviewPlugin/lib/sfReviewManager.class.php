@@ -46,11 +46,13 @@ class SfReviewManager
   
   static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){
 	$query = "SELECT COUNT(*) AS count ".
-			"FROM %s ".
-			"WHERE entity_id = ? ".
-			"AND sf_review_type_id = ? ".
-			"AND value = ? ";
-	$query = sprintf($query, SfReviewPeer::TABLE_NAME);
+			"FROM %s r ".
+			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
+			"WHERE r.entity_id = ? ".
+			"AND r.sf_review_type_id = ? ".
+			"AND s.published = 1 ".
+			"AND r.value = ? ";
+	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	
   	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);

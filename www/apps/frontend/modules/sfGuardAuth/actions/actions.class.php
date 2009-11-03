@@ -184,24 +184,29 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		
 			$imageOri = $this->profileEditForm->getObject()->getProfile()->getImagen();
       		$imagen = $this->profileEditForm->getValue('imagen');
-      		//$this->profileEditForm->getObject()->setId($this->getUser()->getGuardUser()->getId());
-      		$this->profileEditForm->save();
-      		if ($imagen){
-	      		$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
-				$ext = strtolower($arr[0]);
-				if (!$ext || $ext == ""){
-					$ext = "png";
-				}      		
-	      		//$nombreArchivo = sha1($archivo->getOriginalName()).$archivo->getExtension($archivo->getOriginalExtension());
-	      		$imageName = $this->profileEditForm->getValue('vanity') . ".$ext";
-	      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
-	      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
-	      		$this->profileEditForm->configure();
+      		
+      		if ($this->profileEditForm->getValue('imagen_delete') != "" ){
+      			$this->profileEditForm->getObject()->getProfile()->setImagen( "" );
       		}
       		else {
-      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
-      		}
-      		
+	      		//$this->profileEditForm->getObject()->setId($this->getUser()->getGuardUser()->getId());
+	      		$this->profileEditForm->save();
+	      		if ($imagen){
+		      		$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
+					$ext = strtolower($arr[0]);
+					if (!$ext || $ext == ""){
+						$ext = "png";
+					}      		
+		      		//$nombreArchivo = sha1($archivo->getOriginalName()).$archivo->getExtension($archivo->getOriginalExtension());
+		      		$imageName = $this->profileEditForm->getValue('vanity') . ".$ext";
+		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
+		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
+		      		$this->profileEditForm->configure();
+	      		}
+	      		else {
+	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
+	      		}
+      		}      		
       		$this->getUser()->setFlash('notice', 'Se han aplicado los cambios a tu perfil');
       		$this->profileEditForm->getObject()->getProfile()->save();
       		

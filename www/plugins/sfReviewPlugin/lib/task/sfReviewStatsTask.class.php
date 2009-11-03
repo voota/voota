@@ -1,6 +1,6 @@
 <?php
 
-class sfUpdateImagesTask extends sfBaseTask
+class sfReviewStats extends sfBaseTask
 {
   protected function configure()
   {
@@ -35,10 +35,12 @@ EOF;
 
     echo "Running sfReviewStatsTask ... \n";
     
-	$query = "SELECT entity_id, sf_review_type_id, value, SUM(value) sum ".
-			"FROM %s ".
+	$query = "SELECT r.entity_id, r.sf_review_type_id, r.value, SUM(r.value) sum ".
+			"FROM %s r ".
+			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
+			"WHERE s.published = 1 ".
 			"group by entity_id, sf_review_type_id, value ";
-	$query = sprintf($query, SfReviewPeer::TABLE_NAME);
+	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	
   	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);

@@ -14,7 +14,6 @@
 <META NAME="Generator" CONTENT="NOTEPAD">
 <META NAME="Language" CONTENT="Spanish">
 <META NAME="Revisit" CONTENT="15 days">
-
 <META NAME="Distribution" CONTENT="Global">
 <META NAME="Robots" CONTENT="All">
 </head>
@@ -31,22 +30,22 @@
 <!-- FIN HEADER -->
 
 <!-- MAIN -->
-
 <div id="mainInterior">
 <!-- CONTENT -->
 <div id="content">
 <!-- CONTENT LEFT-->
-<div id="contentLeftSing404">
+<div id="contentLeftSing500">
 <div title="ficha">
-<h1>¡Clonk! Página no encontrada</h1>
+<h1>¡Clonk! </h1>
 
 <div class="limpiar"></div>
 <div class="formSing404">
-<h6>Parece ser que ya no tenemos disponible la página que intentas visitar. A lo mejor nunca ha existido. Lo único que podemos ofrecerte en este momento es un humilde enlace a la <a href="/">página de inicio de Voota</a></h6>
-</div>
-</div>
+<h6>Sentimos tener que enseñarte este mensaje. Pero algo se ha caído de las estanterías de Voota. Aún no sabemos de qué se trata, pero ya estamos trabajando para encontrarlo y ponerlo en su sitio.</h6>
 </div>
 
+
+</div>
+</div>
 </div>
 <div class="limpiar"></div>
 </div>
@@ -56,10 +55,10 @@
 <div class="limpiar"></div>
 <!-- FOOTER -->
 <div id="footer">
-<div id="404"><img src="/images/404.gif" alt="imagen error 404"></div>
+<div id="404"><img src="/images/500.gif" alt="imagen error 500"></div>
+<div class="limpiar"></div>
 <div class="cC"><a href="http://es.creativecommons.org/"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://es.creativecommons.org/">Creative Commons</a> son amigos de toda la vida</div>
 <!-- ENLACES PIE -->
-
 <div class="limpiar"></div>
 <div class="limpiar"></div>
 

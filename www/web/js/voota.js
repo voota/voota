@@ -37,3 +37,17 @@ function loadReviewBox(url, t, e, v,  box) {
 	var aUrl = url +'?t='+t+'&e='+e+'&v='+v+'&b='+box+'';
 	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl}); return false;
 }
+
+function showHidePass( fieldName ){
+	var field = document.getElementById( fieldName );
+	if ( field.type == "password" ){
+		field.type = "text";
+	}
+	else {
+		field.type = "password";
+	}
+}
+function showScoreHelp(){
+	$("#help_dialog").dialog('open');
+}
+

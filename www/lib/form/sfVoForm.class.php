@@ -33,5 +33,10 @@ class sfVoForm extends sfForm
 			'invalid' => sfContext::getInstance()->getI18N()->__('La contraseña no es igual las dos veces.', array(), 'messages')
 		);
 	}
+	public static function getUserMessages() {
+		return array(
+			'invalid' => sfContext::getInstance()->getI18N()->__('El email o la contraseña no son válidos.', array(), 'messages')
+		);
+	}
 	
 }

@@ -5,9 +5,9 @@ class SigninForm extends sfVoForm
   public function configure()
   {
     $this->setWidgets(array(
-      'username' => new sfWidgetFormInput(),
-      'password' => new sfWidgetFormInput(array('type' => 'password')),
-      'remember' => new sfWidgetFormInputCheckbox(),
+      'username' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
+      'password' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
+      'remember' => new sfWidgetFormInputCheckbox(array(), array('class' => 'inputSign')),
     ));
 	$this->widgetSchema->setLabels(array(
 	  'username'    => 'Email',
@@ -15,12 +15,15 @@ class SigninForm extends sfVoForm
 	  'remember'    => 'Recordar',
 	));
     $this->setValidators(array(
-      'username' => new sfValidatorString(),
-      'password' => new sfValidatorString(),
+      'username'   => new sfValidatorAnd(array(
+    	new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),  
+        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
+       )),
+      'password' => new sfValidatorPassword(array('required' => true), sfVoForm::getStringMessages()),
       'remember' => new sfValidatorBoolean(),
     ));
 
-    $this->validatorSchema->setPostValidator(new sfGuardValidatorUser());
+    $this->validatorSchema->setPostValidator(new sfGuardValidatorUser(array(), sfVoForm::getUserMessages()));
 
     $this->widgetSchema->setNameFormat('signin[%s]');
   }

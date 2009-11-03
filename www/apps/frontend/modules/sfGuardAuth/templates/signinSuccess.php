@@ -4,7 +4,6 @@
 <?php use_helper('Validation') ?>
 
 
-
 <div id="main">
 <!-- CONTENT -->
 <div id="content">
@@ -24,7 +23,7 @@
 
   <tr>
     <td>&nbsp;</td>
-    <td><h6><a href="#">Ver la contraseña</a></h6></td>
+    <td><h6><a href="javascript:showHidePass('registration_password')" >Ver la contraseña</a></h6></td>
     <td>&nbsp;</td>
 
   </tr>
@@ -94,3 +93,5 @@
 </div>
 <!-- FIN CONTENT -->
 </div>
+
+

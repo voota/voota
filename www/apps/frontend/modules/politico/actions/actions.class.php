@@ -87,10 +87,43 @@ class politicoActions extends sfVoActions
   		$c->add(InstitucionPeer::NOMBRE, $this->institucion);
   	}
   	$pager = new sfPropelPager('Politico', 10);
+  	
+  	/* Orden de resultados
+  	 * pa: positivos ascendente
+  	 * pd: positivos descendente
+  	 * na: negativos ascendente
+  	 * nd: negativos descendente
+  	 */
+  	$o = $request->getParameter("o");
+  	if (!$o){
+  		$o = "pd";
+  	}
+  	if ($o == "pa"){
+  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+  	}
+  	else if ($o == "pd") {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	}
+  	else if ($o == "na"){
+  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	}
+  	else if ($o == "nd") {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+  	}
+  	$this->order = $o;
+  	/* Fin Orden */
+  	
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
     $this->politicosPager = $pager;
+    
+    $this->totalUp = 0;
+    $this->totalDown = 0;
+    foreach ($pager->getResults() as $aPolitico){
+    	$this->totalUp += $aPolitico->getSumu();
+    	$this->totalDown += $aPolitico->getSumd();
+    }
   	
   	$this->partidos = PartidoPeer::doSelect(new Criteria());
   	$this->partidos_arr = array();
@@ -103,6 +136,22 @@ class politicoActions extends sfVoActions
   	$c->add(InstitucionPeer::DISABLED, 'N');
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);
+  	
+  	
+	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
+  	$params = "";
+  	foreach ($request->getParameterHolder()->getAll() as $name => $value){
+  		if ($name != 'module' && $name != 'action'){
+  			if ($params === ""){
+  				$params .= "?";
+  			}
+  			else {
+  				$params .= "&";
+  			}
+  			$params .= "$name=$value";
+  		}
+  	}
+  	$this->route = "@$rule$params";
   }
   
   public function executeShow(sfWebRequest $request)

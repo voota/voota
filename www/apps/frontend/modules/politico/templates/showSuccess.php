@@ -18,7 +18,9 @@ $(document).ready(function(){
 			'<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>',
 			<?php echo $politico->getId(); ?>,
 			'sf_review2'
-		);
+		);	
+
+	$("#help_dialog").dialog({autoOpen: false});
 });
 //-->
 </script>
@@ -35,6 +37,9 @@ $(document).ready(function(){
 
 
 
+<div id="help_dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
+	<p>El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.</p>
+</div>
 
 
 <!-- MAIN -->
@@ -47,7 +52,7 @@ $(document).ready(function(){
 <div title="ficha">
 <span class="nombrePolitico"><?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</span>
 <span class="nombrePeque">
-<?php echo $politico->getSumU() ?> <a href="#">?</a>
+<?php echo $politico->getSumU() ?> <a href="javascript:showScoreHelp();">?</a>
 </span> 
 <div class="limpiar"></div>
 <div title="foto" class="izq fotoPolitico">

@@ -25,7 +25,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
 	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
 	  'passwordBis'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
-      'passwordOld' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
+      'passwordOld' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
     ));
     $this->widgetSchema->setNameFormat('profile[%s]');
 	$this->widgetSchema->setLabels(array(
