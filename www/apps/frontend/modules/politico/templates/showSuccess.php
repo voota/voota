@@ -1,6 +1,7 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('VoFormat') ?>
 
 
 
@@ -77,7 +78,7 @@ $(document).ready(function(){
   <div><h5><?php echo __('Su biografía')?></h5></div>
 
 <div  title="biografia" class="margenPolitico">
-  <h6><?php echo $politico->getBio(); ?></h6>
+  <h6><?php echo formatBio( $politico->getBio() ) ?></h6>
 </div>
 </div>
 </div>

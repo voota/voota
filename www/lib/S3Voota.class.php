@@ -14,7 +14,7 @@ class S3Voota extends S3 {
 	public function __construct() {
 		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
 
-		parent::__construct($s3AccessKey, $s3SecretKey);
+		parent::__construct($s3AccessKey, $s3SecretKey, false);
 	}
 
 	public function createPoliticoFromFile( $file ) {
