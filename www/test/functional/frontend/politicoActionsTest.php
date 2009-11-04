@@ -51,7 +51,7 @@ $browser->
     
     end()
 ;
-$browser->test()->like($browser->getResponse()->getContent(), '/class="flechita">Congreso<\/a>/');
+$browser->test()->like($browser->getResponse()->getContent(), '/<a class="flechita" href="\/(.*)es\/politicos\/all\/Congreso">Congreso<\/a>/');
 
 $browser->
   get('es/politicos/PSOE/Congreso')->
@@ -68,7 +68,7 @@ $browser->
     end()
 ;
 $browser->test()->like($browser->getResponse()->getContent(), '/PSOE<label>/');
-$browser->test()->like($browser->getResponse()->getContent(), '/class="flechita">Congreso<\/a>/');
+$browser->test()->like($browser->getResponse()->getContent(), '/<a class="flechita" href="\/(.*)es\/politicos\/PSOE\/Congreso">Congreso<\/a>/');
 
 $browser->
   get('es/politico/1')->

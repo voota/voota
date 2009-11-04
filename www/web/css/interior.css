@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-/*#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(../image/bgMain.gif); background-repeat:repeat-x;}*/
+/*#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(/images/bgMain.gif); background-repeat:repeat-x;}*/
 #mainInterior { position: relative; left: 0.00em; right: 0.00em; }
 #contentLeft { float:left; width: 41.56em;}
 #contentRankingLeft { float:left; width:100%}
@@ -66,7 +66,7 @@
 .listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
 .confirmar {width:14.44em; margin-left:1.00em; }
 .cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:10em;}
-.cuadroConfirmarImagen { background-image:url(../image/clonk.gif); background-repeat:no-repeat; background-position:bottom left; text-align:center;}
+.cuadroConfirmarImagen { background-image:url(/images/clonk.gif); background-repeat:no-repeat; background-position:bottom left; text-align:center;}
 .ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
 .tachado {text-decoration: line-through;}
 .margenVota {margin-top:0.60em; width:18.94em; text-align:right;}
@@ -77,7 +77,7 @@
 .tituloColor {margin-top:2.00em;}
 .nombreColor {margin-left:0.60em; margin-top:1.00em;}
 .nombreColorPartido {margin-left:0.60em;}
-.flechita {background-image:url(../image/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
+.flechita {background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
 p { margin:0; padding-bottom:1.25em;}
 .textoNormal {font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232;}
 .textoMayor {font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold;}
