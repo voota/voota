@@ -1,3 +1,4 @@
+<?php use_helper('I18N') ?>
 <script type="text/javascript">
 <!--
 $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah").click(function(){
@@ -25,17 +26,18 @@ $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>buu").click(function(){
 	<div class="izq clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah" id="buttona">
 	  <input name="vooto" type="radio" id="up" value="up">
 	
-	  <img src="/images/icoUp.gif" alt="Icono Up" width="27" height="36" longdesc="Icono mano Up">
+		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
 	
 	  <br>
 	  <h6>
-		A favor, yeah
+		<?php echo __('A favor, yeah')?>
 	  </h6>
 	</div>
 	<div class="clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>buu">
 	 <input type="radio" name="vooto" id="down" value="down">
-	  <img src="/images/icoDown.gif" alt="Icono Down" width="27" height="36" longdesc="Icono mano Down"> <br>
+		<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
+		 <br>
 	
-	  <h6>En contra, buu</h6>
+	  <h6><?php echo __('En contra, buu')?></h6>
 	</div>
 </div>

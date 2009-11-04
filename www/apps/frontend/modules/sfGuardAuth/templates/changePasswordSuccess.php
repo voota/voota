@@ -3,13 +3,20 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
 
+<?php use_helper('VoNotice') ?>
+
+
+<!-- MAIN -->
 <div id="main">
 <!-- CONTENT -->
 <div id="content">
+
+<?php echo showNotices( $sf_user ) ?>
+
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
-<h2>Define tu nueva contraseña</h2>
+<h2><?php echo __('Define tu nueva contraseña')?></h2>
 
 <div class="limpiar"></div>
 <div class="formSing">
@@ -36,5 +43,4 @@
 </div>
 <div class="limpiar"></div>
 </div>
-<!-- FIN CONTENT -->
-</div>
+

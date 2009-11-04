@@ -65,7 +65,7 @@
 .listadoRanking {margin-top:1.50em; width:52.56em; margin-left:1.88em; }
 .listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
 .confirmar {width:14.44em; margin-left:1.00em; }
-.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:17.94em;}
+.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:10em;}
 .cuadroConfirmarImagen { background-image:url(../image/clonk.gif); background-repeat:no-repeat; background-position:bottom left; text-align:center;}
 .ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
 .tachado {text-decoration: line-through;}

@@ -9,7 +9,7 @@
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
-<h2>¿Y ahora qué?</h2>
+<h2><?php echo __('¿Y ahora qué?')?></h2>
 
 <div class="limpiar"></div>
 
@@ -17,13 +17,13 @@
 
 
 <h5>
-Te hemos enviado un email a <span class="tituloAzul"><?php echo $form->getValue('username')?></span>
+<?php echo __('Te hemos enviado un email a')?> <span class="tituloAzul"><?php echo $form->getValue('username')?></span>
 </h5>
 <h5>
-Confirma tus datos sobre el enlace que aparecerá en tu bandeja de entrada.
+<?php echo __('Confirma tus datos sobre el enlace que aparecerá en tu bandeja de entrada.')?>
 </h5>
 <h5>
-Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante...)
+<?php echo __('Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante...)')?>
 </h5>
 
 
@@ -32,13 +32,9 @@ Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail t
 </div>
 
 <div class="limpiar"></div>
-<!--usuario -->
 <div class="limpiar"></div>
-<!--contraseña -->
 </div>
 </div>
 </div>
 <div class="limpiar"></div>
-</div>
-<!-- FIN CONTENT -->
 </div>

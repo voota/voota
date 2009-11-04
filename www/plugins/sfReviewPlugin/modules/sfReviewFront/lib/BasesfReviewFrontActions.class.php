@@ -34,7 +34,7 @@ class BasesfReviewFrontActions extends sfActions
 	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
 	  	$review = SfReviewPeer::doSelect($criteria);
 	  	if ($review) {
-	  		$this->forward('sfReviewFront', 'form');
+	  		$this->forward('sfReviewFront', 'preview');
 	  	}
   	}
   }
@@ -50,11 +50,15 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewId = '';
   		
   	if (! $this->getUser()->isAuthenticated()) {
-  		$url = "/".$this->getUser()->getCulture()."/politico/" . $this->reviewEntityId;		
-  		$this->getUser()->setAttribute('url_back', $url);
-  		$this->getUser()->setAttribute('review_v', $this->reviewValue);
-  		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  		
+  		$culture = $request->getParameter("sf_culture");
+  		$type = SfReviewTypePeer::retrieveByPK($this->reviewType);
+  		if ($type){
+	  		$rule = "@". strtolower( $type->getName() ) ."_$culture";
+	  		$url = "$rule?id=" . $this->reviewEntityId;		
+	  		$this->getUser()->setAttribute('url_back', $url);
+	  		$this->getUser()->setAttribute('review_v', $this->reviewValue);
+	  		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
+  		}  		
   	
   		
   		echo "<script>document.location='".$this->getContext()->getController()->genUrl("@sf_guard_signin", true)."'</script>";die;
@@ -88,11 +92,21 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewEntityId = $request->getParameter("e");
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   	$this->reviewBox = $request->getParameter("b");
+    	$criteria = new Criteria();
+  	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+  	$review = SfReviewPeer::doSelect($criteria);
+  	if ($review) {
+  		$this->reviewValue = $review[0]->getValue();
+  		$this->reviewText = $review[0]->getText();
+  		$this->reviewId = $review[0]->getId();
+  	}
   }
   
   	
   public function executeSend(sfWebRequest $request)
-  {
+  {  	
   	if (! $this->getUser()->isAuthenticated()) {
   		echo "error";die;
   	}
@@ -119,7 +133,9 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setCookie( $request->getCookie('symfony') );
   	
   	if ($request->getParameter("i") != '') {
-  		SfReviewPeer::doUpdate($review);
+  		if ($review->isModified()) {
+  			SfReviewPeer::doUpdate($review);
+  		}
    	}
   	else {
   		$review->setCreatedAt( date(DATE_ATOM) );

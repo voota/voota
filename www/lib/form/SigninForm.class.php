@@ -10,15 +10,12 @@ class SigninForm extends sfVoForm
       'remember' => new sfWidgetFormInputCheckbox(array(), array('class' => 'inputSign')),
     ));
 	$this->widgetSchema->setLabels(array(
-	  'username'    => 'Email',
-	  'password'    => 'Password',
-	  'remember'    => 'Recordar',
-	));
-    $this->setValidators(array(
-      'username'   => new sfValidatorAnd(array(
-    	new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),  
-        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
-       )),
+  	  'username'    => 'Email',
+	  'password'    => sfContext::getInstance()->getI18N()->__('Password', array(), 'notices'),
+	  'remember'    => sfContext::getInstance()->getI18N()->__('Recordar', array(), 'notices'),
+	)); 
+        $this->setValidators(array(
+      'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
       'password' => new sfValidatorPassword(array('required' => true), sfVoForm::getStringMessages()),
       'remember' => new sfValidatorBoolean(),
     ));

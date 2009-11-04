@@ -5,17 +5,14 @@
 <?php include_title() ?>
     <?php  include_http_metas() ?>
     <?php  include_metas() ?>
-<?php echo javascript_include_tag('voota') ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <META NAME="Title" CONTENT="Voota">
 <META NAME="Author" CONTENT="Voota">
-<META NAME="Subject" CONTENT="Tú tienes la última palabra">
-<META NAME="Description" CONTENT="Coomparte opiniones sobre los políticos de España">
-<META NAME="Keywords" CONTENT="Política, Políticos, Partidos, Congreso, Senado, Parlamento de Cataluña">
-<META NAME="Generator" CONTENT="NOTEPAD">
-<META NAME="Language" CONTENT="Spanish">
-<META NAME="Revisit" CONTENT="15 days">
+<META NAME="Subject" CONTENT="<?php echo __('Tú tienes la última palabra')?>">
+<META NAME="Description" CONTENT="<?php echo __('Coomparte opiniones sobre los políticos de España')?>">
+<META NAME="Keywords" CONTENT="<?php echo __('Política, Políticos, Partidos, Congreso, Senado, Parlamento de Cataluña')?>">
+<META NAME="Language" CONTENT="<?php echo __('Spanish')?>">
 <META NAME="Distribution" CONTENT="Global">
 <META NAME="Robots" CONTENT="All">
     <link rel="shortcut icon" href="/favicon.ico" >
@@ -30,7 +27,7 @@
 <div class="izq">
 
 <a href="<?php echo url_for('@homepage') ?>">
-<?php echo image_tag('logoVoota.gif', 'alt=Logo Voota, size=141x55, longdesc=Logo Voota') ?>
+<?php echo image_tag('logoVoota.gif', 'alt=Voota, size=141x55, longdesc=Voota') ?>
 </a>
 <h6><?php echo __('Tú tienes la última palabra')?></h6>
 </div>
@@ -80,7 +77,8 @@
 
 <!-- FOOTER -->
 <div id="footer">
-<div class="cC"><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Icono Creative Commons" width="34" height="34" longdesc="Enlace Creative Commons"></a> Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida<a href="/"><img src="/images/icoVoota.png" alt="Icono Voota" width="34" height="34" longdesc="Enlace Voota"></a></div>
+<div class="cC"><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a>
+<?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?><a href="/"><img src="/images/icoVoota.png" alt="Voota" width="34" height="34" longdesc="Voota"></a></div>
 <!-- ENLACES PIE -->
 <!--  div class="enlacesPie">
 <h6>
@@ -95,9 +93,9 @@
 <div class="limpiar"></div>
 <div class="enlacesPie">
 <h6>
-<a href="blog.html" class="enlacesPie"><?php echo link_to('Quiénes somos', '@about') ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to('Aviso legal', 'http://blog.voota.es/es/aviso-legal') ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to('blog', 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
+<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Quiénes somos'), '@about') ?></a>
+<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal')) ?></a>
+<a href="blog.html" class="enlacesPie"><?php echo link_to(__('blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
 </h6>
 </div>
 <div class="limpiar"></div>

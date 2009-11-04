@@ -14,11 +14,11 @@ class ProfileEditForm extends sfGuardUserAdminForm
     						)),
       'vanity'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
-			   'label'     => 'Imagen Principal',
+			   'label'     => sfContext::getInstance()->getI18N()->__('Imagen Principal', array(), 'notices'),
    			   'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen(),
 			   'is_image'  => true,
 			   'edit_mode' => !$this->isNew(),
-			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
+			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label>%delete% '. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</div>',
 				)),
       'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
@@ -29,13 +29,14 @@ class ProfileEditForm extends sfGuardUserAdminForm
     ));
     $this->widgetSchema->setNameFormat('profile[%s]');
 	$this->widgetSchema->setLabels(array(
-	  'fecha_nacimiento'    => 'Fecha de nacimiento',
+	  'fecha_nacimiento'    => sfContext::getInstance()->getI18N()->__('Fecha de nacimiento', array(), 'notices'),
 	  'vanity'    => 'Url: http://voota.es/',
   	  'username'    => 'Email',
-	  'apellidos'    => 'Apellidos',
-	  'passwordNew'    => 'Password',
-	  'passwordBis'    => 'Password (otra vez)',
-	  'passwordOld'    => 'Password actual',
+	  'nombre'    => sfContext::getInstance()->getI18N()->__('Nombre', array(), 'notices'),
+	  'apellidos'    => sfContext::getInstance()->getI18N()->__('Apellidos', array(), 'notices'),
+	  'passwordNew'    => sfContext::getInstance()->getI18N()->__('Password', array(), 'notices'),
+	  'passwordBis'    => sfContext::getInstance()->getI18N()->__('Password (otra vez)', array(), 'notices'),
+	  'passwordOld'    => sfContext::getInstance()->getI18N()->__('Password actual', array(), 'notices'),
 	)); 
     $this->setValidators(array(
       'fecha_nacimiento'   => new sfValidatorDate(array('required' => false), sfVoForm::getDateMessages()),   
@@ -47,11 +48,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 				   'validated_file_class' => 'sfResizedFile',
 	  )),
 	  'imagen_delete' => new sfValidatorString(array('required' => false)), 
-      'username'   => new sfValidatorAnd(array(
-    	new sfValidatorString(array('required' => true)),  
-        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
-        //new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username'), array('invalid' => 'name in use')),
-       )),
+      'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
       'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false)),    
       'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),

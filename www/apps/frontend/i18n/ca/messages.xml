@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-08-31T21:57:42Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-11-04T10:15:44Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -138,7 +138,257 @@
       </trans-unit>
       <trans-unit id="34">
         <source>"%value%" no es una dirección de email válida.</source>
-        <target>"%value%" no es una dirección de email válida.</target>
+        <target/>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>Coomparte opiniones sobre los políticos de España</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Política, Políticos, Partidos, Congreso, Senado, Parlamento de Cataluña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Spanish</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>Quiénes somos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>Aviso legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>http://blog.voota.es/es/aviso-legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>¿Quienes somos? Algunos datos sobre Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>Somos una asociación sin ánimo de lucro. Nuestro objetivo es fomentar la participación ciudadana en la política del momento. Voota es la web donde pretendemos publicar las opiniones de tood el mundo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Equipo fundador de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>Otra gente muy implicada en el proyecto</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>Y, finalmente, nuestros datos sociales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Asociación Voota,</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>CIF: G85756625,</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Domicilio soical en C/ Ruiz de Alarcón 14 1ºD</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>28014 Madrid</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>Más sobre Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>Más sobre nosotros en ...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Algunos Hitos de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>Ayuda: Valoración de un político</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Voota sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Su biografía</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Enlaces externos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>años</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Ranking de políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Nombre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>Votos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>Total</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>¿Olvidaste tu contraseña?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Danos tu email y te la enviamos ahora mismo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Enviar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>&lt;p&gt;¡Hola %1%!&lt;/p&gt;
+&lt;p&gt; Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace&lt;/p&gt;
+&lt;p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>&lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+&lt;p&gt;¡Y nada más! ¡Bienvenido a Voota!&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Un saludo&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Hola %1%, estas son tus preferencias</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Guardar cambios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Muy bien, contraseña cambiada</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>¿Que hacemos ahora?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Tú dirás.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>¿Nos vamos a la</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Bienvenido a Voota! Hoy es un gran día :-)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>&lt;p&gt;¡Hola %1%!&lt;/p&gt;
+&lt;p&gt; Alguien, seguramente tú, nos ha solicitado que te enviemos la contraseña que has olvidado. En el siguiente enlace podrás configurar dicha contraseña a tu gusto:&lt;/p&gt;
+&lt;p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>&lt;/p&gt;
+
+&lt;p&gt;Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+&lt;p&gt;Si no has sido tú quien ha solicitado el envío de tu contraseña, te pedimos disculpas. Nada ni nadie va acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Un saludo&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>¿Y ahora qué?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>Te hemos enviado un email a</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>Confirma tus datos sobre el enlace que aparecerá en tu bandeja de entrada.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante...)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Te hemos enviado un e-mail a</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Confirma tus datos pinchando sobre el enlace que aparecerá en tu bandeja de entrada.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante ...)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Define tu nueva contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>¿Nuevo en Voota? Empieza aquí</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Ver la contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>Registrate en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>¿Ya estás registrado? Adelante :)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Olvidaste tu contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Hacer cambios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Algo que comentar? Es el mejor momento :-)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>Eliminar</source>
+        <target/>
       </trans-unit>
     </body>
   </file>

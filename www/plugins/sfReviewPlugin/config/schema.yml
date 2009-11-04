@@ -38,6 +38,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     name: { type: VARCHAR, size: '45', required: false }
     published: { type: TINYINT, size: '4', required: true, defaultValue: '0' }
+    offensive: { type: TINYINT, size: '4', required: true, defaultValue: '0' }
   sf_review_type:
     _attributes: { phpName: SfReviewType }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

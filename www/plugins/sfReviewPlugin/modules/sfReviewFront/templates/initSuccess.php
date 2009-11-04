@@ -1,20 +1,20 @@
 <script type="text/javascript">
 <!--
-$(".yeah").click(function(){
+$(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah").click(function(){
 	loadReviewBox(
+			'<?php echo url_for('@sf_review_form') ?>',
 			1, 
 			<?php echo $reviewEntityId; ?>, 
 			1, 
-			'form', 
 			'<?php echo $reviewBox?$reviewBox:'sf_review' ?>'
 	)
 });
-$(".buu").click(function(){
+$(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>buu").click(function(){
 	loadReviewBox(
+			'<?php echo url_for('@sf_review_form') ?>',
 			1, 
 			<?php echo $reviewEntityId; ?>, 
 			-1, 
-			'form', 
 			'<?php echo $reviewBox?$reviewBox:'sf_review' ?>'
 	)
 });
@@ -22,6 +22,21 @@ $(".buu").click(function(){
 </script>
 	
 <div id="sf_review">
-	<div class="yeah">yeah</div>
-	<div class="buu">buu</div>
+	<div class="izq clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah" id="buttona">
+	  <input name="vooto" type="radio" id="up" value="up">
+	
+		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
+	
+	  <br>
+	  <h6>
+		<?php echo __('A favor, yeah')?>
+	  </h6>
+	</div>
+	<div class="clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>buu">
+	 <input type="radio" name="vooto" id="down" value="down">
+		<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
+		 <br>
+	
+	  <h6><?php echo __('En contra, buu')?></h6>
+	</div>
 </div>

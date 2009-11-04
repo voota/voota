@@ -1,19 +1,20 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('VoNotice') ?>
 
 
 <!-- MAIN -->
 <div id="main">
 <!-- CONTENT -->
 <div id="content">
+
+<?php echo showNotices( $sf_user ) ?>
+
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
-<h2>Hola <?php echo $sf_user->getProfile()->getNombre() ?>, estas son tus preferencias</h2>
-<?php if ($sf_user->hasFlash('notice')): ?>
-<h4><?php echo $sf_user->getFlash('notice') ?></h4>
-<?php endif; ?>
+<h2><?php echo __('Hola %1%, estas son tus preferencias', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
 
 <div class="limpiar"></div>
 <div class="formSing">
@@ -25,7 +26,7 @@
   <tr>
     <td>&nbsp;</td>
     <td class="alingBoton">
-    <?php echo submit_tag('Guardar cambios', array('class'  => 'button')) ?>
+    <?php echo submit_tag(__('Guardar cambios'), array('class'  => 'button')) ?>
     
     </td>
     </tr>
@@ -39,5 +40,4 @@
 <div class="limpiar"></div>
 </div>
 <!-- FIN CONTENT -->
-</div>
 <!--FIN MAIN -->

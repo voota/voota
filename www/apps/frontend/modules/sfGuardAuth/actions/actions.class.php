@@ -16,8 +16,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		$this->sendReminder( $user );
       		return "SentSuccess";
       	}
+      	else {
+      		return "SentFail";
+      	}
       }
-      return "SentFail";
+      else {
+      		$this->getUser()->setFlash('notice_type', 'error');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
+      }
     }
     
   }
@@ -41,6 +47,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   			sfGuardUserPeer::doUpdate( $user );
  	  	}      
       	return "ChangedSuccess";
+      }
+      else {
+      		$this->getUser()->setFlash('notice_type', 'error');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       }
     }
   }
@@ -100,6 +110,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      		return "Registered";
 		  	}
 		  }
+		  else {
+      		$this->getUser()->setFlash('notice_type', 'error');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
+		  }
       	}
       	// Signin
       	else {
@@ -109,6 +123,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      if ($r->isValid()) {
   			parent::executeSignin($request);
 	      }
+	      else {
+      		$this->getUser()->setFlash('notice_type', 'error');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
+      	  }
 	      $this->signinform = $r; 
       	}
     }
@@ -177,7 +195,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       				$this->getUser()->setPassword($profile['passwordNew']);
       			}
       			else {
-      				$this->getUser()->setFlash('notice', 'Para cambiar la contraseña tienes que escribir la que tienes ahora.');
+      				$this->getUser()->setFlash('notice_type', 'error');
+      				$this->getUser()->setFlash('notice', sfVoForm::getMissingPasswordMessage());
       				return;
       			}
       		}
@@ -207,8 +226,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
 	      		}
       		}      		
-      		$this->getUser()->setFlash('notice', 'Se han aplicado los cambios a tu perfil');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormSavesMessage());
       		$this->profileEditForm->getObject()->getProfile()->save();
+      		
+	    }
+	    else {
+      		$this->getUser()->setFlash('notice_type', 'error');
+      		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       		
 	    }
     }

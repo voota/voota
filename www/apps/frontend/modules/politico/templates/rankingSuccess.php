@@ -14,7 +14,7 @@ $(document).ready(function(){
 <!-- CONTENT LEFT-->
 <div id="contentRankingLeft">
 <div title="ficha">
-<span class="nombrePolitico">Ranking de políticos
+<span class="nombrePolitico"><?php echo __('Ranking de políticos')?>
 <?php echo $institucion=='0'?'':"en el $institucion" ?>
 
 <?php echo ($institucion!='0' && $partido!='all')?'-':'' ?>
@@ -56,7 +56,6 @@ $(document).ready(function(){
  	, array('class' => $aInstitucion->getNombre()==$institucion?'flechita':'')
  ) ?>
  
- <!-- a href="#" onclick="changeInstitucion('<?php echo $aInstitucion->getNombre() ?>');" <?php echo $aInstitucion->getNombre()==$institucion?'class="flechita"':'' ?>><?php echo $aInstitucion->getNombre() ?></a -->
 <?php endforeach ?>
 
 </h6>
@@ -66,7 +65,7 @@ $(document).ready(function(){
 <div class="listadoRanking">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr class="cabeceraRanking">
-    <td class="nombreRanking"><h6>Nombre</h6></td>
+    <td class="nombreRanking"><h6><?php echo __('Nombre')?></h6></td>
     <td class="votosUp"><h6>
     	<?php echo link_to(__('Votos'), "$route&o=".($order=='pd'?'pa':'pd'));?>
     	<?php echo image_tag('icoMiniUp.png', 'pa') ?>
@@ -87,7 +86,8 @@ $(document).ready(function(){
 <?php foreach($politicosPager->getResults() as $politico): ?>
   <tr class="listaRanking">
     <td class="nombreRanking"><h6>
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png')
+    	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . "(" . $politico->getPartido() .")"
@@ -108,12 +108,12 @@ $(document).ready(function(){
   <tr>
     <td>&nbsp;</td>
     <td class="votosDown"><h6>
-    Total 
+    <?php echo __('Total')?>
     	<?php echo image_tag('icoMiniUp.png', 'up') ?>
     	<?php echo $totalUp?>
     </h6></td>
     <td class="votosDown"><h6>
-    	Total 
+    	<?php echo __('Total')?>
     	<?php echo image_tag('icoMiniDown.png', 'down') ?>
     	<?php echo $totalDown?>
     </h6></td>

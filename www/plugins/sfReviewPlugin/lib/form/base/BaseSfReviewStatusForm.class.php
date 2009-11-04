@@ -16,12 +16,14 @@ class BaseSfReviewStatusForm extends BaseFormPropel
       'id'        => new sfWidgetFormInputHidden(),
       'name'      => new sfWidgetFormInput(),
       'published' => new sfWidgetFormInput(),
+      'offensive' => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'id'        => new sfValidatorPropelChoice(array('model' => 'SfReviewStatus', 'column' => 'id', 'required' => false)),
       'name'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'published' => new sfValidatorInteger(),
+      'offensive' => new sfValidatorInteger(),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_status[%s]');

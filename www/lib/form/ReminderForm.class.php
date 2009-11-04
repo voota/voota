@@ -8,13 +8,12 @@ class ReminderForm extends sfForm
       'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
     ));
     $this->widgetSchema->setNameFormat('reminder[%s]');
- 
+	$this->widgetSchema->setLabels(array(
+  	  'username'    => 'Email',
+	)); 
+        
     $this->setValidators(array(
-      'username'   => new sfValidatorAnd(array(
-    	new sfValidatorString(array('required' => true)),  
-        new sfValidatorEmail(array(), sfVoForm::getEmailMessages()),  
-        //new sfValidatorPropelUnique(array('model' => 'sfGuardUser', 'column' => 'username'), array('invalid' => 'name in use')),
-       )),
+      'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
     ));
     
   }

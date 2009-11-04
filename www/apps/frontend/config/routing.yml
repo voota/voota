@@ -7,6 +7,11 @@ homepage:
   url:   /:sf_culture
   param: { module: home, action: index }
   requirements: { sf_culture: (?:es|ca) }
+  
+bad_homepage_redir:
+  url:   /:sf_culture/
+  param: { module: home, action: redir }
+  requirements: { sf_culture: (?:es|ca) }
 
 politico_es:
   url: /:sf_culture/politico/:id

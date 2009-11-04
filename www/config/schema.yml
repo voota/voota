@@ -78,10 +78,10 @@ propel:
     _uniques: { uniq_abreviatura: [abreviatura] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
-    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
-    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
-    _indexes: { fk_partido: [partido_id], fk_lista: [lista_id] }
+    _indexes: { fk_partido: [partido_id], fk_lista: [lista_id], fk_pl_partido: [partido_id], fk_pl_lista: [lista_id] }
   politico:
     _attributes: { phpName: Politico }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
@@ -99,13 +99,13 @@ propel:
     sf_guard_user_profile_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user_profile, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_txt: { type: VARCHAR, size: '150', required: false }
     bio: { type: CLOB, required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
-    partido_txt: { type: VARCHAR, size: '150', required: false }
     _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }

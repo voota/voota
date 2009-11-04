@@ -11,3 +11,5 @@ ul.error_list li {
 #help_dialog {
 	display:none;
 }
+.notice {color:green;}
+.error {color:red;}

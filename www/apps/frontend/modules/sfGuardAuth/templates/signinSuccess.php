@@ -2,15 +2,21 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
+<?php use_helper('VoNotice') ?>
 
 
 <div id="main">
 <!-- CONTENT -->
 <div id="content">
+
+
+<?php echo showNotices( $sf_user ) ?>
+
+
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing">
 <div title="ficha">
-<span class="tituloAzul">¿Nuevo en Voota? Empieza aquí</span>
+<span class="tituloAzul"><?php echo __('¿Nuevo en Voota? Empieza aquí')?></span>
 <div class="limpiar"></div>
 <!--tu email -->
 <div class="formSing">
@@ -23,14 +29,14 @@
 
   <tr>
     <td>&nbsp;</td>
-    <td><h6><a href="javascript:showHidePass('registration_password')" >Ver la contraseña</a></h6></td>
+    <td><h6><a href="javascript:showHidePass('registration_password')" ><?php echo __('Ver la contraseña')?></a></h6></td>
     <td>&nbsp;</td>
 
   </tr>
   <tr>
     <td class="leftSing">&nbsp;</td>
     <td class="alingBoton">
-      <?php echo submit_tag('Registrate en Voota', array('class'   => 'button',)) ?>
+      <?php echo submit_tag(__('Registrate en Voota'), array('class'   => 'button',)) ?>
       </td>
     <td>&nbsp;</td>
   </tr>
@@ -48,7 +54,7 @@
 <!-- FIN CONTENT LEFT -->
 <!-- CONTENT RIGHT -->
 <div id="contentRightSing">
-  <div title="ficha"> <span class="tituloAzul">¿Ya estás registrado? Adelante :)</span>
+  <div title="ficha"> <span class="tituloAzul"><?php echo __('¿Ya estás registrado? Adelante :)')?></span>
   
     <div class="formSing">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
@@ -61,7 +67,7 @@
     <td><h6>
 
  <?php echo link_to(
- 	"Olvidaste tu contraseña"
+ 	__('Olvidaste tu contraseña')
  	, 'sfGuardAuth/reminder'
  ) ?>
       
@@ -90,8 +96,6 @@
 
   <!-- fin login -->
 </div>
-</div>
-<!-- FIN CONTENT -->
 </div>
 
 

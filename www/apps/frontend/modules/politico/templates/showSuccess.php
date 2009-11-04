@@ -38,7 +38,7 @@ $(document).ready(function(){
 
 
 <div id="help_dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
-	<p>El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.</p>
+	<p><?php echo __('El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.')?></p>
 </div>
 
 
@@ -55,12 +55,11 @@ $(document).ready(function(){
 <?php echo $politico->getSumU() ?> <a href="javascript:showScoreHelp();">?</a>
 </span> 
 <div class="limpiar"></div>
-<div title="foto" class="izq fotoPolitico">
-<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+<div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="izq fotoPolitico">
+<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
 
-  <div class="votaPolitico">
-  <h5>Voota sobre <?php echo $politico->getApellidos(); ?></h5>
-
+<div class="votaPolitico">
+  <h5><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h5>
 </div>
 
 
@@ -75,7 +74,7 @@ $(document).ready(function(){
 <div title="info" class="izq textoPolitico">
 <h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> - <?php echo $politico->getPartido(); ?></h6>
 
-  <div><h5>Su biografía</h5></div>
+  <div><h5><?php echo __('Su biografía')?></h5></div>
 
 <div  title="biografia" class="margenPolitico">
   <h6><?php echo $politico->getBio(); ?></h6>
@@ -87,7 +86,7 @@ $(document).ready(function(){
 
 <div class="izq positivoNegativo">
 <?php if($positives->getNbResults() > 0): ?>
-	<div class="izq"><h5>Positivos <?php echo $positivePerc; ?>%</h5></div>
+	<div class="izq"><h5><?php echo __('Positivos')?> <?php echo $positivePerc; ?>%</h5></div>
 	<div class="izq linePolitico"></div>
 	<div class="limpiar"></div>
 	
@@ -104,7 +103,7 @@ $(document).ready(function(){
 
 <div class="der positivoNegativo">
 <?php if($negatives->getNbResults() > 0): ?>
-	<div class="izq"><h5>Negativos <?php echo $negativePerc; ?>%</h5></div>
+	<div class="izq"><h5><?php echo __('Negativos')?> <?php echo $negativePerc; ?>%</h5></div>
 	<div class="izq linePolitico"></div>
 	<div class="limpiar"></div>
 	
@@ -126,7 +125,7 @@ $(document).ready(function(){
 <div class="tituloColor">
 
 <?php if(count($politico->getEnlaces()) > 0): ?>
-  <h5>Enlaces externos</h5>
+  <h5><?php echo __('Enlaces externos')?></h5>
   <div class="margenPolitico">
 	<?php foreach($politico->getEnlaces() as $enlace): ?>
 	  <h6><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></h6>
@@ -144,16 +143,19 @@ $(document).ready(function(){
 </div>
 <!--  FIN CONTENT RIGHT -->
 <div class="limpiar"></div>
+
+<?php /* ?>
 <div class="votaSobre"><h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5></div>
 
 
 <div id="sf_review2"></div>
-
+<?php */ ?>
 
 
 
 
 <!-- FIN CONTENT -->
+</div>
 </div>
 <!--FIN MAIN -->
 <div class="limpiar"></div>

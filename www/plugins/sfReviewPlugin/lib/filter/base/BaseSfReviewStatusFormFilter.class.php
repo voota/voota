@@ -17,11 +17,13 @@ class BaseSfReviewStatusFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'name'      => new sfWidgetFormFilterInput(),
       'published' => new sfWidgetFormFilterInput(),
+      'offensive' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'name'      => new sfValidatorPass(array('required' => false)),
       'published' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'offensive' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_status_filters[%s]');
@@ -42,6 +44,7 @@ class BaseSfReviewStatusFormFilter extends BaseFormFilterPropel
       'id'        => 'Number',
       'name'      => 'Text',
       'published' => 'Number',
+      'offensive' => 'Number',
     );
   }
 }

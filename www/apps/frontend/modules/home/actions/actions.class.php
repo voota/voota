@@ -29,6 +29,10 @@ class homeActions extends sfVoActions{
   	
   }
   
+  public function executeRedir(sfWebRequest $request) {
+  	$this->redirect( "@homepage" );
+  }
+  
   public function executeIndex(sfWebRequest $request) {
   	global $uid;
   	global $first;

@@ -77,8 +77,8 @@
   	<copy file="${project.dir}/metadata/pootle/voota/ca/messages.xlf"
   		tofile="${project.dir}/www/apps/frontend/i18n/ca/messages.xml"
   		overwrite="true" />
-  	<copy file="${project.dir}/metadata/pootle/voota/en/messages.xlf"
-  		tofile="${project.dir}/www/apps/frontend/i18n/en/messages.xml"
+  	<copy file="${project.dir}/metadata/pootle/voota/ca/notices.xlf"
+  		tofile="${project.dir}/www/apps/frontend/i18n/ca/notices.xml"
   		overwrite="true" />
   </target>
    <target name="switchsvn">

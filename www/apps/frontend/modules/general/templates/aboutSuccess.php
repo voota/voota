@@ -1,14 +1,15 @@
+<?php use_helper('I18N') ?>
 <div id="main">
 <!-- CONTENT -->
 <div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentLeftNormas">
-<h2>¿Quienes somos? Algunos datos sobre Voota</h2>
+<h2><?php echo __('¿Quienes somos? Algunos datos sobre Voota')?></h2>
 
 <div class="limpiar"></div>
-<div class="formSings"><h5>Somos una asociación sin ánimo de lucro. Nuestro objetivo es fomentar la participación ciudadana en la política del momento. Voota es la web donde pretendemos publicar las opiniones de tood el mundo</h5></div>
+<div class="formSings"><h5><?php echo __('Somos una asociación sin ánimo de lucro. Nuestro objetivo es fomentar la participación ciudadana en la política del momento. Voota es la web donde pretendemos publicar las opiniones de tood el mundo')?></h5></div>
 <div class="formSings">
-  <h5>Equipo fundador de Voota</h5>
+  <h5><?php echo __('Equipo fundador de Voota')?></h5>
 </div>
 
 <?php include_partial('socioabout', array('socio' => $users[2])) ?>
@@ -17,7 +18,7 @@
 <?php include_partial('socioabout', array('socio' => $users[6])) ?>
 
 <div class="formSings">
-  <h5>Otra gente muy implicada en el proyecto</h5>
+  <h5><?php echo __('Otra gente muy implicada en el proyecto')?></h5>
 </div>
 <div class="limpiar"></div>
 
@@ -25,14 +26,14 @@
 <?php include_partial('socioabout', array('socio' => $users[7])) ?>
 
 <div class="formSings">
-  <h5>Y, finalmente, nuestros datos sociales</h5>
+  <h5><?php echo __('Y, finalmente, nuestros datos sociales')?></h5>
 </div>
 <div class="limpiar"></div>
 <div class="formSings">
-    <h6>Asociación Voota,<br>
-    CIF: G85756625,<br>
-    Domicilio soical en C/ Ruiz de Alarcón 14 1ºD<br>
-    28014 Madrid</h6>
+    <h6><?php echo __('Asociación Voota,')?><br>
+    <?php echo __('CIF: G85756625,')?><br>
+    <?php echo __('Domicilio soical en C/ Ruiz de Alarcón 14 1ºD')?><br>
+    <?php echo __('28014 Madrid')?></h6>
 </div>
 <div class="limpiar"></div>
 <div class="formSings"></div>
@@ -41,7 +42,7 @@
 <!-- CONTENT RIGHT -->
 <div id="contentRight2">
 <div class="conColor">
-  <h5>Más sobre Voota</h5>
+  <h5><?php echo __('Más sobre Voota')?></h5>
 </div>
 <div class="formSings">
   <h6><a href="estaturos.html">Estatutos</a><br>
@@ -52,7 +53,7 @@
     <a href="contactanos.html">Contáctanos!</a></h6>
 </div>
 <div class="conColor">
-  <h5>Más sobre nosotros en ...</h5>
+  <h5><?php echo __('Más sobre nosotros en ...')?></h5>
 </div>
 <div class="formSings">
   <h6><a href="estaturos.html">Wikipedia</a><br>
@@ -62,7 +63,7 @@
     <a href="politicaModeracion.html">Youtube</a></h6>
 </div>
 <div class="conColor">
-  <h5>Algunos Hitos de Voota</h5>
+  <h5><?php echo __('Algunos Hitos de Voota')?></h5>
 </div>
 <div class="formSings">
   <h5>Febrero 2009</h5>
