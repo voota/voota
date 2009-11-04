@@ -31,7 +31,7 @@
 
 	<div title="formulario">
 		<div>
-		  <textarea name="review_text" class="textarea"><?php echo $reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)') ?></textarea>
+		  <textarea id="sf_review_text" name="review_text" class="textarea"><?php echo $reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)') ?></textarea>
 		  <?php if ($reviewId != ''): ?>
 			<h6><?php echo __('Eliminar')?></h6>
 		  <?php endif ?>

@@ -51,3 +51,5 @@ function showScoreHelp(){
 	$("#help_dialog").dialog('open');
 }
 
+
+

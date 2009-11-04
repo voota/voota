@@ -6,7 +6,12 @@ function review_text($review, $options = array()){
 			return $review->getText();
 		}
 		else {
-			return "<span style='text-decoration: line-through;'>". strrev( $review->getText() ) ."<span>";
+			return "<span style='text-decoration: line-through;'>". utf8_strrev( $review->getText() ) ."<span>";
 		}
 	}
+}
+
+function utf8_strrev($str){
+    preg_match_all('/./us', $str, $ar);
+    return join('',array_reverse($ar[0]));
 }

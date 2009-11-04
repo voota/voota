@@ -18,6 +18,7 @@
  */
 class BasesfReviewFrontActions extends sfActions
 {
+	const MAX_LENGTH = 250;
   	
   public function executeInit(sfWebRequest $request)
   {
@@ -48,6 +49,7 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewBox = $request->getParameter("b");
   	$this->reviewText = '';
   	$this->reviewId = '';
+  	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
   		
   	if (! $this->getUser()->isAuthenticated()) {
   		$culture = $request->getParameter("sf_culture");
@@ -124,7 +126,7 @@ class BasesfReviewFrontActions extends sfActions
   		$review = new SfReview();
   	}
   	$review->setValue( $request->getParameter("v") );
-  	$review->setText( strip_tags( $request->getParameter("review_text") ) );
+  	$review->setText( strip_tags( substr($request->getParameter("review_text"), 0, BasesfReviewFrontActions::MAX_LENGTH) ) );
   	$review->setSfReviewTypeId( $request->getParameter("t") );
   	$review->setEntityId( $request->getParameter("e") );
   	$review->setSfReviewStatusId( 1 );

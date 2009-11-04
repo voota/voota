@@ -30,7 +30,9 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('e'));
 	  	$this->politico->setSumu( $this->politico->getPositives() );
 	  	$this->politico->setSumd( $this->politico->getNegatives() );
-	  	PoliticoPeer::doUpdate( $this->politico );
+	  	if ($this->politico->isModified()){
+	  		PoliticoPeer::doUpdate( $this->politico );
+	  	}
   	}  	
   }
 }
