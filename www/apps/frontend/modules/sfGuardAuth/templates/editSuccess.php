@@ -20,7 +20,87 @@
 <div class="formSing">
 <?php echo form_tag('@usuario_edit', 'multipart=true') ?>
 <table>
-    <?php echo $profileEditForm ?>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Fecha de nacimiento') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['fecha_nacimiento']->render() ?>
+    </td>    
+  </tr>
+  
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      Url: http://voota.es/
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['vanity']->render() ?>
+    </td>    
+  </tr>
+  
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Imagen Principal') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['imagen']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      Email
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['username']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Nombre') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Apellidos') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['apellidos']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['passwordNew']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password (otra vez)') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['passwordBis']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password actual)') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['passwordOld']->render() ?>
+    </td>    
+  </tr>
+  
 
 
   <tr>
