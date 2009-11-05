@@ -11,17 +11,19 @@ html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Time
 .enlacesPie{margin-right:1.25em; margin-left:1.25em;}
 .limpiar { clear:both; }
 .input { border: 0.06em solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; }
-.inputSign { border: 0.06em solid #9398ae; background: #ffffff; width:18.19em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.inputSignPeq { border: 0.06em solid #9398ae; background: #ffffff; width:2.90em; height:1.25em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.inputSign { border: 0.06em solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.inputSignPeq { border: 0.06em solid #9398ae; background: #ffffff; width:1.90em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.inputSignPeq2 { border: 0.06em solid #9398ae; background: #ffffff; width:2.50em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .button { width:7.00em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
 .button2 { width:15.69em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.textarea { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:0.06em solid #8f9ba7; }
+.button3 { width:10.69em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+.textarea { width:25.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:0.06em solid #8f9ba7; }
 .der{ float:right;}
 .izq { float:left;}
 .login {margin-top:0.60em; float:right;}
 h1 { font-size: 2.5em; font-weight:100; margin:0.00em; color:#2b56ff;}
 h2 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232}
-h3 { font-size: 2.5em; }
+h3 { }
 h4 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232 }
 h5 { font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold; }
 h6 { font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232; }
@@ -29,6 +31,8 @@ img { border:none; vertical-align: middle;}
 .cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
 .cC a {color: white;}
 table { padding:0; margin:0;}
+.tdperfil { padding-bottom:1.10em; padding-top:1.10em;}
+
 
 
 
