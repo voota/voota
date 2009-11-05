@@ -30,7 +30,7 @@ class SfReviewManager
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
   	$criteria->add(SfReviewPeer::VALUE, $value);
-  	$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
+  	//$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
 	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
   	
   	/*
@@ -50,7 +50,7 @@ class SfReviewManager
 			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
 			"WHERE r.entity_id = ? ".
 			"AND r.sf_review_type_id = ? ".
-			"AND s.published = 1 ".
+			//"AND s.published = 1 ".
 			"AND r.value = ? ";
 	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	

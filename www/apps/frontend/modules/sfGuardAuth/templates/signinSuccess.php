@@ -24,7 +24,42 @@
 	<?php echo input_hidden_tag('op', 'r') ?>
 
 <table>
-    <?php echo $registrationform ?>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Email') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $registrationform['username']->renderError() ?>
+      <?php echo $registrationform['username']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Nombre') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $registrationform['nombre']->renderError() ?>
+      <?php echo $registrationform['nombre']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Apellidos') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $registrationform['apellidos']->renderError() ?>
+      <?php echo $registrationform['apellidos']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $registrationform['password']->renderError() ?>
+      <?php echo $registrationform['password']->render() ?>
+    </td>    
+  </tr>
 
 
   <tr>
@@ -59,7 +94,33 @@
     <div class="formSing">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
 <table>
-    <?php echo $signinform ?>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Email') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $signinform['username']->renderError() ?>
+      <?php echo $signinform['username']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $signinform['password']->renderError() ?>
+      <?php echo $signinform['password']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Recordar') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $signinform['remember']->renderError() ?>
+      <?php echo $signinform['remember']->render() ?>
+    </td>    
+  </tr>
 
 
   <tr>

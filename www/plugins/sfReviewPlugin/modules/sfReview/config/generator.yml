@@ -11,12 +11,13 @@ generator:
     with_propel_route:     1
 
     config:
-      actions: ~
+      actions:
+        _delete: {credentials: [superadmin]}
       fields:  ~
       list:
         sort: [created_at, desc]
         title:   Last reviews
-        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value, created_at]
+        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value, created_at, modified_at]
       filter:  ~
       form:
         display: 

@@ -30,19 +30,19 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
  
   public function executeChangePassword($request)
   {
-  	$codigo = $request->getParameter("codigo");  	
+  	$this->codigo = $request->getParameter("codigo");  	
 		
   	$this->form = new PasswordChangeForm();
-    $this->form->bind( array('codigo' => $codigo) );
+    //$this->form->bind( array('codigo' => $codigo) );
     if ( $request->isMethod('post') ) {
       $this->form->bind($request->getParameter('changer'));
       if ($this->form->isValid()) {
-		$c = new Criteria();
-		$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
-		$c->add(SfGuardUserProfilePeer::CODIGO, $this->form->getValue('codigo'));
+      	$c = new Criteria();
+      	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::CODIGO, $this->codigo);
 		$users = sfGuardUserPeer::doSelect($c);		
 		$this->forward404Unless(count($users) == 1);
-      	foreach ($users as $user){
+		foreach ($users as $user){
   			$user->setPassword( $this->form->getValue('password') );
   			sfGuardUserPeer::doUpdate( $user );
  	  	}      

@@ -25,7 +25,15 @@
 <div class="formSing">
 <?php echo form_tag('@usuario_reminder') ?>
 <table>
-    <?php echo $form ?>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Email') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $form['username']->renderError() ?>
+      <?php echo $form['username']->render() ?>
+    </td>    
+  </tr>
   
   <tr>
     <td>&nbsp;</td>

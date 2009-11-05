@@ -1,3 +1,3 @@
+ALTER TABLE `voota`.`sf_review` ADD COLUMN `modified_at` DATETIME NULL DEFAULT NULL  AFTER `text` ;
 
-ALTER TABLE `voota`.`sf_review_status` ADD COLUMN `offensive` TINYINT(4) NOT NULL DEFAULT 0  AFTER `published` ;	
 

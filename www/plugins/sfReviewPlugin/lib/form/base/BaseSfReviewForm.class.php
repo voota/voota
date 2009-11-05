@@ -23,6 +23,7 @@ class BaseSfReviewForm extends BaseFormPropel
       'cookie'              => new sfWidgetFormInput(),
       'ip_address'          => new sfWidgetFormInput(),
       'text'                => new sfWidgetFormInput(),
+      'modified_at'         => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ class BaseSfReviewForm extends BaseFormPropel
       'cookie'              => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'ip_address'          => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'text'                => new sfValidatorString(array('max_length' => 420, 'required' => false)),
+      'modified_at'         => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -54,5 +56,6 @@ class BaseSfReviewForm extends BaseFormPropel
     return 'SfReview';
   }
 
+  
 
 }

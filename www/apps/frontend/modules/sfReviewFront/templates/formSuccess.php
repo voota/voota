@@ -12,6 +12,15 @@
 	<?php echo input_hidden_tag('b', $reviewBox) ?>
 	<?php echo input_hidden_tag('i', $reviewId) ?>
 
+	<?php if ($reviewId != ''): ?>
+	<h5 class="azul izq">Tu opinión</h5>
+	<h6>&nbsp;
+		<?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
+		    'update'   => $reviewBox?$reviewBox:'sf_review',
+		    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+		)) ?>
+	</h6>
+	<?php endif?>
 	<div class="votaSobre">
 		<div class="izq">
 			<?php echo radiobutton_tag('v', '1', ($reviewValue==1)?true:false) ?>
@@ -34,7 +43,24 @@
 		  <span id="sf_review_counter"><?php echo $maxLength - strlen($reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)'))?></span>
 		  <textarea id="sf_review_text" name="review_text" class="textarea"><?php echo $reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)') ?></textarea>
 		  <?php if ($reviewId != ''): ?>
-			<h6><?php echo __('Eliminar')?></h6>
+			<h6>
+			  <?php if (!isset($cf)): ?>
+				<?php echo jq_link_to_remote(__('Eliminar opinión'), array(
+				    'update'   => $reviewBox?$reviewBox:'sf_review',
+				    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+				)) ?>
+			  <?php else: ?>
+			  	<?php echo __('¿Seguro?') ?> 
+				<?php echo jq_link_to_remote(__('Sí'), array(
+				    'update'   => $reviewBox?$reviewBox:'sf_review',
+				    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType&cf=1".($reviewBox==''?'':"&b=$reviewBox"),
+				)) ?>
+				<?php echo jq_link_to_remote(__('No'), array(
+				    'update'   => $reviewBox?$reviewBox:'sf_review',
+				    'url'    => "@sf_review_form?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+				)) ?>
+			  <?php endif ?>
+			</h6>
 		  <?php endif ?>
 <script type="text/javascript">
 //controls character input/counter
@@ -49,7 +75,7 @@ $('textarea#sf_review_text').keyup(function() {
 	else if((MAX_LENGTH - charLength) < 0) {
 		$('span#sf_review_counter').attr('style', 'color:red;');
 	}
-	else if((MAX_LENGTH - charLength) < 10) {
+	else if((MAX_LENGTH - charLength) < 40) {
 		$('span#sf_review_counter').attr('style', 'color:orange;');
 	}
 	else {

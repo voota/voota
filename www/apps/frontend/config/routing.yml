@@ -118,6 +118,11 @@ sf_review_init:
   url:   /:sf_culture/review/init
   param: { module: sfReviewFront, action: init }
   requirements: { sf_culture: (?:es|ca) }
+ 
+sf_review_delete:
+  url:   /:sf_culture/review/delete
+  param: { module: sfReviewFront, action: delete }
+  requirements: { sf_culture: (?:es|ca) }
 
 about:
   url:   /:sf_culture/about

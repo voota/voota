@@ -52,7 +52,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      Email
+      <?php echo __('Email') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['username']->renderError() ?>
@@ -75,7 +75,7 @@
       <?php echo __('Apellidos') ?>
     </td>
     <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['nombre']->renderError() ?>
+      <?php echo $profileEditForm['apellidos']->renderError() ?>
       <?php echo $profileEditForm['apellidos']->render() ?>
     </td>    
   </tr>
@@ -85,7 +85,7 @@
       <?php echo __('Password') ?>
     </td>
     <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['nombre']->renderError() ?>
+      <?php echo $profileEditForm['passwordNew']->renderError() ?>
       <?php echo $profileEditForm['passwordNew']->render() ?>
     </td>    
   </tr>
@@ -95,7 +95,7 @@
       <?php echo __('Password (otra vez)') ?>
     </td>
     <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['nombre']->renderError() ?>
+      <?php echo $profileEditForm['passwordBis']->renderError() ?>
       <?php echo $profileEditForm['passwordBis']->render() ?>
     </td>    
   </tr>
@@ -105,7 +105,7 @@
       <?php echo __('Password actual)') ?>
     </td>
     <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['nombre']->renderError() ?>
+      <?php echo $profileEditForm['passwordOld']->renderError() ?>
       <?php echo $profileEditForm['passwordOld']->render() ?>
     </td>    
   </tr>

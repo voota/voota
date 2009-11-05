@@ -24,6 +24,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'cookie'              => new sfWidgetFormFilterInput(),
       'ip_address'          => new sfWidgetFormFilterInput(),
       'text'                => new sfWidgetFormFilterInput(),
+      'modified_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'cookie'              => new sfValidatorPass(array('required' => false)),
       'ip_address'          => new sfValidatorPass(array('required' => false)),
       'text'                => new sfValidatorPass(array('required' => false)),
+      'modified_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_filters[%s]');
@@ -63,6 +65,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'cookie'              => 'Text',
       'ip_address'          => 'Text',
       'text'                => 'Text',
+      'modified_at'         => 'Date',
     );
   }
 }

@@ -1,14 +1,25 @@
 <?php
 
-function review_text($review, $options = array()){
-	if ($review->getSfReviewStatus()->getPublished()){
-		if (!$review->getSfReviewStatus()->getOffensive()){
-			return $review->getText();
+
+function review_text($review, $msg = array()){
+	$msg = array(
+		'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador."),
+		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador."),
+	);
+		
+	if ($review->getSfReviewStatus()->getPublished() == 1){
+		if ($review->getSfReviewStatus()->getOffensive() == 0){
+			$ret = $review->getText();
 		}
 		else {
-			return "<span style='text-decoration: line-through;'>". utf8_strrev( $review->getText() ) ."<span>";
+			$ret = "<span style='text-decoration: line-through;'>". utf8_strrev( $review->getText() ) ."<span>";
+			$ret .= "<p>". $msg['offensive'] ."</p>";
 		}
 	}
+	else {
+		$ret = "<p>". $msg['deleted'] ."</p>";
+	}
+	return $ret;
 }
 
 function utf8_strrev($str){

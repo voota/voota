@@ -18,7 +18,7 @@
  */
 class BasesfReviewFrontActions extends sfActions
 {
-	const MAX_LENGTH = 250;
+	const MAX_LENGTH = 280;
   	
   public function executeInit(sfWebRequest $request)
   {
@@ -49,6 +49,9 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewBox = $request->getParameter("b");
   	$this->reviewText = '';
   	$this->reviewId = '';
+  	if ($request->getAttribute("cf") == 1) {
+  		$this->cf = 1;	
+  	}
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
   		
   	if (! $this->getUser()->isAuthenticated()) {
@@ -81,7 +84,6 @@ class BasesfReviewFrontActions extends sfActions
   public function edit(){
   	
   }
-	
 	
   public function executePreview(sfWebRequest $request)
   {
@@ -136,6 +138,7 @@ class BasesfReviewFrontActions extends sfActions
   	
   	if ($request->getParameter("i") != '') {
   		if ($review->isModified()) {
+  			$review->setModifiedAt( date(DATE_ATOM) );
   			SfReviewPeer::doUpdate($review);
   		}
    	}
@@ -145,4 +148,21 @@ class BasesfReviewFrontActions extends sfActions
   	}
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   }
+  
+  public function executeDelete(sfWebRequest $request){
+  	if (! $this->getUser()->isAuthenticated()) {
+  		echo "error";die;
+  	}
+  	if ($request->getParameter("cf") == '') {
+  		$request->setAttribute("cf", 1);
+	  	$this->forward('sfReviewFront', 'form');
+  	}
+  	if ($request->getParameter("i") != '') {
+	  	$criteria = new Criteria();
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId()); 	
+	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
+  		SfReviewPeer::doDelete	($criteria);
+  	}
+  }
+  
 }

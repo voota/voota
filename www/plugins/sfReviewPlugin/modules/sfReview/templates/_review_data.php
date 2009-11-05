@@ -7,6 +7,7 @@
 <tr><td>ip address:</td><td><?php echo $form->getObject()->getIpAddress() ?></td></tr> 
 <tr><td>cookie:</td><td><?php echo $form->getObject()->getCookie() ?></td></tr> 
 <tr><td>created at:</td><td><?php echo $form->getObject()->getCreatedAt() ?></td></tr> 
+<tr><td>modified at:</td><td><?php echo $form->getObject()->getModifiedAt() ?></td></tr> 
 </table>
 
 	

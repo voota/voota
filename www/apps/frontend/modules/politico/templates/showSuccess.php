@@ -2,7 +2,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
-
+<?php use_helper('Date') ?>
 
 
 
@@ -73,9 +73,27 @@ $(document).ready(function(){
 
 </div>
 <div title="info" class="izq textoPolitico">
-<h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> - <?php echo $politico->getPartido(); ?></h6>
 
-  <div><h5><?php echo __('Su biografía')?></h5></div>
+<h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> - <?php echo $politico->getPartido(); ?></h6>
+<?php if ($politico->getAlias() != ''): ?>
+	<h6><?php echo __($politico->getSexo()=='M'?'Conocida como %1%':'Conocido como %1%', array('%1%' => $politico->getAlias()))?></h6>
+<?php endif ?>
+<?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
+	<h6>
+	<?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?><?php echo $politicoInstitucion->getInstitucion()->getNombre()?><?php endforeach ?>
+	</h6>
+<?php endif ?>
+<?php if ($politico->getFechaNacimiento() != ''): ?>
+	<h6><?php echo __($politico->getSexo()=='M'?'Nacida el %1%':'Nacido el %1%', array('%1%' => format_date( $politico->getFechaNacimiento(), 'd' )))?></h6>
+<?php endif ?>
+<?php if ($politico->getResidencia() != ''): ?>
+	<h6><?php echo __('Residente en %1%', array('%1%' => $politico->getResidencia(), 'd' ))?></h6>
+<?php endif ?>
+<?php if ($politico->getFormacion() != ''): ?>
+	<h6><?php echo $politico->getFormacion()?></h6>
+<?php endif ?>
+
+	  <div><h5><?php echo __('Su biografía')?></h5></div>
 
 <div  title="biografia" class="margenPolitico">
   <h6><?php echo formatBio( $politico->getBio() ) ?></h6>
@@ -86,35 +104,39 @@ $(document).ready(function(){
 <div class="votaSobre">
 
 <div class="izq positivoNegativo">
-<?php if($positives->getNbResults() > 0): ?>
-	<div class="izq"><h5><?php echo __('Positivos')?> <?php echo $positivePerc; ?>%</h5></div>
+	<div class="izq"><h5><?php echo __('Positivos')?> <?php if($positives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h5></div>
 	<div class="izq linePolitico"></div>
 	<div class="limpiar"></div>
 	
+<?php if($positives->getNbResults() > 0): ?>
 	<?php foreach($positives->getResults() as $review): ?>
 		<?php include_partial('review', array('review' => $review)) ?>
 	<?php endforeach ?>
+<?php else: ?>
+	<h6><br><?php echo __('Aún no hay ninguna opinión positiva de %1%', array('%1%' => $politico))?></h6>
+<?php endif ?>
 	
 	<?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getId().'&', 'page_var' => "pageU")) ?>
 	
-<?php endif ?>
 
 
 </div>
 
 <div class="der positivoNegativo">
-<?php if($negatives->getNbResults() > 0): ?>
-	<div class="izq"><h5><?php echo __('Negativos')?> <?php echo $negativePerc; ?>%</h5></div>
+	<div class="izq"><h5><?php echo __('Negativos')?> <?php if($negatives->getNbResults() > 0): ?><?php echo $negativePerc; ?>%<?php endif ?></h5></div>
 	<div class="izq linePolitico"></div>
 	<div class="limpiar"></div>
 	
+<?php if($negatives->getNbResults() > 0): ?>
 	<?php foreach($negatives->getResults() as $review): ?>
 		<?php include_partial('review', array('review' => $review)) ?>
 	<?php endforeach ?>
-
+<?php else: ?>
+	<h6><br><?php echo __('Aún no hay ninguna opinión negativa de %1%', array('%1%' => $politico))?></h6>
+<?php endif ?>
+	
 	<?php include_partial('pagination_full', array('pager' => $positives, 'object' => $politico, 'page' => "pageD")) ?>
 	
-<?php endif ?>
 </div>
 
 </div>

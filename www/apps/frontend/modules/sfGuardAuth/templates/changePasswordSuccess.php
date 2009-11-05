@@ -21,8 +21,28 @@
 <div class="limpiar"></div>
 <div class="formSing">
 <?php echo form_tag('@usuario_change_password2') ?>
+<?php echo input_hidden_tag('codigo', $codigo) ?>
 <table>
-    <?php echo $form ?>
+
+
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $form['password']->renderError() ?>
+      <?php echo $form['password']->render() ?>
+    </td>    
+  </tr>
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Password (otra vez)') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $form['password_again']->renderError() ?>
+      <?php echo $form['password_again']->render() ?>
+    </td>    
+  </tr>
   
   <tr>
     <td>&nbsp;</td>

@@ -36,7 +36,7 @@ Administración:
 </div>
 <?php } ?>
 <div>
-Sistema de comentarios:
+Sistema de opiniones:
 <?php echo link_to('Moderación', '@sf_review') ?> 
 <?php echo link_to('tipos', '@sf_review_type') ?> 
 <?php echo link_to('estados', '@sf_review_status') ?> 
