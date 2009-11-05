@@ -4,7 +4,7 @@ html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Time
 #header { height:7.00em;}
 .logo { margin-top:0.50em; float:right;}
 #container {margin: 0 auto; min-width:45.00em; max-width:60.00em;} 
-#main { background-image: url(../image/bgMain.gif); background-repeat:repeat-x; }
+#main { background-image: url(/images/bgMain.gif); background-repeat:repeat-x; }
 #content { /* overflow: visible; */ }
 #footer { position: relative; left: 0.00em; text-align:center; padding-top: 2em;}
 #line { height:0.06em; border-top:0.06em dotted #343434; margin-bottom:0.6em;}
