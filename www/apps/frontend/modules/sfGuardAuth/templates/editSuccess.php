@@ -25,6 +25,7 @@
       <?php echo __('Fecha de nacimiento') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['fecha_nacimiento']->renderError() ?>
       <?php echo $profileEditForm['fecha_nacimiento']->render() ?>
     </td>    
   </tr>
@@ -34,6 +35,7 @@
       Url: http://voota.es/
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['vanity']->renderError() ?>
       <?php echo $profileEditForm['vanity']->render() ?>
     </td>    
   </tr>
@@ -43,6 +45,7 @@
       <?php echo __('Imagen Principal') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['imagen']->renderError() ?>
       <?php echo $profileEditForm['imagen']->render() ?>
     </td>    
   </tr>
@@ -52,6 +55,7 @@
       Email
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['username']->renderError() ?>
       <?php echo $profileEditForm['username']->render() ?>
     </td>    
   </tr>
@@ -61,6 +65,7 @@
       <?php echo __('Nombre') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
       <?php echo $profileEditForm['nombre']->render() ?>
     </td>    
   </tr>
@@ -70,6 +75,7 @@
       <?php echo __('Apellidos') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
       <?php echo $profileEditForm['apellidos']->render() ?>
     </td>    
   </tr>
@@ -79,6 +85,7 @@
       <?php echo __('Password') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
       <?php echo $profileEditForm['passwordNew']->render() ?>
     </td>    
   </tr>
@@ -88,6 +95,7 @@
       <?php echo __('Password (otra vez)') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
       <?php echo $profileEditForm['passwordBis']->render() ?>
     </td>    
   </tr>
@@ -97,6 +105,7 @@
       <?php echo __('Password actual)') ?>
     </td>
     <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
       <?php echo $profileEditForm['passwordOld']->render() ?>
     </td>    
   </tr>

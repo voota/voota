@@ -55,7 +55,7 @@ class BasesfReviewFrontActions extends sfActions
   		$culture = $request->getParameter("sf_culture");
   		$type = SfReviewTypePeer::retrieveByPK($this->reviewType);
   		if ($type){
-	  		$rule = "@". strtolower( $type->getName() ) ."_$culture";
+	  		$rule = "@politico_$culture";
 	  		$url = "$rule?id=" . $this->reviewEntityId;		
 	  		$this->getUser()->setAttribute('url_back', $url);
 	  		$this->getUser()->setAttribute('review_v', $this->reviewValue);

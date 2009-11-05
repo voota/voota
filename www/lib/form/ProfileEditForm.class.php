@@ -40,7 +40,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	)); 
     $this->setValidators(array(
       'fecha_nacimiento'   => new sfValidatorDate(array('required' => false), sfVoForm::getDateMessages()),   
-      'vanity'   => new sfValidatorString(array('required' => true)), 
+      'vanity'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()), 
       'imagen'   => new sfValidatorFile(array(
 				   'required'   => false,
 				   'mime_types' => 'web_images',
