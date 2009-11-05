@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-/*#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(/images/bgMain.gif); background-repeat:repeat-x;}*/
+/*#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(../image/bgMain.gif); background-repeat:repeat-x;}*/
 #mainInterior { position: relative; left: 0.00em; right: 0.00em; }
 #contentLeft { float:left; width: 41.56em;}
 #contentRankingLeft { float:left; width:100%}
@@ -9,7 +9,7 @@
 #contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing { float:left; width:30.00em; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em; }
+#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentLeftSing500{ padding-top:3.94em; margin: 0 auto; width:34.38em; text-align:center; }
 #contentRightSing { float:right; width:27.00em; margin-top:3.94em;}
@@ -88,4 +88,6 @@ p { margin:0; padding-bottom:1.25em;}
 .aboutContainer {margin-top:1.75em; margin-left:1.44em;}
 .containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
 #404 {}
+.anchoColumna {width:200px;}
+.tituloCampo {font-size: 0.88em;  margin:0.00em; color:#323232;}
 
