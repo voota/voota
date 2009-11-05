@@ -18,6 +18,5 @@
 class errorActions extends sfVoActions{
 
   public function executeError404(sfWebRequest $request) {
-  	echo 1;
   }
 }
