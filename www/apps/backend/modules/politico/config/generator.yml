@@ -25,13 +25,19 @@ generator:
         display: 
           "Datos voota": [alias,formacion,presentacion,sf_guard_user_profile_id,partido_id]
           "Display partido": [_partido_view]
-          "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia]
+          "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
           "Bio": [_bio_preview,bio]
         fields:
           bio:
             help: Para actualizar el preview de arriba.
             params: rich=true tinymce_options=width:330
             attributes: { style: "width: 90%; height:200px" }
+          relacion:
+            label: Relación sentimental
+          hijos:
+            attributes: { style: "width: 20px;" }
+          hijas:
+            attributes: { style: "width: 20px;" }
       edit:    
         title:   Pol&iacute;tico
       new:

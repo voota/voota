@@ -36,6 +36,9 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'lugar_nacimiento'          => new sfWidgetFormFilterInput(),
       'sumu'                      => new sfWidgetFormFilterInput(),
       'sumd'                      => new sfWidgetFormFilterInput(),
+      'relacion'                  => new sfWidgetFormFilterInput(),
+      'hijos'                     => new sfWidgetFormFilterInput(),
+      'hijas'                     => new sfWidgetFormFilterInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
@@ -62,6 +65,9 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'lugar_nacimiento'          => new sfValidatorPass(array('required' => false)),
       'sumu'                      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'sumd'                      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'relacion'                  => new sfValidatorPass(array('required' => false)),
+      'hijos'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'hijas'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
@@ -153,6 +159,9 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'lugar_nacimiento'          => 'Text',
       'sumu'                      => 'Number',
       'sumd'                      => 'Number',
+      'relacion'                  => 'Text',
+      'hijos'                     => 'Number',
+      'hijas'                     => 'Number',
       'politico_institucion_list' => 'ManyKey',
       'politico_lista_list'       => 'ManyKey',
     );

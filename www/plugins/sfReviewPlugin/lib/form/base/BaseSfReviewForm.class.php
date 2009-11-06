@@ -56,6 +56,5 @@ class BaseSfReviewForm extends BaseFormPropel
     return 'SfReview';
   }
 
-  
 
 }

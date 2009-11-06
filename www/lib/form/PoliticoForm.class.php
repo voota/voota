@@ -11,12 +11,25 @@
 class PoliticoForm extends BasePoliticoForm
 {
   protected static $generos = array('N' => '?', 'H' => 'Hombre', 'M' => 'Mujer');
+  protected static $relaciones = array(
+  									'N' => '?',
+  									'SO' => 'Soltero/a',
+								    'RE' => 'En una relación',
+								    'CO' => 'Comprometido/a',
+								    'CA' => 'Casado/a',
+								    'ES' => 'Es complicado',
+								    'RA' => 'En una relación abierta',
+								    'VI' => 'Viudo(a)',
+								 );
 
+  
+  
 
   public function configure()
   {
 
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
+    $this->widgetSchema['relacion'] = new sfWidgetFormSelect(array('choices' => self::$relaciones));
     
     $years = range(1920,date('Y'));
     $this->widgetSchema['fecha_nacimiento'] = new sfWidgetFormJQueryDate(array(
