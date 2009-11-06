@@ -41,7 +41,7 @@
 	<div title="formulario">
 		<div>
 		  <span id="sf_review_counter"><?php echo $maxLength - strlen($reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)'))?></span>
-		  <textarea id="sf_review_text" name="review_text" class="textarea"><?php echo $reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)') ?></textarea>
+		  <textarea id="sf_review_text" name="review_text" class="textarea<?php if($reviewId == ''): ?> gris<?php endif ?>"><?php echo $reviewText?$reviewText:__('Algo que comentar? Es el mejor momento :-)') ?></textarea>
 		  <?php if ($reviewId != ''): ?>
 			<h6>
 			  <?php if (!isset($cf)): ?>
@@ -70,6 +70,7 @@ $('textarea#sf_review_text').focus(function() {
 	
 	if (!edited){
 		$(this).val('');
+		$(this).removeClass('gris');
 		$('span#sf_review_counter').html(MAX_LENGTH);
 		edited = true;
 	}

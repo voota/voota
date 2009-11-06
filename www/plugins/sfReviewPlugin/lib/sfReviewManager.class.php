@@ -72,9 +72,14 @@ class SfReviewManager
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
   	
-  	SfReviewPeer::doDelete( $c );
+  	SfReviewPeer::doDelete( $criteria );
   	  	
   }
- 
   
+ static public function deleteReviewById( $id ){
+  	// Primero borrar sus opiniones
+  	$c = new Criteria();
+  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $id);
+  	SfReviewPeer::doDelete( $c );
+  }
 }

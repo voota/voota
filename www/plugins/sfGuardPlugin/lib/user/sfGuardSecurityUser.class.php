@@ -90,22 +90,22 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
       $expiration_age = sfConfig::get('app_sf_guard_plugin_remember_key_expiration_age', 15 * 24 * 3600);
       $c->add(sfGuardRememberKeyPeer::CREATED_AT, time() - $expiration_age, Criteria::LESS_THAN);
       sfGuardRememberKeyPeer::doDelete($c);
-
+      
       // remove other keys from this user
       $c = new Criteria();
       $c->add(sfGuardRememberKeyPeer::USER_ID, $user->getId());
       sfGuardRememberKeyPeer::doDelete($c);
-
+      
       // generate new keys
       $key = $this->generateRandomKey();
-
+      
       // save key
       $rk = new sfGuardRememberKey();
       $rk->setRememberKey($key);
       $rk->setSfGuardUser($user);
       $rk->setIpAddress($_SERVER['REMOTE_ADDR']);
       $rk->save($con);
-
+      
       // make key as a cookie
       $remember_cookie = sfConfig::get('app_sf_guard_plugin_remember_cookie_name', 'sfRemember');
       sfContext::getInstance()->getResponse()->setCookie($remember_cookie, $key, time() + $expiration_age);

@@ -22,10 +22,12 @@ class homeActions extends sfVoActions{
 
   
   public function executeIndexWithoutCulture(sfWebRequest $request) {
-  	global $culture;
+  	global $culture;  	
   	
 	$this->readCookie($this->getRequest());
-  	$this->redirect( "@homepage" );
+  	$this->getUser()->setCulture( $culture );
+  	
+	$this->redirect( "@homepage" );
   	
   }
   

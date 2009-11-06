@@ -14,9 +14,7 @@ class sfGuardUserActions extends basesfGuardUserActions
 {
   public function executeDelete(sfWebRequest $request){
   	// Primero borrar sus opiniones
-  	$c = new Criteria();
-  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $request->getParameter('id'));
-  	SfReviewPeer::doDelete( $c );
+  	SfReviewManager::deleteReviewById( $request->getParameter('id') );
   	
   	parent::executeDelete($request);
   }

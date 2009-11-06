@@ -34,7 +34,7 @@
 <div class="der login">
 
 <?php slot('not_logged') ?>
-	<h6><?php echo link_to('Acceso usuarios', 'sfGuardAuth/signin') ?></h6>
+	<h6><?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?></h6>
 <?php end_slot('not_logged') ?>
 
 <?php slot('logged') ?>
@@ -48,7 +48,7 @@
 
  <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_edit') ?>
  · 
- <?php echo link_to('salir', '@sf_guard_signout') ?>
+ <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
  </h6>
 <?php end_slot('logged') ?>
 
@@ -113,14 +113,14 @@
 <h6>
 <?php slot('langLink_ca') ?>
 	català
-	<a href="/es">español</a>
+	<?php echo link_to('español', '@homepage?sf_culture=es') ?>
 <?php end_slot('langLink_ca') ?>
 
 <?php slot('langLink_es') ?>
-	<a href="/ca">català</a>
+	<?php echo link_to('català', '@homepage?sf_culture=ca') ?>
 	español
 <?php end_slot('langLink_es') ?>
-<?php include_slot( $sf_request->getAttribute('langLink_slot') ); ?>
+<?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>
 </h6>
 </div>
 <!-- FIN ENLACES PIE -->

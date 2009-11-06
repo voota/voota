@@ -34,7 +34,13 @@ class politicoActions extends autoPoliticoActions
 	}
 */
 	public function executeDelete(sfWebRequest $request) {
-		//SfReviewManager::deleteReview($type_id, $entity_id);
+		$id = $request->getParameter('id');
+		SfReviewManager::deleteReview(1, $id);
+		
+	    $criteria = new Criteria();
+	  	$criteria->add(PoliticoInstitucionPeer::POLITICO_ID, $id);
+	  	PoliticoInstitucionPeer::doDelete( $criteria );
+		
 		parent::executeDelete($request);
 	}
 }

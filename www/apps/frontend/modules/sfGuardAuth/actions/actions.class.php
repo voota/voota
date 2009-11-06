@@ -20,10 +20,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		return "SentFail";
       	}
       }
+      /*
       else {
       		$this->getUser()->setFlash('notice_type', 'error');
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       }
+      */
     }
     
   }
@@ -48,10 +50,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
  	  	}      
       	return "ChangedSuccess";
       }
+      /*
       else {
       		$this->getUser()->setFlash('notice_type', 'error');
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       }
+      */
     }
   }
  
@@ -110,10 +114,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      		return "Registered";
 		  	}
 		  }
+		  /*
 		  else {
       		$this->getUser()->setFlash('notice_type', 'error');
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
 		  }
+		  */
       	}
       	// Signin
       	else {
@@ -121,12 +127,18 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      $r->bind($request->getParameter('signin'));
 	      
 	      if ($r->isValid()) {
-  			parent::executeSignin($request);
+	      	$r->addPostValidation();
+	      	$r->bind($request->getParameter('signin'));
+		      if ($r->isValid()) {
+	  			parent::executeSignin($request);
+		      }
 	      }
+	      /*
 	      else {
       		$this->getUser()->setFlash('notice_type', 'error');
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       	  }
+      	  */
 	      $this->signinform = $r; 
       	}
     }
@@ -194,11 +206,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       			if ($this->getUser()->checkPassword($profile['passwordOld'])){
       				$this->getUser()->setPassword($profile['passwordNew']);
       			}
+      			/*
       			else {
       				$this->getUser()->setFlash('notice_type', 'error');
       				$this->getUser()->setFlash('notice', sfVoForm::getMissingPasswordMessage());
       				return;
       			}
+      			*/
       		}
       		
 			$imageOri = $this->profileEditForm->getObject()->getProfile()->getImagen();
@@ -225,16 +239,18 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      		else {
 	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
 	      		}
-      		}      		
+      		}
       		$this->getUser()->setFlash('notice', sfVoForm::getFormSavesMessage());
       		$this->profileEditForm->getObject()->getProfile()->save();
       		
 	    }
+	    /*
 	    else {
       		$this->getUser()->setFlash('notice_type', 'error');
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage());
       		
 	    }
+	    */
     }
 	
   }

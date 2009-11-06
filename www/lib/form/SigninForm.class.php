@@ -20,8 +20,12 @@ class SigninForm extends sfVoForm
       'remember' => new sfValidatorBoolean(),
     ));
 
-    $this->validatorSchema->setPostValidator(new sfGuardValidatorUser(array(), sfVoForm::getUserMessages()));
+    //$this->validatorSchema->setPostValidator(new sfGuardValidatorUser(array(), sfVoForm::getUserMessages()));
 
     $this->widgetSchema->setNameFormat('signin[%s]');
+  }
+  
+  public function addPostValidation() {
+  	$this->validatorSchema->setPostValidator(new sfGuardValidatorUser(array(), sfVoForm::getUserMessages()));
   }
 }
