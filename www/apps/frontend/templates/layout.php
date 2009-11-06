@@ -64,8 +64,8 @@
     <input type="hidden" name="cx" value="009755620675690774762:o64jyt7ee5g" />
     <input type="hidden" name="cof" value="FORID:10" />
     <input type="hidden" name="ie" value="UTF-8" />
-    <input type="text" name="q" size="31" />
-    <input type="submit" name="sa" value="Buscar" />
+    <input type="text" name="q" size="31"  class="inputSign" />
+    <input type="submit" name="sa" value="Buscar" class="button" />
   </div>
 </form>
 <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=<?php echo $sf_user->getCulture('es')?>"></script>
