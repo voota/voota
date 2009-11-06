@@ -65,6 +65,16 @@ class SfReviewManager
 	
 	return $row['count'];
   }
-
+  static public function deleteReview($type_id, $entity_id)
+  {
+    $criteria = new Criteria();
+    
+  	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
+  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
+  	
+  	SfReviewPeer::doDelete( $c );
+  	  	
+  }
+ 
   
 }

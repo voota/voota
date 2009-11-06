@@ -33,4 +33,8 @@ class politicoActions extends autoPoliticoActions
 		parent::executeEdit( $request );
 	}
 */
+	public function executeDelete(sfWebRequest $request) {
+		//SfReviewManager::deleteReview($type_id, $entity_id);
+		parent::executeDelete($request);
+	}
 }

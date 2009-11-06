@@ -14,9 +14,9 @@ html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Time
 .inputSign { border: 1px solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .inputSignPeq { border: 1px solid #9398ae; background: #ffffff; width:1.90em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .inputSignPeq2 { border: 1px solid #9398ae; background: #ffffff; width:2.50em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.button { width:7.00em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.button2 { width:15.69em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.button3 { width:10.69em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+.button { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+.button2 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+.button3 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
 .textarea { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em; border:1px solid #8f9ba7; }
 .der{ float:right;}
 .izq { float:left;}
