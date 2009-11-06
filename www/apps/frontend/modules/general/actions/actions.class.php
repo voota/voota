@@ -35,4 +35,7 @@ class generalActions extends sfVoActions{
   	}
   	
   }
+  public function executeSearch(sfWebRequest $request) {
+  	
+  }
 }

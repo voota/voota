@@ -129,6 +129,11 @@ about:
   param: { module: general, action: about }
   requirements: { sf_culture: (?:es|ca) }
 
+search:
+  url:   /:sf_culture/search
+  param: { module: general, action: search }
+  requirements: { sf_culture: (?:es|ca) }
+
 # default_index:
 #   url:   /:module
 #   param: { action: index }

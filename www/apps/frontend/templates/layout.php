@@ -55,21 +55,31 @@
 <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
 
 </div>
-<?php /* ?>
+<?php  ?>
 <div class="limpiar"></div>
 <div class="der">
-  <input name="buscar2" type="text" class="input">
-  <input name="buscar" type="button" class="button" value="Buscar">
+
+<form action="<?php echo url_for('@search', true) ?>" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="009755620675690774762:o64jyt7ee5g" />
+    <input type="hidden" name="cof" value="FORID:10" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="31" />
+    <input type="submit" name="sa" value="Buscar" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=<?php echo $sf_user->getCulture('es')?>"></script>
+
 </div>
-<?php */ ?>
+<?php  ?>
 </div>
 <div class="limpiar"></div>
 <!-- FIN HEADER -->
 
 
+
+
     <?php echo $sf_content ?>
-
-
 
 
 
