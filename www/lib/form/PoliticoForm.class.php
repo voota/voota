@@ -46,10 +46,11 @@ class PoliticoForm extends BasePoliticoForm
    'template'  => '<div>%file%  <img src="https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
 	));
 	
+    $this->validatorSchema['email'] = new sfValidatorEmail(array('required' => false));  
 	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
    'required'   => false,
    'mime_types' => 'web_images',
-   'path' => sfConfig::get('sf_upload_dir').'/politicos',
+	'path' => sfConfig::get('sf_upload_dir').'/politicos',
    'validated_file_class' => 'sfResizedFile',
 	));
 	
