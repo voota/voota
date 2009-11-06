@@ -11,6 +11,11 @@ generator:
     with_propel_route:     1
 
     config:
+
+    config:
+      actions:
+        _delete: {credentials: [superadmin]}
+        
       fields:
         password_again: { label: "Password (again)" }
         username: { label: "email" }
