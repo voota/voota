@@ -63,6 +63,18 @@
 			</h6>
 		  <?php endif ?>
 <script type="text/javascript">
+<?php if($reviewId == ''): ?>
+var edited = false;
+$('textarea#sf_review_text').focus(function() {
+	const MAX_LENGTH = <?php echo $maxLength?>;
+	
+	if (!edited){
+		$(this).val('');
+		$('span#sf_review_counter').html(MAX_LENGTH);
+		edited = true;
+	}
+});
+<?php endif ?>
 //controls character input/counter
 $('textarea#sf_review_text').keyup(function() {
 	const MAX_LENGTH = <?php echo $maxLength?>;

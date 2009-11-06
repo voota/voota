@@ -49,7 +49,7 @@ $(document).ready(function(){
 <?php foreach($instituciones as $aInstitucion): ?>
  · 
   <?php 
-  	$url = $sf_user->getCulture('es')?'@ranking_es':'@ranking_ca';
+  	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
   	echo link_to(
  	$aInstitucion->getNombreCorto()
  	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
@@ -90,7 +90,7 @@ $(document).ready(function(){
     	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
     
  <?php echo link_to(
- 	"".$politico->getNombre() ." ". $politico->getApellidos() . "(" . $politico->getPartido() .")"
+ 	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
  	, 'politico/show?id='.$politico->getId()
  ) ?>
  

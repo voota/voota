@@ -69,7 +69,7 @@ class politicoActions extends sfVoActions
   	}
   	
   	$c = new Criteria();
-  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
+  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
   	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
   	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
   	$this->partido = ALL_FORM_VALUE;

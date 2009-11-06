@@ -51,7 +51,7 @@ $(document).ready(function(){
 <div id="contentLeft">
 
 <div title="ficha">
-<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?> (<?php echo $politico->getPartido(); ?>)</span>
+<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido(); ?>)<?php endif ?></span>
 <span class="nombrePeque">
 <?php echo $politico->getSumU() ?> <a href="javascript:showScoreHelp();">?</a>
 </span> 

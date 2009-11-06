@@ -26,3 +26,9 @@ function utf8_strrev($str){
     preg_match_all('/./us', $str, $ar);
     return join('',array_reverse($ar[0]));
 }
+
+function review_date_diff( $date ){
+	$d1 = time();
+	$d2 = strtotime($date);
+	return floor(($d1 - $d2)/(60*60*24*365));
+}

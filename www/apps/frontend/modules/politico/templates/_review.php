@@ -4,14 +4,14 @@
 <div title="comentario">
 	<div class="margenPolitico">
 		<h6>
-<?php if( $review->getsfGuardUser()->getProfile()->getImagen() && $review->getsfGuardUser()->getProfile()->getImagen() != '' && file_exists(sfConfig::get('sf_web_dir')."/images/usuarios/cc_s_".( $review->getsfGuardUser()->getProfile()->getImagen()))): ?>
-	<?php echo image_tag('usuarios/cc_s_'.( $review->getsfGuardUser()->getProfile()->getImagen()), 'alt="'.  $review->getsfGuardUser()->getProfile()->getNombre().' ' .  $review->getsfGuardUser()->getProfile()->getApellidos() .'"') ?>
+<?php if( $review->getsfGuardUser()->getProfile()->getImagen() ): ?>
+	<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.( $review->getsfGuardUser()->getProfile()->getImagen()), 'alt="'.  $review->getsfGuardUser()->getProfile()->getNombre().' ' .  $review->getsfGuardUser()->getProfile()->getApellidos() .'"') ?>
 <?php endif ?>
-			<a href="#"><?php echo $review->getsfGuardUser()->getProfile()->getNombre(); ?> <?php echo $review->getsfGuardUser()->getProfile()->getApellidos(); ?></a>
+			<?php echo $review->getsfGuardUser()->getProfile()->getNombre(); ?> <?php echo $review->getsfGuardUser()->getProfile()->getApellidos(); ?>
 			 <?php /* ?>· <span class="lugar">Madrid<?php */ ?>
 			 
 			 <?php if( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() ): ?>
-			 	· <?php echo (date(DATE_ATOM) - $review->getsfGuardUser()->getProfile()->getFechaNacimiento()) ?> <?php echo __('años')?></span>
+			 	· <?php echo __('%1% años', array('%1%' => review_date_diff( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() )))?>
 			 <?php endif ?>
 		</h6>
 	</div>
