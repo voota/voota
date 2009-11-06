@@ -25,40 +25,42 @@
 
 <table>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Email') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+      <td class="leftSing"><h5><?php echo __('Email') ?></h5></td>
+    <td>
       <?php echo $registrationform['username']->renderError() ?>
       <?php echo $registrationform['username']->render() ?>
     </td>    
+    <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Nombre') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $registrationform['nombre']->renderError() ?>
       <?php echo $registrationform['nombre']->render() ?>
     </td>    
+    <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Apellidos') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $registrationform['apellidos']->renderError() ?>
       <?php echo $registrationform['apellidos']->render() ?>
     </td>    
+    <td>&nbsp;</td>
   </tr>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Password') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $registrationform['password']->renderError() ?>
       <?php echo $registrationform['password']->render() ?>
     </td>    
+    <td>&nbsp;</td>
   </tr>
 
 
@@ -95,28 +97,28 @@
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
 <table>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Email') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $signinform['username']->renderError() ?>
       <?php echo $signinform['username']->render() ?>
     </td>    
   </tr>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Password') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $signinform['password']->renderError() ?>
       <?php echo $signinform['password']->render() ?>
     </td>    
   </tr>
   <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
+      <td class="leftSing"><h5>
       <?php echo __('Recordar') ?>
-    </td>
-    <td class="leftSing tdperfil" >
+    </h5></td>
+    <td>
       <?php echo $signinform['remember']->renderError() ?>
       <?php echo $signinform['remember']->render() ?>
     </td>    
