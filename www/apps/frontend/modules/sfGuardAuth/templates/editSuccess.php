@@ -102,7 +102,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password actual)') ?>
+      <?php echo __('Password actual') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['passwordOld']->renderError() ?>

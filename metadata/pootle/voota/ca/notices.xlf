@@ -56,46 +56,6 @@
         <source>Tus cambios se han guardado correctamente.</source>
         <target/>
       </trans-unit>
-      <trans-unit id="14">
-        <source>Imagen Principal</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="15">
-        <source>Eliminar imagen actual</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="16">
-        <source>Fecha de nacimiento</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="17">
-        <source>Nombre</source>
-        <target>Tu nombre</target>
-      </trans-unit>
-      <trans-unit id="18">
-        <source>Apellidos</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="19">
-        <source>Password</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="20">
-        <source>Password (otra vez)</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="21">
-        <source>Password actual</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="22">
-        <source>Código</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="23">
-        <source>Recordar</source>
-        <target/>
-      </trans-unit>
     </body>
   </file>
 </xliff>

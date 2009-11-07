@@ -27,6 +27,14 @@ class sfVoForm extends sfForm
 			'max_length' => sfContext::getInstance()->getI18N()->__('El texto es demasiado largo (%max_length% caracteres máximo).', array(), 'notices'),
 		);
 	}
+	public static function getPasswordMessages() {
+		return array(
+			'invalid' => sfContext::getInstance()->getI18N()->__('La contraseña no es válida.', array(), 'notices'),
+			'required' => sfContext::getInstance()->getI18N()->__('Este campo es obligatorio.', array(), 'notices'),
+			'min_length' => sfContext::getInstance()->getI18N()->__('El texto es demasiado corto (%min_length% caracteres mínimo).', array(), 'notices'),
+			'max_length' => sfContext::getInstance()->getI18N()->__('El texto es demasiado largo (%max_length% caracteres máximo).', array(), 'notices'),
+		);
+	}
 	public static function getUniqueMessages() {
 		return array(
 			'invalid' => sfContext::getInstance()->getI18N()->__('Este nombre ya está siendo utilizado.', array(), 'notices')

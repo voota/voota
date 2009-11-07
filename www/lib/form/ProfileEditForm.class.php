@@ -18,7 +18,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
    			   'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen(),
 			   'is_image'  => true,
 			   'edit_mode' => !$this->isNew(),
-			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label>%delete% '. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</div>',
+			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label><h6>%delete% '. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</h6></div>',
 				)),
       'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
@@ -53,7 +53,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'apellidos'   => new sfValidatorString(array('required' => false)),    
       'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
       'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
-      'passwordOld'    => new sfValidatorPasswordValid(array('required' => false)),
+      'passwordOld'    => new sfValidatorPasswordValid(array('required' => false), sfVoForm::getPasswordMessages()),
        ));
        
 
