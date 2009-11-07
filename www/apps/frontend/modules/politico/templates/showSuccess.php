@@ -154,10 +154,12 @@ $(document).ready(function(){
 	  <h6><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></h6>
 	<?php endforeach ?>
   </div>
-<?php endif ?>
-
+  <br>
+	<?php endif ?>
 </div>
 <!-- fin enlaces externos -->
+
+<div class="limpiar"></div>
 
 <!-- codigo google -->
 <?php include_partial('google_ads') ?>
