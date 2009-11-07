@@ -27,7 +27,7 @@
 <table>
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Email') ?>
+      <?php echo __('Tu Email') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $form['username']->renderError() ?>

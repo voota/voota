@@ -19,7 +19,27 @@
 <div class="limpiar"></div>
 <div class="formSing">
 <?php echo form_tag('@usuario_edit', 'multipart=true') ?>
-<table>
+<table>   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Tu nombre') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['nombre']->renderError() ?>
+      <?php echo $profileEditForm['nombre']->render() ?>
+    </td>    
+  </tr>
+   
+  <tr>
+    <td class="anchoColumna tituloCampo tdperfil">
+      <?php echo __('Tus apellidos') ?>
+    </td>
+    <td class="leftSing tdperfil" >
+      <?php echo $profileEditForm['apellidos']->renderError() ?>
+      <?php echo $profileEditForm['apellidos']->render() ?>
+    </td>    
+  </tr>
+
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
       <?php echo __('Fecha de nacimiento') ?>
@@ -32,7 +52,7 @@
   
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      Url: http://voota.es/
+      <?php echo __('Tu dirección') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['vanity']->renderError() ?>
@@ -42,7 +62,7 @@
   
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Imagen Principal') ?>
+      <?php echo __('Tu avatar') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['imagen']->renderError() ?>
@@ -52,7 +72,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Email') ?>
+      <?php echo __('Tu Email') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['username']->renderError() ?>
@@ -62,27 +82,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Nombre') ?>
-    </td>
-    <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['nombre']->renderError() ?>
-      <?php echo $profileEditForm['nombre']->render() ?>
-    </td>    
-  </tr>
-   
-  <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Apellidos') ?>
-    </td>
-    <td class="leftSing tdperfil" >
-      <?php echo $profileEditForm['apellidos']->renderError() ?>
-      <?php echo $profileEditForm['apellidos']->render() ?>
-    </td>    
-  </tr>
-   
-  <tr>
-    <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password') ?>
+      <?php echo __('¿Nueva contraseña?') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['passwordNew']->renderError() ?>
@@ -92,7 +92,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password (otra vez)') ?>
+      <?php echo __('Repítela nuevamente') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['passwordBis']->renderError() ?>
@@ -102,7 +102,7 @@
    
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password actual') ?>
+      <?php echo __('Antigua contraseña') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $profileEditForm['passwordOld']->renderError() ?>

@@ -27,7 +27,7 @@
 
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password') ?>
+      <?php echo __('Contraseña') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $form['password']->renderError() ?>
@@ -36,7 +36,7 @@
   </tr>
   <tr>
     <td class="anchoColumna tituloCampo tdperfil">
-      <?php echo __('Password (otra vez)') ?>
+      <?php echo __('Otra vez') ?>
     </td>
     <td class="leftSing tdperfil" >
       <?php echo $form['password_again']->renderError() ?>

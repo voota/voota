@@ -25,7 +25,7 @@
 
 <table>
   <tr>
-      <td class="leftSing"><h5><?php echo __('Email') ?></h5></td>
+      <td class="leftSing"><h5><?php echo __('Tu email') ?></h5></td>
     <td>
       <?php echo $registrationform['username']->renderError() ?>
       <?php echo $registrationform['username']->render() ?>
@@ -54,7 +54,7 @@
   </tr>
   <tr>
       <td class="leftSing"><h5>
-      <?php echo __('Password') ?>
+      <?php echo __('Contraseña') ?>
     </h5></td>
     <td>
       <?php echo $registrationform['password']->renderError() ?>
@@ -98,7 +98,7 @@
 <table>
   <tr>
       <td class="leftSing"><h5>
-      <?php echo __('Email') ?>
+      <?php echo __('Tu Email') ?>
     </h5></td>
     <td>
       <?php echo $signinform['username']->renderError() ?>
@@ -107,7 +107,7 @@
   </tr>
   <tr>
       <td class="leftSing"><h5>
-      <?php echo __('Password') ?>
+      <?php echo __('Contraseña') ?>
     </h5></td>
     <td>
       <?php echo $signinform['password']->renderError() ?>

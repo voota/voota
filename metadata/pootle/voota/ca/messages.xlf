@@ -390,6 +390,106 @@
         <source>Eliminar</source>
         <target/>
       </trans-unit>
+      <trans-unit id="94">
+        <source>Acceso usuarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>salir</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>Dejarlo como estaba</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Eliminar opinión</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>¿Seguro?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>Sí</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>No</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Residente en %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>Aún no hay ninguna opinión positiva de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Aún no hay ninguna opinión negativa de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>%1% años</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Tu Email</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Tu nombre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Tus apellidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Fecha de nacimiento</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Tu dirección</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Tu avatar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>¿Nueva contraseña?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Repítela nuevamente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>Antigua contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Otra vez</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>Tu email</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>Apellidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Recordar</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
