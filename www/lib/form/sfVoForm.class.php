@@ -20,6 +20,11 @@ class sfVoForm extends sfForm
 		'invalid' => sfContext::getInstance()->getI18N()->__('"%value%" no es una dirección de email válida.', array(), 'notices')
 		);
 	}
+	public static function getRequiredMessages() {
+		return array(
+		'required' => sfContext::getInstance()->getI18N()->__('Este campo es obligatorio.', array(), 'notices'),
+		);
+	}
 	public static function getStringMessages() {
 		return array(
 			'required' => sfContext::getInstance()->getI18N()->__('Este campo es obligatorio.', array(), 'notices'),

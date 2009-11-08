@@ -63,8 +63,11 @@ class ProfileEditForm extends sfGuardUserAdminForm
     ));
        
     $postValidator = new sfValidatorAnd(array(
-    	$uniqValidator,
-    	 new sfValidatorSchemaCompare('passwordNew',  sfValidatorSchemaCompare::EQUAL, 'passwordBis',  array(), sfVoForm::getCompareMessages())
+    	new sfValidatorAnd(array(
+    		$uniqValidator,
+    	 	new sfValidatorSchemaCompare('passwordNew',  sfValidatorSchemaCompare::EQUAL, 'passwordBis',  array(), sfVoForm::getCompareMessages())
+    	)),
+     	new sfValidatorRequiredIfField('passwordOld', 'passwordNew',  array(), sfVoForm::getRequiredMessages())
     ));
        
     $this->validatorSchema->setPostValidator($postValidator);
