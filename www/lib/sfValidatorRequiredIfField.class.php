@@ -1,20 +1,19 @@
 <?php
-
 /*
- * This file is part of the symfony package.
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
+ * This file is part of the Voota package.
+ * (c) 2009 Sergio Viteri <sergio@voota.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 /**
- * sfValidatorSchemaCompare compares several values from an array.
+ * politico actions.
  *
- * @package    symfony
- * @subpackage validator
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfValidatorSchemaCompare.class.php 10802 2008-08-12 07:10:53Z fabien $
+ * @package    Voota
+ * @subpackage politico
+ * @author     Sergio Viteri
+ * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class sfValidatorRequiredIfField extends sfValidatorSchema
 {
@@ -24,13 +23,6 @@ class sfValidatorRequiredIfField extends sfValidatorSchema
    * Available options:
    *
    *  * left_field:         The left field name
-   *  * operator:           The comparison operator
-   *                          * self::EQUAL
-   *                          * self::NOT_EQUAL
-   *                          * self::LESS_THAN
-   *                          * self::LESS_THAN_EQUAL
-   *                          * self::GREATER_THAN
-   *                          * self::GREATER_THAN_EQUAL
    *  * right_field:        The right field name
    *  * throw_global_error: Whether to throw a global error (false by default) or an error tied to the left field
    *
