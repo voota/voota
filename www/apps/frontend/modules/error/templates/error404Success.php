@@ -23,7 +23,7 @@
 <div id="container">
 <!-- HEADER -->
 <div id="header">
-<div class="izq logo"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" width="141" height="55" longdesc="Enlace Home Voota"></a>
+<div class="izq logo"><a href="/"><img src="/images/logoVoota.gif" alt="Logo Voota" longdesc="Enlace Home Voota"></a>
 <h6>Tú tienes la última palabra</h6>
 </div>
 </div>

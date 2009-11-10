@@ -35,7 +35,7 @@ Parece que no figura en nuestros datos... Mira a ver si estás registrado en Voo
 </div>
 </div>
 </div>
-<div class="limpiar"></div>
+<div class="limpiar footerEspacio"></div>
 </div>
 <!-- FIN CONTENT -->
 

@@ -12,7 +12,7 @@
 #contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentLeftSing500{ padding-top:3.94em; margin: 0 auto; width:34.38em; text-align:center; }
-#contentRightSing { float:right; width:27.00em; margin-top:3.94em;}
+#contentRightSing { float:left; margin-top:3.94em; margin-left:1.00em}
 #contentSing { padding-left:1.31em; margin-top:1.69em; }
 .buscar { text-align:right; float:right; }
 .formSing { margin-top:1.00em;}
@@ -22,7 +22,7 @@
 .alingBoton {text-align:right;}
 .leftSing {  width:5.80em; padding-bottom:0.60em; padding-top:0.60em;  }
 .leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
-.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:37px; }
+.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
 .leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
 .leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
 .leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
@@ -32,7 +32,8 @@
 .cabeceraRanking {background-color:#f6f6f6; height:1.69em;}
 .listaRanking { height:4.06em;}
 .ranking { text-align:right; width:6.25em; height:1.69em;}
-.nombreRanking { width:15.50em; height:1.69em; padding-left:0.90em;}
+.nombreRanking { width:20.50em; height:1.69em; padding-left:5.00em; padding-top:1.10px;}
+.separacionFotoRanking { padding-right:0.88em;}
 .fotoRanking { width:6.81em; height:1.69em; padding-left:0.25em; text-align:right;}
 .votosUp { width:5.44em; text-align: right;}
 .votosDown { width:7.56em; text-align:right;}
@@ -46,11 +47,13 @@
 .rojo {color:#f80c1a;}
 .nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em;}
 .nombreCaja {font-family: Georgia, "Times New Roman", Times, serif; font-size:0.88em; color:#2f2f2f;}
-.fotoPolitico {margin-left:3.13em; margin-top:1.50em; width:11.81em;}
-.textoPolitico {margin-left:3.13em; margin-top:1.50em; width:23.44em;}
+.fotoPolitico {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
+.textoPolitico {margin-left:1.31em; margin-top:1.50em; width:23.44em;}
+.margenVotacion {margin-right:1.56em;}
 .margenPolitico {margin-left:0.75em; margin-top:0.60em}
 .margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
-.votaPolitico {margin-top:1.88em; margin-bottom:1.00em}
+.votaPolitico {margin-top:1.88em; margin-bottom:1.00em;}
+.marensf_review2 {margin-top:1.00em;}
 .linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
 .positivoNegativo {width:18.69em;}
 /*comentarios */
@@ -59,7 +62,9 @@
 .lugar {color:#323232; font-weight:bold;}
 .totalComentarios {margin-left:3.13em; margin-top:1.50em;}
 /* votaciones */
-.votaSobre {margin-left:3.13em; margin-top:1.50em;}
+.votaSobre {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
+.votaPoliticosParido {margin-left:1.31em; margin-top:1.50em;}
+.contenedorPositivoNegativo {margin-left:1.31em; margin-top:1.50em;}
 .votaPartidos {margin-left:1.25em; margin-top:1.50em; margin-bottom:1.25em; margin-right:3.25em; float:left; width:15.63em;}
 .vootaPartidoList { margin-left:0.63em; margin-top:0.63em;}
 .listadoRanking {margin-top:1.50em; width:52.56em; margin-left:1.88em; }

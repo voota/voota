@@ -1,4 +1,4 @@
-div.formSing form tr th {  text-align:left;font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold; }
+div.formSing form tr th {  text-align:left; font-size: 0.69em;  margin:0.00em; color:#323232; margin-bottom:1.20em;}
 div.clickable {cursor: pointer;}
 
 ul.error_list {
@@ -7,6 +7,7 @@ ul.error_list {
 ul.error_list li {
 	list-style: none outside;
 	color:#f80c1a;
+	font-size: 0.69em;
 }
 #help_dialog {
 	display:none;

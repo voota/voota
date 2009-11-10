@@ -31,47 +31,7 @@
 </a>
 <h6><?php echo __('Tú tienes la última palabra')?></h6>
 </div>
-<div class="der login">
 
-<?php slot('not_logged') ?>
-	<h6><?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?></h6>
-<?php end_slot('not_logged') ?>
-
-<?php slot('logged') ?>
-<h6>
-
-
-<?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' ): ?>
-	<?php echo image_tag(
-		'http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="Foto '. $sf_user->getProfile()->getNombre().' ' . $sf_user->getProfile()->getApellidos() .'"') ?>
-<?php endif ?>
-
- <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_edit') ?>
- · 
- <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
- </h6>
-<?php end_slot('logged') ?>
-
-<?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
-
-</div>
-<?php  ?>
-<div class="limpiar"></div>
-<div class="der">
-
-<form action="<?php echo url_for('@search', true) ?>" id="cse-search-box">
-  <div>
-    <input type="hidden" name="cx" value="009755620675690774762:o64jyt7ee5g" />
-    <input type="hidden" name="cof" value="FORID:10" />
-    <input type="hidden" name="ie" value="UTF-8" />
-    <input type="text" name="q" size="31"  class="inputSign" />
-    <input type="submit" name="sa" value="Buscar" class="button" />
-  </div>
-</form>
-<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=<?php echo $sf_user->getCulture('es')?>"></script>
-
-</div>
-<?php  ?>
 </div>
 <div class="limpiar"></div>
 <!-- FIN HEADER -->
@@ -100,14 +60,7 @@
 <a href="topUsuarios.html" class="enlacesPie">Top usuarios</a>
 </h6>
 </div -->
-<div class="limpiar"></div>
-<div class="enlacesPie">
-<h6>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Quiénes somos'), '@about') ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal')) ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
-</h6>
-</div>
+
 <div class="limpiar"></div>
 <div class="enlacesPie">
 <h6>

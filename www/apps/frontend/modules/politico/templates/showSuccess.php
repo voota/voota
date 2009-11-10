@@ -101,7 +101,7 @@ $(document).ready(function(){
 </div>
 </div>
 <div class="limpiar"></div>
-<div class="votaSobre">
+<div class="contenedorPositivoNegativo">
 
 <div class="izq positivoNegativo">
 	<div class="izq"><h5><?php echo __('Positivos')?> <?php if($positives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h5></div>
@@ -169,16 +169,16 @@ $(document).ready(function(){
 <!--  FIN CONTENT RIGHT -->
 <div class="limpiar"></div>
 
-<?php /* ?>
-<div class="votaSobre"><h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5></div>
+<?php  ?>
+<div class="fotoPolitico">
+<div class="votaPolitico"><h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5>
+<div id="sf_review2" class="marensf_review2"></div>
+</div>
+</div>
 
 
-<div id="sf_review2"></div>
-<?php */ ?>
 
-
-
-
+<?php  ?>
 <!-- FIN CONTENT -->
 </div>
 </div>

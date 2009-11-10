@@ -9,10 +9,11 @@
 <!-- CONTENT -->
 <div id="content">
 
-<?php echo showNotices( $sf_user ) ?>
+
 
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
+<?php echo showNotices( $sf_user ) ?>
 <div title="ficha">
 <h2><?php echo __('Hola %1%, estas son tus preferencias', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
 
@@ -126,7 +127,7 @@
 </div>
 </div>
 </div>
-<div class="limpiar"></div>
+<div class="limpiar footerEspacio"></div>
 </div>
 <!-- FIN CONTENT -->
 <!--FIN MAIN -->

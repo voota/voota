@@ -49,7 +49,7 @@ EOF;
 
     $s3 = new S3Voota();
     $c = new Criteria();
-    //$c->add(PoliticoPeer::ID, 1, Criteria::EQUAL);
+    // $c->add(PoliticoPeer::ID, 1196, Criteria::GREATER_THAN);
     $politicos = PoliticoPeer::doSelect( $c );
     foreach ($politicos as $politico){
     	if ($politico->getImagen() != ''){

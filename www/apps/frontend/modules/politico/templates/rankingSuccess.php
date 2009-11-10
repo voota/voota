@@ -87,7 +87,7 @@ $(document).ready(function(){
   <tr class="listaRanking">
     <td class="nombreRanking"><h6>
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png')
-    	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+    	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'" , class=separacionFotoRanking') ?>
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')

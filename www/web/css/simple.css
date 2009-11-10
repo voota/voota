@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+html, body { /* overflow: hidden; */ margin: 0 auto; padding: 20px 20px 20px 20px;  font-family: Georgia, "Times New Roman", Times, serif; color:#2A2A2A;}
+#header { height:5.75em; padding-left:1.94em;}
+#container {margin: 0 auto; min-width:45.00em; max-width:60.00em;} 
+#main { position: relative; left: 0.00em; right: 0.00em; background-image: url(../images/bgMain.gif); background-repeat:repeat-x; padding-top:1%; padding-left:10%}
+#sidenav { height: 100%; background: #00f; float: left; width: 12.50em; background-color:#0099CC }
+#content { height: 100%; /* overflow: visible; */ }
+#footer { position: relative; left: 0.00em; text-align:center; padding-top: 1em;}
+#nav { list-style:inside; font-size: 1.2em; font-style: normal; font-weight:100;}
+#navi {  list-style:none; margin:3em 0 3em 3em; padding:0 0.5em 0 0.5em; border:0.06em solid #CCCCCC; height:4.00em; width: 70%; font-size: 0.7em;}
+#navi li { 	margin:0.13em; padding:1.25em;  float:left;  }
+#line { height:0.06em; border-top:0.06em dotted #343434; margin-bottom:0.6em;}
+#caja {list-style:none;}
+#caja li { 	margin:0.13em;  float:left;  }
+#clearFix { clear:both; }
+h1 { font-size: 2.5em; font-weight:100; margin:0.00em;}
+h2 { font-size: 1.2em;  font-weight:100;}
+h3 { font-size: 2.5em; }
+h4 { font-size: 2.5em; }
+h5 { font-size: 0.9em; color:#9b9b9b }
+h6 { font-size: 0.75em; font-weight:100; margin:0px;}
+img { border:none; vertical-align:middle}
+li { margin: 0.5em 0; padding: 0.3em;}
+.cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
+.cC a {color: white;}
+.links {width: 100%; padding-bottom: 1em;word-spacing:6em;}

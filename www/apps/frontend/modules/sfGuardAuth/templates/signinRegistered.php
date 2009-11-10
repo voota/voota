@@ -16,5 +16,5 @@
 </div>
 </div>
 </div>
-<div class="limpiar"></div>
+<div class="limpiar footerEspacio"></div>
 </div>

@@ -105,12 +105,10 @@ $('textarea#sf_review_text').keyup(function() {
 		    </label></h6>
 		   */?>
 		   <h6>&nbsp;</h6>
-		  <h6>
 		    <label>
 		    
 	<?php echo submit_tag(__('Enviar'), array('class' => 'button')) ?>
 		    </label>
-		  </h6>
 		
 		</div>
 	</div>

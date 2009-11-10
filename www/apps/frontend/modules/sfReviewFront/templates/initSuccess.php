@@ -23,7 +23,7 @@ $(".<?php echo $reviewBox?$reviewBox:'sf_review' ?>buu").click(function(){
 </script>
 	
 <div id="sf_review">
-	<div class="izq clickable <?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah" id="buttona">
+	<div class="izq clickable margenVotacion <?php echo $reviewBox?$reviewBox:'sf_review' ?>yeah" id="buttona">
 	  <input name="vooto" type="radio" id="up" value="up">
 	
 		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
