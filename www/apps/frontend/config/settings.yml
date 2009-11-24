@@ -1,8 +1,7 @@
 prod:
   .settings:
     no_script_name:         on
-    logging_enabled:        on
-    error_reporting:  <?php echo (E_PARSE | E_COMPILE_ERROR | E_ERROR | E_CORE_ERROR | E_USER_ERROR)."\n" ?>    
+    logging_enabled:        off
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
 

@@ -1,9 +1,9 @@
 prod:
-#  logger:
-#    class:   sfNoLogger
-#    param:
-#      level:   err
-#      loggers: ~
+  logger:
+    class:   sfNoLogger
+    param:
+      level:   err
+      loggers: ~
 
 cli:
   controller:
