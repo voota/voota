@@ -1,0 +1,9 @@
+.sfr_grey{color:#b6b6b6; }
+h5.sfr { color:#2b56ff;float:left; }
+div.sfr_margin {margin-right:1.56em;float:left;}
+div.sfr_left {float:left;}
+div.sfr_hands {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
+textarea.sfr { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; font-size:0.75em; border:1px solid #8f9ba7; }
+input.sfr_button { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
+span.sfr { font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232; line-height:1.60em; }
+div.clickable {cursor: pointer;}

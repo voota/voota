@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.7.2" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfReviewPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>Review management plugin.</summary>
+ <description>Review management plugin.</description>
+ <lead>
+  <name>Sergio Viteri</name>
+  <user>sviteri</user>
+  <email>sergio@infovit.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-11-23</date>
+ <time>11:14:59</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>-</notes>
+ <contents>
+  <dir name="/">
+   <file name="LICENSE" role="data"/>
+   <file name="config/schema.yml" role="data"/>
+   <file name="config/config.php" role="data"/>
+   <file name="README" role="data"/>
+   <file name="lib/helper/SfReviewHelper.php" role="data"/>
+   <file name="lib/sfReviewManager.class.php" role="data"/>
+   <file name="lib/task/sfReviewStatsTask.class.php" role="data"/>
+   <file name="lib/filter/SfReviewReasonFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewAttachFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewModerationFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewStatusFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewTypeEntityFormFilter.class.php" role="data"/>
+   <file name="lib/filter/SfReviewTypeFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewTypeFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewModerationFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewReasonFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewTypeEntityFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewAttachFormFilter.class.php" role="data"/>
+   <file name="lib/filter/base/BaseSfReviewStatusFormFilter.class.php" role="data"/>
+   <file name="lib/model/SfReviewStatusPeer.php" role="data"/>
+   <file name="lib/model/SfReviewAttach.php" role="data"/>
+   <file name="lib/model/SfReviewTypePeer.php" role="data"/>
+   <file name="lib/model/SfReviewStatus.php" role="data"/>
+   <file name="lib/model/SfReviewModeration.php" role="data"/>
+   <file name="lib/model/SfReviewTypeEntity.php" role="data"/>
+   <file name="lib/model/map/SfReviewTypeMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewTypeEntityMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewAttachMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewStatusMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewReasonMapBuilder.php" role="data"/>
+   <file name="lib/model/map/SfReviewModerationMapBuilder.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewTypePeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewTypeEntityPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewReasonPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewStatusPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewModeration.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewAttach.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReview.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewReason.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewModerationPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewTypeEntity.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewAttachPeer.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewStatus.php" role="data"/>
+   <file name="lib/model/om/BaseSfReviewType.php" role="data"/>
+   <file name="lib/model/SfReviewPeer.php" role="data"/>
+   <file name="lib/model/SfReview.php" role="data"/>
+   <file name="lib/model/SfReviewType.php" role="data"/>
+   <file name="lib/model/SfReviewAttachPeer.php" role="data"/>
+   <file name="lib/model/SfReviewReason.php" role="data"/>
+   <file name="lib/model/SfReviewReasonPeer.php" role="data"/>
+   <file name="lib/model/SfReviewTypeEntityPeer.php" role="data"/>
+   <file name="lib/model/SfReviewModerationPeer.php" role="data"/>
+   <file name="lib/sfReviewRouting.class.php" role="data"/>
+   <file name="lib/form/SfReviewStatusForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewModerationForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewReasonForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewTypeForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewTypeEntityForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewTypeForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewTypeEntityForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewReasonForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewStatusForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewAttachForm.class.php" role="data"/>
+   <file name="lib/form/base/BaseSfReviewModerationForm.class.php" role="data"/>
+   <file name="lib/form/SfReviewAttachForm.class.php" role="data"/>
+   <file name="modules/sfReviewStatus/config/security.yml" role="data"/>
+   <file name="modules/sfReviewStatus/config/generator.yml" role="data"/>
+   <file name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorHelper.class.php" role="data"/>
+   <file name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorConfiguration.class.php" role="data"/>
+   <file name="modules/sfReviewStatus/actions/actions.class.php" role="data"/>
+   <file name="modules/sfReviewFront/config/view.yml" role="data"/>
+   <file name="modules/sfReviewFront/templates/deleteSuccess.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/initSuccess.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/deleteError.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/formError.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/sendSuccess.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/previewSuccess.php" role="data"/>
+   <file name="modules/sfReviewFront/templates/formSuccess.php" role="data"/>
+   <file name="modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php" role="data"/>
+   <file name="modules/sfReviewFront/actions/actions.class.php" role="data"/>
+   <file name="modules/sfReview/config/security.yml" role="data"/>
+   <file name="modules/sfReview/config/generator.yml" role="data"/>
+   <file name="modules/sfReview/templates/_review_data.php" role="data"/>
+   <file name="modules/sfReview/lib/sfReviewGeneratorHelper.class.php" role="data"/>
+   <file name="modules/sfReview/lib/sfReviewGeneratorConfiguration.class.php" role="data"/>
+   <file name="modules/sfReview/actions/actions.class.php" role="data"/>
+   <file name="modules/sfReviewType/config/security.yml" role="data"/>
+   <file name="modules/sfReviewType/config/generator.yml" role="data"/>
+   <file name="modules/sfReviewType/lib/sfReviewTypeGeneratorHelper.class.php" role="data"/>
+   <file name="modules/sfReviewType/lib/sfReviewTypeGeneratorConfiguration.class.php" role="data"/>
+   <file name="modules/sfReviewType/actions/actions.class.php" role="data"/>
+   <file name="web/css/sf_review.css" role="data"/>
+   <dir name="web">
+	   <dir name="css">
+		   <file name="sf_review.css" role="data"/>
+	   </dir>
+	   <dir name="images">
+		   <file name="icoDown.gif" role="data"/>
+		   <file name="icoUp.gif" role="data"/>
+	   </dir>
+	   <dir name="js">
+		   <file name="sf_review.js" role="data"/>
+	   </dir>
+   </dir>
+  </dir>
+ </contents>
+ 
+<dependencies>
+  <required>
+    <php>
+      <min>5.0.0</min>
+    </php>
+    <pearinstaller>
+      <min>1.4.1</min>
+    </pearinstaller>
+    <package>
+      <name>symfony</name>
+      <channel>pear.symfony-project.com</channel>
+      <min>1.2.0</min>
+      <max>1.3.0</max>
+      <exclude>1.3.0</exclude>
+    </package>
+   <package>
+    <name>sfGuardPlugin</name>
+  	<channel>plugins.symfony-project.org</channel>
+  	<min>3.0.0</min>
+    <max>3.2.0</max>
+    <exclude>3.2.0</exclude>
+   </package>   
+  </required>
+</dependencies>
+ 
+
+ <phprelease/>
+
+
+<changelog>
+  <release>
+    <version>
+      <release>1.0.0</release>
+      <api>1.0.0</api>
+    </version>
+    <stability>
+      <release>stable</release>
+      <api>stable</api>
+    </stability>
+    <license uri="http://www.symfony-project.com/license">
+      MIT license
+    </license>
+    <date>2009-09-09</date>
+    <license>MIT</license>
+    <notes>
+       * First release of the plugin
+    </notes>
+  </release>
+</changelog>
+
+</package>

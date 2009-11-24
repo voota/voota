@@ -1,32 +1,28 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('SfReview') ?>
 
 
 
 <div>
-	<h6>Tu voto
+	<h6><?php echo __('Tu voto')?>
 	<?php if ($reviewValue == -1): ?>
 		<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
 	<?php endif ?>
 	<?php if ($reviewValue == 1): ?>
 		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
 	<?php endif ?>
-	<a href="#" 
-		onclick="javascript:loadReviewBox(
-			'<?php echo url_for('@sf_review_form') ?>'
-			, 1
-			, <?php echo $reviewEntityId ?>
-			, <?php echo $reviewValue ?>
-			, '<?php echo $reviewBox?$reviewBox:'sf_review'?>'
-		)"
-	><?php echo __('Hacer cambios')?></a>
+	<?php echo jq_link_to_remote(__('Hacer cambios'), array(
+	    'update'   => $reviewBox?$reviewBox:'sf_review',
+	    'url'    => "@sf_review_form?t=1&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review')
+	)) ?>
 	
 	</h6>
 </div>
-<div class="izq">
-	<div class="margenPolitico">
-	  <h6><?php echo $reviewText ?></h6>
+<div class="sfr_left">
+	<div class="sfr_margin">
+	  <span class="sfr"><?php echo review_text( $review ) ?></span>
 	</div>
 </div>
 	

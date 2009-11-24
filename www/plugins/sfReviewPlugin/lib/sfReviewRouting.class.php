@@ -27,8 +27,13 @@ class sfReviewRouting
     $r = $event->getSubject();
 
     // preprend our routes
+	$r->prependRoute('sf_review_init', new sfRoute('/review/init', array('module' => 'sfReviewFront', 'action' => 'init')));
+	$r->prependRoute('sf_review_form', new sfRoute('/review/form', array('module' => 'sfReviewFront', 'action' => 'form')));
+	$r->prependRoute('sf_review_preview', new sfRoute('/review/preview', array('module' => 'sfReviewFront', 'action' => 'preview')));
+	$r->prependRoute('sf_review_send', new sfRoute('/review/send', array('module' => 'sfReviewFront', 'action' => 'send')));
+	$r->prependRoute('sf_review_delete', new sfRoute('/review/delete', array('module' => 'sfReviewFront', 'action' => 'delete')));
   }
-
+  
   static public function addRouteForAdminType(sfEvent $event)
   {
     $event->getSubject()->prependRoute('sf_review_type', new sfPropelRouteCollection(array(
@@ -64,5 +69,6 @@ class sfReviewRouting
       'requirements'         => array(),
     )));
   }
+  
   
 }

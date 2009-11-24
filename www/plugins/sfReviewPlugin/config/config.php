@@ -1,6 +1,6 @@
 <?php
 
-if (sfConfig::get('app_sf_review_plugin_routes_register', true) && in_array('sfReview', sfConfig::get('sf_enabled_modules', array())))
+if (sfConfig::get('app_sf_review_plugin_routes_register', true) && in_array('sfReviewFront', sfConfig::get('sf_enabled_modules', array())))
 {
   $this->dispatcher->connect('routing.load_configuration', array('sfReviewRouting', 'listenToRoutingLoadConfigurationEvent'));
 }

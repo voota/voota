@@ -9,7 +9,7 @@
  */
 
 /**
- * politico actions.
+ * BasesfReviewFront actions.
  *
  * @package    Voota
  * @subpackage review
@@ -40,6 +40,8 @@ class BasesfReviewFrontActions extends sfActions
   	}
   }
   
+  protected function prepareRedirect( $entityId ){
+  }
   
   public function executeForm(sfWebRequest $request)
   {
@@ -55,16 +57,10 @@ class BasesfReviewFrontActions extends sfActions
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
   		
   	if (! $this->getUser()->isAuthenticated()) {
-  		$culture = $request->getParameter("sf_culture");
   		$type = SfReviewTypePeer::retrieveByPK($this->reviewType);
   		if ($type){
-	  		$rule = "@politico_$culture";
-	  		$url = "$rule?id=" . $this->reviewEntityId;		
-	  		$this->getUser()->setAttribute('url_back', $url);
-	  		$this->getUser()->setAttribute('review_v', $this->reviewValue);
-	  		$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
+  			$this->prepareRedirect( $this->reviewEntityId );
   		}  		
-  	
   		
   		echo "<script>document.location='".$this->getContext()->getController()->genUrl("@sf_guard_signin", true)."'</script>";die;
   	}

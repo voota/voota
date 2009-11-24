@@ -16,3 +16,12 @@ ul.error_list li {
 .error {color:red;}
 .gris{color:#b6b6b6; }
 .negro{color:black; }
+.hidden{display:none}
+.shown{display:block}
+div.error {width:340px; margin-top:15px; padding:13px; background-color:#ffffcd; border:1px solid #8da0b1; font-size: 0.88em; color:#ff0012; font-weight: bold;}
+.error {color:#ff0012;}
+div.notice {width:340px; margin-top:15px; padding:13px; background-color:#ffffff; border:1px solid #8da0b1; font-size: 0.88em; color:#323232; font-weight: bold; background-image:url(/images/icoOk.gif); background-position:right bottom; background-repeat:no-repeat;}
+#googleads {float:right}
+.wider {  width:22em; padding-bottom:0.60em; padding-top:0.60em;  }
+.review_img {float:left; margin-right: 5px}
+.review_date {font-size:0.8em;}
