@@ -15,14 +15,14 @@
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/backend.php" />
   </target>
-  <target name="admin" depends="prepare_admin, updatesvn, i18n, clear">
+  <target name="admin" depends="prepare_admin, updatesvn, i18n, clear, assets">
   	<delete file="${project.dir}/www/web/frontend_dev.php" />
   	<delete file="${project.dir}/www/web/backend_dev.php" />
   	<delete file="${project.dir}/www/web/index.php" />
   	<move file="${project.dir}/www/web/backend.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
     <phingcall target="pruebas_admin" />
   </target>
-  <target name="update" depends="prepare, updatesvn, i18n, clear">
+  <target name="update" depends="prepare, updatesvn, i18n, clear, assets">
   	<exec command="chmod +x ${project.dir}/scripts/deploy.sh" passthru="true" />
   	<echo>Updated.</echo>
     <phingcall target="pruebas" />
@@ -33,6 +33,10 @@
   <target name="clear" depends="prepare">
   	<echo>Clearing cache ...</echo>
   	<exec command="php symfony cc" dir="${project.dir}/www"  passthru="true"/>
+  </target>
+  <target name="assets" depends="prepare">
+  	<echo>Deploying assets ...</echo>
+  	<exec command="php symfony plugin:publish-assets" dir="${project.dir}/www"  passthru="true"/>
   </target>
   <target name="schema" depends="prepare">
   	<echo>Rebuilding schema ...</echo>
