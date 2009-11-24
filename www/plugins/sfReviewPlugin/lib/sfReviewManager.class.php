@@ -36,7 +36,7 @@ class SfReviewManager
   	/*
 	return SfReviewPeer::doSelect($criteria);
 	*/
-  	$pager = new sfPropelPager('SfReview', 5);
+  	$pager = new sfPropelPager('SfReview', 30);
     $pager->setCriteria($criteria);
     $pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
     $pager->init();
@@ -82,4 +82,5 @@ class SfReviewManager
   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $id);
   	SfReviewPeer::doDelete( $c );
   }
+  
 }

@@ -30,21 +30,54 @@ function rankingReady() {
 
 // mode: init/form
 function politicoReady( url, id, box ){
-	loadReviewBox(url, 1, id, -1, box);
+	return loadReviewBox(url, 1, id, -1, box);
 }
 
 function showHidePass( fieldName ){
 	var field = document.getElementById( fieldName );
+	var showLabel = document.getElementById( 'show_pass_label' );
+	var hideLabel = document.getElementById( 'hide_pass_label' );
+	
 	if ( field.type == "password" ){
-		field.type = "text";
+		changeInputType(field, 'text');
+
+		showLabel.className="hidden";
+		hideLabel.className="shown";
 	}
 	else {
-		field.type = "password";
+		changeInputType(field, 'password');
+
+		showLabel.className="shown";
+		hideLabel.className="hidden";
 	}
+	
+	return false;
+}
+function changeInputType(oldObject, oType) {
+	  var newObject = document.createElement('input');
+	  newObject.type = oType;
+	  if(oldObject.size) newObject.size = oldObject.size;
+	  if(oldObject.value) newObject.value = oldObject.value;
+	  if(oldObject.name) newObject.name = oldObject.name;
+	  if(oldObject.id) newObject.id = oldObject.id;
+	  if(oldObject.className) newObject.className = oldObject.className;
+	  if(oldObject.className) newObject.autocomplete = oldObject.autocomplete;
+	  oldObject.parentNode.replaceChild(newObject,oldObject);
+	  return newObject;
 }
 function showScoreHelp(){
 	$("#help_dialog").dialog('open');
 }
 
+function inst_to_long() {
+	document.getElementById('inst_long').className = 'shown';
+	document.getElementById('inst_short').className = 'hidden';
+	return false;
+}
 
+function inst_to_short() {
+	document.getElementById('inst_long').className = 'hidden';
+	document.getElementById('inst_short').className = 'shown';
+	return false;
+}
 

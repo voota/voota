@@ -96,11 +96,12 @@ class BasesfReviewFrontActions extends sfActions
   	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
   	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
-  	$review = SfReviewPeer::doSelect($criteria);
+  	$review = SfReviewPeer::doSelectOne($criteria);
   	if ($review) {
-  		$this->reviewValue = $review[0]->getValue();
-  		$this->reviewText = $review[0]->getText();
-  		$this->reviewId = $review[0]->getId();
+  		$this->reviewValue = $review->getValue();
+  		$this->reviewText = $review->getText();
+  		$this->reviewId = $review->getId();
+  		$this->review = $review;
   	}
   }
   

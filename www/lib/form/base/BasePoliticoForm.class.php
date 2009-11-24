@@ -72,6 +72,10 @@ class BasePoliticoForm extends BaseFormPropel
       'politico_lista_list'       => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Politico', 'column' => array('vanity')))
+    );
+
     $this->widgetSchema->setNameFormat('politico[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

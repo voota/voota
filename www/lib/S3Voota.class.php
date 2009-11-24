@@ -1,5 +1,20 @@
 <?php
+/*
+ * This file is part of the Voota package.
+ * (c) 2009 Sergio Viteri <sergio@voota.es>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+/**
+ * politico actions.
+ *
+ * @package    Voota
+ * @subpackage politico
+ * @author     Sergio Viteri
+ * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
+ */
 class S3Voota extends S3 {
 	const _BUCKET_ORI = 'sf_s3_bucket_originals';
 	const _BUCKET_PUB = 'sf_s3_bucket_public';
@@ -79,15 +94,20 @@ class S3Voota extends S3 {
 		$arr = array_reverse( split("/", $file) );
 		$fileName = $arr[0];
 		$uri = "usuarios/$fileName";
-		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE)){
+		
+		$uploaded = $this->upload($file, S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE);
+		if ( $uploaded ){
 			$img = new sfImage( $file );
 			$img->usuario(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$uploaded = $this->upload("/tmp/cc_$fileName", S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
-			unlink ( "/tmp/cc_s_$fileName" );
+			if ($uploaded) {
+				$uploaded = $this->upload("/tmp/cc_s_$fileName", S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+				unlink ( "/tmp/cc_s_$fileName" );
+			}
 		}
 		
+		return $uploaded;
 	}
 	public function createUsuarioFromOri( $fileName ) {
 		$uri = "usuarios/$fileName";
@@ -99,5 +119,25 @@ class S3Voota extends S3 {
 				unlink ( "$fileOnDisk" );
 			}
 		}
+	}
+	
+	private function upload($filePath, $bucket, $fileName, $acl) {
+		$retries = 3;
+		$uploaded = false;
+		
+		while (!$uploaded && $retries > 0){
+			$retries--;
+			set_error_handler ( "S3Voota::error_handler" );
+			$uploaded = S3::putObject(S3::inputFile($filePath), $bucket, $fileName, $acl);
+			restore_error_handler();
+		}
+		
+		return $uploaded;
+	}
+	
+	public static function error_handler($errno, $errstr, $errfile, $errline){
+		sfContext::getInstance()->getLogger()->err("S3 error $errno: $errstr");
+		
+		return true;
 	}
 }

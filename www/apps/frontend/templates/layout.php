@@ -1,4 +1,6 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('Form') ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"> 
 <html>
 <head>
@@ -7,14 +9,6 @@
     <?php  include_metas() ?>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<META NAME="Title" CONTENT="Voota">
-<META NAME="Author" CONTENT="Voota">
-<META NAME="Subject" CONTENT="<?php echo __('Tú tienes la última palabra')?>">
-<META NAME="Description" CONTENT="<?php echo __('Coomparte opiniones sobre los políticos de España')?>">
-<META NAME="Keywords" CONTENT="<?php echo __('Política, Políticos, Partidos, Congreso, Senado, Parlamento de Cataluña')?>">
-<META NAME="Language" CONTENT="<?php echo __('Spanish')?>">
-<META NAME="Distribution" CONTENT="Global">
-<META NAME="Robots" CONTENT="All">
     <link rel="shortcut icon" href="/favicon.ico" >
 </head>
 <body>
@@ -59,6 +53,17 @@
 <div class="limpiar"></div>
 <div class="der">
 
+<?php echo form_tag('@search') ?>
+
+  <div>
+	<?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
+	<?php echo submit_tag('Buscar', array('class' => 'button')) ?>
+  </div>
+</form>
+
+<?php 
+/*
+?>
 <form action="<?php echo url_for('@search', true) ?>" id="cse-search-box">
   <div>
     <input type="hidden" name="cx" value="009755620675690774762:o64jyt7ee5g" />
@@ -69,6 +74,9 @@
   </div>
 </form>
 <script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=<?php echo $sf_user->getCulture('es')?>"></script>
+<?php 
+*/
+?>
 
 </div>
 <?php  ?>
@@ -103,9 +111,12 @@
 <div class="limpiar"></div>
 <div class="enlacesPie">
 <h6>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Quiénes somos'), '@about') ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal')) ?></a>
-<a href="blog.html" class="enlacesPie"><?php echo link_to(__('blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es')) ?></a>
+<?php echo link_to(__('Quiénes somos'), '@about', array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es'), array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Socios'), 'http://blog.voota.es/es/socios/', array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
+
 </h6>
 </div>
 <div class="limpiar"></div>
@@ -113,11 +124,11 @@
 <h6>
 <?php slot('langLink_ca') ?>
 	català
-	<?php echo link_to('español', '@homepage?sf_culture=es') ?>
+	<?php echo link_to('español', '@homepage?sf_culture=es', array('class' => "enlacesPie")) ?>
 <?php end_slot('langLink_ca') ?>
 
 <?php slot('langLink_es') ?>
-	<?php echo link_to('català', '@homepage?sf_culture=ca') ?>
+	<?php echo link_to('català', '@homepage?sf_culture=ca', array('class' => "enlacesPie")) ?>
 	español
 <?php end_slot('langLink_es') ?>
 <?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>

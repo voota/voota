@@ -30,8 +30,8 @@
       <?php echo __('Contraseña') ?>
     </td>
     <td class="leftSing tdperfil" >
-      <?php echo $form['password']->renderError() ?>
-      <?php echo $form['password']->render() ?>
+      <?php echo $form['passwordNew']->renderError() ?>
+      <?php echo $form['passwordNew']->render() ?>
     </td>    
   </tr>
   <tr>

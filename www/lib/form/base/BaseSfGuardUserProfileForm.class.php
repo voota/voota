@@ -29,6 +29,7 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'imagen'                   => new sfWidgetFormInput(),
       'sf_guard_user_profilecol' => new sfWidgetFormInput(),
       'codigo'                   => new sfWidgetFormInput(),
+      'papel_voota'              => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -48,6 +49,7 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'imagen'                   => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'sf_guard_user_profilecol' => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'codigo'                   => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'papel_voota'              => new sfValidatorString(array('max_length' => 280, 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

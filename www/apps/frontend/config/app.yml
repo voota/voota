@@ -10,3 +10,6 @@ all:
   sf_guard_plugin:
     profile_class:      SfGuardUserProfile
     profile_field_name: user_id
+    
+  enable_vobase_me: on
+    

@@ -14,6 +14,7 @@ class updateImagesTask extends sfBaseTask
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
       new sfCommandOption('table', null, sfCommandOption::PARAMETER_REQUIRED, 'Tipo de imagenes a procesar', 'politico'),
+      new sfCommandOption('minid', null, sfCommandOption::PARAMETER_REQUIRED, 'Id de politico a partir del cual procesar', '1'),
       // add your own options here
     ));
 
@@ -49,7 +50,7 @@ EOF;
 
     $s3 = new S3Voota();
     $c = new Criteria();
-    // $c->add(PoliticoPeer::ID, 1196, Criteria::GREATER_THAN);
+    $c->add(PoliticoPeer::ID, $options['minid'], Criteria::GREATER_EQUAL);
     $politicos = PoliticoPeer::doSelect( $c );
     foreach ($politicos as $politico){
     	if ($politico->getImagen() != ''){

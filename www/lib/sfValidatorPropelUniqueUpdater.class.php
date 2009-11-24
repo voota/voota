@@ -22,7 +22,7 @@
  */
 class sfValidatorPropelUniqueUpdater extends sfValidatorPropelUnique
 {
-
+  protected $keywords = array('logout');
   
   /**
    * @see sfValidatorBase
@@ -62,17 +62,23 @@ class sfValidatorPropelUniqueUpdater extends sfValidatorPropelUnique
     
     // UPDATE PATCH: Add primary key column yo avoid validating current record
     if (sfContext::getInstance()->getUser()){
-     	$criteria->add('ID', sfContext::getInstance()->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
+    	if ($this->getOption('model') == 'sfGuardUserProfile'){
+   		  	$criteria->add(SfGuardUserProfilePeer::USER_ID, sfContext::getInstance()->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
+       	}
+       	else {
+   		  	$criteria->add(SfGuardUserPeer::ID, sfContext::getInstance()->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
+       	}
     }
     // END UPDATE PATCH
     
     $object = call_user_func(array(constant($this->getOption('model').'::PEER'), 'doSelectOne'), $criteria, $this->getOption('connection'));
 
     // if no object or if we're updating the object, it's ok
-    if (is_null($object) || $this->isUpdate($object, $values))
+    if ((is_null($object) || $this->isUpdate($object, $values)) && !in_array($values[$name], $this->keywords))
     {
-      return $values;
+    	return $values;
     }
+    
 
     $error = new sfValidatorError($this, 'invalid', array('column' => implode(', ', $this->getOption('column'))));
 

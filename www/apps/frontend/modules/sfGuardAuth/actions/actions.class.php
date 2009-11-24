@@ -11,7 +11,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       $this->form->bind($request->getParameter('reminder'));
       
       if ($this->form->isValid()) {
-      	$user = sfGuardUserPeer::retrieveByUsername($this->form->getValue('username'));
+      	//$user = sfGuardUserPeer::retrieveByUsername($this->form->getValue('username'));
+	    $c = new Criteria();
+	    $c->add(sfGuardUserPeer::USERNAME, $this->form->getValue('username'));
+	
+	    $user = sfGuardUserPeer::doSelectOne($c);
       	if ($user){
       		$this->sendReminder( $user );
       		return "SentSuccess";
@@ -36,19 +40,19 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		
   	$this->form = new PasswordChangeForm();
     //$this->form->bind( array('codigo' => $codigo) );
-    if ( $request->isMethod('post') ) {
-      $this->form->bind($request->getParameter('changer'));
+  	if ( $request->isMethod('post') ) {
+  		$this->form->bind($request->getParameter('changer'));
       if ($this->form->isValid()) {
       	$c = new Criteria();
       	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
 		$c->add(SfGuardUserProfilePeer::CODIGO, $this->codigo);
-		$users = sfGuardUserPeer::doSelect($c);		
-		$this->forward404Unless(count($users) == 1);
-		foreach ($users as $user){
-  			$user->setPassword( $this->form->getValue('password') );
-  			sfGuardUserPeer::doUpdate( $user );
- 	  	}      
-      	return "ChangedSuccess";
+		$user = sfGuardUserPeer::doSelectOne($c);
+		$this->forward404Unless( $user );
+  		$user->setIsActive(1);
+		$user->setPassword( $this->form->getValue('passwordNew') );
+  		sfGuardUserPeer::doUpdate( $user );
+
+       	return "ChangedSuccess";
       }
       /*
       else {
@@ -68,13 +72,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$c = new Criteria();
 	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
 	$c->add(SfGuardUserProfilePeer::CODIGO, $codigo);
-	$users = sfGuardUserPeer::doSelect($c);
+	$user = sfGuardUserPeer::doSelectOne($c);
  	
-	$this->forward404Unless(count($users) == 1);
+	$this->forward404Unless( $user );
 	
-  	foreach ($users as $user){
+  	if ($user){
   		$user->setIsActive(1);
   		sfGuardUserPeer::doUpdate( $user );
+  		$this->getUser()->signin( $user );
   	}
   }
   
@@ -104,7 +109,23 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      	$profile = $user[0]->getProfile();
 		     	$profile->setNombre($this->registrationform->getValue('nombre'));
 		      	$profile->setApellidos($this->registrationform->getValue('apellidos'));
+		      	$profile->setPresentacion($this->registrationform->getValue('presentacion'));
 		      	$profile->setCodigo( util::generateUID() );
+			    /* Generar vanity */
+			    if ($profile->getVanity() == ''){
+			    	$vanityUrl = SfVoUtil::encodeVanity($profile->getNombre()."-".$profile->getApellidos()) ;
+			    	
+				    $c2 = new Criteria();
+				    $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+				    $c2->add(SfGuardUserProfilePeer::ID, $user[0]->getId(), Criteria::NOT_EQUAL);
+				    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
+				    $counter = 0;
+				    foreach ($usuariosLikeMe as $usuarioLikeMe){
+				    	$counter++;
+				    }
+				    $profile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+			    }
+			    /* Fin Generar vanity */   	
 		      	sfGuardUserProfilePeer::doInsert( $profile );
 		      	
 		      	$this->sendWelcome( $user[0] );
@@ -142,6 +163,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      $this->signinform = $r; 
       	}
     }
+  	$this->title = sfContext::getInstance()->getI18N()->__('Acceso usuarios', array());
+  	$this->title .= ' - Voota';
+  	  	
+    $this->response->setTitle( $this->title );
   }
   
   private function sendWelcome( $user ){
@@ -194,7 +219,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
 	$this->profileEditForm = new ProfileEditForm( $formData );
-   	
+	
     if ($request->isMethod('post') ){  
       	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
@@ -216,7 +241,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 					if (!$ext || $ext == ""){
 						$ext = "png";
 					}      		
-		      		$imageName = $this->profileEditForm->getValue('vanity') . ".$ext";
+		      		$imageName = $this->profileEditForm->getValue('nombre');
+		      		if ($this->profileEditForm->getValue('apellidos') != '') {
+		      			$imageName .= "-". $this->profileEditForm->getValue('apellidos');
+		      		}
+		      		$imageName .= "-".sprintf("%04d", rand(0, 999));
+		      		$imageName .= ".$ext";
 		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
 		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
 		      		$this->profileEditForm->configure();
@@ -241,14 +271,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		$this->profileEditForm->getObject()->getProfile()->save();
       		
 	    }
-	    /*
 	    else {
       		$this->getUser()->setFlash('notice_type', 'error', false);
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage(), false);
       		
 	    }
-	    */
     }
-	
+    
+
   }
 }

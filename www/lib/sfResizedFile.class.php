@@ -75,17 +75,18 @@ class sfResizedFile extends sfValidatedFile
 		
 		//$img = new sfImage( $file );
 
-		$s3 = new S3Voota();
-		if (strpos  ( $file , "politicos" )){
-		    $s3->createPoliticoFromFile($file);
-		}
-		if (strpos  ( $file , "instituciones" )){
-			$s3->createInstitucionFromFile($file);
-		}
-		if (strpos  ( $file , "usuarios" )){
-			$s3->createUsuarioFromFile($file);
-		}
-		
+		if ($ret){
+			$s3 = new S3Voota();
+			if (strpos  ( $file , "politicos" )){
+			    $s3->createPoliticoFromFile($file);
+			}
+			if (strpos  ( $file , "instituciones" )){
+				$s3->createInstitucionFromFile($file);
+			}
+			if (strpos  ( $file , "usuarios" )){
+				$ret = $s3->createUsuarioFromFile($file);
+			}
+		}		
 		return $ret;
 	}
 

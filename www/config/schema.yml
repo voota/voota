@@ -110,6 +110,7 @@ propel:
     hijos: { type: INTEGER, size: '11', required: false }
     hijas: { type: INTEGER, size: '11', required: false }
     _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
+    _uniques: { uniq_politico_vanity: [vanity] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -158,6 +159,7 @@ propel:
     imagen: { type: VARCHAR, size: '50', required: false }
     sf_guard_user_profilecol: { type: VARCHAR, size: '45', required: false }
     codigo: { type: VARCHAR, size: '45', required: false }
+    papel_voota: { type: VARCHAR, size: '280', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
   voto:

@@ -6,13 +6,16 @@ function review_text($review, $msg = array()){
 		'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador."),
 		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador."),
 	);
+	
+	$text = $review->getText();
 		
 	if ($review->getSfReviewStatus()->getPublished() == 1){
 		if ($review->getSfReviewStatus()->getOffensive() == 0){
-			$ret = $review->getText();
+			autolink( $text );
+			$ret = $text;
 		}
 		else {
-			$ret = "<span style='text-decoration: line-through;'>". utf8_strrev( $review->getText() ) ."<span>";
+			$ret = "<span style='text-decoration: line-through;'>". utf8_strrev( $text ) ."</span>";
 			$ret .= "<p>". $msg['offensive'] ."</p>";
 		}
 	}
@@ -31,4 +34,115 @@ function review_date_diff( $date ){
 	$d1 = time();
 	$d2 = strtotime($date);
 	return floor(($d1 - $d2)/(60*60*24*365));
+}
+
+//function autolink( &$text, $target='_blank', $nofollow=true )
+function autolink( &$text, $nofollow=true )
+{
+  // grab anything that looks like a URL...
+  $urls  =  _autolink_find_URLS( $text );
+  if( !empty($urls) ) // i.e. there were some URLS found in the text
+  {
+    //array_walk( $urls, '_autolink_create_html_tags', array('target'=>$target, 'nofollow'=>$nofollow) );
+    array_walk( $urls, '_autolink_create_html_tags', array('nofollow'=>$nofollow) );
+    $text  =  strtr( $text, $urls );
+  }
+}
+
+function _autolink_find_URLS( $text )
+{
+  // build the patterns
+  $scheme         =       '(http:\/\/|https:\/\/)';
+  $www            =       'www\.';
+  $ip             =       '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}';
+  $subdomain      =       '[-a-z0-9_]+\.';
+  $name           =       '[a-z][-a-z0-9]+\.';
+  $tld            =       '[a-z]+(\.[a-z]{2,2})?';
+  $the_rest       =       '\/?[a-z0-9._\/~#&=;%+?-]+[a-z0-9\/#=?]{1,1}';            
+  //$pattern        =       "$scheme?(?(1)($ip|($subdomain)?$name$tld)|($www$name$tld))$the_rest";
+  $pattern        =       "$scheme?(?(1)($ip|($subdomain)?$tld)|($www$name$tld))$the_rest";
+  
+  $pattern        =       '/'.$pattern.'/is';
+  $c              =       preg_match_all( $pattern, $text, $m );
+  unset( $text, $scheme, $www, $ip, $subdomain, $name, $tld, $the_rest, $pattern );
+  if( $c )
+  {
+    return( array_flip($m[0]) );
+  }
+  return( array() );
+}
+
+function _autolink_create_html_tags( &$value, $key, $other=null )
+{
+  $target = $nofollow = null;
+  if( is_array($other) )
+  {
+    //$target      =  ( $other['target']   ? " target=\"$other[target]\"" : null );
+    // see: http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
+    $nofollow    =  ( $other['nofollow'] ? ' rel="nofollow"'            : null );     
+  }
+  $value = "<a href=\"$key\"$target$nofollow>$key</a>";
+} 
+
+function format_plural($count, $singular, $plural, $args = array(), $langcode = NULL) {
+  $args['@count'] = $count;
+  if ($count == 1) {
+    return t($singular, $args, $langcode);
+  }
+
+  // Get the plural index through the gettext formula.
+  $index = (function_exists('locale_get_plural')) ? locale_get_plural($count, $langcode) : -1;
+  // Backwards compatibility.
+  if ($index < 0) {
+    return t($plural, $args, $langcode);
+  }
+  else {
+    switch ($index) {
+      case "0":
+        return t($singular, $args, $langcode);
+      case "1":
+        return t($plural, $args, $langcode);
+      default:
+        unset($args['@count']);
+        $args['@count['. $index .']'] = $count;
+        return t(strtr($plural, array('@count' => '@count['. $index .']')), $args, $langcode);
+    }
+  }
+}
+
+function ago($timestamp){
+   $difference = time() - $timestamp;
+   $periods = array(
+   				sfContext::getInstance()->getI18N()->__("segundo"),
+   				sfContext::getInstance()->getI18N()->__("minuto"),
+   				sfContext::getInstance()->getI18N()->__("hora"),
+   				sfContext::getInstance()->getI18N()->__("día"),
+   				sfContext::getInstance()->getI18N()->__("semana"),
+   				sfContext::getInstance()->getI18N()->__("mes"),
+   				sfContext::getInstance()->getI18N()->__("año"),
+   				sfContext::getInstance()->getI18N()->__("década")
+   );
+   $periods_plural = array(
+   				sfContext::getInstance()->getI18N()->__("segundos"),
+   				sfContext::getInstance()->getI18N()->__("minutos"),
+   				sfContext::getInstance()->getI18N()->__("horas"),
+   				sfContext::getInstance()->getI18N()->__("días"),
+   				sfContext::getInstance()->getI18N()->__("semanas"),
+   				sfContext::getInstance()->getI18N()->__("meses"),
+   				sfContext::getInstance()->getI18N()->__("años"),
+   				sfContext::getInstance()->getI18N()->__("décadas")
+   );
+   $lengths = array("60","60","24","7","4.35","12","10");
+   for($j = 0; $difference >= $lengths[$j]; $j++){
+   		$difference /= $lengths[$j];
+   }
+   $difference = round($difference);
+   if($difference != 1){
+   		$aPeriod = $periods_plural[$j];
+   }
+   else {
+   		$aPeriod = $periods[$j];
+   }
+   $text = sfContext::getInstance()->getI18N()->__("Hace %1% %2%", array('%1%' => $difference, '%2%' => $aPeriod));
+   return $text;
 }

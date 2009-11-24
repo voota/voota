@@ -100,7 +100,7 @@ politico:
 # default rules
 homepage:
   url:   /
-  param: { module: politico, action: index }
+  param: { module: home, action: index }
 
 default_index:
   url:   /:module

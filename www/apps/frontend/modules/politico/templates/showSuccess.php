@@ -5,28 +5,28 @@
 <?php use_helper('Date') ?>
 
 
-
-
 <script type="text/javascript">
 <!--
 $(document).ready(function(){
-	politicoReady( 
+	loadReviewBox( 
 			'<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>',
+			1,
 			<?php echo $politico->getId(); ?>,
+			<?php echo isset($review_v)?$review_v:'0' ?>,
 			'sf_review1'
 		);
-	politicoReady( 
+	loadReviewBox( 
 			'<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>',
+			1,
 			<?php echo $politico->getId(); ?>,
+			<?php echo isset($review_v)?$review_v:'0' ?>,
 			'sf_review2'
 		);	
 
-	$("#help_dialog").dialog({autoOpen: false});
+	$("#help_dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
 });
 //-->
 </script>
-
-
 
 
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 
 <div id="help_dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
-	<p><?php echo __('El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.')?></p>
+	<p><?php echo __('Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.')?></p>
 </div>
 
 
@@ -51,9 +51,19 @@ $(document).ready(function(){
 <div id="contentLeft">
 
 <div title="ficha">
-<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido(); ?>)<?php endif ?></span>
-<span class="nombrePeque">
-<?php echo $politico->getSumU() ?> <a href="javascript:showScoreHelp();">?</a>
+<span class="nombrePolitico"><?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php 
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
+	  	echo link_to(
+	 	$politico->getPartido()
+	 	, "$url?partido=".$politico->getPartido()
+	 	, array());  ?>)<?php endif ?></span>
+<span class="nombrePeque negro">
+<?php if ($politico->getSumU() == 1):?>
+	<?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
+<?php else: ?>
+	<?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
+<?php endif ?>
+ <a href="javascript:showScoreHelp();">?</a>
 </span> 
 <div class="limpiar"></div>
 <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="izq fotoPolitico">
@@ -80,7 +90,14 @@ $(document).ready(function(){
 <?php endif ?>
 <?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
 	<h6>
-	<?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?><?php echo $politicoInstitucion->getInstitucion()->getNombre()?><?php endforeach ?>
+	<?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?><?php 
+	  	$url = '@ranking_'.$sf_user->getCulture('es');
+	  	echo link_to(
+	 	$politicoInstitucion->getInstitucion()->getNombre()
+	 	, "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getNombreCorto()
+	 	, array())
+	 
+	?><?php endforeach ?>
 	</h6>
 <?php endif ?>
 <?php if ($politico->getFechaNacimiento() != ''): ?>
@@ -116,7 +133,7 @@ $(document).ready(function(){
 	<h6><br><?php echo __('Aún no hay ninguna opinión positiva de %1%', array('%1%' => $politico))?></h6>
 <?php endif ?>
 	
-	<?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getId().'&', 'page_var' => "pageU")) ?>
+	<?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageU")) ?>
 	
 
 
@@ -134,8 +151,7 @@ $(document).ready(function(){
 <?php else: ?>
 	<h6><br><?php echo __('Aún no hay ninguna opinión negativa de %1%', array('%1%' => $politico))?></h6>
 <?php endif ?>
-	
-	<?php include_partial('pagination_full', array('pager' => $positives, 'object' => $politico, 'page' => "pageD")) ?>
+	<?php include_partial('pagination_full', array('pager' => $negatives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageD")) ?>
 	
 </div>
 
@@ -162,7 +178,9 @@ $(document).ready(function(){
 <div class="limpiar"></div>
 
 <!-- codigo google -->
-<?php include_partial('google_ads') ?>
+<div id="googleads">
+<?php if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+</div>
 <!-- fin codigo google -->
 
 </div>

@@ -16,6 +16,6 @@
 		</h6>
 	</div>
 	<div class="margenPolitico">
-		<h6><?php echo review_text( $review ) ?></h6>
+		<h6><?php echo review_text( $review ) ?> <?php echo format_date( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )?></h6>
 	</div>
 </div>

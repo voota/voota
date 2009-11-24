@@ -13,12 +13,31 @@ generator:
     config:
       actions:
         _delete: {credentials: [superadmin]}
-      fields:  ~
+      fields:
+          sf_review_status: 
+            label: status
+          sf_review_status_id: 
+            label: status
+          sf_review_type_id: 
+            label: type
+          ip_address: 
+            label: ip
+          created_at:
+            label: created
+            date_format: dd/MM/yy
+          modified_at:
+            label: modified
+            date_format: dd/MM/yy
+
       list:
+        fields:
+          value: 
+            label: v
         sort: [created_at, desc]
         title:   Last reviews
-        display: [=sf_guard_user, =sf_review_type, =sf_review_status, value, created_at, modified_at]
-      filter:  ~
+        display: [=sf_guard_user, =sf_review_status, value, text, created_at, modified_at]
+      filter:
+        display: [sf_review_status_id, value, text, created_at, modified_at, cookie, ip_address, sf_review_type_id, value]
       form:
         display: 
           "Moderation": [sf_review_status_id]

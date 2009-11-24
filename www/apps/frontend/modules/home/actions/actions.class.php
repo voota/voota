@@ -47,7 +47,7 @@ class homeActions extends sfVoActions{
 	  	}
 	}
 
-  	//$this->redirect( "politico/ranking" );
+  	$this->redirect( "politico/ranking" );
   	
   	$this->readCookie($this->getRequest());
   	

@@ -12,5 +12,11 @@ class SfGuardUserProfileForm extends BaseSfGuardUserProfileForm
 {
   public function configure()
   {
+    $years = range(1920,date('Y'));
+  	$this->widgetSchema['fecha_nacimiento'] = new sfWidgetFormJQueryDate(array(
+    						'culture' => 'es'
+    						, 'format' => '%day%/%month%/%year%'
+    						, 'years' => array_combine($years, $years)
+    						));
   }
 }

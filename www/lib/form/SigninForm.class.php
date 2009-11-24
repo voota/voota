@@ -7,7 +7,7 @@ class SigninForm extends sfVoForm
     $this->setWidgets(array(
       'username' => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'password' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
-      'remember' => new sfWidgetFormInputCheckbox(array(), array('class' => 'inputSign')),
+      'remember' => new sfWidgetFormInputCheckbox(array(), array()),
     ));
 	$this->widgetSchema->setLabels(array(
   	  'username'    => 'Email',

@@ -30,12 +30,12 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('body', '/Ranking de políticos/')->
+    checkElement('body', '/Ranking de pol/')->
     checkElement('body', '/Todas las instituciones/')->
     
     end()
 ;
-$browser->test()->like($browser->getResponse()->getContent(), '/PSOE<label>/');
+$browser->test()->like($browser->getResponse()->getContent(), '/ticos, PSOE/');
 
 $browser->
   get('es/politicos/all/Congreso')->
@@ -47,7 +47,7 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('body', '/Ranking de políticos/')->
+    checkElement('body', '/Ranking de pol/')->
     
     end()
 ;
@@ -63,15 +63,15 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('body', '/Ranking de políticos/')->
+    checkElement('body', '/Ranking de pol/')->
     
     end()
 ;
-$browser->test()->like($browser->getResponse()->getContent(), '/PSOE<label>/');
+$browser->test()->like($browser->getResponse()->getContent(), '/ticos, Congreso, PSOE/');
 $browser->test()->like($browser->getResponse()->getContent(), '/<a class="flechita" href="\/(.*)es\/politicos\/PSOE\/Congreso">Congreso<\/a>/');
 
 $browser->
-  get('es/politico/1')->
+  get('es/politico/Campos-Arteseros')->
 
   with('request')->begin()->
     isParameter('module', 'politico')->

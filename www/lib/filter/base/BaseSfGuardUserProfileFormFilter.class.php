@@ -30,6 +30,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'imagen'                   => new sfWidgetFormFilterInput(),
       'sf_guard_user_profilecol' => new sfWidgetFormFilterInput(),
       'codigo'                   => new sfWidgetFormFilterInput(),
+      'papel_voota'              => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -48,6 +49,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'imagen'                   => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_profilecol' => new sfValidatorPass(array('required' => false)),
       'codigo'                   => new sfValidatorPass(array('required' => false)),
+      'papel_voota'              => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -81,6 +83,7 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'imagen'                   => 'Text',
       'sf_guard_user_profilecol' => 'Text',
       'codigo'                   => 'Text',
+      'papel_voota'              => 'Text',
     );
   }
 }

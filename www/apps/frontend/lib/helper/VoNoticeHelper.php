@@ -5,6 +5,6 @@ function showNotices( $user ) {
 		$flashType = "notice";
 	}
 	if ($user->hasFlash('notice')) {
-		echo "<h5 class='$flashType'>". $user->getFlash('notice') ."</h5>";
+		echo "<div class='$flashType'><h5 class='$flashType'>". $user->getFlash('notice') ."</h5></div>";
 	}
 }

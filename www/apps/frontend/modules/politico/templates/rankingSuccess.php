@@ -1,7 +1,8 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
-
+<?php use_helper('Number') ?>
+ 
 <script>  
 $(document).ready(function(){
 	rankingReady();
@@ -14,12 +15,8 @@ $(document).ready(function(){
 <!-- CONTENT LEFT-->
 <div id="contentRankingLeft">
 <div title="ficha">
-<span class="nombrePolitico"><?php echo __('Ranking de políticos')?>
-<?php echo $institucion=='0'?'':"en el $institucion" ?>
+<span class="nombrePolitico"><?php echo $title ?>
 
-<?php echo ($institucion!='0' && $partido!='all')?'-':'' ?>
-
-<?php echo $partido=='all'?'':$partido ?>
 <label>
 
 <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
@@ -29,7 +26,7 @@ $(document).ready(function(){
 </label>
 </span>
 <div class="limpiar"></div>
-<div><h6>
+<div id="inst_long" class="hidden"><h6>
   <?php 
     if ($partido == 'all'){
 	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
@@ -53,13 +50,53 @@ $(document).ready(function(){
   	echo link_to(
  	$aInstitucion->getNombreCorto()
  	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
- 	, array('class' => $aInstitucion->getNombre()==$institucion?'flechita':'')
+ 	, array('class' => $aInstitucion->getNombreCorto()==$institucion?'flechita':'')
  ) ?>
- 
-<?php endforeach ?>
+ <?php endforeach ?>
+  · 
+ [<a href="#" onclick="return inst_to_short();"><?php echo __('ver menos ...')?></a>]
+</h6></div>
+<div id="inst_short"><h6>
+  <?php 
+    if ($partido == 'all'){
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
+	  	echo link_to(
+	 	'Todas las instituciones'
+	 	, "$url"
+	 	, array('class' => $institucion=='0'?'flechita':''));
+    }
+    else {
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
+	  	echo link_to(
+	 	'Todas las instituciones'
+	 	, "$url?partido=$partido"
+	 	, array('class' => $institucion=='0'?'flechita':''));
+    }
+  ?>
+ <?php $idx = 0?>  
+<?php foreach($instituciones as $aInstitucion): ?>
+  <?php 
+  $idx++;
+  if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM) {
+  ?>  
+ · 
+  <?php 
+  	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
+  	echo link_to(
+ 	$aInstitucion->getNombreCorto()
+ 	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
+ 	, array('class' => $aInstitucion->getNombreCorto()==$institucion?'flechita':'')
+ ) ?>
+  <?php 
+  }
+  ?>  
+ <?php endforeach ?>
+<?php if(count($instituciones) > SfVoUtil::SHORT_INSTITUCIONES_NUM): ?>
+  · 
+ [<a href="#" onclick="return inst_to_long();"><?php echo __('ver más ...')?></a>]
+<?php endif ?>
+</h6></div>
 
-</h6>
-</div>
 </div>
 <div class="limpiar"></div>
 <div class="listadoRanking">
@@ -82,16 +119,17 @@ $(document).ready(function(){
     </h6></td>
     <td>&nbsp;</td>
   </tr>
-  
-<?php foreach($politicosPager->getResults() as $politico): ?>
+
+<?php foreach($politicosPager->getResults() as $idx => $politico): ?>
   <tr class="listaRanking">
-    <td class="nombreRanking"><h6>
+    <td class="nombreRanking"><h6>      
+    <?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png')
     	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'" , class=separacionFotoRanking') ?>
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
- 	, 'politico/show?id='.$politico->getId()
+ 	, 'politico/show?id='.$politico->getVanity()
  ) ?>
  
      
@@ -134,7 +172,7 @@ $(document).ready(function(){
 <div class=" listadoRankingPoliticos">
 <div id="paginacion" style="">
 
-<?php include_partial('pagination_full', array('pager' => $politicosPager, 'url' => 'politico/ranking?', 'page_var' => "page", 'order' => $order)) ?>
+<?php include_partial('pagination_full', array('pager' => $politicosPager, 'url' => "$route&", 'page_var' => "page", 'order' => $order)) ?>
 
 </div>
 </div>

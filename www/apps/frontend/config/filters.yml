@@ -2,6 +2,9 @@ rendering: ~
 security:
   class: voSecurityFilter
 
+vobase:
+  class: voBaseFilter
+
 # insert your own filters here
 
 cache:     ~

@@ -44,13 +44,27 @@ class sfImageUsuarioGD extends sfImageVootaGD
   			}
 			$img->saveAs( $ccFile );
 		  	
-			$smallImg = new sfImage( $ccFile );
-			
-			$smallImg->resize($img->getWidth() / 1.5, $img->getHeight() / 1.5);
-			$x1 = ($smallImg->getWidth() - IMG_SMALL_WIDTH) / 2;
-			$y1 = ($smallImg->getHeight() - IMG_SMALL_HEIGHT) / 3;
-			$smallImg->crop($x1, $y1, IMG_SMALL_WIDTH, IMG_SMALL_HEIGHT)->saveAs( $ccSmallFile );
-			
+  			if ($img->getWidth() > IMG_SMALL_WIDTH || $img->getHeight() > IMG_SMALL_WIDTH){
+  				if ($img->getWidth() > $img->getHeight() * IMG_RATIO) {
+  					$img->resize(null, IMG_MAX_HEIGHT);
+  				}
+  				else {
+  					$img->resize(IMG_MAX_WIDTH, null);
+  				}
+  			}
+  			
+ 			if ($img->getWidth() > IMG_SMALL_WIDTH || $img->getHeight() > IMG_SMALL_HEIGHT){
+  				if ($img->getWidth() > $img->getHeight() * IMG_RATIO) {
+  					$img->resize(null, IMG_SMALL_HEIGHT);
+  				}
+  				else {
+  					$img->resize(IMG_SMALL_WIDTH, null);
+  				}
+  			}
+			$x1 = ($img->getWidth() - IMG_SMALL_WIDTH) / 2;
+			$y1 = ($img->getHeight() - IMG_SMALL_HEIGHT) / 3;
+			$img->crop($x1, $y1, IMG_SMALL_WIDTH, IMG_SMALL_HEIGHT)->saveAs( $ccSmallFile );
+						
   	}  	
   }  
 

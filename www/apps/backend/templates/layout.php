@@ -15,32 +15,34 @@ Administraci&oacute;n
 </div>
 
 <?php if ($sf_user->isAuthenticated()): ?>
-<p>
 <div>
-<?php echo link_to('politicos', 'politico/index') ?> 
-<?php echo link_to('enlaces', 'enlace/index') ?> 
-<?php echo link_to('partidos', 'partido/index') ?> 
-<?php echo link_to('elecciones', 'eleccion/index') ?> 
-<?php echo link_to('instituciones', 'institucion/index') ?> 
-<?php echo link_to('listas', 'lista/index') ?> 
-<?php echo link_to('geos', 'geo/index') ?> 
-
+<?php if ($sf_user->hasCredential('admin')) { ?>
+	<?php echo link_to('politicos', 'politico/index') ?> 
+	<?php echo link_to('enlaces', 'enlace/index') ?> 
+	<?php echo link_to('partidos', 'partido/index') ?> 
+	<?php echo link_to('elecciones', 'eleccion/index') ?> 
+	<?php echo link_to('instituciones', 'institucion/index') ?> 
+	<?php echo link_to('listas', 'lista/index') ?> 
+	<?php echo link_to('geos', 'geo/index') ?> 
+<?php } ?>
 <?php echo link_to('salir', '@sf_guard_signout') ?>
 </div>
 <?php if ($sf_user->hasCredential('superadmin')) { ?>
-<div>
-Administración:
-<?php echo link_to('usuarios', '@sf_guard_user') ?> 
-<?php echo link_to('grupos', '@sf_guard_group') ?> 
-<?php echo link_to('permisos', '@sf_guard_permission') ?> 
-</div>
+	<div>
+	Administración:
+	<?php echo link_to('usuarios', '@sf_guard_user') ?> 
+	<?php echo link_to('grupos', '@sf_guard_group') ?> 
+	<?php echo link_to('permisos', '@sf_guard_permission') ?> 
+	</div>
 <?php } ?>
-<div>
-Sistema de opiniones:
-<?php echo link_to('Moderación', '@sf_review') ?> 
-<?php echo link_to('tipos', '@sf_review_type') ?> 
-<?php echo link_to('estados', '@sf_review_status') ?> 
-</div>
+<?php if ($sf_user->hasCredential('moderator')) { ?>
+	<div>
+	Sistema de opiniones:
+	<?php echo link_to('Moderación', '@sf_review') ?> 
+	<?php echo link_to('tipos', '@sf_review_type') ?> 
+	<?php echo link_to('estados', '@sf_review_status') ?> 
+	</div>
+<?php } ?>
 </p>
 <?php endif; ?>
 

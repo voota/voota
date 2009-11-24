@@ -21,29 +21,28 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFr
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+	private function updateSums(sfWebRequest $request) {
+	  	// Actualizar cache de puntos en politicos
+	  	if ($request->getParameter("t") == Politico::NUM_ENTITY){
+		  	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('e'));
+		  	$this->politico->setSumu( $this->politico->getPositives() );
+		  	$this->politico->setSumd( $this->politico->getNegatives() );
+		  	if ($this->politico->isModified()){
+		  		PoliticoPeer::doUpdate( $this->politico );
+		  	}
+	  	}  
+	}
+	
   public function executeSend(sfWebRequest $request)
   {
   	parent::executeSend( $request );
-  	  	
-  	// Actualizar cache de puntos en politicos
-  	if ($request->getParameter("t") == Politico::NUM_ENTITY){
-	  	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('e'));
-	  	$this->politico->setSumu( $this->politico->getPositives() );
-	  	$this->politico->setSumd( $this->politico->getNegatives() );
-	  	if ($this->politico->isModified()){
-	  		PoliticoPeer::doUpdate( $this->politico );
-	  	}
-  	}  	
-  }
-  
-  protected function prepareRedirect( $entityId ){
-  	$politico = PoliticoPeer::retrieveByPK( $entityId );
   	
-  	$culture = $this->getRequest()->getParameter("sf_culture");
-  	$rule = "@politico_$culture";
-  	$url = "$rule?id=" . $politico->getVanity();		
-  	$this->getUser()->setAttribute('url_back', $url);
-  	$this->getUser()->setAttribute('review_v', $this->reviewValue);
-  	$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
+	$this->updateSums( $request );  	  	
+  }
+	  public function executeDelete(sfWebRequest $request)
+  {
+  	parent::executeDelete( $request );
+  	
+	$this->updateSums( $request );  	  	
   }
 }

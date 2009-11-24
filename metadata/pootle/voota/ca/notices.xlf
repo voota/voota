@@ -1,61 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-11-04T10:15:44Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="notices" date="2009-11-04T10:15:44Z" product-name="notices">
     <header/>
     <body>
-      <trans-unit id="1">
-        <source>"%value%" no es una dirección de email válida.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="2">
+      <trans-unit id="1" approved="yes">
+        <source>Esto no parece una dirección de email.</source>
+        <target>No sembla una adreça de correu electrònic.</target>
+      <note/></trans-unit>
+      <trans-unit id="2" approved="yes">
         <source>Este campo es obligatorio.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="3">
+        <target>Aquest camp és obligatori</target>
+      <note/></trans-unit>
+      <trans-unit id="3" approved="yes">
         <source>El texto es demasiado corto (%min_length% caracteres mínimo).</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4">
+        <target>El text és massa curt (mínim %min_length% caràcters).</target>
+      <note/></trans-unit>
+      <trans-unit id="4" approved="yes">
         <source>El texto es demasiado largo (%max_length% caracteres máximo).</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="5">
-        <source>Este nombre ya está siendo utilizado.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="6">
-        <source>La fecha es posterior a hoy.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="7">
-        <source>Este campo es obligatorio.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="8">
-        <source>Esta fecha no es válida.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="9">
+        <target>El text és massa llarg (màxim %max_length% caràcters)</target>
+      <note/></trans-unit>
+      <trans-unit id="5" approved="yes">
+        <source>Demasiado lento, vaquero. Alguien se anticipó y cogió ya este nombre.</source>
+        <target>Algú ja té aquest nom.</target>
+      <note/></trans-unit>
+      <trans-unit id="6" approved="yes">
+        <source>De momento no navegamos al futuro! Esta fecha es posterior a hoy!</source>
+        <target>De moment no naveguem al futur! Aquesta data és posterior a avui!</target>
+      <note/></trans-unit>
+      <trans-unit id="7" approved="yes">
+        <source>Este campo es necesario. A veces tenemos que hacerlo.</source>
+        <target>Aquest camp és necessari.</target>
+      <note/></trans-unit>
+      <trans-unit id="8" approved="yes">
+        <source>Ponc! Fecha no válida.</source>
+        <target>Data no vàlida.</target>
+      <note/></trans-unit>
+      <trans-unit id="9" approved="yes">
         <source>"%value%" no es una dirección de email válida.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="10">
-        <source>La contraseña no es igual las dos veces.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="11">
-        <source>Me temo que ha habido un problema con los campos del formulario, ¿puedes revisar los campos en rojo?</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="12">
-        <source>Para cambiar la contraseña tienes que escribir la antigua.</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="13">
-        <source>Tus cambios se han guardado correctamente.</source>
-        <target/>
-      </trans-unit>
+        <target>"%value%" no és un correu electrònic vàlid.</target>
+      <note/></trans-unit>
+      <trans-unit id="10" approved="yes">
+        <source>La contraseña no es la misma en ambos campos.</source>
+        <target>La contrasenya no és la mateixa als dos camps.</target>
+      <note/></trans-unit>
+      <trans-unit id="11" approved="yes">
+        <source>Por favor, revisa lo siguiente antes de seguir.</source>
+        <target>Si us plau, revisa el següent abans de seguir.</target>
+      <note/></trans-unit>
+      <trans-unit id="12" approved="yes">
+        <source>Para cambiar tu contraseña dinos cuál es la que tenías antes.</source>
+        <target>Per canviar la teva contrasenya ens has de dir quina tenies abans.</target>
+      <note/></trans-unit>
+      <trans-unit id="13" approved="yes">
+        <source>Genial, todo guardado como es debido.</source>
+        <target>Genial, tot guardat.</target>
+      <note/></trans-unit>
+      <trans-unit id="14" approved="yes">
+        <source>La contraseña no es válida.</source>
+        <target>La contrasenya no és vàlida.</target>
+      <note/></trans-unit>
+      <trans-unit id="15" approved="yes">
+        <source>¡Alto ahí los clics! Parece que ya estás registrado en Voota con este email.%1% ¿Qué tal si intentas entrar por donde pone "Ya estás registrado"?</source>
+        <target>Sembla que ja estàs registrat a Voota amb aquest mail. %1% Intenta-ho per on posa "Ja estàs registrat?"</target>
+      <note/></trans-unit>
+      <trans-unit id="16" approved="yes">
+        <source>El email o la contraseña no son válidos.</source>
+        <target>El mail o la contrasenya no són vàlids</target>
+      <note/></trans-unit>
+      <trans-unit id="17" approved="yes">
+        <source>Imagen demasiado grande. No más de %max_size%b.</source>
+        <target>Imatge massa gran. No més de %max_size%b.</target>
+      <note/></trans-unit>
+      <trans-unit id="18" approved="yes">
+        <source>Formato de imagen no válido.</source>
+        <target>Format d'imatge no vàlid.</target>
+      <note/></trans-unit>     
     </body>
   </file>
 </xliff>

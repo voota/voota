@@ -72,6 +72,7 @@ class politicoActions extends sfVoActions
   	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
   	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
   	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	
@@ -84,7 +85,7 @@ class politicoActions extends sfVoActions
    	}
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
-  		$c->add(InstitucionPeer::NOMBRE, $this->institucion);
+  		$c->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
   	}
   	$pager = new sfPropelPager('Politico', 10);
   	
@@ -113,29 +114,56 @@ class politicoActions extends sfVoActions
   	$this->order = $o;
   	/* Fin Orden */
   	
+	$c->setDistinct();
+	
+	/* Calcula totales. Ver impacto en rendimiento */
+    $allPoliticos = PoliticoPeer::doSelect( $c );    
+    $this->totalUp = 0;
+    $this->totalDown = 0;
+    foreach ($allPoliticos as $aPolitico){
+	    	$this->totalUp += $aPolitico->getSumu();
+    	$this->totalDown += $aPolitico->getSumd();
+    }
+	/* Fin Calcula totales */
+    
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
     $this->politicosPager = $pager;
     
-    $this->totalUp = 0;
-    $this->totalDown = 0;
-    foreach ($pager->getResults() as $aPolitico){
-    	$this->totalUp += $aPolitico->getSumu();
-    	$this->totalDown += $aPolitico->getSumd();
-    }
   	
-  	$this->partidos = PartidoPeer::doSelect(new Criteria());
+  	/* Lista de partidos */ 
+    $c = new Criteria();
+  	if ($institucion && $institucion != ALL_URL_STRING){
+  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
+	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
+	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+	  	$c->setDistinct();
+  		$c->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
+  	}
+  	$c->addAscendingOrderByColumn(PartidoPeer::ABREVIATURA);
+  	$this->partidos = PartidoPeer::doSelect( $c );
   	$this->partidos_arr = array();
   	$this->partidos_arr["0"] = "Todos los partidos";
-  	foreach($this->partidos as $partido){
-  		$this->partidos_arr[$partido->getAbreviatura()] = $partido->getAbreviatura();
+  	foreach($this->partidos as $aPartido){
+  		$this->partidos_arr[$aPartido->getAbreviatura()] = $aPartido->getAbreviatura();
   	}
-    
+  	/* Fin lista de partidos */ 
+      	
+  	/* Lista de instituciones */ 
   	$c = new Criteria();
+  	if ($partido && $partido != ALL_URL_STRING){
+	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
+  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
+	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+  		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
+  	}
   	$c->add(InstitucionPeer::DISABLED, 'N');
+  	$c->setDistinct();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);
+  	/*  Fin Lista de instituciones */ 
   	
   	
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
@@ -152,12 +180,30 @@ class politicoActions extends sfVoActions
   		}
   	}
   	$this->route = "@$rule$params";
+  	
+  	$this->title = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
+  	$this->title .= $this->institucion=='0'?'':", " . $this->institucion;
+  	$this->title .= $this->partido=='all'?'':', '.$this->partido;
+  	$this->title .= ' - Voota';
+  	
+  	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
+  	$description .= $this->institucion=='0'?'':", " . $this->institucion;
+  	$description .= $this->partido=='all'?'':', '.$this->partido;
+  	$this->response->addMeta('Description', $description);
+  	
+    $this->response->setTitle( $this->title );
   }
   
   public function executeShow(sfWebRequest $request)
   {  	  	
-  	$id = $request->getParameter('id');
-  	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('id'));
+  	$vanity = $request->getParameter('id');
+  	$c = new Criteria();
+  	$c->add(PoliticoPeer::VANITY, $vanity, Criteria::EQUAL);
+  	$politico = PoliticoPeer::doSelectOne( $c );
+  	$this->forward404Unless( $politico );
+  	
+  	$this->politico = $politico;
+  	$id = $this->politico->getId();
   	
   	$this->forward404Unless($this->politico);
   	
@@ -200,6 +246,26 @@ class politicoActions extends sfVoActions
 		$this->positivePerc = intval( $positiveCount * 100 / ($positiveCount + $negativeCount) );
 		$this->negativePerc = 100 - $this->positivePerc;
 	}  
+  	$this->title = $this->politico->getNombre() . ' '. $this->politico->getApellidos();
+  	$this->title .= ' - Voota';
+  	
+  	$description = sfContext::getInstance()->getI18N()->__('Página de ', array());
+  	$description .= $this->politico->getNombre() . ' '. $this->politico->getApellidos();
+	if (count($this->politico->getPoliticoInstitucions()) > 0) {
+  		$description .= " ("; //instituciones
+		foreach ($this->politico->getPoliticoInstitucions() as $idx => $politicoInstitucion){
+			if ($idx > 0) {
+				$description .= ', ';	
+			}
+			$description .= $politicoInstitucion->getInstitucion()->getNombre();			
+		}
+	  	$description .= ")";
+	}
+  	$description .= ", ".$this->politico->getPartido().", "; //partido
+  	$description .= sfContext::getInstance()->getI18N()->__('%1% votos a favor y %2% votos en contra.', array('%1%' => $positiveCount, '%2%' => $negativeCount));
+    $this->response->addMeta('Description', $description);
+  	
+    $this->response->setTitle( $this->title );
   }
 
   public function executeNew(sfWebRequest $request)
