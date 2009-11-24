@@ -59,9 +59,9 @@
 </div>
 <div class="formSings">
   <h6>
-    <a href="http://www.facebook.com/Voota">Facebook</a><br>
-    <a href="http://twitter.com/Voota">Twitter</a><br>
-    <a href="http://www.flickr.com/photos/voota">Flickr</a><br></h6>
+    <a href="<?php echo __('http://www.facebook.com/Voota') ?>">Facebook</a><br>
+    <a href="<?php echo __('http://twitter.com/Voota') ?>">Twitter</a><br>
+    <a href="<?php echo __('http://www.flickr.com/photos/voota') ?>">Flickr</a><br></h6>
 </div>
 <div class="conColor">
   <h5><?php echo __('Algunos Hitos de Voota')?></h5>
@@ -83,7 +83,7 @@
   <h6><?php echo __('El proyecto se presenta en sociedad. Varios Blogs y medios digitales se hacen eco de la noticia')?> 
 (<?php echo link_to('Geekets', "http://www.geekets.com/2009/09/04/voota-haz-catarsis-con-tus-politicos")?>  
 <?php echo __('y')?> 
-<?php echo link_to('Ricard Espelt', "http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/")?>  
+<?php echo link_to('Ricard Espelt', __('http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/'))?>  
 <?php echo __('y varios más')?>).</h6>
 </div>
 <div class="formSings">

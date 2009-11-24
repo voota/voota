@@ -112,15 +112,14 @@
 <div class="enlacesPie">
 <h6>
 <?php echo link_to(__('Quiénes somos'), '@about', array('class' => "enlacesPie")) ?>
-<?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
 <?php echo link_to(__('blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es'), array('class' => "enlacesPie")) ?>
 <?php echo link_to(__('Socios'), 'http://blog.voota.es/es/socios/', array('class' => "enlacesPie")) ?>
 <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Facebook'), __('http://www.facebook.com/Voota'), array('class' => "enlacesPie")) ?>
+<?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
 
 </h6>
-</div>
-<div class="limpiar"></div>
-<div class="enlacesPie">
 <h6>
 <?php slot('langLink_ca') ?>
 	català

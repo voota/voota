@@ -660,6 +660,70 @@
         <source>No se han encontrado resultados para "%1%".</source>
         <target/>
       </trans-unit>
+      <trans-unit id="158">
+        <source>Normas de publicación en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="159">
+        <source>En pocas palabras ...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="160">
+        <source>Las opiniones libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="161">
+        <source>¿Qué es lo que está prohibido por ley? (ojo, lista no exhaustiva)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="162">
+        <source>Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="163">
+        <source>Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="164">
+        <source>http://www.facebook.com/Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="165">
+        <source>&amp;laquo;Anterior</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="166">
+        <source>Siguiente&amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="167">
+        <source>http://www.flickr.com/photos/voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="168">
+        <source>http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="169">
+        <source>Listado de políticos, (%1%, %2%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="170">
+        <source>Todos los partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="171">
+        <source>Todas las instituciones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="172">
+        <source>&lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+&lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Un saludo&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

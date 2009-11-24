@@ -69,7 +69,7 @@
     <td>
     	<h6>
     		<span id="show_pass_label"><a href="#" onclick="return showHidePass('registration_password')"><?php echo __('Ver la contraseña')?></a></span>
-    		<span id="hide_pass_label" class="hidden"><a href="#" onclick="showHidePass('registration_password')"><?php echo __('Ocultar la contraseña')?></a></span>
+    		<span id="hide_pass_label" class="hidden"><a href="#" onclick="return showHidePass('registration_password')"><?php echo __('Ocultar la contraseña')?></a></span>
     	</h6>
     	</td>
     <td>&nbsp;</td>

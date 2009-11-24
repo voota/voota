@@ -28,6 +28,8 @@ generator:
           modified_at:
             label: modified
             date_format: dd/MM/yy
+          culture:
+            attributes: { style: "width: 32px;" }
 
       list:
         fields:
@@ -40,7 +42,7 @@ generator:
         display: [sf_review_status_id, value, text, created_at, modified_at, cookie, ip_address, sf_review_type_id, value]
       form:
         display: 
-          "Moderation": [sf_review_status_id]
+          "Moderation": [sf_review_status_id, culture]
           "Review data": [_review_data]
         fields:
           sf_review_status_id: 

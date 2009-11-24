@@ -48,7 +48,16 @@ $(document).ready(function(){
 <!-- CONTENT -->
 <div id="content">
 <!-- CONTENT LEFT-->
-<div id="contentLeft">
+
+
+<h6><?php 
+	echo link_to(__('Listado de políticos, (%1%, %2%)', array(
+		'%1%' => $partido==''?__('Todos los partidos'):$partido
+		, '%2%' => $institucion==''?__('Todas las instituciones'):$institucion
+	)), $rankingUrl) ?>
+</h6>
+<p></p>
+ 
 
 <div title="ficha">
 <span class="nombrePolitico"><?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php 

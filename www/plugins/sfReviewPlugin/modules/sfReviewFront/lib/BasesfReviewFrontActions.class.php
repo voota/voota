@@ -118,7 +118,7 @@ class BasesfReviewFrontActions extends sfActions
 	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
 	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $request->getParameter("t"));  	
 	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
-  		$reviews = SfReviewPeer::doSelect($criteria);
+	  	$reviews = SfReviewPeer::doSelect($criteria);
   		$review = $reviews[0];
   	}
   	else  {
@@ -132,6 +132,7 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setSfGuardUserId( $this->getUser()->getGuardUser()->getId() );
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
   	$review->setCookie( $request->getCookie('symfony') );
+	$review->setCulture( $this->getUser()->getCulture() );	
   	
   	if ($request->getParameter("i") != '') {
   		if ($review->isModified()) {

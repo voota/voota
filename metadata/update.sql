@@ -8,5 +8,5 @@ insert into politico_institucion (politico_id, institucion_id) select id, 10 fro
 
 
 
-ALTER TABLE `voota`.`sf_guard_user_profile` ADD COLUMN `papel_voota` VARCHAR(280) NULL DEFAULT NULL  AFTER `codigo` ;
+ALTER TABLE `voota`.`sf_review` ADD COLUMN `culture` VARCHAR(5) NULL DEFAULT NULL  AFTER `modified_at`;
 

@@ -31,14 +31,14 @@ $(document).ready(function(){
     if ($partido == 'all'){
 	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
 	  	echo link_to(
-	 	'Todas las instituciones'
+	 	__('Todas las instituciones')
 	 	, "$url"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
     else {
 	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
 	  	echo link_to(
-	 	'Todas las instituciones'
+	 	__('Todas las instituciones')
 	 	, "$url?partido=$partido"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
@@ -61,14 +61,14 @@ $(document).ready(function(){
     if ($partido == 'all'){
 	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
 	  	echo link_to(
-	 	'Todas las instituciones'
+	 	__('Todas las instituciones')
 	 	, "$url"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
     else {
 	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
 	  	echo link_to(
-	 	'Todas las instituciones'
+	 	__('Todas las instituciones')
 	 	, "$url?partido=$partido"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
@@ -129,7 +129,7 @@ $(document).ready(function(){
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
- 	, 'politico/show?id='.$politico->getVanity()
+ 	, 'politico/show?id='.$politico->getVanity(). ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
  ) ?>
  
      

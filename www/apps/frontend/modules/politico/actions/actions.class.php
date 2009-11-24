@@ -27,6 +27,42 @@ class politicoActions extends sfVoActions
     $this->politico_list = PoliticoPeer::doSelect(new Criteria());
   }
   
+  private function generateRankingUrl ($partido, $institucion, $p = ''){
+  	$p_url = "";
+  	$i_url = "";
+  	$culture = $this->getUser()->getCulture();
+  	
+  	if ($p != '' && $p != ALL_FORM_VALUE){
+  		$p_url .= "$p";
+  	}
+  	else if ($p != ALL_FORM_VALUE && $partido && $partido != ALL_URL_STRING) {
+  		$p_url .= "$partido";
+  	}
+  	
+  	if ($institucion) {
+  		$i_url = "$institucion";
+  	}
+  	
+  	if ($p_url == "" && $i_url == ""){
+  		// Todos. Sin filtro
+  		$url = "@ranking_${culture}_all";
+  	}
+  	else if ($p_url != "" && $i_url != ""){
+  		// Filtro por partido e institucion
+  		$url = "@ranking_${culture}?partido=$p_url&institucion=$i_url";
+  	}
+  	else if ($i_url == "" ){
+  		// Filtro por partido
+  		$url = "@ranking_${culture}_partido?partido=$p_url";
+  	}
+  	else if ($p_url == ""){
+  		// Filtro por institucion
+  		$url = "@ranking_${culture}?partido=all&institucion=$i_url";
+  	}
+  	
+  	return $url;
+  }
+  
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
@@ -34,37 +70,7 @@ class politicoActions extends sfVoActions
   	$partido = $request->getParameter("partido");
   	$institucion = $request->getParameter("institucion");
   	if ($p != ''){
-	  	$p_url = "";
-	  	$i_url = "";
-	  	
-	  	if ($p != '' && $p != ALL_FORM_VALUE){
-	  		$p_url .= "$p";
-	  	}
-	  	else if ($p != ALL_FORM_VALUE && $partido && $partido != ALL_URL_STRING) {
-	  		$p_url .= "$partido";
-	  	}
-	  	
-	  	if ($institucion) {
-  			$i_url = "$institucion";
-	  	}
-	  	
-	  	if ($p_url == "" && $i_url == ""){
-	  		// Todos. Sin filtro
-	  		$url = "@ranking_${culture}_all";
-	  	}
-	  	else if ($p_url != "" && $i_url != ""){
-	  		// Filtro por partido e institucion
-	  		$url = "@ranking_${culture}?partido=$p_url&institucion=$i_url";
-	  	}
-	  	else if ($i_url == "" ){
-	  		// Filtro por partido
-	  		$url = "@ranking_${culture}_partido?partido=$p_url";
-	  	}
-	  	else if ($p_url == ""){
-	  		// Filtro por institucion
-	  		$url = "@ranking_${culture}?partido=all&institucion=$i_url";
-	  	}
-	  		  	
+	  	$url = $this->generateRankingUrl ($partido, $institucion, $p);
 	   	$this->redirect( $url );
   	}
   	
@@ -87,7 +93,7 @@ class politicoActions extends sfVoActions
   		$this->institucion = $institucion; 
   		$c->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
   	}
-  	$pager = new sfPropelPager('Politico', 10);
+  	$pager = new sfPropelPager('Politico', 20);
   	
   	/* Orden de resultados
   	 * pa: positivos ascendente
@@ -201,6 +207,10 @@ class politicoActions extends sfVoActions
   	$c->add(PoliticoPeer::VANITY, $vanity, Criteria::EQUAL);
   	$politico = PoliticoPeer::doSelectOne( $c );
   	$this->forward404Unless( $politico );
+  	
+  	$this->partido = $request->getParameter("partido");
+  	$this->institucion = $request->getParameter("institucion");
+  	$this->rankingUrl = $this->generateRankingUrl ($this->partido, $this->institucion);
   	
   	$this->politico = $politico;
   	$id = $this->politico->getId();
