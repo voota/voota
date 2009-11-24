@@ -26,7 +26,7 @@
 <div class="limpiar"></div>
 
 <?php include_partial('socioabout', array('socio' => $users[4])) ?>
-<?php include_partial('socioabout', array('socio' => $users[7])) ?>
+<?php //include_partial('socioabout', array('socio' => $users[7])) ?>
 <?php include_partial('socioabout', array('socio' => $users[31])) ?>
 
 <div class="formSings">

@@ -4,7 +4,7 @@
 <?php use_helper('SfReview') ?>
 
 
-
+<div class="sfr">
 <div>
 	<h6><?php echo __('Tu voto')?>
 	<?php if ($reviewValue == -1): ?>
@@ -25,6 +25,4 @@
 	  <span class="sfr"><?php echo review_text( $review ) ?></span>
 	</div>
 </div>
-	
-	
-	
+</div>

@@ -16,7 +16,8 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
- 
+require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php');
+
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
 

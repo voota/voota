@@ -22,7 +22,7 @@ $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>buu").click(function()
 //-->
 </script>
 	
-<div id="sf_review">
+<div class="sfr">
 	<div class="clickable sfr_margin <?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>yeah" id="buttona">
 	  <input name="vooto" type="radio" id="up" value="up">
 	

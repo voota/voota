@@ -48,6 +48,7 @@ $(document).ready(function(){
 <!-- CONTENT -->
 <div id="content">
 <!-- CONTENT LEFT-->
+<div id="contentLeft">
 
 
 <h6><?php 
@@ -194,6 +195,8 @@ $(document).ready(function(){
 
 </div>
 <!--  FIN CONTENT RIGHT -->
+
+
 <div class="limpiar"></div>
 
 <?php  ?>

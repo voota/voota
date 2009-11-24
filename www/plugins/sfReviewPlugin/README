@@ -1,7 +1,8 @@
 sfReview plugin
-==============
+===============
 
 The `sfReviewPlugin` is a symfony plugin that allows users from sfGuardPlugin to leave reviews on different entities of an application.
+We use it to place reviews of spanish politicians at http://voota.es, you are welcome to test it !
 
 
 Installation
@@ -17,3 +18,90 @@ Installation
         $ symfony propel:build-sql
         $ symfony propel:build-forms
         $ symfony propel:build-filters
+
+  * Update your database tables by starting from scratch (it will delete all the existing tables, then re-create them):
+  
+        $ symfony propel:insert-sql
+        
+	or you can just create the new tables by using the generated SQL statements in data/sql/plugins.sfReviewPlugin.lib.model.schema.sql
+
+
+  * Enable one or more modules in your settings.yml (optional)
+    * For your backend application: sfReviewType,sfReviewStatus,sfReview
+    * For your frontend application: sfReviewFront
+
+      [php]
+      all:
+        .settings:
+          enabled_modules:        [default,sfGuardAuth,sfGuardUser,sfGuardGroup,sfGuardPermission  ,sfReviewType,sfReviewStatus,sfReview]
+
+
+  * Clear you cache
+
+        $ symfony cc
+
+  * Configure status:
+  
+        $ symfony review:create-status
+
+  * Configure types (optional):
+
+        $ symfony review:create-type Celebrity
+
+    where Celebrity is the entity to be reviewed
+    
+  * Configure SfGuard permissions. Only users whith 'superadmin' or 'moderator' credentials are authorized to access backend modules.
+  
+  * Enable i18n for the frontend application (apps/frontend/config/settings.yml):
+  
+      [php]
+      all:
+        .settings:
+          i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.
+  
+Setup the module to be reviewed
+-------------------------------
+
+Imagine that we have a module called 'Celebrity' and that our users are going to put reviews of each Celebrity we have in the database.
+You should have a template in apps/frontend/modules/celebrity/templates/showSucces.php with information about a celebrity.
+For now, let's say that we are showing only the name of the celebrity:
+
+      [php]
+	  <?php echo $celeb->getName() ?>
+	  
+First of all, we need to setup the view to use the plugin assets:
+      [php]
+	  stylesheets:    [main.css, /sfReviewPlugin/css/sf_review.css]
+	  javascripts: [/sfReviewPlugin/js/sf_review.js, /sfJqueryReloadedPlugin/js/jquery-1.3.2.min.js, /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
+
+Yes, jquery javascripts are also needed.
+Ok, now we are going to fill the template with the necesary code to put a review on this subject:
+
+      [php]
+      <?php use_helper('Javascript') ?>
+      <?php use_helper('jQuery') ?>
+      <script type="text/javascript">
+      <!--
+      $(document).ready(function(){
+      	loadReviewBox( 
+			'<?php echo url_for('@sf_review_init') ?>',
+			1,
+			<?php echo $id; ?>,
+			'0',
+			'sfreview_box'
+		);
+      });
+      //-->
+      </script>
+
+      <?php echo $celeb->getName() ?>
+
+      <div id="sfreview_box"></div>
+ 
+Support
+-------
+
+This plugin is mainteined by the people from Voota (http://voota.es). Please contact us for any issue or comment at tech [at] voota.es. We will be glad to hear from you :)
+
+Thank you!
+ 

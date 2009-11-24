@@ -1,4 +1,3 @@
-<div class="sfr">
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
@@ -49,6 +48,7 @@ $('textarea#sf_review_text').keyup(function() {
 //-->
 </script>
 
+<div class="sfr">
 <?php echo jq_form_remote_tag(array(
     'update'   => $reviewBox?$reviewBox:'sf_review',
     'url'      => 'sfReviewFront/send',
@@ -60,13 +60,15 @@ $('textarea#sf_review_text').keyup(function() {
 	<?php echo input_hidden_tag('i', $reviewId) ?>
 
 	<?php if ($reviewId != ''): ?>
-	<h5 class="sfr">Tu opinión</h5>
-	<span class="sfr">&nbsp;
-		<?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
-		    'update'   => $reviewBox?$reviewBox:'sf_review',
-		    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
-		)) ?>
-	</span>
+		<div class="sfr_left"><span class="sfr_title"><?php echo __('Tu opinión') ?></span></div>
+		<div>
+			<span class="sfr">&nbsp;
+				<?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
+				    'update'   => $reviewBox?$reviewBox:'sf_review',
+				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+				)) ?>
+			</span>
+		</div>
 	<?php endif?>
 	<div class="sfr_hands">
 		<div class="sfr_margin">
