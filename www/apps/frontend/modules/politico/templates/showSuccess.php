@@ -62,11 +62,7 @@ $(document).ready(function(){
 
 <div title="ficha">
 <span class="nombrePolitico"><?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php 
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
-	  	echo link_to(
-	 	$politico->getPartido()
-	 	, "$url?partido=".$politico->getPartido()
-	 	, array());  ?>)<?php endif ?></span>
+	  	echo $politico->getPartido()  ?>)<?php endif ?></span>
 <span class="nombrePeque negro">
 <?php if ($politico->getSumU() == 1):?>
 	<?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
@@ -94,7 +90,12 @@ $(document).ready(function(){
 </div>
 <div title="info" class="izq textoPolitico">
 
-<h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?> - <?php echo $politico->getPartido(); ?></h6>
+<h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> - <?php 
+	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
+	  	echo link_to(
+	 	$politico->getPartido()
+	 	, "$url?partido=".$politico->getPartido()
+	 	, array());  ?><?php endif ?></h6>
 <?php if ($politico->getAlias() != ''): ?>
 	<h6><?php echo __($politico->getSexo()=='M'?'Conocida como %1%':'Conocido como %1%', array('%1%' => $politico->getAlias()))?></h6>
 <?php endif ?>
