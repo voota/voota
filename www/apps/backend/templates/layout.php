@@ -38,7 +38,8 @@ Administraci&oacute;n
 <?php if ($sf_user->hasCredential('moderator')) { ?>
 	<div>
 	Sistema de opiniones:
-	<?php echo link_to('Moderación', '@sf_review') ?> 
+	<?php //echo link_to('Moderación', '@sf_review') ?> 
+	<?php echo link_to('Moderación', 'sfReview/filter/action?sf_review_filters[value][text]=-1&sf_review_filters[text][is_not_empty]=on') ?> 
 	<?php echo link_to('tipos', '@sf_review_type') ?> 
 	<?php echo link_to('estados', '@sf_review_status') ?> 
 	</div>

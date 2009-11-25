@@ -53,6 +53,47 @@ class PoliticoForm extends BasePoliticoForm
 	'path' => sfConfig::get('sf_upload_dir').'/politicos',
    'validated_file_class' => 'sfResizedFile',
 	));
-	
+	if (!$this->isNew()) {
+		// embed all enlace forms
+		foreach ($this->getObject()->getEnlaces() as $enlace) {
+	   		// create a new enlace form for the current enlace model object
+			$enlaceForm = new PoliticoEnlaceForm( $enlace );
+			// embed the enlace form in the main politico form
+			$this->embedForm('enlace'.$enlace->getId(), $enlaceForm);
+			
+			// set a custom label for the embedded form
+			$this->widgetSchema['enlace'.$enlace->getId()]->setLabel('Enlace '.$enlace->getId());
+
+			// change the name widget to sfWidgetFormInputDelete
+			$this->widgetSchema['enlace'.$enlace->getId()]['url'] = new sfWidgetFormInputDelete(array(
+				'url' => 'politico/deleteEnlace',      // required
+				'model_id' => $enlace->getId(),        // required
+				'confirm' => 'Sure???',                     // optional
+			));
+		}
+
+		// create a new enlace form for a new enlace model object
+		$enlaceForm = new PoliticoEnlaceForm();
+
+		// embed the enlace form in the main politico form
+		$this->embedForm('enlace', $enlaceForm);
+
+		// set a custom label for the embedded form
+		$this->widgetSchema['enlace']->setLabel('Nuevo enlace');
+	}
  }
+	public function bind(array $taintedValues = null, array $taintedFiles = null) {
+		if (!$this->isNew()) {
+			if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
+				unset($this->embeddedForms['enlace'], $taintedValues['enlace']);
+		
+				$this->validatorSchema['enlace'] = new sfValidatorPass();
+		
+			} else {
+				$this->embeddedForms['enlace']->getObject()->
+		                setPolitico($this->getObject());
+			}
+		}	
+		parent::bind($taintedValues, $taintedFiles);
+	}
 }

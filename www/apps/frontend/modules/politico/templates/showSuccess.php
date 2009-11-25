@@ -190,7 +190,7 @@ $(document).ready(function(){
 
 <!-- codigo google -->
 <div id="googleads">
-<?php if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+<?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
 </div>
 <!-- fin codigo google -->
 

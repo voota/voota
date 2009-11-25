@@ -20,8 +20,14 @@ require_once dirname(__FILE__).'/../lib/politicoGeneratorHelper.class.php';
  */
 class politicoActions extends autoPoliticoActions
 {
-/*	
+	public function executeUpdate(sfWebRequest $request)
+  	{
+		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+		parent::executeUpdate( $request );
+   	}
+	
 	public function executeEdit(sfWebRequest $request) {
+/*	
 		if ($this->getRoute()->getObject()->getImagen()) {
 			$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->getRoute()->getObject()->getImagen();
 			if (file_exists($imageFileName)){
@@ -29,10 +35,10 @@ class politicoActions extends autoPoliticoActions
 				$img->politico( $imageFileName );
 			}
 		}
-				
+*/
+		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		parent::executeEdit( $request );
 	}
-*/
 	public function executeDelete(sfWebRequest $request) {
 		$id = $request->getParameter('id');
 		SfReviewManager::deleteReview(1, $id);
@@ -41,6 +47,17 @@ class politicoActions extends autoPoliticoActions
 	  	$criteria->add(PoliticoInstitucionPeer::POLITICO_ID, $id);
 	  	PoliticoInstitucionPeer::doDelete( $criteria );
 		
+	    $criteria = new Criteria();
+	  	$criteria->add(EnlacePeer::POLITICO_ID, $id);
+	  	EnlacePeer::doDelete( $criteria );
+	  	
 		parent::executeDelete($request);
 	}
+	
+	public function executeDeleteEnlace(sfWebRequest $request) {
+	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
+	  $enlace->delete();
+	  $this->redirect('@politico_edit?id='.$enlace->getPolitico()->getId());
+	}
+	
 }

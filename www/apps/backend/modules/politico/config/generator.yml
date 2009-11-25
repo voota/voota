@@ -28,6 +28,7 @@ generator:
           "Display partido": [_partido_view]
           "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
           "Bio": [_bio_preview,bio]
+          "Enlaces": []
         fields:
           bio:
             help: Para actualizar el preview de arriba.

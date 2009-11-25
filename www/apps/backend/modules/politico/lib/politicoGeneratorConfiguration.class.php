@@ -10,4 +10,24 @@
  */
 class politicoGeneratorConfiguration extends BasePoliticoGeneratorConfiguration
 {
+	var $enlaces;
+	
+  public function getFormDisplay()
+  {
+  	$ret = parent::getFormDisplay();
+  	if (isset($this->enlaces)){
+	  	$enlacesDisplay = array();
+	  	foreach ($this->enlaces as $enlace){
+	  		$enlacesDisplay[] = 'enlace'. $enlace->getId();
+	  	}
+	  	$enlacesDisplay[] = 'enlace';
+	  	$ret['Enlaces'] = $enlacesDisplay;
+  	}
+    return $ret;
+  }
+  public function setEnlaces( $enlaces )
+  {
+  	$this->enlaces = $enlaces;
+  }
+  
 }
