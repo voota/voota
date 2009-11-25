@@ -7,7 +7,7 @@ function review_text($review, $msg = array()){
 		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador."),
 	);
 	
-	$text = $review->getText();
+	$text = ($review->getCulture() == '' || $review->getCulture() == sfContext::getInstance()->getUser()->getCulture())?$review->getText():'';
 		
 	if ($review->getSfReviewStatus()->getPublished() == 1){
 		if ($review->getSfReviewStatus()->getOffensive() == 0){

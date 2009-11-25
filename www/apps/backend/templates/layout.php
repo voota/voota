@@ -18,7 +18,6 @@ Administraci&oacute;n
 <div>
 <?php if ($sf_user->hasCredential('admin')) { ?>
 	<?php echo link_to('politicos', 'politico/index') ?> 
-	<?php echo link_to('enlaces', 'enlace/index') ?> 
 	<?php echo link_to('partidos', 'partido/index') ?> 
 	<?php echo link_to('elecciones', 'eleccion/index') ?> 
 	<?php echo link_to('instituciones', 'institucion/index') ?> 
@@ -44,7 +43,6 @@ Administraci&oacute;n
 	<?php echo link_to('estados', '@sf_review_status') ?> 
 	</div>
 <?php } ?>
-</p>
 <?php endif; ?>
 
     <?php echo $sf_content ?>

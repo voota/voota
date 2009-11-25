@@ -31,6 +31,7 @@ class SfReviewManager
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
   	$criteria->add(SfReviewPeer::VALUE, $value);
   	//$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
+  	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
 	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
   	
   	/*
