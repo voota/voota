@@ -93,6 +93,6 @@ p { margin:0; padding-bottom:1.25em;}
 .aboutContainer {margin-top:1.75em; margin-left:1.44em;}
 .containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
 #404 {}
-.anchoColumna {width:200px;}
-.tituloCampo {font-size: 0.88em;  margin:0.00em; color:#323232;}
+.anchoColumna {width:160px;}
+.tituloCampo { font-size: 0.88em; padding-top: 17px; margin:0; color:#323232; }
 

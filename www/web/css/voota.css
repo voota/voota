@@ -16,6 +16,7 @@ html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Time
 .inputSign { border: 1px solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .inputSignPeq { border: 1px solid #9398ae; background: #ffffff; width:1.90em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .inputSignPeq2 { border: 1px solid #9398ae; background: #ffffff; width:2.50em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
+.inputSignVanity  { border: 1px solid #9398ae; background: #ffffff; width:11em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
 .button { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
 .button2 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
 .button3 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
@@ -34,9 +35,5 @@ img { border:none; vertical-align: middle;}
 .cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
 .cC a {color: white;}
 table { padding:0; margin:0;}
-.tdperfil { padding-bottom:1.10em; padding-top:1.10em;}
-
-
-
-
-
+.tdperfil { padding: 15px 0; vertical-align: top;}
+.tips { font-size: 0.8em; padding-top: 17px;}
