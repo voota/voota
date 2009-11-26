@@ -110,7 +110,7 @@
       <note/><note/></trans-unit>
       <trans-unit id="27" approved="yes">
         <source>Voota y &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
-        <target>Voota i &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target>
+        <target>Voota i &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/deed.ca"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target>
       <note/></trans-unit>
       <trans-unit id="28" approved="yes">
         <source>http://blog.voota.es/es</source>
@@ -162,8 +162,8 @@
       <note/></trans-unit>
       <trans-unit id="40" approved="yes">
         <source>http://blog.voota.es/es/aviso-legal</source>
-        <target>http://blog.voota.es/ca/avis-legal</target>
-      <note/></trans-unit>
+        <target>http://blog.voota.es/es/aviso-legal</target>
+      <note/><note>aún no tenemos el aviso legal en català</note><note>aún no tenemos el aviso legal en català</note></trans-unit>
       <trans-unit id="41" approved="yes">
         <source>blog</source>
         <target>blog</target>
@@ -198,8 +198,8 @@
       <note/></trans-unit>
       <trans-unit id="49" approved="yes">
         <source>Domicilio soical en C/ Ruiz de Alarcón 14 1ºD</source>
-        <target>Domicili social al C/ Ruiz de Alarcón 14 1rD</target>
-      <note/></trans-unit>
+        <target>Domicili social al C/ Ruiz de Alarcón 14 1ºD</target>
+      <note/><note>1rD &gt; 1ºD</note></trans-unit>
       <trans-unit id="50" approved="yes">
         <source>28014 Madrid</source>
         <target>28014 Madrid</target>
@@ -283,7 +283,7 @@
 &lt;p&gt;Un saludo&lt;/p&gt;
 &lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
         <target>&lt;p&gt;Si no pots fer click sobre l'enllaç, copia'l i enganxa'l a la barra de direccions del teu navegador.&lt;/p&gt;
-&lt;p&gt;Rés més, benvingut a Voota!&lt;/p&gt;
+&lt;p&gt;Rés més, et donem la benvinguda a Voota ;-)&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
@@ -676,33 +676,33 @@
         <source>¿Qué es lo que está prohibido por ley? (ojo, lista no exhaustiva)</source>
         <target/>
       </trans-unit>
-      <trans-unit id="162">
+      <trans-unit id="162" approved="yes">
         <source>Twitter</source>
-        <target/>
+        <target>Twitter</target>
       </trans-unit>
-      <trans-unit id="163">
+      <trans-unit id="163" approved="yes">
         <source>Facebook</source>
-        <target/>
+        <target>Facebook</target>
       </trans-unit>
-      <trans-unit id="164">
+      <trans-unit id="164" approved="yes">
         <source>http://www.facebook.com/Voota</source>
-        <target/>
+        <target>http://www.facebook.com/home.php?#/pages/Voota_ca/147695619187?ref=ts</target>
       </trans-unit>
-      <trans-unit id="165">
+      <trans-unit id="165" approved="yes">
         <source>&amp;laquo;Anterior</source>
-        <target/>
+        <target>&amp;laquo; Anterior</target>
       </trans-unit>
-      <trans-unit id="166">
+      <trans-unit id="166" approved="yes">
         <source>Siguiente&amp;raquo;</source>
-        <target/>
+        <target>Següent &amp;raquo;</target>
       </trans-unit>
-      <trans-unit id="167">
+      <trans-unit id="167" approved="yes">
         <source>http://www.flickr.com/photos/voota</source>
-        <target/>
+        <target>http://www.flickr.com/photos/voota</target>
       </trans-unit>
-      <trans-unit id="168">
+      <trans-unit id="168" approved="yes">
         <source>http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/</source>
-        <target/>
+        <target>http://www.theplateishot.com/voota-tu-tens-la-ultima-paraula/</target>
       </trans-unit>
       <trans-unit id="169">
         <source>Listado de políticos, (%1%, %2%)</source>
