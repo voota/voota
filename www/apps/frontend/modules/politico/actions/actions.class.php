@@ -148,7 +148,7 @@ class politicoActions extends sfVoActions
 	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 	  	$c->setDistinct();
-  		$c->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
+  		$c->add(InstitucionPeer::VANITY, $this->institucion);
   	}
   	$c->addAscendingOrderByColumn(PartidoPeer::ABREVIATURA);
   	$this->partidos = PartidoPeer::doSelect( $c );
