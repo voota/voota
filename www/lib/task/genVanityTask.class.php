@@ -36,10 +36,10 @@ class genVanityTask extends sfBaseTask
     $this->name             = 'genVanity';
     $this->briefDescription = '';
     $this->detailedDescription = <<<EOF
-The [updateImages|INFO] task does things.
+The [genVanity|INFO] generates vanity urls for the specified tables (--table option).
 Call it with:
 
-  [php symfony genVanityPolitico|INFO]
+  [php symfony genVanity|INFO]
 EOF;
   }
   
