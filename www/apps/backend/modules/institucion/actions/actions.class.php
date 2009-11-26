@@ -21,9 +21,7 @@ require_once dirname(__FILE__).'/../lib/institucionGeneratorHelper.class.php';
  */
 class institucionActions extends autoInstitucionActions
 {
-	public function executeUpdate(sfWebRequest $request) {
-				
-		/* Generar vanity 
+	/*public function executeUpdate(sfWebRequest $request) {
 		$institucion = $this->getRoute()->getObject();
 	    if ($institucion->getVanity() == ''){
 	    	$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto());
@@ -39,16 +37,12 @@ class institucionActions extends autoInstitucionActions
 		    $institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
 		    
 		    
-    $this->form = $this->configuration->getForm($institucion);
-    var_dump($this->form);die;
+    		$this->form = $this->configuration->getForm($institucion);
 
-    $this->processForm($request, $this->form);
+    		$this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
+    		$this->setTemplate('edit');
 		    
 	    }
-	     Fin Generar vanity */
-		
-	    parent::executeUpdate($request);
-	}
+	}*/
 }
