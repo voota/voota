@@ -129,7 +129,7 @@ $(document).ready(function(){
     
  <?php echo link_to(
  	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
- 	, 'politico/show?id='.$politico->getVanity(). ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
+ 	, 'politico/show?id='.$politico->getVanity()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
  ) ?>
  
      
