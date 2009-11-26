@@ -130,7 +130,7 @@ about:
   requirements: { sf_culture: (?:es|ca) }
 
 rules:
-  url:   /:sf_culture/rules
+  url:   /:sf_culture/dos-and-donts
   param: { module: general, action: rules }
   requirements: { sf_culture: (?:es|ca) }
 

@@ -49,8 +49,8 @@ $(document).ready(function(){
   	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
   	echo link_to(
  	$aInstitucion->getNombreCorto()
- 	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
- 	, array('class' => $aInstitucion->getNombreCorto()==$institucion?'flechita':'')
+ 	, "$url?partido=$partido&institucion=".$aInstitucion->getVanity()
+ 	, array('class' => $aInstitucion->getVanity()==$institucion?'flechita':'')
  ) ?>
  <?php endforeach ?>
   · 
@@ -77,15 +77,15 @@ $(document).ready(function(){
  <?php foreach($instituciones as $aInstitucion): ?>
   <?php 
   $idx++;
-  if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getNombreCorto()==$institucion) {
+  if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getVanity()==$institucion) {
   ?>  
  · 
   <?php 
   	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
   	echo link_to(
  	$aInstitucion->getNombreCorto()
- 	, "$url?partido=$partido&institucion=".$aInstitucion->getNombreCorto()
- 	, array('class' => $aInstitucion->getNombreCorto()==$institucion?'flechita':'')
+ 	, "$url?partido=$partido&institucion=".$aInstitucion->getVanity()
+ 	, array('class' => $aInstitucion->getVanity()==$institucion?'flechita':'')
  ) ?>
   <?php 
   }

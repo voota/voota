@@ -11,7 +11,7 @@
 <div class="limpiar"></div>
 <div class="formSings">
 <h5><?php echo __('En pocas palabras ...') ?></h5>
-<h5><?php echo __('Las opiniones libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.') ?></h5>
+<h5><?php echo __('Las opiniones son libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.') ?></h5>
 <h5>&nbsp;</h5>
 </div>
 
@@ -27,8 +27,13 @@
 <li><h6>Enlazar con páginas con contenidos ilegales.</h6></li>
 <li><h6>Incluir contenidos protegidos por derechos de propiedad de terceros sin autorización.</h6></li>
 </ul>
-<h6>Más detalles? </h6>
-<h6>Ayudanos a mejorar Voota: </h6>
+<h6>Más detalles?   <?php 
+  	echo link_to(
+ 	__('Date una vuelta por nuestro aviso legal')
+ 	, __('http://blog.voota.es/es/aviso-legal')
+ 	, array()
+ ) ?></h6>
+<h6><strong>Ayudanos a mejorar Voota:</strong></h6>
 
 </div>
 
@@ -41,15 +46,6 @@
 <!-- FIN CONTENT LEFT-->
 <!-- CONTENT RIGHT -->
 <div id="contentRight2">
-<div class="conColor">
-  <h5><?php echo __('Más sobre Voota')?></h5>
-</div>
-<div class="formSings">
-  <h6><a href="http://blog.voota.es/es/wp-content/uploads/2009/10/estatutos-voota-web.pdf"><?php echo __('Estatutos')?></a><br>
-    <a href="http://blog.voota.es/es/socios/"><?php echo __('Socios')?></a><br>
-    <a href="http://blog.voota.es/es/financiacion-voota/"><?php echo __('Financiación')?></a><br>
-    <a href="http://blog.voota.es/es/junta-directiva/"><?php echo __('Junta directiva')?></a><br></h6>
-</div>
 
 
 

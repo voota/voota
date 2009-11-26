@@ -32,10 +32,28 @@ class InstitucionForm extends BaseInstitucionForm
    'path' => sfConfig::get('sf_upload_dir').'/instituciones',
    'validated_file_class' => 'sfResizedFile',
 	));
+  }
+  
+  protected function setValue($key, $value) {
+  	$this->values[$key] = $value;
+  }
+  protected function doSave($con = null)
+  {
+  	$institucion = $this->getObject();
+    if ($this->getValue('vanity') == ''){
+    	$vanityUrl = SfVoUtil::encodeVanity( $this->getValue('nombre_corto') );
+    	
+	    $c2 = new Criteria();
+	    $c2->add(InstitucionPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+	    $c2->add(InstitucionPeer::ID, $institucion->getId(), Criteria::NOT_EQUAL);
+	    $usuariosLikeMe = InstitucionPeer::doSelect( $c2 );
+	    $counter = 0;
+	    foreach ($usuariosLikeMe as $usuarioLikeMe){
+	    	$counter++;
+	    }
+	    $this->setValue( 'vanity', "$vanityUrl". ($counter==0?'':"-$counter") );
+    }
     
-  
-  
-  
-  
+  	parent::doSave($con);
   }
 }

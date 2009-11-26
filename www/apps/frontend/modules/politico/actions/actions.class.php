@@ -91,7 +91,7 @@ class politicoActions extends sfVoActions
    	}
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
-  		$c->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
+  		$c->add(InstitucionPeer::VANITY, $this->institucion);
   	}
   	$pager = new sfPropelPager('Politico', 20);
   	
@@ -137,6 +137,7 @@ class politicoActions extends sfVoActions
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
+    $this->forward404Unless( $pager->getNbResults() != 0 );
     $this->politicosPager = $pager;
     
   	
@@ -202,7 +203,7 @@ class politicoActions extends sfVoActions
    		}
 	  	if ($this->institucion != '0') {
 	  		$ci = new Criteria();
-	  		$ci->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
+	  		$ci->add(InstitucionPeer::VANITY, $this->institucion);
 	  		$institucion = InstitucionPeer::doSelectOne( $ci );
 	  		$description .= ", " . $institucion->getNombre()." (". $institucion->getGeo()->getNombre() .", España)";
    		}
