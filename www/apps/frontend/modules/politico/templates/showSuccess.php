@@ -105,7 +105,7 @@ $(document).ready(function(){
 	  	$url = '@ranking_'.$sf_user->getCulture('es');
 	  	echo link_to(
 	 	$politicoInstitucion->getInstitucion()->getNombre()
-	 	, "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getNombreCorto()
+	 	, "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getVanity()
 	 	, array())
 	 
 	?><?php endforeach ?>
