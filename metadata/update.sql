@@ -8,5 +8,9 @@ insert into politico_institucion (politico_id, institucion_id) select id, 10 fro
 
 
 
-ALTER TABLE `voota`.`sf_review` ADD COLUMN `culture` VARCHAR(5) NULL DEFAULT NULL  AFTER `modified_at`;
+ALTER TABLE `voota`.`institucion` ADD COLUMN `vanity` VARCHAR(45) NULL DEFAULT NULL  AFTER `imagen` 
+, DROP INDEX `uniq_institucion` 
+, ADD UNIQUE INDEX `uniq_institucion` (`vanity` ASC) ;
+
+
 

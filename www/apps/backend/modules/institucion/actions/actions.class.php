@@ -21,4 +21,34 @@ require_once dirname(__FILE__).'/../lib/institucionGeneratorHelper.class.php';
  */
 class institucionActions extends autoInstitucionActions
 {
+	public function executeUpdate(sfWebRequest $request) {
+				
+		/* Generar vanity 
+		$institucion = $this->getRoute()->getObject();
+	    if ($institucion->getVanity() == ''){
+	    	$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto());
+	    	
+		    $c2 = new Criteria();
+		    $c2->add(InstitucionPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+		    $c2->add(InstitucionPeer::ID, $institucion->getId(), Criteria::NOT_EQUAL);
+		    $usuariosLikeMe = InstitucionPeer::doSelect( $c2 );
+		    $counter = 0;
+		    foreach ($usuariosLikeMe as $usuarioLikeMe){
+		    	$counter++;
+		    }
+		    $institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+		    
+		    
+    $this->form = $this->configuration->getForm($institucion);
+    var_dump($this->form);die;
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+		    
+	    }
+	     Fin Generar vanity */
+		
+	    parent::executeUpdate($request);
+	}
 }

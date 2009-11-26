@@ -22,6 +22,7 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre_corto'              => new sfWidgetFormInput(),
       'url'                       => new sfWidgetFormInput(),
       'imagen'                    => new sfWidgetFormInput(),
+      'vanity'                    => new sfWidgetFormInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Politico')),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Eleccion')),
     ));
@@ -36,12 +37,13 @@ class BaseInstitucionForm extends BaseFormPropel
       'nombre_corto'              => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'url'                       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'vanity'                    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Eleccion', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Institucion', 'column' => array('nombre_corto')))
+      new sfValidatorPropelUnique(array('model' => 'Institucion', 'column' => array('vanity')))
     );
 
     $this->widgetSchema->setNameFormat('institucion[%s]');
