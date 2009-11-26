@@ -117,7 +117,7 @@ class politicoActions extends sfVoActions
   	}
   	else if ($o == "nd") {
   		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMA);
+  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
   	}
   	$this->order = $o;
   	/* Fin Orden */
