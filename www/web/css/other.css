@@ -2,7 +2,8 @@ div.formSing form tr th {  text-align:left; font-size: 0.69em;  margin:0.00em; c
 div.clickable {cursor: pointer;}
 
 ul.error_list {
-	padding-left:0px;
+  margin: 5px 0;
+  padding: 0;
 }
 ul.error_list li {
 	list-style: none outside;

@@ -27,8 +27,8 @@
   <tr>
       <td class="leftSing"><h5><?php echo __('Tu email') ?></h5></td>
     <td>
-      <?php echo $registrationform['username']->renderError() ?>
       <?php echo $registrationform['username']->render() ?>
+      <?php echo $registrationform['username']->renderError() ?>
     </td>    
     <td>&nbsp;</td>
   </tr>
@@ -37,8 +37,8 @@
       <?php echo __('Nombre') ?>
     </h5></td>
     <td>
-      <?php echo $registrationform['nombre']->renderError() ?>
       <?php echo $registrationform['nombre']->render() ?>
+      <?php echo $registrationform['nombre']->renderError() ?>
     </td>    
     <td>&nbsp;</td>
   </tr>
@@ -47,8 +47,8 @@
       <?php echo __('Apellidos') ?>
     </h5></td>
     <td>
-      <?php echo $registrationform['apellidos']->renderError() ?>
       <?php echo $registrationform['apellidos']->render() ?>
+      <?php echo $registrationform['apellidos']->renderError() ?>
     </td>    
     <td>&nbsp;</td>
   </tr>
@@ -57,8 +57,8 @@
       <?php echo __('Contraseña') ?>
     </h5></td>
     <td>
-      <?php echo $registrationform['password']->renderError() ?>
       <?php echo $registrationform['password']->render() ?>
+      <?php echo $registrationform['password']->renderError() ?>
     </td>    
     <td>&nbsp;</td>
   </tr>

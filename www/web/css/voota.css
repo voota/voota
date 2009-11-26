@@ -36,4 +36,10 @@ img { border:none; vertical-align: middle;}
 .cC a {color: white;}
 table { padding:0; margin:0;}
 .tdperfil { padding: 15px 0; vertical-align: top;}
+
 .tips { font-size: 0.8em; padding-top: 17px;}
+.legal { font-size: 0.8em; text-align: right;}
+#signin .campo { width: 270px; }
+#signin .campo input { width: 270px; }
+#signin .boton, #login .boton { text-align:right; }
+#signin .boton input, #login .boton input { width: 130px; }

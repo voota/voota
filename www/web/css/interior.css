@@ -20,7 +20,7 @@
 .formSing500 { padding-top:1.00em; margin: 0 auto; width:12.50em; text-align:left;}
 .formSings { margin-top:1.00em; margin-left:1.44em;}
 .alingBoton {text-align:right;}
-.leftSing {  width:5.80em; padding-bottom:0.60em; padding-top:0.60em;  }
+.leftSing {  width:5.80em; padding: 3px 0; vertical-align: top; }
 .leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
 .rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
 .leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
