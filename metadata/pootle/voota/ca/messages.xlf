@@ -283,7 +283,7 @@
 &lt;p&gt;Un saludo&lt;/p&gt;
 &lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
         <target>&lt;p&gt;Si no pots fer click sobre l'enllaç, copia'l i enganxa'l a la barra de direccions del teu navegador.&lt;/p&gt;
-&lt;p&gt;Rés més, et donem la benvinguda a Voota ;-)&lt;/p&gt;
+&lt;p&gt;Res més, et donem la benvinguda a Voota ;-)&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
@@ -648,33 +648,33 @@
         <source>http://voota.es/</source>
         <target>http://voota.es/</target>
       </trans-unit>
-      <trans-unit id="155">
+      <trans-unit id="155" approved="yes">
         <source>%1% resultado encontrado buscando "%2%"</source>
-        <target/>
+        <target>%1% resultat trobat buscant "%2%"</target>
       </trans-unit>
-      <trans-unit id="156">
+      <trans-unit id="156" approved="yes">
         <source>%1% resultados encontrados buscando "%2%"</source>
-        <target/>
+        <target>%1% resultats trobats buscant "%2%"</target>
       </trans-unit>
-      <trans-unit id="157">
+      <trans-unit id="157" approved="yes">
         <source>No se han encontrado resultados para "%1%".</source>
-        <target/>
+        <target>No s'han trobat resultats per "%1%".</target>
       </trans-unit>
-      <trans-unit id="158">
+      <trans-unit id="158" approved="yes">
         <source>Normas de publicación en Voota</source>
-        <target/>
+        <target>Normes de publicació a Voota</target>
       </trans-unit>
-      <trans-unit id="159">
+      <trans-unit id="159" approved="yes">
         <source>En pocas palabras ...</source>
-        <target/>
+        <target>En poques paraules...</target>
       </trans-unit>
-      <trans-unit id="160">
+      <trans-unit id="160" approved="yes">
         <source>Las opiniones libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.</source>
-        <target/>
+        <target>Les opinions lliures, publica tot el que vulguis, a favor o en contra, excepte el que estigui prohibit per llei.</target>
       </trans-unit>
-      <trans-unit id="161">
+      <trans-unit id="161" approved="yes">
         <source>¿Qué es lo que está prohibido por ley? (ojo, lista no exhaustiva)</source>
-        <target/>
+        <target>Què està prohibit per llei? (ull, llistqa no exhaustiva)</target>
       </trans-unit>
       <trans-unit id="162" approved="yes">
         <source>Twitter</source>
@@ -704,25 +704,29 @@
         <source>http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/</source>
         <target>http://www.theplateishot.com/voota-tu-tens-la-ultima-paraula/</target>
       </trans-unit>
-      <trans-unit id="169">
+      <trans-unit id="169" approved="yes">
         <source>Listado de políticos, (%1%, %2%)</source>
-        <target/>
+        <target>Llistat de polítics, (%1%, %2%)</target>
       </trans-unit>
-      <trans-unit id="170">
+      <trans-unit id="170" approved="yes">
         <source>Todos los partidos</source>
-        <target/>
+        <target>Tots els partits</target>
       </trans-unit>
-      <trans-unit id="171">
+      <trans-unit id="171" approved="yes">
         <source>Todas las instituciones</source>
-        <target/>
+        <target>Totes les institucions</target>
       </trans-unit>
-      <trans-unit id="172">
+      <trans-unit id="172" approved="yes">
         <source>&lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
 &lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Un saludo&lt;/p&gt;
 &lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;Si no pots fer click sobre l'enllaç copia'l i enganza'l a la barra de direccions del teu navegador&lt;/p&gt;
+&lt;p&gt;Res més, et donem la benvinguda a Voota ;-)&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Una salutació&lt;/p&gt;
+&lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
       </trans-unit>
     </body>
   </file>
