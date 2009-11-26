@@ -197,7 +197,7 @@ class politicoActions extends sfVoActions
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
   	if ($this->politicosPager->getNbResults() > 0){
 	  	$list = $this->politicosPager->getResults();
-  		if ($this->partido != '0') {
+  		if ($this->partido != '0' && $list[0]->getPartido()) {
 	  		$description .= ", " . $list[0]->getPartido()->getNombre();
    		}
 	  	if ($this->institucion != '0') {
