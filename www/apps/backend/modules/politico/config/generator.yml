@@ -30,6 +30,9 @@ generator:
           "Bio": [_bio_preview,bio]
           "Enlaces": []
         fields:
+          politico_institucion_list:
+            label: Instituciones
+            attributes: { style: "height: 80px;" }
           bio:
             help: Para actualizar el preview de arriba.
             params: rich=true tinymce_options=width:330

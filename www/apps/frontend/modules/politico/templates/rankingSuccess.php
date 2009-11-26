@@ -73,11 +73,11 @@ $(document).ready(function(){
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
   ?>
- <?php $idx = 0?>  
-<?php foreach($instituciones as $aInstitucion): ?>
+ <?php $idx = 0; ?>  
+ <?php foreach($instituciones as $aInstitucion): ?>
   <?php 
   $idx++;
-  if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM) {
+  if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getNombreCorto()==$institucion) {
   ?>  
  · 
   <?php 

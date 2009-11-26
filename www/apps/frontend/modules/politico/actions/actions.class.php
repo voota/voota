@@ -195,9 +195,20 @@ class politicoActions extends sfVoActions
   	$this->title .= ' - Voota';
   	
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
-  	$description .= $this->institucion=='0'?'':", " . $this->institucion;
-  	$description .= $this->partido=='all'?'':', '.$this->partido;
+  	if ($this->politicosPager->getNbResults() > 0){
+	  	$list = $this->politicosPager->getResults();
+  		if ($this->partido != '0') {
+	  		$description .= ", " . $list[0]->getPartido()->getNombre();
+   		}
+	  	if ($this->institucion != '0') {
+	  		$ci = new Criteria();
+	  		$ci->add(InstitucionPeer::NOMBRE_CORTO, $this->institucion);
+	  		$institucion = InstitucionPeer::doSelectOne( $ci );
+	  		$description .= ", " . $institucion->getNombre()." (". $institucion->getGeo()->getNombre() .", España)";
+   		}
+  	}
   	$this->response->addMeta('Description', $description);
+  	
   	
     $this->response->setTitle( $this->title );
   }
