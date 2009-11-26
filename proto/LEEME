@@ -1,1 +1,3 @@
+Para ver estos archivos de forma adecuada es necesario crear un virtualhost en la máquina donde se alojan, o bien editar las rutas a los recursos externos (principalmente, archivos css y js) para que usen el directorio actual en lugar de buscarlos a partir de la raíz (ej: 'css/main.css' en lugar de '/css/main.css').
+
 El marcado no está apropiadamente indentado ya que estoy usando directamente la salida HTML que ofrece el navegador, y al reformatear con mi editor creo que queda aún más confuso.
