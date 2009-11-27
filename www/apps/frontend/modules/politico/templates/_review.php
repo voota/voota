@@ -20,5 +20,6 @@
 			 <br>
 			<?php echo review_text( $review ) ?>
 		</h6>
+		
 	</div>
 </div>
