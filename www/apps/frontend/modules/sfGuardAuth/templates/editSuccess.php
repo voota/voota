@@ -51,7 +51,7 @@
     </td>
     <td class="wider tdperfil" >
       <?php echo $profileEditForm['presentacion']->renderError() ?>
-      <?php echo $profileEditForm['presentacion']->render('presentacion', null, array('rows' => 15)) ?>
+      <?php echo $profileEditForm['presentacion']->render(array('rows' => 15)) ?>
     </td>
     <td class="tdperfil tips"><?php echo __('(opcional)') ?></td>
   </tr>
@@ -75,7 +75,7 @@
     </td>
     <td class="wider tdperfil" >
       <?php echo $profileEditForm['vanity']->renderError() ?>
-      <span class="nombrePeque"><?php echo __('http://voota.es/') ?></span><?php echo $profileEditForm['vanity']->render('vanity', null, array('class' => 'inputSignVanity')) ?>
+      <span class="nombrePeque"><?php echo __('http://voota.es/') ?></span><?php echo $profileEditForm['vanity']->render(array('class' => 'inputSignVanity')) ?>
     </td>    
   </tr>
   
