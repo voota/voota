@@ -43,3 +43,13 @@ table { padding:0; margin:0;}
 #signin .campo input { width: 270px; }
 #signin .boton, #login .boton { text-align:right; }
 #signin .boton input, #login .boton input { width: 130px; }
+.successMsg { width: 300px; border: 1px solid #9398ae; padding: 1em; margin: 1em 0; font-weight: bold; font-size: 0.8em; color: #323232; background: transparent url(/images/icoOk.gif) right center no-repeat;}
+#sidebar { float: right; width: 20em; margin-top: 4em; padding-right: 2em;}
+.box { font-size: 0.8em; background: transparent url(/images/shadow.png); position: relative; top: 5px; left: 5px;}
+.box h2 { font-size: 1em; padding-bottom: 1em;}
+.boxContent { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px;}
+.boxContact ul { list-style: none; margin: 0; padding: 0;}
+.boxContact ul li { margin-bottom: 0.2em;}
+.boxContact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; padding-left: 20px;}
+.boxContact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; padding-left: 20px;}
+.boxContact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; padding-left: 20px;}
