@@ -23,10 +23,10 @@
 <?php echo form_tag('@sf_guard_signin') ?>
 	<?php echo input_hidden_tag('op', 'r') ?>
 
-<table>
+<table id="signin">
   <tr>
       <td class="leftSing"><h5><?php echo __('Tu email') ?></h5></td>
-    <td>
+    <td class="campo">
       <?php echo $registrationform['username']->render() ?>
       <?php echo $registrationform['username']->renderError() ?>
     </td>    
@@ -36,7 +36,7 @@
       <td class="leftSing"><h5>
       <?php echo __('Nombre') ?>
     </h5></td>
-    <td>
+    <td class="campo">
       <?php echo $registrationform['nombre']->render() ?>
       <?php echo $registrationform['nombre']->renderError() ?>
     </td>    
@@ -46,7 +46,7 @@
       <td class="leftSing"><h5>
       <?php echo __('Apellidos') ?>
     </h5></td>
-    <td>
+    <td class="campo">
       <?php echo $registrationform['apellidos']->render() ?>
       <?php echo $registrationform['apellidos']->renderError() ?>
     </td>    
@@ -56,7 +56,7 @@
       <td class="leftSing"><h5>
       <?php echo __('Contraseña') ?>
     </h5></td>
-    <td>
+    <td class="campo">
       <?php echo $registrationform['password']->render() ?>
       <?php echo $registrationform['password']->renderError() ?>
     </td>    
@@ -75,9 +75,18 @@
     <td>&nbsp;</td>
 
   </tr>
+  
+  <tr>
+    <td class="leftSing"></td>
+    <td class="legal">He leído y acepto el <?php echo link_to(__('aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array()) ?><?php echo $registrationform['accept']->render() ?>
+    <?php echo $registrationform['accept']->renderError() ?></td>    
+    <td>&nbsp;</td>
+  </tr>
+  
+  
   <tr>
     <td class="leftSing">&nbsp;</td>
-    <td class="alingBoton">
+    <td class="boton">
       <?php echo submit_tag(__('Registrate en Voota'), array('class'   => 'button',)) ?>
       </td>
     <td>&nbsp;</td>
@@ -100,7 +109,7 @@
   
     <div class="formSing">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
-<table>
+<table id="login">
   <tr>
       <td class="leftSing"><h5>
       <?php echo __('Tu Email') ?>
@@ -135,7 +144,7 @@
     <td><h6>
 
  <?php echo link_to(
- 	__('Olvidaste tu contraseña')
+ 	__('¿Olvidaste tu contraseña?')
  	, 'sfGuardAuth/reminder'
  ) ?>
       
@@ -143,7 +152,7 @@
     </tr>
   <tr>
     <td class="leftSing">&nbsp;</td>
-    <td style="text-align:right">
+    <td class="boton">
       <input name="button" type="submit" class="button" value="Entrar">     </td>
 
     </tr>

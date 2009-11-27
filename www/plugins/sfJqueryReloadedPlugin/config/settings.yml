@@ -12,7 +12,7 @@ all:
     # tom@punkave.com: this is a filename WITHIN jquery_web_dir/js. 
     # Some users might have other builds of jquery. I stepped it up to
     # 1.3.1 in hopes of better behavior from trigger().
-    jquery_core: jquery-1.3.1.min.js
+    jquery_core: jquery-1.3.2.min.js
 
     # tom@punkave.com: This is within jquery_web_dir/js/plugins. 
     jquery_sortable: jquery-ui-sortable-1.6rc2.min.js   

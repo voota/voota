@@ -10,6 +10,7 @@ class RegistrationForm extends sfVoForm
       'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
       'password' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign', 'autocomplete' => 'off')),
+      'accept' => new sfWidgetFormInputCheckbox(array(), array()),
     ));
     $this->widgetSchema->setNameFormat('registration[%s]');
 	$this->widgetSchema->setLabels(array(
@@ -24,6 +25,7 @@ class RegistrationForm extends sfVoForm
       'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false), sfVoForm::getStringMessages()),    
       'password'    => new sfValidatorPassword(array('required' => true), sfVoForm::getStringMessages()),
+      'accept' => new sfValidatorBoolean(array('required' => true), sfVoForm::getRequiredMessages()),
     ));
     
     //$this->validatorSchema->setPostValidator(new sfValidatorPropelUnique(array('model'=>'sfGuardUser', 'column'=>array('username'))));
