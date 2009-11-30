@@ -5,8 +5,8 @@
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
 
 /* Layout básico */
-#header-inner, #main-inner, #footer-inner { margin: 0 auto 20px auto; width: 960px; font-size: 1.2em; position: relative; overflow: hidden; }
-#header-inner { }
+#header-inner, #main-inner, #footer { font-size: 1.2em }
+#header-inner, #main-inner { margin: 0 auto 20px auto; width: 960px; position: relative; overflow: hidden; }
 #sfGuardAuth-signin #main, #sfGuardAuth-edit #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 
 /* Encabezados */
