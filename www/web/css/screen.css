@@ -1,71 +1,75 @@
 @charset "utf-8";
-/* Antiguo fichero voota.css */
-html, body { /* overflow: hidden; */ margin: 0 auto; font-family: Georgia, "Times New Roman", Times, serif; color:#616161;}
-#header { height:7.00em;}
-.logo { margin-top:0.69em;}
-.logoImg { margin-bottom:0.90em; margin-top:0.69em;}
-#container {margin: 0 auto; min-width:53.00em; max-width:60.00em;} 
-#main { background-repeat:repeat-x; background-image:url(/images/bgMain.gif) }
-#content { /* overflow: visible; */ }
+
+/* TODO: Cambiar tamaños de fuentes una vez eliminados todos los h6 */
+
+body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
+#header-inner, #main-inner, #footer-inner { margin: 0 auto; width: 960px; font-size: 1.2em; position: relative; }
+#header-inner { margin-bottom: 20px;}
+#sfGuardAuth-signin #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#logo a { color: #323232; text-decoration: none; font-weight: normal; }
+#slogan { font-size: 1.2em; font-weight: normal; }
+#user-links { position: absolute; top: 10px; right: 0; }
+#search { text-align: right; }
+
+h1 { font-size: 4em; margin: 0; color: #2b56ff; }
+h2 { font-size: 2em; margin: 0; }
+h3 { font-size: 1.6em; margin: 0; }
+h4 { font-size: 1.2em; margin: 0; color: #323232 }
+h5 { font-size: 1em; margin: 0; color: #323232; }
+h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; color: #323232; line-height: 1.60em; }
+
+/* Ranking de políticos */
+.listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
+.cabeceraRanking { background-color:#f6f6f6; height: 1.69em; }
+.listaRanking { height: 5em; }
+.nombreRanking { width: 40%; height: 1.69em; padding-left: 5.00em; padding-top: 1.10px; }
+.votosUp { width: 20%; text-align: right; }
+.votosDown { width: 20%; text-align:right; }
+.separacionFotoRanking { padding-right:0.88em; }
+
+/*
+  Antiguo fichero voota.css
+*/
+
+.logo { margin-top:0.69em; }
+.logoImg { margin-bottom:0.90em; margin-top:0.69em; }
+#container {margin: 0 auto; min-width:53.00em; max-width:60.00em; }
 #footer { position: relative; left: 0.00em; text-align:center; padding-top: 2em;}
 .footerEspacio { height:10.00em;}
 #line { height:1px; border-top:1px dotted #343434; margin-bottom:0.6em;}
-.enlacesPie{margin-right:1.25em; margin-left:1.25em;}
+.enlacesPie {margin-right:1.25em; margin-left:1.25em;}
 .limpiar { clear:both; }
-.input { border: 1px solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; }
-.inputSign { border: 1px solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.inputSignPeq { border: 1px solid #9398ae; background: #ffffff; width:1.90em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.inputSignPeq2 { border: 1px solid #9398ae; background: #ffffff; width:2.50em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.inputSignVanity  { border: 1px solid #9398ae; background: #ffffff; width:11em; font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; padding-left:0.30em;}
-.button { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.button2 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.button3 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-.textarea { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; font-size:0.75em; border:1px solid #8f9ba7; }
-.der{ float:right;}
+.input { border: 1px solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; }
+.inputSign { border: 1px solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; padding-left:0.30em;}
+.inputSignPeq { border: 1px solid #9398ae; background: #ffffff; width:1.90em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; padding-left:0.30em;}
+.inputSignPeq2 { border: 1px solid #9398ae; background: #ffffff; width:2.50em;  font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; padding-left:0.30em;}
+.inputSignVanity { border: 1px solid #9398ae; background: #ffffff; width:11em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; padding-left:0.30em;}
+.button { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#323232;}
+.button2 { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#323232;}
+.button3 { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#323232;}
+.textarea { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; font-size:1em; border:1px solid #8f9ba7; }
+.der { float:right;}
 .izq { float:left;}
 .login {margin-top:0.60em; float:right;}
-h1 { font-size: 2.5em; font-weight:100; margin:0.00em; color:#2b56ff;}
-h2 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232}
-h3 { }
-h4 { font-size: 1.2em;  font-weight: bold; margin:0.00em; color:#323232 }
-h5 { font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold; }
-h6 { font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232; line-height:1.60em; }
-.text11 { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#8c8c8c;}
+.text11 { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#8c8c8c;}
 img { border:none; vertical-align: middle;}
-.cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; font-size: 0.75em;}
-.cC a {color: white;}
+.cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; }
+.cC a {color: white; }
 table { padding:0; margin:0;}
 .tdperfil { padding: 15px 0; vertical-align: top;}
 
-/* Reglas nuevas */
-.tips { font-size: 0.8em; padding-top: 17px;}
-.legal { font-size: 0.8em; text-align: right;}
-#signin .campo { width: 270px; }
-#signin .campo input { width: 270px; }
-#signin .boton, #login .boton { text-align:right; }
-#signin .boton input, #login .boton input { width: 130px; }
-.successMsg { width: 300px; border: 1px solid #9398ae; padding: 1em; margin: 1em 0; font-weight: bold; font-size: 0.8em; color: #323232; background: transparent url(/images/icoOk.gif) right center no-repeat;}
-#sidebar { float: right; width: 20em; margin-top: 4em; padding-right: 2em;}
-.box { font-size: 0.8em; background: transparent url(/images/shadow.png); position: relative; top: 5px; left: 5px;}
-.box h2 { font-size: 1em; padding-bottom: 1em;}
-.boxContent { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px;}
-.boxContact ul { list-style: none; margin: 0; padding: 0;}
-.boxContact ul li { margin-bottom: 0.2em;}
-.boxContact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; padding-left: 20px;}
-.boxContact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; padding-left: 20px;}
-.boxContact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; padding-left: 20px;}
 
-/* Antiguo fichero interior.css */
+/*
+  Antiguo fichero interior.css
+*/
 
-/*#mainInterior { position: relative; left: 0.00em; right: 0.00em; background-image: url(../image/bgMain.gif); background-repeat:repeat-x;}*/
-#mainInterior { position: relative; left: 0.00em; right: 0.00em; }
 #contentLeft { float:left; width: 41.56em;}
 #contentRankingLeft { float:left; width:100%}
 #contentRight { float:right; width: 10.81em;}
 #contentRight2 { float:right; width: 15.81em; margin-top:3.94em;}
 #contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing { float:left; width:30.00em; margin-top:3.94em; margin-left:1.38em;}
+#contentLeftSing { float:left; width:50%; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentLeftSing500{ padding-top:3.94em; margin: 0 auto; width:34.38em; text-align:center; }
@@ -77,7 +81,7 @@ table { padding:0; margin:0;}
 .formSing500 { padding-top:1.00em; margin: 0 auto; width:12.50em; text-align:left;}
 .formSings { margin-top:1.00em; margin-left:1.44em;}
 .alingBoton {text-align:right;}
-.leftSing {  width:5.80em; padding: 3px 0; vertical-align: top; }
+.leftSing {  width:5.80em; padding: 1em 0; vertical-align: top; }
 .leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
 .rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
 .leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
@@ -86,23 +90,18 @@ table { padding:0; margin:0;}
 .leftSing3 { padding-bottom:0.60em; padding-top:0.60em; }
 #nombre { list-style:none; margin:0; padding:0; }
 #nombre li { float:left; margin:0; padding:0; margin-right:1.0em; }
-.cabeceraRanking {background-color:#f6f6f6; height:1.69em;}
-.listaRanking { height:4.06em;}
 .ranking { text-align:right; width:6.25em; height:1.69em;}
-.nombreRanking { width:20.50em; height:1.69em; padding-left:5.00em; padding-top:1.10px;}
-.separacionFotoRanking { padding-right:0.88em;}
 .fotoRanking { width:6.81em; height:1.69em; padding-left:0.25em; text-align:right;}
-.votosUp { width:5.44em; text-align: right;}
-.votosDown { width:7.56em; text-align:right;}
 .votosUpTotal {  width:38.80em; text-align:right; margin-right:2.20em;}
 .votosDownTotal { float:left; text-align:right;}
 #paginacion { text-align:center; word-spacing:0.40em; font-weight:bold;}
-.numerosPag { font-weight:bold; font-size:0.88em;}
-.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2f2f2f}
+.numerosPag { font-weight:bold; font-size: 1.2em; }
+.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.4em; font-weight:bold; color:#2f2f2f}
+.nombrePolitico select { font-size: 0.8em;}
 .tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
 .azul {color:#2b56ff;}
 .rojo {color:#f80c1a;}
-.nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:0.75em;}
+.nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:1em;}
 .nombreCaja {font-family: Georgia, "Times New Roman", Times, serif; font-size:0.88em; color:#2f2f2f;}
 .fotoPolitico {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
 .textoPolitico {margin-left:1.31em; margin-top:1.50em; width:23.44em;}
@@ -124,7 +123,7 @@ table { padding:0; margin:0;}
 .contenedorPositivoNegativo {margin-left:1.31em; margin-top:1.50em;}
 .votaPartidos {margin-left:1.25em; margin-top:1.50em; margin-bottom:1.25em; margin-right:3.25em; float:left; width:15.63em;}
 .vootaPartidoList { margin-left:0.63em; margin-top:0.63em;}
-.listadoRanking {margin-top:1.50em; width:52.56em; margin-left:1.88em; }
+
 .listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
 .confirmar {width:14.44em; margin-left:1.00em; }
 .cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:10em;}
@@ -153,7 +152,11 @@ p { margin:0; padding-bottom:1.25em;}
 .anchoColumna {width:160px;}
 .tituloCampo { font-size: 0.88em; padding-top: 17px; margin:0; color:#323232; }
 
-/* Antiguo fichero other.css */
+
+/*
+  Antiguo fichero other.css
+*/
+
 div.formSing form tr th {  text-align:left; font-size: 0.69em;  margin:0.00em; color:#323232; margin-bottom:1.20em;}
 div.clickable {cursor: pointer;}
 
@@ -180,3 +183,25 @@ div.notice {width:340px; margin-top:15px; padding:13px; background-color:#ffffff
 .wider { width:16em; padding: 15px 0; }
 .review_img {float:left; margin-right: 5px}
 .review_date {font-size:0.8em;}
+
+
+/*
+  Reglas nuevas
+*/
+
+.tips { font-size: 0.8em; padding-top: 17px;}
+.legal { font-size: 0.8em; text-align: right;}
+#signin .campo { width: 270px; }
+#signin .campo input { width: 270px; }
+#signin .boton, #login .boton { text-align:right; }
+#signin .boton input, #login .boton input { width: 130px; }
+.successMsg { width: 300px; border: 1px solid #9398ae; padding: 1em; margin: 1em 0; font-weight: bold; font-size: 0.8em; color: #323232; background: transparent url(/images/icoOk.gif) right center no-repeat;}
+#sidebar { float: right; width: 20em; margin-top: 4em; padding-right: 2em;}
+.box { font-size: 0.8em; background: transparent url(/images/shadow.png); position: relative; top: 5px; left: 5px;}
+.box h2 { font-size: 1em; padding-bottom: 1em;}
+.boxContent { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px;}
+.boxContact ul { list-style: none; margin: 0; padding: 0;}
+.boxContact ul li { margin-bottom: 0.2em;}
+.boxContact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; padding-left: 20px;}
+.boxContact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; padding-left: 20px;}
+.boxContact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; padding-left: 20px;}

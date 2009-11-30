@@ -13,20 +13,13 @@
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
 
-  <!-- CONTAINER -->
-  <div id="container">
+  <!-- HEADER -->
+  <div id="header">
+    <div id="header-inner">
+      <h1 id="logo"><a href="<?php echo url_for('@homepage') ?>">Voota</a></h1>
+      <h2 id="slogan"><?php echo __('Tú tienes la última palabra')?></h2>
 
-    <!-- HEADER -->
-    <div id="header">
-
-      <div class="izq">
-        <a href="<?php echo url_for('@homepage') ?>">
-          <?php echo image_tag('logoVoota.gif', 'alt=Voota, size=112x31, longdesc=Voota, class=logoImg') ?>
-        </a>
-        <h6><?php echo __('Tú tienes la última palabra')?></h6>
-      </div>
-
-      <div class="der login">
+      <div id="user-links">
         <?php slot('not_logged') ?>
   	      <h6><?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?></h6>
         <?php end_slot('not_logged') ?>
@@ -46,9 +39,7 @@
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
       </div>
 
-      <div class="limpiar"></div>
-
-      <div class="der">
+      <div id="search">
         <?php echo form_tag('@search') ?>
           <div>
     	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
@@ -56,16 +47,20 @@
           </div>
         </form>
       </div>
-    </div><!-- FIN HEADER -->
+    </div>
+  </div><!-- FIN HEADER -->
 
-    <div class="limpiar"></div>
+  <div id="main">
+    <div id="main-inner">
+      <?php echo $sf_content ?>
+    </div>
+  </div>
 
-    <?php echo $sf_content ?>
-
-    <!-- FOOTER -->
-    <div id="footer">
+  <!-- FOOTER -->
+  <div id="footer">
+    <div id="footer-inner">
       <div class="cC">
-        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons"></a>
+        <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons" /></a>
         <?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?>
       </div>
 
@@ -99,9 +94,8 @@
 
       <div id="line"></div>
       <h6>Voota.es 2009 </h6>
-    </div><!-- FIN FOOTER -->
-
-  </div><!-- FIN CONTAINER -->
+    </div>
+  </div><!-- FIN FOOTER -->
 
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">
