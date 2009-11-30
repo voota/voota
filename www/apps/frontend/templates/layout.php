@@ -19,7 +19,7 @@
       <h1 id="logo"><a href="<?php echo url_for('@homepage') ?>">Voota</a></h1>
       <h2 id="slogan"><?php echo __('Tú tienes la última palabra')?></h2>
 
-      <div id="user-links">
+      <p id="user-links">
         <?php slot('not_logged') ?>
   	      <?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?>
         <?php end_slot('not_logged') ?>
@@ -35,7 +35,7 @@
         <?php end_slot('logged') ?>
 
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
-      </div>
+      </p>
 
       <div id="search">
         <?php echo form_tag('@search') ?>
@@ -46,11 +46,12 @@
     </div>
   </div><!-- FIN HEADER -->
 
+  <!-- MAIN -->
   <div id="main">
     <div id="main-inner">
       <?php echo $sf_content ?>
     </div>
-  </div>
+  </div><!-- FIN MAIN -->
 
   <!-- FOOTER -->
   <div id="footer">
@@ -98,7 +99,7 @@
       var pageTracker = _gat._getTracker("UA-10529881-1");
       pageTracker._trackPageview();
     } catch(err) {}
-  </script>
+  </script><!-- FIN GOOGLE ANALYTICS -->
 
 </body>
 </html>

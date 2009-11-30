@@ -48,7 +48,6 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 
 .logo { margin-top:0.69em; }
 .logoImg { margin-bottom:0.90em; margin-top:0.69em; }
-#container {margin: 0 auto; min-width:53.00em; max-width:60.00em; }
 .footerEspacio { height:10.00em;}
 .limpiar { clear:both; }
 .input { border: 1px solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; }
