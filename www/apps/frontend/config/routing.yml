@@ -144,6 +144,11 @@ search:
   param: { module: general, action: search }
   requirements: { sf_culture: (?:es|ca) }
 
+contact:
+  url:   /:sf_culture/contact
+  param: { module: general, action: contact }
+  requirements: { sf_culture: (?:es|ca) }
+
 # default_index:
 #   url:   /:module
 #   param: { action: index }

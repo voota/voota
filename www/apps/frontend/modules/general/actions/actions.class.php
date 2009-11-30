@@ -20,6 +20,8 @@ require_once(sfConfig::get('sf_lib_dir').'/sphinxapi.php');
 class generalActions extends sfVoActions{
   public function executeRules(sfWebRequest $request) {
   }
+  public function executeContact(sfWebRequest $request) {
+  }
   public function executeAbout(sfWebRequest $request) {
   	$c = new Criteria();
   	//1,2,4,5,6,7
