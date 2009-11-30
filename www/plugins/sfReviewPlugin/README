@@ -97,6 +97,25 @@ Ok, now we are going to fill the template with the necesary code to put a review
       <?php echo $celeb->getName() ?>
 
       <div id="sfreview_box"></div>
+
+Manager and helper
+------------------
+
+The plugin is shipped with a manager and a helper class that simplifies showing the reviews.
+In the controller you can ask for reviews of one type:
+
+      [php]
+	  $this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1);
+	  $this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, 1);
+	  $this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1);
+	  $this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, -1);
+ 
+And in the view you can show the review test:
+
+      [php]
+	  <?php use_helper('SfReview') ?>
+	  ...
+	  <?php echo review_text( $the_review ) ?>
  
 Support
 -------

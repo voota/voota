@@ -10,11 +10,11 @@
   <email>sergio@infovit.net</email>
   <active>yes</active>
  </lead>
- <date>2009-11-24</date>
- <time>11:14:59</time>
+ <date>2009-11-29</date>
+ <time>16:15:00</time>
  <version>
-  <release>0.1.0</release>
-  <api>0.1.0</api>
+  <release>0.5.0</release>
+  <api>0.5.0</api>
  </version>
  <stability>
   <release>beta</release>
