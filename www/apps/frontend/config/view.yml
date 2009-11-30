@@ -9,7 +9,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, ui-lightness/jquery-ui-1.7.2.custom.css, voota.css, interior.css, other.css, /sfReviewPlugin/css/sf_review.css]
+  stylesheets:    [ui-lightness/jquery-ui-1.7.2.custom.css, /sfReviewPlugin/css/sf_review.css, screen.css]
 
   javascripts: [/sfReviewPlugin/js/sf_review.js, voota.js, /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
 
