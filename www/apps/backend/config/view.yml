@@ -9,9 +9,8 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, ui-lightness/jquery-ui-1.7.2.custom.css]
-
-  javascripts: [/sfReviewPlugin/js/sf_review.js, /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
+  stylesheets:    []
+  javascripts: [/sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
 
   has_layout:     on
   layout:         layout
