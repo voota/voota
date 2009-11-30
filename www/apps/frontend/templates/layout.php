@@ -21,19 +21,17 @@
 
       <div id="user-links">
         <?php slot('not_logged') ?>
-  	      <h6><?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?></h6>
+  	      <?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
-          <h6>
-            <?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' ): ?>
-    	        <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="Foto '. $sf_user->getProfile()->getNombre().' ' . $sf_user->getProfile()->getApellidos() .'"') ?>
-            <?php endif ?>
+          <?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' ): ?>
+  	        <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="Foto '. $sf_user->getProfile()->getNombre().' ' . $sf_user->getProfile()->getApellidos() .'"') ?>
+          <?php endif ?>
 
-            <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_edit') ?>
-            ·
-            <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
-          </h6>
+          <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_edit') ?>
+          ·
+          <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
         <?php end_slot('logged') ?>
 
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
@@ -41,10 +39,8 @@
 
       <div id="search">
         <?php echo form_tag('@search') ?>
-          <div>
-    	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
-    	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
-          </div>
+  	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
+  	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
         </form>
       </div>
     </div>
@@ -59,41 +55,36 @@
   <!-- FOOTER -->
   <div id="footer">
     <div id="footer-inner">
-      <div class="cC">
+      <p class="license">
         <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons" /></a>
         <?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?>
-      </div>
+      </p>
 
-      <div class="limpiar"></div>
+      <p class="nav-links">
+        <?php echo link_to(__('Quiénes somos'), '@about', array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es'), array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Socios'), 'http://blog.voota.es/es/socios/', array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Facebook'), __('http://www.facebook.com/Voota'), array('class' => "enlacesPie")) ?>
+        <?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
+      </p>
 
-      <!-- ENLACES PIE -->
-      <div class="enlacesPie">
-        <h6>
-          <?php echo link_to(__('Quiénes somos'), '@about', array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es'), array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Socios'), 'http://blog.voota.es/es/socios/', array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Facebook'), __('http://www.facebook.com/Voota'), array('class' => "enlacesPie")) ?>
-          <?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
-        </h6>
-        <h6>
-          <?php slot('langLink_ca') ?>
-          	català
-          	<?php echo link_to('español', '@homepage?sf_culture=es', array('class' => "enlacesPie")) ?>
-          <?php end_slot('langLink_ca') ?>
+      <p class="lang-links">
+        <?php slot('langLink_ca') ?>
+        	català
+        	<?php echo link_to('español', '@homepage?sf_culture=es', array('class' => "enlacesPie")) ?>
+        <?php end_slot('langLink_ca') ?>
 
-          <?php slot('langLink_es') ?>
-          	<?php echo link_to('català', '@homepage?sf_culture=ca', array('class' => "enlacesPie")) ?>
-          	español
-          <?php end_slot('langLink_es') ?>
+        <?php slot('langLink_es') ?>
+        	<?php echo link_to('català', '@homepage?sf_culture=ca', array('class' => "enlacesPie")) ?>
+        	español
+        <?php end_slot('langLink_es') ?>
 
-          <?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>
-        </h6>
-      </div><!-- FIN ENLACES PIE -->
+        <?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>
+      </p>
 
-      <div id="line"></div>
-      <h6>Voota.es 2009 </h6>
+      <p class="copyright">Voota.es 2009 </p>
     </div>
   </div><!-- FIN FOOTER -->
 

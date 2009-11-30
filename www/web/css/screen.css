@@ -3,20 +3,34 @@
 /* TODO: Cambiar tamaños de fuentes una vez eliminados todos los h6 */
 
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
-#header-inner, #main-inner, #footer-inner { margin: 0 auto; width: 960px; font-size: 1.2em; position: relative; }
-#header-inner { margin-bottom: 20px;}
-#sfGuardAuth-signin #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
-#logo a { color: #323232; text-decoration: none; font-weight: normal; }
-#slogan { font-size: 1.2em; font-weight: normal; }
-#user-links { position: absolute; top: 10px; right: 0; }
-#search { text-align: right; }
 
+/* Layout básico */
+#header-inner, #main-inner, #footer-inner { margin: 0 auto 20px auto; width: 960px; font-size: 1.2em; position: relative; overflow: hidden; }
+#header-inner { }
+#sfGuardAuth-signin #main, #sfGuardAuth-edit #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+
+/* Encabezados */
 h1 { font-size: 4em; margin: 0; color: #2b56ff; }
 h2 { font-size: 2em; margin: 0; }
 h3 { font-size: 1.6em; margin: 0; }
 h4 { font-size: 1.2em; margin: 0; color: #323232 }
 h5 { font-size: 1em; margin: 0; color: #323232; }
 h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; color: #323232; line-height: 1.60em; }
+
+/* Cabecera */
+#logo a { color: #323232; text-decoration: none; font-weight: normal; }
+#slogan { font-size: 1.2em; font-weight: normal; }
+#user-links { position: absolute; top: 10px; right: 0; }
+#search { text-align: right; }
+#search input[type=submit] { margin-left: 0.5em; width: 8em;}
+
+/* Footer */
+#footer { text-align: center; padding-top: 2em; }
+#footer .nav-links, #footer .lang-links { text-align: center; margin: 0; padding-bottom: 1em; }
+#footer .nav-links a, #footer .lang-links a { margin: 0 1.25em; }
+#footer .license { background-color: #343434; padding: 0.3em; color: white; margin-bottom: 1em; }
+#footer .license a { color: white; }
+#footer .copyright { border-top: 1px dotted #343434; padding: 1em 0; }
 
 /* Ranking de políticos */
 .listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
@@ -27,6 +41,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .votosDown { width: 20%; text-align:right; }
 .separacionFotoRanking { padding-right:0.88em; }
 
+
 /*
   Antiguo fichero voota.css
 */
@@ -34,10 +49,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .logo { margin-top:0.69em; }
 .logoImg { margin-bottom:0.90em; margin-top:0.69em; }
 #container {margin: 0 auto; min-width:53.00em; max-width:60.00em; }
-#footer { position: relative; left: 0.00em; text-align:center; padding-top: 2em;}
 .footerEspacio { height:10.00em;}
-#line { height:1px; border-top:1px dotted #343434; margin-bottom:0.6em;}
-.enlacesPie {margin-right:1.25em; margin-left:1.25em;}
 .limpiar { clear:both; }
 .input { border: 1px solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; }
 .inputSign { border: 1px solid #9398ae; background: #ffffff; width:18.19em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; padding-left:0.30em;}
@@ -53,8 +65,6 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .login {margin-top:0.60em; float:right;}
 .text11 { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#8c8c8c;}
 img { border:none; vertical-align: middle;}
-.cC {background-color:#343434; padding:0.3em; color: white; margin-bottom:1em; }
-.cC a {color: white; }
 table { padding:0; margin:0;}
 .tdperfil { padding: 15px 0; vertical-align: top;}
 
@@ -131,7 +141,7 @@ table { padding:0; margin:0;}
 .ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
 .tachado {text-decoration: line-through;}
 .margenVota {margin-top:0.60em; width:18.94em; text-align:right;}
-.enlacesPie {text-align:center; padding-bottom:1.00em;}
+
 /* Gente con color */
 .conColor {margin-top:2.94em;}
 .enlacesExternosPartido {margin-top:4.94em;}
@@ -150,7 +160,7 @@ p { margin:0; padding-bottom:1.25em;}
 .containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
 #404 {}
 .anchoColumna {width:160px;}
-.tituloCampo { font-size: 0.88em; padding-top: 17px; margin:0; color:#323232; }
+.tituloCampo { padding-top: 17px; margin:0; color:#323232; }
 
 
 /*
@@ -190,7 +200,7 @@ div.notice {width:340px; margin-top:15px; padding:13px; background-color:#ffffff
 */
 
 .tips { font-size: 0.8em; padding-top: 17px;}
-.legal { font-size: 0.8em; text-align: right;}
+.legal { text-align: right;}
 #signin .campo { width: 270px; }
 #signin .campo input { width: 270px; }
 #signin .boton, #login .boton { text-align:right; }
