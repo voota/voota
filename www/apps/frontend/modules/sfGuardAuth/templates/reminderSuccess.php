@@ -5,12 +5,6 @@
 
 <?php use_helper('VoNotice') ?>
 
-
-<!-- MAIN -->
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
-
 <?php echo showNotices( $sf_user ) ?>
 
 <!-- CONTENT LEFT-->
@@ -51,8 +45,3 @@
 <!--contraseña -->
 </div>
 </div>
-</div>
-<div class="limpiar footerEspacio"></div>
-</div>
-<!-- FIN CONTENT -->
-

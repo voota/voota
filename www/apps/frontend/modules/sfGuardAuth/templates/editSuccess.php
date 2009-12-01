@@ -3,14 +3,6 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
-
-<!-- MAIN -->
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
-
-
-
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
@@ -151,8 +143,3 @@
 </div>
 </div>
 </div>
-</div>
-<div class="limpiar footerEspacio"></div>
-</div>
-<!-- FIN CONTENT -->
-<!--FIN MAIN -->

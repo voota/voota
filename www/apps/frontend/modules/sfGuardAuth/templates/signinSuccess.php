@@ -4,14 +4,7 @@
 <?php use_helper('Validation') ?>
 <?php use_helper('VoNotice') ?>
 
-
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
-
-
 <?php echo showNotices( $sf_user ) ?>
-
 
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing">
@@ -163,16 +156,12 @@
 
 </div>
   <!-- politico1 -->
-</div>
-<!--  FIN CONTENT RIGHT -->
-<div class="limpiar"></div>
 <div title="formulario" class="votaSobre">
   <!-- confirmar -->
   <!-- fin confirmar -->
   <!-- login -->
 
   <!-- fin login -->
-</div>
 </div>
 
 

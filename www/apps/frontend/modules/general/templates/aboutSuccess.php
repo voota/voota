@@ -1,8 +1,5 @@
 <?php use_helper('I18N') ?>
 
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentLeftNormas">
 <h2><?php echo __('¿Quiénes somos? Algunos datos sobre Voota')?></h2>
@@ -92,6 +89,3 @@
 </div>
 </div>
 <!-- FIN CONTENT RIGHT -->
-</div>
-<div class="limpiar"></div>
-</div>

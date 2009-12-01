@@ -1,9 +1,6 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
-<!-- MAIN -->
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
+
 <ul id="nav">
 <li><?php echo __('Coomparte opiniones sobre los políticos de España.') ?></li>
 <li><?php echo __('De momento: Congreso, Senado y Parlamento de Cataluña.') ?></li>
@@ -41,9 +38,3 @@
 <?php end_slot('feedback') ?>
 
 <?php include_slot( $main_slot ); ?>
-
-</div>
-<div id="clearFix"></div>
-<!-- FIN CONTENT -->
-</div>
-<!--FIN MAIN -->

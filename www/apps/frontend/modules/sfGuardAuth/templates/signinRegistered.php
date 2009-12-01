@@ -1,7 +1,5 @@
 <?php use_helper('I18N') ?>
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
+
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
@@ -14,7 +12,4 @@
 <h5><?php echo __('Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante ...)')?></h5>
 </div>
 </div>
-</div>
-</div>
-<div class="limpiar footerEspacio"></div>
 </div>

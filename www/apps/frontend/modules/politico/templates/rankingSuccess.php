@@ -9,9 +9,6 @@ $(document).ready(function(){
 });
 </script>
 
-<div id="mainInterior">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentRankingLeft">
 <div title="ficha">
@@ -189,11 +186,3 @@ $(document).ready(function(){
 <!-- CONTENT RIGHT -->
 
 <!--  FIN CONTENT RIGHT -->
-
-
-<div class="limpiar"></div>
-
-</div>
-<!-- FIN CONTENT -->
-</div>
-

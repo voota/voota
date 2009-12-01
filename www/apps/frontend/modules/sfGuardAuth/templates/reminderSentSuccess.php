@@ -3,9 +3,6 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
 
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
@@ -34,7 +31,4 @@
 <div class="limpiar"></div>
 <div class="limpiar"></div>
 </div>
-</div>
-</div>
-<div class="limpiar footerEspacio"></div>
 </div>

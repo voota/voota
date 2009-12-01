@@ -3,9 +3,6 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
 
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentLeftSing2">
 <div title="ficha">
@@ -34,8 +31,3 @@ Parece que no figura en nuestros datos... Mira a ver si estás registrado en Voo
 <!--contraseña -->
 </div>
 </div>
-</div>
-<div class="limpiar footerEspacio"></div>
-</div>
-<!-- FIN CONTENT -->
-

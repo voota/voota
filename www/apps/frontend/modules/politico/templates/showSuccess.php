@@ -43,10 +43,6 @@ $(document).ready(function(){
 </div>
 
 
-<!-- MAIN -->
-<div id="mainInterior">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentLeft">
 
@@ -207,11 +203,3 @@ $(document).ready(function(){
 </div>
 </div>
 
-
-
-<?php  ?>
-<!-- FIN CONTENT -->
-</div>
-</div>
-<!--FIN MAIN -->
-<div class="limpiar"></div>

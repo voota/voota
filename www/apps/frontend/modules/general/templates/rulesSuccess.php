@@ -1,9 +1,5 @@
 <?php use_helper('I18N') ?>
 
-<div id="main">
-<!-- CONTENT -->
-<div id="content">
-<!-- CONTENT LEFT-->
 <div id="contentLeftNormas">
 <h2><?php echo __('Normas de publicación en Voota')?></h2>
 <h5>&nbsp;</h5>
@@ -51,6 +47,3 @@
 
 </div>
 <!-- FIN CONTENT RIGHT -->
-</div>
-<div class="limpiar"></div>
-</div>

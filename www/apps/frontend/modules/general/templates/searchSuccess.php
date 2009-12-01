@@ -1,9 +1,6 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('Number') ?>
 
-<div id="mainInterior">
-<!-- CONTENT -->
-<div id="content">
 <!-- CONTENT LEFT-->
 <div id="contentRankingLeft">
 <div title="ficha">
@@ -81,10 +78,3 @@
 <!-- CONTENT RIGHT -->
 
 <!--  FIN CONTENT RIGHT -->
-
-
-<div class="limpiar"></div>
-
-</div>
-<!-- FIN CONTENT -->
-</div>
