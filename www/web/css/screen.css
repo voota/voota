@@ -6,7 +6,7 @@ body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, se
 p { margin:0; padding-bottom: 1.5em; }
 
 /* Layout básico */
-#header-inner, #main-inner, #footer { font-size: 1.2em }
+#header-inner, #main-inner, #footer { font-size: 1.3em }
 #header-inner, #main-inner { margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
 #general-contact #main, #sfGuardAuth-signin #main, #sfGuardAuth-edit #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
@@ -15,7 +15,7 @@ p { margin:0; padding-bottom: 1.5em; }
 
 /* Encabezados */
 h1 { font-size: 4em; margin: 0; color: #2b56ff; }
-h2 { font-size: 1.6em; margin: 0; }
+h2 { font-size: 1.6em; margin: 0 0 1em 0; font-weight: normal; }
 h3 { font-size: 1.2em; margin: 0; }
 h4 { font-size: 1em; margin: 0; color: #323232 }
 h5 { font-size: 1em; margin: 0; color: #323232; }
@@ -43,7 +43,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 
 /* Cajas */
 .box { background: transparent url(/images/shadow.png); position: relative;}
-.box h2 { font-size: 1em; padding-bottom: 1em; }
+.box h2 { font-size: 1em; padding-bottom: 1em;}
 .box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
 .box-contact ul li { margin-bottom: 0.5em; }
@@ -54,14 +54,28 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 /* Formularios */
 form dl dt { margin-bottom: 0.5em;}
 form dl dd { margin: 0 0 1.5em 0;}
-input[type=text] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:18em }
+form th, form td { padding-bottom: 1.5em; }
+form th { text-align: left; vertical-align: top; padding: 5px 1em 5px 0;}
+form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 0.9em; }
+input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:20em }
 input[type=submit] { width: 8em; color: #323232; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; padding: 2px;}
 .submit { text-align: right; }
-.hints { padding: 2px;}
+.hints { margin: 0; padding: 2px 0;}
 
+/* Contacto */
 #general-contact textarea { width: 494px; }
 #general-contact .submit  { width: 500px; }
+
+/* Perfil */
+#sfGuardAuth-edit input[type=submit] { width: 12em;}
+
+/* SignUp y Login */ 
+#sfGuardAuth-signin #main { padding-top: 4em;}
+#sfGuardAuth-signin #main h2 { color:#2b56ff; }
+#sfGuardAuth-signin #signup { float: left; }
+#sfGuardAuth-signin #login  { float: right; }
+#sfGuardAuth-signin .submit input[type=submit] { width: 130px; }
 
 /* Ranking de políticos */
 .listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
@@ -81,7 +95,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .logoImg { margin-bottom:0.90em; margin-top:0.69em; }
 .footerEspacio { height:10.00em;}
 .limpiar { clear:both; }
-.input { border: 1px solid #9398ae; background: #ffffff; width:13.56em; font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; }
 .inputSignPeq { width:1.90em; }
 .inputSignPeq2 { width:2.50em; }
 .inputSignVanity { width:11em; }
@@ -191,18 +204,9 @@ table { padding:0; margin:0;}
   Antiguo fichero other.css
 */
 
-div.formSing form tr th {  text-align:left; font-size: 0.69em;  margin:0.00em; color:#323232; margin-bottom:1.20em;}
+/* div.formSing form tr th {  text-align:left; margin:0.00em; color:#323232; margin-bottom:1.20em;} */
 div.clickable {cursor: pointer;}
 
-ul.error_list {
-  margin: 5px 0;
-  padding: 0;
-}
-ul.error_list li {
-	list-style: none outside;
-	color:#f80c1a;
-	font-size: 0.69em;
-}
 #help_dialog {
 	display:none;
 }
@@ -225,7 +229,3 @@ div.notice {width:340px; margin-top:15px; padding:13px; background-color:#ffffff
 
 .tips { font-size: 0.8em; padding-top: 17px; }
 .legal { text-align: right; }
-#signin .campo { width: 270px; }
-#signin .campo input { width: 270px; }
-#signin .boton, #login .boton { text-align:right; }
-#signin .boton input, #login .boton input { width: 130px; }
