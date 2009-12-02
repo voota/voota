@@ -22,10 +22,10 @@
       <dd>
         <select class="inputSign" name="contact[tipo]" id="contact_tipo">
 			<option value="Sugerencia" selected="selected"><?php echo __('Sugerencia')?></option>
-			<option value="Problema"><?php echo __('Queja')?></option>
-			<option value="Problema"><?php echo __('Corrección')?></option>
-			<option value="Problema"><?php echo __('Socios')?></option>
-			<option value="Problema"><?php echo __('Otros')?></option>
+			<option value="Queja"><?php echo __('Queja')?></option>
+			<option value="Correccion"><?php echo __('Corrección')?></option>
+			<option value="Socios"><?php echo __('Socios')?></option>
+			<option value="Otros"><?php echo __('Otros')?></option>
 		</select>
         <?php /* <span class="hints"><?php echo __('(Opcional)') ?></span> */?>
       </dd>
