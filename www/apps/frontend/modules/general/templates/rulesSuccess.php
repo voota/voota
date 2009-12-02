@@ -29,7 +29,7 @@
  	, __('http://blog.voota.es/es/aviso-legal')
  	, array()
  ) ?></h6>
-<h6><strong>Ayúdanos a mejorar Voota:</strong> <a href="http://otrs.voota.es/otrs/index.pl">Contáctanos si ves algún contenido ilegal</a></h6>
+<h6><strong>Ayúdanos a mejorar Voota:</strong> <?php echo link_to(__('Contáctanos si ves algún contenido ilegal'), "@contact")?></h6>
 
 </div>
 

@@ -21,7 +21,40 @@ class generalActions extends sfVoActions{
   public function executeRules(sfWebRequest $request) {
   }
   public function executeContact(sfWebRequest $request) {
+    $this->form = new ContactForm();
+    if ( $request->isMethod('post') ) {
+      $this->form->bind($request->getParameter('contact'));
+      
+      if ($this->form->isValid()) {
+      	try {
+	      	$this->sendMessage(
+	      		$this->form->getValue('nombre'), 
+	      		$this->form->getValue('email'), 
+	      		$this->form->getValue('mensaje'), 
+	      		$this->form->getValue('tipo') 
+	      	);
+      		return "SendSuccess";
+      	}
+      	catch (Exception $e){
+      		return "SendFail";      		
+      	}
+      	/*
+	    $c = new Criteria();
+	    $c->add(sfGuardUserPeer::USERNAME, $this->form->getValue('username'));
+	
+	    $user = sfGuardUserPeer::doSelectOne($c);
+      	if ($user){
+      		$this->sendReminder( $user );
+      		return "SentSuccess";
+      	}
+      	else {
+      		return "SentFail";
+      	}
+      	*/
+      }
+    }
   }
+  
   public function executeAbout(sfWebRequest $request) {
   	$c = new Criteria();
   	//1,2,4,5,6,7
@@ -89,4 +122,31 @@ class generalActions extends sfVoActions{
         }	
 	}
   }
+  
+    private function sendMessage( $nombre, $email, $mensaje, $tipo ){
+	  $mailBody = $this->getPartial('contactMailBody', array(
+	  	'nombre' => $nombre,
+	  	'mensaje' => $mensaje,
+	  	'email' => $email
+	  ));
+	 
+	  //try{
+		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
+		$smtp->setUsername('no-reply@voota.es');
+		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
+		$smtp->setPassword( $smtp_pass );		
+		$mailer = new Swift($smtp);
+		  
+		$message = new Swift_Message("Contacto web [$tipo]", $mailBody, 'text/html');
+		$message->setReturnPath($email);
+		$message->setFrom('no-reply@voota.es');
+		$message->setTo('admin@voota.es');
+		 
+		$mailer->send($message, 'admin@voota.es', $email);
+		$mailer->disconnect();
+	  //}
+	  //catch (Exception $e){
+	  //}
+  }
+  
 }

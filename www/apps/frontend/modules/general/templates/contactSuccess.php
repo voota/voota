@@ -1,32 +1,40 @@
+<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 
-<h2>Contacta con Voota</h2>
-<p class="success-msg">Gracias por tu mensaje</p>
+<h2><?php echo __('Contacta con Voota') ?></h2>
 
 <div id="content">
-  <p class="next-step-msg">¿Qué hacemos ahora? Tú dirás.</p>
-  <p class="next-step-msg">¿Nos vamos a la <a href="/">home de Voota</a>?</p>
-  <p class="next-step-msg">¿Una vuelta por el <a href="/es/politicos">ranking de políticos</a> quizás?</p>
 
-  <form>
+  <?php echo form_tag('@contact') ?>
     <dl>
-      <dt><label for="nombre">Tu nombre:</label></dt>
-      <dd><input type="text" name="nombre" value="" /> <span class="hints">(Opcional)</span></dd>
+      <dt><label for="nombre"><?php echo __('Tu nombre') ?>:</label></dt>
+      <dd>
+      	<?php echo $form['nombre']->renderError() ?>
+      	<?php echo $form['nombre']->render() ?> <span class="hints">(Opcional)</span></dd>
       
       <dt><label for="email">Email:</label></dt>
-      <dd><input type="text" name="email" value="" /></dd>
-      
-      <dt><label for="topic">¿De qué se trata?</label></dt>
       <dd>
-        <select name="topic">
-          <option value="suggestion">Sugerencia</option>
-          <option value="problem">Problema</option>
-        </select>
-        <span class="hints">(Opcional)</span>
+        <?php echo $form['email']->renderError() ?>
+      	<?php echo $form['email']->render() ?>
+      </dd>
+      
+      <dt><label for="topic"><?php echo __('¿De qué se trata?') ?></label></dt>
+      <dd>
+        <select class="inputSign" name="contact[tipo]" id="contact_tipo">
+			<option value="Sugerencia" selected="selected"><?php echo __('Sugerencia')?></option>
+			<option value="Problema"><?php echo __('Queja')?></option>
+			<option value="Problema"><?php echo __('Corrección')?></option>
+			<option value="Problema"><?php echo __('Socios')?></option>
+			<option value="Problema"><?php echo __('Otros')?></option>
+		</select>
+        <?php /* <span class="hints"><?php echo __('(Opcional)') ?></span> */?>
       </dd>
 
-      <dt><label for="body">Tu mensaje:</label></dt>
-      <dd><textarea name="body" rows="12" cols="60"></textarea></dd>
+      <dt><label for="body"><?php echo __('Tu mensaje') ?>:</label></dt>
+      <dd>
+      	<?php echo $form['mensaje']->renderError() ?>
+      	<?php echo $form['mensaje']->render( array('rows' => 12, 'cols' => 60) ) ?>
+      </dd>
     </dl>
     <p class="submit">
       <input type="submit" name="enviar" value="Enviar" />
@@ -34,15 +42,17 @@
   </form>
 </div>
 
+<?php /* 
 <div id="sidebar">
   <div class="box box-contact">
     <div class="box-inner">
       <h2>info (arroba) voota.es</h2>
       <ul>
-        <li class="blog"><a href="http://blog.voota.es/">Nuestro blog</a></li>
-        <li class="twitter"><a href="http://twitter.com/Voota">Voota en Twitter</a></li>
-        <li class="facebook"><a href="http://www.facebook.com/Voota">Voota en Facebook</a></li>
+        <li class="blog"><a href="http://blog.voota.es/"><?php echo __('Nuestro blog') ?></a></li>
+        <li class="twitter"><a href="http://twitter.com/Voota"><?php echo __('Voota en Twitter') ?></a></li>
+        <li class="facebook"><a href="http://www.facebook.com/Voota"><?php echo __('Voota en Facebook') ?></a></li>
       </ul>
     </div>
   </div>
 </div>
+*/?>
