@@ -38,7 +38,8 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #footer .copyright { border-top: 1px dotted #343434; padding: 1em 0; }
 
 /* Mensajes */
-.success-msg { border: 1px solid #9398ae; width: 20em; padding: 1em; margin: 1em 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.success-msg, .notice { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.error { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
 .next-step-msg { padding-bottom: 0.5em; font-weight: bold;}
 
 /* Cajas */
@@ -54,21 +55,23 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 /* Formularios */
 form dl dt { margin-bottom: 0.5em;}
 form dl dd { margin: 0 0 1.5em 0;}
-form th, form td { padding-bottom: 1.5em; }
-form th { text-align: left; vertical-align: top; padding: 5px 1em 5px 0;}
+form th, form td { padding-bottom: 1.5em; vertical-align: top;}
+form th { text-align: left; padding: 5px 1em 5px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 0.9em; }
 input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:20em }
 input[type=submit] { width: 8em; color: #323232; }
-textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; padding: 2px;}
+textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
 .submit { text-align: right; }
-.hints { margin: 0; padding: 2px 0;}
+.hints { margin: 0; padding: 5px 0;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
 #general-contact .submit  { width: 500px; }
 
 /* Perfil */
+#sfGuardAuth-edit .vanity input { display: inline; width: 10em;}
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
+#sfGuardAuth-edit form td { width: 20em;}
 
 /* SignUp y Login */ 
 #sfGuardAuth-signin #main { padding-top: 4em;}
@@ -214,9 +217,6 @@ div.clickable {cursor: pointer;}
 .negro{color:black; }
 .hidden{display:none}
 .shown{display:block}
-div.error {width:340px; margin-top:15px; padding:13px; background-color:#ffffcd; border:1px solid #8da0b1; font-size: 0.88em; color:#ff0012; font-weight: bold;}
-.error {color:#ff0012;}
-div.notice {width:340px; margin-top:15px; padding:13px; background-color:#ffffff; border:1px solid #8da0b1; font-size: 0.88em; color:#323232; font-weight: bold; background-image:url(/images/icoOk.gif); background-position:right bottom; background-repeat:no-repeat;}
 #googleads {float:right}
 .wider { width:16em; padding: 15px 0; }
 .review_img {float:left; margin-right: 5px}
