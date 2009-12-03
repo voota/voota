@@ -78,7 +78,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin #main h2 { color:#2b56ff; }
 #sfGuardAuth-signin #signup { float: left; }
 #sfGuardAuth-signin #login  { float: right; }
-#sfGuardAuth-signin .submit input[type=submit] { width: 130px; }
+#sfGuardAuth-signin .submit input[type=submit] { width: 13em; }
 
 /* Ranking de políticos */
 .listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
