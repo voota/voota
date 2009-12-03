@@ -8,7 +8,10 @@ p { margin:0; padding-bottom: 1.5em; }
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
 #header-inner, #main-inner { margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
-#general-contact #main, #sfGuardAuth-signin #main, #sfGuardAuth-edit #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#general-contact #main,
+#sfGuardAuth-signin #main,
+#sfGuardAuth-edit #main,
+#sfGuardAuth-reminder #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
 #content { float: left; width: 60%; margin: 1em;}
 #sidebar { float: right; width: 25%; margin-left: 5%;}
