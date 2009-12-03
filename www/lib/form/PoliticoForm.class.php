@@ -17,6 +17,7 @@ class PoliticoForm extends BasePoliticoForm
 								    'RE' => 'En una relación',
 								    'CO' => 'Comprometido/a',
 								    'CA' => 'Casado/a',
+								    'DI' => 'Divorciado/a',
 								    'ES' => 'Es complicado',
 								    'RA' => 'En una relación abierta',
 								    'VI' => 'Viudo(a)',
