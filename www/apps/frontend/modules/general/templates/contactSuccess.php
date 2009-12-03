@@ -42,17 +42,14 @@
   </form>
 </div>
 
-<?php /* 
 <div id="sidebar">
   <div class="box box-contact">
     <div class="box-inner">
-      <h2>info (arroba) voota.es</h2>
       <ul>
-        <li class="blog"><a href="http://blog.voota.es/"><?php echo __('Nuestro blog') ?></a></li>
-        <li class="twitter"><a href="http://twitter.com/Voota"><?php echo __('Voota en Twitter') ?></a></li>
-        <li class="facebook"><a href="http://www.facebook.com/Voota"><?php echo __('Voota en Facebook') ?></a></li>
+        <li class="blog"><a href="<?php echo __('http://blog.voota.es/') ?>"><?php echo __('Nuestro blog') ?></a></li>
+        <li class="twitter"><a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('Voota en Twitter') ?></a></li>
+        <li class="facebook"><a href="<?php echo __('http://www.facebook.com/Voota') ?>"><?php echo __('Voota en Facebook') ?></a></li>
       </ul>
     </div>
   </div>
 </div>
-*/?>
