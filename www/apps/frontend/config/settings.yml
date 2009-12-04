@@ -9,7 +9,7 @@ dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              on
-    cache:                  off
+    cache:                  on
     no_script_name:         off
     etag:                   off
     s3_bucket_originals:       imagesvoota-ori-dummy

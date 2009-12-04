@@ -1,12 +1,19 @@
 <?php
+/*
+ * This file is part of the Voota package.
+ * (c) 2009 Sergio Viteri <sergio@voota.es>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 /**
- * Politico form.
+ * politico actions.
  *
- * @package    sf_sandbox
- * @subpackage form
- * @author     Your name here
- * @version    SVN: $Id: sfPropelFormTemplate.php 10377 2008-07-21 07:10:32Z dwhittle $
+ * @package    Voota
+ * @subpackage politico
+ * @author     Sergio Viteri
+ * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class PoliticoForm extends BasePoliticoForm
 {
@@ -28,7 +35,9 @@ class PoliticoForm extends BasePoliticoForm
 
   public function configure()
   {
-
+    $this->embedI18n(array('es', 'ca'));
+    
+  	
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
     $this->widgetSchema['relacion'] = new sfWidgetFormSelect(array('choices' => self::$relaciones));
     

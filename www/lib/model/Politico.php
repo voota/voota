@@ -1,12 +1,27 @@
 <?php
+/*
+ * This file is part of the Voota package.
+ * (c) 2009 Sergio Viteri <sergio@voota.es>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+/**
+ * politico actions.
+ *
+ * @package    Voota
+ * @subpackage politico
+ * @author     Sergio Viteri
+ * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
+ */
 class Politico extends BasePolitico
 {
 	const NUM_ENTITY = 1;
 	
   public function __toString()
   {
-    return $this->getNombre() . ' ' . $this->getApellidos();  // getTitle() se hereda de BaseArticle
+    return $this->getNombre() . ' ' . $this->getApellidos();
   }
   
   public function getPositives() {
@@ -16,4 +31,5 @@ class Politico extends BasePolitico
   public function getNegatives(){
   	return SfReviewManager::getTotalReviewsByEntityAndValue(1, $this->getId(), -1);
   }
+  
 }

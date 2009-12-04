@@ -22,7 +22,7 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFr
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
 	private function updateSums(sfWebRequest $request) {
-	  	// Actualizar cache de puntos en politicos
+	  	// Actualizar cache y puntos en politicos
 	  	if ($request->getParameter("t") == Politico::NUM_ENTITY){
 		  	$this->politico = PoliticoPeer::retrieveByPk($request->getParameter('e'));
 		  	$this->politico->setSumu( $this->politico->getPositives() );
@@ -30,6 +30,11 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  	if ($this->politico->isModified()){
 		  		PoliticoPeer::doUpdate( $this->politico );
 		  	}
+		  	
+		  	//cache
+		  	$cacheManager = $this->getContext()->getViewCacheManager();
+	    	$cacheManager->remove("politico/show?id=".$this->politico->getVanity()."&sf_culture=es");
+	    	$cacheManager->remove("politico/show?id=".$this->politico->getVanity()."&sf_culture=ca");
 	  	}  
 	}
 	

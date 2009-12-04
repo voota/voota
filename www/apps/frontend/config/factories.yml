@@ -30,7 +30,15 @@ all:
     param:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
-
+  view_cache:
+    class: sfMemcacheCache
+    param:
+      lifetime:                  86400 #24h
+      prefix:                    vo
+      servers:
+        server_01:
+          host: localhost
+          post: 11211
 #all:
 #  controller:
 #    class: sfFrontWebController
