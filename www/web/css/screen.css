@@ -13,7 +13,7 @@ p { margin:0; padding-bottom: 1.5em; }
 #sfGuardAuth-edit #main,
 #sfGuardAuth-reminder #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
-#content { float: left; width: 60%; margin: 1em;}
+#content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%;}
 
 /* Encabezados */
@@ -70,6 +70,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /* Contacto */
 #general-contact textarea { width: 494px; }
 #general-contact .submit  { width: 500px; }
+#general-contact #content { width: 70%; }
 
 /* Perfil */
 #sfGuardAuth-edit .vanity input { display: inline; width: 10em;}
@@ -82,6 +83,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin #signup { float: left; }
 #sfGuardAuth-signin #login  { float: right; }
 #sfGuardAuth-signin .submit input[type=submit] { width: 13em; }
+#sfGuardAuth-signin .legal { text-align: right; }
 
 /* Ranking de políticos */
 .listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
@@ -92,6 +94,20 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .votosDown { width: 20%; text-align:right; }
 .separacionFotoRanking { padding-right:0.88em; }
 
+/* Página de político */
+#politico-show #content { width: 65%; }
+#politico-show #sidebar { width: 30%; margin-left: 5%; }
+#politico-show h2.name span { font-size: 0.6em;}
+#politico-show .reviews { margin-top: 1em; float: left; width: 100%;}
+#politico-show .reviews li { margin-left: 0.7em; margin-top:0.7em }
+#politico-show .photo { width: 30%; margin-left: 5%; float: left; }
+#politico-show .description { width: 60%; margin-left: 5%; float: left; }
+
+/* Comentarios */
+.reviews ol { list-style: none; margin: 0; padding: 0;}
+.positive-reviews, .negative-reviews { width: 45%; float: left;}
+.negative-reviews { margin-left: 10%; }
+.reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
 
 /*
   Antiguo fichero voota.css
@@ -155,10 +171,7 @@ table { padding:0; margin:0;}
 .tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
 .azul {color:#2b56ff;}
 .rojo {color:#f80c1a;}
-.nombrePeque {font-family: Georgia, "Times New Roman", Times, serif; color:#b6b6b6; font-size:1em;}
 .nombreCaja {font-family: Georgia, "Times New Roman", Times, serif; font-size:0.88em; color:#2f2f2f;}
-.fotoPolitico {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
-.textoPolitico {margin-left:1.31em; margin-top:1.50em; width:23.44em;}
 .margenVotacion {margin-right:1.56em;}
 .margenPolitico {margin-left:0.75em; margin-top:0.60em}
 .margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
@@ -231,4 +244,3 @@ div.clickable {cursor: pointer;}
 */
 
 .tips { font-size: 0.8em; padding-top: 17px; }
-.legal { text-align: right; }
