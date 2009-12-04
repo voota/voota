@@ -14,3 +14,6 @@ CREATE  TABLE IF NOT EXISTS `voota`.`politico_i18n` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
+
+insert into politico_i18n (id, culture, formacion, presentacion, bio)
+select id, 'es', formacion, presentacion, bio from politico;
