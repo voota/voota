@@ -78,11 +78,17 @@ class generalActions extends sfVoActions{
     $this->response->setTitle( $this->title );
   }
   public function executeSearch(sfWebRequest $request) {
-  	
-  	$this->q = $request->getParameter("q");
+   	$this->q = $request->getParameter("q");
   	
   	$cl = new SphinxClient ();
-	$cl->SetServer ( 'localhost', 3312 );
+  	
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	$sphinxServer = 'localhost';
+	if (preg_match("/host=(.*)/", $dsn, $matches)){
+		$sphinxServer = $matches[1];
+	}
+  	$cl->SetServer ( $sphinxServer, 3312 );
 	/*
 	$cl->SetConnectTimeout ( 1 );
 	$cl->SetWeights ( array ( 100, 1 ) );
