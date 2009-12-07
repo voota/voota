@@ -1,8 +1,5 @@
 <?php
-class politicoComponents extends sfComponents
+
+class politicoComponents extends sfReviewComponents
 {
-  public function executeSubreviews()
-  {
-  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id);
-  }
 }

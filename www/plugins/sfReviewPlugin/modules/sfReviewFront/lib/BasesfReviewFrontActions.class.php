@@ -46,6 +46,10 @@ class BasesfReviewFrontActions extends sfActions
 	  		$this->forward('sfReviewFront', 'preview');
 	  	}
   	}
+  	$t = $request->getParameter("t");
+	if($t == ''){
+  		return "SimpleSuccess";
+   	}
   }
   
   protected function prepareRedirect( $entityId ){

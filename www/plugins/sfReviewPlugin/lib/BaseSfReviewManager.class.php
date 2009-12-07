@@ -22,7 +22,7 @@ class BaseSfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 30)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -45,7 +45,7 @@ class BaseSfReviewManager
   	/*
 	return SfReviewPeer::doSelect($criteria);
 	*/
-  	$pager = new sfPropelPager('SfReview', 30);
+  	$pager = new sfPropelPager('SfReview', $numberOfResults);
     $pager->setCriteria($criteria);
     if ($request)
     	$pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
@@ -58,17 +58,22 @@ class BaseSfReviewManager
 	$query = "SELECT COUNT(*) AS count ".
 			"FROM %s r ".
 			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
-			"WHERE r.entity_id = ? ".
-			"AND r.sf_review_type_id = ? ".
-			//"AND s.published = 1 ".
-			"AND r.value = ? ";
+			"WHERE r.value = ? ";
+			if($type_id != ''){
+				$query .= ' AND r.entity_id = ? AND r.sf_review_type_id = ? ';
+			}
+			else {
+				$query .= ' AND r.sf_review_id = ? AND r.sf_review_type_id is null';
+			}
 	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	
   	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
-	$statement->bindValue(1, $entity_id);
-	$statement->bindValue(2, $type_id);
-	$statement->bindValue(3, $value);
+	$statement->bindValue(1, $value);
+	$statement->bindValue(2, $entity_id);
+	if($type_id != ''){
+		$statement->bindValue(3, $type_id);
+	}
 	
 	$statement->execute();
 	$row = $statement->fetch();
