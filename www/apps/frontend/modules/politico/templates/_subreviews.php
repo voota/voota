@@ -1,4 +1,10 @@
+  <p class="review-actions">
+   <a href="#" onclick="return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' )"><?php echo _('Opinar sobre este comentario')?></a> 
+   <?php echo __('(Lleva %1%', array('%1%' => 1)) ?> <img alt="a favor" src="/images/icoMiniUp.png" />)
+  </p>
+  
   <div class="subreviews">
+  <div id="<?php echo "sf_review_c".$id ?>" ></div>
     <ol>
 <?php foreach ($reviewList->getResults() as $review): ?>    
       <li class="review">

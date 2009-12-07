@@ -22,12 +22,8 @@
   <p class="review-body">
     <?php echo review_text( $review ) ?>
   </p>
-  <p class="review-actions">
-   <a href="#" onclick="return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sf_review_c".$review->getId() ?>' )"><?php echo _('Opinar sobre este comentario')?></a> (Lleva 1 <img alt="a favor" src="/images/icoMiniUp.png" />)
-  </p>
-  <div id="<?php echo "sf_review_c".$review->getId() ?>" ></div>
   
-<?php if ($reviewable && count($review->getSfReviewsRelatedBySfReviewId()) > 0): ?>
-	<?php include_component_slot('subreviews', array('id' => $review->getId())) ?>
-<?php endif ?>
+	<?php if ($reviewable && count($review->getSfReviewsRelatedBySfReviewId()) > 0): ?>
+		<?php include_component_slot('subreviews', array('id' => $review->getId())) ?>
+	<?php endif ?>
 </li>
