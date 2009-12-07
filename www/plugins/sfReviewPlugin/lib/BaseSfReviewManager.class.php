@@ -22,14 +22,22 @@ class BaseSfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function getReviewsByEntityAndValue(sfWebRequest $request, $type_id, $entity_id, $value)
+  static public function getReviewsByEntityAndValue(sfWebRequest $request, $type_id, $entity_id, $value = NULL)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
+	
+  	if ($type_id != '') {
+  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
+  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+  	}
+  	else {
+  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
+  	}
     
-  	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
-  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
-  	$criteria->add(SfReviewPeer::VALUE, $value);
+  	if ($value != NULL){  	  	
+  		$criteria->add(SfReviewPeer::VALUE, $value);
+  	}
   	//$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
   	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
 	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);

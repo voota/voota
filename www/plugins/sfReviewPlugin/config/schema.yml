@@ -4,10 +4,10 @@ propel:
   sf_review:
     _attributes: { phpName: SfReview }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    entity_id: { type: INTEGER, size: '11', required: true }
+    entity_id: { type: INTEGER, size: '11', required: false }
     value: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    sf_review_type_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_review_type_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sf_review_status_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_review_status, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     cookie: { type: VARCHAR, size: '45', required: false }
@@ -15,8 +15,9 @@ propel:
     text: { type: VARCHAR, size: '420', required: false }
     modified_at: { type: TIMESTAMP, required: false }
     culture: { type: VARCHAR, size: '5', required: false }
-    _indexes: { fk_sf_review_1: [sf_guard_user_id], fk_sf_review_2: [sf_review_type_id], fk_sf_review_3: [sf_review_status_id] }
-    _uniques: { uniq_review: [entity_id, sf_guard_user_id, sf_review_type_id] }
+    sf_review_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_review, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_sf_review_1: [sf_guard_user_id], fk_sf_review_2: [sf_review_type_id], fk_sf_review_3: [sf_review_status_id], fk_sf_review_4: [sf_review_id] }
+    _uniques: { uniq_review: [sf_entity_id, sf_guard_user_id, sf_review_type_id] }
   sf_review_attach:
     _attributes: { phpName: SfReviewAttach }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

@@ -54,6 +54,6 @@ EOF;
     $type->setName($arguments['name']);
     $type->save();
 
-    $this->logSection('review', sprintf('Create user "%s"', $arguments['name']));
+    $this->logSection('review', sprintf('Create type "%s"', $arguments['name']));
   }
 }

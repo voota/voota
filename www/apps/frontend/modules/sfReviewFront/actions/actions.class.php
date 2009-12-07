@@ -38,6 +38,16 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  	}  
 	}
 	
+  public function executeInit(sfWebRequest $request)
+  {
+  	parent::executeInit( $request );
+  	
+  	$t = $request->getParameter("t");
+	if($t == ''){
+  		return "SimpleSuccess";
+   	}
+  }
+	
   public function executeSend(sfWebRequest $request)
   {
   	parent::executeSend( $request );

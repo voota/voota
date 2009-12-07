@@ -123,6 +123,12 @@ sf_review_delete:
   url:   /:sf_culture/review/delete
   param: { module: sfReviewFront, action: delete }
   requirements: { sf_culture: (?:es|ca) }
+  
+# new > 0.5
+sf_review_list:
+  url:   /:sf_culture/review/list
+  param: { module: sfReviewFront, action: list }
+  requirements: { sf_culture: (?:es|ca) }
 
 about:
   url:   /:sf_culture/about

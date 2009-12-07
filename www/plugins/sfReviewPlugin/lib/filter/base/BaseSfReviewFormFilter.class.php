@@ -26,6 +26,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'text'                => new sfWidgetFormFilterInput(),
       'modified_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'culture'             => new sfWidgetFormFilterInput(),
+      'sf_review_id'        => new sfWidgetFormPropelChoice(array('model' => 'SfReview', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -40,6 +41,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'text'                => new sfValidatorPass(array('required' => false)),
       'modified_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'culture'             => new sfValidatorPass(array('required' => false)),
+      'sf_review_id'        => new sfValidatorPropelChoice(array('required' => false, 'model' => 'SfReview', 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_filters[%s]');
@@ -69,6 +71,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'text'                => 'Text',
       'modified_at'         => 'Date',
       'culture'             => 'Text',
+      'sf_review_id'        => 'ForeignKey',
     );
   }
 }

@@ -20,6 +20,14 @@ class BasesfReviewFrontActions extends sfActions
 {
 	const MAX_LENGTH = 280;
   	
+  public function executeList(sfWebRequest $request)
+  {
+  	$this->reviewEntityId = $request->getParameter("e");
+  	$this->reviewType = $request->getParameter("t");
+  	
+  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue($request, $this->reviewType, $this->reviewEntityId);
+  }
+  
   public function executeInit(sfWebRequest $request)
   {
   	$this->reviewEntityId = $request->getParameter("e");
@@ -66,9 +74,15 @@ class BasesfReviewFrontActions extends sfActions
   	}
   	
   	$criteria = new Criteria();
-  	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+  	$t = $request->getParameter("t");
+  	if ($t != '') {
+  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+  	}
+  	else {
+  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
+  	}
   	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
   	$review = SfReviewPeer::doSelect($criteria);
   	if ($review) {
   		$this->reviewValue = $review[0]->getValue();
@@ -114,9 +128,15 @@ class BasesfReviewFrontActions extends sfActions
   	
   	if ($request->getParameter("i") != '') {
 	  	$criteria = new Criteria();
-	  	$criteria->add(SfReviewPeer::ENTITY_ID, $request->getParameter("e"));  	
+	  	$t = $request->getParameter("t");
+	  	if ($t != '') {
+		  	$criteria->add(SfReviewPeer::ENTITY_ID, $request->getParameter("e"));  	
+		  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $t);  	
+	  	}
+	  	else {
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $request->getParameter("e")); 
+	  	}
 	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $request->getParameter("t"));  	
 	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
 	  	$reviews = SfReviewPeer::doSelect($criteria);
   		$review = $reviews[0];
@@ -126,8 +146,14 @@ class BasesfReviewFrontActions extends sfActions
   	}
   	$review->setValue( $request->getParameter("v") );
   	$review->setText( strip_tags( substr($request->getParameter("review_text"), 0, BasesfReviewFrontActions::MAX_LENGTH) ) );
-  	$review->setSfReviewTypeId( $request->getParameter("t") );
-  	$review->setEntityId( $request->getParameter("e") );
+  	$t = $request->getParameter("t");
+  	if ($t != '') {
+  		$review->setSfReviewTypeId( $t );
+  		$review->setEntityId( $request->getParameter("e") );
+  	}
+  	else {
+  		$review->setSfReviewId( $request->getParameter("e") );
+  	}
   	$review->setSfReviewStatusId( 1 );
   	$review->setSfGuardUserId( $this->getUser()->getGuardUser()->getId() );
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
