@@ -4,6 +4,7 @@ prod:
     logging_enabled:        off
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
+    sphinx_server: ip-10-226-31-16.eu-west-1.compute.internal
 
 dev:
   .settings:
@@ -14,6 +15,7 @@ dev:
     etag:                   off
     s3_bucket_originals:       imagesvoota-ori-dummy
     s3_bucket_public:          imagesvoota-dummy
+    sphinx_server: localhost
 
 test:
   .settings:
@@ -22,8 +24,9 @@ test:
     web_debug:              off
     no_script_name:         off
     etag:                   off
-    s3_bucket_originals:       imagesvoota-ori-dummy
-    s3_bucket_public:          imagesvoota-dummy
+    s3_bucket_originals:       imagesvoota-ori
+    s3_bucket_public:          imagesvoota
+    sphinx_server: localhost
 
 all:
   .settings:

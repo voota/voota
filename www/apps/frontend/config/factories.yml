@@ -4,6 +4,15 @@ prod:
     param:
       level:   err
       loggers: ~
+  view_cache:
+    class: sfMemcacheCache
+    param:
+      lifetime:                  86400 #24h
+      prefix:                    vo
+      servers:
+        server_01:
+          host: ip-10-227-11-6.eu-west-1.compute.internal
+          post: 11211
 
 cli:
   controller:
@@ -23,13 +32,6 @@ test:
     class: sfWebResponse
     param:
       send_http_headers: false
-
-all:
-  routing:
-    class: sfPatternRouting
-    param:
-      generate_shortest_url:            true
-      extra_parameters_as_query_string: true
   view_cache:
     class: sfMemcacheCache
     param:
@@ -39,6 +41,23 @@ all:
         server_01:
           host: localhost
           post: 11211
+dev:
+  view_cache:
+    class: sfMemcacheCache
+    param:
+      lifetime:                  86400 #24h
+      prefix:                    vo
+      servers:
+        server_01:
+          host: localhost
+          post: 11211
+
+all:
+  routing:
+    class: sfPatternRouting
+    param:
+      generate_shortest_url:            true
+      extra_parameters_as_query_string: true
 #all:
 #  controller:
 #    class: sfFrontWebController

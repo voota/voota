@@ -84,10 +84,7 @@ class generalActions extends sfVoActions{
   	
   	$dbConf = Propel::getConfiguration();
   	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
-  	$sphinxServer = 'localhost';
-	if (preg_match("/host=(.*)/", $dsn, $matches)){
-		$sphinxServer = $matches[1];
-	}
+  	$sphinxServer = sfConfig::get('sf_sphinx_server');
   	$cl->SetServer ( $sphinxServer, 3312 );
 	/*
 	$cl->SetConnectTimeout ( 1 );
