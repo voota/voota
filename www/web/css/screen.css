@@ -108,6 +108,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
 .reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
+.review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
+.review-name { font-weight: normal;}
+.review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
+.review-body { padding: 0.5em; clear: left;}
 
 /*
   Antiguo fichero voota.css
@@ -235,8 +239,6 @@ div.clickable {cursor: pointer;}
 .shown{display:block}
 #googleads {float:right}
 .wider { width:16em; padding: 15px 0; }
-.review_img {float:left; margin-right: 5px}
-.review_date {font-size:0.8em;}
 
 
 /*
