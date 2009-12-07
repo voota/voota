@@ -3,7 +3,7 @@
 /* TODO: Cambiar tamaños de fuentes una vez eliminados todos los h6 */
 
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
-p { margin:0; padding-bottom: 1.5em; }
+p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
 
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
@@ -99,19 +99,28 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-show #sidebar { width: 30%; margin-left: 5%; }
 #politico-show h2.name span { font-size: 0.6em;}
 #politico-show .reviews { margin-top: 1em; float: left; width: 100%;}
-#politico-show .reviews li { margin-left: 0.7em; margin-top:0.7em }
 #politico-show .photo { width: 30%; margin-left: 5%; float: left; }
 #politico-show .description { width: 60%; margin-left: 5%; float: left; }
 
-/* Comentarios */
+/* Opiniones */
+.reviews { font-size: 0.9em;}
 .reviews ol { list-style: none; margin: 0; padding: 0;}
+.reviews li { margin: 0.7em 0.7em 0 0.7em; }
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
 .reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
 .review-name { font-weight: normal;}
 .review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
-.review-body { padding: 0.5em 0; clear: left;}
+.review-body { padding: 0.5em 0; clear: left; }
+.review-actions { padding: 0.5em 0;}
+.review-actions img { vertical-align: -0.4em;}
+
+/* Opiniones sobre opiniones */
+.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 12px; padding-bottom: 1em; }
+.subreviews ol { padding: 0.5em; background-color: #ffffcc; border: 2px solid #bcbcbc; border-top: none;}
+.subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
+.subreviews-pagination input { width: 16em;}
 
 /*
   Antiguo fichero voota.css
