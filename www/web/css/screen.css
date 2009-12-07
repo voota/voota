@@ -111,7 +111,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
 .review-name { font-weight: normal;}
 .review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
-.review-body { padding: 0.5em; clear: left;}
+.review-body { padding: 0.5em 0; clear: left;}
 
 /*
   Antiguo fichero voota.css
