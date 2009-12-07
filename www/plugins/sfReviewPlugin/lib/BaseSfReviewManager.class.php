@@ -40,7 +40,7 @@ class BaseSfReviewManager
   	}
   	//$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
   	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
-	$criteria->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
+	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
   	
   	/*
 	return SfReviewPeer::doSelect($criteria);
