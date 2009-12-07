@@ -22,7 +22,7 @@ class BaseSfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function getReviewsByEntityAndValue(sfWebRequest $request, $type_id, $entity_id, $value = NULL)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -47,7 +47,8 @@ class BaseSfReviewManager
 	*/
   	$pager = new sfPropelPager('SfReview', 30);
     $pager->setCriteria($criteria);
-    $pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
+    if ($request)
+    	$pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
     $pager->init();
     return $pager;
   	  	

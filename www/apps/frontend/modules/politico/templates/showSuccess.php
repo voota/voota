@@ -6,9 +6,9 @@
 
 
 <script type="text/javascript">
-<!--
-$(document).ready(function(){
-	loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+  <!--
+  $(document).ready(function(){
+ 	loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
   	$("#help_dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
@@ -87,21 +87,9 @@ $(document).ready(function(){
 	    </h6>
     <?php endif ?>
 
-<div class="izq positivoNegativo">
-	<div class="izq"><h5><?php echo __('Positivos')?> <?php if($positives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h5></div>
-	<div class="izq linePolitico"></div>
-	<div class="limpiar"></div>
-	
-<?php if($positives->getNbResults() > 0): ?>
-	<?php foreach($positives->getResults() as $review): ?>
-		<?php include_partial('review', array('review' => $review, 'reviewable' => true)) ?>
-	<?php endforeach ?>
-<?php else: ?>
-	<h6><br><?php echo __('Aún no hay ninguna opinión positiva de %1%', array('%1%' => $politico))?></h6>
-<?php endif ?>
-	
-	<?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageU")) ?>
-	
+    <?php if ($politico->getFechaNacimiento() != ''): ?>
+	    <h6><?php echo __($politico->getSexo()=='M'?'Nacida el %1%':'Nacido el %1%', array('%1%' => format_date( $politico->getFechaNacimiento(), 'd' )))?></h6>
+    <?php endif ?>
 
     <?php if ($politico->getResidencia() != ''): ?>
 	    <h6><?php echo __('Residente en %1%', array('%1%' => $politico->getResidencia(), 'd' ))?></h6>
@@ -126,26 +114,23 @@ $(document).ready(function(){
       <?php if($positives->getNbResults() > 0): ?>
         <ol>
   	      <?php foreach($positives->getResults() as $review): ?>
-  		      <?php include_partial('review', array('review' => $review)) ?>
+  		      <?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
   	      <?php endforeach ?>
 	      </ol>
       <?php else: ?>
   	    <p><?php echo __('Aún no hay ninguna opinión positiva de %1%', array('%1%' => $politico))?></p>
       <?php endif ?>
 	
-<?php if($negatives->getNbResults() > 0): ?>
-	<?php foreach($negatives->getResults() as $review): ?>
-		<?php include_partial('review', array('review' => $review, 'reviewable' => true)) ?>
-	<?php endforeach ?>
-<?php else: ?>
-	<h6><br><?php echo __('Aún no hay ninguna opinión negativa de %1%', array('%1%' => $politico))?></h6>
-<?php endif ?>
-	<?php include_partial('pagination_full', array('pager' => $negatives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageD")) ?>
+  	  <?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageU")) ?>
+    </div>
+      
+    <div class="negative-reviews">
+	    <h3><?php echo __('Negativos')?> <?php if($negatives->getNbResults() > 0): ?><?php echo $negativePerc; ?>%<?php endif ?></h3>
 	
       <?php if($negatives->getNbResults() > 0): ?>
         <ol>
     	    <?php foreach($negatives->getResults() as $review): ?>
-    		    <?php include_partial('review', array('review' => $review)) ?>
+    		    <?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
     	    <?php endforeach ?>
   	    </ol>
       <?php else: ?>
