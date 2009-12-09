@@ -107,7 +107,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .reviews { font-size: 0.9em;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
-.review-new h5 { font-size: 1.2em; }
+.review-new h5 { font-size: 1.2em; color: #2b56ff;}
 .review-new h5 span { font-size: 0.8em;}
 
 /*
