@@ -4,7 +4,7 @@
 <?php use_helper('Form') ?>
 
   <p class="review-actions">
-   <a href="#" onclick="document.getElementById('<?php echo "subreviews_box$id" ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' )"><?php echo _('Opinar sobre este comentario')?></a> 
+   <a href="#" onclick="document.getElementById('<?php echo "subreviews_box$id" ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' )"><?php echo __('Opinar sobre este comentario')?></a> 
    <?php echo __('(Lleva %1%', array('%1%' => $positiveCount)) ?> <img alt="a favor" src="/images/icoMiniUp.png" />)
   </p>
   
