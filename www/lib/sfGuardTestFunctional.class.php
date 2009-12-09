@@ -15,6 +15,7 @@ class sfGuardTestFunctional extends sfTestFunctional {
   
 		try {
   			include("pass.php");
+  			$this->password = $test_pass;
 		}
 		catch (Exception $e) {
 			echo "\n\n\n=======================================================\n";

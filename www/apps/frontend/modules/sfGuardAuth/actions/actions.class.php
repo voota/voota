@@ -175,20 +175,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  //try{
-		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
-		$smtp->setUsername('no-reply@voota.es');
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		$smtp->setPassword( $smtp_pass );		
-		$mailer = new Swift($smtp);
-		  
-		$message = new Swift_Message('Confirmar tu registro Voota', $mailBody, 'text/html');
-		 
-		$mailer->send($message, $user->getUsername(), 'no-reply@voota.es');
-		$mailer->disconnect();
-	  //}
-	  //catch (Exception $e){
-	  //}
+	  VoMail::send('Confirmar tu registro Voota', $mailBody, $user->getUsername(), 'no-reply@voota.es');
   }
   
   private function sendReminder( $user ){
@@ -197,20 +184,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  //try{
-		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
-		$smtp->setUsername('no-reply@voota.es');
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		$smtp->setPassword( $smtp_pass );		
-		$mailer = new Swift($smtp);
-		  
-		$message = new Swift_Message('Tu contraseña en Voota', $mailBody, 'text/html');
-		 
-		$mailer->send($message, $user->getUsername(), 'no-reply@voota.es');
-		$mailer->disconnect();
-	  //}
-	  //catch (Exception $e){
-	  //}
+	  VoMail::send('Tu contraseña en Voota', $mailBody, $user->getUsername(), 'no-reply@voota.es');
   }
   
   public function executeEdit(sfWebRequest $request)

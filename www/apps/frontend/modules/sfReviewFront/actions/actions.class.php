@@ -65,7 +65,19 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   {  	
   	parent::executeSend( $request );
   	
-	$this->updateSums( $request );  	  	
+	$this->updateSums( $request );
+  	if($request->getParameter("t") == '') {
+	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
+	  	if ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY){
+	  		// Enviar email
+			$mailBody = $this->getPartial('reviewLeftMailBody', array(
+			  'nombre' => $review->getSfGuardUser()->getProfile()->getNombre(),
+			  'politico' => 'politico',
+			  'comentario' => $request->getParameter("review_text")
+			));
+	  		//VoMail::send('Respuesta a tu comentario', $mailBody, $review->getSfGuardUser()->getUsername(), 'no-reply@voota.es', true);
+	  	}
+	}	  	
   }
 	  public function executeDelete(sfWebRequest $request)
   {

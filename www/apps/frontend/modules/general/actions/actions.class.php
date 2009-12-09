@@ -133,23 +133,9 @@ class generalActions extends sfVoActions{
 	  	'email' => $email
 	  ));
 	 
-	  //try{
-		$smtp = new Swift_Connection_SMTP("smtp.gmail.com", Swift_Connection_SMTP::PORT_SECURE, Swift_Connection_SMTP::ENC_TLS);
-		$smtp->setUsername('no-reply@voota.es');
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		$smtp->setPassword( $smtp_pass );		
-		$mailer = new Swift($smtp);
-		  
-		$message = new Swift_Message("Contacto web [$tipo]", $mailBody, 'text/html');
-		$message->setReturnPath($email);
-		$message->setFrom('no-reply@voota.es');
-		$message->setTo('admin@voota.es');
-		 
-		$mailer->send($message, 'admin@voota.es', $email);
-		$mailer->disconnect();
-	  //}
-	  //catch (Exception $e){
-	  //}
+	  
+	  VoMail::sendWithRet('Contacto web [$tipo]', $mailBody, 'admin@voota.es', 'no-reply@voota.es', $email, true);
+	  
   }
   
 }
