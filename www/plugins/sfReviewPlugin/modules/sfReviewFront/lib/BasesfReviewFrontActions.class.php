@@ -22,10 +22,21 @@ class BasesfReviewFrontActions extends sfActions
   	
   public function executeList(sfWebRequest $request)
   {
-  	$this->reviewEntityId = $request->getParameter("e");
-  	$this->reviewType = $request->getParameter("t");
-  	
-  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue($request, $this->reviewType, $this->reviewEntityId);
+  	$this->id = $request->getParameter("id");  	
+	$this->showCount = $request->getParameter("showCount");
+	
+  	if (!isset($this->showCount) || $this->showCount == ''){
+  		$this->showCount = 2;
+  	}
+  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, $this->showCount);
+	$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
+	$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
+	$this->total = $this->reviewList->getNbResults();
+	
+	$this->seeMoreCount = 0;
+	if ($this->total > $this->showCount){
+		$this->seeMoreCount = ($this->total - $this->showCount)>10?($this->showCount+10):($this->total); 	
+	}
   }
   
   public function executeInit(sfWebRequest $request)

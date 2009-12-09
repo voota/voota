@@ -24,6 +24,6 @@
   </p>
   
 	<?php if ($reviewable): ?>
-		<?php include_component_slot('subreviews', array('id' => $review->getId())) ?>
+		<div id="<?php echo "sf_review_sr_c".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId())) ?></div>
 	<?php endif ?>
 </li>

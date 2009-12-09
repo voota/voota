@@ -10,5 +10,10 @@ class sfReviewComponents extends sfComponents
 	$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
 	$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
 	$this->total = $this->reviewList->getNbResults();
+	
+	$this->seeMoreCount = 0;
+	if ($this->total > $this->showCount){
+		$this->seeMoreCount = ($this->total - $this->showCount)>10?($this->showCount+10):($this->total); 	
+	}
   }
 }

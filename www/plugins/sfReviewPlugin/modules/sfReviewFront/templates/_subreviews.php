@@ -1,3 +1,8 @@
+<?php use_helper('jQuery') ?>
+<?php use_helper('I18N') ?>
+<?php use_helper('SfReview') ?>
+<?php use_helper('Form') ?>
+
   <p class="review-actions">
    <a href="#" onclick="document.getElementById('<?php echo "subreviews_box$id" ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' )"><?php echo _('Opinar sobre este comentario')?></a> 
    <?php echo __('(Lleva %1%', array('%1%' => $positiveCount)) ?> <img alt="a favor" src="/images/icoMiniUp.png" />)
@@ -30,6 +35,15 @@
         
         <br />
         <?php if($total > $showCount): ?>
+        <?php echo jq_form_remote_tag(array(
+    		'update'   => "sf_review_sr_c".$id,
+    		'url'      => '@sf_review_list',
+		)) ?>
+		  <?php echo input_hidden_tag('id', "$id")?>
+		  <?php echo input_hidden_tag('showCount', "$seeMoreCount")?>
+		  <?php echo submit_tag(__(($seeMoreCount-$showCount)==1?'Ver %1% comentario más':'Ver %1% comentarios más', array('%1%' => ($seeMoreCount-$showCount)))) ?>
+		</form>
+
         	<?php /*?><input type="submit" value="Ver 10 comentarios más" /><?php */ ?>
         <?php endif ?>
       </li>
