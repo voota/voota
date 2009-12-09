@@ -52,3 +52,13 @@
     <?php endif ?>
     </ol>
   </div>
+
+<?php if (isset($review_c) && $review_c == $id): ?>
+<script type="text/javascript">
+  <!--
+	document.getElementById('<?php echo "subreviews_box$id" ?>').className = 'subreviews shown';
+	loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' );
+  //-->
+</script>
+<?php $sf_user->setAttribute('review_c', ''); ?>
+<?php endif ?>

@@ -71,7 +71,7 @@
 	<?php endif?>
 	<div class="sf-review-hands">
     <div class="sf-review-positive">
-			<?php echo radiobutton_tag('v', '1', ($reviewValue==1)?true:false) ?>
+			<?php echo radiobutton_tag('v', '1', ($reviewValue == '0' || $reviewValue==1)?true:false) ?>
 		  <label for="v_1">
 		    <?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
   		  <br />

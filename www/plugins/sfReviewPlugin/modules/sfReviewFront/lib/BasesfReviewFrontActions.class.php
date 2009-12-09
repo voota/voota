@@ -63,7 +63,7 @@ class BasesfReviewFrontActions extends sfActions
    	}
   }
   
-  protected function prepareRedirect( $entityId ){
+  protected function prepareRedirect( $entityId, $type ){
   }
   
   public function executeForm(sfWebRequest $request)
@@ -80,10 +80,7 @@ class BasesfReviewFrontActions extends sfActions
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
   		
   	if (! $this->getUser()->isAuthenticated()) {
-  		$type = SfReviewTypePeer::retrieveByPK($this->reviewType);
-  		if ($type){
-  			$this->prepareRedirect( $this->reviewEntityId );
-  		}  		
+		$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
   		
   		echo "<script>document.location='".$this->getContext()->getController()->genUrl("@sf_guard_signin", true)."'</script>";die;
   	}

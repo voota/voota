@@ -40,7 +40,7 @@ class homeActions extends sfVoActions{
   	global $first;
   	
   	$urlBack = $this->getUser()->getAttribute('url_back');
-	if ($urlBack && $urlBack != '') {
+  	if ($urlBack && $urlBack != '') {
 		$this->getUser()->setAttribute('url_back', '');
 	  	if ($this->getUser()->isAuthenticated()) {
   			$this->redirect( $urlBack );

@@ -15,5 +15,8 @@ class sfReviewComponents extends sfComponents
 	if ($this->total > $this->showCount){
 		$this->seeMoreCount = ($this->total - $this->showCount)>10?($this->showCount+10):($this->total); 	
 	}
+	
+	$this->review_c = $this->getUser()->getAttribute('review_c');
+	
   }
 }

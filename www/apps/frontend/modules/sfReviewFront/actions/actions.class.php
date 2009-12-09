@@ -86,9 +86,18 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	$this->updateSums( $request );  	  	
   }
   
-  protected function prepareRedirect( $entityId ){
-  	$politico = PoliticoPeer::retrieveByPK( $entityId );
-  	
+  protected function prepareRedirect( $entityId, $type ){
+  	if ($type == ''){
+  		$review = SfReviewPeer::retrieveByPk($entityId);
+  		$this->getUser()->setAttribute('review_c', $entityId);
+  		if ($review->getSfReviewTypeId() == 1){
+		  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
+	  	}
+  	}
+  	else if ($type == 1){
+  		$politico = PoliticoPeer::retrieveByPK( $entityId );
+  	}
+  		
   	$culture = $this->getRequest()->getParameter("sf_culture");
   	$rule = "@politico_$culture";
   	$url = "$rule?id=" . $politico->getVanity();		
