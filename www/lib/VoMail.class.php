@@ -45,6 +45,7 @@ class VoMail {
 	
 	public static function sendWithRet($subject, $mailBody, $to, $from, $ret, $spoolMe = false){
 		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
+		
 		if ($spoolMe){
 			$transport = new Swift_SpoolTransport( new Swift_FileSpool( VoMail::SPOOL_DIR ) );
 		}
