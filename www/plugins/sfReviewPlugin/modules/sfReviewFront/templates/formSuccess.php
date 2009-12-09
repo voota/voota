@@ -48,7 +48,6 @@ $('textarea#sf_review_text').keyup(function() {
 //-->
 </script>
 
-<div class="sfr">
 <?php echo jq_form_remote_tag(array(
     'update'   => $reviewBox?$reviewBox:'sf_review',
     'url'      => 'sfReviewFront/send',
@@ -137,4 +136,3 @@ $('textarea#sf_review_text').keyup(function() {
 	</div>
 	
 </form>
-</div>

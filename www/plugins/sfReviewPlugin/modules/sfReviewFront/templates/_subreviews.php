@@ -9,8 +9,10 @@
   </p>
   
   <div id="<?php echo "subreviews_box$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
-  <div id="<?php echo "sf_review_c".$id ?>" ></div>
     <ol>
+    <li id="<?php echo "sf_review_c".$id ?>" class="review-new">
+      
+    </li>
     <?php foreach ($reviewList->getResults() as $review): ?>    
       <li class="review">
       	<div class="review-avatar">

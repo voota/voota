@@ -104,10 +104,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Opiniones */
 .reviews { font-size: 0.9em;}
-.reviews ol { list-style: none; margin: 0; padding: 0;}
-.reviews li { margin: 0.7em 0.7em 0 0.7em; }
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
+.reviews ol { list-style: none; margin: 0; padding: 0;}
+.reviews li { margin: 0.7em; }
 .reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
 .review-name { font-weight: normal;}
