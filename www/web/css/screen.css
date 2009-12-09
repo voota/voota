@@ -56,6 +56,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; padding-left: 20px;}
 
 /* Formularios */
+form { margin: 0; padding: 0;}
 form dl dt { margin-bottom: 0.5em;}
 form dl dd { margin: 0 0 1.5em 0;}
 form th, form td { padding-bottom: 1.5em; vertical-align: top;}
@@ -106,21 +107,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .reviews { font-size: 0.9em;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
-.reviews ol { list-style: none; margin: 0; padding: 0;}
-.reviews li { margin: 0.7em; }
-.reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
-.review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
-.review-name { font-weight: normal;}
-.review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
-.review-body { padding: 0.5em 0; clear: left; }
-.review-actions { padding: 0.5em 0;}
-.review-actions img { vertical-align: -0.4em;}
-
-/* Opiniones sobre opiniones */
-.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 12px; padding-bottom: 1em; }
-.subreviews ol { padding: 0.5em; background-color: #ffffcc; border: 2px solid #bcbcbc; border-top: none;}
-.subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
-.subreviews-pagination input { width: 16em;}
+.review-new h5 { font-size: 1.2em; }
+.review-new h5 span { font-size: 0.8em;}
 
 /*
   Antiguo fichero voota.css

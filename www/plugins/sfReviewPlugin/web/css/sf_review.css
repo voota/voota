@@ -1,9 +1,28 @@
+.reviews ol { list-style: none; margin: 0; padding: 0;}
+.reviews li { margin: 0.7em; }
+.reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 1em; }
+.review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
+.review-name { font-weight: normal;}
+.review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
+.review-body { padding: 0.5em 0; clear: left; }
+.review-actions { padding: 0.5em 0;}
+.review-actions img { vertical-align: -0.4em;}
+
+.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 12px; padding-bottom: 1em; }
+.subreviews ol { padding: 0.5em; background-color: #ffffcc; border: 2px solid #bcbcbc; border-top: none;}
+.subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
+.subreviews-pagination input { width: 16em;}
+
+.sf-review-cancel, .sf-review-remove { font-size: 0.9em; }
+.sf-review-cancel { margin-left: 1em;}
+.sf-review-remove span { margin-left: 1em; }
+.sf-review-hands { float: left; margin: 1em 0 0.5em 0; }
+.sf-review-hands img, .sf-review-hands label { cursor: pointer; }
+.sf-review-positive, .sf-review-negative { float:left; }
+.sf-review-negative { margin-left: 1.5em; }
+#sf-review-counter { clear: left; padding-bottom: 0;}
+#sf-review-body { padding-bottom: 0;}
+#sf-review-text { width: 95%; height: 8em;}
+
 .sfr_grey{color:#b6b6b6; }
 span.sfr_title {font-size: 0.88em;margin:0.00em;color:#323232;font-weight: bold;color:#2b56ff;}
-div.sfr_margin {margin-right:1.56em;float:left;}
-div.sfr_left {float:left;}
-div.sfr_hands {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
-textarea.sfr { width:20.00em; height:9.56em; font-family: Georgia, "Times New Roman", Times, serif; font-size:0.75em; border:1px solid #8f9ba7; }
-input.sfr_button { font-family:Georgia, "Times New Roman", Times, serif; font-size:0.75em; color:#323232;}
-span.sfr { font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232; line-height:1.60em; }
-div.clickable {cursor: pointer;}
