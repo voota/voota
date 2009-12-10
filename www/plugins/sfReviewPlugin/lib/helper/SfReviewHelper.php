@@ -16,11 +16,11 @@ function review_text($review, $msg = array()){
 		}
 		else {
 			$ret = "<span style='text-decoration: line-through;'>". utf8_strrev( $text ) ."</span>";
-			$ret .= "<p>". $msg['offensive'] ."</p>";
+			$ret .= "<br />". $msg['offensive'] ."";
 		}
 	}
 	else {
-		$ret = "<p>". $msg['deleted'] ."</p>";
+		$ret = "<br />". $msg['deleted'] ."";
 	}
 	return $ret;
 }

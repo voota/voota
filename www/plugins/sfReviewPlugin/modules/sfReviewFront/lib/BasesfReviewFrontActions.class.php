@@ -25,14 +25,22 @@ class BasesfReviewFrontActions extends sfActions
   	$this->id = $request->getParameter("id");  	
 	$this->showCount = $request->getParameter("showCount");
 	
-  	if (!isset($this->showCount) || $this->showCount == ''){
-  		$this->showCount = 2;
+  	if (!isset($this->showCount)){
+  		$this->showCount = SfReviewManager::NUM_LAST_REVIEWS;
   	}
-  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, $this->showCount);
+  	$this->reviewLastList = SfReviewManager::getLastReviewsByEntityAndValue(false, '', $this->id, null, SfReviewManager::NUM_LAST_REVIEWS);
+  	$exclude = array();
+  	foreach ($this->reviewLastList->getResults() as $result){
+  		$exclude[] = $result->getId();
+  	}
+  	if ($this->showCount > SfReviewManager::NUM_LAST_REVIEWS){
+  		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
+  	}
+  	
 	$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
 	$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
-	$this->total = $this->reviewList->getNbResults();
-	
+	$this->total = $this->reviewLastList->getNbResults();// + $this->reviewList->getNbResults();
+		
 	$this->seeMoreCount = 0;
 	if ($this->total > $this->showCount){
 		$this->seeMoreCount = ($this->total - $this->showCount)>10?($this->showCount+10):($this->total); 	
@@ -183,6 +191,12 @@ class BasesfReviewFrontActions extends sfActions
   		SfReviewPeer::doInsert($review);
   	}
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
+  	
+	if ($t == '') {
+		$parentReview = SfReviewPeer::retrieveByPk( $request->getParameter("e") );
+		$parentReview->setBalance( SfReviewManager::getBalanceByReviewId( $parentReview->getId() ) );
+		$parentReview->save();
+	}
   }
   
   public function executeDelete(sfWebRequest $request){

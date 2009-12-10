@@ -84,7 +84,7 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_partido: [partido_id], fk_lista: [lista_id], fk_pl_partido: [partido_id], fk_pl_lista: [lista_id] }
   politico:
-    _attributes: { phpName: Politico, isI18N: true, i18nTable: politico_i18n }
+    _attributes: { phpName: Politico }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     url_key: { type: VARCHAR, size: '45', required: true }
     alias: { type: VARCHAR, size: '45', required: false }
@@ -94,11 +94,14 @@ propel:
     sexo: { type: CHAR, size: '1', required: false }
     fecha_nacimiento: { type: DATE, required: false }
     pais: { type: VARCHAR, size: '45', required: false }
+    formacion: { type: VARCHAR, size: '255', required: false }
     residencia: { type: VARCHAR, size: '45', required: false }
+    presentacion: { type: VARCHAR, size: '500', required: false }
     sf_guard_user_profile_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user_profile, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     partido_txt: { type: VARCHAR, size: '150', required: false }
+    bio: { type: CLOB, required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
@@ -112,7 +115,7 @@ propel:
   politico_i18n:
     _attributes: { phpName: PoliticoI18n }
     id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    culture: { type: VARCHAR, size: '7', primaryKey: true, required: true }
     formacion: { type: VARCHAR, size: '255', required: false }
     presentacion: { type: VARCHAR, size: '500', required: false }
     bio: { type: CLOB, required: false }

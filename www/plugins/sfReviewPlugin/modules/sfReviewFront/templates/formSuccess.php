@@ -71,7 +71,7 @@
 	<?php endif?>
 	<div class="sf-review-hands">
     <div class="sf-review-positive">
-			<input type="radio" name="v" value="1" id="v-<?php echo $reviewId ?>-positive" <?php if ($reviewValue==1): echo 'checked="checked"'; endif ?> />
+			<input type="radio" name="v" value="1" id="v-<?php echo $reviewId ?>-positive" <?php if ($reviewValue==1 || $reviewValue==0): echo 'checked="checked"'; endif ?> />
 		  <label for="v-<?php echo $reviewId ?>-positive">
 		    <?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
   		  <br />

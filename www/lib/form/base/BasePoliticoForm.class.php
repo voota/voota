@@ -22,11 +22,14 @@ class BasePoliticoForm extends BaseFormPropel
       'sexo'                      => new sfWidgetFormInput(),
       'fecha_nacimiento'          => new sfWidgetFormDate(),
       'pais'                      => new sfWidgetFormInput(),
+      'formacion'                 => new sfWidgetFormInput(),
       'residencia'                => new sfWidgetFormInput(),
+      'presentacion'              => new sfWidgetFormInput(),
       'sf_guard_user_profile_id'  => new sfWidgetFormPropelChoice(array('model' => 'SfGuardUserProfile', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormDateTime(),
       'partido_id'                => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'partido_txt'               => new sfWidgetFormInput(),
+      'bio'                       => new sfWidgetFormTextarea(),
       'imagen'                    => new sfWidgetFormInput(),
       'vanity'                    => new sfWidgetFormInput(),
       'lugar_nacimiento'          => new sfWidgetFormInput(),
@@ -49,11 +52,14 @@ class BasePoliticoForm extends BaseFormPropel
       'sexo'                      => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'fecha_nacimiento'          => new sfValidatorDate(array('required' => false)),
       'pais'                      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'formacion'                 => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'residencia'                => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'presentacion'              => new sfValidatorString(array('max_length' => 500, 'required' => false)),
       'sf_guard_user_profile_id'  => new sfValidatorPropelChoice(array('model' => 'SfGuardUserProfile', 'column' => 'id', 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'partido_id'                => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'partido_txt'               => new sfValidatorString(array('max_length' => 150, 'required' => false)),
+      'bio'                       => new sfValidatorString(array('required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'vanity'                    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'lugar_nacimiento'          => new sfValidatorString(array('max_length' => 150, 'required' => false)),
@@ -82,15 +88,6 @@ class BasePoliticoForm extends BaseFormPropel
     return 'Politico';
   }
 
-  public function getI18nModelName()
-  {
-    return 'PoliticoI18n';
-  }
-
-  public function getI18nFormClass()
-  {
-    return 'PoliticoI18nForm';
-  }
 
   public function updateDefaultsFromObject()
   {

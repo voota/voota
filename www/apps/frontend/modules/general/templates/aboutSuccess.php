@@ -25,6 +25,7 @@
 <?php include_partial('socioabout', array('socio' => $users[4])) ?>
 <?php //include_partial('socioabout', array('socio' => $users[7])) ?>
 <?php include_partial('socioabout', array('socio' => $users[31])) ?>
+<?php include_partial('socioabout', array('socio' => $users[180])) ?>
 
 <div class="formSings">
   <h5><?php echo __('Y, finalmente, nuestros datos sociales')?></h5>

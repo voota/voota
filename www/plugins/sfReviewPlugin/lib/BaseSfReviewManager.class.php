@@ -22,7 +22,9 @@ class BaseSfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 30)
+	const NUM_LAST_REVIEWS = 2;
+	
+  static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 2)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -38,8 +40,35 @@ class BaseSfReviewManager
   	if ($value != NULL){  	  	
   		$criteria->add(SfReviewPeer::VALUE, $value);
   	}
-  	//$criteria->add(SfReviewStatusPeer::PUBLISHED, 1);
+	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
+  	
+  	$pager = new sfPropelPager('SfReview', $numberOfResults);
+    $pager->setCriteria($criteria);
+    $pager->init();
+    return $pager;
+  }
+  
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 30, $exclude = false)
+  {
+    $criteria = new Criteria();
+    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
+	
+  	if ($type_id != '') {
+  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
+  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+  	}
+  	else {
+  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
+  	}
+    
+  	if ($value != NULL){  	  	
+  		$criteria->add(SfReviewPeer::VALUE, $value);
+  	}
+  	if ($exclude){
+  		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
+  	}
   	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
+  	$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
   	
   	/*
@@ -80,6 +109,24 @@ class BaseSfReviewManager
 	
 	return $row['count'];
   }
+  
+  static public function getBalanceByReviewId($id){
+	$query = "SELECT SUM(r.value) AS sum ".
+			"FROM %s r ".
+			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
+			"WHERE r.sf_review_id = ? AND r.sf_review_type_id is null";
+	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
+	
+  	$connection = Propel::getConnection();
+	$statement = $connection->prepare($query);
+	$statement->bindValue(1, $id);
+	
+	$statement->execute();
+	$row = $statement->fetch();
+	
+	return $row['sum'];
+  }
+  
   static public function deleteReview($type_id, $entity_id)
   {
     $criteria = new Criteria();
