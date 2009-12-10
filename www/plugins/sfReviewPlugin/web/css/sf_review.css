@@ -9,7 +9,7 @@
 .review-actions img { vertical-align: -0.4em;}
 
 .subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 12px; padding-bottom: 1em; }
-.subreviews ol { padding: 0.5em; background-color: #ffffcc; border: 2px solid #bcbcbc; border-top: none;}
+.subreviews ol { padding: 0.5em; background-color: #fff; border: 2px solid #bcbcbc; border-top: none;}
 .subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
 .subreviews-pagination input { width: 16em;}
 
