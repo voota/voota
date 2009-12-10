@@ -3,26 +3,20 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('SfReview') ?>
 
+<div class="review-current">
+  <p>
+    <?php echo __('Tu voto')?>
+  	<?php if ($reviewValue == -1): ?>
+  		<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
+  	<?php endif ?>
+  	<?php if ($reviewValue == 1): ?>
+  		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
+  	<?php endif ?>
+  	<?php echo jq_link_to_remote(__('Hacer cambios'), array(
+  	  'update' => $reviewBox?$reviewBox:'sf_review',
+  	  'url'    => "@sf_review_form?t=1&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review')
+  	)) ?>	
+  </p>
 
-<div class="sfr">
-<div>
-	<h6><?php echo __('Tu voto')?>
-	<?php if ($reviewValue == -1): ?>
-		<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
-	<?php endif ?>
-	<?php if ($reviewValue == 1): ?>
-		<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
-	<?php endif ?>
-	<?php echo jq_link_to_remote(__('Hacer cambios'), array(
-	    'update'   => $reviewBox?$reviewBox:'sf_review',
-	    'url'    => "@sf_review_form?t=1&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review')
-	)) ?>
-	
-	</h6>
-</div>
-<div class="sfr_left">
-	<div class="sfr_margin">
-	  <span class="sfr"><?php echo review_text( $review ) ?></span>
-	</div>
-</div>
+  <p><?php echo review_text( $review ) ?></p>
 </div>

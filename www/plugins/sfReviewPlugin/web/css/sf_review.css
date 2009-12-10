@@ -13,7 +13,8 @@
 .subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
 .subreviews-pagination input { width: 16em;}
 
-.sf-review-cancel, .sf-review-remove { font-size: 0.9em; }
+.sf-review-cancel { font-size: 0.8em; font-weight: normal; }
+.sf-review-remove { font-size: 0.9em; }
 .sf-review-cancel { margin-left: 1em;}
 .sf-review-remove span { margin-left: 1em; }
 .sf-review-hands { float: left; margin: 1em 0 0.5em 0; }

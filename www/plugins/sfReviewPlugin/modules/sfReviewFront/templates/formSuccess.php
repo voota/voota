@@ -71,8 +71,8 @@
 	<?php endif?>
 	<div class="sf-review-hands">
     <div class="sf-review-positive">
-			<?php echo radiobutton_tag('v', '1', ($reviewValue == '0' || $reviewValue==1)?true:false) ?>
-		  <label for="v_1">
+			<input type="radio" name="v" value="1" id="v-<?php echo $reviewId ?>-positive" <?php if ($reviewValue==1): echo 'checked="checked"'; endif ?> />
+		  <label for="v-<?php echo $reviewId ?>-positive">
 		    <?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
   		  <br />
 		    <?php echo __('A favor, yeah')?>
@@ -80,8 +80,8 @@
 		</div>
 
 		<div class="sf-review-negative">
-			<?php echo radiobutton_tag('v', '-1', ($reviewValue==-1)?true:false) ?>
-			<label for="v_-1">
+			<input type="radio" name="v" value="-1" id="v-<?php echo $reviewId ?>-negative" <?php if ($reviewValue==-1): echo 'checked="checked"'; endif ?> />
+			<label for="v-<?php echo $reviewId ?>-negative">
 		    <?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
 		    <br />
 		    <?php echo __('En contra, buu')?>

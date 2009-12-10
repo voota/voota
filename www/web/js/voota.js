@@ -66,7 +66,7 @@ function changeInputType(oldObject, oType) {
 	  return newObject;
 }
 function showScoreHelp(){
-	$("#help_dialog").dialog('open');
+	$("#help-dialog").dialog('open');
 }
 
 function inst_to_long() {

@@ -4,108 +4,99 @@
 <?php use_helper('VoFormat') ?>
 <?php use_helper('Date') ?>
 
-
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
- 	loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
-	loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
+ 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
-  	$("#help_dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
+  	$("#help-dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
   });
   //-->
 </script>
 
-
-<div id="backgroundPopup"></div>  
-<?php // end Review system ?>
-
-
-<div id="help_dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
-	<p><?php echo __('Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.')?></p>
-</div>
-
+<h2 class="name">
+  <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
+  <span class="rank">
+    <?php if ($politico->getSumU() == 1):?>
+	    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
+    <?php else: ?>
+	    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
+    <?php endif ?>
+    <a href="javascript:showScoreHelp();">?</a>
+  </span>
+  <div id="help-dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
+  	<p><?php echo __('Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.')?></p>
+  </div>
+</h2>
 
 <div id="content">
 
   <?php /*
-    <h6><?php 
+    <?php 
     	echo link_to(__('Listado de políticos, (%1%, %2%)', array(
     		'%1%' => $partido==''?__('Todos los partidos'):$partido
     		, '%2%' => $institucion==''?__('Todas las instituciones'):$institucion
     	)), $rankingUrl) ?>
-    </h6>
-    <p></p>
    */?>
-
-  <h2 class="name">
-    <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
-    <span class="rank">
-      <?php if ($politico->getSumU() == 1):?>
-  	    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
-      <?php else: ?>
-  	    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
-      <?php endif ?>
-      <a href="javascript:showScoreHelp();">?</a>
-    </span>
-  </h2>
 
   <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="photo">
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
-
-    <div class="votaPolitico">
-      <h5><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h5>
+    <div class="vote">
+      <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
+      <div id="sf_review1"></div>
     </div>
-
-    <div id="sf_review1"></div>
   </div>
     
   <div title="info" class="description">
-    <h6><?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> - <?php 
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
-	  	echo link_to(
-	 	$politico->getPartido()
-	 	, "$url?partido=".$politico->getPartido()
-	 	, array());  ?><?php endif ?></h6>
+    <p>
+      <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
+      <?php if ($politico->getPartido()):?>
+        - 
+        <?php $url = "@ranking_".$sf_user->getCulture('es')."_partido"; ?>
+        <?php echo link_to($politico->getPartido(), "$url?partido=".$politico->getPartido(), array()); ?>
+      <?php endif ?>
+    </p>
 
     <?php if ($politico->getAlias() != ''): ?>
-	    <h6><?php echo __($politico->getSexo()=='M'?'Conocida como %1%':'Conocido como %1%', array('%1%' => $politico->getAlias()))?></h6>
+	    <p><?php echo __($politico->getSexo()=='M'?'Conocida como %1%':'Conocido como %1%', array('%1%' => $politico->getAlias()))?></p>
     <?php endif ?>
 
     <?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
-	    <h6>
+	    <p>
 	      <?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?>
 	        <?php if($idx > 0):?>, <?php endif ?>
-	        <?php 
+	        <?php
 	  	      $url = '@ranking_'.$sf_user->getCulture('es');
 	  	      echo link_to(
 	 	          $politicoInstitucion->getInstitucion()->getNombre(),
 	 	          "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getVanity(),
               array()
-            ) ?>
+            )
+          ?>
         <?php endforeach ?>
-	    </h6>
+	    </p>
     <?php endif ?>
 
     <?php if ($politico->getFechaNacimiento() != ''): ?>
-	    <h6><?php echo __($politico->getSexo()=='M'?'Nacida el %1%':'Nacido el %1%', array('%1%' => format_date( $politico->getFechaNacimiento(), 'd' )))?></h6>
+	    <p><?php echo __($politico->getSexo()=='M'?'Nacida el %1%':'Nacido el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd')))?></p>
     <?php endif ?>
 
     <?php if ($politico->getResidencia() != ''): ?>
-	    <h6><?php echo __('Residente en %1%', array('%1%' => $politico->getResidencia(), 'd' ))?></h6>
+	    <p><?php echo __('Residente en %1%', array('%1%' => $politico->getResidencia(), 'd' ))?></p>
     <?php endif ?>
 
     <?php if ($politico->getFormacion() != ''): ?>
-	    <h6><?php echo $politico->getFormacion()?></h6>
+	    <p><?php echo $politico->getFormacion()?></p>
     <?php endif ?>
 
-	  <div><h5><?php echo __('Su biografía')?></h5></div>
+	  <h3><?php echo __('Su biografía')?></h3>
 
-    <div title="biografia" class="margenPolitico">
-      <h6><?php echo formatBio( $politico->getBio() ) ?></h6>
+    <div title="biografia" class="bio">
+      <p><?php echo formatBio( $politico->getBio() ) ?></p>
     </div>
 
-  </div>
+  </div><!-- end of description -->
 
   <div class="reviews">
     <div class="positive-reviews">
@@ -141,37 +132,27 @@
     </div>
   </div>
 
-</div>
+  <div class="vote">
+    <h3>Voota sobre <?php echo $politico->getApellidos(); ?></h3>
+    <div id="sf_review2"></div>
+  </div>
+
+</div><!-- end of content -->
 
 <div id="sidebar">
-  <div class="tituloColor">
-    <?php if(count($politico->getEnlaces()) > 0): ?>
-      <h5><?php echo __('Enlaces externos')?></h5>
-      <div class="margenPolitico">
-  	    <?php foreach($politico->getEnlaces() as $enlace): ?>
-  	      <h6><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></h6>
-  	    <?php endforeach ?>
-      </div>
-      <br />
-  	<?php endif ?>
-  </div>
-  <!-- fin enlaces externos -->
+  <?php if(count($politico->getEnlaces()) > 0): ?>
+    <div class="links">
+      <h3><?php echo __('Enlaces externos')?></h3>
+      <ul>
+        <?php foreach($politico->getEnlaces() as $enlace): ?>
+          <li><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
+	<?php endif ?>
 
-  <div class="limpiar"></div>
-
-  <!-- codigo google -->
-  <div id="googleads">
+  <div id="google-ads">
     <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div>
-  <!-- fin codigo google -->
+  </div><!-- end of google-ads -->
 
-</div>
-
-<div class="limpiar"></div>
-
-<div class="fotoPolitico">
-  <div class="votaPolitico">
-    <h5>Vota sobre <?php echo $politico->getApellidos(); ?></h5>
-    <div id="sf_review2" class="marensf_review2"></div>
-  </div>
-</div>
+</div><!-- end of sidebar -->

@@ -98,16 +98,32 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /* Página de político */
 #politico-show #content { width: 65%; }
 #politico-show #sidebar { width: 30%; margin-left: 5%; }
-#politico-show h2.name span { font-size: 0.6em;}
-#politico-show .reviews { margin-top: 1em; float: left; width: 100%;}
-#politico-show .photo { width: 30%; margin-left: 5%; float: left; }
-#politico-show .description { width: 60%; margin-left: 5%; float: left; }
+#politico-show .rank { font-size: 0.6em;}
+#politico-show .reviews { margin-top: 5em; float: left; width: 100%;}
+#politico-show .photo { width: 35%; margin-left: 5%; float: left; }
+#politico-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
+#politico-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
+#politico-show .photo .vote { padding-top: 2em; }
+#politico-show #sf_review2 { width: 35%; }
+#politico-show .description { width: 55%; margin-left: 5%; float: left; }
+#politico-show .description h3 { padding-top: 1em; padding-bottom: 0.5em;}
+#politico-show .description p { padding-bottom: 0.5em;}
+#politico-show .bio { margin-left: 1em;}
+#politico-show .links { margin-bottom: 4em;}
+#politico-show .links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#politico-show .links ul li { margin: 0.5em 0;}
+
+/* Popups de ayuda */
+#help-dialog { display:none; }
+
+/* Google Ads */
+#google-ads { float:right }
 
 /* Opiniones */
 .reviews { font-size: 0.9em;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
-.review-new h5 { font-size: 1.2em; color: #2b56ff;}
+.review-new h5, .vote h5 { font-size: 1.2em; color: #2b56ff;}
 .review-new h5 span { font-size: 0.8em;}
 
 /*
@@ -176,8 +192,6 @@ table { padding:0; margin:0;}
 .margenVotacion {margin-right:1.56em;}
 .margenPolitico {margin-left:0.75em; margin-top:0.60em}
 .margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
-.votaPolitico {margin-top:1.88em; margin-bottom:1.00em;}
-.marensf_review2 {margin-top:1.00em;}
 .linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
 .positivoNegativo {width:18.69em;}
 /*comentarios */
@@ -227,14 +241,10 @@ table { padding:0; margin:0;}
 /* div.formSing form tr th {  text-align:left; margin:0.00em; color:#323232; margin-bottom:1.20em;} */
 div.clickable {cursor: pointer;}
 
-#help_dialog {
-	display:none;
-}
 .gris{color:#b6b6b6; }
 .negro{color:black; }
 .hidden{display:none}
 .shown{display:block}
-#googleads {float:right}
 .wider { width:16em; padding: 15px 0; }
 
 
