@@ -22,6 +22,21 @@ define("ALL_FORM_VALUE", '0');
 class politicoActions extends sfVoActions
 {
 	
+  public function executeMoreComments(sfWebRequest $request)
+  {
+  	$id = $request->getParameter("id");
+  	$this->t = $request->getParameter("t");
+  	$this->politico = PoliticoPeer::retrieveByPK( $id );
+  	if ($this->t == 1) {
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1, BaseSfReviewManager::NUM_REVIEWS);
+  		$this->pageU = $request->getParameter("pageU")+1;
+  	}
+  	else {
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1, BaseSfReviewManager::NUM_REVIEWS);
+  		$this->pageD = $request->getParameter("pageD")+1;
+  	} 
+  }
+	
   public function executeIndex(sfWebRequest $request)
   {
     $this->politico_list = PoliticoPeer::doSelect(new Criteria());

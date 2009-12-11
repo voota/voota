@@ -7,26 +7,26 @@
   <?php if($reviewId == ''): ?>
   	$("#<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>").click(function () {
   		if (!<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited){
-  			$('#sf-review-text').val('');
+  			$('#<?php echo "sf-review-text_$reviewBox" ?>').val('');
   		}
   		return true;
   	});
   <?php endif ?>
   <?php if($reviewId == ''): ?>
     var <?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited = false;
-    $('#sf-review-text').focus(function() {
+    $('#<?php echo "sf-review-text_$reviewBox" ?>').focus(function() {
     	MAX_LENGTH = <?php echo $maxLength?>;
 	
     	if (!<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited){
     		$(this).val('');
     		$(this).removeClass('sfr_grey');
-    		$('#sf-review-counter').html(MAX_LENGTH);
+    		$('#<?php echo "sf-review-counter_$reviewBox" ?>').html(MAX_LENGTH);
     		<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited = true;
     	}
     });
   <?php endif ?>
   //controls character input/counter
-  $('#sf-review-text').keyup(function() {
+  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
   	MAX_LENGTH = <?php echo $maxLength?>;
 	
   	var charLength = $(this).val().length;
@@ -35,15 +35,15 @@
   		charLength = $(this).val().length;
   	}
   	else if((MAX_LENGTH - charLength) < 0) {
-  		$('#sf-review-counter').attr('style', 'color:red;');
+  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', 'color:red;');
   	}
   	else if((MAX_LENGTH - charLength) < 40) {
-  		$('#sf-review-counter').attr('style', 'color:orange;');
+  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', 'color:orange;');
   	}
   	else {
-  		$('#sf-review-counter').attr('style', '');
+  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', '');
   	}
-  	$('#sf-review-counter').html(MAX_LENGTH - charLength);
+  	$('#<?php echo "sf-review-counter_$reviewBox" ?>').html(MAX_LENGTH - charLength);
   });
   //-->
 </script>
@@ -90,9 +90,9 @@
 	</div>
 
   <?php $aReviewText = $reviewText || $reviewId != ''?$reviewText:__('¿Algo que comentar? Es el mejor momento :-)') ?>
-  <p id="sf-review-counter"><?php echo $maxLength - strlen( $aReviewText )?></p>
+  <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"><?php echo $maxLength - strlen( utf8_decode($aReviewText) )?></p>
   <p id="sf-review-body">
-    <textarea id="sf-review-text" name="review_text" class="sfr<?php if($reviewId == ''): ?> sfr_grey<?php endif ?>"><?php echo $aReviewText ?></textarea>
+    <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr<?php if($reviewId == ''): ?> sfr_grey<?php endif ?>"><?php echo $aReviewText ?></textarea>
   </p>
 
   <?php if ($reviewId != ''): ?>

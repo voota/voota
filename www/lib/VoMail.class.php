@@ -30,7 +30,7 @@ class VoMail {
 		$mailUser = sfConfig::get('sf_mail_user');
 		$mailSpoolDir = sfConfig::get('sf_mail_spool_dir');
 
-		if ($mailEnabled == 'on') {				
+		if ($mailEnabled == 'on') {		
 			if ($spoolMe){
 				$transport = new Swift_SpoolTransport( new Swift_FileSpool( $mailSpoolDir ) );
 			}
@@ -39,18 +39,17 @@ class VoMail {
 	                    ->setUsername( $mailUser )
 	                    ->setPassword( $smtp_pass );
 			}
-			 		                    
+			 		       
 			$mailer = Swift_Mailer::newInstance($transport);
 			  
 			$message = Swift_Message::newInstance( $subject )
 						->setCharset('utf-8')
 	  					->setFrom( $from )
 	  					->setTo( $to )
-	  					->setReplyTo($ret)
 	  					->setBody( $mailBody, 'text/html', 'utf-8' )
 	  					;
 	  		if ($ret) {
-	  			$message->setReturnPath($ret);
+	  			$message->setReplyTo($ret);
 	  		}
 	  		$result = $mailer->send($message);
 		}	

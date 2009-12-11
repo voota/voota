@@ -165,7 +165,9 @@ class BasesfReviewFrontActions extends sfActions
   		$review = new SfReview();
   	}
   	$review->setValue( $request->getParameter("v") );
-  	$review->setText( strip_tags( substr($request->getParameter("review_text"), 0, BasesfReviewFrontActions::MAX_LENGTH) ) );
+  	$aText = utf8_decode($request->getParameter("review_text"));
+  	$aText = strip_tags( substr($aText, 0, BasesfReviewFrontActions::MAX_LENGTH) );
+  	$review->setText( utf8_encode( $aText ) );
   	$t = $request->getParameter("t");
   	if ($t != '') {
   		$review->setSfReviewTypeId( $t );
@@ -183,13 +185,14 @@ class BasesfReviewFrontActions extends sfActions
   	if ($request->getParameter("i") != '') {
   		if ($review->isModified()) {
   			$review->setModifiedAt( date(DATE_ATOM) );
-  			SfReviewPeer::doUpdate($review);
+  			//SfReviewPeer::doUpdate($review);
   		}
    	}
   	else {
   		$review->setCreatedAt( date(DATE_ATOM) );
-  		SfReviewPeer::doInsert($review);
+  		//SfReviewPeer::doInsert($review);
   	}
+  	$review->save();
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   	
 	if ($t == '') {

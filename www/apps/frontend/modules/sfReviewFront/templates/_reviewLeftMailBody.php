@@ -12,7 +12,7 @@
 
 <p>Ver tu vooto y sus comentarios en estado natural: <a href="%6%">%6%</a></p>
 
-<p>Dejar de recibir estos avisos (simplemente pincha en este link):  %7%</p>
+<p>Dejar de recibir estos avisos (simplemente pincha en este link): <a href="%7%">%7%</a></p>
 
 <p>Un abrazo, Comunidad Voota</p>
 

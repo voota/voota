@@ -17,6 +17,11 @@ politico_es:
   url: /:sf_culture/politico/:id
   param: { module: politico, action: show }
   requirements: { sf_culture: (?:es) }
+  
+politico_more_comments:
+  url: /:sf_culture/politics/more
+  param: { module: politico, action: moreComments }
+  requirements: { sf_culture: (?:es|ca) }
 
 politico_ca:
   url: /:sf_culture/politic/:id

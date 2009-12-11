@@ -23,8 +23,9 @@ class BaseSfReviewManager
    * @param sfEvent An sfEvent instance
    */
 	const NUM_LAST_REVIEWS = 2;
+	const NUM_REVIEWS = 20;
 	
-  static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 2)
+  static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_LAST_REVIEWS)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -48,7 +49,7 @@ class BaseSfReviewManager
     return $pager;
   }
   
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = 30, $exclude = false)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);

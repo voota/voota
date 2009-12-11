@@ -21,9 +21,9 @@
 .sf-review-hands img, .sf-review-hands label { cursor: pointer; }
 .sf-review-positive, .sf-review-negative { float:left; }
 .sf-review-negative { margin-left: 1.5em; }
-#sf-review-counter { clear: left; padding-bottom: 0;}
+.sf-review-counter { clear: left; padding-bottom: 0;}
 #sf-review-body { padding-bottom: 0;}
-#sf-review-text { width: 95%; height: 8em;}
+.sf-review-text { width: 95%; height: 8em;}
 
 .sfr_grey{color:#b6b6b6; }
 span.sfr_title {font-size: 0.88em;margin:0.00em;color:#323232;font-weight: bold;color:#2b56ff;}

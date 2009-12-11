@@ -102,33 +102,15 @@
     <div class="positive-reviews">
   	  <h3><?php echo __('Positivos')?> <?php if($positives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h3>
 
-      <?php if($positives->getNbResults() > 0): ?>
-        <ol>
-  	      <?php foreach($positives->getResults() as $review): ?>
-  		      <?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
-  	      <?php endforeach ?>
-	      </ol>
-      <?php else: ?>
-  	    <p><?php echo __('Aún no hay ninguna opinión positiva de %1%', array('%1%' => $politico))?></p>
-      <?php endif ?>
+  	  <?php include_partial('reviews', array('pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => 2)) ?>
 	
-  	  <?php include_partial('pagination_full', array('pager' => $positives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageU")) ?>
     </div>
-      
+	        
     <div class="negative-reviews">
 	    <h3><?php echo __('Negativos')?> <?php if($negatives->getNbResults() > 0): ?><?php echo $negativePerc; ?>%<?php endif ?></h3>
 	
-      <?php if($negatives->getNbResults() > 0): ?>
-        <ol>
-    	    <?php foreach($negatives->getResults() as $review): ?>
-    		    <?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
-    	    <?php endforeach ?>
-  	    </ol>
-      <?php else: ?>
-  	    <p><?php echo __('Aún no hay ninguna opinión negativa de %1%', array('%1%' => $politico))?></p>
-      <?php endif ?>
+  	  <?php include_partial('reviews', array('pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => 2)) ?>
 
-  	  <?php include_partial('pagination_full', array('pager' => $negatives, 'url' => 'politico/show?id='.$politico->getVanity().'&', 'page_var' => "pageD")) ?>	
     </div>
   </div>
 

@@ -68,29 +68,32 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	$this->updateSums( $request );
 	// Enviar email
 	if($request->getParameter("t") == '') {
-	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('i'));
-	  	$user = $review->getSfReviewRelatedBySfReviewId()->getsfGuardUser();
+	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
+	  	//echo $request->getParameter('i');
+	  	$user = $review->getsfGuardUser();
 	  	if ($user->getProfile()->getMailsComentarios()){
-		  	if ($review->getSfReviewRelatedBySfReviewId()->getSfReviewTypeId() == Politico::NUM_ENTITY){
-			  	$politico = PoliticoPeer::retrieveByPK( $review->getSfReviewRelatedBySfReviewId()->getEntityId() );
+		  	if ($review->getSfReviewTypeId() == Politico::NUM_ENTITY){
+			  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
 		  		$user->getProfile()->setCodigo( util::generateUID() );
 		  		$user->getProfile()->save();
 				$mailBody = $this->getPartial('reviewLeftMailBody', array(
 				  'nombre' => $user->getProfile()->getNombre()
-				  , 'usuario' => $review->getsfGuardUser()->getProfile()->getNombre() . ' ' . $review->getsfGuardUser()->getProfile()->getApellidos()
+				  , 'usuario' => $this->getUser()->getProfile()->getNombre() . ' ' . $this->getUser()->getProfile()->getApellidos()
 				  , 'politico' => $politico->getNombre() . ' ' . $politico->getApellidos()
-				  , 'texto_ori' => $review->getSfReviewRelatedBySfReviewId()->getText()
-				  , 'comentario' => $review->getText()
+				  , 'texto_ori' => $review->getText()
+				  , 'comentario' => $request->getParameter('review_text')
 				  , 'vanity' => $politico->getVanity()
 				  , 'codigo' => $user->getProfile()->getCodigo()
 				));
+				
 		  		VoMail::send(
 		  			sfContext::getInstance()->getI18N()->__('Tu vooto sobre %1% tiene un comentario', array('%1%' => $politico->getNombre() . ' ' . $politico->getApellidos()))
 		  			, $mailBody
-		  			, $user->getUsername()
+		  			, 'viteri@gmail.com' //$user->getUsername()
 		  			, array('no-reply@voota.es' => 'no-reply Voota')
 		  			, true
 		  		);
+		  		
 		  	}
 	  	}
 	}	  	
