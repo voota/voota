@@ -77,13 +77,7 @@
           <?php echo $signinform['password']->render() ?>
           <?php echo $signinform['password']->renderError() ?>
           <p class="hints"><?php echo link_to(__('¿Olvidaste tu contraseña?'), 'sfGuardAuth/reminder') ?></p>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="signin_remember"><?php echo __('Recordar') ?></label></th>
-        <td>
-          <?php echo $signinform['remember']->render() ?>
-          <?php echo $signinform['remember']->renderError() ?>
+          <p class="hints"><?php echo $signinform['remember']->render() ?> <label for="signin_remember"><?php echo __('Recordar contraseña') ?></label></p>
         </td>
       </tr>
       <tr>
