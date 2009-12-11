@@ -73,6 +73,11 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-contact .submit  { width: 500px; }
 #general-contact #content { width: 70%; }
 
+/* Normas */
+#general-rules #content { width: 65%; margin-left: 1em; }
+#general-rules #content h3 { margin-bottom: 1em; }
+#general-rules #content h3#summary { margin-bottom: 2em; }
+
 /* Perfil */
 #sfGuardAuth-edit .vanity input { display: inline; width: 10em;}
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
