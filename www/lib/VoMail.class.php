@@ -44,9 +44,9 @@ class VoMail {
 			  
 			$message = Swift_Message::newInstance( $subject )
 						->setCharset('utf-8')
-	  					->setFrom(array( $from ))
-	  					->setTo(array( $to ))
-	  					->setReturnPath($ret)
+	  					->setFrom( $from )
+	  					->setTo( $to )
+	  					->setReplyTo($ret)
 	  					->setBody( $mailBody, 'text/html', 'utf-8' )
 	  					;
 	  		if ($ret) {

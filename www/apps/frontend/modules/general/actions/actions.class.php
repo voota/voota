@@ -27,13 +27,15 @@ class generalActions extends sfVoActions{
       
       if ($this->form->isValid()) {
       	try {
-	      	$this->sendMessage(
-	      		$this->form->getValue('nombre'), 
-	      		$this->form->getValue('email'), 
-	      		$this->form->getValue('mensaje'), 
-	      		$this->form->getValue('tipo') 
-	      	);
-      		return "SendSuccess";
+			$mailBody = $this->getPartial('contactMailBody', array(
+			  	'nombre' => $this->form->getValue('nombre'),
+			  	'mensaje' => $this->form->getValue('mensaje'),
+			  	'email' => $this->form->getValue('email')
+			));
+			  
+			VoMail::sendWithRet("Contacto web [".$this->form->getValue('tipo')."]", $mailBody, 'admin@voota.es', array('no-reply@voota.es' => 'no-reply Voota'), $this->form->getValue('email'), true);
+	      	
+			return "SendSuccess";
       	}
       	catch (Exception $e){
       		return "SendFail";      		
@@ -128,13 +130,6 @@ class generalActions extends sfVoActions{
   }
   
     private function sendMessage( $nombre, $email, $mensaje, $tipo ){
-	  $mailBody = $this->getPartial('contactMailBody', array(
-	  	'nombre' => $nombre,
-	  	'mensaje' => $mensaje,
-	  	'email' => $email
-	  ));
-	  
-	  VoMail::sendWithRet("Contacto web [$tipo]", $mailBody, 'admin@voota.es', 'no-reply@voota.es', $email, true);
 	  
   }
   

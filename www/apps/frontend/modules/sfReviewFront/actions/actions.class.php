@@ -87,9 +87,8 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  		VoMail::send(
 		  			sfContext::getInstance()->getI18N()->__('Tu vooto sobre %1% tiene un comentario', array('%1%' => $politico->getNombre() . ' ' . $politico->getApellidos()))
 		  			, $mailBody
-		  			//, 'viteri@gmail.com' 
 		  			, $user->getUsername()
-		  			, 'no-reply@voota.es'
+		  			, array('no-reply@voota.es' => 'no-reply Voota')
 		  			, true
 		  		);
 		  	}

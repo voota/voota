@@ -198,7 +198,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  VoMail::send('Confirmar tu registro Voota', $mailBody, $user->getUsername(), 'no-reply@voota.es');
+	  VoMail::send('Confirmar tu registro Voota', $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
   }
   
   private function sendReminder( $user ){
@@ -207,7 +207,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  VoMail::send('Tu contraseña en Voota', $mailBody, $user->getUsername(), 'no-reply@voota.es');
+	  VoMail::send('Tu contraseña en Voota', $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
   }
   
   public function executeEdit(sfWebRequest $request)
