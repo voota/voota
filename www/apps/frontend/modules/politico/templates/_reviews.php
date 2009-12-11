@@ -13,12 +13,14 @@
 <?php endif ?>
 
 	
-<div id="<?php echo "more_".($t==1?'positives':'megatives') ?>">
-  <?php if ($pager->haveToPaginate() && $pager->getLastPage() >= ($t==1?$pageU:$pageD)): ?>
-        <?php echo jq_form_remote_tag(array(
-    	'update'   => "more_".($t==1?'positives':'megatives'),
+<div id="<?php echo "more_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD) ?>">
+  <?php if ($pager->haveToPaginate() && $pager->getLastPage() > $pager->getPage()): ?>
+      <?php echo jq_form_remote_tag(array(
+    	'update'   => "more_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD),
     	'url'      => "@politico_more_comments",
-	)) ?>
+		),
+        array('id' => "frm_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD)
+      )) ?>
 	  <?php echo input_hidden_tag('t', $t)?>
 	  <?php echo input_hidden_tag('id', $politico->getId())?>
 	  <?php echo input_hidden_tag($t==1?'pageU':'pageD', $t==1?$pageU:$pageD)?>
@@ -26,3 +28,4 @@
 	</form>
   <?php endif ?>
 </div>
+

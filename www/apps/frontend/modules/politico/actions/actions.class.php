@@ -30,10 +30,12 @@ class politicoActions extends sfVoActions
   	if ($this->t == 1) {
   		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1, BaseSfReviewManager::NUM_REVIEWS);
   		$this->pageU = $request->getParameter("pageU")+1;
+  		$this->getUser()->setAttribute('pageU', $this->pageU);
   	}
   	else {
   		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1, BaseSfReviewManager::NUM_REVIEWS);
   		$this->pageD = $request->getParameter("pageD")+1;
+  		$this->getUser()->setAttribute('pageD', $this->pageD);
   	} 
   }
 	
@@ -259,7 +261,7 @@ class politicoActions extends sfVoActions
   		if ($e == $id && $this->getUser()->isAuthenticated()) {
   			$this->review_v = $v;
   		}	
-  	} 	
+  	}
     
   	/*
 	$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->politico->getImagen();
@@ -278,10 +280,34 @@ class politicoActions extends sfVoActions
 	
 	$this->image = "bw_$imageFileName";
 	
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1);
+	$pu = $this->getUser()->getAttribute('pageU');
+	$pd = $this->getUser()->getAttribute('pageD');
+	$c = $this->getUser()->getAttribute('review_c');
+	if ($c != '' && $pu != ''){
+		$resU = BaseSfReviewManager::NUM_REVIEWS * ($pu-1);
+		$this->pageU = $pu;
+	}
+	else {
+		$resU = BaseSfReviewManager::NUM_REVIEWS;
+		$this->pageU = 2;
+	}	
+	if ($c != '' && $pd != ''){
+		$resD = BaseSfReviewManager::NUM_REVIEWS * ($pd-1);
+		$this->pageD = $pd;		
+	}
+	else {
+		$resD = BaseSfReviewManager::NUM_REVIEWS;
+		$this->pageD = 2;		
+	}	
+	
+	
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1, $resU);
 	$positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, 1);
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1, $resD);
 	$negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue(1, $id, -1);
+	
+  	$this->getUser()->setAttribute('pageU', '');
+  	$this->getUser()->setAttribute('pageD', '');
 	
 	$totalCount = $positiveCount + $negativeCount;
 	if ($totalCount > 0) {

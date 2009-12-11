@@ -150,11 +150,6 @@ rules:
   param: { module: general, action: rules }
   requirements: { sf_culture: (?:es|ca) }
 
-analytics:
-  url:   /:sf_culture/analytics
-  param: { module: general, action: analytics }
-  requirements: { sf_culture: (?:es|ca) }
-
 search:
   url:   /:sf_culture/search
   param: { module: general, action: search }

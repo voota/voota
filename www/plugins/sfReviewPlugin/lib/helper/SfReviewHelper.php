@@ -3,8 +3,8 @@
 
 function review_text($review, $msg = array()){
 	$msg = array(
-		'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador."),
-		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador."),
+		'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador (<a href='%1%'>ver normas de publicación</a>).", array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
+		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador (<a href='%1%'>ver normas de publicación</a>).", array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
 	);
 	
 	$text = ($review->getCulture() == '' || $review->getCulture() == sfContext::getInstance()->getUser()->getCulture())?$review->getText():'';
@@ -16,7 +16,7 @@ function review_text($review, $msg = array()){
 		}
 		else {
 			$ret = "<span style='text-decoration: line-through;'>". utf8_strrev( $text ) ."</span>";
-			$ret .= "<br />". $msg['offensive'] ."";
+			$ret .= "<br />". $msg['offensive'];
 		}
 	}
 	else {

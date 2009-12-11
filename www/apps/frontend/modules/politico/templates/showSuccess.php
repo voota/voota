@@ -102,14 +102,14 @@
     <div class="positive-reviews">
   	  <h3><?php echo __('Positivos')?> <?php if($positives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h3>
 
-  	  <?php include_partial('reviews', array('pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => 2)) ?>
+  	  <?php include_partial('reviews', array('pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
 	
     </div>
 	        
     <div class="negative-reviews">
 	    <h3><?php echo __('Negativos')?> <?php if($negatives->getNbResults() > 0): ?><?php echo $negativePerc; ?>%<?php endif ?></h3>
 	
-  	  <?php include_partial('reviews', array('pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => 2)) ?>
+  	  <?php include_partial('reviews', array('pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
 
     </div>
   </div>

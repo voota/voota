@@ -21,7 +21,7 @@ dev:
     s3_bucket_originals:       imagesvoota-ori-dummy
     s3_bucket_public:          imagesvoota-dummy
     sphinx_server: localhost
-    mail_enabled: off
+    mail_enabled: on
     mail_server: ssl://smtp.gmail.com
     mail_port: 465
     mail_user: no-reply@voota.es
