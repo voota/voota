@@ -68,6 +68,13 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .submit { text-align: right; }
 .hints { margin: 0; padding: 5px 0;}
 
+/* Errores */
+#error #main-inner { padding-bottom: 0; margin-bottom: 0;}
+#error #main h2 { text-align: center; color: #2b56ff; font-size: 3em; margin-bottom: 0.5em;}
+#error #message { padding: 0 240px 4em 240px;}
+#error #hands { padding-bottom: 0; text-align: center;}
+#error #footer { padding-top: 0;}
+
 /* Contacto */
 #general-contact textarea { width: 494px; }
 #general-contact .submit  { width: 500px; }
