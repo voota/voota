@@ -25,9 +25,9 @@
 		    <br />
 	    	<a href="#" onclick="document.getElementById('<?php echo "subreviews_box".$review->getId() ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sf_review_c".$review->getId() ?>' )"><?php echo __('Opinar sobre este comentario')?></a> 
 			<?php echo __('(Lleva %1%', array('%1%' => count($review->getSfReviewsRelatedBySfReviewId($uc)))) ?> 
-			<img alt="a favor" src="/images/icoMiniUp.png" />
+			<img alt="A favor, yeah" src="/images/icoMiniUp.png" />
 			<?php echo __(' y %2%', array('%2%' => count($review->getSfReviewsRelatedBySfReviewId(($dc))))) ?> 
-			<img alt="a favor" src="/images/icoMiniDown.png" />)
+			<img alt="En contra, buu" src="/images/icoMiniDown.png" />)
 		<?php endif ?>
   </p>
   
