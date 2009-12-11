@@ -77,6 +77,11 @@ usuario_confirm:
   param: { module: sfGuardAuth, action: confirm }
   requirements: { sf_culture: (?:es|ca) }
 
+usuario_unsubscribe:
+  url:   /:sf_culture/user/unsubscribe/:codigo
+  param: { module: sfGuardAuth, action: unsubscribe }
+  requirements: { sf_culture: (?:es|ca) }
+
 usuario:
   url:   /:username
   param: { module: sfGuardAuth, action: show }

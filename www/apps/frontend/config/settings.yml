@@ -5,6 +5,11 @@ prod:
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
     sphinx_server: ip-10-226-31-16.eu-west-1.compute.internal
+    mail_enabled: on
+    mail_server: ssl://smtp.gmail.com
+    mail_port: 465
+    mail_user: no-reply@voota.es
+    mail_spool_dir: /var/spool/swift
 
 dev:
   .settings:
@@ -16,6 +21,11 @@ dev:
     s3_bucket_originals:       imagesvoota-ori-dummy
     s3_bucket_public:          imagesvoota-dummy
     sphinx_server: localhost
+    mail_enabled: on
+    mail_server: ssl://smtp.gmail.com
+    mail_port: 465
+    mail_user: no-reply@voota.es
+    mail_spool_dir: /var/spool/swift
 
 test:
   .settings:
@@ -27,6 +37,11 @@ test:
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
     sphinx_server: localhost
+    mail_enabled: off
+    mail_server: ssl://smtp.gmail.com
+    mail_port: 465
+    mail_user: no-reply@voota.es
+    mail_spool_dir: /var/spool/swift
 
 all:
   .settings:

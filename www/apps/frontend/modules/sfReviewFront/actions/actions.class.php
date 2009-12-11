@@ -66,16 +66,33 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	parent::executeSend( $request );
   	
 	$this->updateSums( $request );
-  	if($request->getParameter("t") == '') {
-	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
-	  	if ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY){
-	  		// Enviar email
-			$mailBody = $this->getPartial('reviewLeftMailBody', array(
-			  'nombre' => $review->getSfGuardUser()->getProfile()->getNombre(),
-			  'politico' => 'politico',
-			  'comentario' => $request->getParameter("review_text")
-			));
-	  		//VoMail::send('Respuesta a tu comentario', $mailBody, $review->getSfGuardUser()->getUsername(), 'no-reply@voota.es', true);
+	// Enviar email
+	if($request->getParameter("t") == '') {
+	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('i'));
+	  	$user = $review->getSfReviewRelatedBySfReviewId()->getsfGuardUser();
+	  	if ($user->getProfile()->getMailsComentarios()){
+		  	if ($review->getSfReviewRelatedBySfReviewId()->getSfReviewTypeId() == Politico::NUM_ENTITY){
+			  	$politico = PoliticoPeer::retrieveByPK( $review->getSfReviewRelatedBySfReviewId()->getEntityId() );
+		  		$user->getProfile()->setCodigo( util::generateUID() );
+		  		$user->getProfile()->save();
+				$mailBody = $this->getPartial('reviewLeftMailBody', array(
+				  'nombre' => $user->getProfile()->getNombre()
+				  , 'usuario' => $review->getsfGuardUser()->getProfile()->getNombre() . ' ' . $review->getsfGuardUser()->getProfile()->getApellidos()
+				  , 'politico' => $politico->getNombre() . ' ' . $politico->getApellidos()
+				  , 'texto_ori' => $review->getSfReviewRelatedBySfReviewId()->getText()
+				  , 'comentario' => $review->getText()
+				  , 'vanity' => $politico->getVanity()
+				  , 'codigo' => $user->getProfile()->getCodigo()
+				));
+		  		VoMail::send(
+		  			sfContext::getInstance()->getI18N()->__('Tu vooto sobre %1% tiene un comentario', array('%1%' => $politico->getNombre() . ' ' . $politico->getApellidos()))
+		  			, $mailBody
+		  			//, 'viteri@gmail.com' 
+		  			, $user->getUsername()
+		  			, 'no-reply@voota.es'
+		  			, true
+		  		);
+		  	}
 	  	}
 	}	  	
   }

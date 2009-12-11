@@ -25,7 +25,7 @@ class flushMailTask extends sfBaseTask
     // ));
 
     $this->addOptions(array(
-      new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name', 'backend'),
+      new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name', 'frontend'),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
       // add your own options here
@@ -44,7 +44,7 @@ EOF;
   
   protected function execute($arguments = array(), $options = array())
   {
-  	VoMail::flush();
+  	VoMail::flush(  );
   }
     
 }

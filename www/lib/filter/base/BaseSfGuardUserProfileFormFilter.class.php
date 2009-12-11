@@ -31,6 +31,10 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'sf_guard_user_profilecol' => new sfWidgetFormFilterInput(),
       'codigo'                   => new sfWidgetFormFilterInput(),
       'papel_voota'              => new sfWidgetFormFilterInput(),
+      'mails_comentarios'        => new sfWidgetFormFilterInput(),
+      'mails_noticias'           => new sfWidgetFormFilterInput(),
+      'mails_contacto'           => new sfWidgetFormFilterInput(),
+      'mails_seguidor'           => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -50,6 +54,10 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'sf_guard_user_profilecol' => new sfValidatorPass(array('required' => false)),
       'codigo'                   => new sfValidatorPass(array('required' => false)),
       'papel_voota'              => new sfValidatorPass(array('required' => false)),
+      'mails_comentarios'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'mails_noticias'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'mails_contacto'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'mails_seguidor'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -84,6 +92,10 @@ class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'sf_guard_user_profilecol' => 'Text',
       'codigo'                   => 'Text',
       'papel_voota'              => 'Text',
+      'mails_comentarios'        => 'Number',
+      'mails_noticias'           => 'Number',
+      'mails_contacto'           => 'Number',
+      'mails_seguidor'           => 'Number',
     );
   }
 }

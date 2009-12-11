@@ -30,6 +30,10 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'sf_guard_user_profilecol' => new sfWidgetFormInput(),
       'codigo'                   => new sfWidgetFormInput(),
       'papel_voota'              => new sfWidgetFormInput(),
+      'mails_comentarios'        => new sfWidgetFormInput(),
+      'mails_noticias'           => new sfWidgetFormInput(),
+      'mails_contacto'           => new sfWidgetFormInput(),
+      'mails_seguidor'           => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -50,6 +54,10 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'sf_guard_user_profilecol' => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'codigo'                   => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'papel_voota'              => new sfValidatorString(array('max_length' => 280, 'required' => false)),
+      'mails_comentarios'        => new sfValidatorInteger(),
+      'mails_noticias'           => new sfValidatorInteger(),
+      'mails_contacto'           => new sfValidatorInteger(),
+      'mails_seguidor'           => new sfValidatorInteger(),
     ));
 
     $this->validatorSchema->setPostValidator(

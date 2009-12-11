@@ -74,13 +74,36 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$c->add(SfGuardUserProfilePeer::CODIGO, $codigo);
 	$user = sfGuardUserPeer::doSelectOne($c);
  	
-	$this->forward404Unless( $user );
 	
-  	if ($user){
-  		$user->setIsActive(1);
-  		sfGuardUserPeer::doUpdate( $user );
-  		$this->getUser()->signin( $user );
+  	if ($user) {
+		$user->setIsActive(1);
+	  	$user->save();
+	  	$user->getProfile()->setCodigo( util::generateUID() );
+	  	$user->getProfile()->save();
+	  	$this->getUser()->signin( $user );
   	}
+  }
+  
+  public function executeUnsubscribe($request)
+  {
+  	$codigo = $request->getParameter("codigo");
+  	$n = $request->getParameter("n");
+  	$this->forward404Unless($codigo);
+  	$this->forward404Unless($n);
+  	
+	$c = new Criteria();
+	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
+	$c->add(SfGuardUserProfilePeer::CODIGO, $codigo);
+	$user = sfGuardUserPeer::doSelectOne($c);
+	
+  	$this->forward404Unless($user);
+  	
+  	if ($user) {
+	  	$user->getProfile()->setMailsComentarios( 0 );
+	  	$user->getProfile()->setCodigo( util::generateUID() );
+	  	$user->getProfile()->save();
+  	}
+	
   }
   
   public function executeSignin($request)

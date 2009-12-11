@@ -169,5 +169,9 @@ propel:
     sf_guard_user_profilecol: { type: VARCHAR, size: '45', required: false }
     codigo: { type: VARCHAR, size: '45', required: false }
     papel_voota: { type: VARCHAR, size: '280', required: false }
+    mails_comentarios: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
+    mails_noticias: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
+    mails_contacto: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
+    mails_seguidor: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }

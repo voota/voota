@@ -133,7 +133,6 @@ class generalActions extends sfVoActions{
 	  	'mensaje' => $mensaje,
 	  	'email' => $email
 	  ));
-	 
 	  
 	  VoMail::sendWithRet("Contacto web [$tipo]", $mailBody, 'admin@voota.es', 'no-reply@voota.es', $email, true);
 	  

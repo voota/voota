@@ -21,59 +21,62 @@ class VoMail {
 	const MAIL_USER = 'no-reply@voota.es';	
 	const SPOOL_DIR = '/var/spool/swift';
 	
-	public static function send($subject, $mailBody, $to, $from, $spoolMe = false){
+	private static function doSend ($subject, $mailBody, $to, $from, $ret = false , $spoolMe = false) {
 		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		if ($spoolMe){
-			$transport = new Swift_SpoolTransport( new Swift_FileSpool( VoMail::SPOOL_DIR ) );
-		}
-		else {
-			$transport = Swift_SmtpTransport::newInstance(VoMail::MAIL_SERVER, VoMail::MAIL_PORT)
-                    ->setUsername( VoMail::MAIL_USER )
-                    ->setPassword( $smtp_pass );
-		}
-		 		                    
-		$mailer = Swift_Mailer::newInstance($transport);
-		  
-		$message = Swift_Message::newInstance( $subject )
-					->setCharset('utf-8')
-  					->setFrom(array( $from ))
-  					->setTo(array( $to ))
-  					->setBody( $mailBody, 'text/html', 'utf-8' )
-  					;
-  		$result = $mailer->send($message);
+		
+		$mailEnabled = sfConfig::get('sf_mail_enabled');
+		$mailServer = sfConfig::get('sf_mail_server');
+		$mailPort = sfConfig::get('sf_mail_port');
+		$mailUser = sfConfig::get('sf_mail_user');
+		$mailSpoolDir = sfConfig::get('sf_mail_spool_dir');
+
+		if ($mailEnabled == 'on') {				
+			if ($spoolMe){
+				$transport = new Swift_SpoolTransport( new Swift_FileSpool( $mailSpoolDir ) );
+			}
+			else {
+				$transport = Swift_SmtpTransport::newInstance($mailServer, $mailPort)
+	                    ->setUsername( $mailUser )
+	                    ->setPassword( $smtp_pass );
+			}
+			 		                    
+			$mailer = Swift_Mailer::newInstance($transport);
+			  
+			$message = Swift_Message::newInstance( $subject )
+						->setCharset('utf-8')
+	  					->setFrom(array( $from ))
+	  					->setTo(array( $to ))
+	  					->setReturnPath($ret)
+	  					->setBody( $mailBody, 'text/html', 'utf-8' )
+	  					;
+	  		if ($ret) {
+	  			$message->setReturnPath($ret);
+	  		}
+	  		$result = $mailer->send($message);
+		}	
+	}
+	
+	public static function send($subject, $mailBody, $to, $from, $spoolMe = false){
+		VoMail::doSend ($subject, $mailBody, $to, $from, false , $spoolMe);
 	}	
 	
 	public static function sendWithRet($subject, $mailBody, $to, $from, $ret, $spoolMe = false){
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		
-		if ($spoolMe){
-			$transport = new Swift_SpoolTransport( new Swift_FileSpool( VoMail::SPOOL_DIR ) );
-		}
-		else {
-			$transport = Swift_SmtpTransport::newInstance(VoMail::MAIL_SERVER, VoMail::MAIL_PORT)
-                    ->setUsername( VoMail::MAIL_USER )
-                    ->setPassword( $smtp_pass );
-		}
-		 		                    
-		$mailer = Swift_Mailer::newInstance($transport);
-		  
-		$message = Swift_Message::newInstance( $subject )
-					->setCharset('utf-8')
-  					->setFrom(array( $from ))
-  					->setTo(array( $to ))
-  					->setReturnPath($ret)
-  					->setBody( $mailBody, 'text/html', 'utf-8' )
-  					;
-  		$result = $mailer->send($message);
+		VoMail::doSend ($subject, $mailBody, $to, $from, $ret , $spoolMe);
 	}
 	
 	public static function flush(){
+  		$mailServer = sfConfig::get('sf_mail_server');
+		$mailPort = sfConfig::get('sf_mail_port');
+		$mailUser = sfConfig::get('sf_mail_user');
+		$mailSpoolDir = sfConfig::get('sf_mail_spool_dir');
 		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		$transport = Swift_SmtpTransport::newInstance(VoMail::MAIL_SERVER, VoMail::MAIL_PORT)
-                    ->setUsername( VoMail::MAIL_USER )
+		
+		
+		$transport = Swift_SmtpTransport::newInstance($mailServer, $mailPort)
+                    ->setUsername( $mailUser )
                     ->setPassword( $smtp_pass );
 				
-		$spool = new Swift_FileSpool( VoMail::SPOOL_DIR );
+		$spool = new Swift_FileSpool( $mailSpoolDir );
 		
 		$spool->flushQueue($transport);
 	}
