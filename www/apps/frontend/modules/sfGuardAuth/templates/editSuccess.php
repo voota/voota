@@ -28,7 +28,7 @@
     <tr>
       <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
       <td>
-        <?php echo $profileEditForm['presentacion']->render(array('rows' => 12)) ?>
+        <?php echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
         <?php echo $profileEditForm['presentacion']->renderError() ?>
       </td>
       <td class="hints"><?php echo __('(opcional)') ?></td>
