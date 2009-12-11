@@ -30,14 +30,15 @@ dev:
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  off
-    web_debug:              off
-    no_script_name:         off
-    etag:                   off
+    cache:                  on
+    #web_debug:              off
+    #no_script_name:         off
+    no_script_name:         on
+    #etag:                   off
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
     sphinx_server: localhost
-    mail_enabled: off
+    mail_enabled: on
     mail_server: ssl://smtp.gmail.com
     mail_port: 465
     mail_user: no-reply@voota.es
