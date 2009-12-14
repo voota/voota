@@ -45,10 +45,7 @@ class politicoActions extends sfVoActions
   		$this->pageD = $request->getParameter("pageD")+1;
   		$this->getUser()->setAttribute('pageD', $this->pageD);
   	}
-  	$this->politico = false; 
-  	if ($this->pager->getNbResults() == 0){
-  		$this->politico = PoliticoPeer::retrieveByPK( $id );
-  	}
+  	$this->politico = PoliticoPeer::retrieveByPK( $id );
   }
 	
   public function executeIndex(sfWebRequest $request)
