@@ -49,7 +49,7 @@ class BaseSfReviewManager
     return $pager;
   }
   
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -61,7 +61,6 @@ class BaseSfReviewManager
   	else {
   		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
   	}
-    
   	if ($value != NULL){  	  	
   		$criteria->add(SfReviewPeer::VALUE, $value);
   	}
@@ -71,14 +70,16 @@ class BaseSfReviewManager
   	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
   	$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
-  	
-  	/*
-	return SfReviewPeer::doSelect($criteria);
-	*/
+
   	$pager = new sfPropelPager('SfReview', $numberOfResults);
     $pager->setCriteria($criteria);
-    if ($request)
-    	$pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
+    if ($page) {
+    	$pager->setPage( $page );
+    }
+    else {
+	    if ($request)
+	    	$pager->setPage($request->getParameter($value == 1?'pageU':'pageD', 1));
+    }
     $pager->init();
     return $pager;
   	  	

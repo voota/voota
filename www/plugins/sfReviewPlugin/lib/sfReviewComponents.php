@@ -15,8 +15,8 @@ class sfReviewComponents extends sfComponents
   		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
   	}
   	
-	$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
-	$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
+	//$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
+	//$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
 	$this->total = $this->reviewLastList->getNbResults();// + $this->reviewList->getNbResults();
 	
 	$this->seeMoreCount = 0;

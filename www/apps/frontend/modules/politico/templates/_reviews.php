@@ -2,7 +2,14 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 
-<?php if($pager->getNbResults() > 0): ?>
+<?php if(!isset($lastPager) || $lastPager->getNbResults() > 0): ?>
+	<?php if(isset($lastPager)): ?>
+		<ol>
+		      <?php foreach($lastPager->getResults() as $review): ?>
+		  		<?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
+		  	<?php endforeach ?>
+		</ol>
+	<?php endif ?>
 	<ol>
   	    <?php foreach($pager->getResults() as $review): ?>
   			<?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
