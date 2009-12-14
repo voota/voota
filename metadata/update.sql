@@ -28,3 +28,8 @@ ALTER TABLE `voota`.`sf_review` ADD COLUMN `balance` INT(11) NULL DEFAULT 0  AFT
 ALTER TABLE `voota`.`sf_guard_user_profile` ADD COLUMN `mails_comentarios` INT(11) NOT NULL DEFAULT 1  AFTER `papel_voota` , ADD COLUMN `mails_contacto` INT(11) NOT NULL DEFAULT 1  AFTER `mails_comentarios` , ADD COLUMN `mails_noticias` INT(11) NOT NULL DEFAULT 1  AFTER `mails_comentarios` , ADD COLUMN `mails_seguidor` INT(11) NOT NULL DEFAULT 1  AFTER `mails_contacto` ;
 
 
+ALTER TABLE `voota`.`politico` DROP COLUMN `bio` , DROP COLUMN `formacion` , DROP COLUMN `presentacion` ;
+
+ALTER TABLE `voota`.`sf_review_type` ADD COLUMN `model` VARCHAR(45) NULL DEFAULT NULL  AFTER `max_value` , ADD COLUMN `module` VARCHAR(45) NULL DEFAULT NULL  AFTER `model` ;
+
+

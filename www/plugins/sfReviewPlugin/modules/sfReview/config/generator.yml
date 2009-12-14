@@ -43,7 +43,7 @@ generator:
       form:
         display: 
           "Moderation": [sf_review_status_id, culture]
-          "Review data": [_review_data]
+          "Review data": [~reviewData]
         fields:
           sf_review_status_id: 
             label: status

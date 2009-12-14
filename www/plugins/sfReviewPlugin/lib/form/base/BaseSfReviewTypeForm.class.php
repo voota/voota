@@ -15,12 +15,16 @@ class BaseSfReviewTypeForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'        => new sfWidgetFormInputHidden(),
       'name'      => new sfWidgetFormInput(),
+      'model'     => new sfWidgetFormInput(),
+      'module'    => new sfWidgetFormInput(),
       'max_value' => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
       'id'        => new sfValidatorPropelChoice(array('model' => 'SfReviewType', 'column' => 'id', 'required' => false)),
       'name'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'model'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'module'    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'max_value' => new sfValidatorInteger(array('required' => false)),
     ));
 

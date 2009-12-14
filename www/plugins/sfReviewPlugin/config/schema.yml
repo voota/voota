@@ -47,6 +47,8 @@ propel:
     _attributes: { phpName: SfReviewType }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     name: { type: VARCHAR, size: '45', required: false }
+    model: { type: VARCHAR, size: '45', required: false }
+    module: { type: VARCHAR, size: '45', required: false }
     max_value: { type: INTEGER, size: '11', required: false }
   sf_review_type_entity:
     _attributes: { phpName: SfReviewTypeEntity }

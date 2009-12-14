@@ -728,6 +728,146 @@
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
       </trans-unit>
+      <trans-unit id="173">
+        <source>Nuestro blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Contactar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Tu vooto sobre %1% tiene un comentario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt;
+
+&lt;p&gt;Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:&lt;/p&gt;
+
+&lt;p&gt;"%3%"&lt;/p&gt;
+
+&lt;p&gt;Esto es lo que opinaste sobre %4%:&lt;/p&gt;
+
+&lt;p&gt;"%5%"&lt;/p&gt;
+
+&lt;p&gt;Ver tu vooto y sus comentarios en estado natural: &lt;a href="%6%"&gt;%6%&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Dejar de recibir estos avisos (simplemente pincha en este link): &lt;a href="%7%"&gt;%7%&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un abrazo, Comunidad Voota&lt;/p&gt;
+
+&lt;p&gt;Blog de Voota:  http://blog.voota.es Voota en Twitter:  http://twitter.com/voota Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>http://blog.voota.es/</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Contacta con Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>¿De qué se trata?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Sugerencia</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Queja</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Corrección</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Otros</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Tu mensaje</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Las opiniones son libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>Publicar datos personales de terceros (políticos u otros usuarios)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Insultar o amenazar.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Incitar al odio, la violencia o la difamación.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Incitar a la discriminación por razones de sexo, raza, religión, afiliación, política, creencias, edad o condición.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Enlazar a páginas con contenidos ilegales.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Incluir contenidos protegidos por derechos de propiedad de terceros sin autorización.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>¿Más detalles?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Date una vuelta por nuestro aviso legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Ayúdanos a mejorar Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Contáctanos si ves algún contenido ilegal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Aún no hay ninguna opinión %1% de %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>más</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>positiva</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>negativa</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Muy bien, no te enviaremos más este tipo de avisos por mail.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>aviso legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Recordar contraseña</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

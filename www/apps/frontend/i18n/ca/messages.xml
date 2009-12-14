@@ -1,273 +1,373 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-08-31T21:25:33Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-12-14T15:19:27Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
         <source>Coomparte opiniones sobre los políticos de España.</source>
         <target>Coomparteix opinions sobre els polítics de Catalunya i d'Espanya.</target>
-      <note/><alt-trans origin="frans"><target>Coomparteix opinions sobre els polítics de Catalunya i d'Espanya.</target></alt-trans><note/></trans-unit>
+        <note/>
+        <alt-trans origin="frans">
+          <target>Coomparteix opinions sobre els polítics de Catalunya i d'Espanya.</target>
+        </alt-trans>
+        <note/>
+      </trans-unit>
       <trans-unit id="2" approved="yes">
         <source>De momento: Congreso, Senado y Parlamento de Cataluña.</source>
         <target>De moment: Congrés, Senat i Parlament de Catalunya.</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="3" approved="yes">
         <source>Estamos preparando todo el tinglado, muy proonto en tu pantalla.</source>
         <target>Estem preparant tot el tinglado, moolt aviat a la teva pantalla.</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="4" approved="yes">
         <source>Voota tiene un blog</source>
         <target>Voota té un blog</target>
-      <note/><alt-trans origin="versionmerge"><target>Voota té un blog</target></alt-trans></trans-unit>
+        <note/>
+        <alt-trans origin="versionmerge">
+          <target>Voota té un blog</target>
+        </alt-trans>
+      </trans-unit>
       <trans-unit id="5" approved="yes">
         <source>Icono Blog Voota</source>
         <target>Icona Blog Voota</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="6" approved="yes">
         <source>Enlace Blog Voota</source>
         <target>Enllaç Blog Voota</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="7" approved="yes">
         <source>Voota en Twitter</source>
         <target>Voota a Twitter</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="8" approved="yes">
         <source>Icono Twitter</source>
         <target>Icona Twitter</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="9" approved="yes">
         <source>Enlace Voota en Twitter</source>
         <target>Enllaç Voota a Twitter</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="10" approved="yes">
         <source>Voota en Facebook</source>
         <target>Voota a Facebook</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="11" approved="yes">
         <source>Icono Facebook</source>
         <target>Icona Facebook</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="12" approved="yes">
         <source>Enlace Voota en Facebook</source>
         <target>Enllaç Voota a Facebook</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="13" approved="yes">
         <source>¿Te gusta la idea?</source>
         <target>T'agrada la idea?</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="14" approved="yes">
         <source>Icono Up</source>
         <target>Icona Up</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="15" approved="yes">
         <source>Icono mano Up</source>
         <target>Icona mà Up</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="16" approved="yes">
         <source>A favor, yeah</source>
         <target>A favor, yeah</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="17" approved="yes">
         <source>Icono Down</source>
         <target>Icona Down</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="18" approved="yes">
         <source>Icono mano Down</source>
         <target>Icona mà Down</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="19" approved="yes">
         <source>En contra, buu</source>
         <target>En contra, buu</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="20" approved="yes">
         <source>Positivos</source>
         <target>Positius</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="21" approved="yes">
         <source>Negativos</source>
         <target>Negatius</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="22" approved="yes">
         <source>¿Te gusta la idea? Aceptamos sugerencias en</source>
         <target>T'agrada la idea? Acceptem suggerències a</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="23" approved="yes">
         <source>o</source>
         <target>o</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="24" approved="yes">
         <source>Tú tienes la última palabra</source>
         <target>Tu tens l'última paraula</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="25" approved="yes">
         <source>Voota y &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
         <target>Voota i &lt;a href="http://es.creativecommons.org/"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="26" approved="yes">
         <source>Voota y &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
         <target>Voota i &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target>
-      <note/><note/></trans-unit>
+        <note/>
+        <note/>
+      </trans-unit>
       <trans-unit id="27" approved="yes">
         <source>Voota y &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"&gt;Creative Commons&lt;/a&gt; son amigos de toda la vida</source>
         <target>Voota i &lt;a href="http://creativecommons.org/licenses/by-sa/3.0/deed.ca"&gt;Creative Commons&lt;/a&gt; són amics de tota la vida</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="28" approved="yes">
         <source>http://blog.voota.es/es</source>
         <target>http://blog.voota.es/ca</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="29" approved="yes">
         <source>http://twitter.com/voota</source>
         <target>http://twitter.com/voota_ca</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="30" approved="yes">
         <source>http://www.facebook.com/pages/Voota/120100006457</source>
         <target>http://www.facebook.com/pages/Voota_ca/147695619187</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="31" approved="yes">
         <source>twitter.com/voota</source>
         <target>twitter.com/voota_ca</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="32">
         <source>http://twitter.com/Voota</source>
         <target state="needs-review-translation">http://twitter.com/Voota_ca</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="33">
         <source>twitter.com/Voota</source>
         <target state="needs-review-translation">twitter.com/Voota_ca</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="34" approved="yes">
         <source>"%value%" no es una dirección de email válida.</source>
         <target>"%value%" no és una direcció de mail vàlida.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="35" approved="yes">
         <source>Coomparte opiniones sobre los políticos de España</source>
         <target>Coomparteix opinions sobre els polítics d'Espanya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="36" approved="yes">
         <source>Política, Políticos, Partidos, Congreso, Senado, Parlamento de Cataluña</source>
         <target>Política, Polítics, Congrés, Senat, Parlament de Catalunya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="37" approved="yes">
         <source>Spanish</source>
         <target>Castellà</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="38" approved="yes">
         <source>Quiénes somos</source>
         <target>Qui som</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="39" approved="yes">
         <source>Aviso legal</source>
         <target>Avís legal</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="40" approved="yes">
         <source>http://blog.voota.es/es/aviso-legal</source>
         <target>http://blog.voota.es/es/aviso-legal</target>
-      <note/><note>aún no tenemos el aviso legal en català</note><note>aún no tenemos el aviso legal en català</note></trans-unit>
+        <note/>
+        <note>aún no tenemos el aviso legal en català</note>
+        <note>aún no tenemos el aviso legal en català</note>
+      </trans-unit>
       <trans-unit id="41" approved="yes">
         <source>blog</source>
         <target>blog</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="42" approved="yes">
         <source>¿Quienes somos? Algunos datos sobre Voota</source>
         <target>Qui som? Algunes dades sobre Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="43" approved="yes">
         <source>Somos una asociación sin ánimo de lucro. Nuestro objetivo es fomentar la participación ciudadana en la política del momento. Voota es la web donde pretendemos publicar las opiniones de tood el mundo</source>
         <target>Som una associació sense ànim de lucre. El nostre objectiu és fomentar la participació ciutadana a la política actual.Voota és la web on pretenem publicar opinions de tothom.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="44" approved="yes">
         <source>Equipo fundador de Voota</source>
         <target>Equip fundador de Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="45" approved="yes">
         <source>Otra gente muy implicada en el proyecto</source>
         <target>Persones molt implicades amb el projecte</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="46" approved="yes">
         <source>Y, finalmente, nuestros datos sociales</source>
         <target>I, finalment, les nostres dades socials</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="47" approved="yes">
         <source>Asociación Voota,</source>
         <target>Associació Voota,</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="48" approved="yes">
         <source>CIF: G85756625,</source>
         <target>CIF: G85756625,</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="49" approved="yes">
         <source>Domicilio soical en C/ Ruiz de Alarcón 14 1ºD</source>
         <target>Domicili social al C/ Ruiz de Alarcón 14 1ºD</target>
-      <note/><note>1rD &gt; 1ºD</note></trans-unit>
+        <note/>
+        <note>1rD &gt; 1ºD</note>
+      </trans-unit>
       <trans-unit id="50" approved="yes">
         <source>28014 Madrid</source>
         <target>28014 Madrid</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="51" approved="yes">
         <source>Más sobre Voota</source>
         <target>Més sobre Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="52" approved="yes">
         <source>Más sobre nosotros en ...</source>
         <target>Més sobre nosaltres a...</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="53" approved="yes">
         <source>Algunos Hitos de Voota</source>
         <target>Algunes fites de Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="54" approved="yes">
         <source>Ayuda: Valoración de un político</source>
         <target>Ajuda: Valoració d'un polític</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="55" approved="yes">
         <source>El numerito que aparece junto al nombre del poilítico es el número de vootos positivos que tiene. Sirve para poder coompararlo con otros políticos.</source>
         <target>El número que apareix al costat del nom del polític és el nombre de voots positius que té. Serveix per poder comparar-lo amb la resta de polítics.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="56" approved="yes">
         <source>Voota sobre</source>
         <target>Voota sobre</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="57" approved="yes">
         <source>Su biografía</source>
         <target>Biografia</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="58" approved="yes">
         <source>Enlaces externos</source>
         <target>Enllaços externs</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="59" approved="yes">
         <source>años</source>
         <target>anys</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="60" approved="yes">
         <source>Ranking de políticos</source>
         <target>Rànquing de polítics</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="61" approved="yes">
         <source>Nombre</source>
         <target>Nom</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="62" approved="yes">
         <source>Votos</source>
         <target>Vots</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="63" approved="yes">
         <source>Total</source>
         <target>Total</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="64" approved="yes">
         <source>¿Olvidaste tu contraseña?</source>
         <target>Has oblidat la teva contrassenya?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="65" approved="yes">
         <source>Danos tu email y te la enviamos ahora mismo</source>
         <target>Deixa'ns el teu mail i te l'enviem d'immediat</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="66" approved="yes">
         <source>Enviar</source>
         <target>Enviar</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="67" approved="yes">
         <source>&lt;p&gt;¡Hola %1%!&lt;/p&gt;
 &lt;p&gt; Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace&lt;/p&gt;
@@ -275,7 +375,8 @@
         <target>&lt;p&gt;Hola %1%!&lt;/p&gt;
 &lt;p&gt; Dues simples frases per comentar-te que per acabar el teu registre a Voota necessitem que ens confirmis que ets tu. Només has de fer click al següent enllaç&lt;/p&gt;
 &lt;p&gt;</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="68" approved="yes">
         <source>&lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
 &lt;p&gt;¡Y nada más! ¡Bienvenido a Voota!&lt;/p&gt;
@@ -287,35 +388,43 @@
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="69" approved="yes">
         <source>Hola %1%, estas son tus preferencias</source>
         <target>Hola %1%, aquestes són les teves preferències</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="70" approved="yes">
         <source>Guardar cambios</source>
         <target>Guardar canvis</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="71" approved="yes">
         <source>Muy bien, contraseña cambiada</source>
         <target>D'acord, contrassenya canviada</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="72" approved="yes">
         <source>¿Que hacemos ahora?</source>
         <target>Què fem ara?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="73" approved="yes">
         <source>Tú dirás.</source>
         <target>Tu diràs.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="74" approved="yes">
         <source>¿Nos vamos a la</source>
         <target>Anem a la</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="75" approved="yes">
         <source>Bienvenido a Voota! Hoy es un gran día :-)</source>
         <target>Benvingut a Voota! Avui és un gran dia :-)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="76" approved="yes">
         <source>&lt;p&gt;¡Hola %1%!&lt;/p&gt;
 &lt;p&gt; Alguien, seguramente tú, nos ha solicitado que te enviemos la contraseña que has olvidado. En el siguiente enlace podrás configurar dicha contraseña a tu gusto:&lt;/p&gt;
@@ -323,7 +432,8 @@
         <target>&lt;p&gt;Hola %1%!&lt;/p&gt;
 &lt;p&gt; Algú, segurament tu, ens ha sol·licitat que t'enviem la contrasenya que has oblidat. Al següent enllaç podràs configurar-la al teu gust:&lt;/p&gt;
 &lt;p&gt;</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="77" approved="yes">
         <source>&lt;/p&gt;
 
@@ -339,211 +449,263 @@
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="78" approved="yes">
         <source>¿Y ahora qué?</source>
         <target>I ara què?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="79" approved="yes">
         <source>Te hemos enviado un email a</source>
         <target>T'hem enviat un correu electrònic a</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="80" approved="yes">
         <source>Confirma tus datos sobre el enlace que aparecerá en tu bandeja de entrada.</source>
         <target>Confirma les teves dades sobre l'enllaç que apareixerà a la teva safata d'entrada.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="81" approved="yes">
         <source>Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante...)</source>
         <target>Depenent del correu que utilitzis tardarà més o menys en arribar-te (Hotmail tarda bastant...)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="82" approved="yes">
         <source>Te hemos enviado un e-mail a</source>
         <target>T'hem enviat un mail a</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="83" approved="yes">
         <source>Confirma tus datos pinchando sobre el enlace que aparecerá en tu bandeja de entrada.</source>
         <target>Confirma les teves dades fent click sobre l'enllaç que apareixerà a la teva safata d'entrada.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="84" approved="yes">
         <source>Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante ...)</source>
         <target>Depenent del correu que utilitzis tardarà més o menys en arribar-te (Hotmail tarda bastant...)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="85" approved="yes">
         <source>Define tu nueva contraseña</source>
         <target>Tria una nova contrasenya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="86" approved="yes">
         <source>¿Nuevo en Voota? Empieza aquí</source>
         <target>Nou a Voota? Comença aquí</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="87" approved="yes">
         <source>Ver la contraseña</source>
         <target>Veure la contrasenya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="88" approved="yes">
         <source>Registrate en Voota</source>
         <target>Registra't a Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="89" approved="yes">
         <source>¿Ya estás registrado? Adelante :)</source>
         <target>Ja estàs registrat? Endavant :)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="90" approved="yes">
         <source>Olvidaste tu contraseña</source>
         <target>Has oblidat la teva contrasenya?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="91" approved="yes">
         <source>Hacer cambios</source>
         <target>Fer canvis</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="92" approved="yes">
         <source>Algo que comentar? Es el mejor momento :-)</source>
         <target>Alguna cosa a comentar? Aquest és el moment :-)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="93" approved="yes">
         <source>Eliminar</source>
         <target>Eliminar</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="94" approved="yes">
         <source>Acceso usuarios</source>
         <target>Accés usuaris</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="95" approved="yes">
         <source>salir</source>
         <target>sortir</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="96" approved="yes">
         <source>Dejarlo como estaba</source>
         <target>Deixar-ho com estava</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="97" approved="yes">
         <source>Eliminar opinión</source>
         <target>Eliminar opinió</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="98" approved="yes">
         <source>¿Seguro?</source>
         <target>Segur?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="99" approved="yes">
         <source>Sí</source>
         <target>Sí</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="100" approved="yes">
         <source>No</source>
         <target>No</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="101" approved="yes">
         <source>Residente en %1%</source>
         <target>Resident a %1%</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="102" approved="yes">
         <source>Aún no hay ninguna opinión positiva de %1%</source>
         <target>Encara no hi ha cap opinió positiva de %1%</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="103" approved="yes">
         <source>Aún no hay ninguna opinión negativa de %1%</source>
         <target>Encara no hi ha cap opinió negativa de %1%</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="104" approved="yes">
         <source>%1% años</source>
         <target>%1% anys</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="105" approved="yes">
         <source>Tu Email</source>
         <target>Correu electrònic</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="106" approved="yes">
         <source>Tu nombre</source>
         <target>Nom</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="107" approved="yes">
         <source>Tus apellidos</source>
         <target>Cognoms</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="108" approved="yes">
         <source>Fecha de nacimiento</source>
         <target>Data de naixement</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="109" approved="yes">
         <source>Tu dirección</source>
         <target>Direcció</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="110" approved="yes">
         <source>Tu avatar</source>
         <target>Avatar</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="111" approved="yes">
         <source>¿Nueva contraseña?</source>
         <target>Nova contrasenya?</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="112" approved="yes">
         <source>Repítela nuevamente</source>
         <target>Repeteix-la</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="113" approved="yes">
         <source>Antigua contraseña</source>
         <target>Antiga contrasenya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="114" approved="yes">
         <source>Contraseña</source>
         <target>Contrasenya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="115" approved="yes">
         <source>Otra vez</source>
         <target>Un altre cop</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="116" approved="yes">
         <source>Tu email</source>
         <target>Correu electrònic</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="117" approved="yes">
         <source>Apellidos</source>
         <target>Cognoms</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="118" approved="yes">
         <source>Recordar</source>
         <target>Recordar</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="119" approved="yes">
         <source>Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.</source>
         <target>Aquest número indica el nombre de vots positius que té aquesta persona. Creiem que pot servir d'ajuda per comparar aquesta dada amb la d'altres polítics.</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="120" approved="yes">
         <source>[ver menos ...]</source>
         <target>[veure menys...]</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="121" approved="yes">
         <source>[ver más ...]</source>
         <target>[veure menys...]</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="122" approved="yes">
         <source>(opcional)</source>
         <target>(opcional)</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="123" approved="yes">
         <source>Presentación</source>
         <target>Presentació</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="124" approved="yes">
         <source>Tu página en Voota http://voota.es/</source>
         <target>La teva pàgina a Voota</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="125" approved="yes">
         <source>Contraseña actual</source>
         <target>Contrasenya actual</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="126" approved="yes">
         <source>Ocultar la contraseña</source>
         <target>Ocultar la contrasenya</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="127" approved="yes">
         <source>%1% voto positivo</source>
         <target>%1% vot positiu</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="128" approved="yes">
         <source>%1% votos positivos</source>
         <target>%1% vots positius</target>
-      <note/></trans-unit>
+        <note/>
+      </trans-unit>
       <trans-unit id="129" approved="yes">
         <source>Sobre Voota - Quiénes somos</source>
         <target>Sobre Voota - Qui som</target>
@@ -727,6 +889,146 @@
 &lt;p&gt;&amp;nbsp;&lt;/p&gt;
 &lt;p&gt;Una salutació&lt;/p&gt;
 &lt;p&gt;Comunitat Voota&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="173">
+        <source>Nuestro blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="174">
+        <source>Blog</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="175">
+        <source>Contactar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="176">
+        <source>Tu vooto sobre %1% tiene un comentario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="177">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt;
+
+&lt;p&gt;Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:&lt;/p&gt;
+
+&lt;p&gt;"%3%"&lt;/p&gt;
+
+&lt;p&gt;Esto es lo que opinaste sobre %4%:&lt;/p&gt;
+
+&lt;p&gt;"%5%"&lt;/p&gt;
+
+&lt;p&gt;Ver tu vooto y sus comentarios en estado natural: &lt;a href="%6%"&gt;%6%&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Dejar de recibir estos avisos (simplemente pincha en este link): &lt;a href="%7%"&gt;%7%&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Un abrazo, Comunidad Voota&lt;/p&gt;
+
+&lt;p&gt;Blog de Voota:  http://blog.voota.es Voota en Twitter:  http://twitter.com/voota Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="178">
+        <source>http://blog.voota.es/</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="179">
+        <source>Contacta con Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="180">
+        <source>¿De qué se trata?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="181">
+        <source>Sugerencia</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="182">
+        <source>Queja</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="183">
+        <source>Corrección</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="184">
+        <source>Otros</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="185">
+        <source>Tu mensaje</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="186">
+        <source>Las opiniones son libres, publica todo lo que quieras, a favor o en contra, salvo lo que esté prohibido por ley.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="187">
+        <source>Publicar datos personales de terceros (políticos u otros usuarios)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="188">
+        <source>Insultar o amenazar.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="189">
+        <source>Incitar al odio, la violencia o la difamación.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="190">
+        <source>Incitar a la discriminación por razones de sexo, raza, religión, afiliación, política, creencias, edad o condición.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="191">
+        <source>Enlazar a páginas con contenidos ilegales.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="192">
+        <source>Incluir contenidos protegidos por derechos de propiedad de terceros sin autorización.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="193">
+        <source>¿Más detalles?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="194">
+        <source>Date una vuelta por nuestro aviso legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="195">
+        <source>Ayúdanos a mejorar Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="196">
+        <source>Contáctanos si ves algún contenido ilegal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="197">
+        <source>Aún no hay ninguna opinión %1% de %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="198">
+        <source>más</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="199">
+        <source>positiva</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="200">
+        <source>negativa</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="201">
+        <source>Muy bien, no te enviaremos más este tipo de avisos por mail.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="202">
+        <source>aviso legal</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="203">
+        <source>Recordar contraseña</source>
+        <target/>
       </trans-unit>
     </body>
   </file>
