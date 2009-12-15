@@ -40,19 +40,24 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_i_partido: [partido_id], fk_i_politico: [politico_id] }
   institucion:
-    _attributes: { phpName: Institucion }
+    _attributes: { phpName: Institucion, isI18N: true, i18nTable: institucion_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre: { type: VARCHAR, size: '150', required: true }
     geo_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     disabled: { type: CHAR, size: '1', required: false }
     orden: { type: INTEGER, size: '11', required: false }
-    nombre_corto: { type: VARCHAR, size: '45', required: false }
     url: { type: VARCHAR, size: '255', required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
-    vanity: { type: VARCHAR, size: '45', required: false }
     _indexes: { fk_geo: [geo_id] }
-    _uniques: { uniq_institucion: [vanity] }
+  institucion_i18n:
+    _attributes: { phpName: InstitucionI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    vanity: { type: VARCHAR, size: '45', required: false }
+    nombre_corto: { type: VARCHAR, size: '45', required: false }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    _indexes: { fk_institucion_i18n_1: [id] }
+    _uniques: { uniq_inst_i18n: [vanity,culture] }
   lista:
     _attributes: { phpName: Lista }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

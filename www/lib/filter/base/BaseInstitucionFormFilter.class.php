@@ -15,29 +15,23 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre'                    => new sfWidgetFormFilterInput(),
       'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'disabled'                  => new sfWidgetFormFilterInput(),
       'orden'                     => new sfWidgetFormFilterInput(),
-      'nombre_corto'              => new sfWidgetFormFilterInput(),
       'url'                       => new sfWidgetFormFilterInput(),
       'imagen'                    => new sfWidgetFormFilterInput(),
-      'vanity'                    => new sfWidgetFormFilterInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'nombre'                    => new sfValidatorPass(array('required' => false)),
       'geo_id'                    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
       'created_at'                => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'disabled'                  => new sfValidatorPass(array('required' => false)),
       'orden'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'nombre_corto'              => new sfValidatorPass(array('required' => false)),
       'url'                       => new sfValidatorPass(array('required' => false)),
       'imagen'                    => new sfValidatorPass(array('required' => false)),
-      'vanity'                    => new sfValidatorPass(array('required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
     ));
@@ -108,15 +102,12 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                        => 'Number',
-      'nombre'                    => 'Text',
       'geo_id'                    => 'ForeignKey',
       'created_at'                => 'Date',
       'disabled'                  => 'Text',
       'orden'                     => 'Number',
-      'nombre_corto'              => 'Text',
       'url'                       => 'Text',
       'imagen'                    => 'Text',
-      'vanity'                    => 'Text',
       'politico_institucion_list' => 'ManyKey',
       'eleccion_institucion_list' => 'ManyKey',
     );

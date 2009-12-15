@@ -17,8 +17,10 @@ generator:
         display: [nombre_corto,nombre,geo,disabled,orden]
         sort: [orden, asc]
       filter: 
-        display: [nombre_corto,nombre, geo_id, disabled,orden, url]
+        display: [geo_id, disabled,orden, url]
       form:    
-        display: [vanity,nombre_corto,nombre,geo_id,disabled,orden,url, imagen]
+        display: 
+          "Datos generales: [geo_id,disabled,orden,url, imagen]
+          "Traducibles": [es,ca]
       edit:    ~
       new:     ~

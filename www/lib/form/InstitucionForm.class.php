@@ -13,7 +13,9 @@ class InstitucionForm extends BaseInstitucionForm
   protected static $estados = array('N' => 'No', 'S' => 'Sí');
   
   public function configure()
-  {
+  {  	
+    $this->embedI18n(array('es', 'ca'));
+    
     $this->widgetSchema['disabled'] = new sfWidgetFormSelect(array('choices' => self::$estados));
 
   
@@ -44,7 +46,7 @@ class InstitucionForm extends BaseInstitucionForm
     	$vanityUrl = SfVoUtil::encodeVanity( $this->getValue('nombre_corto') );
     	
 	    $c2 = new Criteria();
-	    $c2->add(InstitucionPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+	    $c2->add(InstitucionI18nPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
 	    $c2->add(InstitucionPeer::ID, $institucion->getId(), Criteria::NOT_EQUAL);
 	    $usuariosLikeMe = InstitucionPeer::doSelect( $c2 );
 	    $counter = 0;

@@ -71,8 +71,7 @@
 
     <?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
 	    <p>
-	      <?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?>
-	        <?php if($idx > 0):?>, <?php endif ?>
+	      <?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?>
 	        <?php
 	  	      $url = '@ranking_'.$sf_user->getCulture('es');
 	  	      echo link_to(
@@ -80,8 +79,7 @@
 	 	          "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getVanity(),
               array()
             )
-          ?>
-        <?php endforeach ?>
+          ?><?php endforeach ?>
 	    </p>
     <?php endif ?>
 

@@ -14,37 +14,27 @@ class BaseInstitucionForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'nombre'                    => new sfWidgetFormInput(),
       'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'                => new sfWidgetFormDateTime(),
       'disabled'                  => new sfWidgetFormInput(),
       'orden'                     => new sfWidgetFormInput(),
-      'nombre_corto'              => new sfWidgetFormInput(),
       'url'                       => new sfWidgetFormInput(),
       'imagen'                    => new sfWidgetFormInput(),
-      'vanity'                    => new sfWidgetFormInput(),
       'politico_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Politico')),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Eleccion')),
     ));
 
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Institucion', 'column' => 'id', 'required' => false)),
-      'nombre'                    => new sfValidatorString(array('max_length' => 150)),
       'geo_id'                    => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'disabled'                  => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'orden'                     => new sfValidatorInteger(array('required' => false)),
-      'nombre_corto'              => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'url'                       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'vanity'                    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Eleccion', 'required' => false)),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Institucion', 'column' => array('vanity')))
-    );
 
     $this->widgetSchema->setNameFormat('institucion[%s]');
 
@@ -58,6 +48,15 @@ class BaseInstitucionForm extends BaseFormPropel
     return 'Institucion';
   }
 
+  public function getI18nModelName()
+  {
+    return 'InstitucionI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'InstitucionI18nForm';
+  }
 
   public function updateDefaultsFromObject()
   {
