@@ -24,6 +24,13 @@ generator:
         title:   User list
         display: [=username, created_at, last_login]
 
+      filter:
+        class: sfGuardUserFormFilter
+        display: [nombre, apellidos, vanity, username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
+        fields:
+          politico_institucion_list:
+            label: Institucion
+            
       form:
         class: sfGuardUserAdminForm
         display:
@@ -33,6 +40,7 @@ generator:
           password_again: { label: "Password (again)" }
           username: { label: "email" }
       fields:
+        username: { label: "Email" }
         acepta_mensajes:
           attributes: { value: "S" }
         presentacion:

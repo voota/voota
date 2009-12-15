@@ -2,6 +2,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
+<?php use_helper('VoFormat') ?>
  
 <script>  
 $(document).ready(function(){
@@ -125,7 +126,7 @@ $(document).ready(function(){
     	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'" , class=separacionFotoRanking') ?>
     
  <?php echo link_to(
- 	"".$politico->getNombre() ." ". $politico->getApellidos() . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
+ 	cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 35) . ($politico->getPartido()?" (" . $politico->getPartido() .")":'')
  	, 'politico/show?id='.$politico->getVanity()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
  ) ?>
  

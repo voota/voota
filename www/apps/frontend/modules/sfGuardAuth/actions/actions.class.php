@@ -16,6 +16,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	    $c->add(sfGuardUserPeer::USERNAME, $this->form->getValue('username'));
 	
 	    $user = sfGuardUserPeer::doSelectOne($c);
+	  	$user->getProfile()->setCodigo( util::generateUID() );
+	  	$user->getProfile()->save();
       	if ($user){
       		$this->sendReminder( $user );
       		return "SentSuccess";
@@ -47,12 +49,16 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
 		$c->add(SfGuardUserProfilePeer::CODIGO, $this->codigo);
 		$user = sfGuardUserPeer::doSelectOne($c);
-		$this->forward404Unless( $user );
-  		$user->setIsActive(1);
-		$user->setPassword( $this->form->getValue('passwordNew') );
-  		sfGuardUserPeer::doUpdate( $user );
-
-       	return "ChangedSuccess";
+		
+		if ($user){
+	  		$user->setIsActive(1);
+			$user->setPassword( $this->form->getValue('passwordNew') );
+		  	$user->getProfile()->setCodigo( util::generateUID() );
+		  	$user->getProfile()->save();
+			$user->save();
+  		
+       		return "ChangedSuccess";
+		}
       }
       /*
       else {
