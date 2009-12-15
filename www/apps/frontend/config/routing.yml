@@ -17,11 +17,6 @@ politico_es:
   url: /:sf_culture/politico/:id
   param: { module: politico, action: show }
   requirements: { sf_culture: (?:es) }
-
-politico_sparkline:
-  url: /:sf_culture/politics/sparkline/:id
-  param: { module: politico, action: sparkline }
-  requirements: { sf_culture: (?:es|ca) }
   
 politico_more_comments:
   url: /:sf_culture/politics/more

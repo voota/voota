@@ -19,8 +19,8 @@ dev:
     cache:                  off
     no_script_name:         off
     etag:                   off
-    s3_bucket_originals:       imagesvoota-ori-dummy
-    s3_bucket_public:          imagesvoota-dummy
+    s3_bucket_originals:       imagesvoota-ori
+    s3_bucket_public:          imagesvoota
     sphinx_server: localhost
     mail_enabled: on
     mail_server: ssl://smtp.gmail.com

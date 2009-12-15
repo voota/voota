@@ -1,3 +1,7 @@
 default:
   components:
     subreviews:  [politico, subreviews]
+    
+all:
+  javascripts: [jquery.sparkline.min.js]
+    
