@@ -321,15 +321,15 @@ class politicoActions extends sfVoActions
   		$exclude[] = $result->getId();
   	}
 	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1, $resD-3, $exclude);
-	$positiveCount =  count($this->lastPositives) + count($this->positives);
-	$negativeCount =  count($this->lastNegatives) + count($this->negatives);
+	$positiveCount =  $this->lastPositives->getNbResults();
+	$negativeCount =  $this->lastNegatives->getNbResults();
 	
   	$this->getUser()->setAttribute('pageU', '');
   	$this->getUser()->setAttribute('pageD', '');
 	
 	$totalCount = $positiveCount + $negativeCount;
 	if ($totalCount > 0) {
-		$this->positivePerc = intval( $positiveCount * 100 / ($positiveCount + $negativeCount) );
+		$this->positivePerc = intval( $positiveCount * 100 / $totalCount );
 		$this->negativePerc = 100 - $this->positivePerc;
 	}  
   	$this->title = $this->politico->getNombre() . ' '. $this->politico->getApellidos();
@@ -353,5 +353,8 @@ class politicoActions extends sfVoActions
   	
     $this->response->setTitle( $this->title );
   }
-
+  public function executeSparkline(sfWebRequest $request)
+  {
+  	VoSparkline::paint();  	  	  	
+  }
 }

@@ -1,6 +1,7 @@
 prod:
   .settings:
     no_script_name:         on
+    cache:                  on
     logging_enabled:        off
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
