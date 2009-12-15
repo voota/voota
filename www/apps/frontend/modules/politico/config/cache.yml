@@ -6,5 +6,5 @@ ranking:
 show:
   enabled: on
   with_layout: false
-  lifetime: 360
+  lifetime: 3600
   

@@ -2,6 +2,7 @@ prod:
   .settings:
     no_script_name:         off
     logging_enabled:        off
+    cache:                  on
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          imagesvoota
 
@@ -18,10 +19,11 @@ dev:
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  off
+    cache:                  on
     web_debug:              off
     no_script_name:         off
     etag:                   off
+    cache:                  on
     s3_bucket_originals:       imagesvoota-ori-dummy
     s3_bucket_public:          imagesvoota-dummy
 

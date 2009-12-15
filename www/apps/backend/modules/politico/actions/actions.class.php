@@ -22,7 +22,13 @@ class politicoActions extends autoPoliticoActions
 {
 	public function executeUpdate(sfWebRequest $request)
   	{
-		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+	  	$cacheManager = $this->getContext()->getViewCacheManager();
+	  	if ($cacheManager != null) {
+	  		$politico = $this->getRoute()->getObject();
+	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=es");
+	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
+	  	}
+  		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		parent::executeUpdate( $request );
    	}
 	
