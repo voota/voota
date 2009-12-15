@@ -7,11 +7,13 @@
 .review-body { padding: 0.5em 0; clear: left; }
 .review-actions { padding: 0.5em 0;}
 .review-actions img { vertical-align: -0.4em;}
+.add-subreview { padding-top: 0; padding-bottom: 1em;}
 
-.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 12px; padding-bottom: 1em; }
-.subreviews ol { padding: 0.5em; background-color: #fff; border: 2px solid #bcbcbc; border-top: none;}
+.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 11px; padding-bottom: 1em; }
+.subreviews ol { padding: 0.5em; background-color: #fff; border: 1px solid #bcbcbc; border-top: none;}
 .subreviews-pagination { padding-top: 1.5em; padding-bottom: 1em; text-align: center;}
 .subreviews-pagination input { width: 16em;}
+.subreviews-pagination .more { padding-bottom: 0;}
 
 .sf-review-cancel { font-size: 0.8em; font-weight: normal; }
 .sf-review-remove { font-size: 0.9em; }
@@ -23,7 +25,7 @@
 .sf-review-negative { margin-left: 1.5em; }
 .sf-review-counter { clear: left; padding-bottom: 0;}
 #sf-review-body { padding-bottom: 0;}
-.sf-review-text { width: 95%; height: 8em;}
+.sf-review-text { width: 97%; height: 8em;}
 
 .sfr_grey{color:#b6b6b6; }
 span.sfr_title {font-size: 0.88em;margin:0.00em;color:#323232;font-weight: bold;color:#2b56ff;}

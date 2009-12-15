@@ -129,7 +129,7 @@
 	  </p>
   */?>
 
-  <p>
+  <p class="submit">
     <?php echo submit_tag(__('Enviar'), array('class' => 'sfr_button', 'id' => ($reviewBox?$reviewBox:'sf_review').'_button' )) ?>
   </p>
 </form>

@@ -61,13 +61,12 @@
 	  <?php endif ?>
 	  <?php if($total > 0):?>    
       <li class="subreviews-pagination">
-      	<?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?>
-        <br />
+      	<p><?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?></p>
         <?php if($total > $showCount): ?>
           <?php echo jq_form_remote_tag(array('update' => "sf_review_sr_c".$id, 'url' => '@sf_review_list')) ?>
 		        <?php echo input_hidden_tag('id', "$id")?>
 		        <?php echo input_hidden_tag('showCount', "$seeMoreCount")?>
-		        <?php echo submit_tag(__('más')) ?>
+		        <p class="more"><?php echo submit_tag(__('más')) ?></p>
 		      </form>
         	<?php /*?><input type="submit" value="Ver 10 comentarios más" /><?php */ ?>
         <?php endif ?>
