@@ -1,9 +1,11 @@
 rendering: ~
-culture:
-  class: voCultureFilter
 security:
   class: voSecurityFilter
 
+redirect:
+  class: voRedirectFilter
+culture:
+  class: voCultureFilter
 vobase:
   class: voBaseFilter
 

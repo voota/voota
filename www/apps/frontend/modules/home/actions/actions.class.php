@@ -30,28 +30,35 @@ class homeActions extends sfActions{
   	$this->redirect( "@homepage" );
   }
   
-  public function executeIndex(sfWebRequest $request) {
-  	$lang = $request->getParameter("l");
-  	if ($lang != ''){
-  		
-  	}
-  	
-  	$urlBack = $this->getUser()->getAttribute('url_back');
-  	if ($urlBack && $urlBack != '') {
-		$this->getUser()->setAttribute('url_back', '');
-	  	if ($this->getUser()->isAuthenticated()) {
-  			$this->redirect( $urlBack );
-	  	}
-	}
+  public function executeIndex(sfWebRequest $request) {  	
+   	$query = "SELECT p.*
+  			FROM politico p
+			INNER JOIN sf_review r ON r.entity_id = p.id
+			WHERE r.value = 1
+			AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
+			GROUP BY p.nombre, p.apellidos
+			LIMIT 6";
+  	$connection = Propel::getConnection();
+	$statement = $connection->prepare($query);
 
-  	//$this->redirect( "politico/ranking" );
-  	
-  	//$this->readCookie($this->getRequest());
-  	
-	$this->main_slot = "feedback";	
-  	  	
-  	$this->getResponse()->setTitle("Voota. ". $this->getContext()->getI18N()->__('Tú tienes la última palabra'), false);
-  	
-  	
+	$statement->execute();
+	$this->politicosMasVotadosUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Politico');
+	/*
+	foreach($this->politicosMasVotadosUltimamente as $politico){
+		echo $politico->getNombre(). " ".$politico->getApellidos()."(".$politico->getPartido().")"."<br>";
+	}
+	echo "==============================================<br />";
+	*/
+	
+  	$c = new Criteria();
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	$c->setLimit(5);
+  	$this->topPoliticos = PoliticoPeer::doSelect($c);
+  	/*
+	foreach($this->topPoliticos as $politico){
+		echo $politico->getNombre(). " ".$politico->getApellidos()."(".$politico->getPartido().")"."<br>";
+	}
+	*/
   }
 }
