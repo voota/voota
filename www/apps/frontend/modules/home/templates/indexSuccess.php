@@ -1,40 +1,115 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 
-<ul id="nav">
-<li><?php echo __('Coomparte opiniones sobre los políticos de España.') ?></li>
-<li><?php echo __('De momento: Congreso, Senado y Parlamento de Cataluña.') ?></li>
-<li><?php echo __('Estamos preparando todo el tinglado, muy proonto en tu pantalla.') ?></li>
-</ul>
-<ul id="navi">
-<li><a href="<?php echo __('http://blog.voota.es/es') ?>"><?php echo __('Voota tiene un blog') ?></a> <img src="/images/icoBlog.gif" alt="<?php echo __('Icono Blog Voota') ?>" name="icono" id="icono" longdesc="<?php echo __('Enlace Blog Voota') ?>"></li>
-<li><a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('Voota en Twitter') ?></a> <img src="/images/icoTwitter.png" alt="<?php echo __('Icono Twitter') ?>" longdesc="<?php echo __('Enlace Voota en Twitter') ?>"></li>
-<li><a href="<?php echo __('http://www.facebook.com/pages/Voota/120100006457') ?>"><?php echo __('Voota en Facebook') ?></a> <img src="/images/icoFacebook.png" alt="<?php echo __('Icono Facebook') ?>" width="16" height="15" longdesc="<?php echo __('Enlace Voota en Facebook') ?>"></li>
-</ul>
-<?php slot('hands') ?>
-<?php echo form_tag('/es', 'name="theForm"') ?>
-<ul id="caja">
-<li><h2><?php echo __('¿Te gusta la idea?') ?></h2> </li>
-<li>
-  <input name="v" type="radio" id="up" value="2" onClick="thumb_up()">
-  <a href="#" onClick="thumb_up()"><img src="/images/icoUp.gif" alt="<?php echo __('Icono Up') ?>" width="27" height="36" longdesc="<?php echo __('Icono mano Up') ?>"></a>
-  <br>
-  <h6><label for="up"><?php echo __('A favor, yeah') ?></label></h6> </li>
+<?php slot('header-extra') ?>
+  <div id="contact-links">
+    <ul>
+      <li class="blog"><a href="<?php echo __('http://blog.voota.es/es') ?>"><?php echo __('Voota tiene un blog') ?></a></li>
+      <li class="twitter"><a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('Voota en Twitter') ?></a></li>
+      <li class="facebook"><a href="<?php echo __('http://www.facebook.com/Voota') ?>"><?php echo __('Voota en Facebook') ?></a></li>
+    </ul>
+  </div>
+<?php end_slot('logged') ?>
 
-<li>
- <input name="v" type="radio" id="down" value="1" onClick="thumb_down()">
-  <a href="#" onClick="thumb_down()"><img src="/images/icoDown.gif" alt="<?php echo __('Icono Down') ?>" width="27" height="36" longdesc="<?php echo __('Icono mano Down') ?>"></a> <br>
-  <h6><label for="down"><?php echo __('En contra, buu') ?></label></h6>
-</li>
-<li>
-<h5><?php echo __('Positivos') ?> <?php echo $up_per?>% / <?php echo __('Negativos') ?> <?php echo $down_per?>%</h5>
-</li>
-</ul>
-</form>
-<?php end_slot('hands') ?>
+<h2 id="summary">
+  <ul>
+    <li><?php echo __('Coomparte opiniones sobre los políticos de España.') ?></li>
+    <li><?php echo __('De momento: Congreso, Senado y Parlamento de Cataluña.') ?></li>
+    <li><?php echo __('Los políticos más votados de hoy:') ?></li>
+  </ul>
+</h2>
 
-<?php slot('feedback') ?>
-<h2><?php echo __('¿Te gusta la idea? Aceptamos sugerencias en') ?> <a href="<?php echo __('http://www.facebook.com/pages/Voota/120100006457') ?>">facebook.com/voota</a> <?php echo __('o') ?> <a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('twitter.com/Voota') ?></a></h2>
-<?php end_slot('feedback') ?>
-
-<?php include_slot( $main_slot ); ?>
+<div id="content">
+  <div id="politicians-most-voted" class="list-mini">
+    <ul>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+      <li>
+        <div class="avatar">
+          <img src="/images/proto/politico.png" alt="" width="" height="" />
+      	</div>
+      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<p class="votes">
+      	  <span class="graph">
+      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
+      	  </span>
+      	  <span class="votes-count">9/10</span>
+      	</p>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="search">
+    <?php echo form_tag('@search') ?>
+      <p>
+        <label for="q_1">¡Buusca!</label>
+      </p>
+      <p>
+        <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
+        <br />
+        <span class="hints">Político, partido o institución</span>
+      </p>
+      <p>
+        <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
+      </p>
+    </form>
+  </div>
+</div>

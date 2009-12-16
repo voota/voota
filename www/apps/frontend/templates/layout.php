@@ -37,12 +37,16 @@
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
       </p>
 
-      <div id="search">
-        <?php echo form_tag('@search') ?>
-  	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
-  	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
-        </form>
-      </div>
+      <?php if ($sf_context->getModuleName() != "home"): ?>
+        <div id="search">
+          <?php echo form_tag('@search') ?>
+    	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
+    	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
+          </form>
+        </div>
+      <?php endif ?>
+      
+      <?php include_slot('header-extra') ?>
     </div>
   </div><!-- FIN HEADER -->
 

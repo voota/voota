@@ -8,6 +8,7 @@ p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
 #header-inner, #main-inner { margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
+#home-index #main,
 #general-contact #main,
 #sfGuardAuth-signin #main,
 #sfGuardAuth-edit #main,
@@ -34,6 +35,11 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #user-links { position: absolute; top: 10px; right: 0; }
 #search { position: absolute; top: 55px; right: 0; text-align: right; }
 #search input[type=submit] { margin-left: 0.5em; width: 8em;}
+#contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
+#contact-links ul li { float: left; padding: 0 20px 0 2em;}
+#contact-links ul li.blog { background: transparent url(/images/icoBlog.gif) right center no-repeat;}
+#contact-links ul li.twitter { background: transparent url(/images/icoTwitter.png) right center no-repeat;}
+#contact-links ul li.facebook { background: transparent url(/images/icoFacebook.png) right center no-repeat;}
 
 /* Footer */
 #footer { text-align: center; padding-top: 2em; }
@@ -54,10 +60,10 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .box h2 { font-size: 1em; padding-bottom: 1em;}
 .box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
-.box-contact ul li { margin-bottom: 0.5em; }
-.box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; padding-left: 20px;}
-.box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; padding-left: 20px;}
-.box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; padding-left: 20px;}
+.box-contact ul li { margin-bottom: 0.5em; padding-left: 20px; }
+.box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
+.box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; }
+.box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
 
 /* Formularios */
 form { margin: 0; padding: 0;}
@@ -79,6 +85,20 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #error #message { padding: 0 240px 4em 240px;}
 #error #hands { padding-bottom: 0; text-align: center;}
 #error #footer { padding-top: 0;}
+
+/* Home */
+#home-index #summary ul { padding-left: 1em;}
+#home-index #summary li { margin-bottom: 1em;}
+#home-index #content { padding-left: 1.5em;}
+#home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
+#home-index .list-mini li { float: left; width: 300px; margin: 0 1em 1em 0;}
+#home-index .list-mini li .avatar { float: left; }
+#home-index .list-mini li .name,
+#home-index .list-mini li .votes { margin-left: 45px; }
+#home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
+#home-index .search p { float: left; padding: 0; overflow: hidden;}
+#home-index .search .hints { color: #b1b1b1;}
+#home-index .search input[type=submit] { margin-left: 0.5em; width: 8em; }
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
@@ -171,13 +191,12 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .review-new h5, .vote h5 { font-size: 1.2em; color: #2b56ff;}
 .review-new h5 span { font-size: 0.8em;}
 
+
+
 /*
-  Antiguo fichero voota.css
+  Antiguas reglas CSS (deprecated)
 */
 
-.logo { margin-top:0.69em; }
-.logoImg { margin-bottom:0.90em; margin-top:0.69em; }
-.footerEspacio { height:10.00em;}
 .limpiar { clear:both; }
 .inputSignPeq { width:1.90em; }
 .inputSignPeq2 { width:2.50em; }
@@ -189,12 +208,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 img { border:none; vertical-align: middle;}
 table { padding:0; margin:0;}
 .tdperfil { padding: 15px 0; vertical-align: top;}
-
-
-/*
-  Antiguo fichero interior.css
-*/
-
 #contentLeft { float:left; width: 41.56em;}
 #contentRankingLeft { float:left; width:100%}
 #contentRight { float:right; width: 10.81em;}
@@ -239,18 +252,15 @@ table { padding:0; margin:0;}
 .margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
 .linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
 .positivoNegativo {width:18.69em;}
-/*comentarios */
 .picoComentario {margin-left:1.75em; height:0.44em; margin-bottom:0.28em;}
 #comentarios {margin-left:0.75em; border:0.06em solid #cdcdc5; background:#ffffcd; padding-right:0.60em;}
 .lugar {color:#323232; font-weight:bold;}
 .totalComentarios {margin-left:3.13em; margin-top:1.50em;}
-/* votaciones */
 .votaSobre {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
 .votaPoliticosParido {margin-left:1.31em; margin-top:1.50em;}
 .contenedorPositivoNegativo {margin-left:1.31em; margin-top:1.50em;}
 .votaPartidos {margin-left:1.25em; margin-top:1.50em; margin-bottom:1.25em; margin-right:3.25em; float:left; width:15.63em;}
 .vootaPartidoList { margin-left:0.63em; margin-top:0.63em;}
-
 .listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
 .confirmar {width:14.44em; margin-left:1.00em; }
 .cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:10em;}
@@ -258,8 +268,6 @@ table { padding:0; margin:0;}
 .ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
 .tachado {text-decoration: line-through;}
 .margenVota {margin-top:0.60em; width:18.94em; text-align:right;}
-
-/* Gente con color */
 .conColor {margin-top:2.94em;}
 .enlacesExternosPartido {margin-top:4.94em;}
 .tituloColor {margin-top:2.00em;}
@@ -269,29 +277,18 @@ table { padding:0; margin:0;}
 .textoNormal {font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232;}
 .textoMayor {font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold;}
 .ancho100 { width:480px;}
-/* about */
 .aboutFoto {float:left; width:36px;}
 .aboutTexto {float:left; margin-left:10px; width:30.63em;}
 .aboutContainer {margin-top:1.75em; margin-left:1.44em;}
 .containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
-#404 {}
 .anchoColumna {width:160px;}
 .tituloCampo { padding-top: 17px; margin:0; color:#323232; }
-
-
-/*
-  Antiguo fichero other.css
-*/
-
-/* div.formSing form tr th {  text-align:left; margin:0.00em; color:#323232; margin-bottom:1.20em;} */
 div.clickable {cursor: pointer;}
-
 .gris{color:#b6b6b6; }
 .negro{color:black; }
 .hidden{display:none}
 .shown{display:block}
 .wider { width:16em; padding: 15px 0; }
-
 
 /*
   Reglas nuevas
