@@ -62,6 +62,37 @@ class S3Voota extends S3 {
 			}
 		}
 	}
+
+	public function createPartidoFromFile( $file ) {
+		$directory = dirname($file);
+		$arr = array_reverse( split("/", $file) );
+		$fileName = $arr[0];
+		$uri = "partidos/$fileName";
+		
+		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "partidos/$fileName", S3::ACL_PRIVATE)){
+			$img = new sfImage( $file );
+			$img->partido(  );
+			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "partidos/cc_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "partidos/bw_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "partidos/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_s_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "partidos/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_s_$fileName" );
+		}
+	}
+	public function createPartidoFromOri( $fileName ) {
+		$uri = "partidos/$fileName";
+		if (($info = $this->getObjectInfo(S3Voota::getBucketOri(), $uri)) !== false) {
+			$fileOnDisk = "/tmp/$fileName";
+			
+			if (($object = S3::getObject(S3Voota::getBucketOri(), $uri, "$fileOnDisk")) !== false) {
+				$this->createPartidoFromFile( $fileOnDisk );
+				unlink ( "$fileOnDisk" );
+			}
+		}
+	}
 	
 	public function createInstitucionFromFile( $file ) {
 		$directory = dirname($file);

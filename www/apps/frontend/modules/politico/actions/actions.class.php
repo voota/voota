@@ -19,7 +19,7 @@
 define("ALL_URL_STRING", 'all');
 define("ALL_FORM_VALUE", '0');
 
-class politicoActions extends sfVoActions
+class politicoActions extends sfActions
 {
 	
   public function executeMoreComments(sfWebRequest $request)

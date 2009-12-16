@@ -15,12 +15,12 @@ generator:
       fields:  ~
       list:
         title:   Partidos
-        display: [nombre,abreviatura,color,web]
+        display: [nombre,abreviatura,color,web,imagen]
           
       filter:  ~
       form:
         display:
-          "Datos Partido": [nombre,abreviatura,color,web]
+          "Datos Partido": [nombre,abreviatura,color,web,imagen]
       edit:
         title:   Partido
 

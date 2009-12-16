@@ -86,6 +86,9 @@ class sfResizedFile extends sfValidatedFile
 			if (strpos  ( $file , "usuarios" )){
 				$ret = $s3->createUsuarioFromFile($file);
 			}
+			if (strpos  ( $file , "partidos" )){
+				$s3->createPartidoFromFile($file);
+			}
 		}		
 		return $ret;
 	}

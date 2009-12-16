@@ -27,6 +27,7 @@ class BaseSfReviewForm extends BaseFormPropel
       'culture'             => new sfWidgetFormInput(),
       'sf_review_id'        => new sfWidgetFormPropelChoice(array('model' => 'SfReview', 'add_empty' => true)),
       'balance'             => new sfWidgetFormInput(),
+      'is_active'           => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -44,6 +45,7 @@ class BaseSfReviewForm extends BaseFormPropel
       'culture'             => new sfValidatorString(array('max_length' => 5, 'required' => false)),
       'sf_review_id'        => new sfValidatorPropelChoice(array('model' => 'SfReview', 'column' => 'id', 'required' => false)),
       'balance'             => new sfValidatorInteger(array('required' => false)),
+      'is_active'           => new sfValidatorBoolean(),
     ));
 
     $this->validatorSchema->setPostValidator(

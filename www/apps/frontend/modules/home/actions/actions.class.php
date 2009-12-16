@@ -15,17 +15,12 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class homeActions extends sfVoActions{
-  var $uid;
-  var $culture;
-  var $first;
-
-  
+class homeActions extends sfActions{
   public function executeIndexWithoutCulture(sfWebRequest $request) {
-  	global $culture;  	
+  	//global $culture;  	
   	
-	$this->readCookie($this->getRequest());
-  	$this->getUser()->setCulture( $culture );
+	//$this->readCookie($this->getRequest());
+  	//$this->getUser()->setCulture( $culture );
   	
 	$this->redirect( "@homepage" );
   	
@@ -36,8 +31,10 @@ class homeActions extends sfVoActions{
   }
   
   public function executeIndex(sfWebRequest $request) {
-  	global $uid;
-  	global $first;
+  	$lang = $request->getParameter("l");
+  	if ($lang != ''){
+  		
+  	}
   	
   	$urlBack = $this->getUser()->getAttribute('url_back');
   	if ($urlBack && $urlBack != '') {
@@ -49,48 +46,10 @@ class homeActions extends sfVoActions{
 
   	//$this->redirect( "politico/ranking" );
   	
-  	$this->readCookie($this->getRequest());
+  	//$this->readCookie($this->getRequest());
   	
 	$this->main_slot = "feedback";	
-  	
-  	# returning user ?
-  	$criteria = new Criteria();
-  	$criteria->add(VotoPeer::UID, $uid);  	
-  	$voto = VotoPeer::doSelect($criteria);
-  	if (!$voto) {
-  		$v = $this->request->getParameter("v");
-  		# valid vote?
-	  	if ((!$first) && $v && ($v == 1 || $v == 2)){
-  			$voto = new Voto();
-  			$voto->setUid( $uid );
-  			$voto->setValor( $v - 1 );
-  			
-  			VotoPeer::doInsert( $voto );
-	  	}
-	  	else {
-			$con = sfContext::getInstance()->getDatabaseConnection('propel'); 
-			$query = 'SELECT COUNT(*) AS total, SUM(VALOR) AS valor FROM voto';
-			$stmt = $con->prepare($query);
-			$stmt->execute();
-			while($row = $stmt->fetch()) {
-				$total_up = $row[1];
-				$total = $row[0];
-				
-				if ($total != 0) {
-					$this->up_per = round (100 * $total_up / $total);
-				}
-				else {
-					$this->up_per = 0;
-				}
-				$this->down_per = 100 - $this->up_per;  
-  			}
-			
-	  		
-	  		$this->main_slot = "hands";
-	  	}
-   	}
-   	$this->getContext()->getRequest()->setAttribute('langLink_slot', "langLink_".$this->request->getParameter("sf_culture"));
-  	
+  	  	
   	$this->getResponse()->setTitle("Voota. ". $this->getContext()->getI18N()->__('Tú tienes la última palabra'), false);
   	
   	

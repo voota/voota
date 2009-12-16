@@ -28,6 +28,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'culture'             => new sfWidgetFormFilterInput(),
       'sf_review_id'        => new sfWidgetFormPropelChoice(array('model' => 'SfReview', 'add_empty' => true)),
       'balance'             => new sfWidgetFormFilterInput(),
+      'is_active'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -44,6 +45,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'culture'             => new sfValidatorPass(array('required' => false)),
       'sf_review_id'        => new sfValidatorPropelChoice(array('required' => false, 'model' => 'SfReview', 'column' => 'id')),
       'balance'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_active'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_filters[%s]');
@@ -75,6 +77,7 @@ class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'culture'             => 'Text',
       'sf_review_id'        => 'ForeignKey',
       'balance'             => 'Number',
+      'is_active'           => 'Boolean',
     );
   }
 }

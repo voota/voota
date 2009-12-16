@@ -29,7 +29,8 @@ class BaseSfReviewManager
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
-	
+    
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
   	if ($type_id != '') {
   		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
   		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
@@ -53,7 +54,8 @@ class BaseSfReviewManager
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
-	
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+    
   	if ($type_id != '') {
   		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
   		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
@@ -89,7 +91,7 @@ class BaseSfReviewManager
 	$query = "SELECT COUNT(*) AS count ".
 			"FROM %s r ".
 			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
-			"WHERE r.value = ? ";
+			"WHERE r.is_active = 1 AND r.value = ? ";
 			if($type_id != ''){
 				$query .= ' AND r.entity_id = ? AND r.sf_review_type_id = ? ';
 			}
@@ -116,7 +118,7 @@ class BaseSfReviewManager
 	$query = "SELECT SUM(r.value) AS sum ".
 			"FROM %s r ".
 			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
-			"WHERE r.sf_review_id = ? AND r.sf_review_type_id is null";
+			"WHERE r.is_active = 1 AND r.sf_review_id = ? AND r.sf_review_type_id is null";
 	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	
   	$connection = Propel::getConnection();
@@ -136,9 +138,21 @@ class BaseSfReviewManager
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
   	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
   	
-  	SfReviewPeer::doDelete( $criteria );
-  	  	
+  	$review = SfReviewPeer::doSelectOne( $criteria );
+  	$review->setIsActive( true );
+  	$review->save();  	  	
   }
+  
+  static public function removeReview($id)
+  {
+  	$criteria = new Criteria();
+  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, sfContext::getInstance()->getUser()->getGuardUser()->getId()); 	
+  	$criteria->add(SfReviewPeer::ID, $id);	
+  	
+  	$review = SfReviewPeer::doSelectOne( $criteria );
+  	$review->setIsActive( false );
+  	$review->save();  	  	
+  }  
   
  static public function deleteReviewById( $id ){
   	// Primero borrar sus opiniones

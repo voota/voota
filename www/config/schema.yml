@@ -80,6 +80,7 @@ propel:
     web: { type: VARCHAR, size: '150', required: false }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    imagen: { type: VARCHAR, size: '50', required: false }
     _indexes: { fk_partido_partido: [partido_id] }
     _uniques: { uniq_abreviatura: [abreviatura] }
   partido_lista:

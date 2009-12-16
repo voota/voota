@@ -60,6 +60,7 @@ class BasesfReviewFrontActions extends sfActions
 	  	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
 	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
 	  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	  	$review = SfReviewPeer::doSelect($criteria);
 	  	if ($review) {
 	  		$this->forward('sfReviewFront', 'preview');
@@ -192,6 +193,7 @@ class BasesfReviewFrontActions extends sfActions
   		$review->setCreatedAt( date(DATE_ATOM) );
   		//SfReviewPeer::doInsert($review);
   	}
+  	$review->setIsActive( true );
   	$review->save();
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   	
@@ -211,10 +213,7 @@ class BasesfReviewFrontActions extends sfActions
 	  	$this->forward('sfReviewFront', 'form');
   	}
   	if ($request->getParameter("i") != '') {
-	  	$criteria = new Criteria();
-	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId()); 	
-	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
-  		SfReviewPeer::doDelete	($criteria);
+  		SfReviewManager::removeReview( $request->getParameter("i") );
   	}
   }
   

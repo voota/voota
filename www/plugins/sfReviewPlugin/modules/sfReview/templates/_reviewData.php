@@ -12,6 +12,7 @@
 <tr><td>cookie:</td><td><?php echo $form->getObject()->getCookie() ?></td></tr> 
 <tr><td>created at:</td><td><?php echo $form->getObject()->getCreatedAt() ?></td></tr> 
 <tr><td>modified at:</td><td><?php echo $form->getObject()->getModifiedAt() ?></td></tr> 
+<tr><td>is active:</td><td><?php echo $form->getObject()->getIsActive() ?></td></tr> 
 </table>
 
 	

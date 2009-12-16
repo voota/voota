@@ -21,6 +21,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'web'                => new sfWidgetFormFilterInput(),
       'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'partido_id'         => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'imagen'             => new sfWidgetFormFilterInput(),
       'partido_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
 
@@ -31,6 +32,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'web'                => new sfValidatorPass(array('required' => false)),
       'created_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'partido_id'         => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
+      'imagen'             => new sfValidatorPass(array('required' => false)),
       'partido_lista_list' => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
 
@@ -81,6 +83,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'web'                => 'Text',
       'created_at'         => 'Date',
       'partido_id'         => 'ForeignKey',
+      'imagen'             => 'Text',
       'partido_lista_list' => 'ManyKey',
     );
   }
