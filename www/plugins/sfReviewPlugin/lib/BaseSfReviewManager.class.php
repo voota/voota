@@ -144,6 +144,14 @@ class BaseSfReviewManager
   	// Primero borrar sus opiniones
   	$c = new Criteria();
   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $id);
+  	$reviews = SfReviewPeer::doSelect( $c );
+  	foreach ($reviews as $review){
+  		$c2 = new Criteria();
+  		$c2->add(SfReviewPeer::SF_REVIEW_ID, $review->getId());
+  		$c2->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null);
+  		SfReviewPeer::doDelete( $c2 );
+  	}
+  	
   	SfReviewPeer::doDelete( $c );
   }
   

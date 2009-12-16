@@ -216,6 +216,15 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  VoMail::send('Tu contraseña en Voota', $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
   }
   
+  public function executeRemove(sfWebRequest $request)
+  {
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	
+  	SfReviewManager::deleteReviewById( $this->getUser()->getGuardUser()->getId() );
+  	$this->getUser()->getGuardUser()->delete();
+  	$this->getUser()->signOut();
+  }
+  
   public function executeEdit(sfWebRequest $request)
   {
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );

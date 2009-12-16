@@ -10,6 +10,7 @@
  */
 class SfGuardUserProfileForm extends BaseSfGuardUserProfileForm
 {
+  protected static $sino = array('1' => 'Sí', '0' => 'No');
   public function configure()
   {
     $years = range(1920,date('Y'));
@@ -18,5 +19,12 @@ class SfGuardUserProfileForm extends BaseSfGuardUserProfileForm
     						, 'format' => '%day%/%month%/%year%'
     						, 'years' => array_combine($years, $years)
     						));
+    						
+  	$this->widgetSchema['mails_comentarios'] = new sfWidgetFormSelect(array('choices' => self::$sino));
+  	$this->widgetSchema['mails_noticias'] = new sfWidgetFormSelect(array('choices' => self::$sino));
+    $this->widgetSchema['mails_contacto'] = new sfWidgetFormSelect(array('choices' => self::$sino));
+    $this->widgetSchema['mails_seguidor'] = new sfWidgetFormSelect(array('choices' => self::$sino));
   }
+  
+  
 }

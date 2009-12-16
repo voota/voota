@@ -3,6 +3,22 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
+<script type="text/javascript">
+  <!--//
+  $(document).ready(function() {
+	  $("#bajaVoota").click(function(){
+		  $("#bajaButtonDiv").addClass('hidden');
+		  $("#bajaConfirmDiv").removeClass('hidden');
+  	  });
+	  $("#noConfirm").click(function(){
+		  $("#bajaButtonDiv").removeClass('hidden');
+		  $("#bajaConfirmDiv").addClass('hidden');
+		  return false;
+  	  });
+  });
+  //-->
+</script>
+
 <h2><?php echo __('Hola %1%, estas son tus preferencias', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
 
 <?php echo showNotices( $sf_user ) ?>
@@ -92,6 +108,25 @@
     <tr>
       <th></th>
       <td class="submit"><?php echo submit_tag(__('Guardar cambios')) ?></td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+      <?php echo __('Borrarse de Voota: Si no deseas utilizar más este servicio, aquí podrás abandonarnos. Por supuesto, todos tus datos asociados a Voota serán borrados. Ha sido un placer:')?> 
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td class="submit">
+        <div id="bajaButtonDiv"><input id="bajaVoota" type="button" value="<?php echo __('Borrarse de Voota')?>" /></div>
+        <div id="bajaConfirmDiv" class="hidden">
+        	<?php echo __('¿seguro?')?>
+        	<?php echo link_to(__('sí'), '@usuario_remove')?>
+        	<a href="#" id="noConfirm"><?php echo __('no')?></a>
+        </div>
+      </td>
       <td class="hints"></td>
     </tr>
   </table>
