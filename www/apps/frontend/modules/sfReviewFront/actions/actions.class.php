@@ -98,7 +98,8 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  	}
 	}	  	
   }
-	  public function executeDelete(sfWebRequest $request)
+  
+  public function executeDelete(sfWebRequest $request)
   {
   	parent::executeDelete( $request );
   	

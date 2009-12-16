@@ -17,7 +17,7 @@
  */
 require_once(sfConfig::get('sf_lib_dir').'/sphinxapi.php');
 
-class generalActions extends sfVoActions{
+class generalActions extends sfActions{
   public function executeRules(sfWebRequest $request) {
   }
   public function executeContact(sfWebRequest $request) {

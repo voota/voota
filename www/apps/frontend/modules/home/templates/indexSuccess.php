@@ -22,78 +22,28 @@
 <div id="content">
   <div id="politicians-most-voted" class="list-mini">
     <ul>
+<?php foreach($politicosMasVotadosUltimamente as $politico): ?>
       <li>
         <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
+     	  <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto" , class="separacionFotoRanking"') ?>
       	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
+      	<h4 class="name">
+      	<?php echo link_to($politico->getNombre()." ".$politico->getApellidos(). ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?>
+      	</h4>
       	<p class="votes">
       	  <span class="graph">
       	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
       	  </span>
-      	  <span class="votes-count">9/10</span>
+      	  <span class="votes-count">
+		    <?php if ($politico->getSumU() == 1):?>
+			    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
+		    <?php else: ?>
+			    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
+		    <?php endif ?>
+    	  </span>
       	</p>
       </li>
-      <li>
-        <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
-      	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
-      	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
-      	  <span class="votes-count">9/10</span>
-      	</p>
-      </li>
-      <li>
-        <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
-      	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
-      	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
-      	  <span class="votes-count">9/10</span>
-      	</p>
-      </li>
-      <li>
-        <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
-      	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
-      	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
-      	  <span class="votes-count">9/10</span>
-      	</p>
-      </li>
-      <li>
-        <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
-      	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
-      	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
-      	  <span class="votes-count">9/10</span>
-      	</p>
-      </li>
-      <li>
-        <div class="avatar">
-          <img src="/images/proto/politico.png" alt="" width="" height="" />
-      	</div>
-      	<h4 class="name"><a href="#">Manuel Fraga Iribarne (PP)</a></h4>
-      	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
-      	  <span class="votes-count">9/10</span>
-      	</p>
-      </li>
+<?php endforeach?>
     </ul>
   </div>
   
