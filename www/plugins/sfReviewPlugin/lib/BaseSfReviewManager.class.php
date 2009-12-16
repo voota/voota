@@ -150,6 +150,7 @@ class BaseSfReviewManager
   	$criteria->add(SfReviewPeer::ID, $id);	
   	
   	$review = SfReviewPeer::doSelectOne( $criteria );
+  	$review->setText('');
   	$review->setIsActive( false );
   	$review->save();  	  	
   }  

@@ -77,11 +77,11 @@
     <p class="lang-links">
       <?php slot('langLink_ca') ?>
       	català
-      	<?php echo link_to('español', '@homepage?sf_culture=es', array('class' => "enlacesPie")) ?>
+      	<?php echo link_to('Español', '@homepage?sf_culture=es&l=es', array('class' => "enlacesPie")) ?>
       <?php end_slot('langLink_ca') ?>
 
       <?php slot('langLink_es') ?>
-      	<?php echo link_to('català', '@homepage?sf_culture=ca', array('class' => "enlacesPie")) ?>
+      	<?php echo link_to('Català', '@homepage?sf_culture=ca&l=ca', array('class' => "enlacesPie")) ?>
       	español
       <?php end_slot('langLink_es') ?>
 
