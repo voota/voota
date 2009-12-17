@@ -76,20 +76,7 @@
       <div id="politicians-top5">
         <h3>Top 5 políticos</h3>
         <ol>
-          <li>
-            <div class="avatar">
-              <img src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" alt="Foto" class="separacionFotoRanking" />
-            </div>
-            <h4 class="name">
-              <a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a>
-            </h4>
-            <p class="votes">
-              <span>
-                <canvas style="display: inline-block; width: 100px; height: 15px; vertical-align: top;" width="100" height="15" />
-              </span>
-              <span class="votes-count">3 votos positivos</span>
-            </p>
-          </li>
+          <!-- Aquí va el include_partial en un foreach para todos los políticos del top5 -->
         </ol>
       </div>
 

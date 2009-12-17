@@ -109,6 +109,12 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #politicians-top5,
 #home-index #political-groups,
 #home-index #institutions { width: 30%; margin-right: 3%; float: left;}
+#home-index #politicians-top5 h3,
+#home-index #political-groups h3,
+#home-index #institutions h3 { padding-bottom: 1em;}
+#home-index #politicians-top5 ol,
+#home-index #political-groups ol,
+#home-index #institutions ol { list-style: none; margin: 0; padding: 0; }
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
