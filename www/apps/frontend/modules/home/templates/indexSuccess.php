@@ -8,6 +8,11 @@
 	  <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
 	  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
 	  <?php endforeach ?>
+      <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+      	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
+  	  		<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+      	<?php endforeach?>
+  	  <?php endif ?>
   });
 
 
