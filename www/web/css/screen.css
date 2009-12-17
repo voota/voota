@@ -99,8 +99,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
 #home-index .list-mini li { float: left; width: 30%; height: 60px; margin: 0 3% 1em 0;}
 #home-index .list-mini li .avatar { float: left; }
-#home-index .list-mini li .name,
-#home-index .list-mini li .votes { margin-left: 45px; }
+#home-index .list-mini li .name { margin-left: 45px; }
+#home-index .list-mini li .votes { margin: 0.5em 0 0 45px; }
 #home-index .search { clear: left; padding-left: 1.5em; margin-top: 2em; overflow: hidden; }
 #home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
