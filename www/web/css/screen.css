@@ -91,19 +91,24 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em;}
 #home-index .last { background: none; padding-bottom: 0;}
 #home-index .block-inner { margin: 0 auto 3em auto; width: 960px; overflow: hidden;}
-#home-index #summary ul { padding-left: 1em;}
+#home-index #summary { margin-bottom: 2em; }
+#home-index #summary ul { padding-left: 1em; }
 #home-index #summary li { margin-bottom: 1em;}
-#home-index #content { padding-left: 1.5em;}
+#home-index #politicians-most-voted,
+#home-index #rankings { padding-left: 1.5em; overflow: hidden;}
 #home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
-#home-index .list-mini li { float: left; width: 300px; height: 60px; margin: 0 1em 1em 0;}
+#home-index .list-mini li { float: left; width: 30%; height: 60px; margin: 0 3% 1em 0;}
 #home-index .list-mini li .avatar { float: left; }
 #home-index .list-mini li .name,
 #home-index .list-mini li .votes { margin-left: 45px; }
-#home-index .search { clear: left;}
+#home-index .search { clear: left; padding-left: 1.5em; margin-top: 2em; overflow: hidden; }
 #home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
 #home-index .search input[type=submit] { margin-left: 0.5em; width: 8em; }
+#home-index #politicians-top5,
+#home-index #political-groups,
+#home-index #institutions { width: 30%; margin-right: 3%; float: left;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }

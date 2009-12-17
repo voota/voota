@@ -34,46 +34,68 @@
       </ul>
     </h2>
 
-    <div id="content">
-      <div id="politicians-most-voted" class="list-mini">
-        <?php if(count($politicosMasVotadosUltimamente) == 0):?>
-    	    <h2><?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?></h2>
-        <?php else:?>
-          <ul>
-            <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-  	  			<?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => true)) ?>
-  	        <?php endforeach?>
-    <?php if(count($politicosMasVotadosUltimamente) < 6):?>
-    	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-  	  			<?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => false)) ?>
-    	<?php endforeach?>
-    <?php endif ?>
-          </ul>
-    <?php endif?>
-      </div>
+    <div id="politicians-most-voted" class="list-mini">
+      <?php if(count($politicosMasVotadosUltimamente) == 0):?>
+  	    <h2><?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?></h2>
+      <?php else:?>
+        <ul>
+          <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
+	  			  <?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => true)) ?>
+	        <?php endforeach?>
+          <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+    	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
+  	  			  <?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => false)) ?>
+            <?php endforeach?>
+          <?php endif ?>
+        </ul>
+      <?php endif?>
+    </div>
 
-      <div class="search">
-        <?php echo form_tag('@search') ?>
-          <p>
-            <label for="q_1">¡Buusca!</label>
-          </p>
-          <p>
-            <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
-            <br />
-            <span class="hints">Político, partido o institución</span>
-          </p>
-          <p>
-            <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
-          </p>
-        </form>
-      </div>
+    <div class="search">
+      <?php echo form_tag('@search') ?>
+        <p><label for="q_1">¡Buusca!</label></p>
+        <p>
+          <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
+          <br />
+          <span class="hints">Político, partido o institución</span>
+        </p>
+        <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
+      </form>
     </div>
   </div>
 </div>
 
 <div class="block">
   <div class="block-inner">
-    Segundo bloque
+    <div id="rankings">
+      <div id="politicians-top5">
+        <h3>Top 5 políticos</h3>
+        <ol>
+          <li>
+            <div class="avatar">
+              <img src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" alt="Foto" class="separacionFotoRanking" />
+            </div>
+            <h4 class="name">
+              <a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a>
+            </h4>
+            <p class="votes">
+              <span>
+                <canvas style="display: inline-block; width: 100px; height: 15px; vertical-align: top;" width="100" height="15" />
+              </span>
+              <span class="votes-count">3 votos positivos</span>
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div id="political-groups">
+        <h3>Top 5 partidos</h3>
+      </div>
+
+      <div id="institutions">
+        <h3>Instituciones en Voota</h3>
+      </div>
+    </div>
   </div>
 </div>
 
