@@ -51,7 +51,23 @@
         	</p>
         </li>
     <?php endforeach?>
-      </ul>
+  <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+  	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
+      <li>
+        <div class="avatar">
+     	  <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto" , class="separacionFotoRanking"') ?>
+      	</div>
+      	<h4 class="name"><?php echo link_to($politico->getNombre()." ".$politico->getApellidos(). ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?></h4>
+      	<p class="votes">
+      		<span id="<?php echo "sparkline_".$politico->getId()?>"></span>
+
+
+      	  <span class="votes-count"><?php if ($politico->getSumu() == 1):?><?php echo __('%1% voto positivo', array('%1%' => $politico->getSumu())) ?> <?php else: ?><?php echo __('%1% votos positivos', array('%1%' => $politico->getSumu())) ?> <?php endif ?></span>
+      	</p>
+      </li>
+  	<?php endforeach?>
+  <?php endif ?>
+        </ul>
   <?php endif?>
     </div>
 
