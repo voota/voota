@@ -87,8 +87,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #error #footer { padding-top: 0;}
 
 /* Home */
-#home-index #main-inner { width: 100%;}
-#home-index .block { margin: 0 auto 2em auto; width: 960px; }
+#home-index #main-inner { width: 100%; margin: 0;}
+#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em;}
+#home-index .last { background: none; padding-bottom: 0;}
+#home-index .block-inner { margin: 0 auto 3em auto; width: 960px; overflow: hidden;}
 #home-index #summary ul { padding-left: 1em;}
 #home-index #summary li { margin-bottom: 1em;}
 #home-index #content { padding-left: 1.5em;}
