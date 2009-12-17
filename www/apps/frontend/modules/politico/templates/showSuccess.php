@@ -132,7 +132,7 @@
       <h3><?php echo __('Enlaces externos')?></h3>
       <ul>
         <?php foreach($politico->getEnlaces() as $enlace): ?>
-          <li><a href="<?php echo $enlace->getUrl(); ?>"><?php echo $enlace->getUrl(); ?></a></li>
+          <li><a href="<?php echo $enlace->getUrl(); ?>"><?php echo urldecode($enlace->getUrl()) ?></a></li>
         <?php endforeach ?>
       </ul>
     </div>
