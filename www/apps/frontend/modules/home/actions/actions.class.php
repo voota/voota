@@ -31,7 +31,7 @@ class homeActions extends sfActions{
   }
   
   public function executeIndex(sfWebRequest $request) {  	
-   	$query = "SELECT p.*, count(*) c
+   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
   			FROM politico p
 			INNER JOIN sf_review r ON r.entity_id = p.id
 			WHERE r.is_active = 1
