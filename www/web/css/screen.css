@@ -79,7 +79,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .submit { text-align: right; }
 .hints { margin: 0; padding: 5px 0;}
 
-/* Errores */
+/* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
 #error #main h2 { text-align: center; color: #2b56ff; font-size: 3em; margin-bottom: 0.5em;}
 #error #message { padding: 0 240px 4em 240px;}
@@ -87,6 +87,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #error #footer { padding-top: 0;}
 
 /* Home */
+#home-index #main-inner { width: 100%;}
+#home-index .block { margin: 0 auto 2em auto; width: 960px; }
 #home-index #summary ul { padding-left: 1em;}
 #home-index #summary li { margin-bottom: 1em;}
 #home-index #content { padding-left: 1.5em;}
@@ -95,6 +97,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index .list-mini li .avatar { float: left; }
 #home-index .list-mini li .name,
 #home-index .list-mini li .votes { margin-left: 45px; }
+#home-index .search { clear: left;}
 #home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
@@ -141,7 +144,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-about #sidebar dl { margin: 0; padding-left: 0.5em;}
 #general-about #sidebar dt { font-size: 1.2em; font-weight: bold;}
 #general-about #sidebar dd { margin: 0; padding: 0 0 1em 0; line-height: 150%;}
-
 
 /* SignUp y Login */ 
 #sfGuardAuth-signin #main { padding-top: 4em;}
