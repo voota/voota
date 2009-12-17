@@ -35,9 +35,7 @@
 <div id="content">
   <div id="politicians-most-voted" class="list-mini">
 <?php if(count($politicosMasVotadosUltimamente) == 0):?>
-<h2 id="summary">
-	<?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?>
-</h2>
+	<h2 id="summary"><?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?></h2>
 <?php else:?>
     <ul>
   <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
@@ -45,21 +43,13 @@
         <div class="avatar">
      	  <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto" , class="separacionFotoRanking"') ?>
       	</div>
-      	<h4 class="name">
-      	<?php echo link_to($politico->getNombre()." ".$politico->getApellidos(). ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?>
-      	</h4>
+      	<h4 class="name"><?php echo link_to($politico->getNombre()." ".$politico->getApellidos(). ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?></h4>
       	<p class="votes">
       	    <span id="<?php echo "sparkline_".$politico->getId()?>"></span>
-      	  <span class="votes-count">
-		    <?php if ($politico->getSumu() == 1):?>
-			    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumu())) ?> 
-		    <?php else: ?>
-			    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumu())) ?> 
-		    <?php endif ?>
-    	  </span>
+      	  <span class="votes-count"><?php if ($politico->getSumu() == 1):?><?php echo __('%1% voto positivo', array('%1%' => $politico->getSumu())) ?> <?php else: ?><?php echo __('%1% votos positivos', array('%1%' => $politico->getSumu())) ?> <?php endif ?></span>
       	</p>
       </li>
-<?php endforeach?>
+  <?php endforeach?>
     </ul>
 <?php endif?>
   </div>
