@@ -297,3 +297,6 @@ div.clickable {cursor: pointer;}
 */
 
 .tips { font-size: 0.8em; padding-top: 17px; }
+
+table.sparkline {border-collapse: collapse;}
+table.sparkline td {padding:0px;}

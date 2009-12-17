@@ -7,6 +7,9 @@
 <script>  
 $(document).ready(function(){
 	rankingReady();
+	  <?php foreach($politicosPager->getResults() as $politico): ?>
+	  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+	  <?php endforeach ?>
 });
 </script>
 
@@ -100,6 +103,7 @@ $(document).ready(function(){
 <div class="listadoRanking">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr class="cabeceraRanking">
+    <td>&nbsp;</td>
     <td class="nombreRanking"><h6><?php echo __('Nombre')?></h6></td>
     <td class="votosUp"><h6>
     	<?php echo link_to(__('Votos'), "$route&o=".($order=='pd'?'pa':'pd'));?>
@@ -120,9 +124,8 @@ $(document).ready(function(){
 
 <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
   <tr class="listaRanking">
-    <td class="nombreRanking"><h6>      
-    <?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png')
+	<td class="votosDown"><span id="<?php echo "sparkline_".$politico->getId()?>"></span></td>
+    <td class="nombreRanking"><h6><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>. <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png')
     	, 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'" , class=separacionFotoRanking') ?>
     
  <?php echo link_to(
@@ -132,8 +135,6 @@ $(document).ready(function(){
  
      
      </h6></td>
-
-
     <td class="votosDown"><h6><?php echo $politico->getSumu()?></h6></td>
     <td class="votosDown"><h6><?php echo $politico->getSumd()?></h6></td>
     <td>&nbsp;</td>

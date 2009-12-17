@@ -45,6 +45,23 @@ class homeActions extends sfActions{
 
 	$statement->execute();
 	$this->politicosMasVotadosUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Politico');
+		
+	if (count($this->politicosMasVotadosUltimamente) < 6) {
+	   	$query = "SELECT p.*, count(*) c
+	  			FROM politico p
+				INNER JOIN sf_review r ON r.entity_id = p.id
+				WHERE r.is_active = 1
+				GROUP BY p.id
+				ORDER BY IFNULL(r.modified_at, r.created_at) desc
+				LIMIT " . (6 - count($this->politicosMasVotadosUltimamente));
+				//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)				
+	   	$connection = Propel::getConnection();
+		$statement = $connection->prepare($query);
+		//$statement->bindValue(1, 6 - count($this->politicosMasVotadosUltimamente));
+		
+		$statement->execute();
+		$this->politicosMasVotadosUltimamenteCont = $statement->fetchAll(PDO::FETCH_CLASS, 'Politico');
+	}
 	/*
 	foreach($this->politicosMasVotadosUltimamente as $politico){
 		echo $politico->getNombre(). " ".$politico->getApellidos()."(".$politico->getPartido().")"."<br>";

@@ -88,7 +88,7 @@
       <?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>
     </p>
 
-    <p class="copyright">Voota.es 2009 </p>
+    <p class="copyright">Voota.es <?php echo date('Y')?></p>
   </div><!-- FIN FOOTER -->
 
   <!-- GOOGLE ANALYTICS -->

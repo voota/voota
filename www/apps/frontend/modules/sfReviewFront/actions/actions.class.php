@@ -21,6 +21,18 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFr
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+  	public function executeForm(sfWebRequest $request){
+  		parent::executeForm( $request );
+		if( $this->getUser()->isAuthenticated() ){
+		  	$this->getUser()->setAttribute('url_back', '');
+		  	
+		  	$this->getUser()->setAttribute('review_v', '');
+		  	$this->getUser()->setAttribute('review_e', '');
+		  	$this->getUser()->setAttribute('review_text', '');
+		  	$this->getUser()->setAttribute('review_c', '');		  	
+		}
+  	}
+  	
 	private function clearCache( $politico ) {
 	  	$cacheManager = $this->getContext()->getViewCacheManager();
 	  	if ($cacheManager != null) {
