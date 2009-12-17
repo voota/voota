@@ -32,4 +32,14 @@ class Politico extends BasePolitico
   	return SfReviewManager::getTotalReviewsByEntityAndValue(1, $this->getId(), -1);
   }
   
+  	public function applyDefaultValues()
+	{
+		if ($this->sumu == null || $this->sumu == ''){
+			$this->sumu = 0;
+		}
+		if ($this->sumd == null || $this->sumd == ''){
+			$this->sumd = 0;
+		}
+	}
+  
 }

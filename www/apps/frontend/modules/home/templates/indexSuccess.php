@@ -1,5 +1,18 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
+<?php use_helper('jQuery') ?>
+
+<script type="text/javascript">
+  <!--
+  $(document).ready(function(){
+	  <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
+	  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+	  <?php endforeach ?>
+  });
+
+
+  //-->
+</script>
 
 <?php slot('header-extra') ?>
   <div id="contact-links">
@@ -21,8 +34,13 @@
 
 <div id="content">
   <div id="politicians-most-voted" class="list-mini">
+<?php if(count($politicosMasVotadosUltimamente) == 0):?>
+<h2 id="summary">
+	<?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?>
+</h2>
+<?php else:?>
     <ul>
-<?php foreach($politicosMasVotadosUltimamente as $politico): ?>
+  <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
       <li>
         <div class="avatar">
      	  <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto" , class="separacionFotoRanking"') ?>
@@ -31,20 +49,19 @@
       	<?php echo link_to($politico->getNombre()." ".$politico->getApellidos(). ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?>
       	</h4>
       	<p class="votes">
-      	  <span class="graph">
-      	    <img src="/images/proto/graficos.jpg" alt="gráfica de votos" width="114" height="35" />
-      	  </span>
+      	    <span id="<?php echo "sparkline_".$politico->getId()?>"></span>
       	  <span class="votes-count">
-		    <?php if ($politico->getSumU() == 1):?>
-			    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
+		    <?php if ($politico->getSumu() == 1):?>
+			    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumu())) ?> 
 		    <?php else: ?>
-			    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
+			    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumu())) ?> 
 		    <?php endif ?>
     	  </span>
       	</p>
       </li>
 <?php endforeach?>
     </ul>
+<?php endif?>
   </div>
   
   <div class="search">

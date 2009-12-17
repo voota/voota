@@ -11,7 +11,7 @@
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
   	$("#help-dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
-    $('.sparkline').sparkline([<?php echo $sparklineData ?>], {normalRangeMin:0, normalRangeMax:5, fillColor:false});
+  	<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
   });
 
 
@@ -21,7 +21,7 @@
 
 <h2 class="name">
   <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
-  <span class="sparkline"></span>
+  <span id="<?php echo "sparkline_".$politico->getId()?>"></span>
   
   
   <span class="rank">
