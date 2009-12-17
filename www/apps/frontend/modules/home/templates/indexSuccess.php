@@ -73,19 +73,32 @@
 <div class="block">
   <div class="block-inner">
     <div id="rankings">
-      <div id="politicians-top5">
+      <div id="politicians-top5" class="list-mini">
         <h3>Top 5 políticos</h3>
         <ol>
           <!-- Aquí va el include_partial en un foreach para todos los políticos del top5 -->
         </ol>
+        <p><a href="">Ranking general de políticos</a></p>
       </div>
 
-      <div id="political-groups">
+      <div id="political-groups" class="list-mini">
         <h3>Top 5 partidos</h3>
+        <ol>
+          <?php for($i = 1; $i <= '5'; $i += 1) { ?>
+            <?php include_partial('partido_li') ?>
+          <?php } ?>
+        </ol>
+        <p><a href="">Todos los partidos</a></p>
       </div>
 
-      <div id="institutions">
+      <div id="institutions" class="list-mini">
         <h3>Instituciones en Voota</h3>
+        <ol>
+          <?php for($i = 1; $i <= '5'; $i += 1) { ?>
+            <?php include_partial('institucion_li') ?>
+          <?php } ?>
+        </ol>
+        <p><a href="">Listado de instituciones</a></p>
       </div>
     </div>
   </div>
@@ -93,6 +106,18 @@
 
 <div class="block last">
   <div class="block-inner">
-    Último bloque
+    <p class="signup"><a href="#">¿Te gusta Voota? Registrarse en un plis</a></p>
+    
+    <div class="search">
+      <?php echo form_tag('@search') ?>
+        <p><label for="q_2">¡Buusca!</label></p>
+        <p>
+          <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_2')) ?>
+          <br />
+          <span class="hints">Político, partido o institución</span>
+        </p>
+        <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
+      </form>
+    </div>
   </div>
 </div>
