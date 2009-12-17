@@ -42,4 +42,18 @@ class Politico extends BasePolitico
 		}
 	}
   
+	var $sumut = 0;
+	var $sumdt = 0;
+	public function getSumut(){
+		return $this->sumut;
+	}
+	public function setSumut($v){
+		return $this->sumut = $v;
+	}
+	public function getSumdt(){
+		return $this->sumdt;
+	}
+	public function setSumdt($v){
+		return $this->sumdt = $v;
+	}
 }
