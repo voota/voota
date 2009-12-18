@@ -69,15 +69,15 @@ function showScoreHelp(){
 	$("#help-dialog").dialog('open');
 }
 
-function inst_to_long() {
-	document.getElementById('inst_long').className = 'shown';
-	document.getElementById('inst_short').className = 'hidden';
+function institutions_to_long() {
+	document.getElementById('institutions-long').className = 'shown';
+	document.getElementById('institutions-short').className = 'hidden';
 	return false;
 }
 
-function inst_to_short() {
-	document.getElementById('inst_long').className = 'hidden';
-	document.getElementById('inst_short').className = 'shown';
+function institutions_to_short() {
+	document.getElementById('institutions-long').className = 'hidden';
+	document.getElementById('institutions-short').className = 'shown';
 	return false;
 }
 

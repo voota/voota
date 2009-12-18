@@ -4,6 +4,13 @@
 
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
 p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
+img { border:none; vertical-align: middle; }
+table { padding:0; margin:0; }
+
+/* Clases genéricas */
+.hidden { display:none; }
+.shown { display:block; }
+.tips { font-size: 0.8em; padding-top: 17px; }
 
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
@@ -170,13 +177,16 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin .legal { text-align: right; }
 
 /* Ranking de políticos */
-.listadoRanking { margin: 1.50em auto 0 auto; width: 90%; }
-.cabeceraRanking { background-color:#f6f6f6; height: 1.69em; }
-.listaRanking { height: 5em; }
-.nombreRanking { width: 40%; height: 1.69em; padding-left: 5.00em; padding-top: 1.10px; }
-.votosUp { width: 20%; text-align: right; }
-.votosDown { width: 20%; text-align:right; }
-.separacionFotoRanking { padding-right:0.88em; }
+#politico-ranking .active { background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold; }
+#politico-ranking table { margin: 0 auto; width: 90%; }
+#politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
+#politico-ranking table tbody td { padding: 1em 0; }
+#politico-ranking table .ranking { text-align: right; width: 18%; }
+#politico-ranking table .photo { text-align: right; width: 10%; padding-right: 2%; }
+#politico-ranking table .name { text-align: left; width: 22%; }
+#politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
+#politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
+#politico-ranking .pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
 
 /* Página de político */
 #politico-show #content { width: 65%; }
@@ -215,104 +225,42 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
   Antiguas reglas CSS (deprecated)
 */
 
-.limpiar { clear:both; }
-.inputSignPeq { width:1.90em; }
-.inputSignPeq2 { width:2.50em; }
-.inputSignVanity { width:11em; }
-.der { float:right;}
-.izq { float:left;}
-.login {margin-top:0.60em; float:right;}
-.text11 { font-family:Georgia, "Times New Roman", Times, serif; font-size:1em; color:#8c8c8c;}
-img { border:none; vertical-align: middle;}
-table { padding:0; margin:0;}
-.tdperfil { padding: 15px 0; vertical-align: top;}
 #contentLeft { float:left; width: 41.56em;}
-#contentRankingLeft { float:left; width:100%}
-#contentRight { float:right; width: 10.81em;}
-#contentRight2 { float:right; width: 15.81em; margin-top:3.94em;}
-#contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
+#contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing { float:left; width:50%; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
 #contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
 #contentLeftSing500{ padding-top:3.94em; margin: 0 auto; width:34.38em; text-align:center; }
+#contentRankingLeft { float:left; width:100%}
+#contentRight { float:right; width: 10.81em;}
+#contentRight2 { float:right; width: 15.81em; margin-top:3.94em;}
 #contentRightSing { float:left; margin-top:3.94em; margin-left:1.00em}
 #contentSing { padding-left:1.31em; margin-top:1.69em; }
-.buscar { text-align:right; float:right; }
-.formSing { margin-top:1.00em;}
-.formSing404 { padding-top:1.00em; margin: 0 auto; width:25.00em; text-align:left;}
-.formSing500 { padding-top:1.00em; margin: 0 auto; width:12.50em; text-align:left;}
-.formSings { margin-top:1.00em; margin-left:1.44em;}
-.alingBoton {text-align:right;}
-.leftSing {  width:5.80em; padding: 1em 0; vertical-align: top; }
-.leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
-.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
-.leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
-.leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
-.leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
-.leftSing3 { padding-bottom:0.60em; padding-top:0.60em; }
-#nombre { list-style:none; margin:0; padding:0; }
 #nombre li { float:left; margin:0; padding:0; margin-right:1.0em; }
-.ranking { text-align:right; width:6.25em; height:1.69em;}
-.fotoRanking { width:6.81em; height:1.69em; padding-left:0.25em; text-align:right;}
-.votosUpTotal {  width:38.80em; text-align:right; margin-right:2.20em;}
-.votosDownTotal { float:left; text-align:right;}
-#paginacion { text-align:center; word-spacing:0.40em; font-weight:bold;}
-.numerosPag { font-weight:bold; font-size: 1.2em; }
-.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.4em; font-weight:bold; color:#2f2f2f}
-.nombrePolitico select { font-size: 0.8em;}
-.tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
-.azul {color:#2b56ff;}
-.rojo {color:#f80c1a;}
-.nombreCaja {font-family: Georgia, "Times New Roman", Times, serif; font-size:0.88em; color:#2f2f2f;}
-.margenVotacion {margin-right:1.56em;}
-.margenPolitico {margin-left:0.75em; margin-top:0.60em}
-.margenPoliticoPartido {margin-left:0.75em; margin-top:0.60em; width:15.00em; float:left;}
-.linePolitico {border-bottom:0.06em dotted #646464; width:10.94em; height:0.06em; margin-top:0.60em; margin-left:0.60em;}
-.positivoNegativo {width:18.69em;}
-.picoComentario {margin-left:1.75em; height:0.44em; margin-bottom:0.28em;}
-#comentarios {margin-left:0.75em; border:0.06em solid #cdcdc5; background:#ffffcd; padding-right:0.60em;}
-.lugar {color:#323232; font-weight:bold;}
-.totalComentarios {margin-left:3.13em; margin-top:1.50em;}
-.votaSobre {margin-left:1.31em; margin-top:1.50em; width:13.81em;}
-.votaPoliticosParido {margin-left:1.31em; margin-top:1.50em;}
-.contenedorPositivoNegativo {margin-left:1.31em; margin-top:1.50em;}
-.votaPartidos {margin-left:1.25em; margin-top:1.50em; margin-bottom:1.25em; margin-right:3.25em; float:left; width:15.63em;}
-.vootaPartidoList { margin-left:0.63em; margin-top:0.63em;}
-.listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
-.confirmar {width:14.44em; margin-left:1.00em; }
-.cuadroConfirmar {border:0.06em solid #8f9ba7; background-color:#ffffcd; padding:0.50em; width:10em;}
-.cuadroConfirmarImagen { background-image:url(/images/clonk.gif); background-repeat:no-repeat; background-position:bottom left; text-align:center;}
-.ayuda {border:0.06em solid #3366ff; background-color:#ffffff; padding:0.50em; width:17.94em;}
-.tachado {text-decoration: line-through;}
-.margenVota {margin-top:0.60em; width:18.94em; text-align:right;}
-.conColor {margin-top:2.94em;}
-.enlacesExternosPartido {margin-top:4.94em;}
-.tituloColor {margin-top:2.00em;}
-.nombreColor {margin-left:0.60em; margin-top:1.00em;}
-.nombreColorPartido {margin-left:0.60em;}
-.flechita {background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold;  }
-.textoNormal {font-size: 0.75em; font-weight: normal; margin:0.00em; margin:0.00em; padding-bottom:0.5em; color:#323232;}
-.textoMayor {font-size: 0.88em;  margin:0.00em; color:#323232; font-weight: bold;}
-.ancho100 { width:480px;}
-.aboutFoto {float:left; width:36px;}
-.aboutTexto {float:left; margin-left:10px; width:30.63em;}
-.aboutContainer {margin-top:1.75em; margin-left:1.44em;}
-.containerEnlaces {margin-top:0.75em; margin-left:1.44em;}
+#nombre { list-style:none; margin:0; padding:0; }
+.alingBoton {text-align:right;}
 .anchoColumna {width:160px;}
+.azul {color:#2b56ff;}
+.formSing { margin-top:1.00em;}
+.leftSing {  width:5.80em; padding: 1em 0; vertical-align: top; }
+.leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
+.leftSing3 { padding-bottom:0.60em; padding-top:0.60em; }
+.leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
+.leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
+.leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
+.limpiar { clear:both; }
+.listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
+.nombrePolitico select { font-size: 0.8em;}
+.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.4em; font-weight:bold; color:#2f2f2f}
+.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
+.tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
 .tituloCampo { padding-top: 17px; margin:0; color:#323232; }
-div.clickable {cursor: pointer;}
-.gris{color:#b6b6b6; }
-.negro{color:black; }
-.hidden{display:none}
-.shown{display:block}
-.wider { width:16em; padding: 15px 0; }
+
 
 /*
   Reglas nuevas
 */
-
-.tips { font-size: 0.8em; padding-top: 17px; }
 
 table.sparkline {border-collapse: collapse;}
 table.sparkline td {padding:0px;}
