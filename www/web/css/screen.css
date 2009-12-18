@@ -133,6 +133,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
 #sfGuardAuth-edit input[type=button] { width: 12em;}
 #sfGuardAuth-edit form td { width: 20em;}
+#sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em;}
 
 /* About */
 #general-about #content { width: 65%; margin-left: 1em; }
