@@ -104,6 +104,7 @@ class politicoActions extends sfActions
   	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
   	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
   	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
   	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
@@ -173,6 +174,7 @@ class politicoActions extends sfActions
   		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
 	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
 	  	$c->setDistinct();
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
   	}
@@ -229,6 +231,7 @@ class politicoActions extends sfActions
    		}
 	  	if ($this->institucion != '0') {
 	  		$ci = new Criteria();
+  			$ci->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
 	  		$ci->add(InstitucionI18nPeer::VANITY, $this->institucion);
 	  		$institucion = InstitucionPeer::doSelectOne( $ci );
 	  		$description .= ", " . $institucion->getNombre()." (". $institucion->getGeo()->getNombre() .", España)";
