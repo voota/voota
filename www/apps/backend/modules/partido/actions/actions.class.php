@@ -22,7 +22,7 @@ class partidoActions extends autoPartidoActions
 {
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->institucion = $this->getRoute()->getObject();
+    $this->partido = $this->getRoute()->getObject();
   	$this->form = $this->configuration->getForm($this->partido);
   	
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
@@ -37,7 +37,7 @@ class partidoActions extends autoPartidoActions
 		    $imageName = $this->form->getValue('vanity');
 		      
 		    $imageName .= ".$ext";
-		    $imagen->save(sfConfig::get('sf_upload_dir').'/instituciones/'.$imagen->getOriginalName());
+		    $imagen->save(sfConfig::get('sf_upload_dir').'/partidos/'.$imagen->getOriginalName());
 		    $this->form->getObject()->setImagen( $imagen->getOriginalName() );
 	    }
     }
