@@ -6,16 +6,14 @@
     <p class="votes">
     	<span id="<?php echo $id ?>"></span>
 		<span class="votes-count">
-			<?php if ($showVotes):?>
-				<?php if ($politico->getSumut() > 0 && $politico->getSumdt() > 0): ?>
-					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => $politico->getSumut()),$politico->getSumut())) ?>
-					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1] y 1 negativo|(1,+Inf] y %1% negativos', array('%1%' => $politico->getSumdt()), $politico->getSumdt())) ?>
-				<?php elseif ($politico->getSumut() > 0): ?>
-					<?php echo format_number_choice('[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $politico->getSumut()), $politico->getSumut()) ?>				
-				<?php elseif ($politico->getSumdt() > 0): ?>
-					<?php echo format_number_choice('[0]0|[1]1 voto negativo|(1,+Inf]%1% votos negativos', array('%1%' => $politico->getSumdt()), $politico->getSumdt()) ?>				
+				<?php if ($politico->getSumu() > 0 && $politico->getSumd() > 0): ?>
+					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => $politico->getSumu()),$politico->getSumu())) ?>
+					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1] y 1 negativo|(1,+Inf] y %1% negativos', array('%1%' => $politico->getSumd()), $politico->getSumd())) ?>
+				<?php elseif ($politico->getSumu() > 0): ?>
+					<?php echo format_number_choice('[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $politico->getSumu()), $politico->getSumu()) ?>				
+				<?php elseif ($politico->getSumd() > 0): ?>
+					<?php echo format_number_choice('[0]0|[1]1 voto negativo|(1,+Inf]%1% votos negativos', array('%1%' => $politico->getSumd()), $politico->getSumd()) ?>				
 				<?php endif?>  
-			<?php endif ?>
 		</span>
 	</p>
 </li>

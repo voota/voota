@@ -30,27 +30,24 @@ $(document).ready(function(){
 <div id="inst_long" class="hidden"><h6>
   <?php 
     if ($partido == 'all'){
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
 	  	echo link_to(
 	 	__('Todas las instituciones')
-	 	, "$url"
+	 	, "politico/ranking"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
     else {
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
 	  	echo link_to(
 	 	__('Todas las instituciones')
-	 	, "$url?partido=$partido"
+	 	, "politico/ranking?partido=$partido"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
   ?>
 <?php foreach($instituciones as $aInstitucion): ?>
  · 
   <?php 
-  	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
   	echo link_to(
  	$aInstitucion->getNombreCorto()
- 	, "$url?partido=$partido&institucion=".$aInstitucion->getVanity()
+ 	, "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity()
  	, array('class' => $aInstitucion->getVanity()==$institucion?'flechita':'')
  ) ?>
  <?php endforeach ?>
@@ -60,17 +57,15 @@ $(document).ready(function(){
 <div id="inst_short"><h6>
   <?php 
     if ($partido == 'all'){
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_all";
 	  	echo link_to(
 	 	__('Todas las instituciones')
-	 	, "$url"
+	 	, "politico/ranking"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
     else {
-	  	$url = "@ranking_".$sf_user->getCulture('es')."_partido";
 	  	echo link_to(
 	 	__('Todas las instituciones')
-	 	, "$url?partido=$partido"
+	 	, "politico/ranking?partido=$partido"
 	 	, array('class' => $institucion=='0'?'flechita':''));
     }
   ?>
@@ -81,11 +76,10 @@ $(document).ready(function(){
   if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getVanity()==$institucion) {
   ?>  
  · 
-  <?php 
-  	$url = ($sf_user->getCulture('es') == 'es')?'@ranking_es':'@ranking_ca';
+  <?php
   	echo link_to(
  	$aInstitucion->getNombreCorto()
- 	, "$url?partido=$partido&institucion=".$aInstitucion->getVanity()
+ 	, "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity()
  	, array('class' => $aInstitucion->getVanity()==$institucion?'flechita':'')
  ) ?>
   <?php 

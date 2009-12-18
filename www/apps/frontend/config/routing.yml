@@ -28,13 +28,13 @@ politico_ca:
   param: { module: politico, action: show }
   requirements: { sf_culture: (?:ca) }
 
-ranking_es_all:
-  url: /:sf_culture/politicos
+ranking_es:
+  url: /:sf_culture/politicos/:partido/:institucion
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:es) }
 
-ranking_ca_all:
-  url: /:sf_culture/politics
+ranking_ca:
+  url: /:sf_culture/politics/:partido/:institucion
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:ca) }
 
@@ -48,13 +48,13 @@ ranking_ca_partido:
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:ca) }
 
-ranking_es:
-  url: /:sf_culture/politicos/:partido/:institucion
+ranking_es_all:
+  url: /:sf_culture/politicos
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:es) }
 
-ranking_ca:
-  url: /:sf_culture/politics/:partido/:institucion
+ranking_ca_all:
+  url: /:sf_culture/politics
   param: { module: politico, action: ranking }
   requirements: { sf_culture: (?:ca) }
 

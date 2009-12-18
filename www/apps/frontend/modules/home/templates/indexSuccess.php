@@ -61,7 +61,7 @@
         <p>
           <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
           <br />
-          <span class="hints">Político, partido o institución</span>
+          <span class="hints"><?php echo __('Político') ?></span>
         </p>
         <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
       </form>
@@ -115,7 +115,7 @@
         <p>
           <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_2')) ?>
           <br />
-          <span class="hints">Político, partido o institución</span>
+          <span class="hints"><?php echo __('Político') ?></span>
         </p>
         <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
       </form>
