@@ -20,4 +20,30 @@ require_once dirname(__FILE__).'/../lib/partidoGeneratorHelper.class.php';
  */
 class partidoActions extends autoPartidoActions
 {
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->institucion = $this->getRoute()->getObject();
+  	$this->form = $this->configuration->getForm($this->partido);
+  	
+    $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+  	if ($this->form->isValid()) {
+	  	$imagen = $this->form->getValue('imagen');
+	    if ($imagen->getOriginalName()){
+			$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
+			$ext = strtolower($arr[0]);
+			if (!$ext || $ext == ""){
+			  	$ext = "png";
+			}     
+		    $imageName = $this->form->getValue('vanity');
+		      
+		    $imageName .= ".$ext";
+		    $imagen->save(sfConfig::get('sf_upload_dir').'/instituciones/'.$imagen->getOriginalName());
+		    $this->form->getObject()->setImagen( $imagen->getOriginalName() );
+	    }
+    }
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
+	
 }

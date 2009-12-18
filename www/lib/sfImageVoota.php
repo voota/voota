@@ -50,35 +50,44 @@ abstract class sfImageVootaGD extends sfImageTransformAbstract
   	if(!file_exists($destDir)) {
   		mkdir($destDir);
   	}
+  	
+  	if ($img->getWidth() > IMG_MAX_WIDTH || $img->getHeight() > IMG_MAX_HEIGHT){
+  		if ($img->getWidth() > $img->getHeight() * IMG_RATIO) {
+  			$img->resize(IMG_MAX_WIDTH, null);
+  		}
+  		else {
+  			$img->resize(null, IMG_MAX_HEIGHT);
+  		}
+  	}
+	$img->saveAs( $ccFile );
+  	
+	$img->greyscale()->saveAs( $bwFile );
 
-
-  			/*
-		  	$img->overlay(
-		  		new sfImage(
-		  			sfConfig::get('sf_web_dir'). DIRECTORY_SEPARATOR. 'images'. DIRECTORY_SEPARATOR. 'wm.png'
-		  		)
-		  	);
-		  	*/
-  			if ($img->getWidth() > IMG_MAX_WIDTH || $img->getHeight() > IMG_MAX_HEIGHT){
-  				if ($img->getWidth() > $img->getHeight() * IMG_RATIO) {
-  					$img->resize(IMG_MAX_WIDTH, null);
-  				}
-  				else {
-  					$img->resize(null, IMG_MAX_HEIGHT);
-  				}
-  			}
-			$img->saveAs( $ccFile );
-		  	
-			$img->greyscale()->saveAs( $bwFile );
-
-			
-			$smallImg = new sfImage( $ccFile );
-			
-			$smallImg->resize($img->getWidth() / 1.5, $img->getHeight() / 1.5);
-			$x1 = ($smallImg->getWidth() - IMG_SMALL_WIDTH) / 2;
-			$y1 = ($smallImg->getHeight() - IMG_SMALL_HEIGHT) / 3;
-			$smallImg->crop($x1, $y1, IMG_SMALL_WIDTH, IMG_SMALL_HEIGHT)->saveAs( $ccSmallFile );
-			$smallImg->greyscale()->saveAs( $bwSmallFile );
+	
+	$smallImg = new sfImage( $ccFile );
+	
+  	if ($smallImg->getWidth() > IMG_SMALL_WIDTH || $smallImg->getHeight() > IMG_SMALL_WIDTH){
+  		if ($smallImg->getWidth() > $img->getHeight() * IMG_RATIO) {
+  			$smallImg->resize(null, IMG_MAX_HEIGHT);
+  		}
+  		else {
+  			$smallImg->resize(IMG_MAX_WIDTH, null);
+  		}
+  	}
+  	
+ 	if ($smallImg->getWidth() > IMG_SMALL_WIDTH || $smallImg->getHeight() > IMG_SMALL_HEIGHT){
+  		if ($smallImg->getWidth() > $smallImg->getHeight() * IMG_RATIO) {
+  			$smallImg->resize(null, IMG_SMALL_HEIGHT);
+  		}
+  		else {
+  			$smallImg->resize(IMG_SMALL_WIDTH, null);
+  		}
+  	}
+	$x1 = ($smallImg->getWidth() - IMG_SMALL_WIDTH) / 2;
+	$y1 = ($smallImg->getHeight() - IMG_SMALL_HEIGHT) / 3;
+	$smallImg->crop($x1, $y1, IMG_SMALL_WIDTH, IMG_SMALL_HEIGHT)->saveAs( $ccSmallFile );
+	
+	$smallImg->greyscale()->saveAs( $bwSmallFile );
 			
   	  	
   }  

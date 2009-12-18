@@ -79,7 +79,7 @@
 	  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><a href="">Ranking general de políticos</a></p>
+        <p><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></p>
       </div>
 
       <div id="political-groups" class="list-mini">
@@ -90,7 +90,6 @@
 	      <?php endforeach?>
         </ol>
 
-        <p><a href="">Todos los partidos</a></p>
       </div>
 
       <div id="institutions" class="list-mini">
@@ -101,7 +100,6 @@
 	      <?php endforeach?>
         </ol>
 
-        <p><a href="">Listado de instituciones</a></p>
       </div>
     </div>
   </div>
@@ -109,7 +107,7 @@
 
 <div class="block last">
   <div class="block-inner">
-    <p class="signup"><a href="#">¿Te gusta Voota? Registrarse en un plis</a></p>
+    <p class="signup"><?php echo link_to(__('¿Te gusta Voota? Registrarse en un plis'), '@sf_guard_signin')?></p>
     
     <div class="search">
       <?php echo form_tag('@search') ?>

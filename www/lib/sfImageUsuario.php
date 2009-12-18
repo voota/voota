@@ -2,7 +2,7 @@
 
 class sfImageUsuarioGD extends sfImageVootaGD
 {
-		
+/*
   public function transform(sfImage $img)
   {
 	$this->directory = dirname($img->getFilename());
@@ -27,13 +27,6 @@ class sfImageUsuarioGD extends sfImageVootaGD
   		|| filemtime ( $ccFile ) < filemtime( $img->getFilename() )
   		|| filemtime ( $ccSmallFile ) < filemtime( $img->getFilename() )
   		) {
-  			/*
-		  	$img->overlay(
-		  		new sfImage(
-		  			sfConfig::get('sf_web_dir'). DIRECTORY_SEPARATOR. 'images'. DIRECTORY_SEPARATOR. 'wm.png'
-		  		)
-		  	);
-		  	*/
   			if ($img->getWidth() > IMG_MAX_WIDTH || $img->getHeight() > IMG_MAX_HEIGHT){
   				if ($img->getWidth() > $img->getHeight() * IMG_RATIO) {
   					$img->resize(IMG_MAX_WIDTH, null);
@@ -67,7 +60,7 @@ class sfImageUsuarioGD extends sfImageVootaGD
 						
   	}  	
   }  
-
+*/
 }
 
 ?>
