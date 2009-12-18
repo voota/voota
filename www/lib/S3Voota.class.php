@@ -103,8 +103,14 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "instituciones/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->institucion(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "instituciones/$fileName", S3::ACL_PUBLIC_READ);
+			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_s_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_s_$fileName" );
 		}
 		
 	}

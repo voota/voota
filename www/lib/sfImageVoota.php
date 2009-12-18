@@ -46,6 +46,7 @@ abstract class sfImageVootaGD extends sfImageTransformAbstract
 	$ccSmallFile = $destDir . DIRECTORY_SEPARATOR.'cc_s_'.$this->fileName;
 	$bwSmallFile = $destDir . DIRECTORY_SEPARATOR.'bw_s_'.$this->fileName;
 	
+	
   	if(!file_exists($destDir)) {
   		mkdir($destDir);
   	}

@@ -21,28 +21,30 @@ require_once dirname(__FILE__).'/../lib/institucionGeneratorHelper.class.php';
  */
 class institucionActions extends autoInstitucionActions
 {	
-	/*public function executeUpdate(sfWebRequest $request) {
-		$institucion = $this->getRoute()->getObject();
-	    if ($institucion->getVanity() == ''){
-	    	$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto());
-	    	
-		    $c2 = new Criteria();
-		    $c2->add(InstitucionPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
-		    $c2->add(InstitucionPeer::ID, $institucion->getId(), Criteria::NOT_EQUAL);
-		    $usuariosLikeMe = InstitucionPeer::doSelect( $c2 );
-		    $counter = 0;
-		    foreach ($usuariosLikeMe as $usuarioLikeMe){
-		    	$counter++;
-		    }
-		    $institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
-		    
-		    
-    		$this->form = $this->configuration->getForm($institucion);
-
-    		$this->processForm($request, $this->form);
-
-    		$this->setTemplate('edit');
-		    
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->institucion = $this->getRoute()->getObject();
+  	$this->form = $this->configuration->getForm($this->institucion);
+  	
+    $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+  	if ($this->form->isValid()) {
+	  	$imagen = $this->form->getValue('imagen');
+	    if ($imagen->getOriginalName()){
+			$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
+			$ext = strtolower($arr[0]);
+			if (!$ext || $ext == ""){
+			  	$ext = "png";
+			}     
+		    $imageName = $this->form->getValue('vanity');
+		      
+		    $imageName .= ".$ext";
+		    $imagen->save(sfConfig::get('sf_upload_dir').'/instituciones/'.$imagen->getOriginalName());
+		    $this->form->getObject()->setImagen( $imagen->getOriginalName() );
 	    }
-	}*/
+    }
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
+
 }

@@ -13,6 +13,9 @@
   	  		<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
       	<?php endforeach?>
   	  <?php endif ?>
+      <?php foreach($topPoliticos as $politico): ?>
+  		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico)) ?>
+  	  <?php endforeach?>
   });
 
 
@@ -40,20 +43,16 @@
     </h2>
 
     <div id="politicians-most-voted" class="list-mini">
-      <?php if(count($politicosMasVotadosUltimamente) == 0):?>
-  	    <h2><?php echo __('Todavía no hay comentarios hoy, ¿quieres ser el primero?')?></h2>
-      <?php else:?>
         <ul>
           <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-	  			  <?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => true)) ?>
+	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
 	        <?php endforeach?>
           <?php if(count($politicosMasVotadosUltimamente) < 6):?>
     	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-  	  			  <?php include_partial('politico_li', array('politico' => $politico, 'showVotes' => false)) ?>
+  	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false)) ?>
             <?php endforeach?>
           <?php endif ?>
         </ul>
-      <?php endif?>
     </div>
 
     <div class="search">
@@ -76,7 +75,9 @@
       <div id="politicians-top5" class="list-mini">
         <h3>Top 5 políticos</h3>
         <ol>
-          <!-- Aquí va el include_partial en un foreach para todos los políticos del top5 -->
+          <?php foreach($topPoliticos as $politico): ?>
+	  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+	      <?php endforeach?>
         </ol>
         <p><a href="">Ranking general de políticos</a></p>
       </div>
@@ -84,20 +85,22 @@
       <div id="political-groups" class="list-mini">
         <h3>Top 5 partidos</h3>
         <ol>
-          <?php for($i = 1; $i <= '5'; $i += 1) { ?>
-            <?php include_partial('partido_li') ?>
-          <?php } ?>
+          <?php foreach($partidosMasVotados as $partido): ?>
+	  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
+	      <?php endforeach?>
         </ol>
+
         <p><a href="">Todos los partidos</a></p>
       </div>
 
       <div id="institutions" class="list-mini">
         <h3>Instituciones en Voota</h3>
         <ol>
-          <?php for($i = 1; $i <= '5'; $i += 1) { ?>
-            <?php include_partial('institucion_li') ?>
-          <?php } ?>
+          <?php foreach($institucionesMasVotadas as $institucion): ?>
+	  	  	<?php include_partial('institucion_top', array('institucion' => $institucion)) ?>
+	      <?php endforeach?>
         </ol>
+
         <p><a href="">Listado de instituciones</a></p>
       </div>
     </div>
