@@ -29,7 +29,7 @@ class institucionActions extends autoInstitucionActions
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
   	if ($this->form->isValid()) {
 	  	$imagen = $this->form->getValue('imagen');
-	    if ($imagen->getOriginalName()){
+	    if ($imagen && $imagen->getOriginalName()){
 			$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
 			$ext = strtolower($arr[0]);
 			if (!$ext || $ext == ""){
