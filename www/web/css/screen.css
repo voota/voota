@@ -146,6 +146,9 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}
 
+/* Recordar contraseña */
+#sfGuardAuth-reminderSent strong { color: #2b56ff;}
+
 /* About */
 #general-about #content { width: 65%; margin-left: 1em; }
 #general-about #content h3 { margin-bottom: 1em; line-height: 150%; }
