@@ -1,19 +1,20 @@
 <?php
 
 /*
- * This file is part of the symfony package.
- * (c) 2004-2006 Fabien Potencier <fabien.potencier@symfony-project.com>
+ * This file is part of the Voota package.
+ * (c) 2009 Sergio Viteri <sergio@voota.es>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 /**
+ * politico actions.
  *
- * @package    symfony
- * @subpackage plugin
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardBasicSecurityFilter.class.php 9999 2008-06-29 21:24:44Z fabien $
+ * @package    Voota
+ * @subpackage politico
+ * @author     Sergio Viteri
+ * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class voSecurityFilter extends sfGuardBasicSecurityFilter
 {

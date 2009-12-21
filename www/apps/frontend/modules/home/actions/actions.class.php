@@ -17,13 +17,7 @@
  */
 class homeActions extends sfActions{
   public function executeIndexWithoutCulture(sfWebRequest $request) {
-  	//global $culture;  	
-  	
-	//$this->readCookie($this->getRequest());
-  	//$this->getUser()->setCulture( $culture );
-  	
 	$this->redirect( "@homepage" );
-  	
   }
   
   public function executeRedir(sfWebRequest $request) {
