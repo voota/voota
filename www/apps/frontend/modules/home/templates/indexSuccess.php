@@ -36,8 +36,8 @@
   <div class="block-inner">
     <h2 id="summary">
       <ul>
-        <li><?php echo __('Coomparte opiniones sobre los políticos de España.') ?></li>
-        <li><?php echo __('De momento: Congreso, Senado y Parlamento de Cataluña.') ?></li>
+        <li><?php echo __('Comparte opiniones sobre políticos de España.') ?></li>
+        <li><?php echo __('De momento llevamos x.xxx opiniones (xxx positivas y xxx negativas), de xxx personas, sobre xxx políticos') ?></li>
         <li><?php echo __('Los políticos más votados de hoy:') ?></li>
       </ul>
     </h2>
@@ -89,7 +89,7 @@
 	  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
 	      <?php endforeach?>
         </ol>
-
+        <p><?php echo link_to(__('Todos los partidos'), 'politico/ranking')?></p>
       </div>
 
       <div id="institutions" class="list-mini">
@@ -99,7 +99,7 @@
 	  	  	<?php include_partial('institucion_top', array('institucion' => $institucion)) ?>
 	      <?php endforeach?>
         </ol>
-
+        <p><?php echo link_to(__('Listado de instituciones'), 'politico/ranking')?></p>
       </div>
     </div>
   </div>

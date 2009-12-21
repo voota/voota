@@ -81,18 +81,19 @@ $(document).ready(function(){
   <thead>
     <tr>
       <th class="ranking"><?php echo __('Ranking')?></th>
+      <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
       <th class="positive-votes">
       	<?php echo link_to(__('Votos +'), "$route&o=".($order=='pd'?'pa':'pd'));?>
-      	<?php echo image_tag('icoMiniUp.png', 'pa') ?>
+      	<?php echo image_tag('icoUp20px.gif', 'pa') ?>
       	<?php if (strpos($order, 'p') === 0):?>
       		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'down':'up') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
       	<?php echo link_to(__('Votos -'), "$route&o=".($order=='nd'?'na':'nd'));?>
-      	<?php echo image_tag('icoMiniDown.png', 'down') ?>
+      	<?php echo image_tag('icoDown20px.gif', 'down') ?>
       	<?php if (strpos($order, 'n') === 0):?>
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'down':'up') ?>
       	<?php endif?>
@@ -103,10 +104,8 @@ $(document).ready(function(){
   <tbody>
     <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
       <tr>
-  	    <td class="ranking">
-  	      <span id="<?php echo "sparkline_".$politico->getId()?>"></span>
-  	      <?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.
-  	    </td>
+  	    <td class="ranking"><span id="<?php echo "sparkline_".$politico->getId()?>"></span></td>
+  	    <td class="position"><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
   	    </td>
@@ -123,6 +122,7 @@ $(document).ready(function(){
   <tfoot>
     <tr>
       <td class="ranking"></td>
+      <td class="position"></td>
       <td class="photo"></td>
       <td class="name"></td>
       <td class="positive-votes">
