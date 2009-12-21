@@ -11,6 +11,7 @@ table { padding:0; margin:0; }
 .hidden { display:none; }
 .shown { display:block; }
 .tips { font-size: 0.8em; padding-top: 17px; }
+.pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
 
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
@@ -186,7 +187,13 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-ranking table .name { text-align: left; width: 22%; }
 #politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
 #politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
-#politico-ranking .pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
+
+/* Resultados de búsqueda */
+#general-search table { margin: 0 auto; width: 90%; }
+#general-search table th { background-color: #f6f6f6; padding: 0.5em 0; }
+#general-search table tbody td { padding: 1em 0; }
+#general-search table .photo { text-align: right; width: 10%; padding-right: 2%; }
+#general-search table .name { text-align: left; width: 82%; }
 
 /* Página de político */
 #politico-show #content { width: 65%; }
