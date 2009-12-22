@@ -147,6 +147,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit #bajaConfirmDiv { float: left;}
 #sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
+#sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
 
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}
