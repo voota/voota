@@ -25,7 +25,9 @@ strong.email { color: #2b56ff;}
 #sfGuardAuth-changePassword #main,
 #sfGuardAuth-passwordChanged #main,
 #sfGuardAuth-confirm #main,
-#sfGuardAuth-unsubscribe #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#sfGuardAuth-unsubscribe #main,
+#sfGuardAuth-passwordChanged #main,
+#sfGuardAuth-removeConfirm #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
 #content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%;}
