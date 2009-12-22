@@ -13,8 +13,7 @@
 				'absolute=true',
 				array('style'  => 'color:#2b56ff; font-weight: normal')
 			) ?>
-</p>
-<p>
+<br />
   <?php echo __('Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.') ?>
 </p>
 
@@ -23,7 +22,8 @@
 
 <p>&nbsp;</p>
 
-<p>Un abrazo, Comunidad Voota</p>
+<p>Un abrazo,</p>
+<p>Comunidad Voota</p>
 
 <p>
   Nuestra web: <a href="http://voota.es/es">http://voota.es/es</a><br />

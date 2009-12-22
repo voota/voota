@@ -16,5 +16,5 @@
 <?php echo __('<p>Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.</p>
 <p>¡Y nada más! Te damos la bienvenida a Voota ;-)</p>
 <p>&nbsp;</p>
-<p>Un saludo</p>
+<p>Un abrazo,</p>
 <p>Comunidad Voota</p>') ?>

@@ -17,6 +17,6 @@
 <p>Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.</p>
 <p>Si no has sido tú quien ha solicitado el envío de tu contraseña, te pedimos disculpas. Nada ni nadie va acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.</p>
 <p>&nbsp;</p>
-<p>Un saludo</p>
+<p>Un abrazo,</p>
 <p>Comunidad Voota</p>') ?>
           

@@ -22,7 +22,8 @@
   <br /><a href="%7%">%7%</a>
 </p>
 
-<p>Un abrazo, Comunidad Voota</p>
+<p>Un abrazo,</p>
+<p>Comunidad Voota</p>
 
 <p>
   Nuestra web:  http://voota.es/es

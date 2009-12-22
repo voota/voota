@@ -16,9 +16,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	    $c->add(sfGuardUserPeer::USERNAME, $this->form->getValue('username'));
 	
 	    $user = sfGuardUserPeer::doSelectOne($c);
-	  	$user->getProfile()->setCodigo( util::generateUID() );
-	  	$user->getProfile()->save();
       	if ($user){
+		  	$user->getProfile()->setCodigo( util::generateUID() );
+		  	$user->getProfile()->save();
       		$this->sendReminder( $user );
       		return "SentSuccess";
       	}
