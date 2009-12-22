@@ -236,44 +236,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .review-new h5 span { font-size: 0.8em;}
 
 
-
-/*
-  Antiguas reglas CSS (deprecated)
-*/
-
-#contentLeft { float:left; width: 41.56em;}
-#contentLeftAbout { float:left; width:42.00em; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftNormas { float:left; width:35.00em; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing { float:left; width:50%; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing2 { float:left; margin-top:3.94em; margin-left:1.38em;}
-#contentLeftSing404 { padding-top:3.94em; margin: 0 auto; height:8.50em; width:34.38em; text-align:center; }
-#contentLeftSing500{ padding-top:3.94em; margin: 0 auto; width:34.38em; text-align:center; }
-#contentRankingLeft { float:left; width:100%}
-#contentRight { float:right; width: 10.81em;}
-#contentRight2 { float:right; width: 15.81em; margin-top:3.94em;}
-#contentRightSing { float:left; margin-top:3.94em; margin-left:1.00em}
-#contentSing { padding-left:1.31em; margin-top:1.69em; }
-#nombre li { float:left; margin:0; padding:0; margin-right:1.0em; }
-#nombre { list-style:none; margin:0; padding:0; }
-.alingBoton {text-align:right;}
-.anchoColumna {width:160px;}
-.azul {color:#2b56ff;}
-.formSing { margin-top:1.00em;}
-.leftSing {  width:5.80em; padding: 1em 0; vertical-align: top; }
-.leftSing2 { padding-bottom:0.60em; padding-top:0.60em; }
-.leftSing3 { padding-bottom:0.60em; padding-top:0.60em; }
-.leftSings {  padding-bottom:0.60em; padding-top:0.60em; text-align:left; width:25.00em; }
-.leftSings2 { padding-bottom:0.60em; padding-top:0.60em; padding-left:0.60em; }
-.leftSingss {  padding-bottom:1.00em; padding-top:1.00em; }
-.limpiar { clear:both; }
-.listadoRankingPoliticos { margin-top:1.50em; margin-bottom:1.50em; height:2.25em; width:52.56em; margin-left:1.88em; }
-.nombrePolitico select { font-size: 0.8em;}
-.nombrePolitico { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.4em; font-weight:bold; color:#2f2f2f}
-.rightSings {  padding-bottom:0.60em; padding-top:0.60em; padding-left:100px; }
-.tituloAzul { font-family:Georgia, "Times New Roman", Times, serif; font-size:1.13em; font-weight:bold; color:#2b56ff;}
-.tituloCampo { padding-top: 17px; margin:0; color:#323232; }
-
-
 /*
   Reglas nuevas
 */
