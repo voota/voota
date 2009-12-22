@@ -38,7 +38,7 @@
     <h2 id="summary">
       <ul>
         <li><?php echo __('Comparte opiniones sobre políticos de España.') ?></li>
-        <li><?php echo __('De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos', array(
+        <li><?php echo __('De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos.', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
         					'%2%' => format_number($totalUpReviews, 'es_ES'),
         					'%3%' => format_number($totalDownReviews, 'es_ES'),
