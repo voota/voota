@@ -141,7 +141,11 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
 #sfGuardAuth-edit input[type=button] { width: 12em;}
 #sfGuardAuth-edit form td { width: 20em;}
-#sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em;}
+#sfGuardAuth-edit .remove h3 { font-size: 1em; padding-top: 2em; padding-bottom: 0.5em;}
+#sfGuardAuth-edit #bajaButtonDiv { padding: 0.5em; background-color: #ff0000; float: left;}
+#sfGuardAuth-edit #bajaConfirmDiv { float: left;}
+#sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
+#sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}

@@ -1,6 +1,6 @@
 <?php use_helper('I18N') ?>
 <?php echo __('<p>¡Hola %1%!</p>
-<p> Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace</p>
+<p>Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace</p>
 <p>', array('%1%' => $nombre)) ?>
 
 
@@ -18,4 +18,3 @@
 <p>&nbsp;</p>
 <p>Un saludo</p>
 <p>Comunidad Voota</p>') ?>
-          
