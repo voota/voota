@@ -108,7 +108,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
 #home-index #politicians-most-voted li { margin: 0 3% 2em 0; float: left; height: 60px; width: 30% }
 #home-index .list-mini li .avatar { float: left; }
-#home-index .list-mini li .name { margin-left: 45px; }
+#home-index .list-mini li .name { margin-left: 45px; font-weight: normal;}
 #home-index .list-mini li .votes { margin: 0.5em 0 0 45px; padding: 0;}
 #home-index .search { clear: left; padding-left: 1.5em; margin-top: 2em; overflow: hidden; }
 #home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
