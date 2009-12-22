@@ -39,26 +39,25 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeChangePassword($request)
   {
   	$this->codigo = $request->getParameter("codigo");  	
-		
+	$c = new Criteria();
+	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
+	$c->add(SfGuardUserProfilePeer::CODIGO, $this->codigo);
+	$user = sfGuardUserPeer::doSelectOne($c);
+	
+  	$this->forward404Unless($user);
+  	
   	$this->form = new PasswordChangeForm();
     //$this->form->bind( array('codigo' => $codigo) );
   	if ( $request->isMethod('post') ) {
   		$this->form->bind($request->getParameter('changer'));
       if ($this->form->isValid()) {
-      	$c = new Criteria();
-      	$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
-		$c->add(SfGuardUserProfilePeer::CODIGO, $this->codigo);
-		$user = sfGuardUserPeer::doSelectOne($c);
-		
-		if ($user){
-	  		$user->setIsActive(1);
-			$user->setPassword( $this->form->getValue('passwordNew') );
-		  	$user->getProfile()->setCodigo( util::generateUID() );
-		  	$user->getProfile()->save();
-			$user->save();
-  		
-       		return "ChangedSuccess";
-		}
+  		$user->setIsActive(1);
+		$user->setPassword( $this->form->getValue('passwordNew') );
+	  	$user->getProfile()->setCodigo( util::generateUID() );
+	  	$user->getProfile()->save();
+		$user->save();
+  	
+       	return "ChangedSuccess";
       }
       /*
       else {

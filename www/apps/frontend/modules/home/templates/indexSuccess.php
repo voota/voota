@@ -1,6 +1,7 @@
 <?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('Number') ?>
 
 <script type="text/javascript">
   <!--
@@ -37,7 +38,13 @@
     <h2 id="summary">
       <ul>
         <li><?php echo __('Comparte opiniones sobre políticos de España.') ?></li>
-        <li><?php echo __('De momento llevamos x.xxx opiniones (xxx positivas y xxx negativas), de xxx personas, sobre xxx políticos') ?></li>
+        <li><?php echo __('De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos', array(
+        					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
+        					'%2%' => format_number($totalUpReviews, 'es_ES'),
+        					'%3%' => format_number($totalDownReviews, 'es_ES'),
+                			'%4%' => format_number($totalUsers, 'es_ES'),
+                			'%5%' => format_number($totalPoliticos, 'es_ES'),
+        				)) ?></li>
         <li><?php echo __('Los políticos más votados de hoy:') ?></li>
       </ul>
     </h2>

@@ -24,7 +24,23 @@ class homeActions extends sfActions{
   	$this->redirect( "@homepage" );
   }
   
-  public function executeIndex(sfWebRequest $request) {  	
+  public function executeIndex(sfWebRequest $request) {
+  	$cpos = new Criteria();
+  	$cpos->add(SfReviewPeer::VALUE, 1);
+  	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
+  	$cneg = new Criteria();
+  	$cneg->add(SfReviewPeer::VALUE, -1);
+  	$cneg->add(SfReviewPeer::IS_ACTIVE, 1);
+  	
+  	$cuser = new Criteria();
+  	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
+  	$cpol = new Criteria();
+  	
+  	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
+  	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
+  	$this->totalUsers = sfGuardUserPeer::doCount($cuser);
+  	$this->totalPoliticos = PoliticoPeer::doCount($cpol);
+  	
    	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
   			FROM politico p
 			INNER JOIN sf_review r ON r.entity_id = p.id
