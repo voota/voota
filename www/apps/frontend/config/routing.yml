@@ -95,6 +95,10 @@ usuario_edit:
   url: /:sf_culture/user/edit
   param: { module: sfGuardAuth, action: edit }
   
+usuario_remove_confirm:
+  url: /:sf_culture/user/remove/:codigo
+  param: { module: sfGuardAuth, action: remove }
+  
 usuario_remove:
   url: /:sf_culture/user/remove
   param: { module: sfGuardAuth, action: remove }

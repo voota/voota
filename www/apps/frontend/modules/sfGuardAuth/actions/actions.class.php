@@ -217,11 +217,38 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   
   public function executeRemove(sfWebRequest $request)
   {
+  	$codigo = $request->getParameter("codigo");
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
-  	SfReviewManager::deleteReviewById( $this->getUser()->getGuardUser()->getId() );
-  	$this->getUser()->getGuardUser()->delete();
-  	$this->getUser()->signOut();
+  	if ($codigo == ''){
+	  	$this->getUser()->getProfile()->setCodigo( util::generateUID() );
+	  	$this->getUser()->getProfile()->save();
+	  	
+	  	$mailBody = $this->getPartial('removeMailBody', array(
+		  	'nombre' => $this->getUser()->getProfile()->getNombre(),
+		  	'codigo' => $this->getUser()->getProfile()->getCodigo()
+	  	));
+	  	
+	  	$this->email = $this->getUser()->getUsername(); 
+	 
+	  	VoMail::send('Borrarse de Voota', $mailBody, $this->getUser()->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), true);
+   	}
+  	else {
+		$c = new Criteria();
+		$c->addJoin(SfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::CODIGO, $codigo);
+		$user = sfGuardUserPeer::doSelectOne($c);
+		
+	  	$this->forward404Unless($user);
+  		
+	  	SfReviewManager::deleteReviewById( $user->getId() );
+	  	$user->delete();
+	  	if ($this->getUser()->isAuthenticated()){
+	  		$this->getUser()->signOut();
+	  	}
+	  	
+	  	return 'Confirm';
+   	}
   }
   
   public function executeEdit(sfWebRequest $request)
