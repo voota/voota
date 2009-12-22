@@ -1,15 +1,7 @@
 <?php use_helper('I18N') ?>
 
-<!-- CONTENT LEFT-->
-<div id="contentLeftSing2">
-<div title="ficha">
 <h2><?php echo __('¿Y ahora qué?')?></h2>
 
-<div class="limpiar"></div>
-<div class="formSing">
-<h5><?php echo __('Te hemos enviado un e-mail a')?> <span class="azul"><?php echo $user->getUsername() ?></span></h5>
-<h5><?php echo __('Confirma tus datos pinchando sobre el enlace que aparecerá en tu bandeja de entrada.')?></h5>
-<h5><?php echo __('Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante ...)')?></h5>
-</div>
-</div>
-</div>
+<p class="next-step-msg"><?php echo __('Te hemos enviado un e-mail a')?> <strong class="email"><?php echo $user->getUsername() ?></strong></p>
+<p class="next-step-msg"><?php echo __('Confirma tus datos pinchando sobre el enlace que aparecerá en tu bandeja de entrada.')?></p>
+<p class="next-step-msg"><?php echo __('Dependiendo del correo que utilices tardará más o menos en llegarte (Hotmail tarda bastante ...)')?></p>
