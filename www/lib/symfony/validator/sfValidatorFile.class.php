@@ -203,7 +203,13 @@ class sfValidatorFile extends sfValidatorBase
     }
 
     $type = $finfo->file($file);
-
+	
+    // remove charset (added as of PHP 5.3)
+	if (false !== $pos = strpos($type, ';'))
+	{
+		$type = substr($type, 0, $pos);
+	}
+	
     return $type;
   }
 

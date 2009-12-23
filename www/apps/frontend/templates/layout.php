@@ -76,13 +76,13 @@
 
     <p class="lang-links">
       <?php slot('langLink_ca') ?>
-      	català
+      	Català
       	<?php echo link_to('Español', '@homepage?sf_culture=es&l=es', array('class' => "enlacesPie")) ?>
       <?php end_slot('langLink_ca') ?>
 
       <?php slot('langLink_es') ?>
       	<?php echo link_to('Català', '@homepage?sf_culture=ca&l=ca', array('class' => "enlacesPie")) ?>
-      	español
+      	Español
       <?php end_slot('langLink_es') ?>
 
       <?php include_slot( "langLink_".$sf_user->getCulture('es') ); ?>
