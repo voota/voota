@@ -80,7 +80,7 @@ $(document).ready(function(){
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
-      <th class="ranking"><?php echo __('Ranking')?></th>
+      <th class="ranking"></th>
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
