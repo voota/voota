@@ -5,7 +5,7 @@
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
 p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
 img { border:none; vertical-align: middle; }
-table { padding:0; margin:0; }
+table { padding:0; margin:0; border-collapse: collapse; }
 
 /* Clases genéricas */
 .hidden { display:none; }
@@ -27,7 +27,9 @@ strong.email { color: #2b56ff;}
 #sfGuardAuth-confirm #main,
 #sfGuardAuth-unsubscribe #main,
 #sfGuardAuth-passwordChanged #main,
-#sfGuardAuth-remove #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#sfGuardAuth-remove #main,
+/* FIXME: puede que la acción no acabe llamándose así */
+#sfGuardAuth-vootos #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
 #content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%;}
@@ -150,6 +152,19 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
+
+/* Comentarios y vootos */
+
+/* FIXME: puede que la acción no acabe llamándose así */
+#sfGuardAuth-vootos #content { width: 95%; margin-top: 1em; margin-left: 1em; }
+#sfGuardAuth-vootos .comments table { border-top: 1px dotted #323232;}
+#sfGuardAuth-vootos .comments tr { border-bottom: 1px dotted #323232; }
+#sfGuardAuth-vootos .comments td { border-bottom: 1px dotted #323232; padding: 0.5em 0; }
+#sfGuardAuth-vootos .comments .photo { width: 4%;}
+#sfGuardAuth-vootos .comments .name { width: 34%; padding: 0 1%; }
+#sfGuardAuth-vootos .comments .vote { width: 4%;}
+#sfGuardAuth-vootos .comments .body { width: 40%; padding-right: 2%; }
+#sfGuardAuth-vootos .comments .actions { width: 14%; }
 
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}
