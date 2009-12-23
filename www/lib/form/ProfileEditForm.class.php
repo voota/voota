@@ -27,7 +27,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
     						'format' => '%day%/%month%/%year%'
     						, 'years' => array_combine($years, $years)
     						)),
-      'vanity'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
+      'vanity'   => new sfWidgetFormInput(array()),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
 			   'label'     => sfContext::getInstance()->getI18N()->__('Imagen Principal', array(), 'notices'),
    			   'file_src'  => $this->getObject()->getProfile()->getImagen()?'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
@@ -35,14 +35,14 @@ class ProfileEditForm extends sfGuardUserAdminForm
 			   'edit_mode' => !$this->isNew(),
 			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label><h6>%delete% '. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</h6></div>',
 				)),
-      'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-      'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-	  'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-	  'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-	  'presentacion'  => new sfWidgetFormTextarea(array(), array('class' => 'inputSign')),
-	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign', 'autocomplete' => 'off')),
-	  'passwordBis'  => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
-      'passwordOld' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign')),
+      'username'   => new sfWidgetFormInput(array()),
+      'nombre'   => new sfWidgetFormInput(array()),
+	  'apellidos'   => new sfWidgetFormInput(array()),
+	  'apellidos'   => new sfWidgetFormInput(array()),
+	  'presentacion'  => new sfWidgetFormTextarea(array()),
+	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('autocomplete' => 'off')),
+	  'passwordBis'  => new sfWidgetFormInput(array('type' => 'password')),
+      'passwordOld' => new sfWidgetFormInput(array('type' => 'password')),
     ));
     $this->widgetSchema->setNameFormat('profile[%s]');
 

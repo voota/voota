@@ -40,7 +40,7 @@
       <?php if ($sf_context->getModuleName() != "home"): ?>
         <div id="search">
           <?php echo form_tag('@search') ?>
-    	      <?php echo input_tag('q', $sf_params->get('q'), array('class' => 'inputSign')) ?>
+    	      <?php echo input_tag('q', $sf_params->get('q')) ?>
     	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
           </form>
         </div>

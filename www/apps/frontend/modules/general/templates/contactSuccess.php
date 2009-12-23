@@ -20,7 +20,7 @@
       
       <dt><label for="topic"><?php echo __('¿De qué se trata?') ?></label></dt>
       <dd>
-        <select class="inputSign" name="contact[tipo]" id="contact_tipo">
+        <select name="contact[tipo]" id="contact_tipo">
 			<option value="Sugerencia" selected="selected"><?php echo __('Sugerencia')?></option>
 			<option value="Queja"><?php echo __('Queja')?></option>
 			<option value="Correccion"><?php echo __('Corrección')?></option>

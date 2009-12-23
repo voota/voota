@@ -6,10 +6,10 @@ class RegistrationForm extends sfVoForm
   {
     $this->setWidgets(array(
       'op' => new sfWidgetFormInputHidden(),
-      'username'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-      'nombre'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-      'apellidos'   => new sfWidgetFormInput(array(), array('class' => 'inputSign')),
-      'password' => new sfWidgetFormInput(array('type' => 'password'), array('class' => 'inputSign', 'autocomplete' => 'off')),
+      'username'   => new sfWidgetFormInput(array()),
+      'nombre'   => new sfWidgetFormInput(array()),
+      'apellidos'   => new sfWidgetFormInput(array()),
+      'password' => new sfWidgetFormInput(array('type' => 'password'), array('autocomplete' => 'off')),
       'accept' => new sfWidgetFormInputCheckbox(array(), array()),
     ));
     $this->widgetSchema->setNameFormat('registration[%s]');
