@@ -127,12 +127,12 @@ $(document).ready(function(){
       <td class="name"></td>
       <td class="positive-votes">
         <?php echo __('Total') ?>
-    	  <?php echo image_tag('icoMiniUp.png', 'up') ?>
+    	  <?php echo image_tag('icoUp20px.gif', 'up') ?>
     	  <?php echo $totalUp?>
       </td>
       <td class="negative-votes">
       	<?php echo __('Total')?>
-      	<?php echo image_tag('icoMiniDown.png', 'down') ?>
+      	<?php echo image_tag('icoDown20px.gif', 'down') ?>
       	<?php echo $totalDown?>
       </td>
     </tr>
