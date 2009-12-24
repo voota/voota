@@ -35,6 +35,8 @@ class homeActions extends sfActions{
   	$cuser = new Criteria();
   	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
   	$cpol = new Criteria();
+  	$cpol->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+  	$cpol->setDistinct();
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);

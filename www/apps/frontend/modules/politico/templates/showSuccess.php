@@ -21,7 +21,7 @@
 
 <h2 class="name">
   <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
-  <span id="<?php echo "sparkline_".$politico->getId()?>"></span>
+  	<?php include_partial('sparkline_box', array('politico' => $politico)) ?>
   
   
   <span class="rank">
@@ -30,11 +30,13 @@
     <?php else: ?>
 	    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
     <?php endif ?>
-    <a href="javascript:showScoreHelp();">?</a>
+    <?php /* ?><a href="javascript:showScoreHelp();">?</a><?php */ ?>
   </span>
+  <?php /* ?>
   <div id="help-dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
   	<p><?php echo __('Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.')?></p>
   </div>
+  <?php */ ?>
 </h2>
 
 <div id="content">

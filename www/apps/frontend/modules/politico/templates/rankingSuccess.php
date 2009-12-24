@@ -104,7 +104,7 @@ $(document).ready(function(){
   <tbody>
     <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
       <tr>
-  	    <td class="ranking"><span id="<?php echo "sparkline_".$politico->getId()?>"></span></td>
+  	    <td class="ranking"><?php include_partial('sparkline_box', array('politico' => $politico)) ?></td>
   	    <td class="position"><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto '. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>

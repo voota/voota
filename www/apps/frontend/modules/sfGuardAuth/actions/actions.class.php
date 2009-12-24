@@ -231,7 +231,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	
 	  	$this->email = $this->getUser()->getUsername(); 
 	 
-	  	VoMail::send('Borrarse de Voota', $mailBody, $this->getUser()->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), true);
+	  	VoMail::send('Borrarse de Voota', $mailBody, $this->getUser()->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), false);
    	}
   	else {
 		$c = new Criteria();

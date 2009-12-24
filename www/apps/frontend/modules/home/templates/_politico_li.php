@@ -4,7 +4,7 @@
     </div>
 	<h4 class="name"><?php echo link_to($politico. ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?></h4>
     <p class="votes">
-    	<span id="<?php echo $id ?>"></span>
+  		<?php include_partial('sparkline_box', array('id' => $id)) ?>
 		<span class="votes-count">
 			<?php if ($showVotes):?>
 				<?php if ($politico->getSumut() > 0 && $politico->getSumdt() > 0): ?>

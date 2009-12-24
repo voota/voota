@@ -118,10 +118,8 @@
         <div id="bajaButtonDiv"><input id="bajaVoota" type="button" value="<?php echo __('Borrarse de Voota')?>" /></div>
         <div id="bajaConfirmDiv" class="hidden">
         	<?php echo __('¿Seguro?')?>
-        	<?php echo jq_link_to_remote(__('Sí'), array(
-    		'update' => 'bajaConfirmDiv',
-    		'url'    => '@usuario_remove',
-			), array('class' => 'confirm')) ?>
+        	<?php echo link_to(__('Sí'), '@usuario_remove'
+			, array('class' => 'confirm')) ?>
         	<a href="#" id="noConfirm"><?php echo __('No')?></a>
         </div>
       </td>
