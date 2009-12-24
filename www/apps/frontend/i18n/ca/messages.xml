@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-12-14T15:19:27Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-12-24T09:57:11Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1028,6 +1028,190 @@
       </trans-unit>
       <trans-unit id="203">
         <source>Recordar contraseña</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="204">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt;
+
+&lt;p&gt;
+  Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:
+  &lt;br /&gt;"%3%"
+&lt;/p&gt;
+
+&lt;p&gt;
+  Esto es lo que opinaste sobre %4%:
+  &lt;br /&gt;"%5%"
+&lt;/p&gt;
+
+&lt;p&gt;
+  Ver tu vooto y sus comentarios en estado natural:
+  &lt;br /&gt;&lt;a href="%6%"&gt;%6%&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  Dejar de recibir estos avisos (simplemente pincha en este link):
+  &lt;br /&gt;&lt;a href="%7%"&gt;%7%&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;
+
+&lt;p&gt;
+  Nuestra web:  http://voota.es/es
+  &lt;br /&gt;
+  Blog de Voota:  http://blog.voota.es
+  &lt;br /&gt;
+  Voota en Twitter:  http://twitter.com/voota
+  &lt;br /&gt;
+  Voota en Facebook:  http://facebook.com/voota
+&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="205">
+        <source>¿Una vuelta por el</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="206">
+        <source>ranking de políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="207">
+        <source>quizás?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="208">
+        <source>Más sobre nosotros en&amp;hellip;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="209">
+        <source>Este gráfico representa la evolución del número de vootos positivos de
+este político. Cada punto representa el número de vootos positivos en
+un mes. El último punto representa el número de vootos del mes en el
+que estamos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="210">
+        <source>Votos +</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="211">
+        <source>Votos -</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="212">
+        <source>[0]0|[1]1 positivo|(1,+Inf]%1% positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="213">
+        <source>[0]0|[1] y 1 negativo|(1,+Inf] y %1% negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="214">
+        <source>[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="215">
+        <source>[0]0|[1]1 voto negativo|(1,+Inf]%1% votos negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="216">
+        <source>Comparte opiniones sobre políticos de España.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="217">
+        <source>De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="218">
+        <source>Los políticos más votados de hoy:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="219">
+        <source>Político</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="220">
+        <source>Ranking general de políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="221">
+        <source>Listado de instituciones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="222">
+        <source>¿Te gusta Voota? Registrarse en un plis</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="223">
+        <source>&lt;p&gt;¡Hola %1%!&lt;/p&gt;
+&lt;p&gt;Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace&lt;/p&gt;
+&lt;p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="224">
+        <source>&lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+&lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="225">
+        <source>Ya está. Te hemos dado de baja en Voota.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="226">
+        <source>No nos gustan las despedidas, pero que sepas que te echaremos de menos&amp;hellip;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="227">
+        <source>¡Hasta pronto!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="228">
+        <source>Borrarse de Voota:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="229">
+        <source>Si no deseas utilizar más este servicio, aquí podrás abandonarnos. Por supuesto, todos tus datos asociados a Voota serán borrados.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="230">
+        <source>Borrarse de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="231">
+        <source>Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="232">
+        <source>&lt;p&gt;Si no has sido tú quien ha solicitado darse de baja en Voota, te pedimos disculpas. Nada ni nadie va a acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.&lt;/p&gt;
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;
+
+&lt;p&gt;
+  Nuestra web: &lt;a href="http://voota.es/es"&gt;http://voota.es/es&lt;/a&gt;&lt;br /&gt;
+  Blog de Voota: &lt;a href="http://blog.voota.es"&gt;http://blog.voota.es&lt;/a&gt;&lt;br /&gt;
+  Voota en Twitter: &lt;a href="http://twitter.com/voota"&gt;http://twitter.com/voota&lt;/a&gt;&lt;br /&gt;
+  Voota en Facebook: &lt;a href="http://facebook.com/voota"&gt;http://facebook.com/voota&lt;/a&gt;&lt;br /&gt;
+&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="233">
+        <source>&lt;/p&gt;
+
+&lt;p&gt;Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+&lt;p&gt;Si no has sido tú quien ha solicitado el envío de tu contraseña, te pedimos disculpas. Nada ni nadie va acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="234">
+        <source>Échale un vistazo cuando tengas un hueco para confirmarnos tu baja definitiva en Voota y poder borrarte de nuestra lista.</source>
         <target/>
       </trans-unit>
     </body>
