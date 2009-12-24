@@ -88,6 +88,7 @@ form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a
 input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:20em }
 input[type=submit] { width: 8em; color: #323232; }
 input[type=button] { width: 8em; color: #323232; }
+select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
 .submit { text-align: right; }
 .hints { margin: 0; padding: 5px 0;}
