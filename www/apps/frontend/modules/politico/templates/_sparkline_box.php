@@ -1,4 +1,2 @@
-  <span title="<?php echo __('Este gráfico representa la evolución del número de vootos positivos de
-este político. Cada punto representa el número de vootos positivos en
-un mes. El último punto representa el número de vootos del mes en el
-que estamos.')?>" id="<?php echo "sparkline_".$politico->getId()?>"></span>
+  <span title="<?php echo __('Evolución del número de votos positivos por mes (último punto = mes
+ actual)')?>" id="<?php echo "sparkline_".$politico->getId()?>"></span>

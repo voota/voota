@@ -38,10 +38,10 @@
     <h2 id="summary">
       <ul>
         <li><?php echo __('Comparte opiniones sobre políticos de España.') ?></li>
-        <li><?php echo __('De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos.', array(
+        <li><?php echo __('De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
-        					'%2%' => format_number($totalUpReviews, 'es_ES'),
-        					'%3%' => format_number($totalDownReviews, 'es_ES'),
+        					//'%2%' => format_number($totalUpReviews, 'es_ES'),
+        					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($totalUsers, 'es_ES'),
                 			'%5%' => format_number($totalPoliticos, 'es_ES'),
         				)) ?></li>
@@ -80,17 +80,17 @@
   <div class="block-inner">
     <div id="rankings">
       <div id="politicians-top5" class="list-mini">
-        <h3>Top 5 políticos</h3>
+        <h3><?php echo __('Top 5 políticos')?></h3>
         <ol>
           <?php foreach($topPoliticos as $politico): ?>
 	  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></p>
+        <p><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></strong></p>
       </div>
 
       <div id="political-groups" class="list-mini">
-        <h3>Top 5 partidos</h3>
+        <h3><?php echo __('Top 5 partidos')?></h3>
         <ol>
           <?php foreach($partidosMasVotados as $partido): ?>
 	  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
@@ -100,7 +100,7 @@
       </div>
 
       <div id="institutions" class="list-mini">
-        <h3>Instituciones en Voota</h3>
+        <h3><?php echo __('Instituciones en Voota')?></h3>
         <ol>
           <?php foreach($institucionesMasVotadas as $institucion): ?>
 	  	  	<?php include_partial('institucion_top', array('institucion' => $institucion)) ?>

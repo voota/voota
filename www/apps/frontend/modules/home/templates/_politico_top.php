@@ -1,8 +1,10 @@
+<?php use_helper('VoFormat') ?>
+
 <li>
 	<div class="avatar">
     	<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="Foto de '. $politico .'"') ?>
     </div>
-	<h4 class="name"><?php echo link_to($politico. ($politico->getPartido()==''?"":" (".$politico->getPartido().")"), 'politico/show?id='.$politico->getVanity())?></h4>
+	<h4 class="name"><?php echo link_to(cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 35) . ($politico->getPartido()?" (" . $politico->getPartido() .")":''), 'politico/show?id='.$politico->getVanity())?></h4>
     <p class="votes">
   		<?php include_partial('sparkline_box', array('id' => $id)) ?>
 		<span class="votes-count">
