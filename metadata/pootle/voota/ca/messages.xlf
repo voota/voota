@@ -1052,6 +1052,14 @@ que estamos.</source>
         <source>Échale un vistazo cuando tengas un hueco para confirmarnos tu baja definitiva en Voota y poder borrarte de nuestra lista.</source>
         <target/>
       </trans-unit>
+      <trans-unit id="235">
+        <source>Tus preferencias</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="236">
+        <source>Echa un vistazo a cómo otros usuarios ven tu perfil</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
