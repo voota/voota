@@ -110,7 +110,7 @@ function format_plural($count, $singular, $plural, $args = array(), $langcode = 
   }
 }
 
-function ago($timestamp){
+function ago($timestamp, $aprox = true){
    $difference = time() - $timestamp;
    $periods = array(
    				sfContext::getInstance()->getI18N()->__("segundo"),
@@ -132,16 +132,22 @@ function ago($timestamp){
    				sfContext::getInstance()->getI18N()->__("años"),
    				sfContext::getInstance()->getI18N()->__("décadas")
    );
-   $lengths = array("60","60","24","7","4.35","12","10");
-   for($j = 0; $difference >= $lengths[$j]; $j++){
-   		$difference /= $lengths[$j];
-   }
-   $difference = round($difference);
-   if($difference != 1){
-   		$aPeriod = $periods_plural[$j];
+   if ($aprox && $difference < (60 * 30)){
+   	   $difference = sfContext::getInstance()->getI18N()->__("un");
+	   $aPeriod = sfContext::getInstance()->getI18N()->__("rato");
    }
    else {
-   		$aPeriod = $periods[$j];
+	   $lengths = array("60","60","24","7","4.35","12","10");
+	   for($j = 0; $difference >= $lengths[$j]; $j++){
+	   		$difference /= $lengths[$j];
+	   }
+	   $difference = round($difference);
+	   if($difference != 1){
+	   		$aPeriod = $periods_plural[$j];
+	   }
+	   else {
+	   		$aPeriod = $periods[$j];
+	   }
    }
    $text = sfContext::getInstance()->getI18N()->__("Hace %1% %2%", array('%1%' => $difference, '%2%' => $aPeriod));
    return $text;

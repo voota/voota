@@ -16,7 +16,7 @@ class politicoComponents extends sfReviewComponents
 		$this->sparklineData .= ($spi++>0?",":"").$element->getSum();
 	}
 	*/
-	$query = "select entity_id, month(date) as month, sum(sum) as sum from sf_review_type_entity where value = 1 and entity_id = ? group by entity_id, month(date) order by month";
+	$query = "select entity_id, month(date) as month, max(sum) as sum from sf_review_type_entity where value = 1 and entity_id = ? group by entity_id, month(date) order by month";
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
 	$statement->bindValue(1, $this->politico->getId());
