@@ -87,9 +87,13 @@ usuario_unsubscribe:
   param: { module: sfGuardAuth, action: unsubscribe }
   requirements: { sf_culture: (?:es|ca) }
 
+usuario_votos:
+  url:   /:sf_culture/user/reviews
+  param: { module: perfil, action: reviews }
+  
 usuario:
   url:   /:username
-  param: { module: sfGuardAuth, action: show }
+  param: { module: perfil, action: show }
 
 usuario_edit:
   url: /:sf_culture/user/edit
