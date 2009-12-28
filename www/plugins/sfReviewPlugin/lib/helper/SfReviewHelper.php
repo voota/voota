@@ -134,7 +134,7 @@ function ago($timestamp, $aprox = true){
    );
    if ($aprox && $difference < (60 * 30)){
    	   $difference = sfContext::getInstance()->getI18N()->__("un");
-	   $aPeriod = sfContext::getInstance()->getI18N()->__("rato");
+	   $aPeriod = sfContext::getInstance()->getI18N()->__("ratito");
    }
    else {
 	   $lengths = array("60","60","24","7","4.35","12","10");

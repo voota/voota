@@ -3,6 +3,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
 <?php use_helper('Date') ?>
+<?php use_helper('Number') ?>
 
 <script type="text/javascript">
   <!--
@@ -53,7 +54,7 @@
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
-      <div id="sf_review1"></div>
+      <div id="sf_review1"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
     </div>
   </div>
     
@@ -107,14 +108,24 @@
 
   <div class="reviews">
     <div class="positive-reviews">
-  	  <h3><?php echo __('Positivos')?> <?php if($lastPositives->getNbResults() > 0): ?><?php echo $positivePerc; ?>%<?php endif ?></h3>
+  	  <h3>  	  
+  	  <?php echo format_number_choice('[0]Positivos|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
+  	  		array('%1%' => $politico->getSumU(), '%2%' => format_number($positivePerc, 'es_ES'))
+  	  		, $politico->getSumU()) 
+  	  ?>
+  	  </h3>
 
   	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
 	
     </div>
 	        
     <div class="negative-reviews">
-	    <h3><?php echo __('Negativos')?> <?php if($lastNegatives->getNbResults() > 0): ?><?php echo $negativePerc; ?>%<?php endif ?></h3>
+	    <h3>
+	  	  <?php echo format_number_choice('[0]Negativos|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
+	  	  		array('%1%' => $politico->getSumD(), '%2%' => format_number($negativePerc, 'es_ES'))
+	  	  		, $politico->getSumD()) 
+	  	  ?>
+	    </h3>
 	
   	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
 
@@ -123,7 +134,7 @@
 
   <div class="vote">
     <h3>Voota sobre <?php echo $politico->getApellidos(); ?></h3>
-    <div id="sf_review2"></div>
+    <div id="sf_review2"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
   </div>
 
 </div><!-- end of content -->

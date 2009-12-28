@@ -14,7 +14,8 @@
   	<?php endif ?>
   	<?php echo jq_link_to_remote(__('Hacer cambios'), array(
   	  'update' => $reviewBox?$reviewBox:'sf_review',
-  	  'url'    => "@sf_review_form?t=1&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review')
+  	  'url'    => "@sf_review_form?t=1&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review'),
+  	  'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
   	)) ?>	
   </p>
 

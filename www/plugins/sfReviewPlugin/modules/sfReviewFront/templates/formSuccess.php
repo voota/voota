@@ -64,7 +64,7 @@
 		  <span class="sf-review-cancel">
 		    <?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
 				    'update'   => $reviewBox?$reviewBox:'sf_review',
-				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),	
 				)) ?>
 		  </span>
 		</h5>
@@ -109,13 +109,14 @@
 	  	  <span>
   	  	  <?php echo jq_link_to_remote(__('Sí'), array(
   			    'update'   => $reviewBox?$reviewBox:'sf_review',
-  			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType&cf=1".($reviewBox==''?'':"&b=$reviewBox"),
+  			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType&cf=1".($reviewBox==''?'':"&b=$reviewBox"),		    		
+  	  				'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
   			  )) ?>
 			  </span>
 			  <span>
 			    <?php echo jq_link_to_remote(__('No'), array(
 			      'update'   => $reviewBox?$reviewBox:'sf_review',
-			      'url'    => "@sf_review_form?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+			      'url'    => "@sf_review_form?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),	
 			)) ?>
 			  </span>
 			</p>
