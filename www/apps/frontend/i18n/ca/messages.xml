@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-12-28T13:26:45Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2009-12-29T15:48:50Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1220,6 +1220,51 @@ que estamos.</source>
       </trans-unit>
       <trans-unit id="236">
         <source>Echa un vistazo a cómo otros usuarios ven tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>cargando</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>[0]Positivos|[1]%1% positivo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% positivos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>[0]Negativos|[1]%1% negativo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% negativos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Evolución del número de votos positivos por mes (último punto = mes
+ actual)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Top 5 políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>Top 5 partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Instituciones en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Comentarios y vootos que has hecho hasta ahora (en total, %1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>Filtrar comentarios por:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Todos los comentarios</source>
         <target/>
       </trans-unit>
     </body>

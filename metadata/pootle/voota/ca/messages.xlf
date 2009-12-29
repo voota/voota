@@ -1008,8 +1008,8 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <target>Comparteix opinions sobre polítics d'Espanya.</target>
       <note/></trans-unit>
       <trans-unit id="217" approved="yes">
-        <source>De momento llevamos %1% opiniones (%2% positivas y %3% negativas), de %4% personas, sobre %5% políticos.</source>
-        <target>De moment tenim %1% opinions (%2% positives i %3% negatives), de %4%, sobre %5% polítics.</target>
+        <source>De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.</source>
+        <target>De moment tenim %1% opinions, de %4%, sobre %5% polítics.</target>
       <note/></trans-unit>
       <trans-unit id="218" approved="yes">
         <source>Los políticos más votados de hoy:</source>
@@ -1116,6 +1116,51 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
       <trans-unit id="236" approved="yes">
         <source>Echa un vistazo a cómo otros usuarios ven tu perfil</source>
         <target>Comprova com veuen el teu perfil els altres usuaris</target>
+      </trans-unit>
+      <trans-unit id="237">
+        <source>cargando</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="238">
+        <source>[0]Positivos|[1]%1% positivo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% positivos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="239">
+        <source>[0]Negativos|[1]%1% negativo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% negativos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="240">
+        <source>Evolución del número de votos positivos por mes (último punto = mes
+ actual)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="241">
+        <source>De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="242">
+        <source>Top 5 políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="243">
+        <source>Top 5 partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="244">
+        <source>Instituciones en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="245">
+        <source>Comentarios y vootos que has hecho hasta ahora (en total, %1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="246">
+        <source>Filtrar comentarios por:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="247">
+        <source>Todos los comentarios</source>
+        <target/>
       </trans-unit>
     </body>
   </file>
