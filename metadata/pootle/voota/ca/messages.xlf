@@ -1136,7 +1136,7 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
       </trans-unit>
       <trans-unit id="241">
         <source>De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.</source>
-        <target/>
+        <target>De moment tenim %1% opinions, de %4%, sobre %5% polítics.</target>
       </trans-unit>
       <trans-unit id="242">
         <source>Top 5 políticos</source>
