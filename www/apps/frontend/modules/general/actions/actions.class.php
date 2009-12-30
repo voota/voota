@@ -33,7 +33,7 @@ class generalActions extends sfActions{
 			  	'email' => $this->form->getValue('email')
 			));
 			  
-			VoMail::sendWithRet("Contacto web [".$this->form->getValue('tipo')."]", $mailBody, 'admin@voota.es', array('no-reply@voota.es' => 'no-reply Voota'), $this->form->getValue('email'), true);
+			VoMail::sendWithRet("Contacto web [".$this->form->getValue('tipo')."]", $mailBody, 'info-es@voota.es', array('no-reply@voota.es' => 'no-reply Voota'), $this->form->getValue('email'), true);
 	      	
 			return "SendSuccess";
       	}

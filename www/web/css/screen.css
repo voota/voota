@@ -263,3 +263,4 @@ table.sparkline {border-collapse: collapse;}
 table.sparkline td {padding:0px;}
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff; }
+.warning { border: 1px solid #9398ae; width: 52em; padding: 1em; margin: 1em 0; font-weight: bold; }

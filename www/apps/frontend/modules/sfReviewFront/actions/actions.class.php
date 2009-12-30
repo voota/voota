@@ -138,5 +138,12 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	
   	$this->getUser()->setAttribute('review_v', $this->reviewValue);
   	$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
+  	
+  	$this->getUser()->setFlash('notice_type', 'warning', true);
+    $this->getUser()->setFlash(
+    	'notice', 
+		sfContext::getInstance()->getI18N()->__('Quieto parao. Antes de votar, tienes que loguearte en Voota. Si no tienes cuenta aún, ¡éste es el momento para crearte una!', array(), 'notices')
+		, true
+	);
   }
 }

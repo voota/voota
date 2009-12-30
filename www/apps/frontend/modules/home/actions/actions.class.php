@@ -63,13 +63,13 @@ class homeActions extends sfActions{
 	}
 		
 	if (count($this->politicosMasVotadosUltimamente) < 6) {
-	   	$query = "SELECT p.*, count(*) c
+	   	$query = "SELECT p.*, max(r.created_at) max
 	  			FROM politico p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1 ";
 		$query .= $exclude == ''?'':" and p.id not in ($exclude) ";
 		$query .= "GROUP BY p.id
-				ORDER BY IFNULL(r.modified_at, r.created_at) desc
+				ORDER BY max desc
 				LIMIT " . (6 - count($this->politicosMasVotadosUltimamente));
 				//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)				
 	   	$connection = Propel::getConnection();

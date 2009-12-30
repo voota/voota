@@ -64,13 +64,13 @@
 
     <div class="search">
       <?php echo form_tag('@search') ?>
-        <p><label for="q_1">¡Buusca!</label></p>
+        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
         <p>
           <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
           <br />
           <span class="hints"><?php echo __('Político') ?></span>
         </p>
-        <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
+        <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
       </form>
     </div>
   </div>
@@ -118,13 +118,13 @@
     
     <div class="search">
       <?php echo form_tag('@search') ?>
-        <p><label for="q_2">¡Buusca!</label></p>
+        <p><label for="q_2"><?php echo __('¡Buusca!') ?></label></p>
         <p>
           <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_2')) ?>
           <br />
           <span class="hints"><?php echo __('Político') ?></span>
         </p>
-        <p><?php echo submit_tag('Buscar', array('class' => 'button')) ?></p>
+        <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
       </form>
     </div>
   </div>

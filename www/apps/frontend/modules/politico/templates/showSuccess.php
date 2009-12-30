@@ -87,7 +87,7 @@
     <?php endif ?>
 
     <?php if ($politico->getFechaNacimiento() != ''): ?>
-	    <p><?php echo __($politico->getSexo()=='M'?'Nacida el %1%':'Nacido el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd')))?></p>
+	    <p><?php echo ($politico->getSexo()=='M')?__('Nacida el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd'))):__('Nacido el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd')))?></p>
     <?php endif ?>
 
     <?php if ($politico->getResidencia() != ''): ?>

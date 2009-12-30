@@ -1162,6 +1162,22 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <source>Todos los comentarios</source>
         <target/>
       </trans-unit>
+      <trans-unit id="248">
+        <source>Nacida el %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="249">
+        <source>Nacido el %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="250">
+        <source>¡Buusca!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="251">
+        <source>Buscar</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

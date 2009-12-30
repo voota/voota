@@ -75,7 +75,12 @@
       <trans-unit id="18" approved="yes">
         <source>Formato de imagen no válido.</source>
         <target>Format d'imatge no vàlid.</target>
-      <note/></trans-unit>     
+      <note/></trans-unit>
+      <trans-unit id="19" approved="yes">
+        <source>Quieto parao. Antes de votar, tienes que loguearte en Voota. Si no tienes cuenta aún, ¡éste es el momento para crearte una!</source>
+        <target/>
+      <note/></trans-unit>
+           
     </body>
   </file>
 </xliff>
