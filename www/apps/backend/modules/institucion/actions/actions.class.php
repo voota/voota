@@ -46,9 +46,5 @@ class institucionActions extends autoInstitucionActions
 
     $this->setTemplate('edit');
   }
-	public function executeIndex(sfWebRequest $request){
-		echo $this->getUser()->getCulture();
-		parent::executeIndex($request);
-	}
 
 }
