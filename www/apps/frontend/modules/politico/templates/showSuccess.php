@@ -115,7 +115,7 @@
   	  ?>
   	  </h3>
 
-  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'politico' => $politico, 'reviewType' => __('positivo'), 't' => 1, 'pageU' => $pageU)) ?>
 	
     </div>
 	        
@@ -127,7 +127,7 @@
 	  	  ?>
 	    </h3>
 	
-  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativo'), 't' => -1, 'pageD' => $pageU)) ?>
 
     </div>
   </div>

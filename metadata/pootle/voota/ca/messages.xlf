@@ -1242,6 +1242,26 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <source>Entrar</source>
         <target/>
       </trans-unit>
+      <trans-unit id="268">
+        <source>Aún no hay ninguna voto %1% de %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="269">
+        <source>[0]0 positivo|[1]%1% positivo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% positivos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="270">
+        <source>positivo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="271">
+        <source>[0]0 negativo|[1]%1% negativo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% negativos &amp;#40;%2%%&amp;#41;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="272">
+        <source>negativo</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

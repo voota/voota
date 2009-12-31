@@ -16,7 +16,7 @@
   		<?php endforeach ?>
 	</ol>
 <?php else: ?>
-	<p><?php echo __('Aún no hay ninguna opinión %1% de %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
+	<p><?php echo __('Aún no hay ninguna voto %1% de %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
 <?php endif ?>
 
 	
