@@ -1243,7 +1243,7 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <target/>
       </trans-unit>
       <trans-unit id="268">
-        <source>Aún no hay ninguna voto %1% de %2%</source>
+        <source>Aún no hay ningun voto %1% de %2%</source>
         <target/>
       </trans-unit>
       <trans-unit id="269">
@@ -1260,6 +1260,10 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
       </trans-unit>
       <trans-unit id="272">
         <source>negativo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="273">
+        <source>Aún no hay ningún voto %1% de %2%</source>
         <target/>
       </trans-unit>
     </body>
