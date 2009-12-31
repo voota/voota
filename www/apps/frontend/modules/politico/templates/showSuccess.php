@@ -109,7 +109,7 @@
   <div class="reviews">
     <div class="positive-reviews">
   	  <h3>  	  
-  	  <?php echo format_number_choice('[0]Positivos|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
+  	  <?php echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
   	  		array('%1%' => format_number($politico->getSumU(), 'es_ES'), '%2%' => format_number($positivePerc, 'es_ES'))
   	  		, $politico->getSumU()) 
   	  ?>
@@ -121,7 +121,7 @@
 	        
     <div class="negative-reviews">
 	    <h3>
-	  	  <?php echo format_number_choice('[0]Negativos|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
+	  	  <?php echo format_number_choice('[0]0 negativo|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
 	  	  		array('%1%' => format_number($politico->getSumD(), 'es_ES'), '%2%' => format_number($negativePerc, 'es_ES'))
 	  	  		, $politico->getSumD()) 
 	  	  ?>
