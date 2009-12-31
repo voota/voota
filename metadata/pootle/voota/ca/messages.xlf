@@ -1122,11 +1122,11 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <target/>
       </trans-unit>
       <trans-unit id="238">
-        <source>[0]Positivos|[1]%1% positivo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% positivos &amp;#40;%2%%&amp;#41;</source>
+        <source>[0]0 positivo|[1]%1% positivo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% positivos &amp;#40;%2%%&amp;#41;</source>
         <target/>
       </trans-unit>
       <trans-unit id="239">
-        <source>[0]Negativos|[1]%1% negativo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% negativos &amp;#40;%2%%&amp;#41;</source>
+        <source>[0]0 negativo|[1]%1% negativo &amp;#40;%2%%&amp;#41;|(1,+Inf]%1% negativos &amp;#40;%2%%&amp;#41;</source>
         <target/>
       </trans-unit>
       <trans-unit id="240">
