@@ -41,7 +41,7 @@
         <div id="search">
           <?php echo form_tag('@search') ?>
     	      <?php echo input_tag('q', $sf_params->get('q')) ?>
-    	      <?php echo submit_tag('Buscar', array('class' => 'button')) ?>
+    	      <?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?>
           </form>
         </div>
       <?php endif ?>
@@ -60,7 +60,7 @@
   <!-- FOOTER -->
   <div id="footer">
     <p class="license">
-      <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons" /></a>
+      <a href="<?php echo __('http://creativecommons.org/licenses/by-sa/3.0/deed.es') ?>"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" longdesc="Creative Commons" /></a>
       <?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?>
     </p>
     <p class="nav-links">

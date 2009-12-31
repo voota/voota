@@ -82,7 +82,7 @@
       </tr>
       <tr>
         <th></th>
-        <td class="submit"><input name="button" type="submit" class="button" value="Entrar"></td>
+        <td class="submit"><input name="button" type="submit" class="button" value="<?php echo __('Entrar')?>"></td>
       </tr>
     </table>
   </form>

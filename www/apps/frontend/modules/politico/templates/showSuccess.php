@@ -51,7 +51,7 @@
    */?>
 
   <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="photo">
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. $politico->getNombre().' ' . $politico->getApellidos() .'"') ?>
+    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
@@ -69,7 +69,7 @@
     </p>
 
     <?php if ($politico->getAlias() != ''): ?>
-	    <p><?php echo __($politico->getSexo()=='M'?'Conocida como %1%':'Conocido como %1%', array('%1%' => $politico->getAlias()))?></p>
+	    <p><?php echo $politico->getSexo()=='M'?__('Conocida como %1%', array('%1%' => $politico->getAlias())):__('Conocido como %1%', array('%1%' => $politico->getAlias()))?></p>
     <?php endif ?>
 
     <?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
@@ -133,7 +133,7 @@
   </div>
 
   <div class="vote">
-    <h3>Voota sobre <?php echo $politico->getApellidos(); ?></h3>
+    <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
   </div>
 

@@ -10,7 +10,7 @@
       <dt><label for="nombre"><?php echo __('Tu nombre') ?>:</label></dt>
       <dd>
       	<?php echo $form['nombre']->renderError() ?>
-      	<?php echo $form['nombre']->render() ?> <span class="hints">(Opcional)</span></dd>
+      	<?php echo $form['nombre']->render() ?> <span class="hints"><?php echo __('(Opcional)') ?></span></dd>
       
       <dt><label for="email">Email:</label></dt>
       <dd>
@@ -37,7 +37,7 @@
       </dd>
     </dl>
     <p class="submit">
-      <input type="submit" name="enviar" value="Enviar" />
+      <input type="submit" name="enviar" value="<?php echo __('Enviar') ?>" />
     </p>
   </form>
 </div>

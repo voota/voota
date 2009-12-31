@@ -27,7 +27,7 @@
     </tr>
     <tr>
       <th></th>
-      <td class="submit"><?php echo submit_tag('Enviar', array('class'   => 'button',)) ?></td>
+      <td class="submit"><?php echo submit_tag(__('Enviar'), array('class'   => 'button',)) ?></td>
     </tr>
   </table>
 </form>

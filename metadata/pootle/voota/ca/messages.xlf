@@ -1178,6 +1178,70 @@ un mes. L'últim punt representa el nombre de voots del mes actual.</target>
         <source>Buscar</source>
         <target/>
       </trans-unit>
+      <trans-unit id="252">
+        <source>http://creativecommons.org/licenses/by-sa/3.0/deed.es</source>
+        <target>http://creativecommons.org/licenses/by-sa/3.0/deed.ca</target>
+      </trans-unit>
+      <trans-unit id="253">
+        <source>Quieto parao. Antes de votar, tienes que loguearte en Voota. Si no tienes cuenta aún, ¡éste es el momento para crearte una!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="254">
+        <source>Gracias por tu mensaje</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="255">
+        <source>(Opcional)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="256">
+        <source>Foto de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="257">
+        <source>Conocida como %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="258">
+        <source>Conocido como %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="259">
+        <source>Voota sobre %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="260">
+        <source>Voota. Tú tienes la última palabra</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="261">
+        <source>Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="262">
+        <source>¡Clonk! Página no encontrada</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="263">
+        <source>Parece ser que ya no tenemos disponible la página que intentas visitar. A lo mejor nunca ha existido. Lo único que podemos ofrecerte en este momento es un humilde enlace a la </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="264">
+        <source>página de inicio de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="265">
+        <source>¿Seguro que es este email?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="266">
+        <source>Parece que no figura en nuestros datos... Mira a ver si estás registrado en Voota ;-)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="267">
+        <source>Entrar</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
