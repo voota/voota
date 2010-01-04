@@ -142,7 +142,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$this->getUser()->setFlash('notice_type', 'warning', true);
     $this->getUser()->setFlash(
     	'notice', 
-		sfContext::getInstance()->getI18N()->__('Quieto parao. Antes de votar, tienes que loguearte en Voota. Si no tienes cuenta aún, ¡éste es el momento para crearte una!', array(), 'notices')
+		sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
 		, true
 	);
   }
