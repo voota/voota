@@ -44,7 +44,6 @@
               <td class="actions">
                 <a href="#">Hacer cambios</a>
               </td>
-            </tr>
 <?php endforeach ?>
 
             </tr>

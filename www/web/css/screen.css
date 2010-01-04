@@ -65,6 +65,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 
 /* Mensajes */
 .success-msg, .notice { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.warning { border: 1px solid #9398ae; width: 52em; padding: 1em; margin: 1em 0; font-weight: bold; }
 .error { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
 .next-step-msg { padding-bottom: 0.5em; font-weight: bold;}
 
@@ -162,14 +163,35 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* FIXME: puede que la acción no acabe llamándose así */
 #perfil-reviews #content { width: 95%; margin-top: 1em; margin-left: 1em; }
-#perfil-reviews .comments table { border-top: 1px dotted #323232;}
-#perfil-reviews .comments tr { border-bottom: 1px dotted #323232; }
-#perfil-reviews .comments td { border-bottom: 1px dotted #323232; padding: 0.5em 0; }
+#perfil-reviews .comments table { border-top: 1px dotted #cccccc; }
+#perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc; }
+#perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
 #perfil-reviews .comments .photo { width: 4%;}
 #perfil-reviews .comments .name { width: 34%; padding: 0 1%; }
 #perfil-reviews .comments .vote { width: 4%;}
 #perfil-reviews .comments .body { width: 40%; padding-right: 2%; }
 #perfil-reviews .comments .actions { width: 14%; }
+
+/* Perfil público */
+
+#perfil-show h2 { font-weight: bold;}
+#perfil-show .balloon { width: 50%; background: transparent url(/images/balloonBottom.png) bottom left no-repeat; padding-bottom: 11px; margin-bottom: 1.5em;}
+#perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 1em 1em 0 1em;}
+#perfil-show .balloon-inner input { width: 15em;}
+#perfil-show #content { width: 95%; margin-top: 1em; margin-left: 1em; }
+#perfil-show .profile .photo { width: 180px; float: left; }
+#perfil-show .profile .description { width: 250px; margin-left: 1em; float: left; }
+#perfil-show .profile .description p { padding-bottom: 0.5em;}
+#perfil-show .comments { clear: both; padding-top: 3em; }
+#perfil-show .comments table { border-top: 1px dotted #cccccc; }
+#perfil-show .comments tr { border-bottom: 1px dotted #cccccc; }
+#perfil-show .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
+#perfil-show .comments .photo { width: 4%;}
+#perfil-show .comments .name { width: 34%; padding: 0 1%; }
+#perfil-show .comments .vote { width: 4%;}
+#perfil-show .comments .body { width: 40%; padding-right: 2%; }
+#perfil-show .comments .actions { width: 14%; }
+
 
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}
@@ -267,4 +289,4 @@ table.sparkline {border-collapse: collapse;}
 table.sparkline td {padding:0px;}
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff; }
-.warning { border: 1px solid #9398ae; width: 52em; padding: 1em; margin: 1em 0; font-weight: bold; }
+
