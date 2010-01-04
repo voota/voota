@@ -1,0 +1,5 @@
+default:
+  components:
+    profileReview:  [perfil, profileReview]
+    
+    

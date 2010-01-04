@@ -35,31 +35,7 @@
       <h2><?php echo __("%1% ha comentado en&hellip;", array('%1%' => $user->getProfile()->getNombre())) ?></h2>
         <table>
           <?php foreach ($reviews->getResults() as $review): ?>
-            <tr>
-              <td class="photo">    
-    	          <?php if( $review->getSfReviewType() && $review->getSfReviewType()->getId() == 1 ): ?>
-    	            <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.( $review->getsfGuardUser()->getProfile()->getImagen()), array('alt' => $review->getsfGuardUser()->getProfile()->getNombre().' ' .  $review->getsfGuardUser()->getProfile()->getApellidos(), 'width' => 36, 'height' => 36)) ?>
-    	          <?php else: ?>
-    	            <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/v.png', array('alt' => $review->getsfGuardUser()->getProfile()->getNombre().' ' .  $review->getsfGuardUser()->getProfile()->getApellidos(), 'width' => 36, 'height' => 36)) ?>
-    	          <?php endif ?>
-              </td>
-              <td class="name">
-                <?php echo $review->getSfGuardUser()?> (Usuario), <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
-              </td>
-              <td class="vote">
-              	<?php if($review->getValue() == 1): ?>
-              		<?php echo image_tag('icoUp.gif', 'yeah') ?>
-              	<?php else: ?>
-              		<?php echo image_tag('icoDown.gif', 'buu') ?>
-              	<?php endif ?>
-              </td>
-              <td class="body">
-                <?php echo review_text( $review ) ?>
-              </td>
-              <td class="actions">
-                <a href="#">Ir a su comentario</a>
-              </td>
-            </tr>
+			<?php include_component_slot('profileReview', array('review' => $review)) ?>
           <?php endforeach ?>
         </table>
     <?php else: ?>
