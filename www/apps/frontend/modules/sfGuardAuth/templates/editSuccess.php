@@ -53,9 +53,10 @@
       <th><label for="profile_fecha_nacimiento"><?php echo __('Fecha de nacimiento') ?></label></th>
       <td>
         <?php echo $profileEditForm['fecha_nacimiento']->render() ?>
+        <span class="hints"><?php echo __('(opcional)') ?></span>
         <?php echo $profileEditForm['fecha_nacimiento']->renderError() ?>
       </td>
-      <td class="hints"><?php echo __('(opcional)') ?></td>
+      <td class="hints"></td>
     </tr>
     <tr>
       <th><label for="profile_vanity"><?php echo __('Tu página en Voota') ?></label></th>
@@ -67,11 +68,11 @@
     </tr>
     <tr>
       <th><label for="profile_imagen"><?php echo __('Tu avatar') ?></label></th>
-      <td>
+      <td class="avatar">
         <?php echo $profileEditForm['imagen']->render() ?>
         <?php echo $profileEditForm['imagen']->renderError() ?>
       </td>
-      <td class="hints"><?php echo __('(opcional)') ?></td>
+      <td class="hints"></td>
     </tr>
     <tr>
       <th><label for="profile_username"><?php echo __('Tu Email') ?></label></th>

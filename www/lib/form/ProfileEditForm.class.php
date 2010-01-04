@@ -33,7 +33,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
    			   'file_src'  => $this->getObject()->getProfile()->getImagen()?'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
 			   'is_image'  => true,
 			   'edit_mode' => !$this->isNew(),
-			   'template'  => '<div>%file%  <label></label>%input%<br /><label></label><h6>%delete% '. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</h6></div>',
+			   'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p>%file% %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
 				)),
       'username'   => new sfWidgetFormInput(array()),
       'nombre'   => new sfWidgetFormInput(array()),
