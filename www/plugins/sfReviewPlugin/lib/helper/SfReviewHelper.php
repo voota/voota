@@ -2,10 +2,22 @@
 
 
 function review_text($review, $msg = array()){
-	$msg = array(
-		'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador (<a href='%1%'>ver normas de publicación</a>).", array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
-		'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador (<a href='%1%'>ver normas de publicación</a>).", array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
-	);
+	$routes = sfContext::getInstance()->getRouting()->getRoutes ();
+
+	if (array_key_exists('rules', $routes)){
+		$msg = array(
+			'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador (<a href='%1%'>ver normas de publicación</a>)."
+				, array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
+			'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador (<a href='%1%'>ver normas de publicación</a>)."
+				, array('%1%' => sfContext::getInstance()->getRouting()->generate('rules'))),
+		);
+	}
+	else {
+		$msg = array(
+			'offensive' => sfContext::getInstance()->getI18N()->__("Opinión tachada por el moderador."),
+			'deleted' => sfContext::getInstance()->getI18N()->__("Opinión eliminada por el moderador."),
+		);
+	}
 	
 	$text = ($review->getCulture() == '' || $review->getCulture() == sfContext::getInstance()->getUser()->getCulture())?$review->getText():'';
 		

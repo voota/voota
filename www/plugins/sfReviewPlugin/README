@@ -4,6 +4,12 @@ sfReview plugin
 The `sfReviewPlugin` is a symfony plugin that allows users from sfGuardPlugin to leave reviews on different entities of an application.
 We use it to place reviews of spanish politicians at http://voota.es, you are welcome to test it !
 
+Upgrade
+-------
+
+Please, use the sql script shipped with each new version to upgrade database:
+
+		data/sql/update-from-n_m.sql 
 
 Installation
 ------------
