@@ -35,6 +35,15 @@ class perfilActions extends sfActions
   }
   public function executeShow(sfWebRequest $request)
   {
-
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	
+  	$criteria = new Criteria();
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->getUser()->getGuardUser()->getId());
+	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
+	
+  	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
+    $this->reviews->setCriteria($criteria);
+    $this->reviews->init();
   }
 }
