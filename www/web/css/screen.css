@@ -179,7 +179,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 1em 1em 0 1em;}
 #perfil-show .balloon-inner input { width: 15em;}
 #perfil-show #content { width: 95%; margin-top: 1em; margin-left: 1em; }
-#perfil-show .profile .photo { width: 180px; float: left; }
+#perfil-show .profile .photo { float: left; }
 #perfil-show .profile .description { width: 250px; margin-left: 1em; float: left; }
 #perfil-show .profile .description p { padding-bottom: 0.5em;}
 #perfil-show .comments { clear: both; padding-top: 3em; }
