@@ -6,17 +6,17 @@
 	<?php if(isset($lastPager)): ?>
 		<ol>
 		      <?php foreach($lastPager->getResults() as $review): ?>
-		  		<?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
+		  		<?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
 		  	<?php endforeach ?>
 		</ol>
 	<?php endif ?>
 	<ol>
   	    <?php foreach($pager->getResults() as $review): ?>
-  			<?php include_partial('review', array('review' => $review, 'reviewable' =>  true)) ?>
+  			<?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
   		<?php endforeach ?>
 	</ol>
 <?php else: ?>
-	<p><?php echo __('Aún no hay ningún voto %1% de %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
+	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
 <?php endif ?>
 
 	
