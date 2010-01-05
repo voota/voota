@@ -1267,6 +1267,46 @@ actual)</target>
         <source>Aún no hay ningún voto %1% de %2%</source>
         <target>Encara no hi ha cap vot %1% de %2%</target>
       <note></note></trans-unit>
+      <trans-unit id="274">
+        <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="275">
+        <source>Aún no hay ninguna opinión %1% sobre %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="276">
+        <source>¡Hey! %1% está usando Voota.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="277">
+        <source>Tú también puedes tener tu propio perfil aquí y compartir tus opiniones sobre los políticos de España.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="278">
+        <source>¿Te animas? No tardas nada en registrarte:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="279">
+        <source>Registrarte en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="280">
+        <source>%1% ha comentado sobre &amp;hellip; (%2% votos)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="281">
+        <source>%1% aún no se ha animado a comentar&amp;hellip;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="282">
+        <source>Otro comentario sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="283">
+        <source>Ir a su comentario</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
