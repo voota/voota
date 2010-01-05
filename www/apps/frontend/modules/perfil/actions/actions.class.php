@@ -22,6 +22,40 @@ class perfilActions extends sfActions
 
   public function executeReviews(sfWebRequest $request)
   {
+  	$op = $request->getParameter('o');
+  		
+  	if ($op == 'v' || $op == 'e'){
+  		$t = $request->getParameter('t');
+  		$e = $request->getParameter('e');
+  		$r = $request->getParameter('r');
+  		if ($t == ''){
+		  	$c = new Criteria();
+		  	$c->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+		  	$c->add(SfReviewPeer::ID, $e);
+		  	
+		  	$politico = PoliticoPeer::doSelectOne($c);
+		}
+  		else {
+			$politico = PoliticoPeer::retrieveByPK($e);
+   		}
+  		$dest = "politico/show?id=".$politico->getVanity();
+	  	if ($op == 'e'){
+	  		$this->getUser()->setAttribute('review_v', 1);
+	  		$this->getUser()->setAttribute('review_e', $politico->getId());
+	  		$this->getUser()->setAttribute('review_c', $e);
+	  	}
+	  	
+  		if ($t == ''){
+	  		$dest .= "#sf_review_c_a$e";
+  		}
+  		else {
+	  		if ($op == 'v'){
+  				$dest .= "#sf_review_c_m$r";
+	  		}
+  		}
+
+  		$this->redirect( $dest );
+  	}
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$criteria = new Criteria();

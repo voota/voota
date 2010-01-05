@@ -10,6 +10,7 @@
 
     </li>
     <?php foreach ($reviewLastList->getResults() as $review): ?>    
+	  <a name="<?php echo "sf_review_c_m".$review->getId() ?>"></a>
       <li class="review">
       	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
       
@@ -19,6 +20,7 @@
     <?php endforeach ?>
 	  <?php if($showCount > SfReviewManager::NUM_LAST_REVIEWS):?>
 	    <?php foreach ($reviewList->getResults() as $review): ?>    
+	    <a name="<?php echo "sf_review_c_m".$review->getId() ?>"></a>
         <li class="review">        
         
       	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
