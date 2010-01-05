@@ -66,6 +66,8 @@ class perfilActions extends sfActions
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
     $this->reviews->init();
+    
+    $this->user = $this->getUser()->getGuardUser();
   }
   public function executeShow(sfWebRequest $request)
   {
@@ -85,6 +87,35 @@ class perfilActions extends sfActions
 	
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
+    $this->reviews->init();
+  }
+  public function executeMore(sfWebRequest $request)
+  {
+    
+  	$vanity = $request->getParameter('username');
+    
+  	$c = new Criteria();
+  	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
+  	$userProfile = SfGuardUserProfilePeer::doSelectOne( $c );
+  	$this->forward404Unless($userProfile);
+  	
+  	$this->user = $userProfile->getsfGuardUser();
+  	
+  	$criteria = new Criteria();
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
+	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
+	
+  	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
+    $this->reviews->setCriteria($criteria);
+    $this->page = $request->getParameter("page");
+    if ($this->page) {
+    	$this->page += 1;
+    	$this->reviews->setPage( $this->page );
+    }
+    else {
+    	$this->page = 1;
+    }
     $this->reviews->init();
   }
 }

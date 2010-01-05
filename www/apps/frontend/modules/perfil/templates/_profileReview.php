@@ -1,3 +1,8 @@
+<?php use_helper('I18N') ?>
+<?php use_helper('SfReview') ?>
+<?php use_helper('jQuery') ?>
+<?php use_helper('Form') ?>
+
 <tr>
 	<td class="photo">    
 		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
@@ -5,9 +10,9 @@
     
 	<td class="name">
 		<?php if( ! $review->getSfReviewType() ): ?>
-                <?php echo __('Otro comentario sobre %1%', array('%1%' => $politico))?>, <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
+                <?php echo __('Otro comentario sobre')?> <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
 		<?php elseif ($review->getSfReviewType()->getId() == 1): ?>
-                <?php echo $politico?> (<?php echo __('Político')?>), <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
+                <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
 		<?php endif ?>
 	</td>
 	

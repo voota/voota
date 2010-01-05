@@ -95,6 +95,11 @@ usuario:
   url:   /:username
   param: { module: perfil, action: show }
 
+profile_more_comments:
+  url: /:sf_culture/user/more
+  param: { module: perfil, action: more }
+  requirements: { sf_culture: (?:es|ca) }
+
 usuario_edit:
   url: /:sf_culture/user/edit
   param: { module: sfGuardAuth, action: edit }
