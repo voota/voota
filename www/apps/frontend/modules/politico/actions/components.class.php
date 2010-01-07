@@ -1,6 +1,6 @@
 <?php
 
-class politicoComponents extends sfReviewComponents
+class politicoComponents extends sfComponents
 {
   public function executeSparkline(){
   	/*
