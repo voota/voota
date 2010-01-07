@@ -1,3 +1,5 @@
 default:
   has_layout:     off
+  components:
+    subreviews:  [sfReviewFront, subreviews]
   

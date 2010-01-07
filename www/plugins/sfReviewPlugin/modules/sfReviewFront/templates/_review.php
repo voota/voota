@@ -2,8 +2,7 @@
 <?php use_helper('I18N') ?>
 <?php $reviewable = isset($reviewable)?$reviewable:false; $uc=new Criteria(); $uc->add(SfReviewPeer::VALUE, 1); $dc=new Criteria(); $dc->add(SfReviewPeer::VALUE, -1) ?>
 
-<a name="<?php echo "sf_review_c_m".$review->getId() ?>"></a>
-<li class="review">
+<li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
 
 <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 

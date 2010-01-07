@@ -10,8 +10,7 @@
 
     </li>
     <?php foreach ($reviewLastList->getResults() as $review): ?>    
-	  <a name="<?php echo "sf_review_c_m".$review->getId() ?>"></a>
-      <li class="review">
+      <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
       	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
       
       	<p class="review-date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></p>
@@ -20,8 +19,7 @@
     <?php endforeach ?>
 	  <?php if($showCount > SfReviewManager::NUM_LAST_REVIEWS):?>
 	    <?php foreach ($reviewList->getResults() as $review): ?>    
-	    <a name="<?php echo "sf_review_c_m".$review->getId() ?>"></a>
-        <li class="review">        
+      <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
         
       	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
 
