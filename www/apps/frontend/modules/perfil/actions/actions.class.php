@@ -46,7 +46,7 @@ class perfilActions extends sfActions
 	  	}
 	  	
   		if ($t == ''){
-	  		$dest .= "#sf_review_c_a$e";
+	  		$dest .= "#subreviews_box$e";
   		}
   		else {
 	  		if ($op == 'v'){
