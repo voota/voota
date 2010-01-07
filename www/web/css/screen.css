@@ -4,7 +4,7 @@
 
 body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
 p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
-img { border:none; vertical-align: middle; }
+img { border:none none; vertical-align: middle; }
 table { padding:0; margin:0; border-collapse: collapse; }
 
 /* Clases genéricas */
@@ -47,6 +47,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #slogan { font-size: 1.2em; font-weight: normal; }
 #user-links { position: absolute; top: 10px; right: 0; }
 #search { position: absolute; top: 55px; right: 0; text-align: right; }
+#search fieldset { margin: 0; padding: 0; border: none;}
 #search input[type=submit] { margin-left: 0.5em; width: 8em;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
 #contact-links ul li { float: left; padding: 0 20px 0 2em;}
@@ -109,7 +110,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #summary { margin-bottom: 1em; }
 #home-index #summary ul { padding-left: 1em; }
 #home-index #summary li { margin-bottom: 1em;}
-#home-index #politicians-most-voted,
+#home-index #politicians-most-voted { overflow: hidden;}
+#home-index #politicians-most-voted ul { padding-left: 0;}
 #home-index #rankings { padding-left: 1.5em; overflow: hidden;}
 #home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
 #home-index .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
@@ -122,6 +124,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
 #home-index .search input[type=submit] { margin-left: 0.5em; width: 8em; }
+#home-index #summary .search { padding-left: 0;}
 #home-index #politicians-top5,
 #home-index #political-groups,
 #home-index #institutions { width: 30%; margin-right: 3%; float: left;}

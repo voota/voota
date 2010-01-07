@@ -30,10 +30,10 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'vanity'   => new sfWidgetFormInput(array()),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
 			   'label'     => sfContext::getInstance()->getI18N()->__('Imagen Principal', array(), 'notices'),
-   			   'file_src'  => $this->getObject()->getProfile()->getImagen()?'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
-			   'is_image'  => true,
+   			 'file_src'  => $this->getObject()->getProfile()->getImagen()?'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
+			   'is_image'  => false,
 			   'edit_mode' => !$this->isNew(),
-			   'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p>%file% %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
+			   'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p><img src="%file%" alt="'.$this->getObject()->getProfile()->getNombre().' '.$this->getObject()->getProfile()->getApellidos().'" /> %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
 				)),
       'username'   => new sfWidgetFormInput(array()),
       'nombre'   => new sfWidgetFormInput(array()),

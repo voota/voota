@@ -18,9 +18,9 @@
 	
     <td class="vote">
     	<?php if($review->getValue() == 1): ?>
-        	<?php echo image_tag('icoUp.gif', 'yeah') ?>
+        	<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
 		<?php else: ?>
-        	<?php echo image_tag('icoDown.gif', 'buu') ?>
+        	<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
         <?php endif ?>
 	</td>
               

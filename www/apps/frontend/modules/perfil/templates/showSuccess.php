@@ -10,13 +10,12 @@
       <div class="balloon-inner">
         <h3><?php echo __('¡Hey! %1% está usando Voota.', array('%1%' => $user)) ?></h3>
         <p><?php echo __('Tú también puedes tener tu propio perfil aquí y compartir tus opiniones sobre los políticos de España.') ?></p>
-        <p>
-          <?php echo __('¿Te animas? No tardas nada en registrarte:') ?>
-          <?php echo form_tag('@sf_guard_signin', 'method=get') ?>
+        <?php echo form_tag('@sf_guard_signin', 'method=get') ?>
+          <p>
+            <?php echo __('¿Te animas? No tardas nada en registrarte:') ?>
     	      <?php echo submit_tag(__('Registrarte en Voota')) ?>
-          </form>
-        </p>
-        <p></p>
+          </p>
+        </form>
       </div>
     </div>
   <?php endif ?>

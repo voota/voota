@@ -61,7 +61,7 @@
       <td class="hints"><?php echo __('(opcional)') ?></td>
     </tr>
     <tr>
-      <th><label for="profile_fecha_nacimiento"><?php echo __('Fecha de nacimiento') ?></label></th>
+      <th><label for="profile_fecha_nacimiento_day"><?php echo __('Fecha de nacimiento') ?></label></th>
       <td>
         <?php echo $profileEditForm['fecha_nacimiento']->render() ?>
         <span class="hints"><?php echo __('(opcional)') ?></span>

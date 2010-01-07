@@ -5,16 +5,18 @@
 <?php if(!isset($lastPager) || $lastPager->getNbResults() > 0): ?>
 	<?php if(isset($lastPager)): ?>
 		<ol>
-		      <?php foreach($lastPager->getResults() as $review): ?>
-		  		<?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
-		  	<?php endforeach ?>
+		  <?php foreach($lastPager->getResults() as $review): ?>
+		    <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
+		  <?php endforeach ?>
 		</ol>
 	<?php endif ?>
-	<ol>
-  	    <?php foreach($pager->getResults() as $review): ?>
-  			<?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
+	<?php if ($pager->getNbResults() > 0): ?>
+	  <ol>
+  	  <?php foreach($pager->getResults() as $review): ?>
+  		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
   		<?php endforeach ?>
-	</ol>
+	  </ol>
+	<?php endif ?>
 <?php else: ?>
 	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
 <?php endif ?>

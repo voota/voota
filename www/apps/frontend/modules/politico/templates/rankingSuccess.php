@@ -4,7 +4,7 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoFormat') ?>
  
-<script>  
+<script type="text/javascript">  
 $(document).ready(function(){
 	rankingReady();
 	  <?php foreach($politicosPager->getResults() as $politico): ?>
@@ -24,13 +24,13 @@ $(document).ready(function(){
 	  	echo link_to(
 	 	__('Todas las instituciones')
 	 	, "politico/ranking"
-	 	, array('class' => $institucion=='0'?'active':''));
+	 	, $institucion=='0' ? array('class' => 'active') : null);
     }
     else {
 	  	echo link_to(
 	 	__('Todas las instituciones')
 	 	, "politico/ranking?partido=$partido"
-	 	, array('class' => $institucion=='0'?'active':''));
+	 	, $institucion=='0' ? array('class' => 'active') : null);
     }
   ?>
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
     · 
     <?php echo link_to( $aInstitucion->getNombreCorto(),
  	                      "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
-                        array('class' => $aInstitucion->getVanity()==$institucion?'active':'') )
+                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
     ?>
   <?php endforeach ?>
   · 
@@ -51,13 +51,13 @@ $(document).ready(function(){
 	  	echo link_to(
 	 	__('Todas las instituciones')
 	 	, "politico/ranking"
-	 	, array('class' => $institucion=='0'?'active':''));
+	 	, $institucion=='0' ? array('class' => 'active') : null);
     }
     else {
 	  	echo link_to(
 	 	__('Todas las instituciones')
 	 	, "politico/ranking?partido=$partido"
-	 	, array('class' => $institucion=='0'?'active':''));
+	 	, $institucion=='0' ? array('class' => 'active') : null);
     }
   ?>
   <?php $idx = 0; ?>  
@@ -67,7 +67,7 @@ $(document).ready(function(){
       · 
       <?php echo link_to(	$aInstitucion->getNombreCorto(),
  	                        "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
- 	                        array('class' => $aInstitucion->getVanity()==$institucion?'active':'') )
+ 	                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
  	    ?>
     <?php endif ?>  
   <?php endforeach ?>
@@ -86,20 +86,39 @@ $(document).ready(function(){
       <th class="name"><?php echo __('Nombre')?></th>
       <th class="positive-votes">
       	<?php echo link_to(__('Votos +'), "$route&o=".($order=='pd'?'pa':'pd'));?>
-      	<?php echo image_tag('icoUp20px.gif', 'pa') ?>
+      	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
-      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'down':'up') ?>
+      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
       	<?php echo link_to(__('Votos -'), "$route&o=".($order=='nd'?'na':'nd'));?>
-      	<?php echo image_tag('icoDown20px.gif', 'down') ?>
+      	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php if (strpos($order, 'n') === 0):?>
-      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'down':'up') ?>
+      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>
       </th>
     </tr>
   </thead>
+
+  <tfoot>
+    <tr>
+      <td class="ranking"></td>
+      <td class="position"></td>
+      <td class="photo"></td>
+      <td class="name"></td>
+      <td class="positive-votes">
+        <?php echo __('Total') ?>
+    	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
+    	  <?php echo $totalUp?>
+      </td>
+      <td class="negative-votes">
+      	<?php echo __('Total')?>
+      	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
+      	<?php echo $totalDown?>
+      </td>
+    </tr>
+  </tfoot>
 
   <tbody>
     <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
@@ -118,25 +137,6 @@ $(document).ready(function(){
       </tr>
     <?php endforeach ?>
   </tbody>
-  
-  <tfoot>
-    <tr>
-      <td class="ranking"></td>
-      <td class="position"></td>
-      <td class="photo"></td>
-      <td class="name"></td>
-      <td class="positive-votes">
-        <?php echo __('Total') ?>
-    	  <?php echo image_tag('icoUp20px.gif', 'up') ?>
-    	  <?php echo $totalUp?>
-      </td>
-      <td class="negative-votes">
-      	<?php echo __('Total')?>
-      	<?php echo image_tag('icoDown20px.gif', 'down') ?>
-      	<?php echo $totalDown?>
-      </td>
-    </tr>
-  </tfoot>
 </table>
 
 <p class="pagination">

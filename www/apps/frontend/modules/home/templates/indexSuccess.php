@@ -35,43 +35,43 @@
 
 <div class="block">
   <div class="block-inner">
-    <h2 id="summary">
+    <div id="summary">
       <ul>
-        <li><?php echo __('Comparte opiniones sobre políticos de España.') ?></li>
-        <li><?php echo __('De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.', array(
+        <li><h2><?php echo __('Comparte opiniones sobre políticos de España.') ?></h2></li>
+        <li><h2><?php echo __('De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
         					//'%2%' => format_number($totalUpReviews, 'es_ES'),
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($totalUsers, 'es_ES'),
                 			'%5%' => format_number($totalPoliticos, 'es_ES'),
-        				)) ?></li>
-        <li><?php echo __('Los políticos más votados de hoy:') ?></li>
+        				)) ?></h2></li>
+        <li>
+          <h2><?php echo __('Los políticos más votados de hoy:') ?></h2>
+          <div id="politicians-most-voted" class="list-mini">
+              <ul>
+                <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
+      	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+      	        <?php endforeach?>
+                <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+          	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
+        	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false)) ?>
+                  <?php endforeach?>
+                <?php endif ?>
+              </ul>
+          </div>
+          <div class="search">
+            <?php echo form_tag('@search') ?>
+              <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
+              <p>
+                <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
+                <br />
+                <span class="hints"><?php echo __('Político') ?></span>
+              </p>
+              <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
+            </form>
+          </div>
+        </li>
       </ul>
-    </h2>
-
-    <div id="politicians-most-voted" class="list-mini">
-        <ul>
-          <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
-	        <?php endforeach?>
-          <?php if(count($politicosMasVotadosUltimamente) < 6):?>
-    	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-  	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false)) ?>
-            <?php endforeach?>
-          <?php endif ?>
-        </ul>
-    </div>
-
-    <div class="search">
-      <?php echo form_tag('@search') ?>
-        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
-        <p>
-          <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
-          <br />
-          <span class="hints"><?php echo __('Político') ?></span>
-        </p>
-        <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
-      </form>
     </div>
   </div>
 </div>

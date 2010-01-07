@@ -9,7 +9,7 @@
 <div id="signup">
   <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
   <?php echo form_tag('@sf_guard_signin') ?>
-    <?php echo input_hidden_tag('op', 'r') ?>
+    <div><?php echo input_hidden_tag('op', 'r') ?></div>
     <table>
       <tr>
         <th><label for="registration_username"><?php echo __('Tu Email') ?></label></th>
@@ -53,7 +53,7 @@
       <tr>
         <th></th>
         <td class="submit">
-          <?php echo submit_tag(__('Registrate en Voota')) ?>
+          <input name="button" type="submit" class="button" value="<?php echo __('Regístrate en Voota')?>" />
         </td>
       </tr>
     </table>
@@ -82,7 +82,7 @@
       </tr>
       <tr>
         <th></th>
-        <td class="submit"><input name="button" type="submit" class="button" value="<?php echo __('Entrar')?>"></td>
+        <td class="submit"><input name="button" type="submit" class="button" value="<?php echo __('Entrar')?>" /></td>
       </tr>
     </table>
   </form>

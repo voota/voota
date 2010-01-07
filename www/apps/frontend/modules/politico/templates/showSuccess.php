@@ -54,7 +54,7 @@
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
-      <div id="sf_review1"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
+      <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
     </div>
   </div>
     
@@ -101,7 +101,7 @@
 	  <h3><?php echo __('Su biografía')?></h3>
 
     <div title="biografia" class="bio">
-      <p><?php echo formatBio( $politico->getBio() ) ?></p>
+      <?php echo formatBio( $politico->getBio() ) ?>
     </div>
 
   </div><!-- end of description -->
@@ -134,7 +134,7 @@
 
   <div class="vote">
     <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
-    <div id="sf_review2"><?php echo image_tag('spinner.gif', __('cargando'))?></div>
+    <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
 
 </div><!-- end of content -->

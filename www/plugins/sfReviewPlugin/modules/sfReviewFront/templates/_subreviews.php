@@ -3,7 +3,6 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('Form') ?>
 
-<a name="<?php echo "sf_review_c_a".$id ?>"></a>
 <div id="<?php echo "subreviews_box$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
   <ol>
     <li id="<?php echo "sf_review_c".$id ?>" class="review-new">
