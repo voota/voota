@@ -127,7 +127,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   		if ($review->getSfReviewTypeId() == 1){
 		  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
   			$url = "$rule?id=" . $politico->getVanity();
-  			$url .= "#sf_review_c_a$entityId";
+  			$url .= "#subreviews_box$entityId";
   		}
   	}
   	else if ($type == 1){
