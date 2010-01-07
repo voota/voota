@@ -306,16 +306,26 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		}
       		$this->getUser()->setFlash('notice_type', 'notice', false);
       		$this->getUser()->setFlash('notice', sfVoForm::getFormSavesMessage(), false);
-      		$this->profileEditForm->getObject()->getProfile()->save();
+      		$profile = $this->profileEditForm->getObject()->getProfile();
       		
-	    }
+		  	$aText = utf8_decode($profile->getPresentacion());
+  			$aText = strip_tags( substr($aText, 0, 280) );
+  			$aText = utf8_encode($aText);
+  			
+      		$profile->setPresentacion( $aText );
+
+       		$profile->save();
+      		
+      		$this->presentacionValue = $aText;
+		}
 	    else {
       		$this->getUser()->setFlash('notice_type', 'error', false);
       		$this->getUser()->setFlash('notice', sfVoForm::getFormNotValidMessage(), false);
-      		
 	    }
     }
     
-
+    if (!$this->presentacionValue){
+    	$this->presentacionValue = $this->profileEditForm['presentacion']->getValue(); 
+    } 
   }
 }

@@ -24,7 +24,9 @@
   <div class="profile">
     <h2><?php echo $user ?></h2>
     <div title="<?php echo $user ?>" class="photo">
-      <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => $user->getProfile()->getNombre().' ' .  $user->getProfile()->getApellidos())) ?>
+    	<?php if($user->getProfile()->getImagen() != ''):?>
+      		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => $user->getProfile()->getNombre().' ' .  $user->getProfile()->getApellidos())) ?>
+      	<?php endif ?>
     </div>
     <div title="info" class="description">
       <p><?php echo getAutolink($user->getProfile()->getPresentacion())?></p>

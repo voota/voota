@@ -60,7 +60,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
       'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false)),    
-      'presentacion'   => new sfValidatorString(array("max_length" => 280, 'required' => false), sfVoForm::getStringMessages()),    
+      'presentacion'   => new sfValidatorStringCut(array("max_length" => 280, 'required' => false), sfVoForm::getStringMessages()),    
 	  'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
       'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
       'passwordOld'    => new sfValidatorPasswordValid(array('required' => false), sfVoForm::getPasswordMessages()),
@@ -87,5 +87,12 @@ class ProfileEditForm extends sfGuardUserAdminForm
 
 
 	
+  }
+  
+  public function setPresentacion($value)
+  {
+    $this->values['presentacion'] = $value;
+    
+    echo $this->values['presentacion'];
   }
 }

@@ -55,7 +55,7 @@
       <td>
 	    <p id="presen_counter" class="sf-review-counter"></p>
         <?php //echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
-        <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion"><?php echo $profileEditForm['presentacion']->getValue()?></textarea>
+        <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion"><?php echo $presentacionValue ?></textarea>
         <?php echo $profileEditForm['presentacion']->renderError() ?>
       </td>
       <td class="hints"><?php echo __('(opcional)') ?></td>
