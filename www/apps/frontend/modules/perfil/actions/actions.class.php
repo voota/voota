@@ -56,6 +56,16 @@ class perfilActions extends sfActions
 
   		$this->redirect( $dest );
   	}
+  	
+  	if (! $this->getUser()->isAuthenticated() ) {
+  	$this->getUser()->setFlash('notice_type', 'warning', true);
+	    $this->getUser()->setFlash(
+	    	'notice', 
+			sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
+			, true
+		);
+  		$this->getUser()->setAttribute('url_back', '@usuario_votos');
+  	}
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$criteria = new Criteria();
