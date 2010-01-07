@@ -3,6 +3,8 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
+<?php $maxLength = 280?>
+
 <script type="text/javascript">
   <!--//
   $(document).ready(function() {
@@ -15,9 +17,16 @@
 		  $("#bajaConfirmDiv").addClass('hidden');
 		  return false;
   	  });
+	  //controls character input/counter
+	  $('#profile_presentacion').keyup(function() {
+		  setCounter('#presen_counter', this, 280);
+	  });
+	  setCounter('#presen_counter', '#profile_presentacion', 280);
   });
+  
   //-->
 </script>
+
 
 <h2><?php echo __('Hola %1%, estas son tus preferencias', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
 
@@ -44,7 +53,9 @@
     <tr>
       <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
       <td>
-        <?php echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
+	    <p id="presen_counter" class="sf-review-counter"></p>
+        <?php //echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
+        <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion"><?php echo $profileEditForm['presentacion']->getValue()?></textarea>
         <?php echo $profileEditForm['presentacion']->renderError() ?>
       </td>
       <td class="hints"><?php echo __('(opcional)') ?></td>

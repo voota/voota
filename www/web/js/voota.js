@@ -80,4 +80,3 @@ function institutions_to_short() {
 	document.getElementById('institutions-short').className = 'shown';
 	return false;
 }
-

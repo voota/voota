@@ -4,6 +4,7 @@
 	
 <script type="text/javascript">
   <!--
+$(document).ready(function() {
   <?php if($reviewId == ''): ?>
   	$("#<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>").click(function () {
   		if (!<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited){
@@ -26,25 +27,12 @@
     });
   <?php endif ?>
   //controls character input/counter
-  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
-  	MAX_LENGTH = <?php echo $maxLength?>;
-	
-  	var charLength = $(this).val().length;
-  	if((MAX_LENGTH - charLength) < -50) {
-  		$(this).val( $(this).val().substr(0, MAX_LENGTH+50) );
-  		charLength = $(this).val().length;
-  	}
-  	else if((MAX_LENGTH - charLength) < 0) {
-  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', 'color:red;');
-  	}
-  	else if((MAX_LENGTH - charLength) < 40) {
-  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', 'color:orange;');
-  	}
-  	else {
-  		$('#<?php echo "sf-review-counter_$reviewBox" ?>').attr('style', '');
-  	}
-  	$('#<?php echo "sf-review-counter_$reviewBox" ?>').html(MAX_LENGTH - charLength);
-  });
+	  //controls character input/counter
+	  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
+		  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', this, <?php echo $maxLength?>);
+	  });
+	  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', '#<?php echo "sf-review-text_$reviewBox" ?>', <?php echo $maxLength?>);  
+});
   //-->
 </script>
 
@@ -90,7 +78,7 @@
 	</div>
 
   <?php $aReviewText = $reviewText || $reviewId != ''?$reviewText:__('¿Algo que comentar? Es el mejor momento :-)') ?>
-  <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"><?php echo $maxLength - strlen( utf8_decode($aReviewText) )?></p>
+  <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
   <p id="sf-review-body">
     <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr<?php if($reviewId == ''): ?> sfr_grey<?php endif ?>"><?php echo $aReviewText ?></textarea>
   </p>
