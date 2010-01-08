@@ -85,14 +85,59 @@ class ProfileEditForm extends sfGuardUserAdminForm
 
     
 
+	if (!$this->isNew()) {
+		// embed all enlace forms
+		$idx = 0;
+		foreach ($this->getObject()->getEnlaces() as $enlace) {
+			$idx++;
+	   		// create a new enlace form for the current enlace model object
+			$enlaceForm = new UsuarioEnlaceForm( $enlace );
+			// embed the enlace form in the main politico form
+			$this->embedForm("enlace_n$idx", $enlaceForm);
+			
+			// set a custom label for the embedded form
+			$this->widgetSchema["enlace_n$idx"]->setLabel('Enlace '.$enlace->getId());
 
+			// change the name widget to sfWidgetFormInputDelete
+			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInput(array());
+			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden(array());
+		}
+
+		// Vacíos
+		while ($idx < 5){
+			$idx++;
+			// create a new enlace form for a new enlace model object
+			$enlaceForm = new PoliticoEnlaceForm();
+	
+			// embed the enlace form in the main politico form
+			$this->embedForm("enlace_n$idx", $enlaceForm);
+	
+			// set a custom label for the embedded form
+			$this->widgetSchema["enlace_n$idx"]->setLabel('Nuevo enlace');
+		}
+	}
+    
 	
   }
   
-  public function setPresentacion($value)
-  {
-    $this->values['presentacion'] = $value;
-    
-    echo $this->values['presentacion'];
-  }
+	public function bind(array $taintedValues = null, array $taintedFiles = null) {	
+		// remove the embedded new form if the name field was not provided
+		for ($idx = 1;$idx <= 5;$idx++){
+			if (is_null($taintedValues["enlace_n$idx"]['url']) || strlen($taintedValues["enlace_n$idx"]['url']) === 0 ) {
+		
+				unset($this->embeddedForms["enlace_n$idx"], $taintedValues["enlace_n$idx"]);
+		
+				// pass the new form validations
+				$this->validatorSchema["enlace_n$idx"] = new sfValidatorPass();
+		
+			} else {
+				$this->embeddedForms["enlace_n$idx"]->getObject()->setSfGuardUser($this->getObject());
+		
+			}
+		}
+	
+		// call parent bind method
+		parent::bind($taintedValues, $taintedFiles);
+	
+	}
 }

@@ -94,6 +94,51 @@
       <td class="hints"></td>
     </tr>
     <tr>
+      <th><label for="profile_username">1.</label></th>
+      <td>
+        <?php echo $profileEditForm['enlace_n1']['orden']->render() ?>
+        <?php echo $profileEditForm['enlace_n1']['url']->render() ?>
+        <?php echo $profileEditForm['enlace_n1']['url']->renderError() ?>
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th><label for="profile_username">1.</label></th>
+      <td>
+        <?php echo $profileEditForm['enlace_n2']['orden']->render() ?>
+        <?php echo $profileEditForm['enlace_n2']['url']->render() ?>
+        <?php echo $profileEditForm['enlace_n2']['url']->renderError() ?>
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th><label for="profile_username">1.</label></th>
+      <td>
+        <?php echo $profileEditForm['enlace_n3']['orden']->render() ?>
+        <?php echo $profileEditForm['enlace_n3']['url']->render() ?>
+        <?php echo $profileEditForm['enlace_n3']['url']->renderError() ?>
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th><label for="profile_username">1.</label></th>
+      <td>
+        <?php echo $profileEditForm['enlace_n4']['orden']->render() ?>
+        <?php echo $profileEditForm['enlace_n4']['url']->render() ?>
+        <?php echo $profileEditForm['enlace_n4']['url']->renderError() ?>
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
+      <th><label for="profile_username">1.</label></th>
+      <td>
+        <?php echo $profileEditForm['enlace_n5']['orden']->render() ?>
+        <?php echo $profileEditForm['enlace_n5']['url']->render() ?>
+        <?php echo $profileEditForm['enlace_n5']['url']->renderError() ?>
+      </td>
+      <td class="hints"></td>
+    </tr>
+    <tr>
       <th><label for="profile_passwordNew"><?php echo __('¿Nueva contraseña?') ?></label></th>
       <td>
         <?php echo $profileEditForm['passwordNew']->render() ?>
