@@ -93,7 +93,7 @@ input[type=button] { width: 8em; color: #323232; }
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
 .submit { text-align: right; }
-.hints { padding: 5px 0.5em; }
+.hints { padding: 5px 0.5em; font-size: 0.9em;}
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -147,6 +147,11 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-rules #content h3#summary { margin-bottom: 2em; }
 
 /* Perfil */
+#sfGuardAuth-edit h2 { margin-bottom: 0.5em;}
+#sfGuardAuth-edit #content { width: 100%; margin-top: 2em; margin-left: 1em; }
+#sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 1em; margin-left: -1em;}
+#sfGuardAuth-edit ol.links li { margin-bottom: 1em;}
+#sfGuardAuth-edit label { font-weight: normal;}
 #sfGuardAuth-edit input[type=text],
 #sfGuardAuth-edit input[type=password],
 #sfGuardAuth-edit textarea { width: 25em;}
@@ -154,6 +159,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit .avatar p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
 #sfGuardAuth-edit input[type=button] { width: 12em;}
+#sfGuardAuth-edit form th { width: 12em;}
 #sfGuardAuth-edit form td { width: 25em;}
 #sfGuardAuth-edit .remove h3 { font-size: 1em; padding-top: 2em; padding-bottom: 0.5em;}
 #sfGuardAuth-edit #bajaButtonDiv { padding: 0.5em; background-color: #ff0000; float: left;}
