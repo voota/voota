@@ -6,6 +6,7 @@
       <p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
       
       <div id="content">
+      <?php /* ?>
         <p class="filter">
           <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
           <br />
@@ -15,6 +16,7 @@
             <option value="partidos">Por respuestas a otros comentarios</option>
           </select>
         </p>
+      <?php */ ?>
         
         <div class="comments">
           <table>

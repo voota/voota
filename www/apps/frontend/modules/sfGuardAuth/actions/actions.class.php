@@ -258,6 +258,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
 	$this->profileEditForm = new ProfileEditForm( $formData );
 	
+	$criteria = new Criteria();
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
+	$this->numReviews = SfReviewPeer::doCount( $criteria );
+	
     if ($request->isMethod('post') ){  
       	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       

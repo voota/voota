@@ -100,18 +100,19 @@ class ProfileEditForm extends sfGuardUserAdminForm
 
 			// change the name widget to sfWidgetFormInputDelete
 			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInput(array());
-			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden(array());
+			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden();
 		}
 
 		// Vacíos
 		while ($idx < 5){
 			$idx++;
 			// create a new enlace form for a new enlace model object
-			$enlaceForm = new PoliticoEnlaceForm();
+			$enlaceForm = new UsuarioEnlaceForm();
 	
 			// embed the enlace form in the main politico form
 			$this->embedForm("enlace_n$idx", $enlaceForm);
-	
+			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden();
+			
 			// set a custom label for the embedded form
 			$this->widgetSchema["enlace_n$idx"]->setLabel('Nuevo enlace');
 		}
