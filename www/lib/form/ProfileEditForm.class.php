@@ -36,6 +36,12 @@ class ProfileEditForm extends sfGuardUserAdminForm
 			   'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p><img src="%file%" alt="'.$this->getObject()->getProfile()->getNombre().' '.$this->getObject()->getProfile()->getApellidos().'" /> %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
 				)),
       'username'   => new sfWidgetFormInput(array()),
+				
+      'mails_comentarios' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+      'mails_noticias' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+      'mails_contacto' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+      'mails_seguidor' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+				
       'nombre'   => new sfWidgetFormInput(array()),
 	  'apellidos'   => new sfWidgetFormInput(array()),
 	  'apellidos'   => new sfWidgetFormInput(array()),
@@ -58,7 +64,13 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  ), sfVoForm::getImageMessages()),
 	  'imagen_delete' => new sfValidatorString(array('required' => false)), 
       'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
-      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
+				
+      'mails_comentarios' => new sfValidatorBoolean(),
+      'mails_noticias' => new sfValidatorBoolean(),
+      'mails_contacto' => new sfValidatorBoolean(),
+      'mails_seguidor' => new sfValidatorBoolean(),
+	  
+	  'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false)),    
       'presentacion'   => new sfValidatorStringCut(array("max_length" => 280, 'required' => false), sfVoForm::getStringMessages()),    
 	  'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),

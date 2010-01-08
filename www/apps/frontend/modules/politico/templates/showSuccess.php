@@ -31,25 +31,10 @@
     <?php else: ?>
 	    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
     <?php endif ?>
-    <?php /* ?><a href="javascript:showScoreHelp();">?</a><?php */ ?>
   </span>
-  <?php /* ?>
-  <div id="help-dialog" title="<?php echo __('Ayuda: Valoración de un político')?>">
-  	<p><?php echo __('Este número te indica el número de votos positivos que tiene esta persona. Creemos que puede servir de ayuda para comparar este dato con otros políticos.')?></p>
-  </div>
-  <?php */ ?>
 </h2>
 
 <div id="content">
-
-  <?php /*
-    <?php 
-    	echo link_to(__('Listado de políticos, (%1%, %2%)', array(
-    		'%1%' => $partido==''?__('Todos los partidos'):$partido
-    		, '%2%' => $institucion==''?__('Todas las instituciones'):$institucion
-    	)), $rankingUrl) ?>
-   */?>
-
   <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="photo">
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
     <div class="vote">

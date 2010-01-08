@@ -5,33 +5,12 @@
 <script type="text/javascript">
   <!--
 $(document).ready(function() {
-  <?php if($reviewId == ''): ?>
-  	$("#<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>").click(function () {
-  		if (!<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited){
-  			$('#<?php echo "sf-review-text_$reviewBox" ?>').val('');
-  		}
-  		return true;
-  	});
-  <?php endif ?>
-  <?php if($reviewId == ''): ?>
-    var <?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited = false;
-    $('#<?php echo "sf-review-text_$reviewBox" ?>').focus(function() {
-    	MAX_LENGTH = <?php echo $maxLength?>;
-	
-    	if (!<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited){
-    		$(this).val('');
-    		$(this).removeClass('sfr_grey');
-    		$('#<?php echo "sf-review-counter_$reviewBox" ?>').html(MAX_LENGTH);
-    		<?php echo ($reviewBox?$reviewBox:'sf_review').'_form' ?>_edited = true;
-    	}
-    });
-  <?php endif ?>
-  //controls character input/counter
 	  //controls character input/counter
 	  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
 		  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', this, <?php echo $maxLength?>);
 	  });
 	  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', '#<?php echo "sf-review-text_$reviewBox" ?>', <?php echo $maxLength?>);  
+	  subscribeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
 });
   //-->
 </script>
@@ -39,6 +18,7 @@ $(document).ready(function() {
 <?php echo jq_form_remote_tag(array(
     'update'   => $reviewBox?$reviewBox:'sf_review',
     'url'      => 'sfReviewFront/send',
+	'before' => "removeHint('#sf-review-text_$reviewBox', 'blur')"
 )) ?>
 	<?php echo input_hidden_tag('t', $reviewType) ?>
 	<?php echo input_hidden_tag('e', $reviewEntityId) ?>
@@ -52,7 +32,7 @@ $(document).ready(function() {
 		  <span class="sf-review-cancel">
 		    <?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
 				    'update'   => $reviewBox?$reviewBox:'sf_review',
-				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),	
+				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
 				)) ?>
 		  </span>
 		</h5>
@@ -77,10 +57,9 @@ $(document).ready(function() {
 		</div>
 	</div>
 
-  <?php $aReviewText = $reviewText || $reviewId != ''?$reviewText:__('¿Algo que comentar? Es el mejor momento :-)') ?>
   <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
   <p id="sf-review-body">
-    <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr<?php if($reviewId == ''): ?> sfr_grey<?php endif ?>"><?php echo $aReviewText ?></textarea>
+    <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr" title="<?php echo __('¿Algo que comentar? Es el mejor momento :-)') ?>"><?php echo $reviewText ?></textarea>
   </p>
 
   <?php if ($reviewId != ''): ?>

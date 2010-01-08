@@ -99,16 +99,16 @@
             <?php echo $profileEditForm['username']->renderError() ?>
           </p>
           <p>
-            <input type="checkbox" id="profile_username_emails_voota">
-            <label for="profile_username_emails_voota"><?php echo __('Recibir emails de Voota') ?></label>
+            <?php echo $profileEditForm['mails_noticias']->render() ?>
+            <label for="profile_mails_noticias"><?php echo __('Recibir emails de Voota') ?></label>
           </p>
           <p>
-            <input type="checkbox" id="profile_username_emails_usuarios">
-            <label for="profile_username_emails_usuarios"><?php echo __('Recibir emails de otros usuarios') ?></label>
+            <?php echo $profileEditForm['mails_contacto']->render(array('checked' => false)) ?>
+            <label for="profile_mails_contacto"><?php echo __('Recibir emails de otros usuarios') ?></label>
           </p>
           <p>
-            <input type="checkbox" id="profile_username_emails_comentarios">
-            <label for="profile_username_emails_comentarios"><?php echo __('Recibir un email cuando alguien opine sobre tus comentarios') ?></label>
+            <?php echo $profileEditForm['mails_comentarios']->render() ?>
+            <label for="profile_mails_comentarios"><?php echo __('Recibir un email cuando alguien opine sobre tus comentarios') ?></label>
           </p>
         </td>
         <td class="hints"></td>
