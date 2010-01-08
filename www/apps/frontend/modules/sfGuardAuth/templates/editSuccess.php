@@ -57,12 +57,14 @@
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
         <td>
-  	    <p id="presen_counter" class="sf-review-counter"></p>
           <?php //echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
-          <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion"><?php echo $presentacionValue ?></textarea>
+          <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion" title="<?php echo __("¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres!") ?>"><?php echo $presentacionValue ?></textarea>
           <?php echo $profileEditForm['presentacion']->renderError() ?>
         </td>
-        <td class="hints"><?php echo __('(Opcional, pero ayuda)') ?></td>
+        <td class="hints">
+          <p><?php echo __('(Opcional, pero ayuda)') ?></p>
+  	      <p id="presen_counter" class="sf-review-counter"></p>
+        </td>
       </tr>
       <tr>
         <th><label for="profile_fecha_nacimiento_day"><?php echo __('Fecha de nacimiento') ?></label></th>
@@ -91,9 +93,23 @@
       </tr>
       <tr>
         <th><label for="profile_username"><?php echo __('Tu Email') ?></label></th>
-        <td>
-          <?php echo $profileEditForm['username']->render() ?>
-          <?php echo $profileEditForm['username']->renderError() ?>
+        <td class="email">
+          <p>
+            <?php echo $profileEditForm['username']->render() ?>
+            <?php echo $profileEditForm['username']->renderError() ?>
+          </p>
+          <p>
+            <input type="checkbox" id="profile_username_emails_voota">
+            <label for="profile_username_emails_voota"><?php echo __('Recibir emails de Voota') ?></label>
+          </p>
+          <p>
+            <input type="checkbox" id="profile_username_emails_usuarios">
+            <label for="profile_username_emails_usuarios"><?php echo __('Recibir emails de otros usuarios') ?></label>
+          </p>
+          <p>
+            <input type="checkbox" id="profile_username_emails_comentarios">
+            <label for="profile_username_emails_comentarios"><?php echo __('Recibir un email cuando alguien opine sobre tus comentarios') ?></label>
+          </p>
         </td>
         <td class="hints"></td>
       </tr>
@@ -103,7 +119,7 @@
           <ol class="links">
             <li>
               <?php echo $profileEditForm['enlace_n1']['orden']->render(array('value' => 1)) ?>
-              <?php echo $profileEditForm['enlace_n1']['url']->render() ?>
+              <?php echo $profileEditForm['enlace_n1']['url']->render(array('title' => __('Ejemplo: Voota.es'))) ?>
               <?php echo $profileEditForm['enlace_n1']['url']->renderError() ?>
             </li>
             <li>

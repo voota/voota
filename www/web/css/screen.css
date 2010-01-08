@@ -13,6 +13,7 @@ table { padding:0; margin:0; border-collapse: collapse; }
 .tips { font-size: 0.8em; padding-top: 17px; }
 .pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
 strong.email { color: #2b56ff;}
+.blur { color:#b6b6b6; }
 
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
@@ -161,6 +162,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit input[type=button] { width: 12em;}
 #sfGuardAuth-edit form th { width: 12em;}
 #sfGuardAuth-edit form td { width: 25em;}
+#sfGuardAuth-edit form td.email p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit .remove h3 { font-size: 1em; padding-top: 2em; padding-bottom: 0.5em;}
 #sfGuardAuth-edit #bajaButtonDiv { padding: 0.5em; background-color: #ff0000; float: left;}
 #sfGuardAuth-edit #bajaConfirmDiv { float: left;}

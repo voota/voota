@@ -92,6 +92,12 @@
 
   </div><!-- FIN FOOTER -->
 
+  <script type="text/javascript" charset="utf-8">
+    $(function(){ 
+			$('input[title!=""], textarea[title!=""]').hint();
+		});
+  </script>
+
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
