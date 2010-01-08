@@ -2,6 +2,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
+<?php use_helper('Number') ?>
 
 <?php $maxLength = 280?>
 
@@ -29,8 +30,8 @@
 
 
 <h2><?php echo __('Hola %1%, este es tu perfil', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
-<p class="next-step-msg"><a href="#"><?php echo __("Tus comentarios y vootos (en total 34)") ?></a></p>
-<p class="next-step-msg"><a href="#"><?php echo __("Tu perfil público") ?></a></p>
+<p class="next-step-msg"><?php echo link_to(__("Tus comentarios y vootos (en total %1%)", array('%1%' => format_number($numReviews, 'es_ES'))), '@usuario_votos') ?></p>
+<p class="next-step-msg"><?php echo link_to(__("Tu perfil público"), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()) ?></p>
 
 <div id="content">
   <?php echo showNotices( $sf_user ) ?>
@@ -101,27 +102,27 @@
         <td>
           <ol class="links">
             <li>
-              <?php //echo $profileEditForm['enlace_n1']['orden']->render() ?>
+              <?php echo $profileEditForm['enlace_n1']['orden']->render(array('value' => 1)) ?>
               <?php echo $profileEditForm['enlace_n1']['url']->render() ?>
               <?php echo $profileEditForm['enlace_n1']['url']->renderError() ?>
             </li>
             <li>
-              <?php //echo $profileEditForm['enlace_n2']['orden']->render() ?>
+              <?php echo $profileEditForm['enlace_n2']['orden']->render(array('value' => 2)) ?>
               <?php echo $profileEditForm['enlace_n2']['url']->render() ?>
               <?php echo $profileEditForm['enlace_n2']['url']->renderError() ?>
             </li>
             <li>
-              <?php //echo $profileEditForm['enlace_n3']['orden']->render() ?>
+              <?php echo $profileEditForm['enlace_n3']['orden']->render(array('value' => 3)) ?>
               <?php echo $profileEditForm['enlace_n3']['url']->render() ?>
               <?php echo $profileEditForm['enlace_n3']['url']->renderError() ?>
             </li>
             <li>
-              <?php //echo $profileEditForm['enlace_n4']['orden']->render() ?>
+              <?php echo $profileEditForm['enlace_n4']['orden']->render(array('value' => 4)) ?>
               <?php echo $profileEditForm['enlace_n4']['url']->render() ?>
               <?php echo $profileEditForm['enlace_n4']['url']->renderError() ?>
             </li>
             <li>
-              <?php //echo $profileEditForm['enlace_n5']['orden']->render() ?>
+              <?php echo $profileEditForm['enlace_n5']['orden']->render(array('value' => 5)) ?>
               <?php echo $profileEditForm['enlace_n5']['url']->render() ?>
               <?php echo $profileEditForm['enlace_n5']['url']->renderError() ?>
             </li>
