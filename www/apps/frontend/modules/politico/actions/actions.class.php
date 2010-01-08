@@ -335,6 +335,10 @@ class politicoActions extends sfActions
 		$this->positivePerc = intval( $positiveCount * 100 / $totalCount );
 		$this->negativePerc = 100 - $this->positivePerc;
 	}  
+	else {
+		$this->positivePerc = 0;
+		$this->negativePerc = 0;
+	}
   	$this->title = $this->politico->getNombre() . ' '. $this->politico->getApellidos();
   	$this->title .= ' - Voota';
   	
