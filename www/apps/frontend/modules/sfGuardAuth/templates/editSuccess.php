@@ -114,7 +114,7 @@
         <td class="hints"></td>
       </tr>
       <tr>
-        <th><label for="profile_enlace_n1_url">Tus enlaces</label></th>
+        <th><label for="profile_enlace_n1_url"><?php echo __('Tus enlaces')?></label></th>
         <td>
           <ol class="links">
             <li>
