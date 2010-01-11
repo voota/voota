@@ -21,7 +21,12 @@
   <?php endif ?>
 
   <div class="profile">
-    <h2><?php echo $user ?></h2>
+    <h2>
+      <?php echo $user ?>
+      <?php if ($sf_user->getGuardUser()->getId() == $user->getId()): ?>
+        <a href="#">Hacer cambios en tu perfil</a>
+      <?php endif ?>
+    </h2>
     <div title="<?php echo $user ?>" class="photo">
     	<?php if($user->getProfile()->getImagen() != ''):?>
       		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => $user->getProfile()->getNombre().' ' .  $user->getProfile()->getApellidos())) ?>
@@ -29,6 +34,29 @@
     </div>
     <div title="info" class="description">
       <p><?php echo getAutolink($user->getProfile()->getPresentacion())?></p>
+
+      <?php // si hay enlaces definidos por el usuario ?>
+        <div class="links">
+          <p>Más sobre David Luquin:</p>
+          <ul>
+            <?php // si existe el enlace 1 ?>
+              <li><a href="#">seisdeagosto.com</a></li>
+            <?php // fin si ?>
+            <?php // si existe el enlace 2 ?>
+              <li><a href="#">seisdeagosto.com</a></li>
+            <?php // fin si ?>
+            <?php // si existe el enlace 3 ?>
+              <li><a href="#">seisdeagosto.com</a></li>
+            <?php // fin si ?>
+            <?php // si existe el enlace 4 ?>
+              <li><a href="#">seisdeagosto.com</a></li>
+            <?php // fin si ?>
+            <?php // si existe el enlace 5 ?>
+              <li><a href="#">seisdeagosto.com</a></li>
+            <?php // fin si ?>
+          </ul>
+        </div>
+      <?php // fin si ?>
     </div>
   </div>
 

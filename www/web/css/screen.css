@@ -47,6 +47,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #logo a { color: #323232; text-decoration: none; font-weight: normal; }
 #slogan { font-size: 1.2em; font-weight: normal; }
 #user-links { position: absolute; top: 10px; right: 0; }
+#user-links img { padding-right: 10px;}
 #search { position: absolute; top: 55px; right: 0; text-align: right; }
 #search fieldset { margin: 0; padding: 0; border: none;}
 #search input[type=submit] { margin-left: 0.5em; width: 8em;}
@@ -186,14 +187,17 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Perfil público */
 
-#perfil-show h2 { font-weight: bold;}
 #perfil-show .balloon { width: 50%; background: transparent url(/images/balloonBottom.png) bottom left no-repeat; padding-bottom: 11px; margin-bottom: 1.5em;}
 #perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 1em 1em 0 1em;}
 #perfil-show .balloon-inner input { width: 15em;}
 #perfil-show #content { width: 95%; margin-top: 1em; margin-left: 1em; }
+#perfil-show .profile h2 a { font-size: 0.65em;}
 #perfil-show .profile .photo { float: left; }
 #perfil-show .profile .description { width: 250px; margin-left: 1em; float: left; }
 #perfil-show .profile .description p { padding-bottom: 0.5em;}
+#perfil-show .profile .description .links p { padding-top: 1em; padding-bottom: 0;}
+#perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
+#perfil-show .profile .description .links li { padding-bottom: 0.1em;}
 #perfil-show .comments { clear: both; padding-top: 3em; }
 #perfil-show .comments table { border-top: 1px dotted #cccccc; }
 #perfil-show .comments tr { border-bottom: 1px dotted #cccccc; }
@@ -244,6 +248,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Ranking de políticos */
 #politico-ranking .active { background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold; }
+#politico-ranking h2 select { font-size: 0.65em;}
 #politico-ranking table { margin: 0 auto; width: 90%; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
 #politico-ranking table tbody td { padding: 1em 0; }
