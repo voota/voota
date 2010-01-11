@@ -33,7 +33,7 @@
           var next_page = 1;
           $('#more_reviews').click(function(){
             $.ajax({
-              url: '/frontend_dev.php/es/user/more',
+              url: '<?php echo url_for('profile_more_comments')?>',
               data: { page : next_page, username : '<?php echo $user->getProfile()->getVanity() ?>' },
               success: function(data) { next_page += 1; $('.comments table').append(data); },
               beforeSend: function() { $('.spinner').show(); },
