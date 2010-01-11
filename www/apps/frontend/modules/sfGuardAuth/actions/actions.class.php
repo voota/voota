@@ -256,7 +256,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
+	
 	$this->profileEditForm = new ProfileEditForm( $formData );
+	$imagenOri = $formData->getProfile()->getImagen();
 	
 	$criteria = new Criteria();
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
@@ -295,7 +297,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      		$this->profileEditForm->setImageSrc( $imageName );
 	      		}
 	      		else {
-	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
+	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imagenOri );
+		      		$this->profileEditForm->setImageSrc( $imagenOri );
 	      		}
       		}
 			if ($profile['passwordNew'] != ''){
@@ -320,7 +323,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		$profile->setPresentacion( $aText );
 
        		$this->profileEditForm->save();
-      		
+       		
       		$this->presentacionValue = $aText;
 		}
 	    else {

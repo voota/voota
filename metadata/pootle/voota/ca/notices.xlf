@@ -88,6 +88,10 @@
         <source>Opinión tachada por el moderador.</source>
         <target/>
       </trans-unit>
+      <trans-unit id="22" approved="yes">
+        <source>El enlace no es válido (Ejemplo: Voota.es).</source>
+        <target/>
+      </trans-unit>      
     </body>
   </file>
 </xliff>
