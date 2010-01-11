@@ -204,6 +204,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
 #perfil-show .comments .photo { width: 4%;}
 #perfil-show .comments .name { width: 34%; padding: 0 1%; }
+#perfil-show .comments .date { font-size: 0.8em;}
 #perfil-show .comments .vote { width: 4%;}
 #perfil-show .comments .body { width: 40%; padding-right: 2%; }
 #perfil-show .comments .actions { width: 14%; }
