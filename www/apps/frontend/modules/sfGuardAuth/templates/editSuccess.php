@@ -60,10 +60,10 @@
           <?php //echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
           <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion" title="<?php echo __("¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres!") ?>"><?php echo $presentacionValue ?></textarea>
           <?php echo $profileEditForm['presentacion']->renderError() ?>
+          <p id="presen_counter" class="counter"></p>
         </td>
         <td class="hints">
           <p><?php echo __('(Opcional, pero ayuda)') ?></p>
-  	      <p id="presen_counter" class="sf-review-counter"></p>
         </td>
       </tr>
       <tr>
