@@ -89,11 +89,11 @@ form th, form td { padding-bottom: 1.5em; vertical-align: top;}
 form th { text-align: left; padding: 5px 1em 5px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 0.9em; }
 input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:20em }
-input[type=submit] { width: 8em; color: #323232; }
+input[type=submit], button { width: 8em; color: #323232; }
 input[type=button] { width: 8em; color: #323232; }
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
-.submit { text-align: right; }
+.submit { text-align: right; clear: both;}
 .hints { padding: 5px 0.5em; font-size: 0.9em;}
 
 /* Páginas de error (404 y 500) */
@@ -175,7 +175,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* FIXME: puede que la acción no acabe llamándose así */
 #perfil-reviews #content { width: 95%; margin-top: 1em; margin-left: 1em; }
-#perfil-reviews .comments table { border-top: 1px dotted #cccccc; }
+#perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 1em 0; }
 #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc; }
 #perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
 #perfil-reviews .comments .photo { width: 4%;}

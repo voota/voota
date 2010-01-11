@@ -57,9 +57,9 @@ $(document).ready(function() {
 		</div>
 	</div>
 
-  <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
   <p id="sf-review-body">
     <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr" title="<?php echo __('¿Algo que comentar? Es el mejor momento :-)') ?>"><?php echo $reviewText ?></textarea>
+    <div id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></div>
   </p>
 
   <?php if ($reviewId != ''): ?>
