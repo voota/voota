@@ -17,4 +17,7 @@
  */
 class UsuarioEnlaceForm extends RelatedEnlaceForm
 {
+	public function configure(){
+	  unset($this['id'], $this['created_at'], $this['updated_at'], $this['sf_guard_user_id'], $this['mostrar']);
+	}
 }

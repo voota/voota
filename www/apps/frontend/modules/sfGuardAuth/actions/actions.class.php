@@ -319,7 +319,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   			
       		$profile->setPresentacion( $aText );
 
-       		$profile->save();
+       		$this->profileEditForm->save();
       		
       		$this->presentacionValue = $aText;
 		}

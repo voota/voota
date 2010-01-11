@@ -3,6 +3,7 @@
 <?php use_helper('Form') ?>
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('VoFormat') ?>
 
 <div id="content">
   <?php if (!$sf_user->isAuthenticated()): ?>
@@ -23,8 +24,8 @@
   <div class="profile">
     <h2>
       <?php echo $user ?>
-      <?php if ($sf_user->getGuardUser()->getId() == $user->getId()): ?>
-        <a href="#">Hacer cambios en tu perfil</a>
+      <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getId() == $user->getId()): ?>
+        <?php echo link_to(__('Hacer cambios en tu perfil'), "@usuario_edit"); ?>
       <?php endif ?>
     </h2>
     <div title="<?php echo $user ?>" class="photo">
@@ -35,28 +36,18 @@
     <div title="info" class="description">
       <p><?php echo getAutolink($user->getProfile()->getPresentacion())?></p>
 
-      <?php // si hay enlaces definidos por el usuario ?>
+      <?php if (count($user->getEnlaces()) > 0): ?>
         <div class="links">
-          <p>Más sobre David Luquin:</p>
+          <p><?php echo __('Más sobre %1%:', array('%1%' => $user))?></p>
           <ul>
-            <?php // si existe el enlace 1 ?>
-              <li><a href="#">seisdeagosto.com</a></li>
-            <?php // fin si ?>
-            <?php // si existe el enlace 2 ?>
-              <li><a href="#">seisdeagosto.com</a></li>
-            <?php // fin si ?>
-            <?php // si existe el enlace 3 ?>
-              <li><a href="#">seisdeagosto.com</a></li>
-            <?php // fin si ?>
-            <?php // si existe el enlace 4 ?>
-              <li><a href="#">seisdeagosto.com</a></li>
-            <?php // fin si ?>
-            <?php // si existe el enlace 5 ?>
-              <li><a href="#">seisdeagosto.com</a></li>
-            <?php // fin si ?>
+            <?php foreach ($user->getEnlaces() as $enlace): ?>
+            	<?php if ($enlace->getUrl() != ''): ?>
+	              <li><?php echo link_to(toShownUrl( $enlace->getUrl() ), toUrl( $enlace->getUrl() ))?></li>
+            	<?php endif ?>
+            <?php endforeach ?>
           </ul>
         </div>
-      <?php // fin si ?>
+      <?php endif ?>
     </div>
   </div>
 

@@ -116,7 +116,8 @@ class ProfileEditForm extends sfGuardUserAdminForm
 			$this->widgetSchema["enlace_n$idx"]->setLabel('Enlace '.$enlace->getId());
 
 			// change the name widget to sfWidgetFormInputDelete
-			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInput(array());
+			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInput(array(
+			));
 			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden();
 		}
 
@@ -141,14 +142,14 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {	
 		// remove the embedded new form if the name field was not provided
 		for ($idx = 1;$idx <= 5;$idx++){
-			if (is_null($taintedValues["enlace_n$idx"]['url']) || strlen($taintedValues["enlace_n$idx"]['url']) === 0 ) {
+			if (is_null($taintedValues["enlace_n$idx"]['url'])) {
 		
 				unset($this->embeddedForms["enlace_n$idx"], $taintedValues["enlace_n$idx"]);
 		
-				// pass the new form validations
-				$this->validatorSchema["enlace_n$idx"] = new sfValidatorPass();
+				$this->validatorSchema["enlace_n$idx"]['url'] = new sfValidatorUrl(array('required' => false));
 		
 			} else {
+				$this->validatorSchema["enlace_n$idx"]['url'] = new sfVoValidatorUrl(array('required' => false), sfVoForm::getUrlMessages());
 				$this->embeddedForms["enlace_n$idx"]->getObject()->setSfGuardUser($this->getObject());
 		
 			}

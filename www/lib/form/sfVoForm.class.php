@@ -90,5 +90,10 @@ class sfVoForm extends sfForm
 			'extension' => sfContext::getInstance()->getI18N()->__('Formato de imagen no válido.', array(), 'notices')
     		);
 	}
+	public static function getUrlMessages() {
+		return array(
+		'invalid' => sfContext::getInstance()->getI18N()->__('El enlace no es válido (Ejemplo: Voota.es).', array(), 'notices')
+		);
+	}
 	
 }

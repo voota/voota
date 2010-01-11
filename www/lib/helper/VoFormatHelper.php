@@ -15,3 +15,22 @@ function cutToLength($str, $length = 35) {
 	$aText = utf8_decode($str);
 	return utf8_encode( strlen($aText) > $length?substr($aText, 0, $length ).".":$aText );
 }
+
+
+function toUrl($str) {
+	$ret = $str; 
+	if (strpos($str, 'http://') !== 0 ){
+		$ret = "http://$str";	
+	}
+	
+	return $ret;
+}
+
+function toShownUrl($str) {
+	$ret = $str; 
+	if (strpos($str, 'http://') === 0 ){
+		$ret = substr($str,7);	
+	}
+	
+	return $ret;
+}
