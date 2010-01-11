@@ -32,5 +32,9 @@ function toShownUrl($str) {
 		$ret = substr($str,7);	
 	}
 	
+	if (strlen($ret) > 30){
+		$ret = substr($ret, 0, 30) . " ...";
+	}
+	
 	return $ret;
 }
