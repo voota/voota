@@ -264,7 +264,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$this->numReviews = SfReviewPeer::doCount( $criteria );
 	
     if ($request->isMethod('post') ){  
-      	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
+    	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
 	      	$profile = $request->getParameter('profile');
@@ -292,7 +292,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      		$imageName .= ".$ext";
 		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
 		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
-		      		$this->profileEditForm->configure();
+		      		$this->profileEditForm->setImageSrc( $imageName );
 	      		}
 	      		else {
 	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imageOri );
