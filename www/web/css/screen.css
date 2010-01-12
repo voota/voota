@@ -181,6 +181,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
 #perfil-reviews .comments .photo { width: 4%;}
 #perfil-reviews .comments .name { width: 34%; padding: 0 1%; }
+#perfil-reviews .comments .date { font-size: 0.8em;}
 #perfil-reviews .comments .vote { width: 4%;}
 #perfil-reviews .comments .body { width: 40%; padding-right: 2%; }
 #perfil-reviews .comments .actions { width: 14%; }

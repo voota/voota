@@ -10,7 +10,7 @@
     
 	<td class="name">
 		<?php if( ! $review->getSfReviewType() ): ?>
-                <?php echo __('Otro comentario sobre')?> <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
+                <?php echo __('Otro comentario sobre')?> <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <span class="date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></span>
 		<?php elseif ($review->getSfReviewType()->getId() == 1): ?>
                 <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <span class="date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></span>
 		<?php endif ?>
