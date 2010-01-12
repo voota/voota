@@ -1,13 +1,17 @@
 <?php use_helper('I18N') ?>
 
-<?php echo __('<p>Hola %1%,</p>
+<?php echo __('<p>Hola %1%,</p>' . 
 
-<p>
-  Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:
-  <br />"%3%"
-</p>
+($comentario == "" ?
+  '<p>
+    Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:
+    <br />"%3%"
+  </p>'
+  :
+  '<p>Pues eso, que %2% está '.($voto == 1 ? 'a favor' : 'en contra').' de tu vooto. Aunque de momento no ha incluído ninguna opinión.</p>'
+) .
 
-<p>
+'<p>
   Esto es lo que opinaste sobre %4%:
   <br />"%5%"
 </p>
