@@ -249,7 +249,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin .legal { text-align: right; }
 
 /* Ranking de políticos */
-#politico-ranking .active { background-image:url(/images/flechita.gif); background-repeat:no-repeat; background-position: bottom center; padding-bottom:0.40em; text-decoration:none; color:#333333; font-weight:bold; }
+#politico-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
 #politico-ranking h2 select { font-size: 0.65em;}
 #politico-ranking table { margin: 0 auto; width: 90%; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
