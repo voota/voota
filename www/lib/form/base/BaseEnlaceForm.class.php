@@ -22,6 +22,7 @@ class BaseEnlaceForm extends BaseFormPropel
       'orden'            => new sfWidgetFormInput(),
       'mostrar'          => new sfWidgetFormInput(),
       'created_at'       => new sfWidgetFormDateTime(),
+      'culture'          => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +35,7 @@ class BaseEnlaceForm extends BaseFormPropel
       'orden'            => new sfValidatorInteger(array('required' => false)),
       'mostrar'          => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'culture'          => new sfValidatorString(array('max_length' => 7, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('enlace[%s]');

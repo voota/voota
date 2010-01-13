@@ -125,12 +125,12 @@
 </div><!-- end of content -->
 
 <div id="sidebar">
-  <?php if(count($politico->getEnlaces()) > 0): ?>
+  <?php if(count($activeEnlaces) > 0): ?>
     <div class="links">
       <h3><?php echo __('Enlaces externos')?></h3>
       <ul>
-        <?php foreach($politico->getEnlaces() as $enlace): ?>
-          <li><a href="<?php echo $enlace->getUrl(); ?>"><?php echo urldecode($enlace->getUrl()) ?></a></li>
+        <?php foreach($activeEnlaces as $enlace): ?>
+		  <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
         <?php endforeach ?>
       </ul>
     </div>

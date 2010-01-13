@@ -42,7 +42,7 @@
           <ul>
             <?php foreach ($user->getEnlaces() as $enlace): ?>
             	<?php if ($enlace->getUrl() != ''): ?>
-	              <li><?php echo link_to(toShownUrl( $enlace->getUrl() ), toUrl( $enlace->getUrl() ))?></li>
+	              <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl() ))?></li>
             	<?php endif ?>
             <?php endforeach ?>
           </ul>

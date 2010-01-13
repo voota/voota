@@ -23,6 +23,7 @@ class BaseEnlaceFormFilter extends BaseFormFilterPropel
       'orden'            => new sfWidgetFormFilterInput(),
       'mostrar'          => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'culture'          => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -34,6 +35,7 @@ class BaseEnlaceFormFilter extends BaseFormFilterPropel
       'orden'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mostrar'          => new sfValidatorPass(array('required' => false)),
       'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'culture'          => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('enlace_filters[%s]');
@@ -60,6 +62,7 @@ class BaseEnlaceFormFilter extends BaseFormFilterPropel
       'orden'            => 'Number',
       'mostrar'          => 'Text',
       'created_at'       => 'Date',
+      'culture'          => 'Text',
     );
   }
 }

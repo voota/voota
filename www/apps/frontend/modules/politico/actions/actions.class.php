@@ -218,10 +218,10 @@ class politicoActions extends sfActions
   	}
   	$this->route = "@$rule$params";
   	
-  	$this->title = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
-  	$this->title .= $this->institucion=='0'?'':", " . $this->institucion;
-  	$this->title .= $this->partido=='all'?'':', '.$this->partido;
-  	$this->title .= ' - Voota';
+  	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
+  	$this->pageTitle .= $this->institucion=='0'?'':", " . $this->institucion;
+  	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
+  	$this->title = $this->pageTitle . ' - Voota';
   	
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
   	if ($this->politicosPager->getNbResults() > 0){
@@ -359,6 +359,13 @@ class politicoActions extends sfActions
     $this->response->addMeta('Description', $description);
   	
     $this->response->setTitle( $this->title );
+    
+    $this->activeEnlaces = array();
+    foreach($politico->getEnlaces() as $enlace) {
+    	if ($enlace->getCulture() == null || $enlace->getCulture() == $this->getUser()->getCulture()){
+    		$this->activeEnlaces[] = $enlace;
+    	}	
+    }
   }
 
 }

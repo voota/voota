@@ -63,7 +63,7 @@ class homeActions extends sfActions{
 	}
 		
 	if (count($this->politicosMasVotadosUltimamente) < 6) {
-	   	$query = "SELECT p.*, max(r.created_at) max
+	   	$query = "SELECT p.*, max(IFNULL(r.modified_at, r.created_at)) max
 	  			FROM politico p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1 ";

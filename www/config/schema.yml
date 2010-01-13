@@ -25,6 +25,7 @@ propel:
     orden: { type: INTEGER, size: '11', required: false }
     mostrar: { type: CHAR, size: '1', required: false }
     created_at: { type: TIMESTAMP, required: false }
+    culture: { type: VARCHAR, size: '7', required: false }
     _indexes: { fk_e_partido: [partido_id], fk_e_politico: [politico_id] }
   geo:
     _attributes: { phpName: Geo }
@@ -154,6 +155,7 @@ propel:
     politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_pr_partido: [partido_id], fk_pr_politico: [politico_id] }
+    
   sf_guard_user_profile:
     _attributes: { phpName: SfGuardUserProfile }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

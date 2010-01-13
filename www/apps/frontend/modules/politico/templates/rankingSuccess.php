@@ -14,7 +14,7 @@ $(document).ready(function(){
 </script>
 
 <h2>
-  <?php echo $title ?>
+  <?php echo $pageTitle ?>
   <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
 </h2>
 
