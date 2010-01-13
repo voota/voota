@@ -21,6 +21,7 @@ generator:
       form:
         display:
           "Datos Partido": [nombre,abreviatura,color,web,imagen]
+          "Enlaces": []
       edit:
         title:   Partido
 

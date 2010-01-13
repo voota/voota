@@ -22,13 +22,15 @@ class partidoActions extends autoPartidoActions
 {
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->partido = $this->getRoute()->getObject();
+  	$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());
+  		
+  	$this->partido = $this->getRoute()->getObject();
   	$this->form = $this->configuration->getForm($this->partido);
   	
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
   	if ($this->form->isValid()) {
 	  	$imagen = $this->form->getValue('imagen');
-	    if ($imagen->getOriginalName()){
+	    if ($imagen && $imagen->getOriginalName()){
 			$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
 			$ext = strtolower($arr[0]);
 			if (!$ext || $ext == ""){
@@ -45,5 +47,30 @@ class partidoActions extends autoPartidoActions
 
     $this->setTemplate('edit');
   }
+	public function executeEdit(sfWebRequest $request) {
+		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+		parent::executeEdit( $request );
+	}	
+	
+	public function executeDelete(sfWebRequest $request) {
+		$id = $request->getParameter('id');
+		SfReviewManager::deleteReview(1, $id);
+		
+	    $criteria = new Criteria();
+	  	$criteria->add(PartidoInstitucionPeer::PARTIDO_ID, $id);
+	  	PartidoInstitucionPeer::doDelete( $criteria );
+		
+	    $criteria = new Criteria();
+	  	$criteria->add(EnlacePeer::PARTIDO_ID, $id);
+	  	EnlacePeer::doDelete( $criteria );
+	  	
+		parent::executeDelete($request);
+	}
+	
+	public function executeDeleteEnlace(sfWebRequest $request) {
+	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
+	  $enlace->delete();
+	  $this->redirect('@partido_edit?id='.$enlace->getPartido()->getId());
+	}
 	
 }

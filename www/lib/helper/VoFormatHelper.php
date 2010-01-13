@@ -33,7 +33,7 @@ function toShownUrl($str) {
 	}
 	
 	if (strlen($ret) > 30){
-		$ret = substr($ret, 0, 30) . "...";
+		$ret = cutToLength($ret, 30) . "...";
 	}
 	
 	return $ret;
