@@ -286,6 +286,24 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-show .links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
 #politico-show .links ul li { margin: 0.5em 0;}
 
+/* Página de partido */
+#partido-show #content { width: 65%; }
+#partido-show #sidebar { width: 30%; margin-left: 5%; }
+#partido-show .rank { font-size: 0.6em;}
+#partido-show .reviews { margin-top: 5em; float: left; width: 100%;}
+#partido-show .photo { width: 35%; margin-left: 5%; float: left; }
+#partido-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
+#partido-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
+#partido-show .photo .vote { padding-top: 2em; }
+#partido-show #sf_review2 { width: 35%; }
+#partido-show .description { width: 55%; margin-left: 5%; float: left; }
+#partido-show .description h3 { padding-top: 1em; padding-bottom: 0.5em;}
+#partido-show .description p { padding-bottom: 0.5em;}
+#partido-show .bio { margin-left: 1em;}
+#partido-show .links { margin-bottom: 4em;}
+#partido-show .links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#partido-show .links ul li { margin: 0.5em 0;}
+
 /* Popups de ayuda */
 #help-dialog { display:none; }
 

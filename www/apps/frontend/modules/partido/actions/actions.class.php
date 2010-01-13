@@ -26,7 +26,6 @@ class partidoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->partido = PartidoPeer::retrieveByPk($request->getParameter('id'));
-    $this->forward404Unless($this->partido);
   }
 
   public function executeNew(sfWebRequest $request)
