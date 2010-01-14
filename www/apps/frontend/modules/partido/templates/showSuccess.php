@@ -5,42 +5,123 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Number') ?>
 
-<h2 class="name">
+<h2 id="name">
   <?php echo $partido->getNombre(); ?>
-  <?php //include_partial('sparkline_box', array('partido' => $partido)) ?>
-  
+  (<?php echo $partido->getAbreviatura() ?>)
+  <?php //include_partial('sparkline_box', array('partido' => $partido)) ?>  
+  <img src="/images/proto/sparkline.png">
   <span class="rank">
     18 <?php echo __('votos positivos') ?> 
   </span>
 </h2>
 
 <div id="content">
-  <div title="<?php echo $partido->getNombre() ?>" class="photo">
+  <div title="<?php echo $partido->getNombre() ?>" id="photo">
     <img src="/images/proto/logo_partido.png" />
     <div class="vote">
-      <h3><?php echo __('Voota sobre')?> <?php echo $partido->getNombre(); ?></h3>
+      <h3><?php echo __('Voota sobre')?> <?php echo $partido->getAbreviatura(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
     </div>
   </div>
-    
-  <div title="info" class="description">
-    <div title="biografia" class="bio">
-      <?php //echo formatBio( $partido->getBio() ) ?>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
+
+  <div id="description">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   </div><!-- end of description -->
+
+  <?php if(count($activeEnlaces) > 0): ?>
+    <div id="external-links">
+      <h3><?php echo __('Enlaces externos del ')?><?php echo $partido->getAbreviatura() ?></h3>
+      <ul>
+        <?php foreach($activeEnlaces as $enlace): ?>
+  	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
+  <?php endif ?>
+
+  <div id="google-ads">
+    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+  </div>
+
+  <div id="politicians-most-voted" class="list-mini">
+    <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
+    <?php // Probablemente quieras aquí algo parecido a lo que hay en politico/rankingSuccess. ?>
+    <?php // Hay que pasar las variables $instituciones e $institucion ?>
+    <ul>
+      <li>
+      	<div class="avatar">
+        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
+        </div>
+      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
+        <p class="votes">
+      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
+       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
+      		<span class="votes-count">3&nbsp;positivos</span>
+      	</p>
+      </li>
+      <li>
+      	<div class="avatar">
+        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
+        </div>
+      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
+        <p class="votes">
+      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
+       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
+      		<span class="votes-count">3&nbsp;positivos</span>
+      	</p>
+      </li>
+      <li>
+      	<div class="avatar">
+        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
+        </div>
+      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
+        <p class="votes">
+      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
+       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
+      		<span class="votes-count">3&nbsp;positivos</span>
+      	</p>
+      </li>
+      <li>
+      	<div class="avatar">
+        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
+        </div>
+      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
+        <p class="votes">
+      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
+       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
+      		<span class="votes-count">3&nbsp;positivos</span>
+      	</p>
+      </li>
+    </ul>
+  </div>
 
   <div class="reviews">
     <div class="positive-reviews">
-  	  <h3>56 positivos (77%)</h3>
+  	  <h3>
+    	  xxx positivos (xx%)
+  	    <?php // La función getSumU no existe para partido ?>
+    	  <?php //echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
+    	  		//array('%1%' => format_number($partido->getSumU(), 'es_ES'), '%2%' => format_number($positivePerc, 'es_ES'))
+    	  		//, $partido->getSumU()) 
+    	  ?>
+  	  </h3>
 
-  	  <?php //include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'partido' => $partido, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
+	
     </div>
 	        
     <div class="negative-reviews">
-	    <h3>16 negativos (23%)</h3>
+	    <h3>
+    	  xxx negativos (xx%)
+    	  <?php // La función getSumD no existe para partido ?>
+	  	  <?php //echo format_number_choice('[0]0 negativo|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
+	  	  		//array('%1%' => format_number($partido->getSumD(), 'es_ES'), '%2%' => format_number($negativePerc, 'es_ES'))
+	  	  		//, $partido->getSumD()) 
+	  	  ?>
+	    </h3>
 	
-  	  <?php //include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'partido' => $partido, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
+
     </div>
   </div>
 
@@ -48,23 +129,4 @@
     <h3><?php echo __('Voota sobre %1%', array('%1%' => $partido->getNombre()))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
-
-</div><!-- end of content -->
-
-<div id="sidebar">
-  <?php if(count($activeEnlaces) > 0): ?>
-    <div class="links">
-      <h3><?php echo __('Enlaces externos')?></h3>
-      <ul>
-        <?php foreach($activeEnlaces as $enlace): ?>
-		      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
-        <?php endforeach ?>
-      </ul>
-    </div>
-	<?php endif ?>
-
-  <div id="google-ads">
-    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div><!-- end of google-ads -->
-
-</div><!-- end of sidebar -->
+</div>

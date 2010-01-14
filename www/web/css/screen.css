@@ -269,40 +269,44 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-search table .name { text-align: left; width: 82%; }
 
 /* Página de político */
-#politico-show #content { width: 65%; }
-#politico-show #sidebar { width: 30%; margin-left: 5%; }
-#politico-show .rank { font-size: 0.6em;}
-#politico-show .reviews { margin-top: 5em; float: left; width: 100%;}
-#politico-show .photo { width: 35%; margin-left: 5%; float: left; }
+#partido-show h2#name .rank { font-size: 0.6em;}
+#politico-show #content { width: 940px; padding-left: 20px;}
+#politico-show #photo { width: 220px; float: left; }
+#politico-show #photo .vote { padding-top: 2em; }
 #politico-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
 #politico-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
-#politico-show .photo .vote { padding-top: 2em; }
 #politico-show #sf_review2 { width: 35%; }
-#politico-show .description { width: 55%; margin-left: 5%; float: left; }
-#politico-show .description h3 { padding-top: 1em; padding-bottom: 0.5em;}
-#politico-show .description p { padding-bottom: 0.5em;}
-#politico-show .bio { margin-left: 1em;}
-#politico-show .links { margin-bottom: 4em;}
-#politico-show .links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
-#politico-show .links ul li { margin: 0.5em 0;}
+#politico-show #description { margin-left: 50px; width: 330px; float: left; }
+#politico-show #description h3 { padding-top: 1em; padding-bottom: 0.5em;}
+#politico-show #description p { padding-bottom: 0.5em;}
+#politico-show #description .bio { margin-left: 1em;}
+#politico-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em;}
+#politico-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#politico-show #external-links ul li { margin: 0.5em 0;}
+#politico-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Página de partido */
-#partido-show #content { width: 65%; }
-#partido-show #sidebar { width: 30%; margin-left: 5%; }
-#partido-show .rank { font-size: 0.6em;}
-#partido-show .reviews { margin-top: 5em; float: left; width: 100%;}
-#partido-show .photo { width: 35%; margin-left: 5%; float: left; }
+#partido-show h2#name .rank { font-size: 0.6em;}
+#partido-show #content { width: 940px; padding-left: 20px; }
+#partido-show #photo { width: 220px; float: left; }
+#partido-show #photo .vote { padding-top: 2em; }
 #partido-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
 #partido-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
-#partido-show .photo .vote { padding-top: 2em; }
 #partido-show #sf_review2 { width: 35%; }
-#partido-show .description { width: 55%; margin-left: 5%; float: left; }
-#partido-show .description h3 { padding-top: 1em; padding-bottom: 0.5em;}
-#partido-show .description p { padding-bottom: 0.5em;}
-#partido-show .bio { margin-left: 1em;}
-#partido-show .links { margin-bottom: 4em;}
-#partido-show .links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
-#partido-show .links ul li { margin: 0.5em 0;}
+#partido-show #description { margin-left: 50px; width: 330px; float: left;}
+#partido-show #description p { padding-bottom: 0.5em;}
+#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em; }
+#partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
+#partido-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#partido-show #external-links ul li { margin: 0.5em 0;}
+#partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
+#partido-show #politicians-most-voted li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
+#partido-show .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
+#partido-show .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
+#partido-show .list-mini li .avatar { float: left; }
+#partido-show .list-mini li .name { margin-left: 45px; font-weight: normal;}
+#partido-show .list-mini li .votes { margin: 0.5em 0 0 45px; padding: 0;}
+#partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Popups de ayuda */
 #help-dialog { display:none; }

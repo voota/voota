@@ -19,12 +19,10 @@
   //-->
 </script>
 
-
-<h2 class="name">
-  <?php echo $politico->getApellidos(); ?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
-  	<?php include_partial('sparkline_box', array('politico' => $politico)) ?>
-  
-  
+<h2 id="name">
+  <?php echo $politico->getApellidos(); ?>
+  <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
+	<?php include_partial('sparkline_box', array('politico' => $politico)) ?>
   <span class="rank">
     <?php if ($politico->getSumU() == 1):?>
 	    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
@@ -35,7 +33,7 @@
 </h2>
 
 <div id="content">
-  <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" class="photo">
+  <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" id="photo">
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/'.$image, 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
@@ -43,7 +41,7 @@
     </div>
   </div>
     
-  <div title="info" class="description">
+  <div title="info" id="description">
     <p>
       <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
       <?php if ($politico->getPartido()):?>
@@ -91,6 +89,21 @@
 
   </div><!-- end of description -->
 
+  <?php if(count($activeEnlaces) > 0): ?>
+    <div id="external-links">
+      <h3><?php echo __('Enlaces externos')?></h3>
+      <ul>
+        <?php foreach($activeEnlaces as $enlace): ?>
+		  <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
+	<?php endif ?>
+
+  <div id="google-ads">
+    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+  </div><!-- end of google-ads -->
+
   <div class="reviews">
     <div class="positive-reviews">
   	  <h3>  	  
@@ -123,21 +136,3 @@
   </div>
 
 </div><!-- end of content -->
-
-<div id="sidebar">
-  <?php if(count($activeEnlaces) > 0): ?>
-    <div class="links">
-      <h3><?php echo __('Enlaces externos')?></h3>
-      <ul>
-        <?php foreach($activeEnlaces as $enlace): ?>
-		  <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
-        <?php endforeach ?>
-      </ul>
-    </div>
-	<?php endif ?>
-
-  <div id="google-ads">
-    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div><!-- end of google-ads -->
-
-</div><!-- end of sidebar -->
