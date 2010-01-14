@@ -12,7 +12,7 @@
  * partido actions.
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage partido
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
@@ -62,6 +62,55 @@ class partidoActions extends sfActions
   	$this->partido = PartidoPeer::doSelectOne( $c );
   	
   	$this->forward404Unless( $this->partido );
+  	
+	$pu = $this->getUser()->getAttribute('pageU');
+	$pd = $this->getUser()->getAttribute('pageD');
+	$c = $this->getUser()->getAttribute('review_c');
+	if ($c != '' && $pu != ''){
+		$resU = BaseSfReviewManager::NUM_REVIEWS * ($pu-1);
+		$this->pageU = $pu;
+	}
+	else {
+		$resU = BaseSfReviewManager::NUM_REVIEWS;
+		$this->pageU = 2;
+	}	
+	if ($c != '' && $pd != ''){
+		$resD = BaseSfReviewManager::NUM_REVIEWS * ($pd-1);
+		$this->pageD = $pd;		
+	}
+	else {
+		$resD = BaseSfReviewManager::NUM_REVIEWS;
+		$this->pageD = 2;		
+	}	
+  	
+  	$id = $this->partido->getId();
+  	$exclude = array();
+	$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, 2, $id, 1, 3);
+	$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, 2, $id, -1, 3);
+    foreach ($this->lastPositives->getResults() as $result){
+  		$exclude[] = $result->getId();
+  	}
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 2, $id, 1, $resU-3, $exclude);
+    foreach ($this->lastNegatives->getResults() as $result){
+  		$exclude[] = $result->getId();
+  	}
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 2, $id, -1, $resD-3, $exclude);
+	$positiveCount =  $this->lastPositives->getNbResults();
+	$negativeCount =  $this->lastNegatives->getNbResults();
+	
+  	$this->getUser()->setAttribute('pageU', '');
+  	$this->getUser()->setAttribute('pageD', '');
+	
+	$totalCount = $positiveCount + $negativeCount;
+	if ($totalCount > 0) {
+		$this->positivePerc = intval( $positiveCount * 100 / $totalCount );
+		$this->negativePerc = 100 - $this->positivePerc;
+	}  
+	else {
+		$this->positivePerc = 0;
+		$this->negativePerc = 0;
+	}
+  	
   	
     $this->activeEnlaces = array();
     foreach($this->partido->getEnlaces() as $enlace) {
