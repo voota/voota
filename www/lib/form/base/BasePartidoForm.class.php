@@ -14,7 +14,6 @@ class BasePartidoForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
-      'nombre'             => new sfWidgetFormInput(),
       'abreviatura'        => new sfWidgetFormInput(),
       'color'              => new sfWidgetFormInput(),
       'web'                => new sfWidgetFormInput(),
@@ -26,7 +25,6 @@ class BasePartidoForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'                 => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'nombre'             => new sfValidatorString(array('max_length' => 150)),
       'abreviatura'        => new sfValidatorString(array('max_length' => 8, 'required' => false)),
       'color'              => new sfValidatorString(array('max_length' => 8, 'required' => false)),
       'web'                => new sfValidatorString(array('max_length' => 150, 'required' => false)),
@@ -52,6 +50,15 @@ class BasePartidoForm extends BaseFormPropel
     return 'Partido';
   }
 
+  public function getI18nModelName()
+  {
+    return 'PartidoI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'PartidoI18nForm';
+  }
 
   public function updateDefaultsFromObject()
   {

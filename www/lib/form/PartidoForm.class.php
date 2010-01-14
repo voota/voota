@@ -12,6 +12,8 @@ class PartidoForm extends BasePartidoForm
 {
   public function configure()
   {
+    $this->embedI18n(array('es', 'ca'));
+    
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
    'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/cc_s_'.$this->getObject()->getImagen(),

@@ -74,9 +74,8 @@ propel:
     idpolitico: { type: INTEGER, size: '11', required: false }
     idpartido: { type: INTEGER, size: '11', required: false }
   partido:
-    _attributes: { phpName: Partido }
+    _attributes: { phpName: Partido, isI18N: true, i18nTable: partido_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre: { type: VARCHAR, size: '150', required: true }
     abreviatura: { type: VARCHAR, size: '8', required: false }
     color: { type: VARCHAR, size: '8', required: false }
     web: { type: VARCHAR, size: '150', required: false }
@@ -85,6 +84,12 @@ propel:
     imagen: { type: VARCHAR, size: '50', required: false }
     _indexes: { fk_partido_partido: [partido_id] }
     _uniques: { uniq_abreviatura: [abreviatura] }
+  partido_i18n:
+    _attributes: { phpName: PartidoI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    nombre: { type: VARCHAR, size: '150', required: true }
+    _indexes: { fk_partido_i18n_1: [id] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
     partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }

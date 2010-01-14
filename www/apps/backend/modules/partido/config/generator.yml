@@ -20,7 +20,8 @@ generator:
       filter:  ~
       form:
         display:
-          "Datos Partido": [nombre,abreviatura,color,web,imagen]
+          "Datos Partido": [abreviatura,color,web,imagen]
+          "Traducibles": [es,ca]
           "Enlaces": []
       edit:
         title:   Partido

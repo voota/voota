@@ -15,7 +15,6 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre'             => new sfWidgetFormFilterInput(),
       'abreviatura'        => new sfWidgetFormFilterInput(),
       'color'              => new sfWidgetFormFilterInput(),
       'web'                => new sfWidgetFormFilterInput(),
@@ -26,7 +25,6 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
     ));
 
     $this->setValidators(array(
-      'nombre'             => new sfValidatorPass(array('required' => false)),
       'abreviatura'        => new sfValidatorPass(array('required' => false)),
       'color'              => new sfValidatorPass(array('required' => false)),
       'web'                => new sfValidatorPass(array('required' => false)),
@@ -77,7 +75,6 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                 => 'Number',
-      'nombre'             => 'Text',
       'abreviatura'        => 'Text',
       'color'              => 'Text',
       'web'                => 'Text',
