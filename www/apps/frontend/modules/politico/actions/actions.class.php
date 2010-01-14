@@ -224,8 +224,8 @@ class politicoActions extends sfActions
   	$this->route = "@$rule$params";
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
-  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
   	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
+  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
   	$this->title = $this->pageTitle . ' - Voota';
   	
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
