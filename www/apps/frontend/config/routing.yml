@@ -68,6 +68,26 @@ partido_ca:
   param: { module: partido, action: show }
   requirements: { sf_culture: (?:ca) }
 
+ranking_partidos_es_institucion:
+  url: /:sf_culture/partidos/:institucion
+  param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:es) }
+  
+ranking_partidos_ca_institucion:
+  url: /:sf_culture/partits/:institucion
+  param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:ca) }
+
+ranking_partidos_es:
+  url: /:sf_culture/partidos
+  param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:es) }
+  
+ranking_partidos_ca:
+  url: /:sf_culture/partits
+  param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:ca) }
+
 sf_guard_signin:
   url:   /:sf_culture/user/login
   param: { module: sfGuardAuth, action: signin }
@@ -151,7 +171,6 @@ sf_review_delete:
   param: { module: sfReviewFront, action: delete }
   requirements: { sf_culture: (?:es|ca) }
   
-# new > 0.5
 sf_review_list:
   url:   /:sf_culture/review/list
   param: { module: sfReviewFront, action: list }
@@ -176,14 +195,3 @@ contact:
   url:   /:sf_culture/contact
   param: { module: general, action: contact }
   requirements: { sf_culture: (?:es|ca) }
-
-# default_index:
-#   url:   /:module
-#   param: { action: index }
-
-#default_culture:
-#  url:   /:sf_culture/:module/:action/*
-#  requirements: { sf_culture: (?:es|ca) }
-
-# default:
-#   url:   /:module/:action/*

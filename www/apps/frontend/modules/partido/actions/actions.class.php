@@ -18,7 +18,7 @@
  */
 class partidoActions extends sfActions
 {
-  public function executeIndex(sfWebRequest $request)
+  public function executeRanking(sfWebRequest $request)
   {
     $this->partido_list = PartidoPeer::doSelect(new Criteria());
   }
@@ -26,59 +26,5 @@ class partidoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->partido = PartidoPeer::retrieveByPk($request->getParameter('id'));
-  }
-
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new PartidoForm();
-  }
-
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod('post'));
-
-    $this->form = new PartidoForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
-
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($partido = PartidoPeer::retrieveByPk($request->getParameter('id')), sprintf('Object partido does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PartidoForm($partido);
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
-    $this->forward404Unless($partido = PartidoPeer::retrieveByPk($request->getParameter('id')), sprintf('Object partido does not exist (%s).', $request->getParameter('id')));
-    $this->form = new PartidoForm($partido);
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($partido = PartidoPeer::retrieveByPk($request->getParameter('id')), sprintf('Object partido does not exist (%s).', $request->getParameter('id')));
-    $partido->delete();
-
-    $this->redirect('partido/index');
-  }
-
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $partido = $form->save();
-
-      $this->redirect('partido/edit?id='.$partido->getId());
-    }
   }
 }

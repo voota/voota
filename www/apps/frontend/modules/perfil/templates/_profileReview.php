@@ -25,7 +25,7 @@
 	</td>
               
 	<td class="body">
-    	<?php echo review_text( $review ) ?>
+    	<?php echo review_text( $review, array(), true ) ?>
     </td>
     
 	<td class="actions">

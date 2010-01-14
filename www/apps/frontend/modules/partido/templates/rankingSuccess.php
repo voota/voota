@@ -25,4 +25,3 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('partido/new') ?>">New</a>

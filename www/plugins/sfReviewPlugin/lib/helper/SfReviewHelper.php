@@ -1,7 +1,7 @@
 <?php
 
 
-function review_text($review, $msg = array()){
+function review_text($review, $msg = array(), $allCultures = false){
 	$routes = sfContext::getInstance()->getRouting()->getRoutes ();
 
 	if (array_key_exists('rules', $routes)){
@@ -19,7 +19,8 @@ function review_text($review, $msg = array()){
 		);
 	}
 	
-	$text = ($review->getCulture() == '' || $review->getCulture() == sfContext::getInstance()->getUser()->getCulture())?$review->getText():'';
+	$doShowText = $allCultures || ($review->getCulture() == '' || $review->getCulture() == sfContext::getInstance()->getUser()->getCulture());
+	$text = $doShowText?$review->getText():'';
 		
 	if ($review->getSfReviewStatus()->getPublished() == 1){
 		if ($review->getSfReviewStatus()->getOffensive() == 0){

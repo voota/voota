@@ -119,6 +119,11 @@ class politicoActions extends sfActions
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
+  		
+  		$aInstitucionCriteria = new Criteria();
+		$aInstitucionCriteria->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
+  		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
+  		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
   	}
   	$pager = new sfPropelPager('Politico', 20);
   	
@@ -219,7 +224,7 @@ class politicoActions extends sfActions
   	$this->route = "@$rule$params";
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
-  	$this->pageTitle .= $this->institucion=='0'?'':", " . $this->institucion;
+  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
   	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
   	$this->title = $this->pageTitle . ' - Voota';
   	
