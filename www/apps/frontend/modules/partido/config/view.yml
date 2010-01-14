@@ -1,0 +1,8 @@
+default:
+  components:
+    sparkline:  [partido, sparkline]
+    subreviews:  [sfReviewFront, subreviews]
+    
+all:
+  javascripts: [jquery.sparkline.min.js]
+    

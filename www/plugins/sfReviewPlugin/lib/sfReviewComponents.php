@@ -24,13 +24,13 @@ class sfReviewComponents extends sfComponents
   	if (!isset($this->showCount)){
   		$this->showCount = SfReviewManager::NUM_LAST_REVIEWS;
   	}
-  	$this->reviewLastList = SfReviewManager::getLastReviewsByEntityAndValue(false, '', $this->id, null, SfReviewManager::NUM_LAST_REVIEWS);
+  	$this->reviewLastList = SfReviewManager::getLastReviewsByEntityAndValue(false, $this->type_id, $this->id, null, SfReviewManager::NUM_LAST_REVIEWS);
   	$exclude = array();
   	foreach ($this->reviewLastList->getResults() as $result){
   		$exclude[] = $result->getId();
   	}
   	if ($this->showCount > SfReviewManager::NUM_LAST_REVIEWS){
-  		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
+  		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, $this->type_id, $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
   	}
   	
 	//$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);

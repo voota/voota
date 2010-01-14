@@ -63,6 +63,15 @@ class partidoActions extends sfActions
   	
   	$this->forward404Unless( $this->partido );
   	
+  	if ($this->partido->getImagen() != ''){
+  		$imageFileName = $this->partido->getImagen();
+  	}
+  	else {
+  		$imageFileName = "p_unknown.png";
+   	}
+	
+	$this->image = "cc_$imageFileName";
+  	
 	$pu = $this->getUser()->getAttribute('pageU');
 	$pd = $this->getUser()->getAttribute('pageD');
 	$c = $this->getUser()->getAttribute('review_c');
@@ -85,16 +94,16 @@ class partidoActions extends sfActions
   	
   	$id = $this->partido->getId();
   	$exclude = array();
-	$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, 2, $id, 1, 3);
-	$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, 2, $id, -1, 3);
+	$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, 3);
+	$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, 3);
     foreach ($this->lastPositives->getResults() as $result){
   		$exclude[] = $result->getId();
   	}
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, 2, $id, 1, $resU-3, $exclude);
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, $resU-3, $exclude);
     foreach ($this->lastNegatives->getResults() as $result){
   		$exclude[] = $result->getId();
   	}
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, 2, $id, -1, $resD-3, $exclude);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, $resD-3, $exclude);
 	$positiveCount =  $this->lastPositives->getNbResults();
 	$negativeCount =  $this->lastNegatives->getNbResults();
 	

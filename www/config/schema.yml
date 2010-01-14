@@ -82,6 +82,8 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     imagen: { type: VARCHAR, size: '50', required: false }
+    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     _indexes: { fk_partido_partido: [partido_id] }
     _uniques: { uniq_abreviatura: [abreviatura] }
   partido_i18n:
@@ -89,6 +91,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
+    presentacion: { type: VARCHAR, size: '500', required: true }
     _indexes: { fk_partido_i18n_1: [id] }
   partido_lista:
     _attributes: { phpName: PartidoLista }

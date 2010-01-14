@@ -15,11 +15,13 @@ class BasePartidoI18nFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre'  => new sfWidgetFormFilterInput(),
+      'nombre'       => new sfWidgetFormFilterInput(),
+      'presentacion' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'nombre'  => new sfValidatorPass(array('required' => false)),
+      'nombre'       => new sfValidatorPass(array('required' => false)),
+      'presentacion' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('partido_i18n_filters[%s]');
@@ -37,9 +39,10 @@ class BasePartidoI18nFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'      => 'ForeignKey',
-      'culture' => 'Text',
-      'nombre'  => 'Text',
+      'id'           => 'ForeignKey',
+      'culture'      => 'Text',
+      'nombre'       => 'Text',
+      'presentacion' => 'Text',
     );
   }
 }

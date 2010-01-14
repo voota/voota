@@ -53,6 +53,16 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  	
 		  	$this->clearCache( $this->politico );
 	  	}
+	  	else if ($request->getParameter("t") == Partido::NUM_ENTITY){
+		  	$this->partido = PartidoPeer::retrieveByPk($request->getParameter('e'));
+		  	$this->partido->setSumu( $this->partido->getPositives() );
+		  	$this->partido->setSumd( $this->partido->getNegatives() );
+		  	if ($this->partido->isModified()){
+		  		PartidoPeer::doUpdate( $this->partido );
+		  	}
+		  	
+		  	$this->clearCache( $this->partido );
+	  	}
 	  	else if($request->getParameter("t") == '') {
 		  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
 		  	if ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY){

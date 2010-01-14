@@ -5,11 +5,20 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Number') ?>
 
+<script type="text/javascript">
+  <!--
+  $(document).ready(function(){
+ 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
+
+  	<?php include_component_slot('sparkline', array('partido' => $partido)) ?>
+  });
+  //-->
+</script>
 <h2 id="name">
   <?php echo $partido->getNombre(); ?>
   (<?php echo $partido->getAbreviatura() ?>)
-  <?php //include_partial('sparkline_box', array('partido' => $partido)) ?>  
-  <img src="/images/proto/sparkline.png">
+  <?php include_partial('sparkline_box', array('partido' => $partido)) ?>    
   <span class="rank">
     18 <?php echo __('votos positivos') ?> 
   </span>
@@ -17,7 +26,7 @@
 
 <div id="content">
   <div title="<?php echo $partido->getNombre() ?>" id="photo">
-    <img src="/images/proto/logo_partido.png" />
+    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/'.$image, 'alt="'. __('Logo de %1%', array('%1%' => $partido->getAbreviatura())) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $partido->getAbreviatura(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
@@ -25,7 +34,7 @@
   </div>
 
   <div id="description">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
   </div><!-- end of description -->
 
   <?php if(count($activeEnlaces) > 0): ?>
@@ -98,29 +107,25 @@
   <div class="reviews">
     <div class="positive-reviews">
   	  <h3>
-    	  xxx positivos (xx%)
-  	    <?php // La función getSumU no existe para partido ?>
-    	  <?php //echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
-    	  		//array('%1%' => format_number($partido->getSumU(), 'es_ES'), '%2%' => format_number($positivePerc, 'es_ES'))
-    	  		//, $partido->getSumU()) 
+    	  <?php echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
+    	  		array('%1%' => format_number($partido->getSumu(), 'es_ES'), '%2%' => format_number($positivePerc, 'es_ES'))
+    	  		, $partido->getSumu()) 
     	  ?>
   	  </h3>
 
-  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'partido' => $partido, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'partido' => $partido, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU, $type_id = 2)) ?>
 	
     </div>
 	        
     <div class="negative-reviews">
 	    <h3>
-    	  xxx negativos (xx%)
-    	  <?php // La función getSumD no existe para partido ?>
-	  	  <?php //echo format_number_choice('[0]0 negativo|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
-	  	  		//array('%1%' => format_number($partido->getSumD(), 'es_ES'), '%2%' => format_number($negativePerc, 'es_ES'))
-	  	  		//, $partido->getSumD()) 
+	  	  <?php echo format_number_choice('[0]0 negativo|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
+	  	  		array('%1%' => format_number($partido->getSumD(), 'es_ES'), '%2%' => format_number($negativePerc, 'es_ES'))
+	  	  		, $partido->getSumD()) 
 	  	  ?>
 	    </h3>
 	
-  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'partido' => $partido, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU)) ?>
+  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'partido' => $partido, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU, $type_id = 2)) ?>
 
     </div>
   </div>

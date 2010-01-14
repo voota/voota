@@ -1,10 +1,18 @@
 <?php use_helper('Text') ?>
 
 <?php
-function formatBio( $str ) {
+function formatDesc( $str ) {
 	//return preg_replace("/\\n/", "<br />", trim($str)==''?'-':$str);
 	$str = preg_replace("/\\n/", "\n\n", trim($str)==''?'-':$str);
 	return simple_format_text($str);
+}
+
+function formatBio( $str ){
+	return formatDesc( $str );
+}
+
+function formatPresentacion( $str ){
+	return formatDesc( $str );
 }
 
 function getDateFromPlain( $str ) {
