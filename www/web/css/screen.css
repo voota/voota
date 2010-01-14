@@ -268,37 +268,40 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-search table .photo { text-align: right; width: 10%; padding-right: 2%; }
 #general-search table .name { text-align: left; width: 82%; }
 
-/* Página de político */
+/* Página de político - partido */
+#politico-show h2#name .rank,
 #partido-show h2#name .rank { font-size: 0.6em;}
-#politico-show #content { width: 940px; padding-left: 20px;}
-#politico-show #photo { width: 220px; float: left; }
-#politico-show #photo .vote { padding-top: 2em; }
-#politico-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
-#politico-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
-#politico-show #sf_review2 { width: 35%; }
-#politico-show #description { margin-left: 50px; width: 330px; float: left; }
-#politico-show #description h3 { padding-top: 1em; padding-bottom: 0.5em;}
-#politico-show #description p { padding-bottom: 0.5em;}
+#politico-show #content,
+#partido-show #content { width: 940px; padding-left: 20px;}
+#politico-show #photo,
+#partido-show #photo { width: 220px; float: left; }
+#politico-show #photo .vote,
+#partido-show #photo .vote { padding-top: 2em; }
+#politico-show .vote,
+#partido-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
+#politico-show .vote h3,
+#partido-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
+#politico-show #sf_review2,
+#partido-show #sf_review2 { width: 35%; }
+#politico-show #description,
+#partido-show #description { margin-left: 50px; width: 330px; float: left; }
+#politico-show #description h3,
+#partido-show #description h3 { padding-top: 1em; padding-bottom: 0.5em;}
+#politico-show #description p,
+#partido-show #description p { padding-bottom: 0.5em;}
 #politico-show #description .bio { margin-left: 1em;}
-#politico-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em;}
-#politico-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
-#politico-show #external-links ul li { margin: 0.5em 0;}
-#politico-show .reviews { clear: both; padding-top: 35px; width: 600px;}
+#politico-show #external-links,
+#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em;}
+#politico-show #external-links ul,
+#partido-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#politico-show #external-links ul li,
+#partido-show #external-links ul li { margin: 0.5em 0;}
+#politico-show #google-ads,
+#partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
+#politico-show .reviews,
+#partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Página de partido */
-#partido-show h2#name .rank { font-size: 0.6em;}
-#partido-show #content { width: 940px; padding-left: 20px; }
-#partido-show #photo { width: 220px; float: left; }
-#partido-show #photo .vote { padding-top: 2em; }
-#partido-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
-#partido-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
-#partido-show #sf_review2 { width: 35%; }
-#partido-show #description { margin-left: 50px; width: 330px; float: left;}
-#partido-show #description p { padding-bottom: 0.5em;}
-#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em; }
-#partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
-#partido-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
-#partido-show #external-links ul li { margin: 0.5em 0;}
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
 #partido-show #politicians-most-voted li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
 #partido-show .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
