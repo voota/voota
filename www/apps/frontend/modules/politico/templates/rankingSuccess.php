@@ -88,7 +88,7 @@ $(document).ready(function(){
 
   <tbody>
     <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
-      <tr>
+      <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="ranking"><?php include_partial('sparkline_box', array('politico' => $politico)) ?></td>
   	    <td class="position"><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">

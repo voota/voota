@@ -15,6 +15,7 @@ table { padding:0; margin:0; border-collapse: collapse; }
 .pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
+tr.even { background-color: #fbfbfb; }
 
 /* Layout básico */
 #header-inner, #main-inner, #footer { font-size: 1.3em }
@@ -259,10 +260,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-ranking table { margin: 0 auto; width: 100%; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
 #politico-ranking table tbody td { padding: 1em 0; }
-#politico-ranking table .ranking { text-align: right; width: 16%; }
-#politico-ranking table .position { text-align: right; width: 5%; }
+#politico-ranking table .ranking { text-align: left; width: 10%; }
+#politico-ranking table .position { text-align: right; width: 3%; }
 #politico-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
-#politico-ranking table .name { text-align: left; width: 22%; }
+#politico-ranking table .name { text-align: left; width: 30%; }
 #politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
 #politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
 
