@@ -135,15 +135,24 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	if ($type == ''){
   		$review = SfReviewPeer::retrieveByPk($entityId);
   		$this->getUser()->setAttribute('review_c', $entityId);
-  		if ($review->getSfReviewTypeId() == 1){
+  		if ($review->getSfReviewTypeId() == Politico::NUM_ENTITY){
 		  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
-  			$url = "$rule?id=" . $politico->getVanity();
+  			$url = "politico/show?id=" . $politico->getVanity();
+  			$url .= "#subreviews_box$entityId";
+  		}
+  		else if ($review->getSfReviewTypeId() == Partido::NUM_ENTITY){
+		  	$partido = PartidoPeer::retrieveByPK( $review->getEntityId() );
+  			$url = "partido/show?id=" . $partido->getAbreviatura();
   			$url .= "#subreviews_box$entityId";
   		}
   	}
-  	else if ($type == 1){
+  	else if ($type == Politico::NUM_ENTITY){
   		$politico = PoliticoPeer::retrieveByPK( $entityId );
-  		$url = "$rule?id=" . $politico->getVanity();		
+  		$url = "politico/show?id=" . $politico->getVanity();		
+  	}
+  	else if ($type == Partido::NUM_ENTITY){
+  		$partido = PartidoPeer::retrieveByPK( $entityId );
+  		$url = "partido/show?id=" . $partido->getAbreviatura();		
   	}
   	$this->getUser()->setAttribute('url_back', $url);
   	

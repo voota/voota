@@ -12,6 +12,10 @@
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
   	<?php include_component_slot('sparkline', array('partido' => $partido)) ?>
+
+  	<?php foreach($politicos->getResults() as $politico): ?>
+	  		<?php include_component_slot('sparkline_politico', array('politico' => $politico)) ?>
+  	<?php endforeach?>
   });
   //-->
 </script>
@@ -20,7 +24,7 @@
   (<?php echo $partido->getAbreviatura() ?>)
   <?php include_partial('sparkline_box', array('partido' => $partido)) ?>    
   <span class="rank">
-    18 <?php echo __('votos positivos') ?> 
+    <?php echo format_number_choice('[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $partido->getSumu()), $partido->getSumu()) ?>
   </span>
 </h2>
 
@@ -54,53 +58,52 @@
 
   <div id="politicians-most-voted" class="list-mini">
     <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
-    <?php // Probablemente quieras aquí algo parecido a lo que hay en politico/rankingSuccess. ?>
-    <?php // Hay que pasar las variables $instituciones e $institucion ?>
+	<p id="institutions-long" class="hidden">
+	  <?php
+		  	echo link_to(
+		 	__('Todas las instituciones')
+		 	, "politico/ranking?partido=$partido"
+		 	, $institucion=='0' ? array('class' => 'active') : null);
+	  ?>
+	
+	  <?php foreach($instituciones as $aInstitucion): ?>
+	    · 
+	    <?php echo link_to( $aInstitucion->getNombreCorto(),
+	 	                      "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
+	                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
+	    ?>
+	  <?php endforeach ?>
+	  · 
+	  [<a href="#" onclick="return institutions_to_short();"><?php echo __('ver menos ...')?></a>]
+	</p>
+	
+	<p id="institutions-short">
+	  <?php 
+		  	echo link_to(
+		 	__('Todas las instituciones')
+		 	, "politico/ranking?partido=$partido"
+		 	, $institucion=='0' ? array('class' => 'active') : null);
+	  ?>
+	  <?php $idx = 0; ?>  
+	  <?php foreach($instituciones as $aInstitucion): ?>
+	    <?php $idx++; ?>
+	    <?php if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getVanity()==$institucion): ?>  
+	      · 
+	      <?php echo link_to(	$aInstitucion->getNombreCorto(),
+	 	                        "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
+	 	                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
+	 	    ?>
+	    <?php endif ?>  
+	  <?php endforeach ?>
+	  <?php if(count($instituciones) > SfVoUtil::SHORT_INSTITUCIONES_NUM): ?>
+	    · 
+	    [<a href="#" onclick="return institutions_to_long();"><?php echo __('ver más ...')?></a>]
+	  <?php endif ?>
+	</p>
     <ul>
-      <li>
-      	<div class="avatar">
-        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
-        </div>
-      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-        <p class="votes">
-      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
-       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
-      		<span class="votes-count">3&nbsp;positivos</span>
-      	</p>
-      </li>
-      <li>
-      	<div class="avatar">
-        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
-        </div>
-      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-        <p class="votes">
-      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
-       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
-      		<span class="votes-count">3&nbsp;positivos</span>
-      	</p>
-      </li>
-      <li>
-      	<div class="avatar">
-        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
-        </div>
-      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-        <p class="votes">
-      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
-       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
-      		<span class="votes-count">3&nbsp;positivos</span>
-      	</p>
-      </li>
-      <li>
-      	<div class="avatar">
-        	<img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" />
-        </div>
-      	<h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-        <p class="votes">
-      	  <span title="Evolución del número de votos positivos por mes (último punto = mes
-       actual)" id="sparkline_t_238"><img src="/images/proto/sparkline.png"></span>
-      		<span class="votes-count">3&nbsp;positivos</span>
-      	</p>
-      </li>
+    	<?php foreach ($politicos->getResults() as $politico): ?>
+			<?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+    	<?php endforeach ?>
     </ul>
   </div>
 

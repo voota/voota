@@ -10,7 +10,12 @@ class perfilComponents extends sfReviewComponents
   		$this->partido = PartidoPeer::retrieveByPK($this->review->getEntityId());  		
   	}
   	else {
-  		$this->politico = PoliticoPeer::retrieveByPK($this->review->getSfReviewRelatedBySfReviewId()->getEntityId());  		
+  		if ( $this->review->getSfReviewRelatedBySfReviewId()->getSfReviewType() && $this->review->getSfReviewRelatedBySfReviewId()->getSfReviewType()->getId() == Partido::NUM_ENTITY){
+	  		$this->partido = PartidoPeer::retrieveByPK($this->review->getSfReviewRelatedBySfReviewId()->getEntityId());  		
+  		}
+  		else {
+  			$this->politico = PoliticoPeer::retrieveByPK($this->review->getSfReviewRelatedBySfReviewId()->getEntityId());
+  		}  		
   	}
   }
 }

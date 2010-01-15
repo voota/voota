@@ -56,6 +56,10 @@ class partidoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
   	$abreviatura = $request->getParameter('id');
+  	$this->institucion = $request->getParameter("institucion");
+  	if ($this->institucion == ''){
+  		$this->institucion = "0";
+  	}
     
   	$c = new Criteria();
   	$c->add(PartidoPeer::ABREVIATURA, $abreviatura , Criteria::EQUAL);
@@ -127,5 +131,29 @@ class partidoActions extends sfActions
     		$this->activeEnlaces[] = $enlace;
     	}	
     }
+    
+    // Politicos mas votados
+    $c = new Criteria();
+  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+  	$c->add(PoliticoPeer::PARTIDO_ID, $this->partido->getId());
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	
+  	$this->politicos = new sfPropelPager('Politico', 6);
+  	
+    $this->politicos->setCriteria($c);
+    $this->politicos->init();
+    
+ 	// Lista de instituciones 
+  	$c = new Criteria();
+  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
+  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
+  	$c->add(PoliticoPeer::PARTIDO_ID, $this->partido->getId());
+  	$c->add(InstitucionPeer::DISABLED, 'N');
+  	$c->setDistinct();
+  	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
+  	$this->instituciones = InstitucionPeer::doSelect($c);
+    
   }
 }

@@ -46,8 +46,7 @@
       <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
       <?php if ($politico->getPartido()):?>
         - 
-        <?php $url = "@ranking_".$sf_user->getCulture('es')."_partido"; ?>
-        <?php echo link_to($politico->getPartido(), "$url?partido=".$politico->getPartido(), array()); ?>
+        <?php echo link_to($politico->getPartido(), "partido/show?id=".$politico->getPartido()->getAbreviatura(), array()); ?>
       <?php endif ?>
     </p>
 
@@ -59,10 +58,9 @@
 	    <p>
 	      <?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?>
 	        <?php
-	  	      $url = '@ranking_'.$sf_user->getCulture('es');
 	  	      echo link_to(
 	 	          $politicoInstitucion->getInstitucion()->getNombre(),
-	 	          "$url?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getVanity(),
+	 	          "politico/ranking?partido=all&institucion=".$politicoInstitucion->getInstitucion()->getVanity(),
               array()
             )
           ?><?php endforeach ?>

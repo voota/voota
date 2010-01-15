@@ -96,7 +96,7 @@
 	  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><?php echo link_to(__('Todos los partidos'), 'politico/ranking')?></p>
+        <p><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?></p>
       </div>
 
       <div id="institutions" class="list-mini">

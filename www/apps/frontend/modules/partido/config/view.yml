@@ -1,6 +1,7 @@
 default:
   components:
     sparkline:  [partido, sparkline]
+    sparkline_politico:  [politico, sparkline]
     subreviews:  [sfReviewFront, subreviews]
     
 all:

@@ -334,3 +334,4 @@ table.sparkline td {padding:0px;}
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff; }
 
+#partido-show .active { text-decoration:none; color:#333333; font-weight:bold; }

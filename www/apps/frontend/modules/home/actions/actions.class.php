@@ -98,6 +98,12 @@ class homeActions extends sfActions{
 	echo "==============================================<br />";
 	*/
   		
+  	$c = new Criteria();
+  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  	$c->setLimit(5);
+  	$this->partidosMasVotados = PartidoPeer::doSelect($c);
+  	/*
    	$query = "SELECT pa.*, count( * ) c
 			FROM partido pa
 			INNER JOIN politico p ON p.partido_id = pa.id
@@ -113,7 +119,7 @@ class homeActions extends sfActions{
 
 	$statement->execute();
 	$this->partidosMasVotados = $statement->fetchAll(PDO::FETCH_CLASS, 'Partido');
-	
+	*/
 	/*
 	foreach($this->partidosMasVotados as $partido){
 		echo $partido->getNombre(). "<br>";

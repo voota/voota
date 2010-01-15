@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-01-05T15:04:30Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-01-15T08:20:18Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1409,6 +1409,86 @@ que estamos.</source>
       </trans-unit>
       <trans-unit id="283">
         <source>Ir a su comentario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="284">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="285">
+        <source>Hola %1%, este es tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="286">
+        <source>Tus comentarios y vootos (en total %1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="287">
+        <source>Tu perfil público</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="288">
+        <source>(Opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="289">
+        <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="290">
+        <source>Recibir emails de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="291">
+        <source>Recibir emails de otros usuarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="292">
+        <source>Recibir un email cuando alguien opine sobre tus comentarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="293">
+        <source>Tus enlaces</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="294">
+        <source>Ejemplo: Voota.es</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="295">
+        <source>(Déjalo en blanco si no quieres cambios aquí)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="296">
+        <source>Regístrate en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="297">
+        <source>votos positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="298">
+        <source>Logo de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="299">
+        <source>Enlaces externos del </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="300">
+        <source>Políticos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="301">
+        <source>Tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="302">
+        <source>Hacer cambios en tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="303">
+        <source>Más sobre %1%:</source>
         <target/>
       </trans-unit>
     </body>
