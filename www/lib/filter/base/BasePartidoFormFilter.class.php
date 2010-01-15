@@ -23,6 +23,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'sumu'               => new sfWidgetFormFilterInput(),
       'sumd'               => new sfWidgetFormFilterInput(),
       'is_active'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_main'            => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'partido_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
 
@@ -35,6 +36,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'sumu'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'sumd'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'is_active'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_main'            => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'partido_lista_list' => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
 
@@ -87,6 +89,7 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'sumu'               => 'Number',
       'sumd'               => 'Number',
       'is_active'          => 'Boolean',
+      'is_main'            => 'Boolean',
       'partido_lista_list' => 'ManyKey',
     );
   }

@@ -18,30 +18,8 @@ $(document).ready(function(){
   <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
 </h2>
 
-<?php function map_to_name_and_vanity($i) { return array($i->getNombreCorto(), $i->getVanity()); } ?>
-<?php $instituciones = array_map("map_to_name_and_vanity", $instituciones); ?>
-<?php array_unshift($instituciones, array(__('Todas las instituciones'), '0')); ?>
-<?php $instituciones_en_grupos = array_chunk($instituciones, 6); ?>
-<div id="institutions-list">
-  <ol>
-    <li class="column first">
-      [<?php echo ($partido == 'all' ? __('Todos los partidos') : $partido); ?>] en:
-    </li>
-    <?php foreach($instituciones_en_grupos as $grupo): ?>
-    <li class="column">
-      <ol>
-        <?php foreach($grupo as $i): ?>
-        <li>
-          <?php $active = ($i[1] == $institucion ? array('class' => 'active') : null) ?>
-          <?php $url = ($i[1] == '0' ? "politico/ranking?partido=$partido" : "politico/ranking?partido=$partido&institucion=$i[1]"); ?>
-          <?php echo link_to($i[0], $url, $active) ?>
-        </li>
-        <?php endforeach ?>
-      </ol>
-    </li>
-    <?php endforeach ?>
-  </ol>
-</div>
+<?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion)) ?>
+
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>

@@ -22,6 +22,7 @@ class BasePartidoForm extends BaseFormPropel
       'sumu'               => new sfWidgetFormInput(),
       'sumd'               => new sfWidgetFormInput(),
       'is_active'          => new sfWidgetFormInputCheckbox(),
+      'is_main'            => new sfWidgetFormInputCheckbox(),
       'partido_lista_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Lista')),
     ));
 
@@ -35,6 +36,7 @@ class BasePartidoForm extends BaseFormPropel
       'sumu'               => new sfValidatorInteger(),
       'sumd'               => new sfValidatorInteger(),
       'is_active'          => new sfValidatorBoolean(),
+      'is_main'            => new sfValidatorBoolean(),
       'partido_lista_list' => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
     ));
 

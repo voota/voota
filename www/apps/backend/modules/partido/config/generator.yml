@@ -12,7 +12,9 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        is_main:
+          label: Aparece en el listado principal
       list:
         title:   Partidos
         display: [nombre,abreviatura,color,imagen, is_active]
@@ -20,7 +22,7 @@ generator:
       filter:  ~
       form:
         display:
-          "Datos Partido": [abreviatura,color,is_active,imagen]
+          "Datos Partido": [abreviatura,color,is_active, is_main,imagen]
           "Traducibles": [es,ca]
           "Enlaces": []
       edit:
