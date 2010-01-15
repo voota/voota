@@ -7,91 +7,91 @@
       <trans-unit id="1" approved="yes">
         <source>Esto no parece una dirección de email.</source>
         <target>No sembla una adreça de correu electrònic.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="2" approved="yes">
         <source>Este campo es obligatorio.</source>
         <target>Aquest camp és obligatori</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="3" approved="yes">
         <source>El texto es demasiado corto (%min_length% caracteres mínimo).</source>
         <target>El text és massa curt (mínim %min_length% caràcters).</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="4" approved="yes">
         <source>El texto es demasiado largo (%max_length% caracteres máximo).</source>
         <target>El text és massa llarg (màxim %max_length% caràcters)</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="5" approved="yes">
         <source>Demasiado lento, vaquero. Alguien se anticipó y cogió ya este nombre.</source>
         <target>Algú ja té aquest nom.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="6" approved="yes">
         <source>De momento no navegamos al futuro! Esta fecha es posterior a hoy!</source>
         <target>De moment no naveguem al futur! Aquesta data és posterior a avui!</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="7" approved="yes">
         <source>Este campo es necesario. A veces tenemos que hacerlo.</source>
         <target>Aquest camp és necessari.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="8" approved="yes">
         <source>Ponc! Fecha no válida.</source>
         <target>Data no vàlida.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="9" approved="yes">
         <source>"%value%" no es una dirección de email válida.</source>
         <target>"%value%" no és un correu electrònic vàlid.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="10" approved="yes">
         <source>La contraseña no es la misma en ambos campos.</source>
         <target>La contrasenya no és la mateixa als dos camps.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="11" approved="yes">
         <source>Por favor, revisa lo siguiente antes de seguir.</source>
         <target>Si us plau, revisa el següent abans de seguir.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="12" approved="yes">
         <source>Para cambiar tu contraseña dinos cuál es la que tenías antes.</source>
         <target>Per canviar la teva contrasenya ens has de dir quina tenies abans.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="13" approved="yes">
         <source>Genial, todo guardado como es debido.</source>
         <target>Genial, tot guardat.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="14" approved="yes">
         <source>La contraseña no es válida.</source>
         <target>La contrasenya no és vàlida.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="15" approved="yes">
         <source>¡Alto ahí los clics! Parece que ya estás registrado en Voota con este email.%1% ¿Qué tal si intentas entrar por donde pone "Ya estás registrado"?</source>
         <target>Sembla que ja estàs registrat a Voota amb aquest mail. %1% Intenta-ho per on posa "Ja estàs registrat?"</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="16" approved="yes">
         <source>El email o la contraseña no son válidos.</source>
         <target>El mail o la contrasenya no són vàlids</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="17" approved="yes">
         <source>Imagen demasiado grande. No más de %max_size%b.</source>
         <target>Imatge massa gran. No més de %max_size%b.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="18" approved="yes">
         <source>Formato de imagen no válido.</source>
         <target>Format d'imatge no vàlid.</target>
-      <note/><note></note></trans-unit>
+      <note/><note/><note/></trans-unit>
       <trans-unit id="19" approved="yes">
         <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!</source>
-        <target/>
-      <note/></trans-unit>
+        <target>Quiet! Per vootar necessitar tenir una compta a Voota. Si encara no la tens, aquest és el millor moment!</target>
+      <note/><note/></trans-unit>
       <trans-unit id="20" approved="yes">
-        <source>Opinión tachada por el moderador (<a href='%1%'>ver normas de publicación</a>).</source>
-        <target/>
-      </trans-unit>
+        <source>Opinión tachada por el moderador (<a href="%1%">ver normas de publicación</a>).</source>
+        <target>Opinió esborrada pel moderador (veure normes de publicació).</target>
+      <note/></trans-unit>
       <trans-unit id="21" approved="yes">
         <source>Opinión tachada por el moderador.</source>
-        <target/>
-      </trans-unit>
+        <target>Opinió esborrada pel moderador.</target>
+      <note/></trans-unit>
       <trans-unit id="22" approved="yes">
         <source>El enlace no es válido (Ejemplo: Voota.es).</source>
-        <target/>
-      </trans-unit>      
+        <target>L'enllaç no és vàlid (exemple: voota.es).</target>
+      <note/></trans-unit>      
     </body>
   </file>
 </xliff>
