@@ -80,9 +80,8 @@ class generalActions extends sfActions{
   	  	
     $this->response->setTitle( $this->title );
   }
-  public function executeSearch(sfWebRequest $request) {
-   	$this->q = $request->getParameter("q");
-  	
+  
+  private function resetSphinxClient() {
   	$cl = new SphinxClient ();
   	
   	$dbConf = Propel::getConfiguration();
@@ -105,6 +104,14 @@ class generalActions extends sfActions{
 	$this->limit = 1000;
 	$cl->SetLimits ( 0, $this->limit, $this->limit );
 	$cl->SetArrayResult ( true );
+	
+	return $cl;
+  }
+  
+  public function executeSearch(sfWebRequest $request) {
+   	$this->q = $request->getParameter("q");
+  	
+   	$cl = $this->resetSphinxClient();
 	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'politico' );
 	if ( $this->res!==false ) {
 		//echo "<pre>";var_dump($this->res);echo "</pre>";
@@ -123,10 +130,57 @@ class generalActions extends sfActions{
 		    
 		    if ($this->politicosPager->getNbResults() == 1){
 		    	$res = $this->politicosPager->getResults();
-				$this->redirect( "@politico_".$this->getUser()->getCulture( 'es' )."?id=".$res[0]->getVanity() );
+				//$this->redirect( "politico/show?id=".$res[0]->getVanity() );
 		    }
         }	
 	}
+	
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'partido' );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+        	$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(PartidoPeer::ID, $list, Criteria::IN);
+  			$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+    		$this->partidosPager = new sfPropelPager('Partido', 10);
+		    $this->partidosPager->setCriteria($c);
+		    $this->partidosPager->setPage($this->getRequestParameter('page', 1));
+		    $this->partidosPager->init();
+		    
+		    if ($this->partidosPager->getNbResults() == 1){
+		    	$res = $this->partidosPager->getResults();
+				//$this->redirect( "partido/show?id=".$res[0]->getAbreviatura() );
+		    }
+        }	
+	}
+	
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'institucion' );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+        	$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(InstitucionPeer::ID, $list, Criteria::IN);
+  			$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
+    		$this->institucionesPager = new sfPropelPager('Institucion', 10);
+		    $this->institucionesPager->setCriteria($c);
+		    $this->institucionesPager->setPage($this->getRequestParameter('page', 1));
+		    $this->institucionesPager->init();
+		    
+		    if ($this->institucionesPager->getNbResults() == 1){
+		    	$res = $this->institucionesPager->getResults();
+				//$this->redirect( "politico/ranking?partido=ALL&institucion=".$res[0]->getNombreCorto() );
+		    }
+        }	
+	}
+	$this->results = (isset($this->institucionesPager)?$this->institucionesPager->getNbResults():0) 
+		+ ($this->partidosPager?$this->partidosPager->getNbResults():0)
+		+ (isset($this->politicosPager)?$this->politicosPager->getNbResults():0);
   }
   
     private function sendMessage( $nombre, $email, $mensaje, $tipo ){
