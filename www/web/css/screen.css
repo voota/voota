@@ -106,6 +106,12 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #error #hands { padding-bottom: 0; text-align: center;}
 #error #footer { padding-top: 0;}
 
+/* Listado de instituciones */
+#institutions-list { margin-bottom: 2em;}
+#institutions-list ol { list-style: none; padding: 0; overflow: hidden;}
+#institutions-list li.column { float: left; margin-right: 40px;}
+#institutions-list li.first { margin-right: 10px;}
+
 /* Home */
 #home-index #main-inner { width: 100%; margin: 0;}
 #home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em;}
@@ -251,20 +257,16 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin .legal { text-align: right; }
 
 /* Ranking de políticos */
-#politico-ranking #institutions-list { margin-bottom: 2em;}
-#politico-ranking #institutions-list ol { list-style: none; padding: 0; overflow: hidden;}
-#politico-ranking #institutions-list li.column { float: left; margin-right: 40px;}
-#politico-ranking #institutions-list li.first { margin-right: 10px;}
 #politico-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
 #politico-ranking h2 select { font-size: 0.65em;}
 #politico-ranking table { margin: 0 auto; width: 100%; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
 #politico-ranking table tbody td,
 #politico-ranking table tfoot td { padding: 1em 0; }
-#politico-ranking table .ranking { text-align: left; width: 10%; }
+#politico-ranking table .ranking { text-align: right; width: 16%; }
 #politico-ranking table .position { text-align: right; width: 3%; }
 #politico-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
-#politico-ranking table .name { text-align: left; width: 30%; }
+#politico-ranking table .name { text-align: left; width: 24%; }
 #politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
 #politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
 
@@ -310,12 +312,12 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
-#partido-show #politicians-most-voted li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
+#partido-show #politicians-most-voted ul li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
 #partido-show .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
-#partido-show .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
-#partido-show .list-mini li .avatar { float: left; }
-#partido-show .list-mini li .name { margin-left: 45px; font-weight: normal;}
-#partido-show .list-mini li .votes { margin: 0.5em 0 0 45px; padding: 0;}
+#partido-show .list-mini ul li { margin-bottom: 1em; overflow: hidden; height: 60px; }
+#partido-show .list-mini ul li .avatar { float: left; }
+#partido-show .list-mini ul li .name { margin-left: 45px; font-weight: normal;}
+#partido-show .list-mini ul li .votes { margin: 0.5em 0 0 45px; padding: 0;}
 #partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Popups de ayuda */
