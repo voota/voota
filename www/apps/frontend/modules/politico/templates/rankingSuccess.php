@@ -18,64 +18,30 @@ $(document).ready(function(){
   <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
 </h2>
 
-<p id="institutions-long" class="hidden">
-  <?php
-    if ($partido == 'all'){
-	  	echo link_to(
-	 	__('Todas las instituciones')
-	 	, "politico/ranking"
-	 	, $institucion=='0' ? array('class' => 'active') : null);
-    }
-    else {
-	  	echo link_to(
-	 	__('Todas las instituciones')
-	 	, "politico/ranking?partido=$partido"
-	 	, $institucion=='0' ? array('class' => 'active') : null);
-    }
-  ?>
-
-  <?php foreach($instituciones as $aInstitucion): ?>
-    · 
-    <?php echo link_to( $aInstitucion->getNombreCorto(),
- 	                      "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
-                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
-    ?>
-  <?php endforeach ?>
-  · 
-  [<a href="#" onclick="return institutions_to_short();"><?php echo __('ver menos ...')?></a>]
-</p>
-
-<p id="institutions-short">
-  <?php 
-    if ($partido == 'all'){
-	  	echo link_to(
-	 	__('Todas las instituciones')
-	 	, "politico/ranking"
-	 	, $institucion=='0' ? array('class' => 'active') : null);
-    }
-    else {
-	  	echo link_to(
-	 	__('Todas las instituciones')
-	 	, "politico/ranking?partido=$partido"
-	 	, $institucion=='0' ? array('class' => 'active') : null);
-    }
-  ?>
-  <?php $idx = 0; ?>  
-  <?php foreach($instituciones as $aInstitucion): ?>
-    <?php $idx++; ?>
-    <?php if ($idx <= SfVoUtil::SHORT_INSTITUCIONES_NUM || $aInstitucion->getVanity()==$institucion): ?>  
-      · 
-      <?php echo link_to(	$aInstitucion->getNombreCorto(),
- 	                        "politico/ranking?partido=$partido&institucion=".$aInstitucion->getVanity(),
- 	                        $aInstitucion->getVanity()==$institucion ? array('class' => 'active') : null)
- 	    ?>
-    <?php endif ?>  
-  <?php endforeach ?>
-  <?php if(count($instituciones) > SfVoUtil::SHORT_INSTITUCIONES_NUM): ?>
-    · 
-    [<a href="#" onclick="return institutions_to_long();"><?php echo __('ver más ...')?></a>]
-  <?php endif ?>
-</p>
+<?php function map_to_name_and_vanity($i) { return array($i->getNombreCorto(), $i->getVanity()); } ?>
+<?php $instituciones = array_map("map_to_name_and_vanity", $instituciones); ?>
+<?php array_unshift($instituciones, array(__('Todas las instituciones'), '0')); ?>
+<?php $instituciones_en_grupos = array_chunk($instituciones, 6); ?>
+<div id="institutions-list">
+  <ol>
+    <li class="column first">
+      [<?php echo ($partido == 'all' ? __('Todos los partidos') : $partido); ?>] en:
+    </li>
+    <?php foreach($instituciones_en_grupos as $grupo): ?>
+    <li class="column">
+      <ol>
+        <?php foreach($grupo as $i): ?>
+        <li>
+          <?php $active = ($i[1] == $institucion ? array('class' => 'active') : null) ?>
+          <?php $url = ($i[1] == '0' ? "politico/ranking" : "politico/ranking?partido=$partido&institucion=$i[1]"); ?>
+          <?php echo link_to($i[0], $url, $active) ?>
+        </li>
+        <?php endforeach ?>
+      </ol>
+    </li>
+    <?php endforeach ?>
+  </ol>
+</div>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>

@@ -19,6 +19,7 @@
   });
   //-->
 </script>
+
 <h2 id="name">
   <?php echo $partido->getNombre(); ?>
   (<?php echo $partido->getAbreviatura() ?>)
