@@ -259,7 +259,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-ranking h2 select { font-size: 0.65em;}
 #politico-ranking table { margin: 0 auto; width: 100%; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
-#politico-ranking table tbody td { padding: 1em 0; }
+#politico-ranking table tbody td,
+#politico-ranking table tfoot td { padding: 1em 0; }
 #politico-ranking table .ranking { text-align: left; width: 10%; }
 #politico-ranking table .position { text-align: right; width: 3%; }
 #politico-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
