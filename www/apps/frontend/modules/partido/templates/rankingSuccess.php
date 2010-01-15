@@ -17,7 +17,6 @@
       <td><a href="<?php echo url_for('partido/show?id='.$partido->getAbreviatura()) ?>"><?php echo $partido->getAbreviatura() ?></a></td>
       <td><?php echo $partido->getNombre() ?></td>
       <td><?php echo $partido->getColor() ?></td>
-      <td><?php echo $partido->getWeb() ?></td>
       <td><?php echo $partido->getCreatedAt() ?></td>
     </tr>
     <?php endforeach; ?>

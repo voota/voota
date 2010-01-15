@@ -23,6 +23,7 @@ class perfilActions extends sfActions
   public function executeReviews(sfWebRequest $request)
   {
   	$op = $request->getParameter('o');
+  	$this->f = $request->getParameter('f');
   		
   	if ($op == 'v' || $op == 'e'){
   		$t = $request->getParameter('t');
@@ -30,18 +31,41 @@ class perfilActions extends sfActions
   		$r = $request->getParameter('r');
   		if ($t == ''){
 		  	$c = new Criteria();
-		  	$c->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
 		  	$c->add(SfReviewPeer::ID, $e);
-		  	
-		  	$politico = PoliticoPeer::doSelectOne($c);
+		  	$review = SfReviewPeer::doSelectOne($c);
+  			
+  			if ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY){
+			  	$c = new Criteria();
+			  	$c->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+			  	$c->add(SfReviewPeer::ID, $e);
+			  	
+			  	$entity = PoliticoPeer::doSelectOne($c);
+  				$dest = "politico/show?id=".$entity->getVanity();
+  			}
+  			else if ($review->getSfReviewType()->getId() == Partido::NUM_ENTITY){
+			  	$c = new Criteria();
+			  	$c->addJoin(PartidoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+			  	$c->add(SfReviewPeer::ID, $e);
+			  	
+			  	$entity = PartidoPeer::doSelectOne($c);  	
+  				$dest = "partido/show?id=".$entity->getAbreviatura();			
+  			}
 		}
   		else {
-			$politico = PoliticoPeer::retrieveByPK($e);
+  			if ($t == Politico::NUM_ENTITY){
+				$entity = PoliticoPeer::retrieveByPK($e);
+  				$dest = "politico/show?id=".$entity->getVanity();
+   			}
+  			else if ($t == Partido::NUM_ENTITY){
+				$entity = PartidoPeer::retrieveByPK($e);
+  				$dest = "partido/show?id=".$entity->getAbreviatura();
+  			}
    		}
-  		$dest = "politico/show?id=".$politico->getVanity();
+   		
+   		
 	  	if ($op == 'e'){
 	  		$this->getUser()->setAttribute('review_v', 1);
-	  		$this->getUser()->setAttribute('review_e', $politico->getId());
+	  		$this->getUser()->setAttribute('review_e', $entity->getId());
 	  		$this->getUser()->setAttribute('review_c', $e);
 	  	}
 	  	
@@ -72,6 +96,15 @@ class perfilActions extends sfActions
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->getUser()->getGuardUser()->getId());
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
+	if( $this->f ){
+		if (preg_match('/\.0/', $this->f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
+		}
+		else if (preg_match('/[0-9]/', $this->f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->f);
+		}
+		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	}
 	
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
@@ -82,6 +115,7 @@ class perfilActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
   	$vanity = $request->getParameter('username');
+  	$this->f = $request->getParameter('f');
     
   	$c = new Criteria();
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
@@ -94,7 +128,16 @@ class perfilActions extends sfActions
 	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	  $criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
 	  $criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
-	
+	if( $this->f ){
+		if (preg_match('/\.0/', $this->f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
+		}
+		else if (preg_match('/[0-9]/', $this->f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->f);
+		}
+		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	}
+	  
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
     $this->reviews->init();

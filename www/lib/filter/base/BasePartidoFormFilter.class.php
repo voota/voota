@@ -17,24 +17,24 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'abreviatura'        => new sfWidgetFormFilterInput(),
       'color'              => new sfWidgetFormFilterInput(),
-      'web'                => new sfWidgetFormFilterInput(),
       'created_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'partido_id'         => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'imagen'             => new sfWidgetFormFilterInput(),
       'sumu'               => new sfWidgetFormFilterInput(),
       'sumd'               => new sfWidgetFormFilterInput(),
+      'is_active'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'partido_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'abreviatura'        => new sfValidatorPass(array('required' => false)),
       'color'              => new sfValidatorPass(array('required' => false)),
-      'web'                => new sfValidatorPass(array('required' => false)),
       'created_at'         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'partido_id'         => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
       'imagen'             => new sfValidatorPass(array('required' => false)),
       'sumu'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'sumd'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_active'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'partido_lista_list' => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
     ));
 
@@ -81,12 +81,12 @@ class BasePartidoFormFilter extends BaseFormFilterPropel
       'id'                 => 'Number',
       'abreviatura'        => 'Text',
       'color'              => 'Text',
-      'web'                => 'Text',
       'created_at'         => 'Date',
       'partido_id'         => 'ForeignKey',
       'imagen'             => 'Text',
       'sumu'               => 'Number',
       'sumd'               => 'Number',
+      'is_active'          => 'Boolean',
       'partido_lista_list' => 'ManyKey',
     );
   }

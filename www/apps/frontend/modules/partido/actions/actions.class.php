@@ -32,6 +32,7 @@ class partidoActions extends sfActions
   	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::INNER_JOIN);
   	$c->setDistinct();
   	$c->add(PartidoPeer::ABREVIATURA, null, Criteria::ISNOTNULL);
+  	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->institucion = ALL_FORM_VALUE;
   	
   	if ($institucion && $institucion != ALL_URL_STRING){
@@ -66,6 +67,18 @@ class partidoActions extends sfActions
   	$this->partido = PartidoPeer::doSelectOne( $c );
   	
   	$this->forward404Unless( $this->partido );
+  	
+  	// Estabamos vootando antes del login ?
+  	$v = $this->getUser()->getAttribute('review_v');
+  	if ($v && $v != ''){
+  		$e = $this->getUser()->getAttribute('review_e');
+  		$this->getUser()->setAttribute('review_v', '');
+  		$this->getUser()->setAttribute('review_e', '');
+  		
+  		if ($e == $this->partido->getId() && $this->getUser()->isAuthenticated()) {
+  			$this->review_v = $v;
+  		}	
+  	}
   	
   	if ($this->partido->getImagen() != ''){
   		$imageFileName = $this->partido->getImagen();

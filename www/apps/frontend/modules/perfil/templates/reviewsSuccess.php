@@ -1,22 +1,35 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
+<?php use_helper('Form') ?>
+
+<script type="text/javascript">
+  <!--
+  $(document).ready(function(){
+	  $('#f').change(function(){
+		  $('#filterForm').submit();
+	  });
+  });
+  //-->
+</script>
      
 <h2><?php echo __('Comentarios y vootos que has hecho hasta ahora (en total, %1%)', array('%1%' => $reviews->getNbResults()))?></h2>
 <p class="next-step-msg"><?php echo link_to(__('Tu perfil'), "@usuario_edit"); ?></p>
 <p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
 
 <div id="content">
-<?php /* ?>
+<?php echo form_tag('@usuario_votos', array('id' => 'filterForm')) ?>
   <p class="filter">
     <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
     <br />
-    <select name="filter" id="filter">
-      <option value="todos"><?php echo __('Todos los comentarios')?></option>
-      <option value="partidos">Por partidos</option>
-      <option value="partidos">Por respuestas a otros comentarios</option>
-    </select>
+		<?php echo select_tag('f', options_for_select(array(
+		  'all'  => __('Todos los comentarios'),
+		  Politico::NUM_ENTITY    => __('Por políticos'),
+		  Partido::NUM_ENTITY => __('Por partidos'),
+		  '.0'    => __('Por respuestas a otros comentarios'),
+		), $f)) ?>
   </p>
-<?php */ ?>
+</form>
+<?php  ?>
   
   <div class="comments">
     <table>        

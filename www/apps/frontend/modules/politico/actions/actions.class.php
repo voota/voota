@@ -184,6 +184,7 @@ class politicoActions extends sfActions
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
   	}
   	$c->addAscendingOrderByColumn(PartidoPeer::ABREVIATURA);
+  	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->partidos = PartidoPeer::doSelect( $c );
   	$this->partidos_arr = array();
   	$this->partidos_arr["0"] = "Todos los partidos";

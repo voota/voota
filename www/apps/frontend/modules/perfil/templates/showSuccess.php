@@ -5,6 +5,16 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
 
+<script type="text/javascript">
+  <!--
+  $(document).ready(function(){
+	  $('#f').change(function(){
+		  $('#filterForm').submit();
+	  });
+  });
+  //-->
+</script>
+
 <div id="content">
   <?php if (!$sf_user->isAuthenticated()): ?>
     <div class="balloon">
@@ -50,6 +60,21 @@
       <?php endif ?>
     </div>
   </div>
+  
+  <div id="content">
+  <?php echo form_tag('@usuario?username='.$user->getProfile()->getVanity(), array('id' => 'filterForm')) ?>
+  <p class="filter">
+    <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
+    <br />
+		<?php echo select_tag('f', options_for_select(array(
+		  'all'  => __('Todos los comentarios'),
+		  Politico::NUM_ENTITY    => __('Por políticos'),
+		  Partido::NUM_ENTITY => __('Por partidos'),
+		  '.0'    => __('Por respuestas a otros comentarios'),
+		), $f)) ?>
+  </p>
+  </form>
+  <?php  ?>
 
   <div class="comments">
     <?php if ($reviews->getNbResults() > 0): ?>

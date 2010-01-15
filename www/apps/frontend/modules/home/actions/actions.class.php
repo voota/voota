@@ -102,6 +102,7 @@ class homeActions extends sfActions{
   	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
   	$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
   	$c->setLimit(5);
+  	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->partidosMasVotados = PartidoPeer::doSelect($c);
   	/*
    	$query = "SELECT pa.*, count( * ) c

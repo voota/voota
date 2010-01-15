@@ -16,12 +16,12 @@ class BasePartidoForm extends BaseFormPropel
       'id'                 => new sfWidgetFormInputHidden(),
       'abreviatura'        => new sfWidgetFormInput(),
       'color'              => new sfWidgetFormInput(),
-      'web'                => new sfWidgetFormInput(),
       'created_at'         => new sfWidgetFormDateTime(),
       'partido_id'         => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'imagen'             => new sfWidgetFormInput(),
       'sumu'               => new sfWidgetFormInput(),
       'sumd'               => new sfWidgetFormInput(),
+      'is_active'          => new sfWidgetFormInputCheckbox(),
       'partido_lista_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Lista')),
     ));
 
@@ -29,12 +29,12 @@ class BasePartidoForm extends BaseFormPropel
       'id'                 => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'abreviatura'        => new sfValidatorString(array('max_length' => 8, 'required' => false)),
       'color'              => new sfValidatorString(array('max_length' => 8, 'required' => false)),
-      'web'                => new sfValidatorString(array('max_length' => 150, 'required' => false)),
       'created_at'         => new sfValidatorDateTime(array('required' => false)),
       'partido_id'         => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'imagen'             => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'sumu'               => new sfValidatorInteger(),
       'sumd'               => new sfValidatorInteger(),
+      'is_active'          => new sfValidatorBoolean(),
       'partido_lista_list' => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
     ));
 
