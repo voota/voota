@@ -33,7 +33,7 @@ $(document).ready(function(){
         <?php foreach($grupo as $i): ?>
         <li>
           <?php $active = ($i[1] == $institucion ? array('class' => 'active') : null) ?>
-          <?php $url = ($i[1] == '0' ? "politico/ranking" : "politico/ranking?partido=$partido&institucion=$i[1]"); ?>
+          <?php $url = ($i[1] == '0' ? "politico/ranking?partido=$partido" : "politico/ranking?partido=$partido&institucion=$i[1]"); ?>
           <?php echo link_to($i[0], $url, $active) ?>
         </li>
         <?php endforeach ?>
