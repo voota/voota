@@ -40,6 +40,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
 	  	}
 	}
+  	
+	private function clearCachePartido( $partido ) {
+	  	$cacheManager = $this->getContext()->getViewCacheManager();
+	  	if ($cacheManager != null) {
+	  		$cacheManager->remove("partido/show?id=".$partido->getAbreviatura()."&sf_culture=es");
+	  		$cacheManager->remove("partido/show?id=".$partido->getAbreviatura()."&sf_culture=ca");
+	  	}
+	}
 	
 	private function updateSums(sfWebRequest $request) {
 	  	// Actualizar cache y puntos en politicos
@@ -54,14 +62,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  	$this->clearCache( $this->politico );
 	  	}
 	  	else if ($request->getParameter("t") == Partido::NUM_ENTITY){
-		  	$this->partido = PartidoPeer::retrieveByPk($request->getParameter('e'));
-		  	$this->partido->setSumu( $this->partido->getPositives() );
+	  		$this->partido = PartidoPeer::retrieveByPk($request->getParameter('e'));
+	  		$this->partido->setSumu( $this->partido->getPositives() );
 		  	$this->partido->setSumd( $this->partido->getNegatives() );
 		  	if ($this->partido->isModified()){
 		  		PartidoPeer::doUpdate( $this->partido );
 		  	}
 		  	
-		  	$this->clearCache( $this->partido );
+		  	$this->clearCachePartido( $this->partido );
 	  	}
 	  	else if($request->getParameter("t") == '') {
 		  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
@@ -88,7 +96,8 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	parent::executeSend( $request );
   	
 	$this->updateSums( $request );
-	// Enviar email
+
+		// Enviar email
 	if($request->getParameter("t") == '') {
 	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
 	  	//echo $request->getParameter('i');

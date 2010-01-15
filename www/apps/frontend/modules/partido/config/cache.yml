@@ -1,0 +1,10 @@
+ranking:
+  enabled: on
+  with_layout: false
+  lifetime: 60
+  
+show:
+  enabled: on
+  with_layout: false
+  lifetime: 3600
+  
