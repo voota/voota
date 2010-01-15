@@ -1325,6 +1325,86 @@ actual)</target>
         <source>Ir a su comentario</source>
         <target>Anar al seu comentari</target>
       <note/></trans-unit>
+      <trans-unit id="284">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="285">
+        <source>Hola %1%, este es tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="286">
+        <source>Tus comentarios y vootos (en total %1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="287">
+        <source>Tu perfil público</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="288">
+        <source>(Opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="289">
+        <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="290">
+        <source>Recibir emails de Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="291">
+        <source>Recibir emails de otros usuarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="292">
+        <source>Recibir un email cuando alguien opine sobre tus comentarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="293">
+        <source>Tus enlaces</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="294">
+        <source>Ejemplo: Voota.es</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="295">
+        <source>(Déjalo en blanco si no quieres cambios aquí)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="296">
+        <source>Regístrate en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="297">
+        <source>votos positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="298">
+        <source>Logo de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="299">
+        <source>Enlaces externos del </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="300">
+        <source>Políticos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="301">
+        <source>Tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="302">
+        <source>Hacer cambios en tu perfil</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="303">
+        <source>Más sobre %1%:</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
