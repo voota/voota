@@ -12,17 +12,16 @@
 require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
 
 /**
- * Generates Doctrine model, SQL and initializes the database.
+ * Drops database, recreates it, inserts the sql and loads the data fixtures
  *
  * @package    symfony
  * @subpackage doctrine
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildAllTask.class.php 24849 2009-12-03 08:34:47Z fabien $
+ * @version    SVN: $Id: sfDoctrineReloadDataTask.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  *
  * @deprecated Use doctrine:build instead
  */
-class sfDoctrineBuildAllTask extends sfDoctrineBaseTask
+class sfDoctrineReloadDataTask extends sfDoctrineBaseTask
 {
   /**
    * @see sfTask
@@ -33,51 +32,32 @@ class sfDoctrineBuildAllTask extends sfDoctrineBaseTask
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', true),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Do not ask for confirmation'),
-      new sfCommandOption('skip-forms', 'F', sfCommandOption::PARAMETER_NONE, 'Skip generating forms'),
+      new sfCommandOption('dir', null, sfCommandOption::PARAMETER_REQUIRED | sfCommandOption::IS_ARRAY, 'The directories to look for fixtures'),
       new sfCommandOption('migrate', null, sfCommandOption::PARAMETER_NONE, 'Migrate instead of reset the database'),
+      new sfCommandOption('append', null, sfCommandOption::PARAMETER_NONE, 'Don\'t delete current data in the database'),
     ));
-  
-    $this->aliases = array('doctrine-build-all');
+
+    $this->aliases = array('doctrine-reload-data');    
     $this->namespace = 'doctrine';
-    $this->name = 'build-all';
-    $this->briefDescription = 'Generates Doctrine model, SQL and initializes the database';
+    $this->name = 'reload-data';
+
+    $this->briefDescription = 'Reloads databases and fixtures for your project';
 
     $this->detailedDescription = <<<EOF
-The [doctrine:build-all|INFO] task is a shortcut for four other tasks:
+The [doctrine:reload-data|INFO] task drops the database, recreates it and loads
+fixtures:
 
-  [./symfony doctrine:build-all|INFO]
-
+  [php symfony doctrine:reload-data|INFO]
+  
 The task is equivalent to:
 
-  [./symfony doctrine:build-model|INFO]
-  [./symfony doctrine:build-sql|INFO]
-  [./symfony doctrine:build-forms|INFO]
+  [./symfony doctrine:drop-db|INFO]
+  [./symfony doctrine:build-db|INFO]
   [./symfony doctrine:insert-sql|INFO]
-
-See those four tasks help page for more information.
-
-To bypass the confirmation, you can pass the [no-confirmation|COMMENT]
-option:
-
-  [./symfony doctrine:buil-all-load --no-confirmation|INFO]
-
-Include the [--migrate|COMMENT] option if you would like to run your project's
-migrations rather than inserting the Doctrine SQL.
-
-  [./symfony doctrine:build-all --migrate|INFO]
-
-This is equivalent to:
-
-  [./symfony doctrine:build-model|INFO]
-  [./symfony doctrine:build-sql|INFO]
-  [./symfony doctrine:build-forms|INFO]
-  [./symfony doctrine:migrate|INFO]
+  [./symfony doctrine:data-load|INFO]  
 EOF;
   }
 
-  /**
-   * @see sfTask
-   */
   protected function execute($arguments = array(), $options = array())
   {
     $task = new sfDoctrineBuildTask($this->dispatcher, $this->formatter);
@@ -86,11 +66,9 @@ EOF;
     $ret = $task->run(array(), array(
       'no-confirmation' => $options['no-confirmation'],
       'db'              => true,
-      'model'           => true,
-      'forms'           => !$options['skip-forms'],
-      'filters'         => !$options['skip-forms'],
-      'sql'             => true,
       'and-migrate'     => $options['migrate'],
+      'and-load'        => $options['append'] ? false : (count($options['dir']) ? $options['dir'] : true),
+      'and-append'      => $options['append'] ? (count($options['dir']) ? $options['dir'] : true) : false,
     ));
 
     return $ret;

@@ -12,15 +12,15 @@
 require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
 
 /**
- * Creates a schema.yml from an existing database.
+ * Generate migration classes by producing a diff between your old and new schema.
  *
  * @package    symfony
  * @subpackage doctrine
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineBuildSchemaTask.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineGenerateMigrationsDiffTask.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfDoctrineBuildSchemaTask extends sfDoctrineBaseTask
+class sfDoctrineGenerateMigrationsDiffTask extends sfDoctrineBaseTask
 {
   /**
    * @see sfTask
@@ -32,17 +32,16 @@ class sfDoctrineBuildSchemaTask extends sfDoctrineBaseTask
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
     ));
 
-    $this->aliases = array('doctrine-build-schema');
+    $this->aliases = array();
     $this->namespace = 'doctrine';
-    $this->name = 'build-schema';
-    $this->briefDescription = 'Creates a schema from an existing database';
+    $this->name = 'generate-migrations-diff';
+    $this->briefDescription = 'Generate migration classes by producing a diff between your old and new schema.';
 
     $this->detailedDescription = <<<EOF
-The [doctrine:build-schema|INFO] task introspects a database to create a schema:
+The [doctrine:generate-migrations-diff|INFO] task generates migration classes by
+producing a diff between your old and new schema.
 
-  [./symfony doctrine:build-schema|INFO]
-
-The task creates a yml file in [config/doctrine|COMMENT]
+  [./symfony doctrine:generate-migrations-diff|INFO]
 EOF;
   }
 
@@ -51,9 +50,18 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    $this->logSection('doctrine', 'generating yaml schema from database');
-
     $databaseManager = new sfDatabaseManager($this->configuration);
-    $this->callDoctrineCli('generate-yaml-db');
+    $config = $this->getCliConfig();
+
+    $this->logSection('doctrine', 'generating migration diff');
+
+    if (!is_dir($config['migrations_path']))
+    {
+      $this->getFilesystem()->mkdirs($config['migrations_path']);
+    }
+
+    $this->callDoctrineCli('generate-migrations-diff', array(
+      'yaml_schema_path' => $this->prepareSchemaFile($config['yaml_schema_path']),
+    ));
   }
 }
