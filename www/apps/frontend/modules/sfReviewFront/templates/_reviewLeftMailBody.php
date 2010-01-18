@@ -1,17 +1,12 @@
 <?php use_helper('I18N') ?>
 
-<?php echo __('<p>Hola %1%,</p>' . 
+<?php 
 
-($comentario == "" ?
-  '<p>
-    Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:
-    <br />"%3%"
-  </p>'
-  :
-  '<p>Pues eso, que %2% está '.($voto == 1 ? 'a favor' : 'en contra').' de tu vooto. Aunque de momento no ha incluído ninguna opinión.</p>'
-) .
+echo __('<p>Hola %1%,</p> 
 
-'<p>
+%saludo%
+
+<p>
   Esto es lo que opinaste sobre %4%:
   <br />"%5%"
 </p>
@@ -47,4 +42,10 @@ array(
 	, '%5%' => $texto_ori
 	, '%6%' => url_for('politico/show?id='.$vanity, true)
 	, '%7%' => url_for('@usuario_unsubscribe?codigo='.$codigo.'&n=1', true)
+	, '%saludo%' => ($comentario != "" ?
+    __('<p>Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:<br />"%3%"</p>')
+    :
+    __('<p>Pues eso, que %2% está %voto% de tu vooto. Aunque de momento no ha incluído ninguna opinión.</p>')
+    )
+	, '%voto%' => ($voto == 1 ? __('a favor') : __('en contra'))
 ))?>
