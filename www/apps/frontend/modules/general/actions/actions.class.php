@@ -111,29 +111,9 @@ class generalActions extends sfActions{
   public function executeSearch(sfWebRequest $request) {
    	$this->q = $request->getParameter("q");
   	
+   	$resultsArray = array();
+   	
    	$cl = $this->resetSphinxClient();
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'politico' );
-	if ( $this->res!==false ) {
-		//echo "<pre>";var_dump($this->res);echo "</pre>";
-		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-        	$c = new Criteria();
-        	$list = array();
-        	foreach ($this->res["matches"] as $idx => $match) {
-        		$list[] = $match['id'];
-        	}
-  			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-    		$this->politicosPager = new sfPropelPager('Politico', 10);
-		    $this->politicosPager->setCriteria($c);
-		    $this->politicosPager->setPage($this->getRequestParameter('page', 1));
-		    $this->politicosPager->init();
-		    
-		    if ($this->politicosPager->getNbResults() == 1){
-		    	$res = $this->politicosPager->getResults();
-				//$this->redirect( "politico/show?id=".$res[0]->getVanity() );
-		    }
-        }	
-	}
 	
 	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'partido' );
 	if ( $this->res!==false ) {
@@ -145,15 +125,10 @@ class generalActions extends sfActions{
         	}
   			$c->add(PartidoPeer::ID, $list, Criteria::IN);
   			$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-    		$this->partidosPager = new sfPropelPager('Partido', 10);
-		    $this->partidosPager->setCriteria($c);
-		    $this->partidosPager->setPage($this->getRequestParameter('page', 1));
-		    $this->partidosPager->init();
-		    
-		    if ($this->partidosPager->getNbResults() == 1){
-		    	$res = $this->partidosPager->getResults();
-				//$this->redirect( "partido/show?id=".$res[0]->getAbreviatura() );
-		    }
+  			
+  			$partidos = PartidoPeer::doSelect($c);
+  			
+  			$resultsArray = array_merge  ( $resultsArray, $partidos );		    
         }	
 	}
 	
@@ -167,20 +142,57 @@ class generalActions extends sfActions{
         	}
   			$c->add(InstitucionPeer::ID, $list, Criteria::IN);
   			$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
-    		$this->institucionesPager = new sfPropelPager('Institucion', 10);
-		    $this->institucionesPager->setCriteria($c);
-		    $this->institucionesPager->setPage($this->getRequestParameter('page', 1));
-		    $this->institucionesPager->init();
-		    
-		    if ($this->institucionesPager->getNbResults() == 1){
-		    	$res = $this->institucionesPager->getResults();
-				//$this->redirect( "politico/ranking?partido=ALL&institucion=".$res[0]->getNombreCorto() );
-		    }
+  			
+  			$instituciones = InstitucionPeer::doSelect($c);
+  			
+  			$resultsArray = array_merge  ( $resultsArray, $instituciones );	
         }	
 	}
+	
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'politico' );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+			$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
+  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  			$c->setLimit( 100 );
+  			
+  			$politicos = PoliticoPeer::doSelect($c);
+  			
+  			$resultsArray = array_merge  ( $resultsArray, $politicos );
+        }	
+	}
+	
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'usuario' );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+			$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(sfGuardUserPeer::ID, $list, Criteria::IN);
+  			$c->setLimit( 100 );
+  			
+  			$usuarios = sfGuardUserPeer::doSelect($c);
+  			
+  			$resultsArray = array_merge  ( $resultsArray, $usuarios );
+        }	
+	}
+	
+	/*
 	$this->results = (isset($this->institucionesPager)?$this->institucionesPager->getNbResults():0) 
 		+ ($this->partidosPager?$this->partidosPager->getNbResults():0)
 		+ (isset($this->politicosPager)?$this->politicosPager->getNbResults():0);
+		*/
+	
+      $this->results = new myTabPager($resultsArray, 15);
+      $this->results->setPage($this->getRequestParameter('page', 1));
+      $this->results->init();
   }
   
     private function sendMessage( $nombre, $email, $mensaje, $tipo ){

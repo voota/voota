@@ -5,7 +5,9 @@
 <div id="institutions-list">
   <ol>
     <li class="column first">
-      [<?php echo ($partido == 'all' ? __('Todos los partidos') : $partido); ?>] en:
+      <?php if (isset($showPartido) && $showPartido):?>
+      	[<?php echo ($partido == 'all' ? __('Todos los partidos') : $partido); ?>] en:
+      <?php endif ?>
     </li>
     <?php foreach($instituciones_en_grupos as $grupo): ?>
     <li class="column">
