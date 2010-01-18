@@ -1,30 +1,28 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * SfReview filter form base class.
  *
  * @package    ##PROJECT_NAME##
  * @subpackage filter
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfReviewFormFilter extends BaseFormFilterPropel
+abstract class BaseSfReviewFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'entity_id'           => new sfWidgetFormFilterInput(),
-      'value'               => new sfWidgetFormFilterInput(),
+      'value'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'sf_guard_user_id'    => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'sf_review_type_id'   => new sfWidgetFormPropelChoice(array('model' => 'SfReviewType', 'add_empty' => true)),
       'sf_review_status_id' => new sfWidgetFormPropelChoice(array('model' => 'SfReviewStatus', 'add_empty' => true)),
-      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'cookie'              => new sfWidgetFormFilterInput(),
       'ip_address'          => new sfWidgetFormFilterInput(),
       'text'                => new sfWidgetFormFilterInput(),
-      'modified_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'modified_at'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'culture'             => new sfWidgetFormFilterInput(),
       'sf_review_id'        => new sfWidgetFormPropelChoice(array('model' => 'SfReview', 'add_empty' => true)),
       'balance'             => new sfWidgetFormFilterInput(),

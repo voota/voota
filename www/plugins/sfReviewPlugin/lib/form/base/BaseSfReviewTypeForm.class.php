@@ -3,21 +3,23 @@
 /**
  * SfReviewType form base class.
  *
+ * @method SfReviewType getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfReviewTypeForm extends BaseFormPropel
+abstract class BaseSfReviewTypeForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'        => new sfWidgetFormInputHidden(),
-      'name'      => new sfWidgetFormInput(),
-      'model'     => new sfWidgetFormInput(),
-      'module'    => new sfWidgetFormInput(),
-      'max_value' => new sfWidgetFormInput(),
+      'name'      => new sfWidgetFormInputText(),
+      'model'     => new sfWidgetFormInputText(),
+      'module'    => new sfWidgetFormInputText(),
+      'max_value' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -25,7 +27,7 @@ class BaseSfReviewTypeForm extends BaseFormPropel
       'name'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'model'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'module'    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'max_value' => new sfValidatorInteger(array('required' => false)),
+      'max_value' => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_type[%s]');

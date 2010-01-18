@@ -3,18 +3,20 @@
 /**
  * SfReviewReason form base class.
  *
+ * @method SfReviewReason getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfReviewReasonForm extends BaseFormPropel
+abstract class BaseSfReviewReasonForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'   => new sfWidgetFormInputHidden(),
-      'name' => new sfWidgetFormInput(),
+      'name' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(

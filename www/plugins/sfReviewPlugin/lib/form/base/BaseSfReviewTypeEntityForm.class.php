@@ -3,12 +3,14 @@
 /**
  * SfReviewTypeEntity form base class.
  *
+ * @method SfReviewTypeEntity getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfReviewTypeEntityForm extends BaseFormPropel
+abstract class BaseSfReviewTypeEntityForm extends BaseFormPropel
 {
   public function setup()
   {
@@ -17,7 +19,7 @@ class BaseSfReviewTypeEntityForm extends BaseFormPropel
       'entity_id'         => new sfWidgetFormInputHidden(),
       'date'              => new sfWidgetFormInputHidden(),
       'value'             => new sfWidgetFormInputHidden(),
-      'sum'               => new sfWidgetFormInput(),
+      'sum'               => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(

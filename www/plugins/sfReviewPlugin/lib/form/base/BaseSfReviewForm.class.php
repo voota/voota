@@ -3,37 +3,39 @@
 /**
  * SfReview form base class.
  *
+ * @method SfReview getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfReviewForm extends BaseFormPropel
+abstract class BaseSfReviewForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
-      'entity_id'           => new sfWidgetFormInput(),
-      'value'               => new sfWidgetFormInput(),
+      'entity_id'           => new sfWidgetFormInputText(),
+      'value'               => new sfWidgetFormInputText(),
       'sf_guard_user_id'    => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
       'sf_review_type_id'   => new sfWidgetFormPropelChoice(array('model' => 'SfReviewType', 'add_empty' => true)),
       'sf_review_status_id' => new sfWidgetFormPropelChoice(array('model' => 'SfReviewStatus', 'add_empty' => false)),
       'created_at'          => new sfWidgetFormDateTime(),
-      'cookie'              => new sfWidgetFormInput(),
-      'ip_address'          => new sfWidgetFormInput(),
-      'text'                => new sfWidgetFormInput(),
+      'cookie'              => new sfWidgetFormInputText(),
+      'ip_address'          => new sfWidgetFormInputText(),
+      'text'                => new sfWidgetFormInputText(),
       'modified_at'         => new sfWidgetFormDateTime(),
-      'culture'             => new sfWidgetFormInput(),
+      'culture'             => new sfWidgetFormInputText(),
       'sf_review_id'        => new sfWidgetFormPropelChoice(array('model' => 'SfReview', 'add_empty' => true)),
-      'balance'             => new sfWidgetFormInput(),
+      'balance'             => new sfWidgetFormInputText(),
       'is_active'           => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
       'id'                  => new sfValidatorPropelChoice(array('model' => 'SfReview', 'column' => 'id', 'required' => false)),
-      'entity_id'           => new sfValidatorInteger(array('required' => false)),
-      'value'               => new sfValidatorInteger(),
+      'entity_id'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
+      'value'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'sf_guard_user_id'    => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id')),
       'sf_review_type_id'   => new sfValidatorPropelChoice(array('model' => 'SfReviewType', 'column' => 'id', 'required' => false)),
       'sf_review_status_id' => new sfValidatorPropelChoice(array('model' => 'SfReviewStatus', 'column' => 'id')),
@@ -44,7 +46,7 @@ class BaseSfReviewForm extends BaseFormPropel
       'modified_at'         => new sfValidatorDateTime(array('required' => false)),
       'culture'             => new sfValidatorString(array('max_length' => 5, 'required' => false)),
       'sf_review_id'        => new sfValidatorPropelChoice(array('model' => 'SfReview', 'column' => 'id', 'required' => false)),
-      'balance'             => new sfValidatorInteger(array('required' => false)),
+      'balance'             => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'is_active'           => new sfValidatorBoolean(),
     ));
 
