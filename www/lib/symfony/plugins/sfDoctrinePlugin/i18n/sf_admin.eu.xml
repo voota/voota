@@ -7,167 +7,163 @@
       <!-- Actions -->
       <trans-unit>
         <source>New</source>
-        <target>Nouveau</target>
+        <target>Berria</target>
       </trans-unit>
       <trans-unit>
         <source>Edit</source>
-        <target>Modifier</target>
+        <target>Aldatu</target>
       </trans-unit>
       <trans-unit>
         <source>Delete</source>
-        <target>Supprimer</target>
+        <target>Ezabatu</target>
       </trans-unit>
       <trans-unit>
         <source>List</source>
-        <target>Liste</target>
+        <target>Zerrendatu</target>
       </trans-unit>
       <trans-unit>
         <source>Save</source>
-        <target>Mettre à jour</target>
+        <target>Gorde</target>
       </trans-unit>
       <trans-unit>
         <source>Save and add</source>
-        <target>Mettre à jour et ajouter</target>
+        <target>Gorde eta berria</target>
       </trans-unit>
       <trans-unit>
         <source>Cancel</source>
-        <target>Annuler</target>
+        <target>Ezeztatu</target>
       </trans-unit>
       <trans-unit>
         <source>Choose an action</source>
-        <target>Choisir une action</target>
+        <target>Ekintza bat aukeratu</target>
       </trans-unit>
       <trans-unit>
         <source>go</source>
         <target>ok</target>
       </trans-unit>
-      <trans-unit>
-        <source>Back to list</source>
-        <target>Retour à la liste</target>
-      </trans-unit>
 
       <!-- Filters -->
       <trans-unit>
         <source>Reset</source>
-        <target>Effacer</target>
+        <target>Garbitu</target>
       </trans-unit>
       <trans-unit>
         <source>Filter</source>
-        <target>Filtrer</target>
+        <target>Mugatu</target>
       </trans-unit>
 
       <!-- List -->
       <trans-unit>
         <source>No result</source>
-        <target>Aucun résultat.</target>
+        <target>Emaitzarik ez</target>
       </trans-unit>
       <trans-unit>
         <source>Actions</source>
-        <target>Actions</target>
+        <target>Ekintzak</target>
       </trans-unit>
       <trans-unit>
         <source>(page %%page%%/%%nb_pages%%)</source>
-        <target>(page %%page%%/%%nb_pages%%)</target>
+        <target>(%%page%%/%%nb_pages%% orria)</target>
       </trans-unit>
       <trans-unit>
         <source>asc</source>
-        <target>asc</target>
+        <target>gora</target>
       </trans-unit>
       <trans-unit>
         <source>desc</source>
-        <target>desc</target>
+        <target>behera</target>
       </trans-unit>
       <trans-unit>
         <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
-        <target>[0] aucun résultat|[1] 1 résultat|(1,+Inf] %1% résultats</target>
+        <target>[0] emaitzarik ez|[1] emaitza bat|(1,+Inf] %1% emaitzak</target>
       </trans-unit>
 
       <!-- Pagination -->
       <trans-unit>
         <source>First page</source>
-        <target>Première page</target>
+        <target>Lehen orria</target>
       </trans-unit>
       <trans-unit>
         <source>Previous page</source>
-        <target>Page précédente</target>
+        <target>Aurreko orria</target>
       </trans-unit>
       <trans-unit>
         <source>Next page</source>
-        <target>Page suivante</target>
+        <target>Hurrengo orria</target>
       </trans-unit>
       <trans-unit>
         <source>Last page</source>
-        <target>Dernière page</target>
+        <target>Azken orria</target>
       </trans-unit>
 
       <!-- Form -->
       <trans-unit>
         <source>The item was created successfully.</source>
-        <target>L'objet a été ajouté avec succès.</target>
+        <target>Elementua egoki sortu da.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was updated successfully.</source>
-        <target>L'objet a été mis à jour avec succès.</target>
+        <target>Elementua egoki eguneratu da.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was created successfully. You can add another one below.</source>
-        <target>L'objet a été ajouté avec succès. Vous pouvez en ajouter un autre.</target>
+        <target>Elementua egoki sortu da eta orain beste elementu bat sor dezakezu.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was updated successfully. You can add another one below.</source>
-        <target>L'objet a été mis à jour avec succès. Vous pouvez en ajouter un autre.</target>
+        <target>Elementua egoki eguneratu da eta orain beste elementu bat sor dezakezu.</target>
       </trans-unit>
       <trans-unit>
         <source>The item has not been saved due to some errors.</source>
-        <target>L'objet n'a pu être mis à jour.</target>
+        <target>Elementua ez da gorde errakuntzaren bat gertatu delako.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was deleted successfully.</source>
-        <target>L'objet a été supprimé avec succès.</target>
+        <target>Elementua egoki ezabatu da.</target>
       </trans-unit>
       <trans-unit>
         <source>You must at least select one item.</source>
-        <target>Vous devez au moins sélectionner un objet.</target>
+        <target>Gutxienez, elementu bat aukeratu behar duzu.</target>
       </trans-unit>
       <trans-unit>
         <source>You must select an action to execute on the selected items.</source>
-        <target>Vous devez sélectionner une action à executer sur les objets sélectionnés.</target>
+        <target>Aukeratutako elementuen artean, exekutatu nahi duzun ekintza aukeratu.</target>
       </trans-unit>
       <trans-unit>
         <source>A problem occurs when deleting the selected items as some items do not exist anymore.</source>
-        <target>Un problème est survenu lors de la suppression des objets sélectionnés car certains objets n'existent plus.</target>
+        <target>Aukeratutako elementuak ezabatzerakoan errakuntza bat gertatu da, horietako bat, gutxienez, existitzen ez delako.</target>
       </trans-unit>
       <trans-unit>
         <source>The selected items have been deleted successfully.</source>
-        <target>Les objets sélectionnés ont été supprimés avec succès.</target>
+        <target>Aukeratutako elementuak egoki ezabatu dira.</target>
       </trans-unit>
       <trans-unit>
         <source>A problem occurs when deleting the selected items.</source>
-        <target>Un problème est survenu lors de la suppression des objets sélectionnés.</target>
+        <target>Errakuntza bat gertatu da, aukeratutako elementuak ezabatzerakoan.</target>
       </trans-unit>
       <trans-unit>
         <source>is empty</source>
-        <target>est vide</target>
+        <target>hutsik</target>
       </trans-unit>
       <trans-unit>
         <source>yes or no</source>
-        <target>oui ou non</target>
+        <target>bai ala ez</target>
       </trans-unit>
       <trans-unit>
         <source>yes</source>
-        <target>oui</target>
+        <target>bai</target>
       </trans-unit>
       <trans-unit>
         <source>no</source>
-        <target>non</target>
+        <target>ez</target>
       </trans-unit>
       <trans-unit>
         <source><![CDATA[from %from_date% to %to_date%]]></source>
-        <target><![CDATA[du %from_date% au %to_date%]]></target>
+        <target><![CDATA[%from_date%-tik %to_date%-ra]]></target>
       </trans-unit>
       <trans-unit>
         <source><![CDATA[from %from_date%<br />to %to_date%]]></source>
-        <target><![CDATA[du %from_date%<br />au %to_date%]]></target>
+        <target><![CDATA[%from_date%-tik<br /> %to_date%-ra]]></target>
       </trans-unit>
     </body>
   </file>
