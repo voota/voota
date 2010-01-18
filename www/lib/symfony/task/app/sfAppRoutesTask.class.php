@@ -3,7 +3,7 @@
 /*
  * This file is part of the symfony package.
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -14,10 +14,13 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfAppRoutesTask.class.php 12806 2008-11-09 08:07:57Z fabien $
+ * @version    SVN: $Id: sfAppRoutesTask.class.php 23549 2009-11-03 09:10:12Z fabien $
  */
 class sfAppRoutesTask extends sfBaseTask
 {
+  protected
+    $routes = array();
+
   /**
    * @see sfTask
    */
@@ -44,16 +47,7 @@ EOF;
    */
   protected function execute($arguments = array(), $options = array())
   {
-    // get routes
-    $config = new sfRoutingConfigHandler();
-    $routes = $config->evaluate($this->configuration->getConfigPaths('config/routing.yml'));
-
-    $routing = new sfPatternRouting($this->dispatcher);
-    $routing->setRoutes($routes);
-
-    $this->dispatcher->notify(new sfEvent($routing, 'routing.load_configuration'));
-
-    $this->routes = $routing->getRoutes();
+    $this->routes = $this->getRouting()->getRoutes();
 
     // display
     $arguments['name'] ? $this->outputRoute($arguments['application'], $arguments['name']) : $this->outputRoutes($arguments['application']);
@@ -112,7 +106,7 @@ EOF;
     ksort($d);
     foreach ($d as $name => $value)
     {
-      $defaults .= ($defaults ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->arrayToString($value);
+      $defaults .= ($defaults ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->formatValue($value);
     }
     $this->log(sprintf('%s     %s', $this->formatter->format('Defaults', 'COMMENT'), $defaults));
 
@@ -121,7 +115,7 @@ EOF;
     ksort($r);
     foreach ($r as $name => $value)
     {
-      $requirements .= ($requirements ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->arrayToString($value);
+      $requirements .= ($requirements ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->formatValue($value);
     }
     $this->log(sprintf('%s %s', $this->formatter->format('Requirements', 'COMMENT'), $requirements));
 
@@ -130,7 +124,7 @@ EOF;
     ksort($o);
     foreach ($o as $name => $value)
     {
-      $options .= ($options ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->arrayToString($value);
+      $options .= ($options ? "\n".str_repeat(' ', 13) : '').$name.': '.$this->formatValue($value);
     }
     $this->log(sprintf('%s      %s', $this->formatter->format('Options', 'COMMENT'), $options));
     $this->log(sprintf('%s        %s', $this->formatter->format('Regex', 'COMMENT'), preg_replace('/^             /', '', preg_replace('/^/m', '             ', $route->getRegex()))));
@@ -155,11 +149,18 @@ EOF;
     $type = array_shift($token);
     array_shift($token);
 
-    return sprintf('%-10s %s', $type, $this->arrayToString($token));
+    return sprintf('%-10s %s', $type, $this->formatValue($token));
   }
 
-  protected function arrayToString($array)
+  protected function formatValue($value)
   {
-    return preg_replace("/\n\s*/s", '', var_export($array, true));
+    if (is_object($value))
+    {
+      return sprintf('object(%s)', get_class($value));
+    }
+    else
+    {
+      return preg_replace("/\n\s*/s", '', var_export($value, true));
+    }
   }
 }

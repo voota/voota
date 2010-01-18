@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfCacheClearTask.class.php 16656 2009-03-27 08:44:15Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfCacheClearTask.class.php 22180 2009-09-19 18:47:20Z FabianLange $
  */
 class sfCacheClearTask extends sfBaseTask
 {
@@ -81,7 +81,7 @@ EOF;
     $dirFinder = sfFinder::type('dir')->discard('.sf')->maxdepth(0)->relative();
 
     // iterate through applications
-    $apps = is_null($options['app']) ? $dirFinder->in(sfConfig::get('sf_apps_dir')) : array($options['app']);
+    $apps = null === $options['app'] ? $dirFinder->in(sfConfig::get('sf_apps_dir')) : array($options['app']);
     foreach ($apps as $app)
     {
       $this->checkAppExists($app);
@@ -92,7 +92,7 @@ EOF;
       }
 
       // iterate through environments
-      $envs = is_null($options['env']) ? $dirFinder->in(sfConfig::get('sf_cache_dir').'/'.$app) : array($options['env']);
+      $envs = null === $options['env'] ? $dirFinder->in(sfConfig::get('sf_cache_dir').'/'.$app) : array($options['env']);
       foreach ($envs as $env)
       {
         if (!is_dir(sfConfig::get('sf_cache_dir').'/'.$app.'/'.$env))
@@ -123,7 +123,7 @@ EOF;
     }
 
     // clear global cache
-    if (is_null($options['app']) && 'all' == $options['type'])
+    if (null === $options['app'] && 'all' == $options['type'])
     {
       $this->getFilesystem()->remove(sfFinder::type('file')->discard('.sf')->in(sfConfig::get('sf_cache_dir')));
     }
@@ -158,21 +158,30 @@ EOF;
   {
     $config = $this->getFactoriesConfiguration($appConfiguration);
 
-    $this->cleanCacheFromFactoryConfig($config['i18n']['param']['cache']['class'], $config['i18n']['param']['cache']['param']);
+    if (isset($config['i18n']['param']['cache']))
+    {
+      $this->cleanCacheFromFactoryConfig($config['i18n']['param']['cache']);
+    }
   }
 
   protected function clearRoutingCache(sfApplicationConfiguration $appConfiguration)
   {
     $config = $this->getFactoriesConfiguration($appConfiguration);
 
-    $this->cleanCacheFromFactoryConfig($config['routing']['param']['cache']['class'], $config['routing']['param']['cache']['param']);
+    if (isset($config['routing']['param']['cache']))
+    {
+      $this->cleanCacheFromFactoryConfig($config['routing']['param']['cache']);
+    }
   }
 
   protected function clearTemplateCache(sfApplicationConfiguration $appConfiguration)
   {
     $config = $this->getFactoriesConfiguration($appConfiguration);
 
-    $this->cleanCacheFromFactoryConfig($config['view_cache']['class'], $config['view_cache']['param']);
+    if (isset($config['view_cache']))
+    {
+      $this->cleanCacheFromFactoryConfig($config['view_cache']);
+    }
   }
 
   protected function clearModuleCache(sfApplicationConfiguration $appConfiguration)
@@ -208,6 +217,19 @@ EOF;
   {
     if ($class)
     {
+      // the standard array with ['class'] and ['param'] can be passed as well
+      if (is_array($class))
+      {
+        if (!isset($class['class']))
+        {
+          return;
+        }
+        if (isset($class['param']))
+        {
+          $parameters = $class['param'];
+        }
+        $class = $class['class'];
+      }
       $cache = new $class($parameters);
       $cache->clean();
     }
