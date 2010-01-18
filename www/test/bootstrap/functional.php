@@ -8,19 +8,66 @@
  * file that was distributed with this source code.
  */
 
-// guess current application
-if (!isset($app))
-{
-  $traces = debug_backtrace();
-  $caller = $traces[0];
+// setup expected test environment (per check_configuration.php)
+ini_set('magic_quotes_runtime', 'off');
+ini_set('session.auto_start', 'off');
+ini_set('arg_separator.output', '&amp;');
+ini_set('allow_url_fopen', 'on');
 
-  $dirPieces = explode(DIRECTORY_SEPARATOR, dirname($caller['file']));
-  $app = array_pop($dirPieces);
+if (!isset($root_dir))
+{
+  $root_dir = realpath(dirname(__FILE__).sprintf('/../%s/fixtures', isset($type) ? $type : 'functional'));
 }
 
-require_once dirname(__FILE__).'/../../config/ProjectConfiguration.class.php';
+require_once $root_dir.'/config/ProjectConfiguration.class.php';
 $configuration = ProjectConfiguration::getApplicationConfiguration($app, 'test', isset($debug) ? $debug : true);
-sfContext::createInstance($configuration);
 
 // remove all cache
-sfToolkit::clearDirectory(sfConfig::get('sf_app_cache_dir'));
+sf_functional_test_shutdown();
+register_shutdown_function('sf_functional_test_shutdown');
+
+sfContext::createInstance($configuration);
+
+function sf_functional_test_shutdown_cleanup()
+{
+  sfToolkit::clearDirectory(sfConfig::get('sf_cache_dir'));
+  sfToolkit::clearDirectory(sfConfig::get('sf_log_dir'));
+
+  $sf_root_dir = sys_get_temp_dir().'/sf_test_project';
+  if (is_dir($sf_root_dir))
+  {
+    sfToolkit::clearDirectory($sf_root_dir);
+    @rmdir($sf_root_dir);
+  }
+
+  $sessions = glob(sys_get_temp_dir().'/sessions*');
+  $tmp_files = glob(sys_get_temp_dir().'/sf*');
+  $files = array_merge(empty($sessions) ? array() : $sessions, empty($tmp_files) ? array() : $tmp_files);
+  foreach ($files as $file)
+  {
+    if (is_dir($file))
+    {
+      sfToolkit::clearDirectory($file);
+      @rmdir($file);
+    }
+    else
+    {
+      @unlink($file);
+    }
+  }
+}
+
+function sf_functional_test_shutdown()
+{
+  // try/catch needed due to http://bugs.php.net/bug.php?id=33598
+  try
+  {
+    sf_functional_test_shutdown_cleanup();
+  }
+  catch (Exception $e)
+  {
+    echo $e.PHP_EOL;
+  }
+}
+
+return true;
