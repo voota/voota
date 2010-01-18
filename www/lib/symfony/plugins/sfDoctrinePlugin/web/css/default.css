@@ -201,6 +201,7 @@
   color: #333;
   background-color: #ccf;
   font-size: 11px;
+  margin: 0;
 }
 
 #sf_admin_container fieldset
@@ -262,7 +263,8 @@
   border: 1px solid #f22;
 }
 
-.sf_admin_list .sf_admin_boolean
+#sf_admin_container .sf_admin_list .sf_admin_boolean
 {
   text-align: center;
 }
+
