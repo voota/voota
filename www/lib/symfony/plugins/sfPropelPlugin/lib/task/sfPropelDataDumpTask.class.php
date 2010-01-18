@@ -16,9 +16,9 @@ require_once(dirname(__FILE__).'/sfPropelBaseTask.class.php');
  * @package    symfony
  * @subpackage propel
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfPropelDumpDataTask.class.php 13389 2008-11-27 08:39:00Z fabien $
+ * @version    SVN: $Id: sfPropelDataDumpTask.class.php 21908 2009-09-11 12:06:21Z fabien $
  */
-class sfPropelDumpDataTask extends sfPropelBaseTask
+class sfPropelDataDumpTask extends sfPropelBaseTask
 {
   /**
    * @see sfTask
@@ -55,7 +55,7 @@ The task will dump data in [data/fixtures/%target%|COMMENT]
 (data/fixtures/dump.yml in the example).
 
 The dump file is in the YML format and can be re-imported by using
-the [propel:data-dump|INFO] task.
+the [propel:data-load|INFO] task.
 
 By default, the task use the [propel|COMMENT] connection as defined in [config/databases.yml|COMMENT].
 You can use another connection by using the [connection|COMMENT] option:
@@ -81,7 +81,7 @@ EOF;
     $databaseManager = new sfDatabaseManager($this->configuration);
 
     $filename = $arguments['target'];
-    if (!is_null($filename) && !sfToolkit::isPathAbsolute($filename))
+    if (null !== $filename && !sfToolkit::isPathAbsolute($filename))
     {
       $dir = sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'fixtures';
       $this->getFilesystem()->mkdirs($dir);
@@ -92,9 +92,9 @@ EOF;
 
     $data = new sfPropelData();
 
-    $classes = is_null($options['classes']) ? 'all' : explode(',', $options['classes']);
+    $classes = null === $options['classes'] ? 'all' : explode(',', $options['classes']);
 
-    if (!is_null($filename))
+    if (null !== $filename)
     {
       $data->dumpData($filename, $classes, $options['connection']);
     }
