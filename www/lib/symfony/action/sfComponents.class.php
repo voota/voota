@@ -14,11 +14,13 @@
  * @package    symfony
  * @subpackage action
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfComponents.class.php 9044 2008-05-19 06:18:41Z Carl.Vondrick $
+ * @version    SVN: $Id: sfComponents.class.php 20780 2009-08-04 20:30:32Z Kris.Wallsmith $
  */
 abstract class sfComponents extends sfComponent
 {
   /**
+   * @throws sfInitializationException
+   *
    * @see sfComponent
    */
   public function execute($request)

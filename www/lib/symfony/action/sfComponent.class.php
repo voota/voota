@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage action
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfComponent.class.php 17858 2009-05-01 21:22:50Z FabianLange $
+ * @version    SVN: $Id: sfComponent.class.php 23544 2009-11-03 08:48:31Z fabien $
  */
 abstract class sfComponent
 {
@@ -145,7 +145,7 @@ abstract class sfComponent
   {
     if (sfConfig::get('sf_web_debug') && sfConfig::get('sf_logging_enabled'))
     {
-      $this->dispatcher->notify(new sfEvent(null, 'application.log', array('This feature is deprecated in favor of the log_message helper.', 'priority' => sfLogger::ERR)));
+      $this->dispatcher->notify(new sfEvent(null, 'application.log', array('This function is deprecated in favor of the logMessage function.', 'priority' => sfLogger::ERR)));
     }
   }
 
@@ -253,6 +253,16 @@ abstract class sfComponent
   public function getUser()
   {
     return $this->context->getUser();
+  }
+
+  /**
+   * Gets the current mailer instance.
+   *
+   * @return sfMailer A sfMailer instance
+   */
+  public function getMailer()
+  {
+    return $this->getContext()->getMailer();
   }
 
   /**
@@ -367,6 +377,8 @@ abstract class sfComponent
    * @param array  $arguments The method arguments
    *
    * @return mixed The returned value of the called method
+   *
+   * @throws sfException If called method is undefined
    */
   public function __call($method, $arguments)
   {
