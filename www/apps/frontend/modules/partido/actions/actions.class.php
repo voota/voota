@@ -35,6 +35,16 @@ class partidoActions extends sfActions
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->institucion = ALL_FORM_VALUE;
   	
+  	/* Orden de resultados
+  	 * pa: positivos ascendente
+  	 * pd: positivos descendente
+  	 * na: negativos ascendente
+  	 * nd: negativos descendente
+  	 */
+  	$o = $request->getParameter("o");
+  	$this->order = $o;
+  	/* Fin Orden */
+  	
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
@@ -51,7 +61,32 @@ class partidoActions extends sfActions
     $pager->init();
     $this->forward404Unless( $pager->getNbResults() != 0 );
     
-    $this->partidoPager = $pager;
+    $this->partidosPager = $pager;
+    
+    /* Lista de instituciones */ 
+  	$c = new Criteria();
+  	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
+  	$this->instituciones = InstitucionPeer::doSelect($c);
+  	/*  Fin Lista de instituciones */
+  	
+  	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
+  	$params = "";
+  	foreach ($request->getParameterHolder()->getAll() as $name => $value){
+  		if ($name != 'module' && $name != 'action'){
+  			if ($params === ""){
+  				$params .= "?";
+  			}
+  			else {
+  				$params .= "&";
+  			}
+  			$params .= "$name=$value";
+  		}
+  	}
+  	$this->route = "@$rule$params";
+  	
+  	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
+  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
+  	$this->title = $this->pageTitle . ' - Voota';
   }
 
   public function executeShow(sfWebRequest $request)

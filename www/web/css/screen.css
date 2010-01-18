@@ -270,6 +270,20 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
 #politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
 
+/* Ranking de partidos */
+#partido-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
+#partido-ranking h2 select { font-size: 0.65em;}
+#partido-ranking table { margin: 0 auto; width: 100%; }
+#partido-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
+#partido-ranking table tbody td,
+#partido-ranking table tfoot td { padding: 1em 0; }
+#partido-ranking table .ranking { text-align: right; width: 16%; }
+#partido-ranking table .position { text-align: right; width: 3%; }
+#partido-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
+#partido-ranking table .name { text-align: left; width: 24%; }
+#partido-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
+#partido-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
+
 /* Resultados de búsqueda */
 #general-search table { margin: 0 auto; width: 90%; }
 #general-search table th { background-color: #f6f6f6; padding: 0.5em 0; }
