@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd" >
 <xliff version="1.0">
   <file original="global" source-language="en" datatype="plaintext">
@@ -7,167 +7,139 @@
       <!-- Actions -->
       <trans-unit>
         <source>New</source>
-        <target>Nouveau</target>
+        <target>Novo</target>
       </trans-unit>
       <trans-unit>
         <source>Edit</source>
-        <target>Modifier</target>
+        <target>Uredi</target>
       </trans-unit>
       <trans-unit>
         <source>Delete</source>
-        <target>Supprimer</target>
+        <target>Izbriši</target>
       </trans-unit>
       <trans-unit>
         <source>List</source>
-        <target>Liste</target>
+        <target>Navedi</target>
       </trans-unit>
       <trans-unit>
         <source>Save</source>
-        <target>Mettre à jour</target>
+        <target>Shrani</target>
       </trans-unit>
       <trans-unit>
         <source>Save and add</source>
-        <target>Mettre à jour et ajouter</target>
+        <target>Shrani in dodaj</target>
       </trans-unit>
       <trans-unit>
         <source>Cancel</source>
-        <target>Annuler</target>
+        <target>Razveljavi</target>
       </trans-unit>
       <trans-unit>
         <source>Choose an action</source>
-        <target>Choisir une action</target>
+        <target>Izberi aktivnost</target>
       </trans-unit>
       <trans-unit>
         <source>go</source>
-        <target>ok</target>
-      </trans-unit>
-      <trans-unit>
-        <source>Back to list</source>
-        <target>Retour à la liste</target>
+        <target>Pojdi</target>
       </trans-unit>
 
       <!-- Filters -->
       <trans-unit>
         <source>Reset</source>
-        <target>Effacer</target>
+        <target>Znova</target>
       </trans-unit>
       <trans-unit>
         <source>Filter</source>
-        <target>Filtrer</target>
+        <target>Filtriraj</target>
       </trans-unit>
 
       <!-- List -->
       <trans-unit>
         <source>No result</source>
-        <target>Aucun résultat.</target>
+        <target>Ni rezultatov</target>
       </trans-unit>
       <trans-unit>
         <source>Actions</source>
-        <target>Actions</target>
+        <target>Aktivnosti</target>
       </trans-unit>
       <trans-unit>
         <source>(page %%page%%/%%nb_pages%%)</source>
-        <target>(page %%page%%/%%nb_pages%%)</target>
+        <target>(stran %%stran%%/%%nb_stran%%)</target>
       </trans-unit>
       <trans-unit>
         <source>asc</source>
-        <target>asc</target>
+        <target>navzgor</target>
       </trans-unit>
       <trans-unit>
         <source>desc</source>
-        <target>desc</target>
+        <target>navzdol</target>
       </trans-unit>
       <trans-unit>
         <source>[0] no result|[1] 1 result|(1,+Inf] %1% results</source>
-        <target>[0] aucun résultat|[1] 1 résultat|(1,+Inf] %1% résultats</target>
+        <target>[0] ni rezultata|[1] 1 rezultat|(1,+Inf] %1% rezultati</target>
       </trans-unit>
 
       <!-- Pagination -->
       <trans-unit>
         <source>First page</source>
-        <target>Première page</target>
+        <target>Prva stran</target>
       </trans-unit>
       <trans-unit>
         <source>Previous page</source>
-        <target>Page précédente</target>
+        <target>Prejšnja stran</target>
       </trans-unit>
       <trans-unit>
         <source>Next page</source>
-        <target>Page suivante</target>
+        <target>Naslednja stran</target>
       </trans-unit>
       <trans-unit>
         <source>Last page</source>
-        <target>Dernière page</target>
+        <target>Zadnja stran</target>
       </trans-unit>
 
       <!-- Form -->
       <trans-unit>
         <source>The item was created successfully.</source>
-        <target>L'objet a été ajouté avec succès.</target>
+        <target>Predmet ste uspešno dodali.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was updated successfully.</source>
-        <target>L'objet a été mis à jour avec succès.</target>
+        <target>Predmet ste uspešno shranili.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was created successfully. You can add another one below.</source>
-        <target>L'objet a été ajouté avec succès. Vous pouvez en ajouter un autre.</target>
+        <target>Predmet ste uspešno dodali. Lahko dodate novega.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was updated successfully. You can add another one below.</source>
-        <target>L'objet a été mis à jour avec succès. Vous pouvez en ajouter un autre.</target>
+        <target>Predmet ste uspešno shranili. Lahko dodate novega.</target>
       </trans-unit>
       <trans-unit>
         <source>The item has not been saved due to some errors.</source>
-        <target>L'objet n'a pu être mis à jour.</target>
+        <target>Predmeta zaradi napake niste uspeli shraniti.</target>
       </trans-unit>
       <trans-unit>
         <source>The item was deleted successfully.</source>
-        <target>L'objet a été supprimé avec succès.</target>
+        <target>Predmet ste uspešno izbrisali.</target>
       </trans-unit>
       <trans-unit>
         <source>You must at least select one item.</source>
-        <target>Vous devez au moins sélectionner un objet.</target>
+        <target>Izbrati morate vsaj en predmet.</target>
       </trans-unit>
       <trans-unit>
         <source>You must select an action to execute on the selected items.</source>
-        <target>Vous devez sélectionner une action à executer sur les objets sélectionnés.</target>
+        <target>Izbrati morate eno aktivnost za izbrane predmete.</target>
       </trans-unit>
       <trans-unit>
         <source>A problem occurs when deleting the selected items as some items do not exist anymore.</source>
-        <target>Un problème est survenu lors de la suppression des objets sélectionnés car certains objets n'existent plus.</target>
+        <target>Pri brisanju izbranih predmetov se je pojavila napaka, ker določeni predmeti ne obstajajo več.</target>
       </trans-unit>
       <trans-unit>
         <source>The selected items have been deleted successfully.</source>
-        <target>Les objets sélectionnés ont été supprimés avec succès.</target>
+        <target>Izbrane predmete ste uspešno izbrisali.</target>
       </trans-unit>
       <trans-unit>
         <source>A problem occurs when deleting the selected items.</source>
-        <target>Un problème est survenu lors de la suppression des objets sélectionnés.</target>
-      </trans-unit>
-      <trans-unit>
-        <source>is empty</source>
-        <target>est vide</target>
-      </trans-unit>
-      <trans-unit>
-        <source>yes or no</source>
-        <target>oui ou non</target>
-      </trans-unit>
-      <trans-unit>
-        <source>yes</source>
-        <target>oui</target>
-      </trans-unit>
-      <trans-unit>
-        <source>no</source>
-        <target>non</target>
-      </trans-unit>
-      <trans-unit>
-        <source><![CDATA[from %from_date% to %to_date%]]></source>
-        <target><![CDATA[du %from_date% au %to_date%]]></target>
-      </trans-unit>
-      <trans-unit>
-        <source><![CDATA[from %from_date%<br />to %to_date%]]></source>
-        <target><![CDATA[du %from_date%<br />au %to_date%]]></target>
+        <target>Pri brisanju izbranih predmetov se je pojavila napaka.</target>
       </trans-unit>
     </body>
   </file>
