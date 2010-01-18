@@ -16,7 +16,7 @@
  * @subpackage view
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfPHPView.class.php 11783 2008-09-25 16:21:27Z fabien $
+ * @version    SVN: $Id: sfPHPView.class.php 24615 2009-11-30 22:30:46Z Kris.Wallsmith $
  */
 class sfPHPView extends sfView
 {
@@ -69,12 +69,23 @@ class sfPHPView extends sfView
     $this->loadCoreAndStandardHelpers();
 
     // EXTR_REFS can't be used (see #3595 and #3151)
-    extract($this->attributeHolder->toArray());
+    $vars = $this->attributeHolder->toArray();
+    extract($vars);
 
     // render
     ob_start();
     ob_implicit_flush(0);
-    require($_sfFile);
+
+    try
+    {
+      require($_sfFile);
+    }
+    catch (Exception $e)
+    {
+      // need to end output buffering before throwing the exception #7596
+      ob_end_clean();
+      throw $e;
+    }
 
     return ob_get_clean();
   }
@@ -150,12 +161,12 @@ class sfPHPView extends sfView
     if (sfConfig::get('sf_cache'))
     {
       $viewCache = $this->context->getViewCacheManager();
-      $uri = $this->context->getRouting()->getCurrentInternalUri();
+      $uri = $viewCache->getCurrentCacheKey();
 
-      if (!is_null($uri))
+      if (null !== $uri)
       {
         list($content, $decoratorTemplate) = $viewCache->getActionCache($uri);
-        if (!is_null($content))
+        if (null !== $content)
         {
           $this->setDecoratorTemplate($decoratorTemplate);
         }
@@ -163,7 +174,7 @@ class sfPHPView extends sfView
     }
 
     // render template if no cache
-    if (is_null($content))
+    if (null === $content)
     {
       // execute pre-render check
       $this->preRenderCheck();
@@ -173,7 +184,7 @@ class sfPHPView extends sfView
       // render template file
       $content = $this->renderFile($this->getDirectory().'/'.$this->getTemplate());
 
-      if (sfConfig::get('sf_cache') && !is_null($uri))
+      if (sfConfig::get('sf_cache') && null !== $uri)
       {
         $content = $viewCache->setActionCache($uri, $content, $this->isDecorator() ? $this->getDecoratorDirectory().'/'.$this->getDecoratorTemplate() : false);
       }
