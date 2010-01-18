@@ -16,7 +16,7 @@
  * @subpackage util
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfToolkit.class.php 14169 2008-12-18 10:13:51Z FabianLange $
+ * @version    SVN: $Id: sfToolkit.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class sfToolkit
 {
@@ -143,35 +143,6 @@ class sfToolkit
   }
 
   /**
-   * Determine if a lock file is present.
-   *
-   * @param  string  $lockFile             Name of the lock file.
-   * @param  integer $maxLockFileLifeTime  A max amount of life time for the lock file.
-   *
-   * @return bool true, if the lock file is present, otherwise false.
-   */
-  public static function hasLockFile($lockFile, $maxLockFileLifeTime = 0)
-  {
-    $isLocked = false;
-    if (is_readable($lockFile) && ($last_access = fileatime($lockFile)))
-    {
-      $now = time();
-      $timeDiff = $now - $last_access;
-
-      if (!$maxLockFileLifeTime || $timeDiff < $maxLockFileLifeTime)
-      {
-        $isLocked = true;
-      }
-      else
-      {
-        $isLocked = @unlink($lockFile) ? false : true;
-      }
-    }
-
-    return $isLocked;
-  }
-
-  /**
    * Strips comments from php source code
    *
    * @param  string $source  PHP source code.
@@ -180,7 +151,7 @@ class sfToolkit
    */
   public static function stripComments($source)
   {
-    if (!sfConfig::get('sf_strip_comments', true) || !function_exists('token_get_all'))
+    if (!function_exists('token_get_all'))
     {
       return $source;
     }
@@ -188,15 +159,20 @@ class sfToolkit
     $ignore = array(T_COMMENT => true, T_DOC_COMMENT => true);
     $output = '';
 
-    foreach (token_get_all($source) as $token) {
+    foreach (token_get_all($source) as $token)
+    {
       // array
-      if (isset($token[1])) {
+      if (isset($token[1]))
+      {
         // no action on comments
-        if (!isset($ignore[$token[0]])) {
+        if (!isset($ignore[$token[0]]))
+        {
           // anything else -> output "as is"
           $output .= $token[1];
         }
-      } else {
+      }
+      else
+      {
         // simple 1-character token
         $output .= $token;
       }
@@ -703,8 +679,7 @@ class sfToolkit
       {
         foreach (explode(PATH_SEPARATOR, $path) as $dir)
         {
-          $file = $dir.DIRECTORY_SEPARATOR.$phpCli.$suffix;
-          if (is_executable($file))
+          if (is_file($file = $dir.DIRECTORY_SEPARATOR.$phpCli.$suffix) && is_executable($file))
           {
             return $file;
           }
@@ -716,44 +691,11 @@ class sfToolkit
   }
 
   /**
-   * From PEAR System.php
-   *
-   * LICENSE: This source file is subject to version 3.0 of the PHP license
-   * that is available through the world-wide-web at the following URI:
-   * http://www.php.net/license/3_0.txt.  If you did not receive a copy of
-   * the PHP License and are unable to obtain it through the web, please
-   * send a note to license@php.net so we can mail you a copy immediately.
-   *
-   * @author     Tomas V.V.Cox <cox@idecnet.com>
-   * @copyright  1997-2006 The PHP Group
-   * @license    http://www.php.net/license/3_0.txt  PHP License 3.0
+   * DEPRECATED. Use sys_get_temp_dir() directly (available since PHP 5.2.1).
    */
   public static function getTmpDir()
   {
-    if (DIRECTORY_SEPARATOR == '\\')
-    {
-      if ($var = isset($_ENV['TEMP']) ? $_ENV['TEMP'] : getenv('TEMP'))
-      {
-        return $var;
-      }
-      if ($var = isset($_ENV['TMP']) ? $_ENV['TMP'] : getenv('TMP'))
-      {
-        return $var;
-      }
-      if ($var = isset($_ENV['windir']) ? $_ENV['windir'] : getenv('windir'))
-      {
-        return $var;
-      }
-
-      return getenv('SystemRoot').'\temp';
-    }
-
-    if ($var = isset($_ENV['TMPDIR']) ? $_ENV['TMPDIR'] : getenv('TMPDIR'))
-    {
-      return $var;
-    }
-
-    return '/tmp';
+    return sys_get_temp_dir();
   }
 
   /**

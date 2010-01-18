@@ -9,17 +9,22 @@
  */
 
 /**
- * sfValidatorChoiceMany validates than an array of values is in the array of the expected values.
+ * sfValidatorI18nChoiceLanguage validates than the value is a valid timezone.
  *
  * @package    symfony
  * @subpackage validator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfValidatorChoiceMany.class.php 22140 2009-09-18 11:28:09Z fabien $
+ * @version    SVN: $Id: sfValidatorI18nChoiceTimezone.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfValidatorChoiceMany extends sfValidatorChoice
+class sfValidatorI18nChoiceTimezone extends sfValidatorChoice
 {
   /**
    * Configures the current validator.
+   *
+   * Available options:
+   *
+   * @param array $options   An array of options
+   * @param array $messages  An array of error messages
    *
    * @see sfValidatorChoice
    */
@@ -27,6 +32,6 @@ class sfValidatorChoiceMany extends sfValidatorChoice
   {
     parent::configure($options, $messages);
 
-    $this->setOption('multiple', true);
+    $this->setOption('choices', array_keys(sfCultureInfo::getInstance()->getTimeZones()));
   }
 }
