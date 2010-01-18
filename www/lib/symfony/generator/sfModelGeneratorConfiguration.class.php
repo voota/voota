@@ -6,12 +6,64 @@
  * @package    symfony
  * @subpackage generator
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfModelGeneratorConfiguration.class.php 17858 2009-05-01 21:22:50Z FabianLange $
+ * @version    SVN: $Id: sfModelGeneratorConfiguration.class.php 23900 2009-11-14 13:14:07Z bschussek $
  */
-class sfModelGeneratorConfiguration
+abstract class sfModelGeneratorConfiguration
 {
   protected
     $configuration = array();
+
+  abstract public function getActionsDefault();
+
+  abstract public function getFormActions();
+
+  abstract public function getNewActions();
+
+  abstract public function getEditActions();
+
+  abstract public function getListObjectActions();
+
+  abstract public function getListActions();
+
+  abstract public function getListBatchActions();
+
+  abstract public function getListParams();
+
+  abstract public function getListLayout();
+
+  abstract public function getListTitle();
+
+  abstract public function getEditTitle();
+
+  abstract public function getNewTitle();
+
+  abstract public function getFilterDisplay();
+
+  abstract public function getFormDisplay();
+
+  abstract public function getNewDisplay();
+
+  abstract public function getEditDisplay();
+
+  abstract public function getListDisplay();
+
+  abstract public function getFieldsDefault();
+
+  abstract public function getFieldsList();
+
+  abstract public function getFieldsFilter();
+
+  abstract public function getFieldsForm();
+
+  abstract public function getFieldsEdit();
+
+  abstract public function getFieldsNew();
+
+  abstract public function getFormClass();
+
+  abstract public function hasFilterForm();
+
+  abstract public function getFilterFormClass();
 
   /**
    * Constructor.
@@ -36,6 +88,7 @@ class sfModelGeneratorConfiguration
         'title'          => $this->getListTitle(),
         'actions'        => $this->getListActions(),
         'object_actions' => $this->getListObjectActions(),
+        'params'         => $this->getListParams(),
       ),
       'filter' => array(
         'fields'  => array(),
@@ -124,28 +177,12 @@ class sfModelGeneratorConfiguration
       $this->configuration['list']['display'][$name] = $field;
     }
 
-    // list params configuration
-    $this->configuration['list']['params'] = $this->getListParams();
-    preg_match_all('/%%([^%]+)%%/', $this->getListParams(), $matches, PREG_PATTERN_ORDER);
-    foreach ($matches[1] as $name)
-    {
-      list($name, $flag) = sfModelGeneratorConfigurationField::splitFieldWithFlag($name);
-      if (!isset($this->configuration['list']['fields'][$name]))
-      {
-        $this->configuration['list']['fields'][$name] = new sfModelGeneratorConfigurationField($name, array_merge(
-          array('type' => 'Text', 'label' => sfInflector::humanize(sfInflector::underscore($name))),
-          isset($config['default'][$name]) ? $config['default'][$name] : array(),
-          isset($config['list'][$name]) ? $config['list'][$name] : array(),
-          array('flag' => $flag)
-        ));
-      }
-      else
-      {
-        $this->configuration['list']['fields'][$name]->setFlag($flag);
-      }
-
-      $this->configuration['list']['params'] = str_replace('%%'.$flag.$name.'%%', '%%'.$name.'%%', $this->configuration['list']['params']);
-    }
+    // parse the %%..%% variables, remove flags and add default fields where
+    // necessary (fixes #7578)
+    $this->parseVariables('list', 'params');
+    $this->parseVariables('edit', 'title');
+    $this->parseVariables('list', 'title');
+    $this->parseVariables('new', 'title');
 
     // action credentials
     $this->configuration['credentials'] = array(
@@ -170,6 +207,30 @@ class sfModelGeneratorConfiguration
     $this->configuration['credentials']['update'] = $this->configuration['credentials']['edit'];
   }
 
+  protected function parseVariables($context, $key)
+  {
+    preg_match_all('/%%([^%]+)%%/', $this->configuration[$context][$key], $matches, PREG_PATTERN_ORDER);
+    foreach ($matches[1] as $name)
+    {
+      list($name, $flag) = sfModelGeneratorConfigurationField::splitFieldWithFlag($name);
+      if (!isset($this->configuration[$context]['fields'][$name]))
+      {
+        $this->configuration[$context]['fields'][$name] = new sfModelGeneratorConfigurationField($name, array_merge(
+          array('type' => 'Text', 'label' => sfInflector::humanize(sfInflector::underscore($name))),
+          isset($config['default'][$name]) ? $config['default'][$name] : array(),
+          isset($config[$context][$name]) ? $config[$context][$name] : array(),
+          array('flag' => $flag)
+        ));
+      }
+      else
+      {
+        $this->configuration[$context]['fields'][$name]->setFlag($flag);
+      }
+
+      $this->configuration[$context][$key] = str_replace('%%'.$flag.$name.'%%', '%%'.$name.'%%', $this->configuration[$context][$key]);
+    }
+  }
+
   public function getContextConfiguration($context, $fields = null)
   {
     if (!isset($this->configuration[$context]))
@@ -177,7 +238,7 @@ class sfModelGeneratorConfiguration
       throw new InvalidArgumentException(sprintf('The context "%s" does not exist.', $context));
     }
 
-    if (is_null($fields))
+    if (null === $fields)
     {
       return $this->configuration[$context];
     }
@@ -271,9 +332,10 @@ class sfModelGeneratorConfiguration
     foreach ($form->getWidgetSchema()->getPositions() as $name)
     {
       $fields[$name] = new sfModelGeneratorConfigurationField($name, array_merge(
+        array('type' => 'Text'),
         isset($config['default'][$name]) ? $config['default'][$name] : array(),
         isset($config['filter'][$name]) ? $config['filter'][$name] : array(),
-        array('is_real' => false, 'type' => 'Text')
+        array('is_real' => false)
       ));
     }
 
@@ -304,13 +366,18 @@ class sfModelGeneratorConfiguration
       $fields = array();
 
       // with fieldsets?
-      if (!is_array(current($fieldsets)))
+      if (!is_array(reset($fieldsets)))
       {
         $fieldsets = array('NONE' => $fieldsets);
       }
 
       foreach ($fieldsets as $fieldset => $names)
       {
+        if (!$names)
+        {
+          continue;
+        }
+
         $fields[$fieldset] = array();
 
         foreach ($names as $name)
@@ -339,10 +406,11 @@ class sfModelGeneratorConfiguration
     foreach ($form->getWidgetSchema()->getPositions() as $name)
     {
       $fields[$name] = new sfModelGeneratorConfigurationField($name, array_merge(
+        array('type' => 'Text'),
         isset($config['default'][$name]) ? $config['default'][$name] : array(),
         isset($config['form'][$name]) ? $config['form'][$name] : array(),
         isset($config[$context][$name]) ? $config[$context][$name] : array(),
-        array('is_real' => false, 'type' => 'Text')
+        array('is_real' => false)
       ));
     }
 
@@ -384,26 +452,58 @@ class sfModelGeneratorConfiguration
     return $default;
   }
 
-  /**
-   * Removes visible fields not included for display.
-   *
-   * @param sfForm $form
-   */
-  protected function fixFormFields(sfForm $form)
+  public function getCredentials($action)
   {
-    $fieldsets = $this->getFormFields($form, $form->isNew() ? 'new' : 'edit');
-
-    // flatten fields and collect names
-    $fields = call_user_func_array('array_merge', array_values($fieldsets));
-    $names = array_map(array($this, 'mapFieldName'), $fields);
-
-    foreach ($form as $name => $field)
+    if (0 === strpos($action, '_'))
     {
-      if (!$field->isHidden() && !in_array($name, $names))
-      {
-        unset($form[$name]);
-      }
+      $action = substr($action, 1);
     }
+
+    return isset($this->configuration['credentials'][$action]) ? $this->configuration['credentials'][$action] : array();
+  }
+
+  public function getPager($model)
+  {
+    $class = $this->getPagerClass();
+
+    return new $class($model, $this->getPagerMaxPerPage());
+  }
+
+  /**
+   * Gets a new form object.
+   *
+   * @param  mixed $object
+   * @param  array $options An array of options to merge with the options returned by getFormOptions()
+   *
+   * @return sfForm
+   */
+  public function getForm($object = null, $options = array())
+  {
+    $class = $this->getFormClass();
+
+    return new $class($object, array_merge($this->getFormOptions(), $options));
+  }
+
+  public function getFormOptions()
+  {
+    return array();
+  }
+
+  public function getFilterForm($filters)
+  {
+    $class = $this->getFilterFormClass();
+
+    return new $class($filters, $this->getFilterFormOptions());
+  }
+
+  public function getFilterFormOptions()
+  {
+    return array();
+  }
+
+  public function getFilterDefaults()
+  {
+    return array();
   }
 
   protected function mapFieldName(sfModelGeneratorConfigurationField $field)
@@ -413,7 +513,7 @@ class sfModelGeneratorConfiguration
 
   protected function fixActionParameters($action, $parameters)
   {
-    if (is_null($parameters))
+    if (null === $parameters)
     {
       $parameters = array();
     }
@@ -447,7 +547,7 @@ class sfModelGeneratorConfiguration
     }
     else
     {
-      $label = '_list' == $action ? 'Cancel' : substr($action, 1);
+      $label = '_list' == $action ? 'Back to list' : substr($action, 1);
     }
 
     $parameters['label'] = sfInflector::humanize($label);
