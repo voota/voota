@@ -59,6 +59,12 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #contact-links ul li.twitter { background: transparent url(/images/icoTwitter.png) right center no-repeat;}
 #contact-links ul li.facebook { background: transparent url(/images/icoFacebook.png) right center no-repeat;}
 
+/* IE 6 */
+#ie6 { position: relative; margin-top: 2em; padding: 1em; border: 1px solid red;}
+#ie6 h3 { font-size: 1em; padding-bottom: 1em;}
+#ie6 .close { position: absolute; top: 1em; right: 1em;}
+
+
 /* Footer */
 #footer { text-align: center; padding-top: 2em; }
 #footer .nav-links, #footer .lang-links { text-align: center; margin: 0; padding-bottom: 1em; }
