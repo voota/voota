@@ -3,12 +3,14 @@
 /**
  * sfGuardUserGroup form base class.
  *
+ * @method sfGuardUserGroup getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasesfGuardUserGroupForm extends BaseFormPropel
+abstract class BasesfGuardUserGroupForm extends BaseFormPropel
 {
   public function setup()
   {

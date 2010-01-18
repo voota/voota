@@ -3,18 +3,20 @@
 /**
  * sfGuardRememberKey form base class.
  *
+ * @method sfGuardRememberKey getObject() Returns the current form's model object
+ *
  * @package    ##PROJECT_NAME##
  * @subpackage form
  * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasesfGuardRememberKeyForm extends BaseFormPropel
+abstract class BasesfGuardRememberKeyForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'user_id'      => new sfWidgetFormInputHidden(),
-      'remember_key' => new sfWidgetFormInput(),
+      'remember_key' => new sfWidgetFormInputText(),
       'ip_address'   => new sfWidgetFormInputHidden(),
       'created_at'   => new sfWidgetFormDateTime(),
     ));

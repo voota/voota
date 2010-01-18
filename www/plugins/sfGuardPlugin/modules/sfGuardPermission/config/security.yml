@@ -1,4 +1,4 @@
 default:
-  is_secure: on
+  is_secure: true
   credentials: superadmin
 
