@@ -3,21 +3,23 @@
 /**
  * Imagen form base class.
  *
+ * @method Imagen getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseImagenForm extends BaseFormPropel
+abstract class BaseImagenForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'tipo'        => new sfWidgetFormInput(),
+      'tipo'        => new sfWidgetFormInputText(),
       'partido_id'  => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'politico_id' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
-      'opinion_id'  => new sfWidgetFormInput(),
+      'opinion_id'  => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
     ));
 
@@ -26,7 +28,7 @@ class BaseImagenForm extends BaseFormPropel
       'tipo'        => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'partido_id'  => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'politico_id' => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
-      'opinion_id'  => new sfValidatorInteger(array('required' => false)),
+      'opinion_id'  => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 

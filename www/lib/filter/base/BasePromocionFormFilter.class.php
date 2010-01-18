@@ -1,16 +1,14 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * Promocion filter form base class.
  *
  * @package    sf_sandbox
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasePromocionFormFilter extends BaseFormFilterPropel
+abstract class BasePromocionFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
@@ -19,7 +17,7 @@ class BasePromocionFormFilter extends BaseFormFilterPropel
       'fecha_fin'    => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'partido_id'   => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'politico_id'  => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
-      'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'   => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(

@@ -3,37 +3,39 @@
 /**
  * SfGuardUserProfile form base class.
  *
+ * @method SfGuardUserProfile getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfGuardUserProfileForm extends BaseFormPropel
+abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                       => new sfWidgetFormInputHidden(),
       'user_id'                  => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
-      'clave'                    => new sfWidgetFormInput(),
-      'acepta_mensajes'          => new sfWidgetFormInput(),
-      'nombre'                   => new sfWidgetFormInput(),
-      'apellidos'                => new sfWidgetFormInput(),
+      'clave'                    => new sfWidgetFormInputText(),
+      'acepta_mensajes'          => new sfWidgetFormInputText(),
+      'nombre'                   => new sfWidgetFormInputText(),
+      'apellidos'                => new sfWidgetFormInputText(),
       'fecha_nacimiento'         => new sfWidgetFormDate(),
-      'pais'                     => new sfWidgetFormInput(),
-      'formacion'                => new sfWidgetFormInput(),
-      'residencia'               => new sfWidgetFormInput(),
-      'presentacion'             => new sfWidgetFormInput(),
+      'pais'                     => new sfWidgetFormInputText(),
+      'formacion'                => new sfWidgetFormInputText(),
+      'residencia'               => new sfWidgetFormInputText(),
+      'presentacion'             => new sfWidgetFormInputText(),
       'created_at'               => new sfWidgetFormDateTime(),
-      'vanity'                   => new sfWidgetFormInput(),
-      'imagen'                   => new sfWidgetFormInput(),
-      'sf_guard_user_profilecol' => new sfWidgetFormInput(),
-      'codigo'                   => new sfWidgetFormInput(),
-      'papel_voota'              => new sfWidgetFormInput(),
-      'mails_comentarios'        => new sfWidgetFormInput(),
-      'mails_noticias'           => new sfWidgetFormInput(),
-      'mails_contacto'           => new sfWidgetFormInput(),
-      'mails_seguidor'           => new sfWidgetFormInput(),
+      'vanity'                   => new sfWidgetFormInputText(),
+      'imagen'                   => new sfWidgetFormInputText(),
+      'sf_guard_user_profilecol' => new sfWidgetFormInputText(),
+      'codigo'                   => new sfWidgetFormInputText(),
+      'papel_voota'              => new sfWidgetFormInputText(),
+      'mails_comentarios'        => new sfWidgetFormInputText(),
+      'mails_noticias'           => new sfWidgetFormInputText(),
+      'mails_contacto'           => new sfWidgetFormInputText(),
+      'mails_seguidor'           => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -54,10 +56,10 @@ class BaseSfGuardUserProfileForm extends BaseFormPropel
       'sf_guard_user_profilecol' => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'codigo'                   => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'papel_voota'              => new sfValidatorString(array('max_length' => 280, 'required' => false)),
-      'mails_comentarios'        => new sfValidatorInteger(),
-      'mails_noticias'           => new sfValidatorInteger(),
-      'mails_contacto'           => new sfValidatorInteger(),
-      'mails_seguidor'           => new sfValidatorInteger(),
+      'mails_comentarios'        => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'mails_noticias'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'mails_contacto'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'mails_seguidor'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
     ));
 
     $this->validatorSchema->setPostValidator(

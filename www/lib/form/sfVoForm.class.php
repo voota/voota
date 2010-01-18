@@ -15,7 +15,7 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class sfVoForm extends sfForm
+class sfVoForm extends BaseForm
 {
 	public static function getFormNotValidMessage() {
 		return sfContext::getInstance()->getI18N()->__('Por favor, revisa lo siguiente antes de seguir.', array(), 'notices');

@@ -6,8 +6,8 @@ class ContactForm extends sfVoForm
   public function configure()
   {
     $this->setWidgets(array(
-      'nombre'   => new sfWidgetFormInput(array()),
-      'email'   => new sfWidgetFormInput(array()),
+      'nombre'   => new sfWidgetFormInputText(array()),
+      'email'   => new sfWidgetFormInputText(array()),
       'tipo'   => new sfWidgetFormSelect(array('choices' => self::$tipos)),
       'mensaje'   => new sfWidgetFormTextarea(array()),
     ));

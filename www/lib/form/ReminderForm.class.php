@@ -1,11 +1,11 @@
 <?php
-class ReminderForm extends sfForm
+class ReminderForm extends BaseForm
 {
  
   public function configure()
   {
     $this->setWidgets(array(
-      'username'   => new sfWidgetFormInput(array()),
+      'username'   => new sfWidgetFormInputText(array()),
     ));
     $this->widgetSchema->setNameFormat('reminder[%s]');
 	$this->widgetSchema->setLabels(array(

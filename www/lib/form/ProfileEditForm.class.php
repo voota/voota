@@ -33,7 +33,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
     						'format' => '%day%/%month%/%year%'
     						, 'years' => array_combine($years, $years)
     						)),
-      'vanity'   => new sfWidgetFormInput(array()),
+      'vanity'   => new sfWidgetFormInputText(array()),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
 			   'label'     => sfContext::getInstance()->getI18N()->__('Imagen Principal', array(), 'notices'),
    			 'file_src'  => $this->getObject()->getProfile()->getImagen()?'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
@@ -41,20 +41,20 @@ class ProfileEditForm extends sfGuardUserAdminForm
 			   'edit_mode' => !$this->isNew(),
 			   'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p><img src="%file%" alt="'.$this->getObject()->getProfile()->getNombre().' '.$this->getObject()->getProfile()->getApellidos().'" /> %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
 				)),
-      'username'   => new sfWidgetFormInput(array()),
+      'username'   => new sfWidgetFormInputText(array()),
 				
       'mails_comentarios' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
       'mails_noticias' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
       'mails_contacto' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
       'mails_seguidor' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
 				
-      'nombre'   => new sfWidgetFormInput(array()),
-	  'apellidos'   => new sfWidgetFormInput(array()),
-	  'apellidos'   => new sfWidgetFormInput(array()),
+      'nombre'   => new sfWidgetFormInputText(array()),
+	  'apellidos'   => new sfWidgetFormInputText(array()),
+	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  'presentacion'  => new sfWidgetFormTextarea(array()),
-	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('autocomplete' => 'off')),
-	  'passwordBis'  => new sfWidgetFormInput(array('type' => 'password')),
-      'passwordOld' => new sfWidgetFormInput(array('type' => 'password')),
+	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password'), array('autocomplete' => 'off')),
+	  'passwordBis'  => new sfWidgetFormInputText(array('type' => 'password')),
+      'passwordOld' => new sfWidgetFormInputText(array('type' => 'password')),
     ));
     $this->widgetSchema->setNameFormat('profile[%s]');
 
@@ -117,7 +117,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 			$this->widgetSchema["enlace_n$idx"]->setLabel('Enlace '.$enlace->getId());
 
 			// change the name widget to sfWidgetFormInputDelete
-			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInput(array(
+			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInputText(array(
 			));
 			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden();
 		}

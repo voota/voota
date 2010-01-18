@@ -3,27 +3,29 @@
 /**
  * Partido form base class.
  *
+ * @method Partido getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasePartidoForm extends BaseFormPropel
+abstract class BasePartidoForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
-      'abreviatura'        => new sfWidgetFormInput(),
-      'color'              => new sfWidgetFormInput(),
+      'abreviatura'        => new sfWidgetFormInputText(),
+      'color'              => new sfWidgetFormInputText(),
       'created_at'         => new sfWidgetFormDateTime(),
       'partido_id'         => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
-      'imagen'             => new sfWidgetFormInput(),
-      'sumu'               => new sfWidgetFormInput(),
-      'sumd'               => new sfWidgetFormInput(),
+      'imagen'             => new sfWidgetFormInputText(),
+      'sumu'               => new sfWidgetFormInputText(),
+      'sumd'               => new sfWidgetFormInputText(),
       'is_active'          => new sfWidgetFormInputCheckbox(),
       'is_main'            => new sfWidgetFormInputCheckbox(),
-      'partido_lista_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Lista')),
+      'partido_lista_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Lista')),
     ));
 
     $this->setValidators(array(
@@ -33,11 +35,11 @@ class BasePartidoForm extends BaseFormPropel
       'created_at'         => new sfValidatorDateTime(array('required' => false)),
       'partido_id'         => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'imagen'             => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'sumu'               => new sfValidatorInteger(),
-      'sumd'               => new sfValidatorInteger(),
+      'sumu'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'sumd'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'is_active'          => new sfValidatorBoolean(),
       'is_main'            => new sfValidatorBoolean(),
-      'partido_lista_list' => new sfValidatorPropelChoiceMany(array('model' => 'Lista', 'required' => false)),
+      'partido_lista_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Lista', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -103,7 +105,7 @@ class BasePartidoForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

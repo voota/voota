@@ -1,40 +1,38 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * SfGuardUserProfile filter form base class.
  *
  * @package    sf_sandbox
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
+abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'user_id'                  => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'clave'                    => new sfWidgetFormFilterInput(),
+      'clave'                    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'acepta_mensajes'          => new sfWidgetFormFilterInput(),
-      'nombre'                   => new sfWidgetFormFilterInput(),
+      'nombre'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'apellidos'                => new sfWidgetFormFilterInput(),
-      'fecha_nacimiento'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'fecha_nacimiento'         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'pais'                     => new sfWidgetFormFilterInput(),
       'formacion'                => new sfWidgetFormFilterInput(),
       'residencia'               => new sfWidgetFormFilterInput(),
       'presentacion'             => new sfWidgetFormFilterInput(),
-      'created_at'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'               => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'vanity'                   => new sfWidgetFormFilterInput(),
       'imagen'                   => new sfWidgetFormFilterInput(),
       'sf_guard_user_profilecol' => new sfWidgetFormFilterInput(),
       'codigo'                   => new sfWidgetFormFilterInput(),
       'papel_voota'              => new sfWidgetFormFilterInput(),
-      'mails_comentarios'        => new sfWidgetFormFilterInput(),
-      'mails_noticias'           => new sfWidgetFormFilterInput(),
-      'mails_contacto'           => new sfWidgetFormFilterInput(),
-      'mails_seguidor'           => new sfWidgetFormFilterInput(),
+      'mails_comentarios'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'mails_noticias'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'mails_contacto'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'mails_seguidor'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

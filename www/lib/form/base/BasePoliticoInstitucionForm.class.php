@@ -3,12 +3,14 @@
 /**
  * PoliticoInstitucion form base class.
  *
+ * @method PoliticoInstitucion getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasePoliticoInstitucionForm extends BaseFormPropel
+abstract class BasePoliticoInstitucionForm extends BaseFormPropel
 {
   public function setup()
   {

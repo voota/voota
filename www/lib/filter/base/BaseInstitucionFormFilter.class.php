@@ -1,28 +1,26 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * Institucion filter form base class.
  *
  * @package    sf_sandbox
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseInstitucionFormFilter extends BaseFormFilterPropel
+abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'geo_id'                    => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
-      'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'disabled'                  => new sfWidgetFormFilterInput(),
       'orden'                     => new sfWidgetFormFilterInput(),
       'url'                       => new sfWidgetFormFilterInput(),
       'imagen'                    => new sfWidgetFormFilterInput(),
-      'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
+      'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -32,8 +30,8 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'orden'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'url'                       => new sfValidatorPass(array('required' => false)),
       'imagen'                    => new sfValidatorPass(array('required' => false)),
-      'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
+      'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('institucion_filters[%s]');
@@ -41,31 +39,6 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addPoliticoInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(PoliticoInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(PoliticoInstitucionPeer::POLITICO_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(PoliticoInstitucionPeer::POLITICO_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addEleccionInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
@@ -93,6 +66,31 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addPoliticoInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(PoliticoInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(PoliticoInstitucionPeer::POLITICO_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(PoliticoInstitucionPeer::POLITICO_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'Institucion';
@@ -108,8 +106,8 @@ class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'orden'                     => 'Number',
       'url'                       => 'Text',
       'imagen'                    => 'Text',
-      'politico_institucion_list' => 'ManyKey',
       'eleccion_institucion_list' => 'ManyKey',
+      'politico_institucion_list' => 'ManyKey',
     );
   }
 }

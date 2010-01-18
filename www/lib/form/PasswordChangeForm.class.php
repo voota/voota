@@ -1,5 +1,5 @@
 <?php
-class PasswordChangeForm extends sfForm
+class PasswordChangeForm extends BaseForm
 {
  
   public function configure()
@@ -7,8 +7,8 @@ class PasswordChangeForm extends sfForm
 	$years = range(1920,date('Y'));
 	
     $this->setWidgets(array(
-	  'passwordNew'  => new sfWidgetFormInput(array('type' => 'password'), array('autocomplete' => 'off')),
-      'password_again'  => new sfWidgetFormInput(array('type' => 'password'), array('autocomplete' => 'off')),
+	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password'), array('autocomplete' => 'off')),
+      'password_again'  => new sfWidgetFormInputText(array('type' => 'password'), array('autocomplete' => 'off')),
     ));
     $this->widgetSchema->setNameFormat('changer[%s]');
  	$this->widgetSchema->setLabels(array(

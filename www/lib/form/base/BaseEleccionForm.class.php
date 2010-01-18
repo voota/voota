@@ -3,21 +3,23 @@
 /**
  * Eleccion form base class.
  *
+ * @method Eleccion getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BaseEleccionForm extends BaseFormPropel
+abstract class BaseEleccionForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'nombre'                    => new sfWidgetFormInput(),
+      'nombre'                    => new sfWidgetFormInputText(),
       'fecha'                     => new sfWidgetFormDate(),
       'created_at'                => new sfWidgetFormDateTime(),
-      'eleccion_institucion_list' => new sfWidgetFormPropelChoiceMany(array('model' => 'Institucion')),
+      'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
     $this->setValidators(array(
@@ -25,7 +27,7 @@ class BaseEleccionForm extends BaseFormPropel
       'nombre'                    => new sfValidatorString(array('max_length' => 150)),
       'fecha'                     => new sfValidatorDate(array('required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
-      'eleccion_institucion_list' => new sfValidatorPropelChoiceMany(array('model' => 'Institucion', 'required' => false)),
+      'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('eleccion[%s]');
@@ -78,7 +80,7 @@ class BaseEleccionForm extends BaseFormPropel
       return;
     }
 
-    if (is_null($con))
+    if (null === $con)
     {
       $con = $this->getConnection();
     }

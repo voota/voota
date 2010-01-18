@@ -3,20 +3,22 @@
 /**
  * PartidoI18n form base class.
  *
+ * @method PartidoI18n getObject() Returns the current form's model object
+ *
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasePartidoI18nForm extends BaseFormPropel
+abstract class BasePartidoI18nForm extends BaseFormPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
       'culture'      => new sfWidgetFormInputHidden(),
-      'nombre'       => new sfWidgetFormInput(),
-      'presentacion' => new sfWidgetFormInput(),
+      'nombre'       => new sfWidgetFormInputText(),
+      'presentacion' => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(

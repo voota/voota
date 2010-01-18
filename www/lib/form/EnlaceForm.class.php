@@ -41,7 +41,7 @@ class EnlaceForm extends BaseEnlaceForm
 
 		
     $this->widgetSchema['tipo'] = new sfWidgetFormSelect(array('choices' => self::$tipos_enlace));
-    $this->widgetSchema['culture'] = new sfWidgetFormInput(array(), array('style' => "width: 20px;"));
+    $this->widgetSchema['culture'] = new sfWidgetFormInputText(array(), array('style' => "width: 20px;"));
     
     $this->validatorSchema['culture'] = new sfValidatorString(array('required' => false, "max_length" => 2));  
   }

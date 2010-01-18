@@ -1,43 +1,41 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/base/BaseFormFilterPropel.class.php');
-
 /**
  * Politico filter form base class.
  *
  * @package    sf_sandbox
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 16976 2009-04-04 12:47:44Z fabien $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
  */
-class BasePoliticoFormFilter extends BaseFormFilterPropel
+abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
 {
   public function setup()
   {
     $this->setWidgets(array(
-      'url_key'                   => new sfWidgetFormFilterInput(),
+      'url_key'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'alias'                     => new sfWidgetFormFilterInput(),
-      'nombre'                    => new sfWidgetFormFilterInput(),
-      'apellidos'                 => new sfWidgetFormFilterInput(),
+      'nombre'                    => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'apellidos'                 => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'email'                     => new sfWidgetFormFilterInput(),
       'sexo'                      => new sfWidgetFormFilterInput(),
-      'fecha_nacimiento'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'fecha_nacimiento'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'pais'                      => new sfWidgetFormFilterInput(),
       'residencia'                => new sfWidgetFormFilterInput(),
       'sf_guard_user_profile_id'  => new sfWidgetFormPropelChoice(array('model' => 'SfGuardUserProfile', 'add_empty' => true)),
-      'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'                => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'partido_id'                => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'partido_txt'               => new sfWidgetFormFilterInput(),
       'imagen'                    => new sfWidgetFormFilterInput(),
       'vanity'                    => new sfWidgetFormFilterInput(),
       'lugar_nacimiento'          => new sfWidgetFormFilterInput(),
-      'sumu'                      => new sfWidgetFormFilterInput(),
-      'sumd'                      => new sfWidgetFormFilterInput(),
+      'sumu'                      => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'sumd'                      => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'relacion'                  => new sfWidgetFormFilterInput(),
       'hijos'                     => new sfWidgetFormFilterInput(),
       'hijas'                     => new sfWidgetFormFilterInput(),
-      'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
+      'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -62,8 +60,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'relacion'                  => new sfValidatorPass(array('required' => false)),
       'hijos'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'hijas'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
+      'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('politico_filters[%s]');
@@ -71,31 +69,6 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addPoliticoInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(PoliticoInstitucionPeer::INSTITUCION_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(PoliticoInstitucionPeer::INSTITUCION_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addPoliticoListaListColumnCriteria(Criteria $criteria, $field, $values)
@@ -118,6 +91,31 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
     foreach ($values as $value)
     {
       $criterion->addOr($criteria->getNewCriterion(PoliticoListaPeer::LISTA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addPoliticoInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(PoliticoInstitucionPeer::INSTITUCION_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(PoliticoInstitucionPeer::INSTITUCION_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -153,8 +151,8 @@ class BasePoliticoFormFilter extends BaseFormFilterPropel
       'relacion'                  => 'Text',
       'hijos'                     => 'Number',
       'hijas'                     => 'Number',
-      'politico_institucion_list' => 'ManyKey',
       'politico_lista_list'       => 'ManyKey',
+      'politico_institucion_list' => 'ManyKey',
     );
   }
 }
