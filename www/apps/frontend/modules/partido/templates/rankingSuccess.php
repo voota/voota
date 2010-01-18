@@ -17,7 +17,7 @@ $(document).ready(function(){
   <?php echo $pageTitle ?>
 </h2>
 
-<?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion)) ?>
+<?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'linkType' => 'partido')) ?>
 
 
 <table border="0" cellpadding="0" cellspacing="0">
@@ -53,12 +53,12 @@ $(document).ready(function(){
       <td class="positive-votes">
         <?php echo __('Total') ?>
     	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
-    	  <?php //echo $totalUp?>
+    	  <?php echo $totalUp?>
       </td>
       <td class="negative-votes">
       	<?php echo __('Total')?>
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
-      	<?php //echo $totalDown?>
+      	<?php echo $totalDown?>
       </td>
     </tr>
   </tfoot>
@@ -69,7 +69,7 @@ $(document).ready(function(){
   	    <td class="ranking"><?php include_partial('sparkline_box', array('partido' => $partido)) ?></td>
   	    <td class="position"><?php echo format_number($partidosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
-          <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"') ?>
+          <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"') ?>
   	    </td>
         <td class="name">
           <?php echo link_to(	$partido->getAbreviatura(), 'partido/show?id='.$partido->getAbreviatura() ); ?>

@@ -42,10 +42,37 @@ class partidoActions extends sfActions
   	 * nd: negativos descendente
   	 */
   	$o = $request->getParameter("o");
+  	if (!$o){
+  		$o = "pd";
+  	}
+  	if ($o == "pa"){
+  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
+  	}
+  	else if ($o == "pd") {
+  		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  	}
+  	else if ($o == "na"){
+  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  	}
+  	else if ($o == "nd") {
+  		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
+  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
+  	}
   	$this->order = $o;
   	/* Fin Orden */
   	
-  	if ($institucion && $institucion != ALL_URL_STRING){
+	/* Calcula totales. Ver impacto en rendimiento */
+    $allPartidos = PartidoPeer::doSelect( $c );    
+    $this->totalUp = 0;
+    $this->totalDown = 0;
+    foreach ($allPartidos as $aPartido){
+	    	$this->totalUp += $aPartido->getSumu();
+    	$this->totalDown += $aPartido->getSumd();
+    }
+	/* Fin Calcula totales */  
+    	
+  	if ($institucion){
   		$this->institucion = $institucion; 
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
   		

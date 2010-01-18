@@ -13,7 +13,6 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'url_key'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'alias'                     => new sfWidgetFormFilterInput(),
       'nombre'                    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'apellidos'                 => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -39,7 +38,6 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
     ));
 
     $this->setValidators(array(
-      'url_key'                   => new sfValidatorPass(array('required' => false)),
       'alias'                     => new sfValidatorPass(array('required' => false)),
       'nombre'                    => new sfValidatorPass(array('required' => false)),
       'apellidos'                 => new sfValidatorPass(array('required' => false)),
@@ -130,7 +128,6 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                        => 'Number',
-      'url_key'                   => 'Text',
       'alias'                     => 'Text',
       'nombre'                    => 'Text',
       'apellidos'                 => 'Text',

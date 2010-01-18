@@ -38,6 +38,8 @@ class PoliticoForm extends BasePoliticoForm
     $this->embedI18n(array('es', 'ca'));
     
   	
+    $this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['sumd'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
     $this->widgetSchema['relacion'] = new sfWidgetFormSelect(array('choices' => self::$relaciones));
     
@@ -57,6 +59,8 @@ class PoliticoForm extends BasePoliticoForm
 	));
 	
     $this->validatorSchema['email'] = new sfValidatorEmail(array('required' => false));  
+    $this->validatorSchema['sumu'] = new sfValidatorString(array('required' => true));  
+    $this->validatorSchema['sumd'] = new sfValidatorString(array('required' => true));  
 	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
    'required'   => false,
    'mime_types' => 'web_images',

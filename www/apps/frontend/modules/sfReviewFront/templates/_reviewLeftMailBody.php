@@ -43,9 +43,17 @@ array(
 	, '%6%' => url_for('politico/show?id='.$vanity, true)
 	, '%7%' => url_for('@usuario_unsubscribe?codigo='.$codigo.'&n=1', true)
 	, '%saludo%' => ($comentario != "" ?
-    __('<p>Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:<br />"%3%"</p>')
+    __('<p>Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:<br />"%3%"</p>',
+    array(
+    	'%voto%' => ($voto == 1 ? __('a favor') : __('en contra'))
+		, '%2%' => $usuario
+		, '%3%' => $comentario
+    ))
     :
-    __('<p>Pues eso, que %2% está %voto% de tu vooto. Aunque de momento no ha incluído ninguna opinión.</p>')
-    )
-	, '%voto%' => ($voto == 1 ? __('a favor') : __('en contra'))
-))?>
+    __('<p>Pues eso, que %2% está %voto% de tu vooto. Aunque de momento no ha incluído ninguna opinión.</p>',
+    array(
+    	'%voto%' => ($voto == 1 ? __('a favor') : __('en contra'))
+		, '%2%' => $usuario
+		, '%3%' => $comentario
+    ))
+)))?>

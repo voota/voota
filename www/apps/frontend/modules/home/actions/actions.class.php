@@ -127,8 +127,9 @@ class homeActions extends sfActions{
 	}
 	echo "==============================================<br />";
 	*/	
-   	$query = "SELECT i.*, count( * ) c
+   	$query = "SELECT i.*, ii.*, count( * ) c
 			FROM institucion i
+			INNER JOIN institucion_i18n ii on (i.id = ii.id AND ii.culture = ?)
 			INNER JOIN politico_institucion pi on pi.institucion_id = i.id
 			INNER JOIN politico p ON pi.politico_id = p.id
 			INNER JOIN sf_review r ON r.entity_id = p.id
@@ -141,8 +142,8 @@ class homeActions extends sfActions{
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
 
-	$statement->execute();
-	$this->institucionesMasVotadas = $statement->fetchAll(PDO::FETCH_CLASS, 'Institucion');
+	$statement->execute( array($this->getUser()->getCulture()) );
+	$this->institucionesMasVotadas = $statement->fetchAll();
 	
 	/*
 	foreach($this->institucionesMasVotadose as $institucion){

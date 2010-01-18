@@ -16,7 +16,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'url_key'                   => new sfWidgetFormInputText(),
       'alias'                     => new sfWidgetFormInputText(),
       'nombre'                    => new sfWidgetFormInputText(),
       'apellidos'                 => new sfWidgetFormInputText(),
@@ -43,7 +42,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
-      'url_key'                   => new sfValidatorString(array('max_length' => 45)),
       'alias'                     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'nombre'                    => new sfValidatorString(array('max_length' => 45)),
       'apellidos'                 => new sfValidatorString(array('max_length' => 150)),

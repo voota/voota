@@ -14,6 +14,8 @@ class PartidoForm extends BasePartidoForm
   {
     $this->embedI18n(array('es', 'ca'));
     
+    $this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['sumd'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
    'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/cc_s_'.$this->getObject()->getImagen(),
@@ -28,6 +30,8 @@ class PartidoForm extends BasePartidoForm
 	'path' => sfConfig::get('sf_upload_dir').'/partidos',
    'validated_file_class' => 'sfResizedFile',
 	));
+    $this->validatorSchema['sumu'] = new sfValidatorString(array('required' => true));  
+    $this->validatorSchema['sumd'] = new sfValidatorString(array('required' => true));  
   
 	if (!$this->isNew()) {
 		// embed all enlace forms
