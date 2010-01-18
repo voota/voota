@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage cache
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfMemcacheCache.class.php 17858 2009-05-01 21:22:50Z FabianLange $
+ * @version    SVN: $Id: sfMemcacheCache.class.php 24607 2009-11-30 21:39:08Z FabianLange $
  */
 class sfMemcacheCache extends sfCache
 {
@@ -108,7 +108,7 @@ class sfMemcacheCache extends sfCache
    */
   public function set($key, $data, $lifetime = null)
   {
-    $lifetime = is_null($lifetime) ? $this->getOption('lifetime') : $lifetime;
+    $lifetime = null === $lifetime ? $this->getOption('lifetime') : $lifetime;
 
     // save metadata
     $this->setMetadata($key, $lifetime);
@@ -119,7 +119,12 @@ class sfMemcacheCache extends sfCache
       $this->setCacheInfo($key);
     }
 
-    return $this->memcache->set($this->getOption('prefix').$key, $data, false, $lifetime);
+    if (false !== $this->memcache->replace($this->getOption('prefix').$key, $data, false, time() + $lifetime))
+    {
+      return true;
+    }
+
+    return $this->memcache->set($this->getOption('prefix').$key, $data, false, time() + $lifetime);
   }
 
   /**
@@ -127,8 +132,12 @@ class sfMemcacheCache extends sfCache
    */
   public function remove($key)
   {
+    // delete metadata
     $this->memcache->delete($this->getOption('prefix').'_metadata'.self::SEPARATOR.$key);
-
+    if ($this->getOption('storeCacheInfo', false))
+    {
+      $this->setCacheInfo($key, true);
+    }
     return $this->memcache->delete($this->getOption('prefix').$key);
   }
 
@@ -180,12 +189,11 @@ class sfMemcacheCache extends sfCache
     }
 
     $regexp = self::patternToRegexp($this->getOption('prefix').$pattern);
-
     foreach ($this->getCacheInfo() as $key)
     {
       if (preg_match($regexp, $key))
       {
-        $this->memcache->delete($key);
+        $this->remove(substr($key, strlen($this->getOption('prefix'))));
       }
     }
   }
@@ -231,15 +239,31 @@ class sfMemcacheCache extends sfCache
    * Updates the cache information for the given cache key.
    *
    * @param string $key The cache key
+   * @param boolean $delete Delete key or not
    */
-  protected function setCacheInfo($key)
+  protected function setCacheInfo($key, $delete = false)
   {
     $keys = $this->memcache->get($this->getOption('prefix').'_metadata');
     if (!is_array($keys))
     {
       $keys = array();
     }
-    $keys[] = $this->getOption('prefix').$key;
+
+    if ($delete)
+    {
+       if (($k = array_search($this->getOption('prefix').$key, $keys)) !== false)
+       {
+         unset($keys[$k]);
+       }
+    }
+    else
+    {
+      if (!in_array($this->getOption('prefix').$key, $keys))
+      {
+        $keys[] = $this->getOption('prefix').$key;
+      }
+    }
+
     $this->memcache->set($this->getOption('prefix').'_metadata', $keys, 0);
   }
 
