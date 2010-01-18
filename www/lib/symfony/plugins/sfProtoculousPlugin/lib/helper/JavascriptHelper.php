@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../../../../helper/JavascriptBaseHelper.php';
 
 /*
  * This file is part of the symfony package.
- * (c) 2004-2006 Fabien Potencier <fabien.potencier@symfony-project.com>
+ * (c) 2004-2009 Fabien Potencier <fabien.potencier@symfony-project.com>
  * (c) 2004 David Heinemeier Hansson
  *
  * For the full copyright and license information, please view the LICENSE
@@ -20,7 +20,7 @@ require_once dirname(__FILE__).'/../../../../helper/JavascriptBaseHelper.php';
  * @author     John Christopher <john.christopher@symfony-project.com>
  * @author     David Heinemeier Hansson
  * @author     Fabian Lange <fabian.lange@symfony-project.com>
- * @version    SVN: $Id: JavascriptHelper.php 17384 2009-04-17 01:11:05Z dwhittle $
+ * @version    SVN: $Id: JavascriptHelper.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 
 /*
@@ -330,7 +330,7 @@ require_once dirname(__FILE__).'/../../../../helper/JavascriptBaseHelper.php';
    *  }
    *
    *  # Returning view
-   *  <php echo update_element_function('cart', array(
+   *  <?php echo update_element_function('cart', array(
    *      'action'   => 'update',
    *      'position' => 'bottom',
    *      'content'  => '<p>New Product: '.$product->getName().'</p>',
@@ -348,7 +348,7 @@ require_once dirname(__FILE__).'/../../../../helper/JavascriptBaseHelper.php';
       case 'update':
         if (isset($options['position']) && $options['position'])
         {
-          $javascript_function = "\$('$element_id').insert('$content','".$options['position']."')";
+          $javascript_function = "\$('$element_id').insert({'".$options['position']."':'$content'})";
         }
         else
         {
@@ -557,7 +557,7 @@ require_once dirname(__FILE__).'/../../../../helper/JavascriptBaseHelper.php';
    * serialized sortable element as parameters.
    *
    * Example:
-   *   <php echo sortable_element($my_list, array(
+   *   <?php echo sortable_element($my_list, array(
    *      'url' => '@order',
    *   )) ?>
    *
