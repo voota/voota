@@ -12,5 +12,5 @@ default:
   stylesheets:    []
   javascripts: [/sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
 
-  has_layout:     on
+  has_layout:     true
   layout:         layout

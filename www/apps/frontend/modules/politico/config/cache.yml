@@ -1,10 +1,10 @@
 ranking:
-  enabled: on
+  enabled: true
   with_layout: false
   lifetime: 60
   
 show:
-  enabled: on
+  enabled: true
   with_layout: false
   lifetime: 3600
   

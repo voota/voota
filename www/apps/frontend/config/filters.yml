@@ -12,5 +12,6 @@ vobase:
 # insert your own filters here
 
 cache:     ~
-common:    ~
+common:
+  class: sfCommonFilter
 execution: ~

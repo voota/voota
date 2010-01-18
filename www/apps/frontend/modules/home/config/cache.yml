@@ -1,5 +1,5 @@
 index:
-  enabled: on
+  enabled: true
   with_layout: false
   lifetime: 3600
   
