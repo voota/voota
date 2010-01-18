@@ -11,6 +11,12 @@
 [?php include_partial('<?php echo $this->getModuleName() ?>/list_messages', array('pager' => $pager)) ?]
 </div>
 
+<div id="sf_admin_bar">
+<?php if ($this->getParameterValue('list.filters')): ?>
+[?php include_partial('filters', array('filters' => $filters)) ?]
+<?php endif; ?>
+</div>
+
 <div id="sf_admin_content">
 [?php if (!$pager->getNbResults()): ?]
 [?php echo __('no result') ?]
@@ -19,12 +25,6 @@
 [?php endif; ?]
 [?php include_partial('list_batch_actions') ?]
 [?php include_partial('list_actions') ?]
-</div>
-
-<div id="sf_admin_bar">
-<?php if ($this->getParameterValue('list.filters')): ?>
-[?php include_partial('filters', array('filters' => $filters)) ?]
-<?php endif; ?>
 </div>
 
 <div id="sf_admin_footer">
