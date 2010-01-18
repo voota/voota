@@ -18,169 +18,164 @@
  * @author     John Christopher <john.christopher@symfony-project.com>
  * @author     David Heinemeier Hansson
  * @author     Fabian Lange <fabian.lange@symfony-project.com>
- * @version    SVN: $Id: JavascriptHelper.php 10078 2008-07-02 20:16:31Z FabianLange $
+ * @version    SVN: $Id: JavascriptBaseHelper.php 24499 2009-11-28 14:12:02Z FabianLange $
  */
 
 /*
  * Provides a set basic of helpers for calling JavaScript functions.
- *
- *
- * For documentation on +javascript_include_tag+ see ActionView::Helpers::AssetTagHelper.
  */
 
-  /**
-   * Returns a link that'll trigger a javascript function using the
-   * onclick handler and return false after the fact.
-   *
-   * Examples:
-   *   <?php echo link_to_function('Greeting', "alert('Hello world!')") ?>
-   *   <?php echo link_to_function(image_tag('delete'), "do_delete()", array('confirm' => 'Really?')) ?>
-   */
-  function link_to_function($name, $function, $html_options = array())
+/**
+ * Returns a link that will trigger a javascript function using the
+ * onclick handler and return false after the fact.
+ *
+ * Examples:
+ *   <?php echo link_to_function('Greeting', "alert('Hello world!')") ?>
+ *   <?php echo link_to_function(image_tag('delete'), "do_delete()", array('confirm' => 'Really?')) ?>
+ */
+function link_to_function($name, $function, $html_options = array())
+{
+  $html_options = _parse_attributes($html_options);
+
+  $html_options['href'] = isset($html_options['href']) ? $html_options['href'] : '#';
+  if ( isset($html_options['confirm']) )
   {
-    $html_options = _parse_attributes($html_options);
-
-    $html_options['href'] = isset($html_options['href']) ? $html_options['href'] : '#';
-    if ( isset($html_options['confirm']) )
-    {
-      $confirm = escape_javascript($html_options['confirm']);
-      $html_options['onclick'] = "if(confirm('$confirm')){ $function;}; return false;";
-    }
-    else
-    {
-      $html_options['onclick'] = $function.'; return false;';
-    }
-
-    return content_tag('a', $name, $html_options);
+    $confirm = escape_javascript($html_options['confirm']);
+    unset($html_options['confirm']);
+    $function = "if(window.confirm('$confirm')){ $function;}";
   }
+  $html_options['onclick'] = $function.'; return false;';
 
-  /**
-   * Returns a button that'll trigger a javascript function using the
-   * onclick handler and return false after the fact.
-   *
-   * Examples:
-   *   <?php echo button_to_function('Greeting', "alert('Hello world!')") ?>
-   */
-  function button_to_function($name, $function, $html_options = array())
+  return content_tag('a', $name, $html_options);
+}
+
+/**
+ * Returns a button that will trigger a javascript function using the
+ * onclick handler and return false after the fact.
+ *
+ * Examples:
+ *   <?php echo button_to_function('Greeting', "alert('Hello world!')") ?>
+ */
+function button_to_function($name, $function, $html_options = array())
+{
+  $html_options = _parse_attributes($html_options);
+
+  $html_options['onclick'] = $function.'; return false;';
+  $html_options['type']    = 'button';
+  $html_options['value']   = $name;
+
+  return tag('input', $html_options);
+}
+
+/**
+ * Returns a JavaScript tag with the '$content' inside. If no content is passed, it works as the slot() method and will output everythin between
+ * javascript_tag() and end_javascript_tag(),
+ * Example:
+ *   <?php echo javascript_tag("alert('All is good')") ?>
+ *   => <script type="text/javascript">alert('All is good')</script>
+ *   <?php javascript_tag() ?>alert('All is good')<?php end_javascript_tag() ?>
+ */
+function javascript_tag($content = null)
+{
+  if (null !== $content)
   {
-    $html_options = _parse_attributes($html_options);
-
-    $html_options['onclick'] = $function.'; return false;';
-    $html_options['type']    = 'button';
-    $html_options['value']   = $name;
-
-    return tag('input', $html_options);
+    return content_tag('script', javascript_cdata_section($content), array('type' => 'text/javascript'));
   }
-
-  /**
-   * Returns a JavaScript tag with the '$content' inside. If no content is passed, it works as the slot() method and will output everythin between
-   * javascript_tag() and end_javascript_tag(),
-   * Example:
-   *   <?php echo javascript_tag("alert('All is good')") ?>
-   *   => <script type="text/javascript">alert('All is good')</script>
-   *   <?php javascript_tag() ?>alert('All is good')<?php end_javascript_tag() ?>
-   */
-  function javascript_tag($content = null)
+  else
   {
-    if (!is_null($content))
-    {
-      return content_tag('script', javascript_cdata_section($content), array('type' => 'text/javascript'));
-    }
-    else
-    {
-      ob_start();
-    }
+    ob_start();
   }
+}
 
-  function end_javascript_tag()
+function end_javascript_tag()
+{
+  echo javascript_tag(ob_get_clean());
+}
+
+function javascript_cdata_section($content)
+{
+  return "\n//".cdata_section("\n$content\n//")."\n";
+}
+
+/**
+ * Mark the start of a block that should only be shown in the browser if JavaScript
+ * is switched on.
+ */
+function if_javascript()
+{
+  if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest())
   {
-    echo javascript_tag(ob_get_clean());
+    ob_start();
   }
+}
 
-  function javascript_cdata_section($content)
+/**
+ * Mark the end of a block that should only be shown in the browser if JavaScript
+ * is switched on.
+ */
+function end_if_javascript()
+{
+  if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest())
   {
-    return "\n//".cdata_section("\n$content\n//")."\n";
+    $content = ob_get_clean();
+    echo javascript_tag("document.write('" . esc_js_no_entities($content) . "');");
   }
+}
 
-  /**
-   * Mark the start of a block that should only be shown in the browser if JavaScript
-   * is switched on.
-   */
-  function if_javascript()
+/**
+ * converts the given PHP array or string to the corresponding javascript array or string.
+ * javascript strings need to be single quoted.
+ *
+ * @param option (typically from option array)
+ * @return string javascript string or array equivalent
+ */
+function array_or_string_for_javascript($option)
+{
+  if (is_array($option))
   {
-    if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest())
-    {
-      ob_start();
-    }
+    return "['".join('\',\'', $option)."']";
   }
-
-  /**
-   * Mark the end of a block that should only be shown in the browser if JavaScript
-   * is switched on.
-   */
-  function end_if_javascript()
+  else if (is_string($option) && $option[0] != "'")
   {
-    if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest())
-    {
-      $content = ob_get_clean();
-      echo javascript_tag("document.write('" . esc_js_no_entities($content) . "');");
-    }
+    return "'$option'";
   }
+  return $option;
+}
 
-  /**
-   * converts the given PHP array or string to the corresponding javascript array or string.
-   * javascript strings need to be single quoted.
-   *
-   * @param option (typically from option array)
-   * @return string javascript string or array equivalent
-   */
-  function array_or_string_for_javascript($option)
+/**
+* converts the the PHP options array into a javscript array
+ *
+ * @param array
+ * @return string javascript arry equivalent
+*/
+function options_for_javascript($options)
+{
+  $opts = array();
+  foreach ($options as $key => $value)
   {
-    if (is_array($option))
+    if (is_array($value))
     {
-      return "['".join('\',\'', $option)."']";
+     $value = options_for_javascript($value);
     }
-    else if (is_string($option) && $option[0] != "'")
-    {
-      return "'$option'";
-    }
-    return $option;
+    $opts[] = $key.":".boolean_for_javascript($value);
   }
+  sort($opts);
 
-  /**
-  * converts the the PHP options array into a javscript array
-   *
-   * @param array
-   * @return string javascript arry equivalent
-  */
-  function options_for_javascript($options)
+  return '{'.join(', ', $opts).'}';
+}
+
+/**
+ * converts the given PHP boolean to the corresponding javascript boolean.
+ * booleans need to be true or false (php would print 1 or nothing).
+ *
+ * @param bool (typically from option array)
+ * @return string javascript boolean equivalent
+ */
+function boolean_for_javascript($bool)
+{
+  if (is_bool($bool))
   {
-    $opts = array();
-    foreach ($options as $key => $value)
-    {
-      if (is_array($value))
-      {
-       $value = options_for_javascript($value);
-      }
-      $opts[] = $key.":".boolean_for_javascript($value);
-    }
-    sort($opts);
-
-    return '{'.join(', ', $opts).'}';
+    return ($bool===true ? 'true' : 'false');
   }
-
-  /**
-   * converts the given PHP boolean to the corresponding javascript boolean.
-   * booleans need to be true or false (php would print 1 or nothing).
-   *
-   * @param bool (typically from option array)
-   * @return string javascript boolean equivalent
-   */
-  function boolean_for_javascript($bool)
-  {
-    if (is_bool($bool))
-    {
-      return ($bool===true ? 'true' : 'false');
-    }
-    return $bool;
-  }
+  return $bool;
+}
