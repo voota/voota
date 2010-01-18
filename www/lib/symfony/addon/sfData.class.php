@@ -15,9 +15,8 @@
  * @package    symfony
  * @subpackage addon
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfData.class.php 17858 2009-05-01 21:22:50Z FabianLange $
+ * @version    SVN: $Id: sfData.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-
 abstract class sfData
 {
   protected
@@ -39,7 +38,7 @@ abstract class sfData
    * Gets the current value of the flag that indicates whether
    * current data is to be deleted or not.
    *
-   * @returns boolean
+   * @return boolean
    */
   public function getDeleteCurrentData()
   {
@@ -72,7 +71,7 @@ abstract class sfData
    *
    * @param array $files The path names of the YAML data files
    */
-  protected function doLoadData($files)
+  protected function doLoadData(array $files)
   {
     $this->object_references = array();
     $this->maps = array();
@@ -97,7 +96,7 @@ abstract class sfData
    */
   public function getFiles($element = null)
   {
-    if (is_null($element))
+    if (null === $element)
     {
       $element = sfConfig::get('sf_data_dir').'/fixtures';
     }
