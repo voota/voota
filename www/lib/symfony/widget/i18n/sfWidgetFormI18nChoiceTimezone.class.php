@@ -9,49 +9,46 @@
  */
 
 /**
- * sfWidgetFormI18nSelectLanguage represents a language HTML select tag.
+ * sfWidgetFormI18nChoiceTimezone represents a timezone choice widget.
  *
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormI18nSelectLanguage.class.php 23734 2009-11-09 22:50:08Z FabianLange $
+ * @version    SVN: $Id: sfWidgetFormI18nChoiceTimezone.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class sfWidgetFormI18nSelectLanguage extends sfWidgetFormSelect
+class sfWidgetFormI18nChoiceTimezone extends sfWidgetFormChoice
 {
   /**
    * Constructor.
    *
    * Available options:
    *
-   *  * culture:   The culture to use for internationalized strings (required)
-   *  * languages: An array of language codes to use
+   *  * culture:   The culture to use for internationalized strings
    *  * add_empty: Whether to add a first empty value or not (false by default)
    *               If the option is not a Boolean, the value will be used as the text value
    *
    * @param array $options     An array of options
    * @param array $attributes  An array of default HTML attributes
    *
-   * @see sfWidgetFormSelect
+   * @see sfWidgetFormChoice
    */
   protected function configure($options = array(), $attributes = array())
   {
     parent::configure($options, $attributes);
 
-    $this->addRequiredOption('culture');
-    $this->addOption('languages');
+    $this->addOption('culture');
     $this->addOption('add_empty', false);
 
-    // populate choices with all languages
     $culture = isset($options['culture']) ? $options['culture'] : 'en';
-
-    $languages = sfCultureInfo::getInstance($culture)->getLanguages(isset($options['languages']) ? $options['languages'] : null);
+    $timezones = array_keys(sfCultureInfo::getInstance($culture)->getTimeZones());
+    $timezones = array_combine($timezones, $timezones);
 
     $addEmpty = isset($options['add_empty']) ? $options['add_empty'] : false;
     if (false !== $addEmpty)
     {
-      $languages = array_merge(array('' => true === $addEmpty ? '' : $addEmpty), $languages);
+      $timezones = array_merge(array('' => true === $addEmpty ? '' : $addEmpty), $timezones);
     }
 
-    $this->setOption('choices', $languages);
+    $this->setOption('choices', $timezones);
   }
 }

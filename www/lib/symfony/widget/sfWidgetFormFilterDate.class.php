@@ -3,7 +3,7 @@
 /*
  * This file is part of the symfony package.
  * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- * 
+ *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormFilterDate.class.php 11672 2008-09-19 14:08:37Z fabien $
+ * @version    SVN: $Id: sfWidgetFormFilterDate.class.php 24015 2009-11-16 13:33:34Z bschussek $
  */
 class sfWidgetFormFilterDate extends sfWidgetFormDateRange
 {
@@ -25,6 +25,8 @@ class sfWidgetFormFilterDate extends sfWidgetFormDateRange
    *
    *  * with_empty:      Whether to add the empty checkbox (true by default)
    *  * empty_label:     The label to use when using an empty checkbox
+   *  * template:        The template used for from date and to date
+   *                     Available placeholders: %from_date%, %to_date%
    *  * filter_template: The template to use to render the widget
    *                     Available placeholders: %date_range%, %empty_checkbox%, %empty_label%
    *
@@ -60,7 +62,7 @@ class sfWidgetFormFilterDate extends sfWidgetFormDateRange
     return strtr($this->getOption('filter_template'), array(
       '%date_range%'     => parent::render($name, $value, $attributes, $errors),
       '%empty_checkbox%' => $this->getOption('with_empty') ? $this->renderTag('input', array('type' => 'checkbox', 'name' => $name.'[is_empty]', 'checked' => $values['is_empty'] ? 'checked' : '')) : '',
-      '%empty_label%'    => $this->getOption('with_empty') ? $this->renderContentTag('label', $this->getOption('empty_label'), array('for' => $this->generateId($name.'[is_empty]'))) : '',
+      '%empty_label%'    => $this->getOption('with_empty') ? $this->renderContentTag('label', $this->translate($this->getOption('empty_label')), array('for' => $this->generateId($name.'[is_empty]'))) : '',
     ));
   }
 }

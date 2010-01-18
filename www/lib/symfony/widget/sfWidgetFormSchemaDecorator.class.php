@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormSchemaDecorator.class.php 17749 2009-04-29 11:54:22Z fabien $
+ * @version    SVN: $Id: sfWidgetFormSchemaDecorator.class.php 22446 2009-09-26 07:55:47Z fabien $
  */
 class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
 {
@@ -66,7 +66,9 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
    */
   public function addFormFormatter($name, sfWidgetFormSchemaFormatter $formatter)
   {
-    return $this->widget->addFormFormatter($name, $formatter);
+    $this->widget->addFormFormatter($name, $formatter);
+
+    return $this;
   }
 
   /**
@@ -83,6 +85,8 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   public function setFormFormatterName($name)
   {
     $this->widget->setFormFormatterName($name);
+
+    return $this;
   }
 
   /**
@@ -107,6 +111,8 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   public function setNameFormat($format)
   {
     $this->widget->setNameFormat($format);
+
+    return $this;
   }
 
   /**
@@ -120,9 +126,11 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   /**
    * @see sfWidgetFormSchema
    */
-  public function setLabels($labels)
+  public function setLabels(array $labels)
   {
     $this->widget->setLabels($labels);
+
+    return $this;
   }
 
   /**
@@ -146,6 +154,8 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
     {
       $this->widget->setLabel($name);
     }
+
+    return $this;
   }
 
   /**
@@ -159,9 +169,11 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   /**
    * @see sfWidgetFormSchema
    */
-  public function setHelps($helps)
+  public function setHelps(array $helps)
   {
     $this->widget->setHelps($helps);
+
+    return $this;
   }
 
   /**
@@ -178,6 +190,8 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   public function setHelp($name, $help)
   {
     $this->widget->setHelp($name, $help);
+
+    return $this;
   }
 
   /**
@@ -262,6 +276,8 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   public function setParent(sfWidgetFormSchema $parent = null)
   {
     $this->widget->setParent($parent);
+
+    return $this;
   }
 
   /**
@@ -283,9 +299,11 @@ class sfWidgetFormSchemaDecorator extends sfWidgetFormSchema
   /**
    * @see sfWidgetFormSchema
    */
-  public function setPositions($positions)
+  public function setPositions(array $positions)
   {
     $this->widget->setPositions($positions);
+
+    return $this;
   }
 
   /**
