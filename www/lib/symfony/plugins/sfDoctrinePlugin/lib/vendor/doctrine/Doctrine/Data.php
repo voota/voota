@@ -258,13 +258,22 @@ class Doctrine_Data
     public function purge($models = null)
     {
         if ($models) {
-            $models = Doctrine::filterInvalidModels($models);
+            $models = Doctrine_Core::filterInvalidModels($models);
         } else {
-            $models = Doctrine::getLoadedModels();
+            $models = Doctrine_Core::getLoadedModels();
         }
 
+        $connections = array();
         foreach ($models as $model) {
-            Doctrine::getTable($model)->createQuery()->delete()->execute();
+          $connections[Doctrine_Core::getTable($model)->getConnection()->getName()][] = $model;
+        }
+
+        foreach ($connections as $connection => $models) {
+            $models = Doctrine_Manager::getInstance()->getConnection($connection)->unitOfWork->buildFlushTree($models);
+            $models = array_reverse($models);
+            foreach ($models as $model) {
+                Doctrine_Core::getTable($model)->createQuery()->delete()->execute();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Import.php 4682 2008-07-13 00:14:08Z jwage $
+ *  $Id: Import.php 6802 2009-11-24 20:45:54Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -30,7 +30,7 @@
  * @link        www.phpdoctrine.org
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @since       1.0
- * @version     $Revision: 4682 $
+ * @version     $Revision: 6802 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  * @author      Jukka Hassinen <Jukka.Hassinen@BrainAlliance.com>
  */
@@ -364,6 +364,7 @@ class Doctrine_Import extends Doctrine_Connection_Module
     public function importSchema($directory, array $databases = array(), array $options = array())
     {
         $connections = Doctrine_Manager::getInstance()->getConnections();
+        $classes = array();
 
         foreach ($connections as $name => $connection) {
           // Limit the databases to the ones specified by $databases.
@@ -377,41 +378,61 @@ class Doctrine_Import extends Doctrine_Connection_Module
           $builder->setOptions($options);
 
           $definitions = array();
-          $classes = array();
+
           foreach ($connection->import->listTables() as $table) {
               $definition = array();
               $definition['tableName'] = $table;
-
-              $classTable = Doctrine_Inflector::tableize($table);
-
-              $definition['className'] = Doctrine_Inflector::classify($classTable);
+              $definition['className'] = Doctrine_Inflector::classify(Doctrine_Inflector::tableize($table));
               $definition['columns'] = $connection->import->listTableColumns($table);
+              $definition['connection'] = $connection->getName();
+              $definition['connectionClassName'] = $definition['className'];
 
               try {
                   $definition['relations'] = array();
                   $relations = $connection->import->listTableRelations($table);
-                  $classes = array();
+                  $relClasses = array();
                   foreach ($relations as $relation) {
                       $table = $relation['table'];
-                      $relClassTable = Doctrine_Inflector::tableize($table);
-                      $class = Doctrine_Inflector::classify($relClassTable);
-                      if (in_array($class, $classes)) {
-                          $alias = $class . '_' . (count($classes) + 1);
+                      $class = Doctrine_Inflector::classify(Doctrine_Inflector::tableize($table));
+                      if (in_array($class, $relClasses)) {
+                          $alias = $class . '_' . (count($relClasses) + 1);
                       } else {
                           $alias = $class;
                       }
-                      $classes[] = $class;
-                      $definition['relations'][$alias] = array('alias'   => $alias,
-                                                               'class'   => $class,
-                                                               'local'   => $relation['local'],
-                                                               'foreign' => $relation['foreign']);
+                      $relClasses[] = $class;
+                      $definition['relations'][$alias] = array(
+                          'alias'   => $alias,
+                          'class'   => $class,
+                          'local'   => $relation['local'],
+                          'foreign' => $relation['foreign']
+                      );
                   }
               } catch (Exception $e) {}
 
-              $definitions[$definition['className']] = $definition;
+              $definitions[strtolower($definition['className'])] = $definition;
               $classes[] = $definition['className'];
           }
 
+          // Build opposite end of relationships
+          foreach ($definitions as $definition) {
+              $className = $definition['className'];
+              $relClasses = array();
+              foreach ($definition['relations'] as $alias => $relation) {
+                  if (in_array($relation['class'], $relClasses) || isset($definitions[$relation['class']]['relations'][$className])) {
+                      $alias = $className . '_' . (count($relClasses) + 1);
+                  } else {
+                      $alias = $className;
+                  }
+                  $relClasses[] = $relation['class'];
+                  $definitions[strtolower($relation['class'])]['relations'][$alias] = array(
+                    'type' => Doctrine_Relation::MANY,
+                    'alias' => $alias,
+                    'class' => $className,
+                    'local' => $relation['foreign'],
+                    'foreign' => $relation['local']
+                  );
+              }
+          }
 
           // Build records
           foreach ($definitions as $definition) {

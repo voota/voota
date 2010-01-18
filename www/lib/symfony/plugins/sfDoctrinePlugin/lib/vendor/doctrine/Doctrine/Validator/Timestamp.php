@@ -30,7 +30,7 @@
  * @version     $Revision: 3884 $
  * @author      Mark Pearson <mark.pearson0@googlemail.com>
  */
-class Doctrine_Validator_Timestamp
+class Doctrine_Validator_Timestamp extends Doctrine_Validator_Driver
 {
     /**
      * checks if given value is a valid timestamp (YYYY-MM-DD HH:MM:SS)
@@ -40,7 +40,7 @@ class Doctrine_Validator_Timestamp
      */
     public function validate($value)
     {
-        if ($value === null) {
+        if (is_null($value)) {
             return true;
         }
 

@@ -30,7 +30,7 @@
  * @version     $Revision$
  * @author      Roman Borschel <roman@code-factory.org>
  */
-class Doctrine_Validator_Past
+class Doctrine_Validator_Past extends Doctrine_Validator_Driver
 {
     /**
      * checks if the given value is a valid date in the past.
@@ -40,7 +40,7 @@ class Doctrine_Validator_Past
      */
     public function validate($value)
     {
-        if ($value === null) {
+        if (is_null($value)) {
             return true;
         }
         $e = explode('-', $value);

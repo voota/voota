@@ -93,7 +93,6 @@ class Doctrine_Pager
         $this->setMaxPerPage($maxPerPage);
     }
 
-
     /**
      * _initialize
      *
@@ -105,14 +104,14 @@ class Doctrine_Pager
     protected function _initialize($params = array())
     {
         // retrieve the number of items found
-        $count = $this->getCountQuery()->count($this->getCountQueryParams($params));
+        $countQuery = $this->getCountQuery();
+        $count = $countQuery->count($this->getCountQueryParams($params));
 
         $this->_setNumResults($count);
         $this->_setExecuted(true); // _adjustOffset relies of _executed equals true = getNumResults()
 
         $this->_adjustOffset();
     }
-
 
     /**
      * _adjustOffset
@@ -135,7 +134,6 @@ class Doctrine_Pager
         $p->limit($this->getMaxPerPage());
     }
 
-
     /**
      * getExecuted
      *
@@ -147,7 +145,6 @@ class Doctrine_Pager
     {
         return $this->_executed;
     }
-
 
     /**
      * _setExecuted
@@ -161,7 +158,6 @@ class Doctrine_Pager
     {
         $this->_executed = $executed;
     }
-
 
     /**
      * getRange
@@ -179,7 +175,6 @@ class Doctrine_Pager
 
         return new $class($options, $this);
     }
-
 
     /**
      * getNumResults
@@ -199,7 +194,6 @@ class Doctrine_Pager
         );
     }
 
-
     /**
      * _setNumResults
      *
@@ -213,7 +207,6 @@ class Doctrine_Pager
         $this->_numResults = $nb;
     }
 
-
     /**
      * getFirstPage
      *
@@ -225,7 +218,6 @@ class Doctrine_Pager
     {
         return 1;
     }
-
 
     /**
      * getLastPage
@@ -245,7 +237,6 @@ class Doctrine_Pager
         );
     }
 
-
     /**
      * _setLastPage
      *
@@ -263,7 +254,6 @@ class Doctrine_Pager
         }
     }
 
-
     /**
      * getLastPage
      *
@@ -275,7 +265,6 @@ class Doctrine_Pager
     {
         return $this->_page;
     }
-
 
     /**
      * getNextPage
@@ -295,7 +284,6 @@ class Doctrine_Pager
         );
     }
 
-
     /**
      * getPreviousPage
      *
@@ -314,7 +302,6 @@ class Doctrine_Pager
         );
     }
 
-
     /**
      * getFirstIndice
      *
@@ -327,7 +314,6 @@ class Doctrine_Pager
         return ($this->getPage() - 1) * $this->getMaxPerPage() + 1;
     }
 
-
     /**
      * getLastIndice
      *
@@ -339,7 +325,6 @@ class Doctrine_Pager
     {
         return min($this->getNumResults(), ($this->getPage() * $this->getMaxPerPage()));
     }
-
 
     /**
      * haveToPaginate
@@ -359,7 +344,6 @@ class Doctrine_Pager
         );
     }
 
-
     /**
      * setPage
      *
@@ -373,7 +357,6 @@ class Doctrine_Pager
         $this->_setPage($page);
         $this->_setExecuted(false);
     }
-
 
     /**
      * _setPage
@@ -389,7 +372,6 @@ class Doctrine_Pager
         $this->_page = ($page <= 0) ? 1 : $page;
     }
 
-
     /**
      * getLastPage
      *
@@ -401,7 +383,6 @@ class Doctrine_Pager
     {
         return $this->_maxPerPage;
     }
-
 
     /**
      * setMaxPerPage
@@ -424,7 +405,6 @@ class Doctrine_Pager
         $this->_setExecuted(false);
     }
 
-
     /**
      * getResultsInPage
      *
@@ -445,7 +425,6 @@ class Doctrine_Pager
         return abs($this->getNumResults() - $offset);
     }
 
-
     /**
      * getQuery
      *
@@ -457,7 +436,6 @@ class Doctrine_Pager
     {
         return $this->_query;
     }
-
 
     /**
      * _setQuery
@@ -471,12 +449,12 @@ class Doctrine_Pager
     protected function _setQuery($query)
     {
         if (is_string($query)) {
-            $query = Doctrine_Query::create()->parseQuery($query);
+            $query = Doctrine_Query::create()
+                ->parseDqlQuery($query);
         }
 
         $this->_query = $query;
     }
-
 
     /**
      * getCountQuery
@@ -489,7 +467,6 @@ class Doctrine_Pager
     {
         return ($this->_countQuery !== null) ? $this->_countQuery : $this->_query;
     }
-
 
     /**
      * setCountQuery
@@ -505,7 +482,8 @@ class Doctrine_Pager
     public function setCountQuery($query, $params = null)
     {
         if (is_string($query)) {
-            $query = Doctrine_Query::create()->parseQuery($query);
+            $query = Doctrine_Query::create()
+                ->parseDqlQuery($query);
         }
 
         $this->_countQuery = $query;
@@ -514,7 +492,6 @@ class Doctrine_Pager
 
         $this->_setExecuted(false);
     }
-
 
     /**
      * getCountQueryParams
@@ -527,7 +504,6 @@ class Doctrine_Pager
     {
         return ($this->_countQueryParams !== null) ? $this->_countQueryParams : $defaultParams;
     }
-
 
     /**
      * setCountQueryParams
@@ -554,7 +530,6 @@ class Doctrine_Pager
         $this->_setExecuted(false);
     }
 
-
     /**
      * execute
      *
@@ -566,7 +541,7 @@ class Doctrine_Pager
      */
     public function execute($params = array(), $hydrationMode = null)
     {
-        if (!$this->getExecuted()) {
+        if ( !$this->getExecuted()) {
             $this->_initialize($params);
         }
         

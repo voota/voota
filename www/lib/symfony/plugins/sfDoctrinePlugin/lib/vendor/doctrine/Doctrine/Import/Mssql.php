@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mssql.php 5210 2008-11-24 13:20:58Z guilhermeblanco $
+ *  $Id: Mssql.php 6484 2009-10-12 17:40:41Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
  * @author      Frank M. Kromann <frank@kromann.info> (PEAR MDB2 Mssql driver)
  * @author      David Coallier <davidc@php.net> (PEAR MDB2 Mssql driver)
- * @version     $Revision: 5210 $
+ * @version     $Revision: 6484 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -89,6 +89,13 @@ class Doctrine_Import_Mssql extends Doctrine_Import
      */
     public function listTableColumns($table)
     {
+        $sql = 'EXEC sp_primary_keys_rowset @table_name = ' . $this->conn->quoteIdentifier($table, true);
+        $result = $this->conn->fetchAssoc($sql);
+        $primary = array();
+        foreach ($result as $key => $val) {
+            $primary[] = $val['COLUMN_NAME'];
+        }
+
         $sql     = 'EXEC sp_columns @table_name = ' . $this->conn->quoteIdentifier($table, true);
         $result  = $this->conn->fetchAssoc($sql);
         $columns = array();
@@ -113,6 +120,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
 
             $isIdentity = (bool) (strtoupper(trim($identity)) == 'IDENTITY');
             $isNullable = (bool) (strtoupper(trim($val['is_nullable'])) == 'NO');
+            $isPrimary = in_array($val['column_name'], $primary);
 
             $description  = array(
                 'name'          => $val['column_name'],
@@ -120,11 +128,11 @@ class Doctrine_Import_Mssql extends Doctrine_Import
                 'type'          => $decl['type'][0],
                 'alltypes'      => $decl['type'],
                 'length'        => $decl['length'],
-                'fixed'         => $decl['fixed'],
-                'unsigned'      => $decl['unsigned'],
+                'fixed'         => (bool) $decl['fixed'],
+                'unsigned'      => (bool) $decl['unsigned'],
                 'notnull'       => $isIdentity ? true : $isNullable,
                 'default'       => $val['column_def'],
-                'primary'       => $isIdentity,
+                'primary'       => $isPrimary,
                 'autoincrement' => $isIdentity,
             );
 
@@ -153,7 +161,7 @@ class Doctrine_Import_Mssql extends Doctrine_Import
      */
     public function listTables($database = null)
     {
-        $sql = "SELECT name FROM sysobjects WHERE type = 'U' AND name <> 'dtproperties' ORDER BY name";
+        $sql = "SELECT name FROM sysobjects WHERE type = 'U' AND name <> 'dtproperties' AND name <> 'sysdiagrams' ORDER BY name";
 
         return $this->conn->fetchColumn($sql);
     }
@@ -198,8 +206,8 @@ class Doctrine_Import_Mssql extends Doctrine_Import
     {
         $keyName = 'INDEX_NAME';
         $pkName = 'PK_NAME';
-        if ($this->conn->getAttribute(Doctrine::ATTR_PORTABILITY) & Doctrine::PORTABILITY_FIX_CASE) {
-            if ($this->conn->getAttribute(Doctrine::ATTR_FIELD_CASE) == CASE_LOWER) {
+        if ($this->conn->getAttribute(Doctrine_Core::ATTR_PORTABILITY) & Doctrine_Core::PORTABILITY_FIX_CASE) {
+            if ($this->conn->getAttribute(Doctrine_Core::ATTR_FIELD_CASE) == CASE_LOWER) {
                 $keyName = strtolower($keyName);
                 $pkName  = strtolower($pkName);
             } else {

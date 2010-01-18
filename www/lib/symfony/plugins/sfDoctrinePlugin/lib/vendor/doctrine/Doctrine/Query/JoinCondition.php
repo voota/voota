@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: JoinCondition.php 5066 2008-10-08 06:44:26Z guilhermeblanco $
+ *  $Id: JoinCondition.php 6859 2009-12-05 00:12:51Z kriswallsmith $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,15 +27,22 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 5066 $
+ * @version     $Revision: 6859 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
-class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition 
+class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
 {
-    public function load($condition) 
+    public function load($condition)
     {
         $condition = trim($condition);
         $e = $this->_tokenizer->sqlExplode($condition);
+
+        foreach ($e as $k => $v) {
+          if ( ! $v) {
+            unset($e[$k]);
+          }
+        }
+        $e = array_values($e);
 
         if (($l = count($e)) > 2) {
             $leftExpr = $this->query->parseClause($e[0]);
@@ -52,10 +59,10 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
                 // FIX: "field BETWEEN field2 AND field3" issue
                 // Related to ticket #1488
                 $e[2] .= ' ' . $e[3] . ' ' . $e[4];
-                
+
                 unset($e[3], $e[4]); // Remove unused indexes
             }
-            
+
             if (substr(trim($e[2]), 0, 1) != '(') {
                 $expr = new Doctrine_Expression($e[2], $this->query->getConnection());
                 $e[2] = $expr->getSql();
@@ -75,8 +82,10 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
 
                 if (substr($trimmed_upper, 0, 4) == 'FROM' || substr($trimmed_upper, 0, 6) == 'SELECT') {
                     // subquery found
-                    $q     = $this->query->createSubquery()->parseQuery($trimmed, false);
-                    $value   = '(' . $q->getSql() . ')';
+                    $q = $this->query->createSubquery()
+                        ->parseDqlQuery($trimmed, false);
+                    $value   = '(' . $q->getSqlQuery() . ')';
+                    $q->free();
                 } elseif (substr($trimmed_upper, 0, 4) == 'SQL:') {
                     // Change due to bug "(" XXX ")"
                     //$value = '(' . substr($trimmed, 4) . ')';
@@ -85,7 +94,7 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
                     // simple in expression found
                     $e = $this->_tokenizer->sqlExplode($trimmed, ',');
                     $value = array();
-                    
+
                     foreach ($e as $part) {
                         $value[] = $this->parseLiteralValue($part);
                     }
@@ -97,7 +106,7 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
                 // In relation to ticket #1488
                 $e     = $this->_tokenizer->bracketExplode($value, array(' AND ', ' \&\& '), '(', ')');
                 $value = array();
-                    
+
                 foreach ($e as $part) {
                     $value[] = $this->parseLiteralValue($part);
                 }
@@ -113,33 +122,33 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
                 default:
                     $rightExpr = (($hasRightAggExpression) ? $rightMatches[1] . '(' : '')
                               . $value
-                              . (($hasRightAggExpression) ? $rightMatches[3] . ')' : '') ;
+                              . (($hasRightAggExpression) ? ')' . $rightMatches[3] : '') ;
 
                     $condition  = $leftExpr . ' ' . $operator . ' ' . $rightExpr;
             }
 
             return $condition;
         }
-        
+
         $parser = new Doctrine_Query_Where($this->query, $this->_tokenizer);
 
         return $parser->parse($condition);
     }
-    
-    
+
+
     protected function _processPossibleAggExpression(& $expr, & $matches = array())
     {
         $hasAggExpr = preg_match('/(.*[^\s\(\=])\(([^\)]*)\)(.*)/', $expr, $matches);
-        
+
         if ($hasAggExpr) {
             $expr = $matches[2];
 
             // We need to process possible comma separated items
             if (substr(trim($matches[3]), 0, 1) == ',') {
                 $xplod = $this->_tokenizer->sqlExplode(trim($matches[3], ' )'), ',');
-                
+
                 $matches[3] = array();
-                    
+
                 foreach ($xplod as $part) {
                     if ($part != '') {
                         $matches[3][] = $this->parseLiteralValue($part);
@@ -149,7 +158,7 @@ class Doctrine_Query_JoinCondition extends Doctrine_Query_Condition
                 $matches[3] = '), ' . implode(', ', $matches[3]);
             }
         }
-        
+
         return $hasAggExpr;
     }
 }

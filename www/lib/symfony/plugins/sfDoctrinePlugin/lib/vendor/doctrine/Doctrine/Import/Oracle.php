@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Oracle.php 5128 2008-10-21 23:41:41Z jwage $
+ *  $Id: Oracle.php 6484 2009-10-12 17:40:41Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -24,7 +24,7 @@
  * @subpackage  Import
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
- * @version     $Revision: 5128 $
+ * @version     $Revision: 6484 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -37,18 +37,11 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listDatabases()
     {
-        if ( ! $this->conn->getAttribute(Doctrine::ATTR_EMULATE_DATABASE)) {
+        if ( ! $this->conn->getAttribute(Doctrine_Core::ATTR_EMULATE_DATABASE)) {
             throw new Doctrine_Import_Exception('database listing is only supported if the "emulate_database" option is enabled');
         }
-        /**
-        if ($this->conn->options['database_name_prefix']) {
-            $query = 'SELECT SUBSTR(username, ';
-            $query.= (strlen($this->conn->getAttribute(['database_name_prefix'])+1);
-            $query.= ") FROM sys.dba_users WHERE username LIKE '";
-            $query.= $this->conn->options['database_name_prefix']."%'";
-        } else {
-        */
-        $query   = 'SELECT username FROM sys.dba_users';
+
+        $query   = 'SELECT username FROM sys.user_users';
 
         $result2 = $this->conn->standaloneQuery($query);
         $result  = $result2->fetchColumn();
@@ -76,7 +69,8 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTriggers($database = null)
     {
-
+        $query = "SELECT trigger_name FROM sys.user_triggers"; 
+        return $this->conn->fetchColumn($query);
     }
 
     /**
@@ -120,12 +114,19 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTableColumns($table)
     {
-        $sql    = "SELECT column_name, data_type, "
-                . "CASE WHEN data_type = 'NUMBER' THEN data_precision ELSE data_length END AS data_length, "
-                . "nullable, data_default, data_scale, data_precision FROM all_tab_columns "
-                . "WHERE table_name = '" . $table . "' ORDER BY column_id";
-
-        $result = $this->conn->fetchAssoc($sql);
+		$sql = <<<QEND
+SELECT tc.column_name, data_type,
+CASE WHEN data_type = 'NUMBER' THEN data_precision ELSE data_length END AS data_length,
+nullable, data_default, data_scale, data_precision, pk.primary
+FROM all_tab_columns tc
+LEFT JOIN (
+ select 'primary' primary, cc.table_name, cc.column_name from all_constraints cons
+ join all_cons_columns cc on cons.constraint_name = cc.constraint_name
+ where cons.constraint_type = 'P'
+) pk ON pk.column_name = tc.column_name and pk.table_name = tc.table_name
+WHERE tc.table_name = :tableName ORDER BY column_id
+QEND;
+        $result = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
 
         $descr = array();
 
@@ -133,17 +134,17 @@ class Doctrine_Import_Oracle extends Doctrine_Import
             $val = array_change_key_case($val, CASE_LOWER);
             $decl = $this->conn->dataDict->getPortableDeclaration($val);
 
-
             $descr[$val['column_name']] = array(
                'name'       => $val['column_name'],
                'notnull'    => (bool) ($val['nullable'] === 'N'),
                'ntype'      => $val['data_type'],
                'type'       => $decl['type'][0],
                'alltypes'   => $decl['type'],
-               'fixed'      => $decl['fixed'],
-               'unsigned'   => $decl['unsigned'],
+               'fixed'      => (bool) $decl['fixed'],
+               'unsigned'   => (bool) $decl['unsigned'],
                'default'    => $val['data_default'],
                'length'     => $val['data_length'],
+               'primary'    => (bool) $val['primary'],
                'scale'      => isset($val['scale']) ? $val['scale']:null,
             );
         }
@@ -175,16 +176,17 @@ class Doctrine_Import_Oracle extends Doctrine_Import
     public function listTableRelations($table)
     {
         $relations = array();
-        $sql  = 'SELECT ac.table_name AS referenced_table_name, lcc.column_name AS local_column_name, rcc.column_name AS referenced_column_name '
-              . 'FROM all_constraints ac '
-              . 'JOIN all_cons_columns lcc ON ac.r_constraint_name = lcc.constraint_name '
-              . 'JOIN all_cons_columns rcc ON ac.constraint_name = rcc.constraint_name '
-              . "WHERE ac.constraint_type = 'R'" 
-              . "AND ac.r_constraint_name IN (SELECT constraint_name FROM all_constraints WHERE constraint_type IN ('P', 'U') AND table_name ='$table')";
-        
-        $results = $this->conn->fetchAssoc($sql);
-        foreach ($results as $result) 
-        {
+        $sql = 'SELECT '
+             . 'rcc.table_name AS referenced_table_name, '
+             . 'lcc.column_name AS local_column_name, '
+             . 'rcc.column_name AS referenced_column_name '
+             . 'FROM user_constraints ac '
+             . 'JOIN user_cons_columns rcc ON ac.r_constraint_name = rcc.constraint_name '
+             . 'JOIN user_cons_columns lcc ON ac.constraint_name = lcc.constraint_name '
+             . "WHERE ac.constraint_type = 'R' AND ac.table_name = :tableName";
+
+        $results = $this->conn->fetchAssoc($sql, array(':tableName' => $table));
+        foreach ($results as $result) {
             $result = array_change_key_case($result, CASE_LOWER);
             $relations[] = array('table'   => $result['referenced_table_name'],
                                  'local'   => $result['local_column_name'],
@@ -192,6 +194,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
         }
         return $relations;
     }
+
     /**
      * lists tables
      *
@@ -200,7 +203,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listTables($database = null)
     {
-        $query = 'SELECT table_name FROM sys.user_tables';
+        $query = "SELECT * FROM user_objects WHERE object_type = 'TABLE'";
         return $this->conn->fetchColumn($query);
     }
 
@@ -233,17 +236,7 @@ class Doctrine_Import_Oracle extends Doctrine_Import
      */
     public function listUsers()
     {
-        /**
-        if ($this->conn->options['emulate_database'] && $this->conn->options['database_name_prefix']) {
-            $query = 'SELECT SUBSTR(username, ';
-            $query.= (strlen($this->conn->options['database_name_prefix'])+1);
-            $query.= ") FROM sys.dba_users WHERE username NOT LIKE '";
-            $query.= $this->conn->options['database_name_prefix']."%'";
-        } else {
-        */
-
-        $query = 'SELECT username FROM sys.dba_users';
-        //}
+        $query = 'SELECT username FROM sys.all_users';
 
         return $this->conn->fetchColumn($query);
     }

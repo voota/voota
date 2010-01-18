@@ -30,7 +30,7 @@
  * @version     $Revision$
  * @author      Roman Borschel <roman@code-factory.org>
  */
-class Doctrine_Validator_Future
+class Doctrine_Validator_Future extends Doctrine_Validator_Driver
 {
     /**
      * checks if the given value is a valid date in the future.
@@ -40,7 +40,7 @@ class Doctrine_Validator_Future
      */
     public function validate($value)
     {
-        if ($value === null) {
+        if (is_null($value)) {
             return true;
         }
         $e = explode('-', $value);

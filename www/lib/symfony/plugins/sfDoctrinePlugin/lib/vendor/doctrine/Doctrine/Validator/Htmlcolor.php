@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Htmlcolor.php 4654 2008-07-10 20:08:30Z romanb $
+ *  $Id: Htmlcolor.php 6468 2009-10-09 20:41:28Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,10 +27,10 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 4654 $
+ * @version     $Revision: 6468 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
-class Doctrine_Validator_HtmlColor
+class Doctrine_Validator_HtmlColor extends Doctrine_Validator_Driver
 {
     /**
      * checks if given value is a valid html color code
@@ -40,6 +40,9 @@ class Doctrine_Validator_HtmlColor
      */
     public function validate($value)
     {
+        if (is_null($value)) {
+            return true;
+        }
         if ( ! preg_match("/^#{0,1}[0-9a-fA-F]{6}$/", $value)) {
             return false;
         }

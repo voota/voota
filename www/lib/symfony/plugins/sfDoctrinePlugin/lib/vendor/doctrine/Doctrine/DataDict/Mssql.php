@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Mssql.php 5176 2008-11-17 12:19:44Z guilhermeblanco $
+ *  $Id: Mssql.php 6759 2009-11-18 17:24:27Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @author      Lukas Smith <smith@pooteeweet.org> (PEAR MDB2 library)
  * @author      Frank M. Kromann <frank@kromann.info> (PEAR MDB2 Mssql driver)
  * @author      David Coallier <davidc@php.net> (PEAR MDB2 Mssql driver)
- * @version     $Revision: 5176 $
+ * @version     $Revision: 6759 $
  * @link        www.phpdoctrine.org
  * @since       1.0
  */
@@ -76,7 +76,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
 
                 $fixed  = ((isset($field['fixed']) && $field['fixed']) || $field['type'] == 'char') ? true : false;
 
-                return $fixed ? ($length ? 'CHAR('.$length.')' : 'CHAR('.$this->conn->options['default_text_field_length'].')')
+                return $fixed ? ($length ? 'CHAR('.$length.')' : 'CHAR('.$this->conn->varchar_max_length.')')
                     : ($length ? 'VARCHAR('.$length.')' : 'TEXT');
             case 'clob':
                 if ( ! empty($field['length'])) {
@@ -96,7 +96,7 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 return 'IMAGE';
             case 'integer':
             case 'int':
-                return 'INT';
+                return (isset($field['unsigned']) && $field['unsigned']) ? 'BIGINT' : 'INT';
             case 'boolean':
                 return 'BIT';
             case 'date':
@@ -109,11 +109,10 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 return 'FLOAT';
             case 'decimal':
                 $length = !empty($field['length']) ? $field['length'] : 18;
-                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine::ATTR_DECIMAL_PLACES);
+                $scale = !empty($field['scale']) ? $field['scale'] : $this->conn->getAttribute(Doctrine_Core::ATTR_DECIMAL_PLACES);
                 return 'DECIMAL('.$length.','.$scale.')';
         }
-
-        throw new Doctrine_DataDict_Exception('Unknown field type \'' . $field['type'] .  '\'.');
+        return $field['type'] . (isset($field['length']) ? '('.$field['length'].')':null);
     }
 
     /**
@@ -140,11 +139,15 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
             break;
             case 'tinyint':
             case 'smallint':
+            case 'bigint':
             case 'int':
                 $type[0] = 'integer';
                 if ($length == 1) {
                     $type[] = 'boolean';
                 }
+            break;
+            case 'date': 
+                $type[0] = 'date'; 
             break;
             case 'datetime':
             case 'timestamp':
@@ -186,13 +189,78 @@ class Doctrine_DataDict_Mssql extends Doctrine_DataDict
                 $type[] = 'blob';
                 $length = null;
             break;
+            case 'uniqueidentifier':
+                $type[] = 'string';
+                $length = 36;
+            break;
+            case 'sql_variant':
+            case 'sysname':
+            case 'binary':
+                $type[] = 'string';
+                $length = null;
+            break;
             default:
-                throw new Doctrine_DataDict_Exception('unknown database attribute type: '.$db_type);
+                $type[] = $field['type'];
+                $length = isset($field['length']) ? $field['length']:null;
         }
 
         return array('type'     => $type,
                      'length'   => $length,
                      'unsigned' => $unsigned,
                      'fixed'    => $fixed);
+    }
+
+    /**
+     * Obtain DBMS specific SQL code portion needed to declare an integer type
+     * field to be used in statements like CREATE TABLE.
+     *
+     * @param string  $name   name the field to be declared.
+     * @param string  $field  associative array with the name of the properties
+     *                        of the field being declared as array indexes.
+     *                        Currently, the types of supported field
+     *                        properties are as follows:
+     *
+     *                       unsigned
+     *                        Boolean flag that indicates whether the field
+     *                        should be declared as unsigned integer if
+     *                        possible.
+     *
+     *                       default
+     *                        Integer value to be used as default for this
+     *                        field.
+     *
+     *                       notnull
+     *                        Boolean flag that indicates whether this field is
+     *                        constrained to not be set to null.
+     * @return string  DBMS specific SQL code portion that should be used to
+     *                 declare the specified field.
+     */
+    public function getIntegerDeclaration($name, $field)
+    {
+        $default = $autoinc = '';
+        if ( ! empty($field['autoincrement'])) {
+            $autoinc = ' identity';
+        } elseif (array_key_exists('default', $field)) {
+            if ($field['default'] === '') {
+                $field['default'] = empty($field['notnull']) ? null : 0;
+            }
+
+            $default = ' DEFAULT ' . (is_null($field['default'])
+                ? 'NULL'
+                : $this->conn->quote($field['default']));
+        }
+
+
+        $notnull = (isset($field['notnull']) && $field['notnull']) ? ' NOT NULL' : ' NULL';
+        //$unsigned = (isset($field['unsigned']) && $field['unsigned']) ? ' UNSIGNED' : '';
+        // MSSQL does not support the UNSIGNED keyword
+        $unsigned = '';
+        $comment  = (isset($field['comment']) && $field['comment']) 
+            ? " COMMENT '" . $field['comment'] . "'" : '';
+
+        $name = $this->conn->quoteIdentifier($name, true);
+
+        return $name . ' ' . $this->getNativeDeclaration($field) . $unsigned 
+            . $default . $notnull . $autoinc . $comment;
     }
 }

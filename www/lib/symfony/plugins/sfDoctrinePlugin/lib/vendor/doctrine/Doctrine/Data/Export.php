@@ -59,7 +59,7 @@ class Doctrine_Data_Export extends Doctrine_Data
      */
     public function doExport()
     {
-        $models = Doctrine::getLoadedModels();
+        $models = Doctrine_Core::getLoadedModels();
         $specifiedModels = $this->getModels();
 
         $data = array();
@@ -69,13 +69,13 @@ class Doctrine_Data_Export extends Doctrine_Data
           $models = $specifiedModels;
         }
 
-        $models = Doctrine::initializeModels($models);
+        $models = Doctrine_Core::initializeModels($models);
 
         // temporarily disable indexBy query parts of selected and related tables
         $originalIndexBy = array();
         foreach ($models AS $name) {
-          $table = Doctrine::getTable($name);
-          if (!is_null($indexBy = $table->getBoundQueryPart('indexBy'))) {
+          $table = Doctrine_Core::getTable($name);
+          if ( !is_null($indexBy = $table->getBoundQueryPart('indexBy'))) {
             $originalIndexBy[$name] = $indexBy;
             $table->bindQueryPart('indexBy', null);
           }
@@ -86,7 +86,7 @@ class Doctrine_Data_Export extends Doctrine_Data
                 continue;
             }
 
-            $results = Doctrine::getTable($name)->findAll();
+            $results = Doctrine_Core::getTable($name)->findAll();
 
             if ($results->count() > 0) {
                 $data[$name] = $results;
@@ -95,7 +95,7 @@ class Doctrine_Data_Export extends Doctrine_Data
 
         // Restore the temporarily disabled indexBy query parts
         foreach($originalIndexBy AS $name => $indexBy) {
-            Doctrine::getTable($name)->bindQueryPart('indexBy', $indexBy);
+            Doctrine_Core::getTable($name)->bindQueryPart('indexBy', $indexBy);
         }
 
         $data = $this->prepareData($data);
@@ -158,18 +158,23 @@ class Doctrine_Data_Export extends Doctrine_Data
                 $recordKey = $className . '_' . implode('_', $record->identifier());
                 $preparedData[$className][$recordKey] = array();
 
+                // skip single primary keys, we need to maintain composite primary keys
+                $keys = $record->getTable()->getIdentifier();
+
                 $recordData = $record->toArray(false);
 
                 foreach ($recordData as $key => $value) {
-                    // skip single primary keys, we need to maintain composite primary keys
-                    $keys = $record->getTable()->getIdentifier();
-
                     if ( ! is_array($keys)) {
                       $keys = array($keys);
                     }
 
                     if (count($keys) <= 1 && in_array($key, $keys)) {
                         continue;
+                    }
+
+                    if (is_object($record[$key])) {
+                        // If the field is an object serialize it
+                        $value = serialize($record[$key]);
                     }
 
                     if ($relation = $this->isRelation($record, $key)) {

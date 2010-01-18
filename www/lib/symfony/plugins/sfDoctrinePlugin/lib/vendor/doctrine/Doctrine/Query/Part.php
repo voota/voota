@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Part.php 3884 2008-02-22 18:26:35Z jwage $
+ *  $Id: Part.php 5798 2009-06-02 15:10:46Z piccoloprincipe $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,7 +27,7 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 3884 $
+ * @version     $Revision: 5798 $
  * @author      Konsta Vesterinen <kvesteri@cc.hut.fi>
  */
 abstract class Doctrine_Query_Part
@@ -45,6 +45,7 @@ abstract class Doctrine_Query_Part
     public function __construct($query, Doctrine_Query_Tokenizer $tokenizer = null)
     {
         $this->query = $query;
+
         if ( ! $tokenizer) {
             $tokenizer = new Doctrine_Query_Tokenizer();
         }

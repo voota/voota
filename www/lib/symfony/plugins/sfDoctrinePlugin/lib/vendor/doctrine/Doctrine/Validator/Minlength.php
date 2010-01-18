@@ -1,6 +1,6 @@
 <?php
 /*
- *  $Id: Minlength.php 3884 2008-02-22 18:26:35Z jwage $
+ *  $Id: Minlength.php 6468 2009-10-09 20:41:28Z jwage $
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
@@ -27,10 +27,10 @@
  * @license     http://www.opensource.org/licenses/lgpl-license.php LGPL
  * @link        www.phpdoctrine.org
  * @since       1.0
- * @version     $Revision: 3884 $
+ * @version     $Revision: 6468 $
  * @author      Gijs van Dulmen <gijs@vandulmen.net>
  */
-class Doctrine_Validator_Minlength 
+class Doctrine_Validator_Minlength extends Doctrine_Validator_Driver
 {
     /**
      * checks if given value is more length than the minimum length required
@@ -40,6 +40,9 @@ class Doctrine_Validator_Minlength
      */
     public function validate($value)
     {
+        if (is_null($value)) {
+            return true;
+        }
         if (isset($this->args) && strlen($value) < $this->args) {
             return false;
         }
