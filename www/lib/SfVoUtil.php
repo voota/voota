@@ -47,6 +47,7 @@ class SfVoUtil
 		
 	 	$aString =  $string;
 	 	$pos = -1;
+	 	$pos1 = false;
 	    foreach ( $words as $idx => $word )
 	    {
 	    	$pos = stripos(SfVoUtil::voDecode($aString), SfVoUtil::voDecode($word));
@@ -65,19 +66,25 @@ class SfVoUtil
 	    }
 	    
 	    $endCut = $pos1 && strlen( substr($aString, ($pos1-SfVoUtil::HIGHLIGHT_LENGTH >= 0)?($pos1-SfVoUtil::HIGHLIGHT_LENGTH):0) ) < strlen(utf8_decode($string));
-	    return ($pos1-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'[...] ':'') . $aString . ($endCut?' [...]':'')  ;
+	    return (($pos1?$pos1:0)-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'[...] ':'') . $aString . ($endCut?' [...]':'')  ;
 	}
 	
-	public static function matches($str1, $q)
+	public static function matches($str1, $q, $or = false)
 	{
 		$words = explode(' ', $q);
 		
 		$ret = false;
-		if (count($words) > 0){
+		if (count($words) > 0 && !$or){
 			$ret = true;
 		}
 	    foreach ( $words as $idx => $word ){
-	    	$ret = $ret && (stripos(SfVoUtil::stripAccents($str1), SfVoUtil::stripAccents($word)) !== FALSE); 
+	    	$isTrue = stripos(SfVoUtil::stripAccents($str1), SfVoUtil::stripAccents($word)) !== FALSE;
+	    	if ($or) {
+	    		$ret = $ret || $isTrue; 
+	    	}
+	    	else {
+	    		$ret = $ret && $isTrue; 
+	    	}
 	    }
 		return $ret;
 	}

@@ -37,6 +37,13 @@ class generalComponents extends sfComponents
   				$this->quote = $review->getText();
   			}
   		}
+  		if ($this->quote == ''){
+	  		foreach($reviews as $review){
+	  			if (SfVoUtil::matches($review->getText(), $this->q, true)){
+	  				$this->quote = $review->getText();
+	  			}
+	  		}
+  		}
   	}
   
   	$this->quote = SfVoUtil::highlightWords($this->quote, $this->q);
