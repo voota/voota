@@ -296,7 +296,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-search table th { background-color: #f6f6f6; padding: 0.5em 0; }
 #general-search table tbody td { padding: 1em 0; }
 #general-search table .photo { text-align: right; width: 10%; padding-right: 2%; }
-#general-search table .name { text-align: left; width: 82%; }
+#general-search table .name { text-align: left; width: 42%; /* width: 82%;*/ }
 
 /* Página de político - partido */
 #politico-show h2#name .rank,
