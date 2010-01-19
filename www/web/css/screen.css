@@ -18,8 +18,9 @@ strong.email { color: #2b56ff;}
 tr.even { background-color: #fbfbfb; }
 
 /* Layout básico */
+#header, #main, #footer { text-align: center;}
 #header-inner, #main-inner, #footer { font-size: 1.3em }
-#header-inner, #main-inner { margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
+#header-inner, #main-inner { text-align: left; margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
 #home-index #main,
 #general-contact #main,
 #sfGuardAuth-signin #main,
@@ -60,7 +61,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 #contact-links ul li.facebook { background: transparent url(/images/icoFacebook.png) right center no-repeat;}
 
 /* IE 6 */
-#ie6 { position: relative; margin-top: 2em; padding: 1em; border: 1px solid red;}
+#ie6 { position: relative; margin: 2em 0; padding: 1em; border: 1px solid red;}
 #ie6 h3 { font-size: 1em; padding-bottom: 1em;}
 #ie6 .close { position: absolute; top: 1em; right: 1em;}
 
