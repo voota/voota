@@ -149,6 +149,7 @@ class generalActions extends sfActions{
         }	
 	}
 	
+	$cl->SetArrayResult(true);
 	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'politico' );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {

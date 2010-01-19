@@ -114,6 +114,10 @@ usuario_votos:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
+  
+usuario_contact:
+  url:   /:username/contact
+  param: { module: perfil, action: contact }
 
 profile_more_comments:
   url: /:sf_culture/user/more

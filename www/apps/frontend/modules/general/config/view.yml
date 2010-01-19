@@ -1,0 +1,4 @@
+default:
+  components:
+    politicoResult:  [general, politicoResult]
+    

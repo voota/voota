@@ -1,11 +1,10 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 
 <h2><?php echo __('Contacta con Voota') ?></h2>
 
 <div id="content">
 
-  <?php echo form_tag('@contact') ?>
+  <form method="post" action="<?php echo url_for( '@contact' ) ?>">
     <dl>
       <dt><label for="contact_nombre"><?php echo __('Tu nombre') ?>:</label></dt>
       <dd>

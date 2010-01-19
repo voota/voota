@@ -15,7 +15,12 @@ $(document).ready(function(){
 
 <h2>
   <?php echo $pageTitle ?>
-  <?php echo select_tag('partido', options_for_select($partidos_arr, $partido), array('class'  => 'input', 'id' => 'partido_selector')) ?>
+  <select name="partido" id="partido_selector" class="input">
+	<?php foreach ($partidos_arr as $value => $desc): ?>
+		<option value="<?php echo $value?>" <?php echo $partido==$value?'selected="selected"':''?>><?php echo $desc?></option>		
+	<?php endforeach ?>
+  </select>
+  
 </h2>
 
 <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>

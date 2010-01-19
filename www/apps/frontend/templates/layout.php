@@ -1,5 +1,5 @@
 <?php use_helper('I18N') ?>
-<?php use_helper('Form') ?>
+<?php use_helper('jQuery') ?>
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns='http://www.w3.org/1999/xhtml'>
@@ -13,7 +13,18 @@
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
-
+  <?php if( $sf_request->getAttribute("ie6") ):?>
+	<script type="text/javascript">
+	  <!--
+	  $(document).ready(function(){
+	  	$("#ie6WarnClose").click(function(){
+	  		$('#ie6').remove();
+	  		return false;
+	    });
+	  });
+	  //-->
+	</script>
+  <?php endif ?>
   <!-- HEADER -->
   <div id="header">
     <div id="header-inner">
@@ -40,24 +51,24 @@
 
       <?php if ($sf_context->getModuleName() != "home"): ?>
         <div id="search">
-          <?php echo form_tag('@search') ?>
+          <form method="post" action="<?php echo url_for('@search')?>">
             <fieldset>
-              <?php echo input_tag('q', $sf_params->get('q')) ?>
-      	      <?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?>
+              <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
+      	      <input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" />
             </fieldset>
           </form>
         </div>
       <?php endif ?>
       
-      <!--[if IE 6]>
+      <?php if( $sf_request->getAttribute("ie6") ):?>
         <div id="ie6">
-          <h3>Aviso a los amantes del vintage</h3>
-          <p>Nos han saltado las alarmas diciéndonos que estás usando Internet Explorer 6, auténtica reliquia del año 2001. Por desgracia este navegador que usas no soporta lo que se denomina “estándares web”, que es algo que te ayuda a visualizar como es debido las páginas que visitas cuando estás en Internet.</p>
+          <h3><?php echo __('Aviso a los amantes del vintage')?></h3>
+          <p><?php echo __('Nos han saltado las alarmas diciéndonos que estás usando Internet Explorer 6, auténtica reliquia del año 2001. Por desgracia este navegador que usas no soporta lo que se denomina “estándares web”, que es algo que te ayuda a visualizar como es debido las páginas que visitas cuando estás en Internet.')?></p>
 
-          <p>¿Nuestra recomendación? Que actualizes tu navegador (es gratis). Te damos algunas ideas: <a href="http://www.getfirefox.com/">Firefox</a>, <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.opera.com/">Opera</a>... O la última versión de <a href="http://www.microsoft.com/spain/windows/internet-explorer/">Explorer</a>, claro.</p>
-          <p class="close"><a href="javascript:$('#ie6').remove();">Cerrar</a></p>
+          <p><?php echo __('¿Nuestra recomendación? Que actualizes tu navegador (es gratis). Te damos algunas ideas: <a href="http://www.getfirefox.com/">Firefox</a>, <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.opera.com/">Opera</a>... O la última versión de <a href="http://www.microsoft.com/spain/windows/internet-explorer/">Explorer</a>, claro.')?></p>
+          <p class="close"><a id="ie6WarnClose" href="#"><?php echo __('Cerrar')?></a></p>
         </div>
-      <![endif]-->
+      <?php endif ?>
       
       <?php include_slot('header-extra') ?>
     </div>

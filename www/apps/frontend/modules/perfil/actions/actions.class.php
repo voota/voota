@@ -19,7 +19,20 @@
 
 class perfilActions extends sfActions
 {
-
+	
+  public function executeContact(sfWebRequest $request)
+  {
+  	$vanity = $request->getParameter('username');
+  	$this->f = $request->getParameter('f');
+    
+  	$c = new Criteria();
+  	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
+  	$userProfile = SfGuardUserProfilePeer::doSelectOne( $c );
+  	$this->forward404Unless($userProfile);
+  	
+  	$this->user = $userProfile->getsfGuardUser();  	
+  }
+  
   public function executeReviews(sfWebRequest $request)
   {
   	$op = $request->getParameter('o');

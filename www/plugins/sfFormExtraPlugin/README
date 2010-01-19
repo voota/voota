@@ -3,8 +3,12 @@ sfFormExtraPlugin
 
 The `sfFormExtraPlugin` packages useful validators, widgets, and forms.
 
-This collection holds validators, widgets, and forms which we don't want to include with the main symfony package
-because they are too specific or have external dependencies.
+This collection holds validators, widgets, and forms which we don't want to
+include with the main symfony package because they are too specific or have
+external dependencies.
+
+As no third party libraries is bundled in the plugin, you need to install and
+load the required dependencies like JQuery, JQuery UI, or TinyMCE by yourself.
 
 Installation
 ------------
@@ -37,6 +41,7 @@ Forms
 Validators
 ----------
 
+  * sfValidatorDoctrineNestedSetLevel: Checks wether or not the max level of a nested set object (nestedSet behavior) is achieved
   * sfValidatorReCaptcha: Validates a ReCaptcha (see sfWidgetFormReCaptcha)
   * sfValidatorBlacklist: Validates that a value is not one of the configured forbidden ones
   * sfValidatorSchemaTimeInterval: Validates a time interval between two dates provided by a widget schema

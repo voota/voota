@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
@@ -60,14 +59,14 @@
               </ul>
           </div>
           <div class="search">
-            <?php echo form_tag('@search') ?>
+            <form method="post" action="<?php echo url_for('@search')?>">
               <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
               <p>
-                <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_1')) ?>
+                <input type="text" name="q" id="q_1" value="<?php echo $sf_params->get('q') ?>" />
                 <br />
                 <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
               </p>
-              <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
+              <p><input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" /></p>
             </form>
           </div>
         </li>
@@ -117,15 +116,15 @@
     <p class="signup"><?php echo link_to(__('¿Te gusta Voota? Registrarse en un plis'), '@sf_guard_signin')?></p>
     
     <div class="search">
-      <?php echo form_tag('@search') ?>
-        <p><label for="q_2"><?php echo __('¡Buusca!') ?></label></p>
-        <p>
-          <?php echo input_tag('q', $sf_params->get('q'), array('id' => 'q_2')) ?>
-          <br />
-          <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
-        </p>
-        <p><?php echo submit_tag(__('Buscar'), array('class' => 'button')) ?></p>
-      </form>
+            <form method="post" action="<?php echo url_for('@search')?>">
+              <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
+              <p>
+                <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
+                <br />
+                <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
+              </p>
+              <p><input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" /></p>
+            </form>
     </div>
   </div>
 </div>

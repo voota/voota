@@ -37,6 +37,7 @@ class sfValidatorBlacklist extends sfValidatorBase
   {
     $this->addRequiredOption('forbidden_values');
     $this->addOption('case_sensitive', true);
+    $this->addMessage('forbidden', 'Value %value% is forbidden');
   }
 
   /**
@@ -60,7 +61,7 @@ class sfValidatorBlacklist extends sfValidatorBase
 
     if (in_array($checkValue, $forbiddenValues))
     {
-      throw new sfValidatorError($this, 'invalid', array('value' => $value));
+      throw new sfValidatorError($this, 'forbidden', array('value' => $value));
     }
 
     return $value;

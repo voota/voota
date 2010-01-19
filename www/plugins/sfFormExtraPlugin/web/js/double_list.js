@@ -60,4 +60,4 @@ var sfDoubleList =
 
     return el;
   }
-}
+};

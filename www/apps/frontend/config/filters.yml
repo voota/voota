@@ -8,6 +8,8 @@ culture:
   class: voCultureFilter
 vobase:
   class: voBaseFilter
+browser:
+  class: voBrowserFilter
 
 # insert your own filters here
 
