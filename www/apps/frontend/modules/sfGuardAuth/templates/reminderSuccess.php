@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
@@ -12,7 +11,7 @@
 <div id="content">
   <p><?php echo __('Danos tu email y te la enviamos ahora mismo') ?></p>
 
-  <?php echo form_tag('@usuario_reminder') ?>
+  <form action="<?php echo url_for('@usuario_reminder') ?>" method="post">
     <table>
       <tr>
         <th><?php echo __('Tu Email') ?></th>
@@ -23,7 +22,7 @@
       </tr>
       <tr>
         <th></th>
-        <td class="submit"><?php echo submit_tag(__('Enviar'), array('class'   => 'button',)) ?></td>
+        <td class="submit"><input type="submit" value="<?php echo __('Enviar') ?>" class="button" /></td>
       </tr>
     </table>
   </form>

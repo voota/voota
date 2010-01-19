@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
@@ -8,8 +7,8 @@
 
 <div id="signup">
   <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
-  <?php echo form_tag('@sf_guard_signin') ?>
-    <div><?php echo input_hidden_tag('op', 'r') ?></div>
+  <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+    <div><input type="hidden" name="op" value="r" /></div>
     <table>
       <tr>
         <th><label for="registration_username"><?php echo __('Tu Email') ?></label></th>

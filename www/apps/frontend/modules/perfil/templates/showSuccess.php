@@ -21,7 +21,7 @@
       <div class="balloon-inner">
         <h3><?php echo __('¡Hey! %1% está usando Voota.', array('%1%' => $user)) ?></h3>
         <p><?php echo __('Tú también puedes tener tu propio perfil aquí y compartir tus opiniones sobre los políticos de España.') ?></p>
-        <?php echo form_tag('@sf_guard_signin', 'method=get') ?>
+        <form action="<?php echo url_for("@sf_guard_signin") ?>" method="get">
           <p>
             <?php echo __('¿Te animas? No tardas nada en registrarte:') ?>
     	      <?php echo submit_tag(__('Registrarte en Voota')) ?>
@@ -62,7 +62,7 @@
   </div>
   
   <div id="content">
-  <?php echo form_tag('@usuario?username='.$user->getProfile()->getVanity(), array('id' => 'filterForm')) ?>
+  <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
   <p class="filter">
     <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
     <br />
@@ -74,7 +74,7 @@
 		), $f)) ?>
   </p>
   </form>
-  <?php  ?>
+  <?php  ?></div>
 
   <div class="comments">
     <?php if ($reviews->getNbResults() > 0): ?>
@@ -104,4 +104,5 @@
     <?php endif ?>
   </div>
 
+  </div>
 </div>

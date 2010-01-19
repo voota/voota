@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
@@ -36,7 +35,7 @@
 <div id="content">
   <?php echo showNotices( $sf_user ) ?>
 
-  <?php echo form_tag('@usuario_edit', 'multipart=true autocomplete=off') ?>
+  <form action="<?php echo url_for('@usuario_edit') ?>" method="post" autocomplete="" method="post" enctype="multipart/form-data">
     <table>
       <tr>
         <th><label for="profile_nombre"><?php echo __('Tu nombre') ?></label></th>
@@ -172,7 +171,7 @@
       </tr>
       <tr>
         <th></th>
-        <td class="submit"><?php echo submit_tag(__('Guardar cambios')) ?></td>
+        <td class="submit"><input type="submit" value="<?php echo __('Guardar cambios') ?>" /></td>
         <td class="hints"></td>
       </tr>
       <tr>

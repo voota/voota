@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Validation') ?>
@@ -8,8 +7,8 @@
 
 <?php echo showNotices( $sf_user ) ?>
 
-<?php echo form_tag('@usuario_change_password2') ?>
-  <?php echo input_hidden_tag('codigo', $codigo) ?>
+<form action="<?php echo url_for('@usuario_change_password2') ?>" method="post">
+  <input type="hidden" name="codigo" value="<?php echo $codigo ?>" />
   <table>
     <tr>
       <th><label for="profile_passwordNew"><?php echo __('Contraseña') ?></label></th>
@@ -27,7 +26,7 @@
     </tr>
     <tr>
       <th></th>
-      <td class="submit"><?php echo submit_tag(__('Enviar'), array('class'   => 'button',)) ?></td>
+      <td class="submit"><input type="submit" value="<?php echo __('Enviar') ?>" class="button" />
     </tr>
   </table>
 </form>
