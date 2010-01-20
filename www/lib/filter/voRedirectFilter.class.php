@@ -22,12 +22,12 @@ class voRedirectFilter extends sfFilter
   	$user = sfContext::getInstance()->getUser();
   	$urlBack = $user->getAttribute('url_back');
   	if ($urlBack != '') {
-	  	if ($user->isAuthenticated()) {
+  		if ($user->isAuthenticated()) {
 			$user->setAttribute('url_back', '');
-	  		sfContext::getInstance()->getController()->redirect( $urlBack );
+  			sfContext::getInstance()->getController()->redirect( $urlBack );
 	  	}
 	}
-
+	
   	// Execute next filter
     $filterChain->execute();  	
   }

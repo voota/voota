@@ -59,14 +59,14 @@
               </ul>
           </div>
           <div class="search">
-            <form method="post" action="<?php echo url_for('@search')?>">
+            <form method="get" action="<?php echo url_for('@search')?>">
               <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
               <p>
                 <input type="text" name="q" id="q_1" value="<?php echo $sf_params->get('q') ?>" />
                 <br />
                 <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
               </p>
-              <p><input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" /></p>
+              <p><input type="submit" value="<?php echo __('Buscar') ?>" class="button" /></p>
             </form>
           </div>
         </li>
@@ -116,14 +116,14 @@
     <p class="signup"><?php echo link_to(__('¿Te gusta Voota? Registrarse en un plis'), '@sf_guard_signin')?></p>
     
     <div class="search">
-            <form method="post" action="<?php echo url_for('@search')?>">
+            <form method="get" action="<?php echo url_for('@search')?>">
               <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
               <p>
                 <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
                 <br />
                 <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
               </p>
-              <p><input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" /></p>
+              <p><input type="submit" value="<?php echo __('Buscar') ?>" class="button" /></p>
             </form>
     </div>
   </div>

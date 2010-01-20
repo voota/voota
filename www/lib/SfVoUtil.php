@@ -66,7 +66,7 @@ class SfVoUtil
 	    }
 	    
 	    $endCut = $pos1 && strlen( substr($aString, ($pos1-SfVoUtil::HIGHLIGHT_LENGTH >= 0)?($pos1-SfVoUtil::HIGHLIGHT_LENGTH):0) ) < strlen(utf8_decode($string));
-	    return (($pos1?$pos1:0)-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'[...] ':'') . $aString . ($endCut?' [...]':'')  ;
+	    return (($pos1?$pos1:0)-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'...':'') . $aString . ($endCut?'...':'')  ;
 	}
 	
 	public static function matches($str1, $q, $or = false)

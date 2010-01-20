@@ -17,11 +17,13 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 
-class perfilActions extends sfActions
+class perfilActions extends SfVoActions
 {
 	
   public function executeContact(sfWebRequest $request)
-  {
+  {  
+	$this->checkUser();
+  	
   	$vanity = $request->getParameter('username');
   	$this->f = $request->getParameter('f');
     

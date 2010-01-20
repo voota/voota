@@ -8,10 +8,8 @@ class generalComponents extends sfComponents
   	$this->quote = '';
   	
   	if (SfVoUtil::matches($this->obj->getNombre(), $this->q)){
-  		$this->quote = $this->obj->getNombre();
   	}
   	else if (SfVoUtil::matches($this->obj->getApellidos(), $this->q)){
-  		$this->quote = $this->obj->getApellidos();
   	}
   	else if (SfVoUtil::matches($this->obj->getAlias(), $this->q)){
   		$this->quote = $this->obj->getAlias();

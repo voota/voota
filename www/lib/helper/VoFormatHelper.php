@@ -45,3 +45,6 @@ function toShownUrl($str) {
 	
 	return $ret;
 }
+function highlightWords($str, $q) {
+	return SfVoUtil::highlightWords($str, $q);
+}

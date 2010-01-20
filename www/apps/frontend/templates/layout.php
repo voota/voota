@@ -52,10 +52,10 @@
 
       <?php if ($sf_context->getModuleName() != "home"): ?>
         <div id="search">
-          <form method="post" action="<?php echo url_for('@search')?>">
+          <form method="get" action="<?php echo url_for('@search')?>">
             <fieldset>
               <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
-      	      <input type="submit" name="commit" value="<?php echo __('Buscar') ?>" class="button" />
+      	      <input type="submit" value="<?php echo __('Buscar') ?>" class="button" />
             </fieldset>
           </form>
         </div>

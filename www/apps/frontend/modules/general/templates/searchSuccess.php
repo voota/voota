@@ -13,13 +13,6 @@
 
 <?php if ( $results->getNbResults() > 0):?>
   <table border="0" cellpadding="0" cellspacing="0">
-    <thead>
-      <tr>
-        <th class="photo"></th>
-        <th class="name"><?php echo __('Nombre')?></th>
-        <th class="name"></th>
-      </tr>
-    </thead>
     <tbody>
       <?php foreach($results->getResults() as $idx => $obj): ?>
         <?php if ($obj instanceof Partido): ?>
