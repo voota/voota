@@ -46,8 +46,8 @@ class PoliticoForm extends BasePoliticoForm
     $years = range(1920,date('Y'));
     $this->widgetSchema['fecha_nacimiento'] = new sfWidgetFormJQueryDate(array(
     						'culture' => 'es'
-    						, 'format' => '%day%/%month%/%year%'
-    						, 'years' => array_combine($years, $years)
+    							, 'format' => '%day%/%month%/%year%'
+    							, 'years' => array_combine($years, $years)
     						));
 
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(

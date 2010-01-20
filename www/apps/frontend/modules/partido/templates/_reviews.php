@@ -26,14 +26,14 @@
   <?php if ($pager->haveToPaginate() && $pager->getLastPage() > $pager->getPage()): ?>
       <?php echo jq_form_remote_tag(array(
     	'update'   => "more_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD),
-    	'url'      => "@politico_more_comments",
+    	'url'      => "@partido_more_comments",
 		),
         array('id' => "frm_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD)
       )) ?>
-	  <?php echo input_hidden_tag('t', $t)?>
-	  <?php echo input_hidden_tag('id', $politico->getId())?>
-	  <?php echo input_hidden_tag($t==1?'pageU':'pageD', $t==1?$pageU:$pageD)?>
-	  <center><?php echo submit_tag(__('más')) ?></center>
+      <input type="hidden" id="t" name="t" value="<?php echo $t ?>" />
+      <input type="hidden" id="id" name="id" value="<?php echo $partido->getId() ?>" />
+      <input type="hidden" id="<?php echo $t==1?'pageU':'pageD' ?>" name="<?php echo $t==1?'pageU':'pageD' ?>" value="<?php echo $t==1?$pageU:$pageD ?>" />      
+	  <center><input type="submit" value="<?php echo __('más') ?>" /></center>
 	</form>
   <?php endif ?>
 </div>

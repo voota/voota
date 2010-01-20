@@ -47,11 +47,13 @@ Installation
 
         $ symfony guard:create-user fabien $ecret
 
-  * Optionally enable the "Remember Me" filter in `filters.yml`
+  * Optionally add the "Remember Me" filter to `filters.yml` above the security filter:
 
         [yml]
-        security:
-          class: sfGuardBasicSecurityFilter
+        remember_me:
+          class: sfGuardRememberMeFilter
+
+        security: ~
 
 Secure your application
 -----------------------
@@ -212,7 +214,7 @@ administrator bypasses all credential checks.
 The super administrator flag cannot be set on the web, you must set the flag
 directly in the database or use the pake task:
 
-    $ symfony promote-super-admin admin
+    $ symfony guard:promote admin
 
 Validators
 ----------

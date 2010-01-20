@@ -16,19 +16,18 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 24548 2009-11-30 10:03:16Z fabien $
+ * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 16262 2009-03-12 14:02:33Z fabien $
  */
-class sfWidgetFormJQueryDate extends sfWidgetForm
+class sfWidgetFormJQueryDate extends sfWidgetFormDate
 {
   /**
    * Configures the current widget.
    *
    * Available options:
    *
-   *  * image:       The image path to represent the widget (false by default)
-   *  * config:      A JavaScript array that configures the JQuery date widget
-   *  * culture:     The user culture
-   *  * date_widget: The date widget instance to use as a "base" class
+   *  * image:   The image path to represent the widget (false by default)
+   *  * config:  A JavaScript array that configures the JQuery date widget
+   *  * culture: The user culture
    *
    * @param array $options     An array of options
    * @param array $attributes  An array of default HTML attributes
@@ -40,7 +39,6 @@ class sfWidgetFormJQueryDate extends sfWidgetForm
     $this->addOption('image', false);
     $this->addOption('config', '{}');
     $this->addOption('culture', '');
-    $this->addOption('date_widget', new sfWidgetFormDate());
 
     parent::configure($options, $attributes);
 
@@ -70,7 +68,7 @@ class sfWidgetFormJQueryDate extends sfWidgetForm
       $image = sprintf(', buttonImage: "%s", buttonImageOnly: true', $this->getOption('image'));
     }
 
-    return $this->getOption('date_widget')->render($name, $value, $attributes, $errors).
+    return parent::render($name, $value, $attributes, $errors).
            $this->renderTag('input', array('type' => 'hidden', 'size' => 10, 'id' => $id = $this->generateId($name).'_jquery_control', 'disabled' => 'disabled')).
            sprintf(<<<EOF
 <script type="text/javascript">
@@ -83,9 +81,9 @@ class sfWidgetFormJQueryDate extends sfWidgetForm
 
   function wfd_%s_update_linked(date)
   {
-    jQuery("#%s").val(parseInt(date.substring(0, 4)));
-    jQuery("#%s").val(parseInt(date.substring(5, 7)));
-    jQuery("#%s").val(parseInt(date.substring(8)));
+    jQuery("#%s").val(date.substring(0, 4));
+    jQuery("#%s").val(date.substring(5, 7));
+    jQuery("#%s").val(date.substring(8));
   }
 
   function wfd_%s_check_linked_days()
@@ -125,7 +123,7 @@ EOF
       ($this->getOption('can_be_empty') ? 'daysInMonth' : 'daysInMonth - 1'),
       $this->generateId($name.'[day]'), $this->generateId($name.'[day]'),
       $id,
-      min($this->getOption('date_widget')->getOption('years')), max($this->getOption('date_widget')->getOption('years')),
+      min($this->getOption('years')), max($this->getOption('years')),
       $prefix, $prefix, $image, $this->getOption('culture'), $this->getOption('config'),
       $this->generateId($name.'[day]'), $this->generateId($name.'[month]'), $this->generateId($name.'[year]'),
       $prefix

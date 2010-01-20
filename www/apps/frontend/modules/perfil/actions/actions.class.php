@@ -31,6 +31,29 @@ class perfilActions extends sfActions
   	$this->forward404Unless($userProfile);
   	
   	$this->user = $userProfile->getsfGuardUser();  	
+  	
+    //$this->form = new ContactForm();
+    if ( $request->isMethod('post') ) {
+      /*$this->form->bind($request->getParameter('contact'));
+      
+      if ($this->form->isValid()) {
+      	try {
+			$mailBody = $this->getPartial('contactMailBody', array(
+			  	'nombre' => $this->form->getValue('nombre'),
+			  	'mensaje' => $this->form->getValue('mensaje'),
+			  	'email' => $this->form->getValue('email')
+			));
+			  
+			VoMail::sendWithRet("Contacto web [".$this->form->getValue('tipo')."]", $mailBody, 'info-es@voota.es', array('no-reply@voota.es' => 'no-reply Voota'), $this->form->getValue('email'), true);
+	      	
+			return "SendSuccess";
+      	}
+      	catch (Exception $e){
+      		return "SendFail";      		
+      	}
+      }*/
+	  return "SendSuccess";
+    }
   }
   
   public function executeReviews(sfWebRequest $request)

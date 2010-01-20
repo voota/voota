@@ -13,12 +13,8 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardUser.php 9999 2008-06-29 21:24:44Z fabien $
+ * @version    SVN: $Id: sfGuardUser.php 7634 2008-02-27 18:01:40Z fabien $
  */
 class sfGuardUser extends PluginsfGuardUser
 {
-  public function __toString()
-  {
-    return $this->getProfile()->getNombre() .' '. $this->getProfile()->getApellidos();
-  }
 }

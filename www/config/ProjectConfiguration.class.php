@@ -17,5 +17,9 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enableAllPluginsExcept(array('sfDoctrinePlugin', 'sfCompat10Plugin'));
     sfConfig::set('sf_upload_dir', '/var/local/voota/uploads');
     $this->enablePlugins('sfFormExtraPlugin');
+    $this->enablePlugins('sfJqueryReloadedPlugin');
+    $this->enablePlugins('sfGuardPlugin');
+    $this->enablePlugins('sfReviewPlugin');
+    $this->enablePlugins('sfImageTransformPlugin');
   }
 }

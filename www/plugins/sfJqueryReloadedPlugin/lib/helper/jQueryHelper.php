@@ -12,18 +12,61 @@ require_once(sfConfig::get('sf_symfony_lib_dir') . '/helper/JavascriptBaseHelper
  * subfolder of the webdir.
  */
 
-$path = sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') .
-  '/js/' . sfConfig::get('sf_jquery_core', 'jquery-1.3.1.min.js');
-sfContext::getInstance()->getResponse()->addJavascript($path, 'first');
+$jq_path = sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') .
+  '/js/' . sfConfig::get('sf_jquery_core', 'jquery-1.3.2.min.js');
+sfContext::getInstance()->getResponse()->addJavascript($jq_path, 'first');
 
 /**
- * Add a jQuery Plugin on the head DOM after the jQuery call
+ * Add jQuery plugins by name rather than by filename so that you don't have
+ * to worry about what the current version is. Currently supported:
  *
- * Examples:
- *   <?php echo jq_add_plugin(array('plugin1', 'plugin2')) ?>
+ * sortable
+ * autocomplete
  *
- * tom@punkave.com: corrected path
- /*/
+ * This is useful to app developers when the normal "just in time" approach 
+ * doesn't work. For instance, if you are making helper calls in layout.php (or
+ * components invoked by it...) and you have already called get_javascripts, 
+ * it's too late to rely on the automatic calls to jq_add_plugin in the 
+ * various helpers. So call this early instead, right after use_helper.
+ *
+ * Example:
+ *   <?php echo jq_add_plugins_by_name(array('sortable', 'autocomplete')) ?>
+ *
+ */
+
+function jq_add_plugins_by_name($args = array()) {
+  /* 
+   * When adding the capability to use a new plugin you must
+   * extend this array, and keep it up to date when you update to
+   * a new version. You must also update the plugin's
+   * default config/settings.yml file
+   */
+
+  $plugins = array(
+    // Backwards compatibility
+    'sortable' => 'jquery-ui-1.7.2.custom.min.js',
+    'ui' => 'jquery-ui-1.7.2.custom.min.js',
+    'autocomplete' => 'jquery.autocomplete.min.js'
+  );
+
+  foreach ($args as $name)
+  {
+    if (!isset($plugins[$name]))
+    {
+      throw new Exception("Unknown jQuery plugin name $name");
+    }
+    $filename = sfConfig::get("sf_jquery_$name", $plugins[$name]);
+    $filename = sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') . "/js/plugins/$filename";
+    $key = "sf_jquery_$name";
+		sfContext::getInstance()->getResponse()->addJavascript($filename);
+  }
+}
+
+
+/*
+ * Backwards compatibility only. Don't use this.
+ */
+
 function jq_add_plugin($options = array()) {
 	// tom@punkave.com: with a singular name (jq_add_plugin), this function
 	// really should accept a non-array argument
@@ -32,7 +75,8 @@ function jq_add_plugin($options = array()) {
 		$options = array($options);
 	}
 	foreach ( $options as $o ) {
-		sfContext::getInstance ()->getResponse ()->addJavascript (sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') . "/js/plugins/$o");
+    $file = sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') . "/js/plugins/$o";
+		sfContext::getInstance ()->getResponse ()->addJavascript ($file);
 	}
 }
 
@@ -277,6 +321,15 @@ function jq_remote_function($options)
 	// boutell and JoeZ99: 'with' should not be quoted, it's not useful
 	// that way, see the Symfony documentation for the original remote_function
 	elseif (isset($options['with'])) $formData = $options['with'];
+	// Is it a link with csrf protection
+	elseif(isset($options['csrf']) && $options['csrf'] == '1')
+	{
+		$form = new sfForm();
+  		if ($form->isCSRFProtected())
+  		{
+  			$formData = '{'.$form->getCSRFFieldName().': \''.$form->getCSRFToken().'\'}';
+  		}
+	}
 
 	// build the function
 	$function = "jQuery.ajax({";
@@ -541,37 +594,35 @@ function jq_submit_image_to_remote($name, $source, $options = array(), $options_
  */
 function jq_sortable_element($selector, $options = array())
 {
-	// We need ui.sortable for this trick
-	jq_add_plugin(sfConfig::get('jquery_sortable',
-    'jquery-ui-sortable-1.6rc6.min.js'));
+	// We need ui for this trick. It's now just ui, not sortable; for simplicity
+	// we have a catch-all ui package, which is minimized to contain only the 
+	// features that actually get used by the plugin. If you want fewer features,
+	// or more features, from jQuery ui then get your own minimized package download
+	// from the jquery ui site
+  jq_add_plugins_by_name(array("ui"));
 	$options = _parse_attributes($options);
-	$url = json_encode(url_for($options['url']));
-	unset($options['url']);
-	$jsonOptions = '';
-	foreach ($options as $key => $val)
-	{
-		$jsonOptions .= ", $key: " . json_encode($val);
-	}
+	$options['url'] = url_for($options['url']);
+  $options['type'] = 'POST';
+  $selector = json_encode($selector);
+  $options = json_encode($options);	
+	
 	$result = <<<EOM
 $(document).ready(
   function() 
   {
-    $("$selector").sortable(
+    $($selector).sortable(
     { 
       update: function(e, ui) 
-      { 
-        serial = $('$selector').sortable('serialize', {});
-        $.ajax({
-          url: $url,
-          type: 'POST',
-          data: serial
-          $jsonOptions
-        });
+      {
+        var serial = jQuery($selector).sortable('serialize', {});
+        var options = $options;
+        options['data'] = serial;
+        $.ajax(options);
       }
     } );
   });
 EOM;
-          return javascript_tag($result);
+  return javascript_tag($result);
 }
 
 
@@ -597,7 +648,7 @@ EOM;
  */
 function jq_input_auto_complete_tag($name, $value, $url, $tag_options = array(), $completion_options = array()) {
 	// We need ui.autocomplete for this trick
-	jq_add_plugin(sfConfig::get('jquery_autocomplete','jquery.autocomplete-1.0.2.min.js'));
+  jq_add_plugins_by_name(array("autocomplete"));
 
 	$tag_options = _convert_options($tag_options);
 	$comp_options = _convert_options($completion_options);
@@ -643,6 +694,72 @@ function jq_input_auto_complete_tag($name, $value, $url, $tag_options = array(),
 	return $javascript;
 }
 
+/**
+ * Makes the elements matching the selector $selector draggable.
+ *
+ * Example:
+ *   <?php echo jq_draggable_element('ul.mydraggables li', array(
+ *      'revert' => true,
+ *   )) ?>
+ *
+ * You can change the behaviour with various options, see
+ * http://script.aculo.us for more documentation.
+ */
+function jq_draggable_element($selector, $options = array())
+{
+	// We need ui for this trick
+  jq_add_plugins_by_name(array("ui"));
+	$options = json_encode(_parse_attributes($options));  
+	$selector = json_encode($selector);
+  return javascript_tag("jQuery($selector).draggable($options)");
+}
+
+/**
+ * Makes the element with the DOM ID specified by '$element_id' receive
+ * dropped draggable elements (created by 'draggable_element()') and make an AJAX call.
+ * By default, the action called gets the DOM ID of the element as parameter.
+ *
+ * Example:
+ *   <?php drop_receiving_element('my_cart', array(
+ *      'url' => 'cart/add',
+ *   )) ?>
+ *
+ * You can change the behaviour with various options, see
+ * http://script.aculo.us for more documentation.
+ */
+function jq_drop_receiving_element($selector, $options = array())
+{
+  jq_add_plugins_by_name(array("ui"));
+  if (!isset($options['with']))
+  {
+    $options['with'] = "'id=' + encodeURIComponent(element.id)";
+  }
+  if (!isset($options['drop']))
+  {
+    $options['drop'] = "function(element){".jq_remote_function($options)."}";
+  }
+
+  // For backwards compatibility with prototype
+  if (isset($options['hoverclass']))
+  {
+    $options['hoverClass'] = $options['hoverclass'];
+  }
+  $options['hoverClass'] = json_encode('hoverclass');
+  
+  foreach (jq_get_ajax_options() as $key)
+  {
+    unset($options[$key]);
+  }
+
+  if (isset($options['accept']))
+  {
+    $options['accept'] = json_encode($options['accept']);
+  }
+  $options = jq_options_for_javascript($options);
+  $selector = json_encode($selector);
+  return javascript_tag("jQuery($selector).droppable($options);");
+}
+
 function _update_method($position) {
 	// Updating method
 	$updateMethod = 'html';
@@ -656,13 +773,35 @@ function _update_method($position) {
 	return $updateMethod;
 }
 
-/***  This is a wrapper for the JavascriptHelper function  ***/
-function jq_link_to_function($name, $function, $html_options= array())
+/***  This should be just a wrapper for the JavascriptBaseHelper link_to_function call, 
+    but right now it is a copy that contains correct support for 'confirm' that 
+    doesn't break IE or produce invalid HTML. It will make sense to turn this back 
+    into a simple wrapper once it is fixed in a Symfony release. See:
+    
+    http://trac.symfony-project.org/ticket/4152 ***/
+    
+function jq_link_to_function($name, $function, $html_options = array())
 {
-	return link_to_function($name, $function, $html_options);
+  $html_options = _parse_attributes($html_options);
+
+  $html_options['href'] = isset($html_options['href']) ? $html_options['href'] : '#';
+  if ( isset($html_options['confirm']) )
+  {
+    $confirm = escape_javascript($html_options['confirm']);
+    $html_options['onclick'] = "if(confirm('$confirm')){ $function;}; return false;";
+    // tom@punkave.com: without this we get a confirm attribute, which breaks confirm() in IE
+    // (we could call window.confirm, but there is no reason to have the
+    // nonstandard confirm attribute) 
+    unset($html_options['confirm']);
+  }
+  else
+  {
+    $html_options['onclick'] = $function.'; return false;';
+  }
+
+  return content_tag('a', $name, $html_options);
 }
-
-
+    
 /***  This is a wrapper for the JavascriptHelper function  ***/
 function jq_button_to_function($name, $function, $html_options = array())
 {
@@ -698,8 +837,17 @@ function jq_end_javascript_tag()
 	return end_javascript_tag();
 }
 
+function _options_for_javascript($options)
+{
+  $opts = array();
+  foreach ($options as $key => $value)
+  {
+    $opts[] = "$key:$value";
+  }
+  sort($opts);
 
-
+  return '{'.join(', ', $opts).'}';
+}
 
 
 

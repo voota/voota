@@ -5,15 +5,12 @@
  *
  * @package    form
  * @subpackage sf_guard_user
- * @version    SVN: $Id: sfGuardUserForm.class.php 13001 2008-11-14 10:45:32Z noel $
+ * @version    SVN: $Id: sfGuardUserForm.class.php 24560 2009-11-30 11:05:31Z fabien $
  */
 class sfGuardUserForm extends sfGuardUserAdminForm
 {
-  protected
-    $pkName = null;
-
   public function configure()
-  {  	
+  {
     parent::configure();
 
     unset(
@@ -26,6 +23,5 @@ class sfGuardUserForm extends sfGuardUserAdminForm
       $this['sf_guard_user_group_list'],
       $this['sf_guard_user_permission_list']
     );
-        
   }
 }

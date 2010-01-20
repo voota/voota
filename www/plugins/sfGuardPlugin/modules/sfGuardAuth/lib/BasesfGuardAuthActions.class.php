@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: BasesfGuardAuthActions.class.php 12075 2008-10-08 16:15:03Z noel $
+ * @version    SVN: $Id: BasesfGuardAuthActions.class.php 19772 2009-07-01 08:41:12Z fabien $
  */
 class BasesfGuardAuthActions extends sfActions
 {
@@ -23,6 +23,14 @@ class BasesfGuardAuthActions extends sfActions
     if ($user->isAuthenticated())
     {
       return $this->redirect('@homepage');
+    }
+
+    if ($request->isXmlHttpRequest())
+    {
+      $this->getResponse()->setHeaderOnly(true);
+      $this->getResponse()->setStatusCode(401);
+
+      return sfView::NONE;
     }
 
     $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
@@ -46,14 +54,6 @@ class BasesfGuardAuthActions extends sfActions
     }
     else
     {
-      if ($request->isXmlHttpRequest())
-      {
-        $this->getResponse()->setHeaderOnly(true);
-        $this->getResponse()->setStatusCode(401);
-
-        return sfView::NONE;
-      }
-
       // if we have been forwarded, then the referer is the current URL
       // if not, this is the referer of the current request
       $user->setReferer($this->getContext()->getActionStack()->getSize() > 1 ? $request->getUri() : $request->getReferer());

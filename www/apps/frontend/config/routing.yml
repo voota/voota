@@ -27,7 +27,7 @@ politico_ca:
   url: /:sf_culture/politic/:id
   param: { module: politico, action: show }
   requirements: { sf_culture: (?:ca) }
-
+  
 ranking_es:
   url: /:sf_culture/politicos/:partido/:institucion
   param: { module: politico, action: ranking }
@@ -68,6 +68,11 @@ partido_ca:
   param: { module: partido, action: show }
   requirements: { sf_culture: (?:ca) }
 
+partido_more_comments:
+  url: /:sf_culture/partidos/more
+  param: { module: partido, action: moreComments }
+  requirements: { sf_culture: (?:es|ca) }
+  
 ranking_partidos_es_institucion:
   url: /:sf_culture/partidos/:institucion
   param: { module: partido, action: ranking }
@@ -114,10 +119,6 @@ usuario_votos:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
-  
-usuario_contact:
-  url:   /:username/contact
-  param: { module: perfil, action: contact }
 
 profile_more_comments:
   url: /:sf_culture/user/more
@@ -199,3 +200,8 @@ contact:
   url:   /:sf_culture/contact
   param: { module: general, action: contact }
   requirements: { sf_culture: (?:es|ca) }
+  
+usuario_contact:
+  url:   /:username/contact
+  param: { module: perfil, action: contact }
+  

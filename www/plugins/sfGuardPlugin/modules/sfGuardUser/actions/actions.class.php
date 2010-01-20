@@ -12,10 +12,4 @@ require_once dirname(__FILE__).'/../lib/BasesfGuardUserActions.class.php';
  */
 class sfGuardUserActions extends basesfGuardUserActions
 {
-  public function executeDelete(sfWebRequest $request){
-  	// Primero borrar sus opiniones
-  	SfReviewManager::deleteReviewById( $request->getParameter('id') );
-  	
-  	parent::executeDelete($request);
-  }
 }

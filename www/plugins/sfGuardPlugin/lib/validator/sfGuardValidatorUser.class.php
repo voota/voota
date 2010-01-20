@@ -9,45 +9,67 @@
  */
 
 /**
- *
+ * Validates a user login.
+ * 
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardValidatorUser.class.php 12075 2008-10-08 16:15:03Z noel $
+ * @version    SVN: $Id: sfGuardValidatorUser.class.php 15779 2009-02-25 17:37:38Z Kris.Wallsmith $
  */
 class sfGuardValidatorUser extends sfValidatorBase
 {
+  /**
+   * Configures the user validator.
+   * 
+   * Available options:
+   * 
+   *  * username_field      Field name of username field (username by default)
+   *  * password_field      Field name of password field (password by default)
+   *  * throw_global_error  Throws a global error if true (false by default)
+   * 
+   * @see sfValidatorBase
+   */
   public function configure($options = array(), $messages = array())
   {
     $this->addOption('username_field', 'username');
     $this->addOption('password_field', 'password');
-    $this->addOption('rememeber_checkbox', 'remember');
     $this->addOption('throw_global_error', false);
 
     $this->setMessage('invalid', 'The username and/or password is invalid.');
   }
 
+  /**
+   * @see sfValidatorBase
+   */
   protected function doClean($values)
   {
-    $username = isset($values[$this->getOption('username_field')]) ? $values[$this->getOption('username_field')] : '';
-    $password = isset($values[$this->getOption('password_field')]) ? $values[$this->getOption('password_field')] : '';
-    $remember = isset($values[$this->getOption('rememeber_checkbox')]) ? $values[$this->getOption('rememeber_checkbox')] : '';
-
-    // user exists?
-    if ($user = sfGuardUserPeer::retrieveByUsername($username))
+    // only validate if username and password are both present
+    if (isset($values[$this->getOption('username_field')]) && isset($values[$this->getOption('password_field')]))
     {
-      // password is ok?
-      if ($user->checkPassword($password))
+      $username = $values[$this->getOption('username_field')];
+      $password = $values[$this->getOption('password_field')];
+
+      // user exists?
+      if ($user = sfGuardUserPeer::retrieveByUsername($username))
       {
-        return array_merge($values, array('user' => $user));
+        // password is ok?
+        if ($user->checkPassword($password))
+        {
+          return array_merge($values, array('user' => $user));
+        }
       }
+
+      if ($this->getOption('throw_global_error'))
+      {
+        throw new sfValidatorError($this, 'invalid');
+      }
+
+      throw new sfValidatorErrorSchema($this, array(
+        $this->getOption('username_field') => new sfValidatorError($this, 'invalid'),
+      ));
     }
 
-    if ($this->getOption('throw_global_error'))
-    {
-      throw new sfValidatorError($this, 'invalid');
-    }
-
-    throw new sfValidatorErrorSchema($this, array($this->getOption('username_field') => new sfValidatorError($this, 'invalid')));
+    // assume a required error has already been thrown, skip validation
+    return $values;
   }
 }

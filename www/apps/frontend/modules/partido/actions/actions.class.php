@@ -21,6 +21,33 @@ define("ALL_FORM_VALUE", '0');
 
 class partidoActions extends sfActions
 {
+	
+  public function executeMoreComments(sfWebRequest $request)
+  {
+  	$id = $request->getParameter("id");
+  	$this->t = $request->getParameter("t");
+  	$exclude = array();
+  	if ($this->t == 1) {
+  		$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, 3);
+	    foreach ($this->lastPositives->getResults() as $result){
+	  		$exclude[] = $result->getId();
+	  	}	  		
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pageU = $request->getParameter("pageU")+1;
+  		$this->getUser()->setAttribute('pageU', $this->pageU);
+  	}
+  	else {	  	
+  		$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, 3);
+  		foreach ($this->lastNegatives->getResults() as $result){
+	  		$exclude[] = $result->getId();
+	  	}
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pageD = $request->getParameter("pageD")+1;
+  		$this->getUser()->setAttribute('pageD', $this->pageD);
+  	}
+  	$this->partido = PartidoPeer::retrieveByPK( $id );
+  }
+  
   public function executeRanking(sfWebRequest $request)
   {
   	$institucion = $request->getParameter("institucion");
@@ -114,6 +141,17 @@ class partidoActions extends sfActions
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
   	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
   	$this->title = $this->pageTitle . ' - Voota';
+  	$this->response->addMeta('Title', $this->title);
+  	
+  	$description = sfContext::getInstance()->getI18N()->__('Los partidos más votados en Voota:', array()) . " ";
+  	if ($this->partidosPager->getNbResults() > 0){
+  		foreach ($this->partidosPager->getResults() as $idx => $partido){
+  			if ($idx < 5){
+  				$description .= ($idx==0?"":", ") . $partido->getAbreviatura();	
+  			}  			
+  		}
+  	}
+  	$this->response->addMeta('Description', $description);
   }
 
   public function executeShow(sfWebRequest $request)

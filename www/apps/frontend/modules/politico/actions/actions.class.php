@@ -28,20 +28,20 @@ class politicoActions extends sfActions
   	$this->t = $request->getParameter("t");
   	$exclude = array();
   	if ($this->t == 1) {
-  		$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, 1, $id, 1, 3);
+  		$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, Politico::NUM_ENTITY, $id, 1, 3);
 	    foreach ($this->lastPositives->getResults() as $result){
 	  		$exclude[] = $result->getId();
 	  	}	  		
-  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, 1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Politico::NUM_ENTITY, $id, 1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
   		$this->pageU = $request->getParameter("pageU")+1;
   		$this->getUser()->setAttribute('pageU', $this->pageU);
   	}
   	else {	  	
-  		$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, 1, $id, -1, 3);
+  		$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, Politico::NUM_ENTITY, $id, -1, 3);
   		foreach ($this->lastNegatives->getResults() as $result){
 	  		$exclude[] = $result->getId();
 	  	}
-  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, 1, $id, -1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Politico::NUM_ENTITY, $id, -1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
   		$this->pageD = $request->getParameter("pageD")+1;
   		$this->getUser()->setAttribute('pageD', $this->pageD);
   	}

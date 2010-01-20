@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: PluginsfGuardRememberKey.php 9999 2008-06-29 21:24:44Z fabien $
+ * @version    SVN: $Id: PluginsfGuardRememberKey.php 7634 2008-02-27 18:01:40Z fabien $
  */
 class PluginsfGuardRememberKey extends BasesfGuardRememberKey
 {
