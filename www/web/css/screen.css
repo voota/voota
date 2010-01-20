@@ -225,6 +225,12 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments .body { width: 40%; padding-right: 2%; }
 #perfil-show .comments .actions { width: 14%; }
 
+/* Contacto perfil */
+#perfil-contact p.textarea { padding-bottom: 0;}
+#perfil-contact form { width: 300px; }
+#perfil-contact form textarea { width: 100%; }
+#perfil-contact .counter { text-align: right; }
+#perfil-contact .submit { text-align: right; }
 
 /* Cambiar contraseña */
 #sfGuardAuth-changePassword form td { width: 20em;}
