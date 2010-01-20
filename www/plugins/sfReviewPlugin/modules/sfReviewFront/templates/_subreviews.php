@@ -1,7 +1,6 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
-<?php use_helper('Form') ?>
 
 <div id="<?php echo "subreviews_box$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
   <ol>
@@ -32,9 +31,9 @@
       	<p><?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?></p>
         <?php if($total > $showCount): ?>
           <?php echo jq_form_remote_tag(array('update' => "sf_review_sr_c".$id, 'url' => '@sf_review_list')) ?>
-		        <?php echo input_hidden_tag('id', "$id")?>
-		        <?php echo input_hidden_tag('showCount', "$seeMoreCount")?>
-		        <p class="more"><?php echo submit_tag(__('más')) ?></p>
+          		<input type="hidden" name="id" value="<?php echo $id?>" />
+          		<input type="hidden" name="showCount" value="<?php echo $seeMoreCount?>" />
+		        <p class="more"><input type="submit" value="<?php echo __('más')?>" /></p>
 		      </form>
         	<?php /*?><input type="submit" value="Ver 10 comentarios más" /><?php */ ?>
         <?php endif ?>

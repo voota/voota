@@ -1,4 +1,3 @@
-<?php use_helper('Form') ?>
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 	
@@ -20,11 +19,11 @@ $(document).ready(function() {
     'url'      => 'sfReviewFront/send',
 	'before' => "removeHint('#sf-review-text_$reviewBox', 'blur')"
 )) ?>
-	<?php echo input_hidden_tag('t', $reviewType) ?>
-	<?php echo input_hidden_tag('e', $reviewEntityId) ?>
-	<?php echo input_hidden_tag('v', $reviewValue) ?>
-	<?php echo input_hidden_tag('b', $reviewBox) ?>
-	<?php echo input_hidden_tag('i', $reviewId) ?>
+	<input type="hidden" id="t" name="t" value="<?php echo $reviewType ?>" />
+	<input type="hidden" id="e" name="e" value="<?php echo $reviewEntityId ?>" />
+	<input type="hidden" id="v" name="v" value="<?php echo $reviewValue ?>" />
+	<input type="hidden" id="b" name="b" value="<?php echo $reviewBox ?>" />
+	<input type="hidden" id="i" name="i" value="<?php echo $reviewId ?>" />
 
 	<?php if ($reviewId != ''): ?>
 		<h5>
@@ -98,6 +97,6 @@ $(document).ready(function() {
   */?>
 
   <p class="submit">
-    <?php echo submit_tag(__('Enviar'), array('class' => 'sfr_button', 'id' => ($reviewBox?$reviewBox:'sf_review').'_button' )) ?>
+  	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
 </form>

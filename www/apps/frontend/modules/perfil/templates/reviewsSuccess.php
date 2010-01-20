@@ -1,6 +1,5 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
-<?php use_helper('Form') ?>
 
 <script type="text/javascript">
   <!--
@@ -17,16 +16,16 @@
 <p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
 
 <div id="content">
-<?php echo form_tag('@usuario_votos', array('id' => 'filterForm')) ?>
+<form action="<?php echo url_for('@usuario_votos') ?>" id="filterForm">
   <p class="filter">
     <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
     <br />
-		<?php echo select_tag('f', options_for_select(array(
-		  'all'  => __('Todos los comentarios'),
-		  Politico::NUM_ENTITY    => __('Por políticos'),
-		  Partido::NUM_ENTITY => __('Por partidos'),
-		  '.0'    => __('Por respuestas a otros comentarios'),
-		), $f)) ?>
+    	<select id="f" name="f">
+    		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
+    		<option value="<?php echo Politico::NUM_ENTITY ?>" <?php echo $f!=Politico::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por políticos') ?></option>
+    		<option value="<?php echo Partido::NUM_ENTITY ?>" <?php echo $f!=Partido::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por partidos') ?></option>
+    		<option value=".0" <?php echo $f!=".0"?'':'selected="selected"'?>><?php echo __('Por respuestas a otros comentarios') ?></option>
+    	</select>
   </p>
 </form>
 <?php  ?>

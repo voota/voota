@@ -1,6 +1,5 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
-<?php use_helper('Form') ?>
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
@@ -24,7 +23,7 @@
         <form action="<?php echo url_for("@sf_guard_signin") ?>" method="get">
           <p>
             <?php echo __('¿Te animas? No tardas nada en registrarte:') ?>
-    	      <?php echo submit_tag(__('Registrarte en Voota')) ?>
+          		<input type="submit" value="<?php echo __('Registrarte en Voota') ?>" />
           </p>
         </form>
       </div>
@@ -66,12 +65,12 @@
   <p class="filter">
     <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
     <br />
-		<?php echo select_tag('f', options_for_select(array(
-		  'all'  => __('Todos los comentarios'),
-		  Politico::NUM_ENTITY    => __('Por políticos'),
-		  Partido::NUM_ENTITY => __('Por partidos'),
-		  '.0'    => __('Por respuestas a otros comentarios'),
-		), $f)) ?>
+    	<select id="f" name="f">
+    		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
+    		<option value="<?php echo Politico::NUM_ENTITY ?>" <?php echo $f!=Politico::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por políticos') ?></option>
+    		<option value="<?php echo Partido::NUM_ENTITY ?>" <?php echo $f!=Partido::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por partidos') ?></option>
+    		<option value=".0" <?php echo $f!=".0"?'':'selected="selected"'?>><?php echo __('Por respuestas a otros comentarios') ?></option>
+    	</select>
   </p>
   </form>
   <?php  ?></div>
@@ -93,9 +92,9 @@
 		      ),
 		        array('id' => "frm_more_reviews"
 		      )) ?>
-			  <?php echo input_hidden_tag('username', $user->getProfile()->getVanity())?>
-			  <?php echo input_hidden_tag('page', isset($page)?$page:'1')?>
-			  <?php echo submit_tag(__('más')) ?>
+          		<input type="hidden" name="username" value="<?php echo $user->getProfile()->getVanity()?>" />
+          		<input type="hidden" name="page" value="<?php echo isset($page)?$page:'1' ?>" />
+          		<input type="submit" value="<?php echo __('más') ?>" />
 			</form>
 		  <?php endif ?>
         </div>
