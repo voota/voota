@@ -3,7 +3,7 @@
 
 <h2>
   <img src="/images/icoOk.gif" alt="Ok" width="46" height="39" />
-  Ok, mensaje enviado a <a href="#"><?php echo $user ?></a>
+  <?php echo __('Ok, mensaje enviado a'); ?> <?php echo link_to($user, "@usuario?username=".$user->getProfile()->getVanity()); ?>
   <?php if($user->getProfile() && $user->getProfile()->getImagen() && $user->getProfile()->getImagen() != '' ): ?>
     <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($user->getProfile()->getImagen()), 'alt="Foto '. $user->getProfile()->getNombre().' ' . $user->getProfile()->getApellidos() .'"') ?>
   <?php endif ?>
