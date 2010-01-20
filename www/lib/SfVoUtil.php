@@ -88,5 +88,9 @@ class SfVoUtil
 	    }
 		return $ret;
 	}
+	public static function cutToLength($str, $length = 35, $ext = '.') {
+		$aText = utf8_decode($str);
+		return utf8_encode( strlen($aText) > $length?substr($aText, 0, $length ).$ext:$aText );
+	}
 }
  

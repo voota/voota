@@ -20,8 +20,7 @@ function getDateFromPlain( $str ) {
 }
 
 function cutToLength($str, $length = 35) {
-	$aText = utf8_decode($str);
-	return utf8_encode( strlen($aText) > $length?substr($aText, 0, $length ).".":$aText );
+	return SfVoUtil::cutToLength($str, $length);
 }
 
 
