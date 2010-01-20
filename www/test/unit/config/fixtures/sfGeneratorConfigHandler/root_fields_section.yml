@@ -4,4 +4,4 @@ generator:
     model_class:      Article
     theme:            default
   fields:
-    name: false
+    name: -

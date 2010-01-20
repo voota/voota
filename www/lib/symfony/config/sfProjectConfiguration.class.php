@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage config
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfProjectConfiguration.class.php 24032 2009-11-16 17:10:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfProjectConfiguration.class.php 24039 2009-11-16 17:52:14Z Kris.Wallsmith $
  */
 class sfProjectConfiguration
 {

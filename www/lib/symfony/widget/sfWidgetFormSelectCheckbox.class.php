@@ -23,6 +23,7 @@ class sfWidgetFormSelectCheckbox extends sfWidgetFormChoiceBase
    *
    * Available options:
    *
+   *  * choices:         An array of possible choices (required)
    *  * label_separator: The separator to use between the input checkbox and the label
    *  * class:           The class to use for the main <ul> tag
    *  * separator:       The separator to use between each input checkbox

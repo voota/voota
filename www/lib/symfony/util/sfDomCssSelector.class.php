@@ -77,20 +77,7 @@ class sfDomCssSelector implements Countable, Iterator
     return $nodes ? new sfDomCssSelector($nodes) : new sfDomCssSelector(array());
   }
 
-  /* DEPRECATED */
-  public function getTexts($selector)
-  {
-    $texts = array();
-    foreach ($this->getElements($selector) as $element)
-    {
-      $texts[] = $element->nodeValue;
-    }
-
-    return $texts;
-  }
-
-  /* DEPRECATED */
-  public function getElements($selector)
+  protected function getElements($selector)
   {
     $nodes = array();
     foreach ($this->nodes as $node)

@@ -16,7 +16,7 @@ require_once(dirname(__FILE__).'/sfDoctrineBaseTask.class.php');
  * @package    symfony
  * @subpackage doctrine
  * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: sfDoctrineDeleteModelFilesTask.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfDoctrineDeleteModelFilesTask.class.php 23922 2009-11-14 14:58:38Z fabien $
  */
 class sfDoctrineDeleteModelFilesTask extends sfDoctrineBaseTask
 {
@@ -30,7 +30,6 @@ class sfDoctrineDeleteModelFilesTask extends sfDoctrineBaseTask
       new sfCommandOption('no-confirmation', null, sfCommandOption::PARAMETER_NONE, 'Do not ask for confirmation'),
     ));
 
-    $this->aliases = array();
     $this->namespace = 'doctrine';
     $this->name = 'delete-model-files';
     $this->briefDescription = 'Delete all the related auto generated files for a given model name.';

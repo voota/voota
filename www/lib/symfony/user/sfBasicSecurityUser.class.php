@@ -42,14 +42,6 @@ class sfBasicSecurityUser extends sfUser implements sfSecurityUser
   }
 
   /**
-   * @deprecated Use getCredentials() instead
-   */
-  public function listCredentials()
-  {
-    return $this->getCredentials();
-  }
-
-  /**
    * Returns the current user's credentials.
    * 
    * @return array

@@ -16,7 +16,7 @@
  * @subpackage controller
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @author     Sean Kerr <sean@code-box.org>
- * @version    SVN: $Id: sfWebController.class.php 24009 2009-11-16 12:48:16Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfWebController.class.php 24039 2009-11-16 17:52:14Z Kris.Wallsmith $
  */
 abstract class sfWebController extends sfController
 {

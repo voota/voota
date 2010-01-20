@@ -23,6 +23,7 @@ class sfWidgetFormChoice extends sfWidgetFormChoiceBase
    *
    * Available options:
    *
+   *  * choices:          An array of possible choices (required)
    *  * multiple:         true if the select tag must allow multiple selections
    *  * expanded:         true to display an expanded widget
    *                        if expanded is false, then the widget will be a select

@@ -14,7 +14,7 @@
  * @package    symfony
  * @subpackage config
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfApplicationConfiguration.class.php 24037 2009-11-16 17:35:09Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfApplicationConfiguration.class.php 24042 2009-11-16 18:07:52Z Kris.Wallsmith $
  */
 abstract class sfApplicationConfiguration extends ProjectConfiguration
 {
@@ -657,31 +657,12 @@ abstract class sfApplicationConfiguration extends ProjectConfiguration
 
         if (!$included)
         {
-          // search in the include path
-          if ((@include_once('helper/'.$fileName)) != 1)
-          {
-            $dirs = array_merge($dirs, explode(PATH_SEPARATOR, get_include_path()));
-            $dirs = array_map(array('sfDebug', 'shortenFilePath'), $dirs);
-
-            throw new InvalidArgumentException(sprintf('Unable to load "%sHelper.php" helper in: %s.', $helperName, implode(', ', $dirs)));
-          }
-          else
-          {
-            $this->dispatcher->notify(new sfEvent($this, 'application.log', array('Loading of helpers via the include path has been deprecated.', 'priority' => sfLogger::NOTICE)));
-          }
+          throw new InvalidArgumentException(sprintf('Unable to load "%sHelper.php" helper in: %s.', $helperName, implode(', ', array_map(array('sfDebug', 'shortenFilePath'), $dirs))));
         }
       }
 
       self::$loadedHelpers[$helperName] = true;
     }
-  }
-
-  /**
-   * @deprecated
-   */
-  public function loadPluginConfig()
-  {
-    $this->initializePlugins();
   }
 
   /**
