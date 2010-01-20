@@ -227,8 +227,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Contacto perfil */
 #perfil-contact p.textarea { padding-bottom: 0;}
-#perfil-contact form { width: 300px; }
-#perfil-contact form textarea { width: 100%; }
+#perfil-contact #content form { width: 300px; }
+#perfil-contact #content form textarea { width: 100%; }
 #perfil-contact .counter { text-align: right; }
 #perfil-contact .submit { text-align: right; }
 
