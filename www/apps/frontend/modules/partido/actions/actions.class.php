@@ -76,6 +76,9 @@ class partidoActions extends sfActions
   		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
   	}
   	else if ($o == "pd") {
+  	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
+  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
+  	$this->title = $this->pageTitle . ' - Voota';
   		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
   		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
   	}
@@ -268,5 +271,11 @@ class partidoActions extends sfActions
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);
     
+  	$this->pageTitle = $this->partido->getNombre() . " (". $this->partido->getAbreviatura().")";
+  	$this->title = $this->pageTitle . ' - Voota';
+  	$this->response->addMeta('Title', $this->title);
+  	
+  	$descripcion = $this->partido->getAbreviatura() . ": ".$this->partido->getPresentacion();
+  	$this->response->addMeta('Descripcion', SfVoUtil::cutToLength($descripcion, 140, "..."));
   }
 }
