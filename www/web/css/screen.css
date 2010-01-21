@@ -213,6 +213,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .profile .photo { float: left; }
 #perfil-show .profile .description { width: 250px; margin-left: 1em; float: left; }
 #perfil-show .profile .description p { padding-bottom: 0.5em;}
+#perfil-show .profile .description .links { padding-bottom: 1em;}
 #perfil-show .profile .description .links p { padding-top: 1em; padding-bottom: 0;}
 #perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
 #perfil-show .profile .description .links li { padding-bottom: 0.1em;}

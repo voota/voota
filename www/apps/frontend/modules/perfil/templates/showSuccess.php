@@ -58,6 +58,11 @@
           </ul>
         </div>
       <?php endif ?>
+
+      <p class="contact">
+        <?php echo link_to(__('Mandar un mensaje a').' '.$user->getProfile()->getNombre(), '@usuario_contact?username='.$user->getProfile()->getVanity()); ?>
+        <img src="/images/email.png" alt="contactar" />
+      </p>
     </div>
   </div>
   
