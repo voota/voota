@@ -60,22 +60,46 @@
     </div>
   </div>
   
-  <div id="content">
-  <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
-  <p class="filter">
-    <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
-    <br />
-    	<select id="f" name="f">
-    		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
-    		<option value="<?php echo Politico::NUM_ENTITY ?>" <?php echo $f!=Politico::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por políticos') ?></option>
-    		<option value="<?php echo Partido::NUM_ENTITY ?>" <?php echo $f!=Partido::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por partidos') ?></option>
-    		<option value=".0" <?php echo $f!=".0"?'':'selected="selected"'?>><?php echo __('Por respuestas a otros comentarios') ?></option>
-    	</select>
-  </p>
-  </form>
-  <?php  ?></div>
-
+  <div id="sidebar">
+    <div class="box box-profile">
+      <div class="box-inner">
+        <h3><?php echo __('Datos básicos') ?></h3>
+        <p>
+          <?php echo __('En Voota desde el') ?> 23/06/2009
+          <br />
+          <?php echo __('Socio número') ?>: 4567V
+          <br />
+          <?php echo __('Función en Voota') ?>: Socio
+          <a href="http://blog.voota.es/es/socios/">?</a>
+        </p>
+        <h3><?php echo __('Donaciones') ?></h3>
+        <p><?php echo __('Voota se mantiene gracias a') ?> <a href="http://blog.voota.es/es/socios/">las donaciones</a></p>
+        <p><button>¿Hacer una donación?</button></p>
+        <script type="text/javascript" charset="utf-8">
+          $(document).ready(function() {
+            $('#sidebar button').click(function() {
+              window.location = 'http://blog.voota.es/es/socios/';
+            })
+          })
+        </script>
+      </div>
+    </div>
+  </div>
+  
   <div class="comments">
+    <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
+    <p class="filter">
+      <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
+      <br />
+      	<select id="f" name="f">
+      		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
+      		<option value="<?php echo Politico::NUM_ENTITY ?>" <?php echo $f!=Politico::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por políticos') ?></option>
+      		<option value="<?php echo Partido::NUM_ENTITY ?>" <?php echo $f!=Partido::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por partidos') ?></option>
+      		<option value=".0" <?php echo $f!=".0"?'':'selected="selected"'?>><?php echo __('Por respuestas a otros comentarios') ?></option>
+      	</select>
+    </p>
+    </form>
+
     <?php if ($reviews->getNbResults() > 0): ?>
       <h2><?php echo __("%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => $user->getProfile()->getNombre(), '%2%' => $reviews->getNbResults())) ?></h2>
         <table>

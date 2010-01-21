@@ -36,7 +36,7 @@ tr.even { background-color: #fbfbfb; }
 #perfil-reviews #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 2em 0; }
 #content { float: left; width: 100%; }
-#sidebar { float: right; width: 25%; margin-left: 5%;}
+#sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
 
 /* Encabezados */
 h1 { font-size: 4em; margin: 0; color: #2b56ff; }
@@ -90,6 +90,8 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
 .box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; }
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
+.box-profile .box-inner { background-color: #fdffcd }
+.box-profile h3 { font-size: 1em;}
 
 /* Formularios */
 form { margin: 0; padding: 0;}
@@ -224,6 +226,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments .vote { width: 4%;}
 #perfil-show .comments .body { width: 40%; padding-right: 2%; }
 #perfil-show .comments .actions { width: 14%; }
+#perfil-show #sidebar { width: 250px;}
+#perfil-show #sidebar button { width: 180px;}
 
 /* Contacto perfil */
 #perfil-contact p.textarea { padding-bottom: 0;}
