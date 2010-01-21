@@ -274,8 +274,13 @@ class partidoActions extends sfActions
   	$this->pageTitle = $this->partido->getNombre() . " (". $this->partido->getAbreviatura().")";
   	$this->title = $this->pageTitle . ' - Voota';
   	$this->response->addMeta('Title', $this->title);
-  	
-  	$descripcion = $this->partido->getAbreviatura() . ": ".$this->partido->getPresentacion();
-  	$this->response->addMeta('Descripcion', SfVoUtil::cutToLength($descripcion, 140, "..."));
+
+  	$descripcion = $this->partido->getAbreviatura()
+  		 . ": "
+  		 . sfContext::getInstance()->getI18N()->__('presentación, opiniones de usuarios a favor y en contra, políticos mejor valorados y enlaces. ', array())
+  		 . $this->partido->getPresentacion()
+  		 . SfVoUtil::cutToLength($this->partido->getPresentacion(), 140, '...');
+  		 
+  	$this->response->addMeta('Descripcion', $descripcion);
   }
 }

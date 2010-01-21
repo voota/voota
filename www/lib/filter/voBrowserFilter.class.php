@@ -21,12 +21,11 @@ class voBrowserFilter extends sfFilter
   {
   	$request = $this->getContext()->getRequest();
   	$user = $this->getContext()->getUser();
-  	
   	if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 5') !== FALSE 
-  		|| strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6.') !== FALSE ) {
+  		|| strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 6') !== FALSE ) {
 		$ie6Warn = $user->getAttribute("ie6");
-		if (!$ie6Warn){
-			$user->setAttribute("ie6", true);
+		if ($ie6Warn !== 'shown'){
+			$user->setAttribute("ie6", 'shown');
   			$request->setAttribute("ie6", true);
 		}
 	}
