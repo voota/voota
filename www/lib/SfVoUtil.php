@@ -40,7 +40,7 @@ class SfVoUtil
 	public static function voDecode( $str ){
 		return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
 	}
-	
+
 	public static function highlightWords($string, $q)
 	{
 		$words = explode(' ', $q);
@@ -57,37 +57,25 @@ class SfVoUtil
 	    		$pos = stripos(SfVoUtil::voDecode($aString), SfVoUtil::voDecode($word));
 	    	}
 	    	if ($pos !== FALSE){
-	        	$aString = utf8_encode( substr(utf8_decode($aString), 0, $pos)
-	        		. '<span class="highlight_word">'
-	        		. substr (utf8_decode($aString), $pos, strlen(utf8_decode($word)))
-	        		. '</span>'
-	        		. substr (utf8_decode($aString), $pos + strlen(utf8_decode($word))) );
+		        if (!self::matches("<span class=\"highlight_word\"></span>", $word)){
+		        	$aString = utf8_encode( substr(utf8_decode($aString), 0, $pos)
+		        		. '<span class="highlight_word">'
+		        		. substr (utf8_decode($aString), $pos, strlen(utf8_decode($word)))
+		        		. '</span>'
+		        		. substr (utf8_decode($aString), $pos + strlen(utf8_decode($word))) );
+		        }
 	       	}
 	    }
 	    
 	    $endCut = $pos1 && strlen( substr($aString, ($pos1-SfVoUtil::HIGHLIGHT_LENGTH >= 0)?($pos1-SfVoUtil::HIGHLIGHT_LENGTH):0) ) < strlen(utf8_decode($string));
 	    return (($pos1?$pos1:0)-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'...':'') . $aString . ($endCut?'...':'')  ;
 	}
-	
-	public static function matches($str1, $q, $or = false)
-	{
-		$words = explode(' ', $q);
 		
-		$ret = false;
-		if (count($words) > 0 && !$or){
-			$ret = true;
-		}
-	    foreach ( $words as $idx => $word ){
-	    	$isTrue = stripos(SfVoUtil::stripAccents($str1), SfVoUtil::stripAccents($word)) !== FALSE;
-	    	if ($or) {
-	    		$ret = $ret || $isTrue; 
-	    	}
-	    	else {
-	    		$ret = $ret && $isTrue; 
-	    	}
-	    }
-		return $ret;
+	public static function matches($string, $word)
+	{
+		return preg_match("/".self::voDecode($word)."/i", self::voDecode($string));
 	}
+	
 	public static function cutToLength($str, $length = 35, $ext = '.') {
 		$aText = utf8_decode($str);
 		return utf8_encode( strlen($aText) > $length?substr($aText, 0, $length ).$ext:$aText );

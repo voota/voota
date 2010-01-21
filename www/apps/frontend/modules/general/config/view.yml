@@ -1,4 +1,7 @@
 default:
   components:
     politicoResult:  [general, politicoResult]
+    partidoResult:  [general, partidoResult]
+    institucionResult:  [general, institucionResult]
+    usuarioResult:  [general, usuarioResult]
     

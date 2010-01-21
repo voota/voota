@@ -32,28 +32,40 @@ class perfilActions extends SfVoActions
   	$userProfile = SfGuardUserProfilePeer::doSelectOne( $c );
   	$this->forward404Unless($userProfile);
   	
-  	$this->user = $userProfile->getsfGuardUser();  	
+  	$this->user = $userProfile->getsfGuardUser();  
+    $this->form = new UserContactForm();	
   	
-    //$this->form = new ContactForm();
     if ( $request->isMethod('post') ) {
-      /*$this->form->bind($request->getParameter('contact'));
+      $this->form->bind($request->getParameter('contact'));
       
-      if ($this->form->isValid()) {
-      	try {
-			$mailBody = $this->getPartial('contactMailBody', array(
-			  	'nombre' => $this->form->getValue('nombre'),
-			  	'mensaje' => $this->form->getValue('mensaje'),
-			  	'email' => $this->form->getValue('email')
+      if ( $this->form->isValid() ) {
+      	if ( $this->user->getProfile()->getMailsContacto() == 1 ) {
+	      	$codigo = util::generateUID();
+			$this->user->getProfile()->setCodigo( $codigo );
+			$this->user->getProfile()->save();
+			  	
+	      	$mailBody = $this->getPartial('contactMailBody', array(
+			  	'destinatario' => $this->user->getProfile()->getNombre(),
+			  	'remitente' => $this->getUser()->getProfile()->getNombre(),
+			  	'cuerpo' => $this->form->getValue('mensaje'),
+				'vanity' => $this->getUser()->getProfile()->getVanity(),
+				'codigo' => $codigo
 			));
-			  
-			VoMail::sendWithRet("Contacto web [".$this->form->getValue('tipo')."]", $mailBody, 'info-es@voota.es', array('no-reply@voota.es' => 'no-reply Voota'), $this->form->getValue('email'), true);
-	      	
-			return "SendSuccess";
+				
+	      	try {
+				      	
+				VoMail::sendWithRet("Tienes un mensaje de ".$this->getUser()->getProfile()->getNombre()."", $mailBody, $this->user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), $this->getUser()->getUsername(), true);
+				
+				return "SendSuccess";
+	      	}
+	      	catch (Exception $e){
+	      		return "SendFail";      		
+	      	}
       	}
-      	catch (Exception $e){
-      		return "SendFail";      		
+      	else {
+	      	return "SendFail";      		
       	}
-      }*/
+      }
 	  return "SendSuccess";
     }
   }

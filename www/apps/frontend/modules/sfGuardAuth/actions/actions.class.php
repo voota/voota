@@ -104,7 +104,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->forward404Unless($user);
   	
   	if ($user) {
-	  	$user->getProfile()->setMailsComentarios( 0 );
+  		if ($n == 1){
+	  		$user->getProfile()->setMailsComentarios( 0 );
+  		}
+  		else if ($n == 2){
+	  		$user->getProfile()->setMailsContacto( 0 );
+  		} 
 	  	$user->getProfile()->setCodigo( util::generateUID() );
 	  	$user->getProfile()->save();
   	}

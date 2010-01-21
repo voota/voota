@@ -23,7 +23,10 @@
 <div id="content">
   <form action="#" method="post" accept-charset="utf-8">
     <p class="label"><label for="mensaje_cuerpo">¿Qué le decimos?</label></p>
-    <p class="textarea"><textarea id="mensaje_cuerpo" name="cuerpo" rows="8" cols="40"></textarea></p>
+    <p class="textarea">
+      	<?php echo $form['mensaje']->renderError() ?>
+      	<?php echo $form['mensaje']->render( array('rows' => 8, 'cols' => 40) ) ?>
+    </p>
     <p class="counter" id="cuerpo_counter"></p>
     <p class="submit"><input type="submit" value="Enviar" /></p>
   </form>

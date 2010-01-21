@@ -1,0 +1,12 @@
+<?php use_helper('VoFormat') ?>
+<tr>
+	<td class="photo">
+		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/instituciones/cc_s_'.($obj->getImagen()!=''?$obj->getImagen():'p_unknown.png'), 'alt="Foto de '. $obj .'"') ?>
+    </td>
+    <td class="name">
+		<?php echo link_to(highlightWords($obj->getNombre(), $q), 'politico/ranking?partido=all&institucion='.$obj->getVanity()) ?>      
+    </td>
+</tr>
+	        
+	        
+	        
