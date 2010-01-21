@@ -18,7 +18,7 @@
 	<script type="text/javascript">
 	  <!--
 	  $(document).ready(function(){
-	  	$("#ie6WarnClose").click(function(){
+	  	$("#ie6 .close a").click(function(){
 	  		$('#ie6').remove();
 	  		return false;
 	    });
@@ -67,7 +67,7 @@
           <p><?php echo __('Nos han saltado las alarmas diciéndonos que estás usando Internet Explorer 6, auténtica reliquia del año 2001. Por desgracia este navegador que usas no soporta lo que se denomina “estándares web”, que es algo que te ayuda a visualizar como es debido las páginas que visitas cuando estás en Internet.')?></p>
 
           <p><?php echo __('¿Nuestra recomendación? Que actualizes tu navegador (es gratis). Te damos algunas ideas: <a href="http://www.getfirefox.com/">Firefox</a>, <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.opera.com/">Opera</a>... O la última versión de <a href="http://www.microsoft.com/spain/windows/internet-explorer/">Explorer</a>, claro.')?></p>
-          <p class="close"><a id="ie6WarnClose" href="#"><?php echo __('Cerrar')?></a></p>
+          <p class="close"><a href="#"><?php echo __('Cerrar')?></a></p>
         </div>
       <?php endif ?>
       
