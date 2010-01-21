@@ -89,7 +89,7 @@
   <div class="comments">
     <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
     <p class="filter">
-      <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
+      <label for="f"><?php echo __('Filtrar comentarios por:')?></label>
       <br />
       	<select id="f" name="f">
       		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
@@ -104,28 +104,25 @@
       <h2><?php echo __("%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => $user->getProfile()->getNombre(), '%2%' => $reviews->getNbResults())) ?></h2>
         <table>
           <?php foreach ($reviews->getResults() as $review): ?>
-			<?php include_component_slot('profileReview', array('review' => $review)) ?>
+			      <?php include_component_slot('profileReview', array('review' => $review)) ?>
           <?php endforeach ?>
         </table>
         <div id="more_reviews">
-		  <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
-		      <?php echo jq_form_remote_tag(array(
-		    	'update'   => "more_reviews",
-		    	'url'      => "@profile_more_comments",
-  	  			'before' => "re_loading('more_reviews')"
-		      ),
-		        array('id' => "frm_more_reviews"
-		      )) ?>
-          		<input type="hidden" name="username" value="<?php echo $user->getProfile()->getVanity()?>" />
-          		<input type="hidden" name="page" value="<?php echo isset($page)?$page:'1' ?>" />
-          		<input type="submit" value="<?php echo __('más') ?>" />
-			</form>
-		  <?php endif ?>
+    		  <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
+  		      <?php echo jq_form_remote_tag(
+  		        array('update'   => "more_reviews",
+  		    	        'url'      => "@profile_more_comments",
+    	  			      'before'   => "re_loading('more_reviews')"),
+  		        array('id' => "frm_more_reviews"))
+  		      ?>
+        		  <div><input type="hidden" name="username" value="<?php echo $user->getProfile()->getVanity()?>" /></div>
+            	<div><input type="hidden" name="page" value="<?php echo isset($page)?$page:'1' ?>" /></div>
+            	<div><input type="submit" value="<?php echo __('más') ?>" /></div>
+    			  </form>
+    		  <?php endif ?>
         </div>
     <?php else: ?>
       <h2><?php echo __("%1% aún no se ha animado a comentar&hellip;", array('%1%' => $user->getProfile()->getNombre())) ?></h2>
     <?php endif ?>
-  </div>
-
   </div>
 </div>

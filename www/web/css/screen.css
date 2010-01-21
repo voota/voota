@@ -228,6 +228,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments .actions { width: 14%; }
 #perfil-show #sidebar { width: 250px;}
 #perfil-show #sidebar button { width: 180px;}
+#perfil-show #more_reviews { padding-top: 0.5em;}
 
 /* Contacto perfil */
 #perfil-contact p.textarea { padding-bottom: 0;}
