@@ -278,8 +278,7 @@ class partidoActions extends sfActions
   	$descripcion = $this->partido->getAbreviatura()
   		 . ": "
   		 . sfContext::getInstance()->getI18N()->__('presentación, opiniones de usuarios a favor y en contra, políticos mejor valorados y enlaces. ', array())
-  		 . $this->partido->getPresentacion()
-  		 . SfVoUtil::cutToLength($this->partido->getPresentacion(), 140, '...');
+  		 . SfVoUtil::cutToLength($this->partido->getPresentacion(), 140, '...', true);
   		 
   	$this->response->addMeta('Descripcion', $descripcion);
   }

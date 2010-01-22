@@ -12,7 +12,7 @@ class PartidoI18nForm extends BasePartidoI18nForm
 {
   public function configure()
   {
-	$this->widgetSchema['presentacion'] = new sfWidgetFormTextarea(array());
-    $this->validatorSchema['presentacion'] = new sfValidatorString(array('required' => false)); 
+	$this->widgetSchema['presentacion'] = new sfWidgetFormTextarea(array(), array('style' => "width: 500px; height:200px"));
+	$this->validatorSchema['presentacion'] = new sfValidatorString(array('required' => false, 'max_length' => 140)); 
   }
 }

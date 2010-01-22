@@ -77,6 +77,10 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  		$politico = PoliticoPeer::retrieveByPk($review->getEntityId());
 		  		$this->clearCache( $politico );
 		  	}
+		  	else if ($review->getSfReviewType()->getId() == Partido::NUM_ENTITY){
+		  		$partido = PartidoPeer::retrieveByPk($review->getEntityId());
+		  		$this->clearCachePartido( $partido );
+		  	}
 	  	}
 	  	
 	}
