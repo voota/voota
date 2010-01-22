@@ -21,6 +21,8 @@ class SfVoUtil
 	const SHORT_INSTITUCIONES_NUM = 7;
 	const URL_FILLER = "-";
 	const HIGHLIGHT_LENGTH = 50;
+	const ACCENTS = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
+	const ACCENT_REPLACEMENTS = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY';
 	
 	public static function encodeVanity( $str ) {
 		$ret = str_replace(" ", "-", $str);
@@ -38,47 +40,87 @@ class SfVoUtil
 	}
 	
 	public static function voDecode( $str ){
-		return strtr(utf8_decode($str), utf8_decode('àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ'), 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+		return strtr(utf8_decode($str), utf8_decode(self::ACCENTS), self::ACCENT_REPLACEMENTS);
 	}
 
 	public static function highlightWords($string, $q)
 	{
+		$words = explode(' ', trim($q));
+		
+	 	$expw = '';
+	    foreach ( $words as $idx => $word ){
+	    	$expw .= ($idx==0?'':'|'). self::voDecode($word); 
+	    }
+
+	    $initString = $string;
+	    
+    	$aWord = SfVoUtil::voDecode($word);
+    	$exp = "/[a-z0-9".self::ACCENTS."]*.{0,".self::HIGHLIGHT_LENGTH."}($expw).{0,".self::HIGHLIGHT_LENGTH."}[a-z0-9".self::ACCENTS."]*/is";
+    	if (preg_match($exp, SfVoUtil::voDecode($string), $matches, PREG_OFFSET_CAPTURE)) {
+    		$shorStr = $matches[0][0];
+    		$iniPos = strpos(SfVoUtil::voDecode($string), $shorStr);
+    		$shortLen = strlen($shorStr);
+    	}
+    	else {
+    		$iniPos = 0;
+    		$shortLen = self::HIGHLIGHT_LENGTH*2;
+    	}
+    	$initString = ($iniPos > 0?'...':'') .utf8_encode( substr(utf8_decode($string), $iniPos, $shortLen). ($shortLen < strlen(utf8_decode($string))?'...':'') );
+    	$aString = $initString;
+    	
+    	if (preg_match_all("/$expw/is", SfVoUtil::voDecode($initString), $matches, PREG_OFFSET_CAPTURE)){
+    		$aString = "";
+    		foreach($matches[0] as $idx => $match){
+    			$initPos = $idx == 0?0:($match[1]);
+    			$endPos = isset($matches[0][$idx+1])?($matches[0][$idx+1][1] - $match[1] - strlen($match[0])):strlen(utf8_decode($initString))-$match[1];
+	        	$aString .= ($idx == 0?substr(utf8_decode($initString), $initPos, $match[1]):'')
+	        		. '<span class="highlight_word">'
+	        		. substr (utf8_decode($initString), $match[1], strlen($match[0]))
+	        		. '</span>'
+	        		. substr (utf8_decode($initString), $match[1] + strlen($match[0]), $endPos) 
+	        		;
+    		}
+    		$aString = utf8_encode($aString);
+    	}
+	    	
+	    return $aString;
+	}
+		
+	public static function matches($string, $q, $or = false)
+	{
 		$words = explode(' ', $q);
 		
-	 	$aString =  $string;
-	 	$pos = -1;
-	 	$pos1 = false;
-	    foreach ( $words as $idx => $word )
-	    {
-	    	$pos = stripos(SfVoUtil::voDecode($aString), SfVoUtil::voDecode($word));
-	    	if ($idx == 0 && $pos !== FALSE){
-	    		$pos1 = $pos;
-	    		$aString = substr  ($aString, ($pos-SfVoUtil::HIGHLIGHT_LENGTH >= 0)?($pos-SfVoUtil::HIGHLIGHT_LENGTH):0, SfVoUtil::HIGHLIGHT_LENGTH*2);
-	    		$pos = stripos(SfVoUtil::voDecode($aString), SfVoUtil::voDecode($word));
+		$ret = true;
+		if ($or){
+			$ret = false;
+		}
+	    foreach ( $words as $idx => $word ) {
+	    	if ($or){
+		    	$ret = $ret || preg_match("/".self::voDecode($word)."/i", self::voDecode($string));  
 	    	}
-	    	if ($pos !== FALSE){
-		        if (!self::matches("<span class=\"highlight_word\"></span>", $word)){
-		        	$aString = utf8_encode( substr(utf8_decode($aString), 0, $pos)
-		        		. '<span class="highlight_word">'
-		        		. substr (utf8_decode($aString), $pos, strlen(utf8_decode($word)))
-		        		. '</span>'
-		        		. substr (utf8_decode($aString), $pos + strlen(utf8_decode($word))) );
-		        }
-	       	}
+	    	else{
+		    	$ret = $ret && preg_match("/".self::voDecode($word)."/i", self::voDecode($string));  
+	    	}
 	    }
 	    
-	    $endCut = $pos1 && strlen( substr($aString, ($pos1-SfVoUtil::HIGHLIGHT_LENGTH >= 0)?($pos1-SfVoUtil::HIGHLIGHT_LENGTH):0) ) < strlen(utf8_decode($string));
-	    return (($pos1?$pos1:0)-SfVoUtil::HIGHLIGHT_LENGTH >= 0?'...':'') . $aString . ($endCut?'...':'')  ;
-	}
-		
-	public static function matches($string, $word)
-	{
-		return preg_match("/".self::voDecode($word)."/i", self::voDecode($string));
+		return $ret;
 	}
 	
-	public static function cutToLength($str, $length = 35, $ext = '.') {
-		$aText = utf8_decode($str);
-		return utf8_encode( strlen($aText) > $length?substr($aText, 0, $length ).$ext:$aText );
+	public static function cutToLength($str, $length = 35, $ext = '.', $fullWords = false) {
+		$ret = '';
+		$strLength = strlen(utf8_decode($str));
+		
+		if ($strLength > $length){
+			$exp = "/.{".$length."}".($fullWords?("[a-z0-9".self::ACCENTS."]*"):'')."/is";
+			if (preg_match($exp, $str, $matches, PREG_OFFSET_CAPTURE)) {
+				$ret = $matches[0][0];
+			};
+		}
+		else {
+			$ret = $str;
+		}
+		
+		return $ret. ($strLength > strlen(utf8_decode($ret))?$ext:'');
 	}
 }
  

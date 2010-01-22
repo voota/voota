@@ -109,6 +109,8 @@ class generalActions extends sfActions{
   }
   
   public function executeSearch(sfWebRequest $request) {
+  	//echo SfVoUtil::cutToLength("erales de Vizcaya. Concejal del Ayuntamiento de Güeñes. Parlamentaria en el Parlamento Vasco. Siete años como Consejera del Gobierno Vasco. Parlamentaria en el Parlamento Europeo. Funcionaria de la Administración Pública en situación de servicios especiales. ", 100, "...", TRUE);die;
+  	
    	$this->q = $request->getParameter("q");
   	
    	$resultsArray = array();
