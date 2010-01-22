@@ -1405,6 +1405,155 @@ actual)</target>
         <source>Más sobre %1%:</source>
         <target/>
       </trans-unit>
+      <trans-unit id="304">
+        <source>Aviso a los amantes del vintage</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="305">
+        <source>Nos han saltado las alarmas diciéndonos que estás usando Internet Explorer 6, auténtica reliquia del año 2001. Por desgracia este navegador que usas no soporta lo que se denomina “estándares web”, que es algo que te ayuda a visualizar como es debido las páginas que visitas cuando estás en Internet.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="306">
+        <source>¿Nuestra recomendación? Que actualizes tu navegador (es gratis). Te damos algunas ideas: &lt;a href="http://www.getfirefox.com/"&gt;Firefox&lt;/a&gt;, &lt;a href="http://www.google.com/chrome"&gt;Chrome&lt;/a&gt;, &lt;a href="http://www.opera.com/"&gt;Opera&lt;/a&gt;... O la última versión de &lt;a href="http://www.microsoft.com/spain/windows/internet-explorer/"&gt;Explorer&lt;/a&gt;, claro.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="307">
+        <source>Cerrar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="308">
+        <source>&lt;p&gt;Hola %1%,&lt;/p&gt; 
+
+%saludo%
+
+&lt;p&gt;
+  Esto es lo que opinaste sobre %4%:
+  &lt;br /&gt;"%5%"
+&lt;/p&gt;
+
+&lt;p&gt;
+  Ver tu vooto y sus comentarios en estado natural:
+  &lt;br /&gt;&lt;a href="%6%"&gt;%6%&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  Dejar de recibir estos avisos (simplemente pincha en este link):
+  &lt;br /&gt;&lt;a href="%7%"&gt;%7%&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;
+
+&lt;p&gt;
+  Nuestra web:  http://voota.es/es
+  &lt;br /&gt;
+  Blog de Voota:  http://blog.voota.es
+  &lt;br /&gt;
+  Voota en Twitter:  http://twitter.com/voota
+  &lt;br /&gt;
+  Voota en Facebook:  http://facebook.com/voota
+&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="309">
+        <source>&lt;p&gt;Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:&lt;br /&gt;"%3%"&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="310">
+        <source>a favor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="311">
+        <source>en contra</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="312">
+        <source>&lt;p&gt;Pues eso, que %2% está %voto% de tu vooto. Aunque de momento no ha incluído ninguna opinión.&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="313">
+        <source>[0]No se han encontrado resultados para "%2%"|[1]%1% resultado encontrado buscando "%2%"|(1,+Inf]%1% resultados encontrados buscando "%2%"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="314">
+        <source>%1% votos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="315">
+        <source>Político, partido, institución o usuario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="316">
+        <source>Ranking de partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="317">
+        <source>Los partidos más votados en Voota:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="318">
+        <source>presentación, opiniones de usuarios a favor y en contra, políticos mejor valorados y enlaces. </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="319">
+        <source>Por políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="320">
+        <source>Por partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="321">
+        <source>Por respuestas a otros comentarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="322">
+        <source>Ok, mensaje enviado a</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="323">
+        <source>Lo siento, %1% no nos autoriza a mandarle emails.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="324">
+        <source>Mandar un mensaje a</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="325">
+        <source>Datos básicos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="326">
+        <source>En Voota desde el %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="327">
+        <source>Donaciones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="328">
+        <source>Voota se mantiene gracias a &lt;a href="http://blog.voota.es/es/socios/"&gt;las donaciones&lt;/a&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="329">
+        <source>¿Hacer una donación?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="330">
+        <source>&lt;p&gt;Hola %1%&lt;/p&gt;
+&lt;p&gt;%2% acaba de dejarte un mensaje tras pasar por tu perfil. Esto es lo que te dice: "%3%"&lt;/p&gt;
+&lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Dejar de recibir estos avisos (simplemente pincha en este link): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Un abrazo,&lt;/p&gt;
+&lt;p&gt;Comunidad Voota&lt;/p&gt;
+&lt;p&gt;
+  Nuestra web: &lt;a href="http://voota.es/es"&gt;http://voota.es/es&lt;/a&gt;&lt;br /&gt;
+  Blog de Voota: &lt;a href="http://blog.voota.es"&gt;http://blog.voota.es&lt;/a&gt;&lt;br /&gt;
+  Voota en Twitter: &lt;a href="http://twitter.com/voota"&gt;http://twitter.com/voota&lt;/a&gt;&lt;br /&gt;
+  Voota en Facebook: &lt;a href="http://facebook.com/voota"&gt;http://facebook.com/voota&lt;/a&gt;&lt;br /&gt;
+&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
