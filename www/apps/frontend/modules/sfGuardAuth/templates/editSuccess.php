@@ -35,6 +35,10 @@
 <div id="content">
   <?php echo showNotices( $sf_user ) ?>
 
+  <div id="sidebar">
+    <?php include_partial('perfil/boxProfile', array('user' => $sf_user->getGuardUser())) ?>
+  </div>
+
   <form action="<?php echo url_for('@usuario_edit') ?>" method="post" autocomplete="" method="post" enctype="multipart/form-data">
     <table>
       <tr>

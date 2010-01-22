@@ -92,6 +92,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
 .box-profile .box-inner { background-color: #fdffcd }
 .box-profile h3 { font-size: 1em;}
+.box-profile button { width: 180px;}
 
 /* Formularios */
 form { margin: 0; padding: 0;}
@@ -167,7 +168,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Perfil */
 #sfGuardAuth-edit h2 { margin-bottom: 0.5em;}
-#sfGuardAuth-edit #content { width: 100%; margin-top: 2em; margin-left: 1em; }
+#sfGuardAuth-edit #content { width: 95%; margin-top: 2em; margin-left: 1em; }
 #sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 1em; margin-left: -1em;}
 #sfGuardAuth-edit ol.links li { margin-bottom: 1em;}
 #sfGuardAuth-edit label { font-weight: normal;}
@@ -188,6 +189,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
+#sfGuardAuth-edit #sidebar { width: 250px;}
 
 /* Comentarios y vootos */
 
@@ -228,7 +230,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments .body { width: 40%; padding-right: 2%; }
 #perfil-show .comments .actions { width: 14%; }
 #perfil-show #sidebar { width: 250px;}
-#perfil-show #sidebar button { width: 180px;}
 #perfil-show #more_reviews { padding-top: 0.5em;}
 
 /* Contacto perfil */
