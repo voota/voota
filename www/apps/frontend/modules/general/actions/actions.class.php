@@ -174,6 +174,16 @@ class generalActions extends sfActions{
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
+			$c->addJoin(sfGuardUserPeer::ID, SfReviewPeer::SF_GUARD_USER_ID, Criteria::LEFT_JOIN);
+			$c->add(SfReviewPeer::IS_ACTIVE, true);
+			
+			$c->addAsColumn('numReviews', 'COUNT('.sfGuardUserPeer::ID.')');
+			$c->addSelectColumn('sf_guard_user.*');
+			
+			$c->addDescendingOrderByColumn('numReviews');
+			$c->addGroupByColumn(sfGuardUserPeer::ID);
+			
+			$c->setDistinct();
         	$list = array();
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];
@@ -181,7 +191,14 @@ class generalActions extends sfActions{
   			$c->add(sfGuardUserPeer::ID, $list, Criteria::IN);
   			$c->setLimit( 100 );
   			
-  			$usuarios = sfGuardUserPeer::doSelect($c);
+  			$usuariosRS = sfGuardUserPeer::doSelectStmt($c);
+  			$usuarios = array();
+  			foreach($usuariosRS as $usuarioRS) {
+			  $usuario = new SfGuardUser($usuarioRS);
+			  $usuario->hydrate($usuarioRS);
+			  $usuarios[] = $usuario;
+			}
+  			
   			
   			$resultsArray = array_merge  ( $resultsArray, $usuarios );
         }	
