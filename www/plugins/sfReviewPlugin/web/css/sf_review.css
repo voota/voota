@@ -4,7 +4,8 @@
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
 .review-name { font-weight: normal;}
 .review-date { margin-top: 0.5em; padding-bottom: 0; font-size:0.8em;}
-.review-body { padding: 0.5em 0; clear: left; }
+.review-about { margin-top: 0.5em; padding-bottom: 0;}
+.review-body { padding: 0.5em 0; clear: left; overflow: hidden;}
 .review-actions { padding: 0.5em 0;}
 .review-actions img { vertical-align: -0.4em;}
 .add-subreview { padding-top: 0; padding-bottom: 1em;}
@@ -24,7 +25,7 @@
 .sf-review-positive, .sf-review-negative { float:left; }
 .sf-review-negative { margin-left: 1.5em; }
 .sf-review-counter { float: right; padding-bottom: 0.5em; text-align: right; overflow: hidden;}
-#sf-review-body { padding-bottom: 0;}
+#sf-review-body { clear: both; padding-bottom: 0;}
 .sf-review-text { width: 97%; height: 8em;}
 
 .sfr_grey{color:#b6b6b6; }
