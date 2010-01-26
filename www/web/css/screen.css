@@ -134,7 +134,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #politicians-most-voted,
 #home-index #politicians-latest-visited { overflow: hidden;}
 #home-index #politicians-most-voted ul { padding-left: 0;}
-#home-index #rankings { padding-left: 1.5em; overflow: hidden;}
+#home-index #rankings,
+#home-index #latest-profile-visitors { padding-left: 1.5em; overflow: hidden;}
 #home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
 #home-index .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
 #home-index #politicians-most-voted li,
@@ -150,13 +151,16 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #summary .search { padding-left: 0;}
 #home-index #politicians-top5,
 #home-index #political-groups,
-#home-index #institutions { width: 30%; margin-right: 3%; float: left;}
+#home-index #institutions,
+#home-index #latest-profile-visitors .column { width: 30%; margin-right: 3%; float: left;}
 #home-index #politicians-top5 h3,
 #home-index #political-groups h3,
-#home-index #institutions h3 { padding-bottom: 1em;}
+#home-index #institutions h3,
+#home-index #latest-profile-visitors h3 { padding-bottom: 1em;}
 #home-index #politicians-top5 ol,
 #home-index #political-groups ol,
-#home-index #institutions ol { list-style: none; margin: 0; padding: 0; }
+#home-index #institutions ol,
+#home-index #latest-profile-visitors ol { list-style: none; margin: 0; padding: 0; }
 #home-index .signup { margin-left: 180px;font-weight: bold;}
 #home-index .positive-reviews ol,
 #home-index .negative-reviews ol { padding-left: 1em;}
@@ -164,7 +168,9 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #latest-comments-on-comments .last { margin-left: 10%;}
 #home-index #latest-comments-on-comments ol { padding-left: 1em;}
 #home-index .review { padding-bottom: 1em;}
-#home-index #latest-profile-visitors .column { }
+#home-index #latest-profile-visitors li { height: 60px; margin-bottom: 1em;}
+#home-index #latest-profile-visitors li .user-avatar { float: left;}
+#home-index #latest-profile-visitors li .user-name { font-weight: normal; margin-left: 45px;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
