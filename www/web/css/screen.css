@@ -135,7 +135,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #politicians-latest-visited { overflow: hidden;}
 #home-index #politicians-most-voted ul { padding-left: 0;}
 #home-index #rankings,
-#home-index #latest-profile-visitors { padding-left: 1.5em; overflow: hidden;}
+#home-index #latest-profile-visitors { overflow: hidden;}
 #home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
 #home-index .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
 #home-index #politicians-most-voted li,
@@ -160,7 +160,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #politicians-top5 ol,
 #home-index #political-groups ol,
 #home-index #institutions ol,
-#home-index #latest-profile-visitors ol { list-style: none; margin: 0; padding: 0; }
+#home-index #latest-profile-visitors ol { list-style: none; margin: 0; padding: 0; margin-left: 1em;}
 #home-index .signup { margin-left: 180px;font-weight: bold;}
 #home-index .positive-reviews ol,
 #home-index .negative-reviews ol { padding-left: 1em;}
