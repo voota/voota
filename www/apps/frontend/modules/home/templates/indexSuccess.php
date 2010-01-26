@@ -6,19 +6,17 @@
   <!--
   $(document).ready(function(){
 	  <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-	  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+	    <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
 	  <?php endforeach ?>
-      <?php if(count($politicosMasVotadosUltimamente) < 6):?>
-      	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-  	  		<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
-      	<?php endforeach?>
-  	  <?php endif ?>
-      <?php foreach($topPoliticos as $politico): ?>
+    <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+    	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
+	  		<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+    	<?php endforeach?>
+	  <?php endif ?>
+    <?php foreach($topPoliticos as $politico): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico)) ?>
-  	  <?php endforeach?>
+	  <?php endforeach?>
   });
-
-
   //-->
 </script>
 
@@ -264,7 +262,7 @@
 	  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></strong></p>
+        <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></strong></p>
       </div>
 
       <div id="political-groups" class="list-mini">
@@ -274,7 +272,7 @@
 	  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?></p>
+        <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?></strong></p>
       </div>
 
       <div id="institutions" class="list-mini">
@@ -284,7 +282,7 @@
 	  	  	<?php include_partial('institucion_top', array('institucion' => $institucion)) ?>
 	      <?php endforeach?>
         </ol>
-        <p><?php echo link_to(__('Listado de instituciones'), 'politico/ranking')?></p>
+        <p class="ranking-link"><strong><?php echo link_to(__('Listado de instituciones'), 'politico/ranking')?></strong></p>
       </div>
     </div>
   </div>
