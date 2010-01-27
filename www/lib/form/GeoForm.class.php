@@ -12,5 +12,6 @@ class GeoForm extends BaseGeoForm
 {
   public function configure()
   {
+  	unset($this['created_at']);
   }
 }

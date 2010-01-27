@@ -14,8 +14,7 @@ class InstitucionForm extends BaseInstitucionForm
   
   public function configure()
   {  	
-  	unset($this['politico_institucion_list']);
-  	unset($this['eleccion_institucion_list']);
+  	unset($this['politico_institucion_list'], $this['eleccion_institucion_list'], $this['created_at']);
   	
     $this->embedI18n(array('es', 'ca'));
     
