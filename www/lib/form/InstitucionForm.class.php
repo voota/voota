@@ -14,6 +14,9 @@ class InstitucionForm extends BaseInstitucionForm
   
   public function configure()
   {  	
+  	unset($this['politico_institucion_list']);
+  	unset($this['eleccion_institucion_list']);
+  	
     $this->embedI18n(array('es', 'ca'));
     
     $this->widgetSchema['disabled'] = new sfWidgetFormSelect(array('choices' => self::$estados));

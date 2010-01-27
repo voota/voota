@@ -26,7 +26,7 @@ generator:
 
       filter:
         class: sfGuardUserFormFilter
-        display: [nombre, apellidos, vanity, username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
+        display: [username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
         fields:
           politico_institucion_list:
             label: Institucion
@@ -34,7 +34,7 @@ generator:
       form:
         class: sfGuardUserAdminForm
         display:
-          "Datos básicos": [vanity, username, password, password_again, nombre, apellidos, acepta_mensajes, fecha_nacimiento, pais, formacion, residencia, presentacion, papel_voota, numero_socio]
+          "Datos básicos": [vanity, username, password, password_again, nombre, apellidos, fecha_nacimiento, pais, formacion, residencia, presentacion, papel_voota, numero_socio]
           "Suscripciones": [mails_comentarios, mails_noticias, mails_contacto, mails_seguidor]
           "Permisos y grupos": [is_active, is_super_admin, sf_guard_user_group_list, sf_guard_user_permission_list]
         fields:
@@ -42,8 +42,6 @@ generator:
           username: { label: "email" }
       fields:
         username: { label: "Email" }
-        acepta_mensajes:
-          attributes: { value: "S" }
         presentacion:
           attributes: { style: "width: 90%; height:50px" }
       edit:

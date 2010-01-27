@@ -44,7 +44,7 @@ generator:
         display: [sf_review_status_id, value, text, culture, created_at, modified_at, cookie, ip_address, sf_review_type_id, value, is_active]
       form:
         display: 
-          "Moderation": [sf_review_status_id, culture]
+          "Moderation": [sf_review_status_id, culture, sf_guard_user_id]
           "Review data": [~reviewData]
         fields:
           sf_review_status_id: 

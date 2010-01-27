@@ -24,6 +24,13 @@ class SfGuardUserProfileForm extends BaseSfGuardUserProfileForm
   	$this->widgetSchema['mails_noticias'] = new sfWidgetFormSelect(array('choices' => self::$sino));
     $this->widgetSchema['mails_contacto'] = new sfWidgetFormSelect(array('choices' => self::$sino));
     $this->widgetSchema['mails_seguidor'] = new sfWidgetFormSelect(array('choices' => self::$sino));
+    
+
+    unset(
+    	$this['created_at']
+    	, $this['imagen']
+    	, $this['codigo']
+	);
   }
   
   
