@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 ALTER TABLE `voota`.`partido` DROP COLUMN `web` , ADD COLUMN `disabled` CHAR(1) NULL DEFAULT NULL  AFTER `sumd` ;
-ALTER TABLE `voota`.`partido` CHANGE COLUMN `disabled` `is_active` TINYINT(4) NOT NULL DEFAULT 1  ;
+ALTER TABLE `voota`.`partido` DROP COLUMN `disabled` , ADD COLUMN `is_active` TINYINT(4) NOT NULL DEFAULT 1  ;
 UPDATE `voota`.`partido` SET is_active = 1;
 
 

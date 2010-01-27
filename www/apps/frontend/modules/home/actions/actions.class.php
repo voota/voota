@@ -48,6 +48,7 @@ class homeActions extends sfActions{
 			INNER JOIN sf_review r ON r.entity_id = p.id
 			WHERE r.is_active = 1
 			AND IFNULL(r.modified_at, r.created_at) > CURDATE()
+			AND r.sf_review_type_id = ". Politico::NUM_ENTITY ."
 			GROUP BY p.id
 			ORDER BY c desc
 			LIMIT 6";
@@ -66,7 +67,8 @@ class homeActions extends sfActions{
 	   	$query = "SELECT p.*, max(IFNULL(r.modified_at, r.created_at)) max
 	  			FROM politico p
 				INNER JOIN sf_review r ON r.entity_id = p.id
-				WHERE r.is_active = 1 ";
+				WHERE r.is_active = 1 
+				AND r.sf_review_type_id = ". Politico::NUM_ENTITY ." ";
 		$query .= $exclude == ''?'':" and p.id not in ($exclude) ";
 		$query .= "GROUP BY p.id
 				ORDER BY max desc
