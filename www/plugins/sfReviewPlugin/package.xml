@@ -1,215 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package xmlns="http://pear.php.net/dtd/package-2.0"
-	xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	packagerversion="1.7.2" version="2.0"
-	xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
-	<name>sfReviewPlugin</name>
-	<channel>plugins.symfony-project.org</channel>
-	<summary>Review management plugin.</summary>
-	<description>Review management plugin.</description>
-	<lead>
-		<name>Sergio Viteri</name>
-		<user>sviteri</user>
-		<email>sergio@infovit.net</email>
-		<active>yes</active>
-	</lead>
-	<date>2010-01-20</date>
-	<time>15:38:00</time>
-	<version>
-		<release>1.1</release>
-		<api>1.1</api>
-	</version>
-	<stability>
-		<release>beta</release>
-		<api>beta</api>
-	</stability>
-	<license uri="http://www.symfony-project.com/license">MIT license</license>
-	<notes>-</notes>
-	<contents>
-		<dir name="/">
-			<file name="LICENSE" role="data" />
-			<file name="config/schema.yml" role="data" />
-			<file name="config/config.php" role="data" />
-			<file name="README" role="data" />
-			<file name="lib/helper/SfReviewHelper.php" role="data" />
-			<file name="lib/BaseSfReviewManager.class.php" role="data" />
-			<file name="lib/sfReviewComponents.php" role="data" />
-			<file name="lib/sfReviewManager.class.php" role="data" />
-			<file name="lib/sfVoWidgetFormFilterInputNotEmpty.class.php"
-				role="data" />
-			<file name="lib/task/sfReviewStatsTask.class.php" role="data" />
-			<file name="lib/filter/SfReviewReasonFormFilter.class.php" role="data" />
-			<file name="lib/filter/SfReviewFormFilter.class.php" role="data" />
-			<file name="lib/filter/SfReviewAttachFormFilter.class.php" role="data" />
-			<file name="lib/filter/SfReviewModerationFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/SfReviewStatusFormFilter.class.php" role="data" />
-			<file name="lib/filter/SfReviewTypeEntityFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/SfReviewTypeFormFilter.class.php" role="data" />
-			<file name="lib/filter/base/BaseSfReviewFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewTypeFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewModerationFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewReasonFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewTypeEntityFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewAttachFormFilter.class.php"
-				role="data" />
-			<file name="lib/filter/base/BaseSfReviewStatusFormFilter.class.php"
-				role="data" />
-			<file name="lib/model/SfReviewStatusPeer.php" role="data" />
-			<file name="lib/model/SfReviewAttach.php" role="data" />
-			<file name="lib/model/SfReviewTypePeer.php" role="data" />
-			<file name="lib/model/SfReviewStatus.php" role="data" />
-			<file name="lib/model/SfReviewModeration.php" role="data" />
-			<file name="lib/model/SfReviewTypeEntity.php" role="data" />
-			<file name="lib/model/map/SfReviewTypeMapBuilder.php" role="data" />
-			<file name="lib/model/map/SfReviewMapBuilder.php" role="data" />
-			<file name="lib/model/map/SfReviewTypeEntityMapBuilder.php"
-				role="data" />
-			<file name="lib/model/map/SfReviewAttachMapBuilder.php" role="data" />
-			<file name="lib/model/map/SfReviewStatusMapBuilder.php" role="data" />
-			<file name="lib/model/map/SfReviewReasonMapBuilder.php" role="data" />
-			<file name="lib/model/map/SfReviewModerationMapBuilder.php"
-				role="data" />
-			<file name="lib/model/om/BaseSfReviewTypePeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewTypeEntityPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewReasonPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewStatusPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewModeration.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewAttach.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReview.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewReason.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewModerationPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewTypeEntity.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewAttachPeer.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewStatus.php" role="data" />
-			<file name="lib/model/om/BaseSfReviewType.php" role="data" />
-			<file name="lib/model/SfReviewPeer.php" role="data" />
-			<file name="lib/model/SfReview.php" role="data" />
-			<file name="lib/model/SfReviewType.php" role="data" />
-			<file name="lib/model/SfReviewAttachPeer.php" role="data" />
-			<file name="lib/model/SfReviewReason.php" role="data" />
-			<file name="lib/model/SfReviewReasonPeer.php" role="data" />
-			<file name="lib/model/SfReviewTypeEntityPeer.php" role="data" />
-			<file name="lib/model/SfReviewModerationPeer.php" role="data" />
-			<file name="lib/sfReviewRouting.class.php" role="data" />
-			<file name="lib/form/SfReviewStatusForm.class.php" role="data" />
-			<file name="lib/form/SfReviewModerationForm.class.php" role="data" />
-			<file name="lib/form/SfReviewForm.class.php" role="data" />
-			<file name="lib/form/SfReviewReasonForm.class.php" role="data" />
-			<file name="lib/form/SfReviewTypeForm.class.php" role="data" />
-			<file name="lib/form/SfReviewTypeEntityForm.class.php" role="data" />
-			<file name="lib/form/base/BaseSfReviewForm.class.php" role="data" />
-			<file name="lib/form/base/BaseSfReviewTypeForm.class.php" role="data" />
-			<file name="lib/form/base/BaseSfReviewTypeEntityForm.class.php"
-				role="data" />
-			<file name="lib/form/base/BaseSfReviewReasonForm.class.php"
-				role="data" />
-			<file name="lib/form/base/BaseSfReviewStatusForm.class.php"
-				role="data" />
-			<file name="lib/form/base/BaseSfReviewAttachForm.class.php"
-				role="data" />
-			<file name="lib/form/base/BaseSfReviewModerationForm.class.php"
-				role="data" />
-			<file name="lib/form/SfReviewAttachForm.class.php" role="data" />
-			<file name="modules/sfReviewStatus/config/security.yml" role="data" />
-			<file name="modules/sfReviewStatus/config/generator.yml" role="data" />
-			<file
-				name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorHelper.class.php"
-				role="data" />
-			<file
-				name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorConfiguration.class.php"
-				role="data" />
-			<file name="modules/sfReviewStatus/actions/actions.class.php"
-				role="data" />
-			<file name="modules/sfReviewFront/config/view.yml" role="data" />
-
-			<file name="modules/sfReviewFront/templates/deleteError.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/deleteSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/formError.php" role="data" />
-			<file name="modules/sfReviewFront/templates/formSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/_init.php" role="data" />
-			<file name="modules/sfReviewFront/templates/initSimpleSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/initSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/listSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/previewSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/_review.php" role="data" />
-			<file name="modules/sfReviewFront/templates/sendSuccess.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/_subreviews.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/_user_header.php"
-				role="data" />
-			<file name="modules/sfReviewFront/templates/_user_header_subs.php"
-				role="data" />
-
-			<file name="modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php"
-				role="data" />
-			<file name="modules/sfReviewFront/actions/actions.class.php"
-				role="data" />
-			<file name="modules/sfReviewFront/actions/components.class.php"
-				role="data" />
-			<file name="modules/sfReview/config/security.yml" role="data" />
-			<file name="modules/sfReview/config/generator.yml" role="data" />
-			<file name="modules/sfReview/templates/_reviewData.php" role="data" />
-			<file name="modules/sfReview/lib/sfReviewGeneratorHelper.class.php"
-				role="data" />
-			<file name="modules/sfReview/lib/sfReviewGeneratorConfiguration.class.php"
-				role="data" />
-			<file name="modules/sfReview/lib/BaseSfReviewActions.class.php"
-				role="data" />
-			<file name="modules/sfReview/actions/actions.class.php" role="data" />
-			<file name="modules/sfReview/actions/components.class.php" role="data" />
-			<file name="modules/sfReviewType/config/security.yml" role="data" />
-			<file name="modules/sfReviewType/config/generator.yml" role="data" />
-			<file
-				name="modules/sfReviewType/lib/sfReviewTypeGeneratorHelper.class.php"
-				role="data" />
-			<file
-				name="modules/sfReviewType/lib/sfReviewTypeGeneratorConfiguration.class.php"
-				role="data" />
-			<file name="modules/sfReviewType/actions/actions.class.php"
-				role="data" />
-			<file name="web/css/sf_review.css" role="data" />
-			<dir name="web">
-				<dir name="css">
-					<file name="sf_review.css" role="data" />
-				</dir>
-				<dir name="images">
-					<file name="icoDown.gif" role="data" />
-					<file name="icoUp.gif" role="data" />
-					<file name="icoMiniDown.png" role="data" />
-					<file name="icoMiniUp.png" role="data" />
-				</dir>
-				<dir name="js">
-					<file name="sf_review.js" role="data" />
-				</dir>
-			</dir>
-			<file name="data/sql/update-from-0_5.sql" role="data" />
-		</dir>
-	</contents>
-
-	<dependencies>
-		<required>
-			<php>
-				<min>5.0.0</min>
-			</php>
-			<pearinstaller>
-				<min>1.4.1</min>
-			</pearinstaller>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfReviewPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>Review management plugin.</summary>
+ <description>The sfReviewPlugin is a symfony plugin that allows users from sfGuardPlugin to leave reviews on different entities of an application.</description>
+ <lead>
+  <name>Sergio Viteri</name>
+  <user>sviteri</user>
+  <email>sergio@voota.es</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-01-27</date>
+ <time>17:49:44</time>
+ <version>
+  <release>1.2</release>
+  <api>1.2</api>
+ </version>
+ <stability>
+  <release>beta</release>
+  <api>beta</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+ <notes>
+notas de version
+ </notes>
+ <contents>
+  <dir baseinstalldir="." name="/">
+   <file baseinstalldir="." md5sum="63283e56c5f9dd6764e18938c0496143" name="config/config.php" role="php" />
+   <file baseinstalldir="." md5sum="96ab80b7d4995f030d098845cb667dc6" name="config/schema.yml" role="data" />
+   <file baseinstalldir="." md5sum="5f98e2058232111507dcbe8689623c3a" name="data/sql/update-from-0_5.sql" role="data" />
+   <file baseinstalldir="." md5sum="4302e4e04d8693c0042146ccc4adb8d9" name="lib/BaseSfReviewManager.class.php" role="php" />
+   <file baseinstalldir="." md5sum="85892a704c793bdd1c48edd92a7c0dc3" name="lib/sfReviewComponents.php" role="php" />
+   <file baseinstalldir="." md5sum="22b007a006e9671fd4d06c4a669a0828" name="lib/sfReviewManager.class.php" role="php" />
+   <file baseinstalldir="." md5sum="06a6c51365e0a50fba958d8592a6d978" name="lib/sfReviewRouting.class.php" role="php" />
+   <file baseinstalldir="." md5sum="82b08ae5ff0a69c174428cd9eab7fe83" name="lib/sfVoWidgetFormFilterInputNotEmpty.class.php" role="php" />
+   <file baseinstalldir="." md5sum="94d90078c7b4b0e5c498334855222822" name="lib/filter/SfReviewAttachFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="f299a1039cd7b64b3349b353e99a8ed7" name="lib/filter/SfReviewFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="b91e2444e086affb479a1096208fdbb2" name="lib/filter/SfReviewModerationFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="232d023f376431cf5c44c881baf25db8" name="lib/filter/SfReviewReasonFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="d1e4aa4bc8cf1a65519cfac779e60a84" name="lib/filter/SfReviewStatusFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="30621830775a6d56bd7c9a293f4d066d" name="lib/filter/SfReviewTypeEntityFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="36bc5e3f460cbcd20bb7fc70bba5bfec" name="lib/filter/SfReviewTypeFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="b3bd01e968be804e40f8b61a9fdc295f" name="lib/filter/base/BaseSfReviewAttachFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="eb8dfc1419119156b5e67dee8667892f" name="lib/filter/base/BaseSfReviewFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="7cbe750a7b1365584b599ff318c47ba0" name="lib/filter/base/BaseSfReviewModerationFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="ee5f05e12d55df2643d416f7c73bb342" name="lib/filter/base/BaseSfReviewReasonFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="2e3eec8610525113f3ff24f4b806e5aa" name="lib/filter/base/BaseSfReviewStatusFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="bc38dbe0eac4dcd09e7a41a27901eba3" name="lib/filter/base/BaseSfReviewTypeEntityFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="50f25d164ecb49c17a6efd27867d1f21" name="lib/filter/base/BaseSfReviewTypeFormFilter.class.php" role="php" />
+   <file baseinstalldir="." md5sum="d8877382a687db8806fcf136a5b1bf05" name="lib/form/SfReviewAttachForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="d3b91c796a72e152b24281bef4948454" name="lib/form/SfReviewForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="12c99cc6819dfb8b05884019b05b3821" name="lib/form/SfReviewModerationForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="e55d79f97f8a6612745948592031863b" name="lib/form/SfReviewReasonForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="81ab1e1bcd625787cdb3c3349cd8220d" name="lib/form/SfReviewStatusForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="fa15962e40d93406168d766f9e6fbe2a" name="lib/form/SfReviewTypeEntityForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="aae89bf08ea7578ca952dda31c97bdb1" name="lib/form/SfReviewTypeForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="0b3ffb2bf94e48a06b8e2c9537302672" name="lib/form/base/BaseSfReviewAttachForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="099b681f56cfa5a1b9dfad4dfd8a6fff" name="lib/form/base/BaseSfReviewForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="170f0a1c972b0e472545087f919f9513" name="lib/form/base/BaseSfReviewModerationForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="03d7f96a95c0077031df712c983d5693" name="lib/form/base/BaseSfReviewReasonForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="162729ba4610adddf634602ac370c11c" name="lib/form/base/BaseSfReviewStatusForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="64500ea5ed74b6ffb2a9b6dfe94f0f37" name="lib/form/base/BaseSfReviewTypeEntityForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="f51f7046bfe41bf1ae2f0b55b7e6a5f0" name="lib/form/base/BaseSfReviewTypeForm.class.php" role="php" />
+   <file baseinstalldir="." md5sum="8cc841326afac13879e23542177e53b5" name="lib/helper/SfReviewHelper.php" role="php" />
+   <file baseinstalldir="." md5sum="86be10f5fda4a918548f7f163bad1356" name="lib/model/SfReview.php" role="php" />
+   <file baseinstalldir="." md5sum="eec59766cb5f54076fa578547b1ee015" name="lib/model/SfReviewAttach.php" role="php" />
+   <file baseinstalldir="." md5sum="5208f9497c8d369991a33d66e27eb553" name="lib/model/SfReviewAttachPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="2bc69dbfaaad71114e5d68c83f79861c" name="lib/model/SfReviewModeration.php" role="php" />
+   <file baseinstalldir="." md5sum="79e6db1c0c599f618cd632e79c036261" name="lib/model/SfReviewModerationPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="9f772afa25f7f8d7bfe688b604e4a0eb" name="lib/model/SfReviewPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="ecec690c5a40bf9410242a017f2fa29a" name="lib/model/SfReviewReason.php" role="php" />
+   <file baseinstalldir="." md5sum="f5de74ed870a9a19540e0472b01091bf" name="lib/model/SfReviewReasonPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="061730761f10f83541cc3de08d242d65" name="lib/model/SfReviewStatus.php" role="php" />
+   <file baseinstalldir="." md5sum="6d0fd7e28e9dc6262aa6c9e5bd1db0a7" name="lib/model/SfReviewStatusPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="1e7e646ef21c2f128963a59d5c543add" name="lib/model/SfReviewType.php" role="php" />
+   <file baseinstalldir="." md5sum="0d9997a0e7a1648b1bdbc434878a15aa" name="lib/model/SfReviewTypeEntity.php" role="php" />
+   <file baseinstalldir="." md5sum="7371269214780709bf827b9fde9c370c" name="lib/model/SfReviewTypeEntityPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="3fb16799a993cc9777bdf17b1f6a116d" name="lib/model/SfReviewTypePeer.php" role="php" />
+   <file baseinstalldir="." md5sum="520ccd6dd570d287e69081220d5915f6" name="lib/model/map/SfReviewAttachMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="7d5ee45a6d1c0241eae7fc793024fc37" name="lib/model/map/SfReviewAttachTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="a44546158e1a373fb2d726da5db064d2" name="lib/model/map/SfReviewMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="88b121d0ca4b11dc529534df06bebe82" name="lib/model/map/SfReviewModerationMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="88a5c81c957438b796fa6c21205785bb" name="lib/model/map/SfReviewModerationTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="5042015afeb50f6b3d3959d26df3ccb9" name="lib/model/map/SfReviewReasonMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="70860116947738bac3f35bdeea3ff15b" name="lib/model/map/SfReviewReasonTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="7a91a621fd68057bf69d779e1b821e4e" name="lib/model/map/SfReviewStatusMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="262207f340c21b1c1b8881f64b1e0592" name="lib/model/map/SfReviewStatusTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="7cdf42cf4d2c5eb66c9c7172c782f747" name="lib/model/map/SfReviewTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="9fe335ab334b400689176052e1e2250f" name="lib/model/map/SfReviewTypeEntityMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="6c22e887f3dd43e605d4dab882252dbc" name="lib/model/map/SfReviewTypeEntityTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="4e433d1986c3bfe87761e41bd79f5393" name="lib/model/map/SfReviewTypeMapBuilder.php" role="php" />
+   <file baseinstalldir="." md5sum="738985a585cc854c57c36fd797dc499e" name="lib/model/map/SfReviewTypeTableMap.php" role="php" />
+   <file baseinstalldir="." md5sum="286306e6da70902ac125c0a486d58404" name="lib/model/om/BaseSfReview.php" role="php" />
+   <file baseinstalldir="." md5sum="f2c496aae6cf907ee85c6d72ee53b261" name="lib/model/om/BaseSfReviewAttach.php" role="php" />
+   <file baseinstalldir="." md5sum="ce38302ff7800f1dcc1bc3e513bb381e" name="lib/model/om/BaseSfReviewAttachPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="1f691129d8cd5c3a519f42187450cd0e" name="lib/model/om/BaseSfReviewModeration.php" role="php" />
+   <file baseinstalldir="." md5sum="526003558038178d9965bf1a789c3ed3" name="lib/model/om/BaseSfReviewModerationPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="d8303dd3108d622112f089067cd93177" name="lib/model/om/BaseSfReviewPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="f4f393f8f018bbb1352421ed25b32fc6" name="lib/model/om/BaseSfReviewReason.php" role="php" />
+   <file baseinstalldir="." md5sum="4e52abfc330b337ce1a6193c9fb65811" name="lib/model/om/BaseSfReviewReasonPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="fd8267b0b83c70883c1ca8a092b57406" name="lib/model/om/BaseSfReviewStatus.php" role="php" />
+   <file baseinstalldir="." md5sum="8e5255b270868ea8ee9a6841ea4d0da4" name="lib/model/om/BaseSfReviewStatusPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="1a091661b3c307821e3c983dede8b4ff" name="lib/model/om/BaseSfReviewType.php" role="php" />
+   <file baseinstalldir="." md5sum="cc1d115d40718c994302f0704c36d005" name="lib/model/om/BaseSfReviewTypeEntity.php" role="php" />
+   <file baseinstalldir="." md5sum="cc3a6aa2d2f694cf83804b298e82250e" name="lib/model/om/BaseSfReviewTypeEntityPeer.php" role="php" />
+   <file baseinstalldir="." md5sum="1f9baed9eb3d18d59a9a9f90982389a3" name="lib/model/om/BaseSfReviewTypePeer.php" role="php" />
+   <file baseinstalldir="." md5sum="8fe85a15e037375b10bb4beb4e6fd099" name="lib/task/sfReviewCreateStatusTask.class.php" role="php" />
+   <file baseinstalldir="." md5sum="d44948fe66f9b81c77c49fc4d9983f1b" name="lib/task/sfReviewCreateTypesTask.class.php" role="php" />
+   <file baseinstalldir="." md5sum="83759a9ee797518c4300e1f815e8c4aa" name="lib/task/sfReviewStatsTask.class.php" role="php" />
+   <file baseinstalldir="." md5sum="c02be118cb0fc405e286bddd656bc46e" name="modules/sfReview/actions/actions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="e3c42d3c4f5e3dc4ee87ea92b8a62ed1" name="modules/sfReview/actions/components.class.php" role="php" />
+   <file baseinstalldir="." md5sum="2b3a9c3781b59e17ba9c60049f1ac390" name="modules/sfReview/config/generator.yml" role="data" />
+   <file baseinstalldir="." md5sum="7bcb249c2a16c1480efcf5a29462899c" name="modules/sfReview/config/security.yml" role="data" />
+   <file baseinstalldir="." md5sum="6de46fa1d92419ba6c2e555180c8cd28" name="modules/sfReview/lib/BaseSfReviewActions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="f82af68c0023137ccedbef8cdf7d35dc" name="modules/sfReview/lib/sfReviewGeneratorConfiguration.class.php" role="php" />
+   <file baseinstalldir="." md5sum="563e4c14cf72e1211e7366e688177463" name="modules/sfReview/lib/sfReviewGeneratorHelper.class.php" role="php" />
+   <file baseinstalldir="." md5sum="b6ece30fec3079397161b094d3baf1bf" name="modules/sfReview/templates/_reviewData.php" role="php" />
+   <file baseinstalldir="." md5sum="1c9a7b67e8bb8f938760c3b7bb080cdb" name="modules/sfReviewFront/actions/actions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="2b390aef2233d8a1cb36c1d8354b0e54" name="modules/sfReviewFront/actions/components.class.php" role="php" />
+   <file baseinstalldir="." md5sum="658694aaab2e74d94d729515e8d08492" name="modules/sfReviewFront/config/view.yml" role="data" />
+   <file baseinstalldir="." md5sum="cf7791015af72e1e3a391d62d7e482d1" name="modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="cc79220d48d5bf3ab40cde1bc246b705" name="modules/sfReviewFront/templates/deleteError.php" role="php" />
+   <file baseinstalldir="." md5sum="38df3f014785a2cba89ed6d2948be8fe" name="modules/sfReviewFront/templates/deleteSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="d75f32d2d5715a749eea4bc0d8a44a37" name="modules/sfReviewFront/templates/formError.php" role="php" />
+   <file baseinstalldir="." md5sum="1e16087fe72e6d87a607140eb74bc686" name="modules/sfReviewFront/templates/formSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/sfReviewFront/templates/initSimpleSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="e16a2366e774a354050219f096809ad1" name="modules/sfReviewFront/templates/initSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="f19f01e0a42cad3e6c36b3db4af01279" name="modules/sfReviewFront/templates/listSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="137821f0d74b9f5ff1dba6147f139a17" name="modules/sfReviewFront/templates/previewSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="38df3f014785a2cba89ed6d2948be8fe" name="modules/sfReviewFront/templates/sendSuccess.php" role="php" />
+   <file baseinstalldir="." md5sum="dde8159d9c7ece7f15b96d93d3b32942" name="modules/sfReviewFront/templates/_init.php" role="php" />
+   <file baseinstalldir="." md5sum="3a6170fcb5354422e1fa39bd9ce5cfaa" name="modules/sfReviewFront/templates/_review.php" role="php" />
+   <file baseinstalldir="." md5sum="4ae6581f524148ab6c44b3a969052273" name="modules/sfReviewFront/templates/_subreviews.php" role="php" />
+   <file baseinstalldir="." md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/sfReviewFront/templates/_user_header.php" role="php" />
+   <file baseinstalldir="." md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/sfReviewFront/templates/_user_header_subs.php" role="php" />
+   <file baseinstalldir="." md5sum="1d88a910d2f65e22e785dc1b1ac9ac98" name="modules/sfReviewStatus/actions/actions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="3157bdf588a1ba661d3be064a5546f77" name="modules/sfReviewStatus/config/generator.yml" role="data" />
+   <file baseinstalldir="." md5sum="2c670b23b94503eb8d8e77d0832b8e14" name="modules/sfReviewStatus/config/security.yml" role="data" />
+   <file baseinstalldir="." md5sum="56d597e9f2d404e21e9670bd44e266db" name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorConfiguration.class.php" role="php" />
+   <file baseinstalldir="." md5sum="cd8700adfea2b34a9dd70e6fefdaac2d" name="modules/sfReviewStatus/lib/sfReviewStatusGeneratorHelper.class.php" role="php" />
+   <file baseinstalldir="." md5sum="4f067c91ce84e84f0c2e1672f8b40f8e" name="modules/sfReviewType/actions/actions.class.php" role="php" />
+   <file baseinstalldir="." md5sum="a060ee2446b19e74428c70e26d68197a" name="modules/sfReviewType/config/generator.yml" role="data" />
+   <file baseinstalldir="." md5sum="2c670b23b94503eb8d8e77d0832b8e14" name="modules/sfReviewType/config/security.yml" role="data" />
+   <file baseinstalldir="." md5sum="a748433156d8ac4a86133be31f79bffd" name="modules/sfReviewType/lib/sfReviewTypeGeneratorConfiguration.class.php" role="php" />
+   <file baseinstalldir="." md5sum="063df3a156dca3c2920e3c353362597f" name="modules/sfReviewType/lib/sfReviewTypeGeneratorHelper.class.php" role="php" />
+   <file baseinstalldir="." md5sum="0102a61dcf403d0b7fa09a757ad8a6d8" name="web/css/sf_review.css" role="data" />
+   <file baseinstalldir="." md5sum="d41d8cd98f00b204e9800998ecf8427e" name="web/images/.sf" role="data" />
+   <file baseinstalldir="." md5sum="47e4cb25de239744e499681577c9fc76" name="web/images/icoDown.gif" role="data" />
+   <file baseinstalldir="." md5sum="3aacb555a653c5ef1851bb4f9adb13b0" name="web/images/icoMiniDown.png" role="data" />
+   <file baseinstalldir="." md5sum="8bc8ff6d0b29deeb4f7b454059f2c52d" name="web/images/icoMiniUp.png" role="data" />
+   <file baseinstalldir="." md5sum="75740ebb60e8c885883bd6b0e4402048" name="web/images/icoUp.gif" role="data" />
+   <file baseinstalldir="." md5sum="e78389201ec1cf4b51046b25cd5d8d60" name="web/js/jquery.hint.js" role="data" />
+   <file baseinstalldir="." md5sum="42e2dfac11ba7a41a3dedbe2a671c23f" name="web/js/sf_review.js" role="data" />
+   <file baseinstalldir="." md5sum="324814d32f10d5ad108acc1475114fb7" name="LICENSE" role="data" />
+   <file baseinstalldir="." md5sum="e0daa593ba3ffba04fa4d08ff71ffb47" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.0</min>
+   </pearinstaller>
 			<package>
 				<name>symfony</name>
 				<channel>pear.symfony-project.com</channel>
@@ -231,16 +188,12 @@
 				<max>2.0.0</max>
 				<exclude>2.0.0</exclude>
 			</package>
-		</required>
-	</dependencies>
-
-
-	<phprelease />
-
-
-	<changelog>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
 		<release>
-			<version>
+ 			<version>
 				<release>0.5.0</release>
 				<api>0.5.0</api>
 			</version>
@@ -248,11 +201,10 @@
 				<release>beta</release>
 				<api>beta</api>
 			</stability>
+			<date>2009-11-29</date>
 			<license uri="http://www.symfony-project.com/license">
       MIT license
     </license>
-			<date>2009-11-29</date>
-			<license>MIT</license>
 			<notes>
        * First release of the plugin
     </notes>
@@ -266,11 +218,10 @@
 				<release>beta</release>
 				<api>beta</api>
 			</stability>
+			<date>2010-01-04</date>
 			<license uri="http://www.symfony-project.com/license">
       MIT license
     </license>
-			<date>2010-01-04</date>
-			<license>MIT</license>
 			<notes>
        * Reviews on reviews
        * Improved backend modules
@@ -285,11 +236,10 @@
 				<release>beta</release>
 				<api>beta</api>
 			</stability>
+			<date>2010-01-04</date>
 			<license uri="http://www.symfony-project.com/license">
       MIT license
     </license>
-			<date>2010-01-04</date>
-			<license>MIT</license>
 			<notes>
        * Reviews on reviews
        * Improved backend modules
@@ -304,15 +254,28 @@
 				<release>beta</release>
 				<api>beta</api>
 			</stability>
+			<date>2010-01-20</date>
 			<license uri="http://www.symfony-project.com/license">
       MIT license
     </license>
-			<date>2010-01-20</date>
-			<license>MIT</license>
 			<notes>
        * Compatibility updates
     </notes>
 		</release>
-	</changelog>
-
+  <release>
+   <version>
+    <release>1.2</release>
+    <api>1.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <date>2010-01-27</date>
+   <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+   <notes>
+   	* some bug fixes
+   </notes>
+  </release>
+ </changelog>
 </package>
