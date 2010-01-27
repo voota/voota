@@ -12,8 +12,15 @@ class PartidoForm extends BasePartidoForm
 {
   public function configure()
   {
-  	unset($this['partido_lista_list']);
-  	
+  	unset(
+  		$this['partido_lista_list']
+  		, $this['created_at']
+  		, $this['partido_id']
+    	, $this['sumu']
+    	, $this['sumd']  		  		
+  	);
+    
+    
     $this->embedI18n(array('es', 'ca'));
     
     $this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();

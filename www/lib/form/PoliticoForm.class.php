@@ -35,8 +35,17 @@ class PoliticoForm extends BasePoliticoForm
 
   public function configure()
   {
-  	unset($this['politico_lista_list']);
-  	
+  	unset(
+  		$this['politico_lista_list']
+  		, $this['pais']
+  		, $this['created_at']
+  		, $this['partido_txt']
+  		, $this['sumu']
+  		, $this['sumd']
+  	);
+    
+    
+    
     $this->embedI18n(array('es', 'ca'));
     
   	
