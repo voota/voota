@@ -73,6 +73,10 @@ class politicoActions extends autoPoliticoActions
 		SfReviewManager::deleteReview(1, $id);
 		
 	    $criteria = new Criteria();
+	  	$criteria->add(PoliticoI18nPeer::ID, $id);
+	  	PoliticoI18nPeer::doDelete( $criteria );
+		
+	    $criteria = new Criteria();
 	  	$criteria->add(PoliticoInstitucionPeer::POLITICO_ID, $id);
 	  	PoliticoInstitucionPeer::doDelete( $criteria );
 		
