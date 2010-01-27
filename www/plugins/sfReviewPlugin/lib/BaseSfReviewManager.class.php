@@ -133,6 +133,7 @@ class BaseSfReviewManager
   
   static public function deleteReview($type_id, $entity_id)
   {
+  	/*
     $criteria = new Criteria();
     
   	$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	  	
@@ -141,6 +142,7 @@ class BaseSfReviewManager
   	$review = SfReviewPeer::doSelectOne( $criteria );
   	$review->setIsActive( true );
   	$review->save();  	  	
+  	*/
   }
   
   static public function removeReview($id)
