@@ -8,7 +8,7 @@
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
 {
@@ -17,7 +17,6 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'                       => new sfWidgetFormInputHidden(),
       'user_id'                  => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => false)),
-      'clave'                    => new sfWidgetFormInputText(),
       'acepta_mensajes'          => new sfWidgetFormInputText(),
       'nombre'                   => new sfWidgetFormInputText(),
       'apellidos'                => new sfWidgetFormInputText(),
@@ -36,12 +35,12 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'mails_noticias'           => new sfWidgetFormInputText(),
       'mails_contacto'           => new sfWidgetFormInputText(),
       'mails_seguidor'           => new sfWidgetFormInputText(),
+      'numero_socio'             => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                       => new sfValidatorPropelChoice(array('model' => 'SfGuardUserProfile', 'column' => 'id', 'required' => false)),
       'user_id'                  => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id')),
-      'clave'                    => new sfValidatorString(array('max_length' => 45)),
       'acepta_mensajes'          => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'nombre'                   => new sfValidatorString(array('max_length' => 45)),
       'apellidos'                => new sfValidatorString(array('max_length' => 150, 'required' => false)),
@@ -60,6 +59,7 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'mails_noticias'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'mails_contacto'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'mails_seguidor'           => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'numero_socio'             => new sfValidatorString(array('max_length' => 45, 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(

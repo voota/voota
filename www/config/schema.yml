@@ -168,7 +168,6 @@ propel:
     _attributes: { phpName: SfGuardUserProfile }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    clave: { type: VARCHAR, size: '45', required: true }
     acepta_mensajes: { type: CHAR, size: '1', required: false }
     nombre: { type: VARCHAR, size: '45', required: true }
     apellidos: { type: VARCHAR, size: '150', required: false }
@@ -187,5 +186,6 @@ propel:
     mails_noticias: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
     mails_contacto: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
     mails_seguidor: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
+    numero_socio: { type: VARCHAR, size: '45', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }

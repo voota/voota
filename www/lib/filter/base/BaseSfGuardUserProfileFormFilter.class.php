@@ -6,7 +6,7 @@
  * @package    sf_sandbox
  * @subpackage filter
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24051 2009-11-16 21:08:08Z Kris.Wallsmith $
+ * @version    SVN: $Id: sfPropelFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
 {
@@ -14,7 +14,6 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
   {
     $this->setWidgets(array(
       'user_id'                  => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'clave'                    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'acepta_mensajes'          => new sfWidgetFormFilterInput(),
       'nombre'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'apellidos'                => new sfWidgetFormFilterInput(),
@@ -33,11 +32,11 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_noticias'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mails_contacto'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mails_seguidor'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'numero_socio'             => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'user_id'                  => new sfValidatorPropelChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
-      'clave'                    => new sfValidatorPass(array('required' => false)),
       'acepta_mensajes'          => new sfValidatorPass(array('required' => false)),
       'nombre'                   => new sfValidatorPass(array('required' => false)),
       'apellidos'                => new sfValidatorPass(array('required' => false)),
@@ -56,6 +55,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_noticias'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mails_contacto'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mails_seguidor'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'numero_socio'             => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -75,7 +75,6 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
     return array(
       'id'                       => 'Number',
       'user_id'                  => 'ForeignKey',
-      'clave'                    => 'Text',
       'acepta_mensajes'          => 'Text',
       'nombre'                   => 'Text',
       'apellidos'                => 'Text',
@@ -94,6 +93,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_noticias'           => 'Number',
       'mails_contacto'           => 'Number',
       'mails_seguidor'           => 'Number',
+      'numero_socio'             => 'Text',
     );
   }
 }
