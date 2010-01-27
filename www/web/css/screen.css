@@ -124,54 +124,38 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Home */
 #home-index #main-inner { width: 100%; margin: 0;}
-#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em;}
-#home-index .last { background: none; padding-bottom: 0;}
+#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em; overflow: hidden;}
+#home-index .block.last { background: none; padding-bottom: 0;}
 #home-index .block-inner { margin: 0 auto 3em auto; width: 960px; overflow: hidden;}
+#home-index h3 { padding-bottom: 1em;}
 #home-index #summary { margin-bottom: 1em; }
 #home-index #summary h2 { margin-bottom: 0.5em;}
 #home-index #summary ul { padding-left: 1em; }
-#home-index #summary li { margin-bottom: 1em;}
-#home-index #politicians-most-voted,
-#home-index #politicians-latest-visited { overflow: hidden;}
-#home-index #politicians-most-voted ul { padding-left: 0;}
-#home-index #rankings,
-#home-index #latest-profile-visitors { overflow: hidden;}
-#home-index .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
-#home-index .list-mini li { margin-bottom: 1em; overflow: hidden; height: 60px; }
-#home-index #politicians-most-voted li,
-#home-index #politicians-latest-visited li { margin: 0 3% 2em 0; float: left; height: 60px; width: 30% }
-#home-index .list-mini li .avatar { float: left; }
-#home-index .list-mini li .name { margin-left: 45px; font-weight: normal;}
-#home-index .list-mini li .votes { margin: 0.5em 0 0 45px; padding: 0;}
-#home-index .search { clear: left; padding-left: 1.5em; margin-top: 2em; overflow: hidden; }
+#home-index #summary ul li { margin-bottom: 1.5em;}
+#home-index ol.entities { list-style: none; margin: 1em 0; padding: 0 0 0 1em;}
+#home-index ol.entities li { margin: 0 3% 1em 0; float: left; height: 60px; font-weight: normal; overflow: hidden;}
+#home-index ol.entities li .avatar { float: left;}
+#home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
+#home-index ol.entities li .votes { margin: 0.5em 0 0 45px; padding: 0;}
+#home-index #summary ol.entities { padding-top: 1em;}
+#home-index #summary ol.entities li { width: 30%;}
+#home-index #summary ul li ol.entities { padding-left: 0;}
+#home-index .search { clear: left; padding: 0; margin-top: 2em; overflow: hidden; }
 #home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
 #home-index .search input[type=submit] { margin-left: 0.5em; width: 8em; }
-#home-index #summary .search { padding-left: 0;}
+#home-index #latest-comments-votes h3 { padding-bottom: 0.5em;}
 #home-index #politicians-top5,
 #home-index #political-groups,
 #home-index #institutions,
 #home-index #latest-profile-visitors .column { width: 30%; margin-right: 3%; float: left;}
-#home-index #politicians-top5 h3,
-#home-index #political-groups h3,
-#home-index #institutions h3,
-#home-index #latest-profile-visitors h3 { padding-bottom: 1em;}
-#home-index #politicians-top5 ol,
-#home-index #political-groups ol,
-#home-index #institutions ol,
-#home-index #latest-profile-visitors ol { list-style: none; margin: 0; padding: 0; margin-left: 1em;}
-#home-index .ranking-link { padding-left: 1em;}
-#home-index .signup { margin-left: 180px;font-weight: bold;}
-#home-index .positive-reviews ol,
-#home-index .negative-reviews ol { padding-left: 1em;}
 #home-index #latest-comments-on-comments .column { width: 45%; float: left;}
 #home-index #latest-comments-on-comments .last { margin-left: 10%;}
-#home-index #latest-comments-on-comments ol { padding-left: 1em;}
+#home-index ol.reviews { padding: 0 0 0 1em;}
+#home-index .ranking-link { clear: both; padding-left: 1em;}
 #home-index .review { padding-bottom: 1em;}
-#home-index #latest-profile-visitors li { height: 60px; margin-bottom: 1em;}
-#home-index #latest-profile-visitors li .user-avatar { float: left;}
-#home-index #latest-profile-visitors li .user-name { font-weight: normal; margin-left: 45px;}
+#home-index .signup { margin-left: 170px; font-weight: bold;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
