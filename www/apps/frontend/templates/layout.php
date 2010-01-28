@@ -1,6 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('sfFacebookConnect'); ?>
+<?php use_helper('VoUser'); ?>
 
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -20,23 +21,6 @@
   include_facebook_connect_script();
   end_slot();
 ?>
-
-<div style="border: 1px solid blue;width:250px;height: 100px;">
-  <fb:login-button v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
-  Welcome <fb:name uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" useyou="false" ></fb:name> !
-  <fb:profile-pic uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" linked="true" ></fb:profile-pic>
-  <fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic>
-</div>
-
-<div style="border: 1px solid red;width:250px;height: 100px;">
-  <?php if ($sf_user->isAuthenticated()): ?>
-    Tu es connecté et ton login est : <?php echo $sf_user->getGuardUser()->getUsername() ?>
-  <?php else: ?>
-    Tu n'es pas connecté... Connecte toi avec Facebook connect !
-    <?php echo facebook_connect_button(); ?>
-  <?php endif; ?>
-</div>
-
 
   <?php if( $sf_request->getAttribute("ie6") ):?>
 	<script type="text/javascript">
@@ -63,10 +47,10 @@
 
         <?php slot('logged') ?>
           <?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' ): ?>
-  	        <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="Foto '. $sf_user->getProfile()->getNombre().' ' . $sf_user->getProfile()->getApellidos() .'"') ?>
+  	        <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="'. fullName( $sf_user ) .'"') ?>
           <?php endif ?>
 
-          <?php echo link_to($sf_user->isAuthenticated()?($sf_user->getProfile()->getNombre(). " " .$sf_user->getProfile()->getApellidos()):'', '@usuario_votos') ?>
+          <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
           ·
           <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
         <?php end_slot('logged') ?>

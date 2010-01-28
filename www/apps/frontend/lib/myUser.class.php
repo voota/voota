@@ -8,5 +8,6 @@
  */
 
 class myUser extends sfFacebookUser#sfGuardSecurityUser
-{
+{	
+
 }
