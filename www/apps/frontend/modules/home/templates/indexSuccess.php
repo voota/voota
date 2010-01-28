@@ -79,7 +79,7 @@
   </div>
 </div>
 
-<?php if ($sf_user->isAuthenticated()): // TODO: Si el usuario está autentificado, o si es un usuario que vuelve al site ?>
+<?php if ($sf_user->isAuthenticated()): ?>
   <div class="block" id="latest-comments-votes">
     <div class="block-inner">
       <div class="column">
@@ -110,6 +110,21 @@
   <div class="block" id="latest-comments-on-comments">
     <div class="block-inner">
       <h3><?php echo __('Últimos comentarios en los que tú comentaste') ?></h3>
+      <?php for($i = 0; $i < 2; $i++): ?>
+        <div class="column">
+          <ol class="reviews">
+            <?php for($j = 0; $j < 2; $j++): ?>
+              <?php include_partial('review_li'); ?>
+            <?php endfor; ?>
+          </ol>
+        </div><!-- end of column -->
+      <?php endfor; ?>
+    </div>
+  </div>
+<?php elseif (!$sf_user->isAuthenticated()): // TODO: Cambiar a si el usuario no está identificado PERO es un usuario que retorna a Voota (info guardada en cookies) ?>
+  <div class="block" id="latest-comments-on-comments">
+    <div class="block-inner">
+      <h3><?php echo __('Últimos comentarios en lo que visitaste') ?></h3>
       <?php for($i = 0; $i < 2; $i++): ?>
         <div class="column">
           <ol class="reviews">
