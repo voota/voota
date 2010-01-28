@@ -150,8 +150,9 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #political-groups,
 #home-index #institutions,
 #home-index #latest-profile-visitors .column { width: 30%; margin-right: 3%; float: left;}
-#home-index #latest-comments-on-comments .column { width: 45%; float: left;}
-#home-index #latest-comments-on-comments .last { margin-left: 10%;}
+#home-index #latest-comments-votes .column,
+#home-index #latest-comments-on-comments .column,
+#home-index #latest-comments-on-visited .column { width: 45%; float: left; margin-right: 3%;}
 #home-index ol.reviews { padding: 0 0 0 1em;}
 #home-index .ranking-link { clear: both; padding-left: 1em;}
 #home-index .review { padding-bottom: 1em;}

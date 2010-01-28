@@ -36,33 +36,9 @@
       <h2><?php echo __('Hola %1%, nos alegra verte por aquí :)', array('%1%' => $sf_user->getGuardUser())); ?></h2>
       <h3><?php echo __('La última vez que estuviste por aquí visitaste:') ?></h3>
       <ol class="entities">
-        <li>
-    	    <div class="avatar"><img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" /></div>
-    	    <h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-          <p class="votes">
-      		  <span title="Evolución del número de votos positivos por mes (último punto = mes
-     actual)" id="sparkline_238"></span>
-    		    <span class="votes-count"></span>
-    	    </p>
-        </li>
-        <li>
-    	    <div class="avatar"><img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" /></div>
-    	    <h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-          <p class="votes">
-      		  <span title="Evolución del número de votos positivos por mes (último punto = mes
-     actual)" id="sparkline_239"></span>
-    		    <span class="votes-count"></span>
-    	    </p>
-        </li>
-        <li>
-    	    <div class="avatar"><img alt="Foto de José Luis Rodríguez Zapatero" src="http://imagesvoota.s3.amazonaws.com/politicos/cc_s_p_238.jpg" /></div>
-    	    <h4 class="name"><a href="/frontend_dev.php/es/politico/Rodr%C3%ADguez-Zapatero">José Luis Rodríguez Zapatero (PSOE)</a></h4>
-          <p class="votes">
-      		  <span title="Evolución del número de votos positivos por mes (último punto = mes
-     actual)" id="sparkline_240"></span>
-    		    <span class="votes-count"></span>
-    	    </p>
-        </li>
+        <?php for($j = 0; $j < 3; $j++): ?>
+          <?php include_partial('entity_li'); // INCLUIR POLITICO_LI O PARTIDO_LI O INSTITUCION_LI ?>
+        <?php endfor; ?>
       </ol>
     <?php else: ?>
       <ul>
@@ -106,54 +82,26 @@
 <?php if ($sf_user->isAuthenticated()): // TODO: Si el usuario está autentificado, o si es un usuario que vuelve al site ?>
   <div class="block" id="latest-comments-votes">
     <div class="block-inner">
-      <div class="positive-reviews">
+      <div class="column">
         <h3>
           <?php echo __('Comentarios positivos más votados') ?>
           <img src="/images/icoUp.gif" alt="yeah!" />
         </h3>
         <ol class="reviews">
-          <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
+          <?php for($j = 0; $j < 2; $j++): ?>
+            <?php include_partial('review_li'); ?>
+          <?php endfor; ?>
     		</ol>
       </div>
-      <div class="negative-reviews">
+      <div class="column">
         <h3>
           <?php echo __('Comentarios negativos más votados') ?>
           <img src="/images/icoDown.gif" alt="boo!" />
         </h3>
         <ol class="reviews">
-          <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
+          <?php for($j = 0; $j < 2; $j++): ?>
+            <?php include_partial('review_li'); ?>
+          <?php endfor; ?>
         </ol>
       </div>
     </div>
@@ -162,82 +110,15 @@
   <div class="block" id="latest-comments-on-comments">
     <div class="block-inner">
       <h3><?php echo __('Últimos comentarios en los que tú comentaste') ?></h3>
-      <div class="column">
-        <ol class="reviews">
-          <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
-      	  <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
-        </ol>
-      </div><!-- end of column -->
-      <div class="column last">
-        <ol class="reviews">
-          <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
-      	  <li class="review" id="sf_review_c_m28"> 
-          	<div class="review-avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="review-name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-              <span class="review-years">· 32 años</span>
-            </h4> 
-            <p class="review-about">Sobre <a href="#">Mariano Rajoy Prey (PP)</a></p>
-            <p class="review-body">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p class="add-subreview"> 
-            	<a href="#" onclick="document.getElementById('subreviews_box17').className = 'subreviews shown';return loadReviewBox('/frontend_dev.php/es/review/form', null,  17,  0, 'sf_review_c17' )">Opinar sobre este comentario</a> 
-        		  (Lleva 3 <img alt="A favor, yeah" src="/images/icoMiniUp.png" /> y 4 <img alt="En contra, buu" src="/images/icoMiniDown.png" />)
-            </p>
-      	  </li>
-        </ol>
-      </div><!-- end of column -->
+      <?php for($i = 0; $i < 2; $i++): ?>
+        <div class="column">
+          <ol class="reviews">
+            <?php for($j = 0; $j < 2; $j++): ?>
+              <?php include_partial('review_li'); ?>
+            <?php endfor; ?>
+          </ol>
+        </div><!-- end of column -->
+      <?php endfor; ?>
     </div>
   </div>
 <?php endif ?>
@@ -280,66 +161,15 @@
   <div class="block" id="latest-profile-visitors">
     <div class="block-inner">
       <h3><?php echo __('Quién ha visto tu perfil últimamente') ?></h3>
-      <div class="column first">
-        <ol class="entities">
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-        </ol>
-      </div>
-      <div class="column">
-        <ol class="entities">
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-        </ol>
-      </div>
-      <div class="column">
-        <ol class="entities">
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-          <li class="user">
-          	<div class="avatar"> 
-              <img alt="Carlos Paramio" width="36" height="36" src="http://imagesvoota.s3.amazonaws.com/usuarios/cc_s_Carlos-Paramio-0017.jpg" />
-            </div> 
-            <h4 class="name"> 
-              <a href="/frontend_dev.php/Carlos-Paramio">Carlos Paramio</a>
-            </h4>
-          </li>
-        </ol>
-      </div>
+      <?php for($i = 0; $i < 3; $i++): ?>
+        <div class="column">
+          <ol class="entities">
+            <?php for($j = 0; $j < 3; $j++): ?>
+              <?php include_partial('user_li'); ?>
+            <?php endfor; ?>
+          </ol>
+        </div>
+      <?php endfor; ?>
     </div>
   </div>
 <?php endif ?>
