@@ -17,15 +17,15 @@ abstract class BaseSfReviewStatusForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'        => new sfWidgetFormInputHidden(),
       'name'      => new sfWidgetFormInputText(),
-      'published' => new sfWidgetFormInputText(),
-      'offensive' => new sfWidgetFormInputText(),
+      'published' => new sfWidgetFormInputCheckbox(),
+      'offensive' => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
       'id'        => new sfValidatorPropelChoice(array('model' => 'SfReviewStatus', 'column' => 'id', 'required' => false)),
       'name'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'published' => new sfValidatorInteger(array('min' => -128, 'max' => 127)),
-      'offensive' => new sfValidatorInteger(array('min' => -128, 'max' => 127)),
+      'published' => new sfValidatorBoolean(),
+      'offensive' => new sfValidatorBoolean(),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_status[%s]');

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-01-22T12:11:27Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-01-28T09:20:50Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1638,6 +1638,42 @@ que estamos.</source>
   Voota en Twitter: &lt;a href="http://twitter.com/voota"&gt;http://twitter.com/voota&lt;/a&gt;&lt;br /&gt;
   Voota en Facebook: &lt;a href="http://facebook.com/voota"&gt;http://facebook.com/voota&lt;/a&gt;&lt;br /&gt;
 &lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="331">
+        <source>Hola %1%, nos alegra verte por aquí :)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="332">
+        <source>La última vez que estuviste por aquí visitaste:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="333">
+        <source>Comentarios positivos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="334">
+        <source>Comentarios negativos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="335">
+        <source>Últimos comentarios en los que tú comentaste</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="336">
+        <source>Quién ha visto tu perfil últimamente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="337">
+        <source>Socio número</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="338">
+        <source>Función en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="339">
+        <source>Socio</source>
         <target/>
       </trans-unit>
     </body>

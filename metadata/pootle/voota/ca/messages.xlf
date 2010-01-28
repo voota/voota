@@ -1554,6 +1554,42 @@ actual)</target>
 &lt;/p&gt;</source>
         <target/>
       </trans-unit>
+      <trans-unit id="331">
+        <source>Hola %1%, nos alegra verte por aquí :)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="332">
+        <source>La última vez que estuviste por aquí visitaste:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="333">
+        <source>Comentarios positivos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="334">
+        <source>Comentarios negativos más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="335">
+        <source>Últimos comentarios en los que tú comentaste</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="336">
+        <source>Quién ha visto tu perfil últimamente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="337">
+        <source>Socio número</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="338">
+        <source>Función en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="339">
+        <source>Socio</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

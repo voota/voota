@@ -14,14 +14,14 @@ abstract class BaseSfReviewStatusFormFilter extends BaseFormFilterPropel
   {
     $this->setWidgets(array(
       'name'      => new sfWidgetFormFilterInput(),
-      'published' => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'offensive' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'published' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'offensive' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
       'name'      => new sfValidatorPass(array('required' => false)),
-      'published' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'offensive' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'published' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'offensive' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_status_filters[%s]');
@@ -41,8 +41,8 @@ abstract class BaseSfReviewStatusFormFilter extends BaseFormFilterPropel
     return array(
       'id'        => 'Number',
       'name'      => 'Text',
-      'published' => 'Number',
-      'offensive' => 'Number',
+      'published' => 'Boolean',
+      'offensive' => 'Boolean',
     );
   }
 }
