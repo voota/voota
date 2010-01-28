@@ -1,7 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('sfFacebookConnect'); ?>
-<?php use_helper('VoUser'); ?>
+<?php use_helper('VVoUsev'); ?>
 
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -42,7 +42,7 @@
 
       <p id="user-links">
         <?php slot('not_logged') ?>
-  	      <?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?>
+  	      <?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?> <?php echo facebook_connect_button(); ?>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
