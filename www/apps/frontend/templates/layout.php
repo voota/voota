@@ -30,9 +30,10 @@
 
 <div style="border: 1px solid red;width:250px;height: 100px;">
   <?php if ($sf_user->isAuthenticated()): ?>
-    Conectado en Voota: <?php echo $sf_user->getGuardUser()->getUsername() ?>
+    Tu es connecté et ton login est : <?php echo $sf_user->getGuardUser()->getUsername() ?>
   <?php else: ?>
-    No conectado
+    Tu n'es pas connecté... Connecte toi avec Facebook connect !
+    <?php echo facebook_connect_button(); ?>
   <?php endif; ?>
 </div>
 
