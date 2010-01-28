@@ -1,5 +1,6 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('sfFacebookConnect'); ?>
 
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -14,6 +15,28 @@
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
+<?php 
+  slot('fb_connect');
+  include_facebook_connect_script();
+  end_slot();
+?>
+
+<div style="border: 1px solid blue;width:250px;height: 100px;">
+  <fb:login-button v="2" size="medium" onlogin="alert(1);"></fb:login-button>
+  Welcome <fb:name uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" useyou="false" ></fb:name> !
+  <fb:profile-pic uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" linked="true" ></fb:profile-pic>
+  <fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic>
+</div>
+
+<div style="border: 1px solid red;width:250px;height: 100px;">
+  <?php if ($sf_user->isAuthenticated()): ?>
+    Conectado en Voota: <?php echo $sf_user->getGuardUser()->getUsername() ?>
+  <?php else: ?>
+    No conectado
+  <?php endif; ?>
+</div>
+
+
   <?php if( $sf_request->getAttribute("ie6") ):?>
 	<script type="text/javascript">
 	  <!--
@@ -135,3 +158,7 @@
 
 </body>
 </html>
+
+<?php if (has_slot('fb_connect')): ?>
+  <?php include_slot('fb_connect') ?>
+<?php endif; ?>

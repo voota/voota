@@ -7,6 +7,6 @@
  * file that was distributed with this source code.
  */
 
-class myUser extends sfGuardSecurityUser
+class myUser extends sfFacebookUser#sfGuardSecurityUser
 {
 }

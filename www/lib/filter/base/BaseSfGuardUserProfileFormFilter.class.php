@@ -31,6 +31,9 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_contacto'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'mails_seguidor'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'numero_socio'      => new sfWidgetFormFilterInput(),
+      'facebook_uid'      => new sfWidgetFormFilterInput(),
+      'email'             => new sfWidgetFormFilterInput(),
+      'email_hash'        => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
@@ -52,6 +55,9 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_contacto'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mails_seguidor'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'numero_socio'      => new sfValidatorPass(array('required' => false)),
+      'facebook_uid'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'email'             => new sfValidatorPass(array('required' => false)),
+      'email_hash'        => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -88,6 +94,9 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_contacto'    => 'Number',
       'mails_seguidor'    => 'Number',
       'numero_socio'      => 'Text',
+      'facebook_uid'      => 'Number',
+      'email'             => 'Text',
+      'email_hash'        => 'Text',
     );
   }
 }

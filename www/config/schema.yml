@@ -185,5 +185,8 @@ propel:
     mails_contacto: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
     mails_seguidor: { type: INTEGER, size: '11', required: true, defaultValue: '1' }
     numero_socio: { type: VARCHAR, size: '45', required: false }
+    facebook_uid: { type: INTEGER, size: '4', required: false, defaultValue: '1' }
+    email: { type: VARCHAR, size: '255', required: false }
+    email_hash: { type: VARCHAR, size: '255', required: false }
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
