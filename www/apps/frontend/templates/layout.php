@@ -22,7 +22,7 @@
 ?>
 
 <div style="border: 1px solid blue;width:250px;height: 100px;">
-  <fb:login-button v="2" size="medium" onlogin="alert(1);"></fb:login-button>
+  <fb:login-button v="2" size="medium" onlogin="window.location.reload(true);"></fb:login-button>
   Welcome <fb:name uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" useyou="false" ></fb:name> !
   <fb:profile-pic uid="<?php echo $sf_user->getCurrentFacebookUid() ?>" linked="true" ></fb:profile-pic>
   <fb:profile-pic uid="loggedinuser" size="square" facebook-logo="true"></fb:profile-pic>
