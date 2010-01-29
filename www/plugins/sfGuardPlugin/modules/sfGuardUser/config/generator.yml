@@ -26,7 +26,7 @@ generator:
 
       filter:
         class: sfGuardUserFormFilter
-        display: [username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
+        display: [nombre,apellidos,username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
         fields:
           politico_institucion_list:
             label: Institucion
