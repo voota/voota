@@ -236,7 +236,6 @@ abstract class sfFacebookGuardAdapter
     
       $c2 = new Criteria();
       $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
-      $c2->add(SfGuardUserProfilePeer::ID, $user[0]->getId(), Criteria::NOT_EQUAL);
       $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
       $counter = 0;
       foreach ($usuariosLikeMe as $usuarioLikeMe){
