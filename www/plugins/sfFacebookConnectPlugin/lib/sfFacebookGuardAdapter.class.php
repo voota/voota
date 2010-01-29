@@ -226,7 +226,26 @@ abstract class sfFacebookGuardAdapter
         $con->beginTransaction();
       }
       $sfGuardUser->save();
+      /* Modificado para Voota para que permita guardar el vanity
       $sfGuardUser->getProfile()->save();
+      */
+      $voProfile = $sfGuardUser->getProfile();
+      
+      
+	  $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
+    
+      $c2 = new Criteria();
+      $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+      $c2->add(SfGuardUserProfilePeer::ID, $user[0]->getId(), Criteria::NOT_EQUAL);
+      $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
+      $counter = 0;
+      foreach ($usuariosLikeMe as $usuarioLikeMe){
+    	$counter++;
+      }
+      $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+				    
+      $voProfile->save();
+      /* Fin modificacion Voota */
       $con->commit();
     }
     catch (Exception $e)
