@@ -349,8 +349,8 @@ class politicoActions extends sfActions
   	$this->title = $this->politico->getNombre() . ' '. $this->politico->getApellidos();
   	$this->title .= ' - Voota';
   	
-  	$description = sfContext::getInstance()->getI18N()->__('Página de ', array());
-  	$description .= $this->politico->getNombre() . ' '. $this->politico->getApellidos();
+  	$description = sfContext::getInstance()->getI18N()->__('Página de', array());
+  	$description .= ' ' . $this->politico->getNombre() . ' '. $this->politico->getApellidos();
 	if (count($this->politico->getPoliticoInstitucions()) > 0) {
   		$description .= " ("; //instituciones
 		foreach ($this->politico->getPoliticoInstitucions() as $idx => $politicoInstitucion){
