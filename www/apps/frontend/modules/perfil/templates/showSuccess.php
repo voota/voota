@@ -16,6 +16,11 @@
 </script>
 
 <div id="content">
+  
+  <div id="sidebar">
+    <?php include_partial('boxProfile', array('user' => $user)) ?>
+  </div>
+  
   <?php if (!$sf_user->isAuthenticated()): ?>
     <div class="balloon">
       <div class="balloon-inner">
@@ -64,10 +69,6 @@
         <img src="/images/email.png" alt="contactar" />
       </p>
     </div>
-  </div>
-  
-  <div id="sidebar">
-    <?php include_partial('boxProfile', array('user' => $user)) ?>
   </div>
   
   <div class="comments">

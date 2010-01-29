@@ -83,7 +83,7 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 
 /* Cajas */
 .box { background: transparent url(/images/shadow.png); position: relative;}
-.box h2 { font-size: 1em; padding-bottom: 1em;}
+.box h2 { font-size: 1em; padding-bottom: 1em; }
 .box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
 .box-contact ul li { margin-bottom: 0.5em; padding-left: 20px; }
@@ -231,7 +231,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-show .comments .vote { width: 4%;}
 #perfil-show .comments .body { width: 40%; padding-right: 2%; }
 #perfil-show .comments .actions { width: 14%; }
-#perfil-show #sidebar { width: 250px;}
+#perfil-show #sidebar { width: 250px; margin-top: 5px;}
 #perfil-show #more_reviews { padding-top: 0.5em;}
 
 /* Contacto perfil */
