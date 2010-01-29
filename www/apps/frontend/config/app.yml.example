@@ -1,16 +1,16 @@
 # default values
 dev:
   facebook: 
-    api_key: 8141274f85edb08381f7a9eedd96495b
-    api_secret: 5f68d928018b7e236c001dd86f0e2be0 
+    api_key: 27dcc84bab81c8b30adb36a814af9a54
+    api_secret:  
 test:
   facebook: 
     api_key: 8141274f85edb08381f7a9eedd96495b
-    api_secret: 5f68d928018b7e236c001dd86f0e2be0 
+    api_secret:  
 prod:
   facebook: 
     api_key: 401234585a2ddbd0a97c9c56e8008299
-    api_secret: 0f841360f87ec4f2c12c659e41f5bd1c 
+    api_secret:  
 
 all:
   facebook: 
