@@ -9,7 +9,7 @@
     </li>
     <?php foreach ($reviewLastList->getResults() as $review): ?>    
       <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
-      	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
+      	<?php include_partial('sfReviewFront/user_header', array('review' => $review, 'isSubreview' => true)) ?>
       
       	<p class="review-date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></p>
         <p class="review-body"><?php echo review_text( $review ) ?></p>
@@ -19,7 +19,7 @@
 	    <?php foreach ($reviewList->getResults() as $review): ?>    
       <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
         
-      	<?php include_partial('sfReviewFront/user_header_subs', array('review' => $review)) ?>
+      	<?php include_partial('sfReviewFront/user_header', array('review' => $review, 'isSubreview' => true)) ?>
 
       	  <p class="review-date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></p>
           <p class="review-body"><?php echo review_text( $review ) ?></p>
