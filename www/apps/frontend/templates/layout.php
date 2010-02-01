@@ -5,7 +5,11 @@
 
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?php if ($sf_request->getParameter('sf_culture')): ?>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_request->getParameter('sf_culture') ?>" lang="<?php echo $sf_request->getParameter('sf_culture') ?>">
+<?php else: ?>
 <html xmlns='http://www.w3.org/1999/xhtml'>
+<?php endif ?>
 <head>
   <?php include_title() ?>
   <?php include_http_metas() ?>
@@ -16,11 +20,11 @@
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
-<?php 
-  slot('fb_connect');
-  include_facebook_connect_script();
-  end_slot();
-?>
+  <?php 
+    slot('fb_connect');
+    include_facebook_connect_script();
+    end_slot();
+  ?>
 
   <?php if( $sf_request->getAttribute("ie6") ):?>
 	<script type="text/javascript">
