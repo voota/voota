@@ -9,10 +9,24 @@ function fullName( $user ) {
   		}
   	}
   	else if ($user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\"></fb:name>";
+  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"".__("Usuario de Facebook").' '.$user->getProfile()->getFacebookUid()."\"></fb:name>";
   	}
   	
   	return $ret;
+}
+
+function fullNameForAttr( $user ) {
+  // TODO: Refactorizar con fullName
+
+	if ($user && $user->getProfile()->getNombre()){
+		$ret .= $user->getProfile()->getNombre();
+		if ($user->getProfile()->getApellidos()){
+			$ret .= " " . $user->getProfile()->getApellidos();
+		}
+	}
+	else if ($user && $user->getProfile()->getFacebookUid()){
+		__("Usuario de Facebook").' '.$user->getProfile()->getFacebookUid();
+	}
 }
 
 function getAvatar( $user ) {
@@ -30,6 +44,21 @@ function getAvatar( $user ) {
     
   	
   	return $ret;
+}
+
+function getAvatarFull( $user ) {
+  // TODO: Refactorizar con getAvatar
+
+  $ret = "";
+
+  if( $user && $user->getProfile()->getImagen() ){
+  	$ret .= image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user )));
+  }
+  else if ( $user && $user->getProfile()->getFacebookUid()){
+		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"normal\" facebook-logo=\"true\"></fb:profile-pic>";
+	}
+
+	return $ret;
 }
 
 function vo_facebook_connect_button() {

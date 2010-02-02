@@ -1,7 +1,8 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('VoUser') ?>
 
 <h2 class="error">
-  <?php echo __('Lo siento, %1% no nos autoriza a mandarle emails.', array('%1%' => $user->getProfile()->getNombre())); ?>
+  <?php echo __('Lo siento, %1% no nos autoriza a mandarle emails.', array('%1%' => fullName($user))); ?>
 </h2>
 
 <div id="content">

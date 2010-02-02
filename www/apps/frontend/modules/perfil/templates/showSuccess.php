@@ -3,6 +3,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
+<?php use_helper('VoUser'); ?>
 <?php use_helper('Date') ?>
 
 <script type="text/javascript">
@@ -24,7 +25,7 @@
   <?php if (!$sf_user->isAuthenticated()): ?>
     <div class="balloon">
       <div class="balloon-inner">
-        <h3><?php echo __('¡Hey! %1% está usando Voota.', array('%1%' => $user)) ?></h3>
+        <h3><?php echo __('¡Hey! %1% está usando Voota.', array('%1%' => fullName($user))) ?></h3>
         <p><?php echo __('Tú también puedes tener tu propio perfil aquí y compartir tus opiniones sobre los políticos de España.') ?></p>
         <form action="<?php echo url_for("@sf_guard_signin") ?>" method="get">
           <p>
@@ -38,15 +39,13 @@
 
   <div class="profile">
     <h2>
-      <?php echo $user ?>
+      <?php echo fullName($user) ?>
       <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getId() == $user->getId()): ?>
         <?php echo link_to(__('Hacer cambios en tu perfil'), "@usuario_edit"); ?>
       <?php endif ?>
     </h2>
-    <div title="<?php echo $user ?>" class="photo">
-    	<?php if($user->getProfile()->getImagen() != ''):?>
-      		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => $user->getProfile()->getNombre().' ' .  $user->getProfile()->getApellidos())) ?>
-      	<?php endif ?>
+    <div title="<?php echo fullNameForAttr($user) ?>" class="photo">
+      <?php echo getAvatarFull($user); ?>
     </div>
     <div title="info" class="description">
       <p><?php echo getAutolink($user->getProfile()->getPresentacion())?></p>
@@ -65,7 +64,7 @@
       <?php endif ?>
 
       <p class="contact">
-        <?php echo link_to(__('Mandar un mensaje a').' '.$user->getProfile()->getNombre(), '@usuario_contact?username='.$user->getProfile()->getVanity()); ?>
+        <?php echo link_to(__('Mandar un mensaje a').' '.fullName($user), '@usuario_contact?username='.$user->getProfile()->getVanity()); ?>
         <img src="/images/email.png" alt="contactar" />
       </p>
     </div>
@@ -86,7 +85,7 @@
     </form>
 
     <?php if ($reviews->getNbResults() > 0): ?>
-      <h2><?php echo __("%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => $user->getProfile()->getNombre(), '%2%' => $reviews->getNbResults())) ?></h2>
+      <h2><?php echo __("%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => fullName($user), '%2%' => $reviews->getNbResults())) ?></h2>
         <table>
           <?php foreach ($reviews->getResults() as $review): ?>
 			      <?php include_component_slot('profileReview', array('review' => $review)) ?>
@@ -107,7 +106,7 @@
     		  <?php endif ?>
         </div>
     <?php else: ?>
-      <h2><?php echo __("%1% aún no se ha animado a comentar&hellip;", array('%1%' => $user->getProfile()->getNombre())) ?></h2>
+      <h2><?php echo __("%1% aún no se ha animado a comentar&hellip;", array('%1%' => fullName($user))) ?></h2>
     <?php endif ?>
   </div>
 </div>

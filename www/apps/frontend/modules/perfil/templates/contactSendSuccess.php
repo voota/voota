@@ -1,12 +1,11 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('VoUser') ?>
 
 <h2>
   <img src="/images/icoOk.gif" alt="Ok" width="46" height="39" />
-  <?php echo __('Ok, mensaje enviado a'); ?> <?php echo link_to($user, "@usuario?username=".$user->getProfile()->getVanity()); ?>
-  <?php if($user->getProfile() && $user->getProfile()->getImagen() && $user->getProfile()->getImagen() != '' ): ?>
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($user->getProfile()->getImagen()), 'alt="Foto '. $user->getProfile()->getNombre().' ' . $user->getProfile()->getApellidos() .'"') ?>
-  <?php endif ?>
+  <?php echo __('Ok, mensaje enviado a'); ?> <?php echo link_to(fullName($user), "@usuario?username=".$user->getProfile()->getVanity()); ?>
+  <?php echo getAvatar($user); ?>
 </h2>
 
 <div id="content">

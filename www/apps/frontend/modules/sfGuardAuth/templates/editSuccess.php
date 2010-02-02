@@ -2,6 +2,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 <?php use_helper('Number') ?>
+<?php use_helper('VoUser') ?>
 
 <?php $maxLength = 280?>
 
@@ -28,7 +29,7 @@
 </script>
 
 
-<h2><?php echo __('Hola %1%, este es tu perfil', array('%1%' => $sf_user->getProfile()->getNombre())) ?></h2>
+<h2><?php echo __('Hola %1%, este es tu perfil', array('%1%' => fullName($sf_user))) ?></h2>
 <p class="next-step-msg"><?php echo link_to(__("Tus comentarios y vootos (en total %1%)", array('%1%' => format_number($numReviews, 'es_ES'))), '@usuario_votos') ?></p>
 <p class="next-step-msg"><?php echo link_to(__("Tu perfil público"), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()) ?></p>
 

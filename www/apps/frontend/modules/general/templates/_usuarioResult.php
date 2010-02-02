@@ -1,4 +1,6 @@
 <?php use_helper('VoFormat') ?>
+<?php use_helper('VoUser'); ?>
+
 <tr>
 	<td class="photo">
 		<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($obj->getProfile()->getImagen()!=''?$obj->getProfile()->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $obj)) .'"') ?>

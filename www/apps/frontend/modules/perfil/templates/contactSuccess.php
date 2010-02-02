@@ -1,5 +1,6 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript" charset="utf-8">
   <!--//
@@ -14,10 +15,8 @@
 </script>
 
 <h2>
-  <?php echo __('Mandar un mensaje a'); ?> <?php echo link_to($user, "@usuario?username=".$user->getProfile()->getVanity()); ?>
-  <?php if($user->getProfile() && $user->getProfile()->getImagen() && $user->getProfile()->getImagen() != '' ): ?>
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($user->getProfile()->getImagen()), 'alt="'. $user->getProfile()->getNombre().' ' . $user->getProfile()->getApellidos() .'"') ?>
-  <?php endif ?>
+  <?php echo __('Mandar un mensaje a'); ?> <?php echo link_to(fullName($user), "@usuario?username=".$user->getProfile()->getVanity()); ?>
+  <?php echo getAvatar($user); ?>
 </h2>
 
 <div id="content">

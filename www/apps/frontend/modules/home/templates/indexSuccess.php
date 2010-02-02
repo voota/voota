@@ -1,6 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
   <!--
@@ -33,7 +34,7 @@
 <div class="block" id="summary">
   <div class="block-inner">
     <?php if ($sf_user->isAuthenticated()): ?>
-      <h2><?php echo __('Hola %1%, nos alegra verte por aquí :)', array('%1%' => $sf_user->getGuardUser())); ?></h2>
+      <h2><?php echo __('Hola %1%, nos alegra verte por aquí :)', array('%1%' => fullName($sf_user->getGuardUser()))); ?></h2>
       <h3><?php echo __('La última vez que estuviste por aquí visitaste:') ?></h3>
       <ol class="entities">
         <?php for($j = 0; $j < 3; $j++): ?>
