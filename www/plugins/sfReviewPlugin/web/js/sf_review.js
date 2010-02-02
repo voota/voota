@@ -10,6 +10,15 @@ function loadReviewBox(url, t, e, v,  box) {
 	return false;
 }
 
+function sendReviewForm(form, url, box) {
+	re_loading( box );
+
+	var aUrl = url;
+	jQuery.ajax({type:'POST',dataType:'html',data:jQuery(form).serialize(),success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl});
+
+	return false;
+}
+
 
 function setCounter(counter, field, maxLength){
 	var str = $(field).val();
@@ -26,4 +35,30 @@ function setCounter(counter, field, maxLength){
   		$(counter).attr('style', '');
   	}
   	$(counter).html(maxLength - charLength);
+}
+
+var gform = "sf-review-form-sf_review";
+var gurl = "";
+var gbox = "sf_review";
+
+function stream_callback (post_id, exception) {
+	sendReviewForm(gform, gurl, gbox);
+}
+
+function sendReviewFormFB(form, url, box) {
+	gform = form; gurl = url; gbox = box;
+	publishFaceBook( $("#sf-review-text_"+box).val() );
+	
+	return false;
+}
+
+function publishFaceBook(msg) {
+	  FB.ensureInit(function () {
+		  FB.Connect.streamPublish(
+				  msg, null, null, null
+				  , 'Vamos a publicar esto en Facebook, ¿que te parece?'
+				  , stream_callback
+				  , true
+		  );
+	  });
 }

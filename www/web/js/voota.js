@@ -80,3 +80,19 @@ function institutions_to_short() {
 	document.getElementById('institutions-short').className = 'shown';
 	return false;
 }
+
+function facebookConnect_PHCallback(){
+	sf_fb.gotoLoginPage();
+}
+
+function facebookConnect_callback(){
+	 FB.Connect.showPermissionDialog(
+			    "publish_stream",   // permission name(s)
+			    facebookConnect_PHCallback,  // response callback
+			    true);              // enable profile selector (only for "publish_stream")
+}
+
+function facebookConnect(){
+	jQuery(function(){sf_fb.requireSession('', facebookConnect_callback)});
+	return false;
+}

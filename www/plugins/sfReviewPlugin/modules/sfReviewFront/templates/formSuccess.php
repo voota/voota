@@ -10,15 +10,21 @@ $(document).ready(function() {
 	  });
 	  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', '#<?php echo "sf-review-text_$reviewBox" ?>', <?php echo $maxLength?>);  
 	  subscribeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
+	  $('#<?php echo "sf-review-form-$reviewBox" ?>').submit(function() {
+		  removeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
+		  sendReviewFormFB(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');
+		  return false;
+	  });
 });
   //-->
 </script>
 
-<?php echo jq_form_remote_tag(array(
+<?php /*echo jq_form_remote_tag(array(
     'update'   => $reviewBox?$reviewBox:'sf_review',
     'url'      => 'sfReviewFront/send',
 	'before' => "removeHint('#sf-review-text_$reviewBox', 'blur')"
-)) ?>
+))*/ ?>
+<form action="#" id="<?php echo "sf-review-form-$reviewBox" ?>">
 	<input type="hidden" id="t" name="t" value="<?php echo $reviewType ?>" />
 	<input type="hidden" id="e" name="e" value="<?php echo $reviewEntityId ?>" />
 	<input type="hidden" id="v" name="v" value="<?php echo $reviewValue ?>" />

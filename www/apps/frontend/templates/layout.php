@@ -25,19 +25,24 @@
     include_facebook_connect_script();
     end_slot();
   ?>
-
-  <?php if( $sf_request->getAttribute("ie6") ):?>
-	<script type="text/javascript">
-	  <!--
-	  $(document).ready(function(){
+  <script type="text/javascript">
+    //<![CDATA[
+    $(document).ready(function(){
+	    $('#fbc_button').click(function(){
+	    	return facebookConnect();
+	    });
+	});
+    <?php if( $sf_request->getAttribute("ie6") ):?>
 	  	$("#ie6 .close a").click(function(){
 	  		$('#ie6').remove();
 	  		return false;
 	    });
-	  });
-	  //-->
-	</script>
-  <?php endif ?>
+	<?php endif ?>
+    //]]>
+  </script>
+  
+  
+    
   <!-- HEADER -->
   <div id="header">
     <div id="header-inner">
@@ -46,13 +51,14 @@
 
       <p id="user-links">
         <?php slot('not_logged') ?>
-  	      <?php echo link_to(__('Acceso usuarios'), 'sfGuardAuth/signin') ?> <?php echo facebook_connect_button(); ?>
+  	      <?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> 
+		  <br />
+  	      <?php echo vo_facebook_connect_button(); ?>
+  	      
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
-          <?php if($sf_user->getProfile() && $sf_user->getProfile()->getImagen() &&  $sf_user->getProfile()->getImagen() != '' ): ?>
-  	        <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/usuarios/cc_s_'.($sf_user->getProfile()->getImagen()), 'alt="'. fullName( $sf_user ) .'"') ?>
-          <?php endif ?>
+          <?php echo getAvatar( $sf_user->getGuardUser() )?>
 
           <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
           ·

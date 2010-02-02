@@ -55,7 +55,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_contacto'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'mails_seguidor'    => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'numero_socio'      => new sfValidatorPass(array('required' => false)),
-      'facebook_uid'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'facebook_uid'      => new sfValidatorPass(array('required' => false)),
       'email'             => new sfValidatorPass(array('required' => false)),
       'email_hash'        => new sfValidatorPass(array('required' => false)),
     ));
@@ -94,7 +94,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'mails_contacto'    => 'Number',
       'mails_seguidor'    => 'Number',
       'numero_socio'      => 'Text',
-      'facebook_uid'      => 'Number',
+      'facebook_uid'      => 'Text',
       'email'             => 'Text',
       'email_hash'        => 'Text',
     );

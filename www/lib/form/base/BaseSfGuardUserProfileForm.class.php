@@ -59,7 +59,7 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'mails_contacto'    => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'mails_seguidor'    => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'numero_socio'      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'facebook_uid'      => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
+      'facebook_uid'      => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'email'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'email_hash'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
