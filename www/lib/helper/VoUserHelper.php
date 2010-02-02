@@ -1,6 +1,6 @@
 <?php
 function fullName( $user ) {
-  	$ret = "vo:";
+  	$ret = "";
   	
   	if ($user && $user->getProfile()->getNombre()){
   		$ret .= $user->getProfile()->getNombre();

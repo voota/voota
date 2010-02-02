@@ -85,11 +85,19 @@ function facebookConnect_PHCallback(){
 	sf_fb.gotoLoginPage();
 }
 
+function facebookConnect_promptPermission(permission, callbackFuncName) {
+  FB.ensureInit(function() {
+    FB.Facebook.apiClient.users_hasAppPermission(permission,
+     function(result) {
+        if (result == 0) {
+          FB.Connect.showPermissionDialog(permission, callbackFuncName);
+        }
+    });
+  });
+}
+
 function facebookConnect_callback(){
-	 FB.Connect.showPermissionDialog(
-			    "publish_stream",   // permission name(s)
-			    facebookConnect_PHCallback,  // response callback
-			    true);              // enable profile selector (only for "publish_stream")
+  facebookConnect_promptPermission("publish_stream", facebookConnect_PHCallback);
 }
 
 function facebookConnect(){

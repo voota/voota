@@ -139,6 +139,10 @@
 		});
   </script>
 
+  <?php if (has_slot('fb_connect')): ?>
+    <?php include_slot('fb_connect') ?>
+  <?php endif; ?>
+
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -150,10 +154,5 @@
       pageTracker._trackPageview();
     } catch(err) {}
   </script><!-- FIN GOOGLE ANALYTICS -->
-
 </body>
 </html>
-
-<?php if (has_slot('fb_connect')): ?>
-  <?php include_slot('fb_connect') ?>
-<?php endif; ?>
