@@ -9,7 +9,7 @@ function fullName( $user ) {
   		}
   	}
   	else if ($user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"".__("Usuario de Facebook").' '.$user->getProfile()->getFacebookUid()."\"></fb:name>";
+  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"Facebook_".$user->getProfile()->getFacebookUid()."\"></fb:name>";
   	}
   	
   	return $ret;
