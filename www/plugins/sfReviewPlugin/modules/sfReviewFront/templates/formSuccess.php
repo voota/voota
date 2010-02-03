@@ -1,8 +1,9 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 	
+<?php //include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId)) ?>
 <script type="text/javascript">
-  <!--
+  <!--//
 $(document).ready(function() {
 	  //controls character input/counter
 	  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
@@ -12,7 +13,8 @@ $(document).ready(function() {
 	  subscribeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
 	  $('#<?php echo "sf-review-form-$reviewBox" ?>').submit(function() {
 		  removeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
-		  sendReviewFormFB(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');
+		  <?php //include_partial('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType)) ?>
+	      <?php include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId)) ?>
 		  return false;
 	  });
 });
@@ -27,7 +29,6 @@ $(document).ready(function() {
 <form action="#" id="<?php echo "sf-review-form-$reviewBox" ?>">
 	<input type="hidden" id="t" name="t" value="<?php echo $reviewType ?>" />
 	<input type="hidden" id="e" name="e" value="<?php echo $reviewEntityId ?>" />
-	<input type="hidden" id="v" name="v" value="<?php echo $reviewValue ?>" />
 	<input type="hidden" id="b" name="b" value="<?php echo $reviewBox ?>" />
 	<input type="hidden" id="i" name="i" value="<?php echo $reviewId ?>" />
 

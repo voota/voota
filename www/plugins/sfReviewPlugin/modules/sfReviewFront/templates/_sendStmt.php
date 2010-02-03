@@ -1,0 +1,1 @@
+sendReviewForm(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');

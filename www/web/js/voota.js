@@ -92,6 +92,9 @@ function facebookConnect_promptPermission(permission, callbackFuncName) {
         if (result == 0) {
           FB.Connect.showPermissionDialog(permission, callbackFuncName);
         }
+        else {
+        	callbackFuncName();
+        }
     });
   });
 }

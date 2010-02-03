@@ -45,4 +45,9 @@ class sfReviewComponents extends sfComponents
 	$this->review_c = $this->getUser()->getAttribute('review_c');
 	
   }
+  
+  public function executeSendStmt()
+  {
+  	
+  }
 }

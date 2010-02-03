@@ -2,4 +2,5 @@ default:
   has_layout:     false
   components:
     subreviews:  [sfReviewFront, subreviews]
+    sendStmt:   [sfReviewFront, sendStmt]
   

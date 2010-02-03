@@ -45,17 +45,17 @@ function stream_callback (post_id, exception) {
 	sendReviewForm(gform, gurl, gbox);
 }
 
-function sendReviewFormFB(form, url, box) {
+function sendReviewFormFB(form, url, box, attachment, action_links, tip) {
 	gform = form; gurl = url; gbox = box;
-	publishFaceBook( $("#sf-review-text_"+box).val() );
+	publishFaceBook( $("#sf-review-text_"+box).val(), attachment, action_links, tip );
 	
 	return false;
 }
 
-function publishFaceBook(msg) {
+function publishFaceBook(msg, attachment, action_links, tip) {
 	  FB.ensureInit(function () {
 		  FB.Connect.streamPublish(
-				  msg, null, null, null
+				  msg, attachment, action_links, null
 				  , 'Vamos a publicar esto en Facebook, ¿que te parece?'
 				  , stream_callback
 				  , true
