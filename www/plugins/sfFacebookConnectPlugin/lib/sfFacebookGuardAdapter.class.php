@@ -242,6 +242,12 @@ abstract class sfFacebookGuardAdapter
     	$counter++;
       }
       $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+      $voProfile->setMailsComentarios( 0 );
+      $voProfile->setMailsNoticias( 0 );
+      $voProfile->setMailsContacto( 0 );
+      $voProfile->setMailsSeguidor( 0 );
+      
+      sfContext::getInstance()->getUser()->setFlash('logToFB', true, true);
 				    
       $voProfile->save();
       /* Fin modificacion Voota */

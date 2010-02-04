@@ -76,7 +76,7 @@ propel:
   partido:
     _attributes: { phpName: Partido, isI18N: true, i18nTable: partido_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    abreviatura: { type: VARCHAR, size: '8', required: false }
+    abreviatura: { type: VARCHAR, size: '64', required: false }
     color: { type: VARCHAR, size: '8', required: false }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }

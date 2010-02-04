@@ -30,7 +30,7 @@ abstract class BasePartidoForm extends BaseFormPropel
 
     $this->setValidators(array(
       'id'                 => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'abreviatura'        => new sfValidatorString(array('max_length' => 8, 'required' => false)),
+      'abreviatura'        => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'color'              => new sfValidatorString(array('max_length' => 8, 'required' => false)),
       'created_at'         => new sfValidatorDateTime(array('required' => false)),
       'partido_id'         => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),

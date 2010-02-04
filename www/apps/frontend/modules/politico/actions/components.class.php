@@ -16,7 +16,11 @@ class politicoComponents extends sfComponents
 		$this->sparklineData .= ($spi++>0?",":"").$element->getSum();
 	}
 	*/
-	$query = "select entity_id, month(date) as month, max(sum) as sum from sf_review_type_entity where value = 1 and entity_id = ? group by entity_id, month(date) order by month";
+	$query = "SELECT f.year, f.month, IFNULL(MAX(r.sum), 0) AS sum
+			FROM (SELECT DISTINCT MONTH(date) AS month, YEAR(date) AS year FROM sf_review_type_entity ORDER BY year, month) f
+			left JOIN sf_review_type_entity  r ON (f.year = YEAR(r.date) AND f.month = MONTH(r.date) AND r.value = 1 AND r.entity_id = ?)
+			GROUP BY f.year, f.month
+			ORDER BY f.year, f.month;";
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
 	$statement->bindValue(1, $this->politico->getId());

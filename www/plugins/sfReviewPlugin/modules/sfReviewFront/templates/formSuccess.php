@@ -13,8 +13,7 @@ $(document).ready(function() {
 	  subscribeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
 	  $('#<?php echo "sf-review-form-$reviewBox" ?>').submit(function() {
 		  removeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
-		  <?php //include_partial('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType)) ?>
-	      <?php include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId)) ?>
+	      <?php include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId, 'reviewId' => $reviewId)) ?>
 		  return false;
 	  });
 });
