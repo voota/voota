@@ -108,26 +108,12 @@ function facebookConnect(){
 	return false;
 }
 
-function facebookConnectIfConnected(func){
-  FB.ensureInit(function() {
-    FB.Connect.get_status().waitUntilReady(function(status) {
-      switch (status) {
-      case FB.ConnectState.connected:
-        func();
-        break;
-      }
-    });
-  });
-}
-
 function facebookConnect_autoLogin() {
-  facebookConnectIfConnected(function(){
-    facebookConnect_callback();
-  });
+  FB.Connect.ifUserConnected(facebookConnect_callback);
 }
 
 function facebookConnect_linkLogout() {
-  facebookConnectIfConnected(function(){
+  FB.Connect.ifUserConnected(function(){
     $('#logout').click(function(){
       logout_url = $(this).attr('href');
       FB.Connect.logoutAndRedirect(logout_url);
