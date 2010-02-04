@@ -45,9 +45,9 @@ function stream_callback (post_id, exception) {
 	sendReviewForm(gform, gurl, gbox);
 }
 
-function sendReviewFormFB(form, url, box, attachment, action_links, tip) {
+function sendReviewFormFB(form, text, url, box, attachment, action_links, tip) {
 	gform = form; gurl = url; gbox = box;
-	publishFaceBook( $("#sf-review-text_"+box).val(), attachment, action_links, tip );
+	publishFaceBook( text, attachment, action_links, tip );
 	
 	return false;
 }

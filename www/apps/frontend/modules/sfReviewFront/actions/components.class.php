@@ -11,11 +11,11 @@ class sfReviewFrontComponents extends sfReviewComponents
   		$this->partido = PartidoPeer::retrieveByPK($this->reviewEntityId);
   	}
   	else if($this->reviewType == null){
-  		echo ("alert('".$this->reviewId."');");
-  		$this->review = SfReviewPeer::retrieveByPK($this->reviewId);
-  		if ($this->review){
+  		$review_ = SfReviewPeer::retrieveByPK($this->reviewId);
+  		if ($review_){
+  			$this->review = $review_->getSfReviewRelatedBySfReviewId();
 		  	if($this->review->getSfReviewTypeId() == Politico::NUM_ENTITY){
-		  		$this->politico = PoliticoPeer::retrieveByPK($this->reviewEntityId);
+		  		$this->politico = PoliticoPeer::retrieveByPK($this->review->getEntityId());
 		  	}
 		  	else if($this->review->getSfReviewTypeId() == Partido::NUM_ENTITY){
 		  		$this->partido = PartidoPeer::retrieveByPK($this->review->getEntityId());

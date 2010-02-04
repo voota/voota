@@ -346,8 +346,11 @@ class politicoActions extends sfActions
 		$this->positivePerc = 0;
 		$this->negativePerc = 0;
 	}
-  	$this->title = $this->politico->getNombre() . ' '. $this->politico->getApellidos();
-  	$this->title .= ' - Voota';
+  	$this->title = sfContext::getInstance()->getI18N()->__('%1%, opiniones a favor y en contra en Voota'
+  					, array(
+  						'%1%' => $this->politico->getNombre() . ' '. $this->politico->getApellidos()
+  					)
+  	);
   	
   	$description = sfContext::getInstance()->getI18N()->__('Página de', array());
   	$description .= ' ' . $this->politico->getNombre() . ' '. $this->politico->getApellidos();

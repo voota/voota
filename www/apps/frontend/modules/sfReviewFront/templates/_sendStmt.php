@@ -2,55 +2,69 @@
 <?php use_helper('jQuery') ?>
 
 <?php if($sf_user->getCurrentFacebookUid()): ?>
+	var text = $("#sf-review-text_<?php echo $reviewBox?$reviewBox:'sf_review'?>").val();
+	
+	<?php /* Otra opinion sobre un político */?>
 	<?php if($reviewType == null && isset($politico)): ?>
 	  var attachment = { 
-			'name': (this.v[0].checked?'<?php echo __('a favor')?>':'<?php echo __('en contra')?>') + '<?php echo __(' de la opinión de un usuario sobre %2%', array('%2%' => $politico))?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido() ?>)<?php endif ?>'
+			'name': '<?php echo __('Opiniones a favor y en contra de %2% en Voota', array('%2%' => $politico))?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido() ?>)<?php endif ?>'
 			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
-	  };
-	  
-	  var action_links = [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}];
-	<?php elseif($reviewType == null && isset($partido)): ?>
-	  var attachment = { 
-			'name': (this.v[0].checked?'<?php echo __('a favor')?>':'<?php echo __('en contra')?>') + '<?php echo __(' de %2%', array('%2%' => $partido))?>'
-			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
-	  };
-	  
-	  var action_links = [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}];
-	<?php elseif($reviewType == Politico::NUM_ENTITY): ?>
-	  var attachment = { 
-			'name': (this.v[0].checked?'<?php echo __('a favor')?>':'<?php echo __('en contra')?>') + '<?php echo __(' de %2%', array('%2%' => $politico))?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido() ?>)<?php endif ?>'
-			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
-			/*, 'description': this.review_text.value*/
-			, 'properties': { 
-		  		'<?php echo __('Ficha en Voota')?>': { 'text': '<?php echo $politico->getApellidos() ?>', 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'}
-	  		}
 	  		, 'media': [{ 
 	  			'type': 'image'
 	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/politicos/cc_s_<?php echo $politico->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		}] 
-	  };
+	  };	  		
+	  var text_intro = this.v[0].checked?'<?php echo __('voota a favor de una opinión de un usuario sobre %1%', array('%1%' => $politico))?>':'<?php echo __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $politico))?>';
+	  text = text_intro + (text != ''?(': '+text):'');
 	  
-	  var action_links = [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}];
-	<?php elseif($reviewType == Partido::NUM_ENTITY): ?>
+	<?php /* Otra opinion sobre un partido */?>
+	<?php elseif($reviewType == null && isset($partido)): ?>
 	  var attachment = { 
-			'name': (this.v[0].checked?'<?php echo __('a favor')?>':'<?php echo __('en contra')?>') + '<?php echo __(' de %2%', array('%2%' => $partido))?>'
+			'name': '<?php echo __('Opiniones a favor y en contra de %2% en Voota', array('%2%' => $partido))?>'
 			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
-			/*, 'description': this.review_text.value*/
-			, 'properties': { 
-		  		'<?php echo __('Ficha en Voota')?>': { 'text': '<?php echo $partido ?>', 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'}
-	  		}
 	  		, 'media': [{ 
 	  			'type': 'image'
 	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/partidos/cc_s_<?php echo $partido->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		}] 
 	  };
+	  var text_intro = this.v[0].checked?'<?php echo __('voota a favor de una opinión de un usuario sobre %1%', array('%1%' => $partido))?>':'<?php echo __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $partido))?>';
+	  text = text_intro + (text != ''?(': '+text):'');
 	  
-	  var action_links = [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}];
-	<?php else: ?>		  var attachment = null;
+	<?php /* Sobre un politico */?>
+	<?php elseif($reviewType == Politico::NUM_ENTITY): ?>
+	  var attachment = { 
+			'name': '<?php echo __('Opiniones a favor y en contra de %2% en Voota', array('%2%' => $politico))?><?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido() ?>)<?php endif ?>'
+			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
+	  		, 'media': [{ 
+	  			'type': 'image'
+	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/politicos/cc_s_<?php echo $politico->getImagen() ?>'
+	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
+	  		}] 
+	  };	  		
+	  var text_intro = this.v[0].checked?'<?php echo __('voota a favor de %1%', array('%1%' => $politico))?>':'<?php echo __('voota en contra de %1%', array('%1%' => $politico))?>';
+	  text = text_intro + (text != ''?(': '+text):'');
+	  
+	<?php /* Sobre un partido */?>
+	<?php elseif($reviewType == Partido::NUM_ENTITY): ?>
+	  var attachment = { 
+			'name': '<?php echo __('Opiniones a favor y en contra de %2% en Voota', array('%2%' => $partido))?>'
+			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
+	  		, 'media': [{ 
+	  			'type': 'image'
+	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/partidos/cc_s_<?php echo $partido->getImagen() ?>'
+	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
+	  		}] 
+	  };
+	  var text_intro = this.v[0].checked?'<?php echo __('voota a favor de %1%', array('%1%' => $partido))?>':'<?php echo __('voota en contra de %1%', array('%1%' => $partido))?>';
+	  text = text_intro + (text != ''?(': '+text):'');
+	  
+	<?php else: ?>
+		var attachment = null;
 	<?php endif ?>	
-	sendReviewFormFB(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>', attachment, action_links);
+
+	sendReviewFormFB(this, 	text, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>', attachment, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}]);
 <?php else: ?>
 	sendReviewForm(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');
 <?php endif ?>

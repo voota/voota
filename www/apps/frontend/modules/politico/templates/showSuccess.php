@@ -19,7 +19,7 @@
 </script>
 
 <h2 id="name">
-  <?php echo $politico->getApellidos(); ?>
+  <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
   <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
 	<?php include_partial('sparkline_box', array('politico' => $politico)) ?>
   <span class="rank">
@@ -41,20 +41,15 @@
   </div>
     
   <div title="info" id="description">
-    <p>
-      <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
-      <?php if ($politico->getPartido()):?>
-        - 
-        <?php echo link_to($politico->getPartido(), "partido/show?id=".$politico->getPartido()->getAbreviatura(), array()); ?>
-      <?php endif ?>
-    </p>
-
     <?php if ($politico->getAlias() != ''): ?>
 	    <p><?php echo $politico->getSexo()=='M'?__('Conocida como %1%', array('%1%' => $politico->getAlias())):__('Conocido como %1%', array('%1%' => $politico->getAlias()))?></p>
     <?php endif ?>
 
-    <?php if (count($politico->getPoliticoInstitucions()) > 0): ?>
+    <?php if (count($politico->getPoliticoInstitucions()) > 0 || $politico->getPartido()): ?>
 	    <p>
+	      <?php if ($politico->getPartido()):?>
+	        <?php echo link_to($politico->getPartido(), "partido/show?id=".$politico->getPartido()->getAbreviatura(), array()); ?><?php if (count($politico->getPoliticoInstitucions()) > 0): ?>, <?php endif ?>
+	      <?php endif ?>
 	      <?php foreach ($politico->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?>
 	        <?php
 	  	      echo link_to(
