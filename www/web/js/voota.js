@@ -107,3 +107,31 @@ function facebookConnect(){
 	jQuery(function(){sf_fb.requireSession('', facebookConnect_callback)});
 	return false;
 }
+
+function facebookConnectIfConnected(func){
+  FB.ensureInit(function() {
+    FB.Connect.get_status().waitUntilReady(function(status) {
+      switch (status) {
+      case FB.ConnectState.connected:
+        func();
+        break;
+      }
+    });
+  });
+}
+
+function facebookConnect_autoLogin() {
+  facebookConnectIfConnected(function(){
+    facebookConnect_callback();
+  });
+}
+
+function facebookConnect_linkLogout() {
+  facebookConnectIfConnected(function(){
+    $('#logout').click(function(){
+      logout_url = $(this).attr('href');
+      FB.Connect.logoutAndRedirect(logout_url);
+      return false;
+    })
+  });
+}

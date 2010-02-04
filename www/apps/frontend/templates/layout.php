@@ -31,10 +31,10 @@
 	    $('#fbc_button').click(function(){
 	    	return facebookConnect();
 	    });
-	    <?php if ($sf_user->getFlash('logToFB')):  ?>  
-		publishFaceBook("ha comenzado a compartir sus opiniones sobre políticos de España en Voota", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece') ?>');
-	  <?php endif ?>
-	});
+      <?php if ($sf_user->getFlash('logToFB')):  ?>  
+		    publishFaceBook("ha comenzado a compartir sus opiniones sobre políticos de España en Voota", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece') ?>');
+	    <?php endif ?>
+	  });
     <?php if( $sf_request->getAttribute("ie6") ):?>
 	  	$("#ie6 .close a").click(function(){
 	  		$('#ie6').remove();
@@ -43,9 +43,7 @@
 	<?php endif ?>
     //]]>
   </script>
-  
-  
-    
+ 
   <!-- HEADER -->
   <div id="header">
     <div id="header-inner">
@@ -55,9 +53,13 @@
       <p id="user-links">
         <?php slot('not_logged') ?>
   	      <?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> 
-		  <br />
+		      <br />
   	      <?php echo vo_facebook_connect_button(); ?>
-  	      
+  	      <script type="text/javascript" charset="utf-8">
+  	        $(document).ready(function(){
+  	          facebookConnect_autoLogin();
+  	        })
+  	      </script>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
@@ -65,7 +67,12 @@
 
           <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
           ·
-          <?php echo link_to(__('salir'), '@sf_guard_signout') ?>
+          <?php echo link_to(__('salir'), '@sf_guard_signout', array('id' => 'logout')) ?>
+          <script type="text/javascript" charset="utf-8">
+            $(document).ready(function(){
+              facebookConnect_linkLogout();
+            });
+          </script>
         <?php end_slot('logged') ?>
 
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
