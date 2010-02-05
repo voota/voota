@@ -121,3 +121,17 @@ function facebookConnect_linkLogout() {
     })
   });
 }
+
+function facebookConnect_loadUserName() {
+  FB.ensureInit(function() {
+    FB.Connect.ifUserConnected(function() {
+      if ($('#profile_nombre').attr('value') == "") {
+        uid = FB.Connect.get_loggedInUser()
+        FB.Facebook.apiClient.users_getInfo(uid, ['first_name', 'last_name'], function(result){
+          $('#profile_nombre').attr('value', result[0]['first_name']);
+          $('#profile_apellidos').attr('value', result[0]['last_name']);
+        }); 
+      }
+    });
+  });
+}

@@ -23,6 +23,7 @@
 		  setCounter('#presen_counter', this, 280);
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
+	  facebookConnect_loadUserName();
   });
   
   //-->
