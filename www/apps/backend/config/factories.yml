@@ -49,7 +49,7 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
-#all:
+all:
 #  controller:
 #    class: sfFrontWebController
 #
@@ -89,32 +89,32 @@ all:
 #    param:
 #      session_name: symfony
 #
-#  view_cache:
-#    class: sfFileCache
+  view_cache:
+    class: sfNoCache
 #    param:
 #      automatic_cleaning_factor: 0
 #      cache_dir:                 %SF_TEMPLATE_CACHE_DIR%
 #      lifetime:                  86400
 #      prefix:                    %SF_APP_DIR%/template
 #
-#  i18n:
-#    class: sfI18N
-#    param:
+  i18n:
+    class: sfI18N
+    param:
 #      source:               XLIFF
 #      debug:                false
 #      untranslated_prefix:  "[T]"
 #      untranslated_suffix:  "[/T]"
-#      cache:
-#        class: sfFileCache
+      cache:
+        class: sfNoCache
 #        param:
 #          automatic_cleaning_factor: 0
 #          cache_dir:                 %SF_I18N_CACHE_DIR%
 #          lifetime:                  31556926
 #          prefix:                    %SF_APP_DIR%/i18n
 #
-#  routing:
-#    class: sfPatternRouting
-#    param:
+  routing:
+    class: sfPatternRouting
+    param:
 #      load_configuration:               true
 #      suffix:                           ''
 #      default_module:                   default
@@ -124,7 +124,7 @@ all:
 #      generate_shortest_url:            false
 #      extra_parameters_as_query_string: false
 #      cache:
-#        class: sfFileCache
+        class: sfNoCache
 #        param:
 #          automatic_cleaning_factor: 0
 #          cache_dir:                 %SF_CONFIG_CACHE_DIR%/routing

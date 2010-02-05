@@ -109,6 +109,10 @@
   <target name="etiquetas" depends="prepare">
   	<exec command="php symfony i18n:extract --auto-save frontend ca" dir="${project.dir}/www"  passthru="true"/>
   </target>
+  <target name="paquete_sfreview" >
+  	<exec command="pfm" dir="${project.dir}/www/plugins/sfReviewPlugin"  passthru="true"/>
+  	<exec command="pear package" dir="${project.dir}/www/plugins/sfReviewPlugin"  passthru="true"/>
+  </target>
   
 </project>
 

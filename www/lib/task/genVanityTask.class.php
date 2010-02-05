@@ -77,7 +77,19 @@ EOF;
 		    $politicosLikeMe = PoliticoPeer::doSelect( $c2 );
 		    $counter = 0;
     		foreach ($politicosLikeMe as $politicoLikeMe){
-    			$counter++;
+    			$aVanity = str_replace("-", "\-", $vanityUrl);
+    			
+    			if (preg_match(SfVoUtil::voDecode("/^$vanityUrl\-([0-9]*)$/is"), SfVoUtil::voDecode($politicoLikeMe->getVanity()), $matches)) {
+    				if ($counter < (1 + $matches[1])){
+    					$counter = 1 + $matches[1];	
+    				}
+    				else {
+    					$counter++;
+    				}
+    			}
+    			else {
+    				$counter++;
+    			}
     		}
     		$politico->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
     		PoliticoPeer::doUpdate( $politico );
