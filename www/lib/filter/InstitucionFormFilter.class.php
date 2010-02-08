@@ -41,6 +41,8 @@ class InstitucionFormFilter extends BaseInstitucionFormFilter
       $criterion->addOr($criteria->getNewCriterion(InstitucionI18nPeer::NOMBRE, "%$value%", Criteria::LIKE));
     }
 
+    $criterion->addAnd( $criteria->getNewCriterion(InstitucionI18nPeer::CULTURE, "es") );
+    
     $criteria->add($criterion);
   }
 }
