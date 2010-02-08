@@ -26,7 +26,9 @@
     // show permission dialog when publish to Facebook is checked
 	  $('#<?php echo "sf-review-fb-publish-$reviewBox" ?>').change(function() {
 	    if ($(this)[0].checked) {
-	      facebookConnect_promptPermission("publish_stream");
+	      facebookConnect_promptPermission("publish_stream", function(perms) {
+	        if (!perms) { $('#<?php echo "sf-review-fb-publish-$reviewBox" ?>').attr('checked', false); }
+	      });
 	    }
 	  });
 	  FB.Connect.ifUserConnected(function(){ $('.facebook-only').show() });
