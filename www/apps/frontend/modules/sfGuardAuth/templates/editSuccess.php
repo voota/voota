@@ -24,6 +24,7 @@
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
 	  facebookConnect_loadUserName();
+	  facebookConnect_loadPreferences();
   });
   
   //-->
@@ -150,6 +151,10 @@
           </ol>
         </td>
         <td class="hints"></td>
+      </tr>
+      <tr>
+        <th><label>Facebook connect</label></th>
+        <td id="facebook_connect"></td>
       </tr>
       <tr>
         <th><label for="profile_passwordNew"><?php echo __('¿Nueva contraseña?') ?></label></th>

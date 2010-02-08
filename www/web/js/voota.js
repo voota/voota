@@ -135,3 +135,16 @@ function facebookConnect_loadUserName() {
     });
   });
 }
+
+function facebookConnect_loadPreferences() {
+  FB.ensureInit(function() {
+    FB.Connect.ifUserConnected(function() {
+      // Enviar UID y sustituir #facebook_connect con el template devuelto
+      uid = FB.Connect.get_loggedInUser();
+    });
+  });
+}
+
+function facebookConnect_disconnect() {
+  // Enviar petición Ajax indicando desconexión y sustituir #facebook_connect con el template devuelto
+}

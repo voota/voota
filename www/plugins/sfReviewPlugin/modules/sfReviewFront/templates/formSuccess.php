@@ -2,9 +2,10 @@
 <?php use_helper('jQuery') ?>
 	
 <?php //include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId)) ?>
-<script type="text/javascript">
+
+<script type="text/javascript" charset="utf-8">
   <!--//
-$(document).ready(function() {
+  $(document).ready(function() {
 	  //controls character input/counter
 	  $('#<?php echo "sf-review-text_$reviewBox" ?>').keyup(function() {
 		  setCounter('#<?php echo "sf-review-counter_$reviewBox" ?>', this, <?php echo $maxLength?>);
@@ -13,11 +14,23 @@ $(document).ready(function() {
 	  subscribeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
 	  $('#<?php echo "sf-review-form-$reviewBox" ?>').submit(function() {
 		  removeHint('#<?php echo "sf-review-text_$reviewBox" ?>', 'blur');
-	      <?php include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId, 'reviewId' => $reviewId)) ?>
+      <?php include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId, 'reviewId' => $reviewId)) ?>
 		  return false;
 	  });
-});
+  });
   //-->
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    // show permission dialog when publish to Facebook is checked
+	  $('#<?php echo "sf-review-fb-publish-$reviewBox" ?>').change(function() {
+	    if ($(this)[0].checked) {
+	      facebookConnect_promptPermission("publish_stream");
+	    }
+	  });
+	  FB.Connect.ifUserConnected(function(){ $('.facebook-only').show() });
+  });
 </script>
 
 <?php /*echo jq_form_remote_tag(array(
@@ -25,6 +38,7 @@ $(document).ready(function() {
     'url'      => 'sfReviewFront/send',
 	'before' => "removeHint('#sf-review-text_$reviewBox', 'blur')"
 ))*/ ?>
+
 <form action="#" id="<?php echo "sf-review-form-$reviewBox" ?>">
 	<input type="hidden" id="t" name="t" value="<?php echo $reviewType ?>" />
 	<input type="hidden" id="e" name="e" value="<?php echo $reviewEntityId ?>" />
@@ -104,5 +118,9 @@ $(document).ready(function() {
 
   <p class="submit">
   	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
+  </p>
+  <p class="facebook-only submit">
+    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
+    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
   </p>
 </form>

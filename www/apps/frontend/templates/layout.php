@@ -34,6 +34,7 @@
       <?php if ($sf_user->getFlash('logToFB')):  ?>  
 		    publishFaceBook("ha comenzado a compartir sus opiniones sobre políticos de España en Voota", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece') ?>');
 	    <?php endif ?>
+	    FB.Connect.ifUserConnected(function(){ $('.facebook-only').show() });
 	  });
     <?php if( $sf_request->getAttribute("ie6") ):?>
 	  	$("#ie6 .close a").click(function(){

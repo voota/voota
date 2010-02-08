@@ -28,5 +28,7 @@
 #sf-review-body { clear: both; padding-bottom: 0;}
 .sf-review-text { width: 97%; height: 8em;}
 
+.sfr_button { margin-bottom: 0.5em;}
+
 .sfr_grey{color:#b6b6b6; }
 span.sfr_title {font-size: 0.88em;margin:0.00em;color:#323232;font-weight: bold;color:#2b56ff;}
