@@ -43,7 +43,6 @@ class PoliticoForm extends BasePoliticoForm
   		, $this['sumu']
   		, $this['sumd']
   		, $this['sf_guard_user_profile_id']
-  		, $this['politico_institucion_list']
   	);
     
     
@@ -107,6 +106,9 @@ class PoliticoForm extends BasePoliticoForm
 
 		// set a custom label for the embedded form
 		$this->widgetSchema['enlace']->setLabel('Nuevo enlace');
+		
+		
+		
 	}
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {

@@ -11,6 +11,9 @@
 class PoliticoInstitucionForm extends BasePoliticoInstitucionForm
 {
   public function configure()
-  {
+  { 
+    //$this->widgetSchema['politico_id'] = new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true));
+    $this->widgetSchema['institucion_id'] = new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true));
+  	
   }
 }

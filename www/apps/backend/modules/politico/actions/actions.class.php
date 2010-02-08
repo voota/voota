@@ -66,6 +66,7 @@ class politicoActions extends autoPoliticoActions
 		}
 */
 		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+
 		parent::executeEdit( $request );
 	}
 	public function executeDelete(sfWebRequest $request) {

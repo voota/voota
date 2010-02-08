@@ -1,3 +1,12 @@
+politico_institucion:
+  class: sfPropelRouteCollection
+  options:
+    model:                PoliticoInstitucion
+    module:               politicoInstitucion
+    prefix_path:          /politicoInstitucion
+    column:               politico_id
+    with_wildcard_routes: true
+
 enlace:
   class: sfPropelRouteCollection
   options:
