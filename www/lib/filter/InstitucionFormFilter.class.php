@@ -12,5 +12,35 @@ class InstitucionFormFilter extends BaseInstitucionFormFilter
 {
   public function configure()
   {
+  	
+    $this->widgetSchema['nombre'] = new sfWidgetFormInput();
+    
+    $this->validatorSchema['nombre'] = new sfValidatorPass(array('required' => false));
+  }
+  
+
+  public function addNombreColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(InstitucionI18nPeer::ID, InstitucionPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(InstitucionI18nPeer::NOMBRE, "%$value%", Criteria::LIKE);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(InstitucionI18nPeer::NOMBRE, "%$value%", Criteria::LIKE));
+    }
+
+    $criteria->add($criterion);
   }
 }
