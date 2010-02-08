@@ -42,6 +42,8 @@ class PoliticoForm extends BasePoliticoForm
   		, $this['partido_txt']
   		, $this['sumu']
   		, $this['sumd']
+  		, $this['sf_guard_user_profile_id']
+  		, $this['politico_institucion_list']
   	);
     
     

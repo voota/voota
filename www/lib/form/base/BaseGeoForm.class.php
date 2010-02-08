@@ -17,12 +17,14 @@ abstract class BaseGeoForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'nombre'     => new sfWidgetFormInputText(),
+      'geo_id'     => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at' => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'nombre'     => new sfValidatorString(array('max_length' => 150)),
+      'geo_id'     => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 

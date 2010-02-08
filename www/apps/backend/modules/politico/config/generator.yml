@@ -18,15 +18,15 @@ generator:
         display: [id,alias,nombre,apellidos,partido,_usuario]
         
       filter:
-        display: [nombre,apellidos,partido_id, politico_institucion_list]
+        display: [nombre,apellidos,partido_id]
         fields:
           politico_institucion_list:
             label: Institucion
       form:
         display: 
-          "Datos voota": [alias,sf_guard_user_profile_id,partido_id, vanity]
+          "Datos voota": [alias,partido_id, vanity]
           "Display partido": [_partido_view]
-          "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
+          "Datos personales": [imagen,nombre,apellidos,email,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
           "Traducibles": [_bio_preview,es,ca]
           "Enlaces": []
         fields:

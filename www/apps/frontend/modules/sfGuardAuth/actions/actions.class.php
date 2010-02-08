@@ -255,6 +255,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	return 'Confirm';
    	}
   }
+
+  public function executeEditFB(sfWebRequest $request)
+  {
+  	
+  }
   
   public function executeEdit(sfWebRequest $request)
   {

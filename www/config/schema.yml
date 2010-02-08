@@ -31,6 +31,7 @@ propel:
     _attributes: { phpName: Geo }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
+    geo_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
   imagen:
     _attributes: { phpName: Imagen }
