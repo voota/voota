@@ -120,6 +120,7 @@
   	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
   <p class="facebook-only submit">
+    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
     <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
     <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
   </p>

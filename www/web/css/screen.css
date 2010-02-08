@@ -108,6 +108,7 @@ select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
 .submit { text-align: right; clear: both;}
 .facebook-only { display: none;}
+.facebook-only img { vertical-align: text-bottom; }
 .hints { padding: 5px 0.5em; font-size: 0.9em;}
 
 /* Páginas de error (404 y 500) */
