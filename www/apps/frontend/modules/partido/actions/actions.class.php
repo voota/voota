@@ -53,10 +53,10 @@ class partidoActions extends sfActions
   	$institucion = $request->getParameter("institucion");
   	
   	$c = new Criteria();
-  	$c->addJoin(PartidoPeer::ID, PoliticoPeer::PARTIDO_ID, Criteria::INNER_JOIN);
-  	$c->addJoin(PoliticoPeer::ID, PoliticoInstitucionPeer::POLITICO_ID, Criteria::INNER_JOIN);
-  	$c->addJoin(PoliticoInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID, Criteria::INNER_JOIN);
-  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::INNER_JOIN);
+  	$c->addJoin(PartidoPeer::ID, PoliticoPeer::PARTIDO_ID, Criteria::LEFT_JOIN);
+  	$c->addJoin(PoliticoPeer::ID, PoliticoInstitucionPeer::POLITICO_ID, Criteria::LEFT_JOIN);
+  	$c->addJoin(PoliticoInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID, Criteria::LEFT_JOIN);
+  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::LEFT_JOIN);
   	$c->setDistinct();
   	$c->add(PartidoPeer::ABREVIATURA, null, Criteria::ISNOTNULL);
   	$c->add(PartidoPeer::IS_ACTIVE, true);
@@ -123,6 +123,7 @@ class partidoActions extends sfActions
     /* Lista de instituciones */ 
   	$c = new Criteria();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
+  	$c->add(InstitucionPeer::DISABLED, 'N');
   	$this->instituciones = InstitucionPeer::doSelect($c);
   	/*  Fin Lista de instituciones */
   	

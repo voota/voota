@@ -175,7 +175,10 @@ class generalActions extends sfActions{
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
 			$c->addJoin(sfGuardUserPeer::ID, SfReviewPeer::SF_GUARD_USER_ID, Criteria::LEFT_JOIN);
-			$c->add(SfReviewPeer::IS_ACTIVE, true);
+			
+			$rCriterion = $c->getNewCriterion(SfReviewPeer::IS_ACTIVE, true);
+			$rCriterion->addOr($c->getNewCriterion(SfReviewPeer::IS_ACTIVE, null, Criteria::ISNULL));
+			$c->add( $rCriterion );
 			
 			$c->addAsColumn('numReviews', 'COUNT('.sfGuardUserPeer::ID.')');
 			$c->addSelectColumn('sf_guard_user.*');
