@@ -20,7 +20,7 @@ generator:
         display: [geo_id, disabled,orden, nombre]
       form:    
         display: 
-          "Datos generales": [geo_id,disabled,orden,url, imagen]
+          "Datos generales": [geo_id, _geo_sup,disabled,orden,url, imagen]
           "Traducibles": [es,ca]
       edit:    ~
       new:     ~
