@@ -109,7 +109,7 @@ EOF;
     	if ($institucion->getVanity() == ''){
     		echo "Setting vanity to  " . $institucion->getId() ." ...\n";
     		
-    		$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto()) ;
+    		$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto('es')) ;
     		
 		    $c2 = new Criteria();
   			$c2->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::LEFT_JOIN);
@@ -120,7 +120,7 @@ EOF;
     		foreach ($institucionesLikeMe as $institucionLikeMe){
     			$counter++;
     		}
-    		$institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+    		$institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter"), 'es' );
     		$institucion->save();
     	}
     }
