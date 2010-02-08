@@ -112,7 +112,8 @@ EOF;
     		$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto()) ;
     		
 		    $c2 = new Criteria();
-		    $c2->add(InstitucionPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+  			$c2->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::LEFT_JOIN);
+		    $c2->add(InstitucionI18nPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
 		    $c2->add(InstitucionPeer::ID, $institucion->getId(), Criteria::NOT_EQUAL);
 		    $institucionesLikeMe = InstitucionPeer::doSelect( $c2 );
 		    $counter = 0;
@@ -120,7 +121,7 @@ EOF;
     			$counter++;
     		}
     		$institucion->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
-    		InstitucionPeer::doUpdate( $institucion );
+    		$institucion->save();
     	}
     }
   }
