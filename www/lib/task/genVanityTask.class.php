@@ -106,7 +106,7 @@ EOF;
     $c = new Criteria();
     $instituciones = InstitucionPeer::doSelect( $c );
     foreach ($instituciones as $institucion){
-    	if ($institucion->getVanity() == ''){
+    	if ($institucion->getVanity('es') == null || $institucion->getVanity('es') == ''){
     		echo "Setting vanity to  " . $institucion->getId() ." ...\n";
     		
     		$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto('es')) ;
