@@ -1,0 +1,1 @@
+<?php include_partial('editFBSuccess', array('sf_user' => $sf_user)) ?>

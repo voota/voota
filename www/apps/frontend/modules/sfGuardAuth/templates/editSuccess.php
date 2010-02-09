@@ -154,7 +154,9 @@
       </tr>
       <tr>
         <th><label>Facebook connect</label></th>
-        <td id="facebook_connect"></td>
+        <td id="facebook_connect">
+          <?php include_partial('editFBSuccess', array('sf_user' => $sf_user)) ?>
+        </td>
       </tr>
       <tr>
         <th><label for="profile_passwordNew"><?php echo __('¿Nueva contraseña?') ?></label></th>
