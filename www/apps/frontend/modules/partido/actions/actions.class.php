@@ -241,13 +241,15 @@ class partidoActions extends sfActions
 		$this->negativePerc = 0;
 	}
   	
-  	
-    $this->activeEnlaces = array();
-    foreach($this->partido->getEnlaces() as $enlace) {
-    	if ($enlace->getCulture() == null || $enlace->getCulture() == $this->getUser()->getCulture()){
-    		$this->activeEnlaces[] = $enlace;
-    	}	
-    }
+    // Enlaces
+    $c = new Criteria();
+	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+	$c->add( $rCriterion );
+	$c->add(EnlacePeer::PARTIDO_ID, $id);
+    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+    $this->activeEnlaces = EnlacePeer::doSelect( $c );
     
     // Politicos mas votados
     $c = new Criteria();

@@ -370,12 +370,16 @@ class politicoActions extends sfActions
   	
     $this->response->setTitle( $this->title );
     
-    $this->activeEnlaces = array();
-    foreach($politico->getEnlaces() as $enlace) {
-    	if ($enlace->getCulture() == null || $enlace->getCulture() == $this->getUser()->getCulture()){
-    		$this->activeEnlaces[] = $enlace;
-    	}	
-    }
+    // Enlaces
+    $c = new Criteria();
+	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+	$c->add( $rCriterion );
+	$c->add(EnlacePeer::POLITICO_ID, $id);
+    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+    $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    
   }
 
 }
