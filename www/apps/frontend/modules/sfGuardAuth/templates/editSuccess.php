@@ -153,8 +153,8 @@
         <td class="hints"></td>
       </tr>
       <tr>
-        <th><label>Facebook connect</label></th>
-        <td id="facebook_connect">
+        <th><label>Facebook Connect</label></th>
+        <td id="facebook-connect">
           <?php include_partial('editFBSuccess', array('sf_user' => $sf_user)) ?>
         </td>
       </tr>
