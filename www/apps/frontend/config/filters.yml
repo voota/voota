@@ -1,7 +1,5 @@
 rendering: ~
 
-facebook_connect:
-  class: sfFacebookConnectFilter
 security:
   class: voSecurityFilter
 

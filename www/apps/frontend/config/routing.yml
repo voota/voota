@@ -129,7 +129,7 @@ usuario_edit:
   url: /:sf_culture/user/edit
   param: { module: sfGuardAuth, action: edit }
 
-usuario_edit:
+usuario_fb_edit:
   url: /:sf_culture/user/editFB
   param: { module: sfGuardAuth, action: editFB }
   
