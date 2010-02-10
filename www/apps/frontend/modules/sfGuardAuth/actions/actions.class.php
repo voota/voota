@@ -292,7 +292,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   
   public function executeEdit(sfWebRequest $request)
   {    
-    $this->isCanonicalVootaUser = SfVoUtil::isCanonicalVootaUser( $this->getUser()->getGuardUser() );
+	$this->hasDeepUpdates = false;
+	
+  	$this->isCanonicalVootaUser = SfVoUtil::isCanonicalVootaUser( $this->getUser()->getGuardUser() );
     
   	if ( $this->getUser()->isAuthenticated() ){
 	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $this->getUser()->getGuardUser()->getId() );
@@ -315,11 +317,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
 	$this->numReviews = SfReviewPeer::doCount( $criteria );
 	
-    if ($request->isMethod('post') ){  
+    if ($request->isMethod('post') ){
+    	
     	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
 	      	$profile = $request->getParameter('profile');
+	    	$this->hasDeepUpdates = ($profile['presentacion'] != $formData->getProfile()->getPresentacion()); 
       		
       		if ($this->profileEditForm->getValue('imagen_delete') != "" ){
       			// Si se elimina la imagen, hay que recargar el formulario para que se refresque
@@ -345,6 +349,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
 		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
 		      		$this->profileEditForm->setImageSrc( $imageName );
+		      		
+		      		$this->hasDeepUpdates = true;
 	      		}
 	      		else {
 	      			$this->profileEditForm->getObject()->getProfile()->setImagen( $imagenOri );
@@ -364,14 +370,22 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		}
       		$this->getUser()->setFlash('notice_type', 'notice', false);
       		$this->getUser()->setFlash('notice', sfVoForm::getFormSavesMessage(), false);
+      		
        		$this->profileEditForm->save();
        		
-      		$profile = $this->profileEditForm->getObject()->getProfile();      		
+      		$profile = $this->profileEditForm->getObject()->getProfile();   
+		
+      		$profile->save();    		
 		  	$aText = utf8_decode($this->profileEditForm->getValue('presentacion'));
   			$aText = strip_tags( substr($aText, 0, 280) );
   			$aText = utf8_encode($aText);
       		$profile->setPresentacion( $aText );
-      		$profile->save(); 
+      		
+		
+	    	if ($profile->isColumnModified(SfGuardUserProfilePeer::PRESENTACION)){ 
+	    		echo "deep"; 
+	    		$this->hasDeepUpdates = true;
+	    	}
        		
       		$this->presentacionValue = $aText;
 		}

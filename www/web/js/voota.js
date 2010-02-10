@@ -93,7 +93,7 @@ function facebookConnect_promptPermission(permission, callbackFuncName) {
           FB.Connect.showPermissionDialog(permission, callbackFuncName);
         }
         else {
-        	callbackFuncName();
+        	callbackFuncName(1);
         }
     });
   });

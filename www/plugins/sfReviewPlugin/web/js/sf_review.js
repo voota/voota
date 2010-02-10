@@ -47,7 +47,20 @@ function stream_callback (post_id, exception) {
 
 function sendReviewFormFB(form, text, url, box, attachment, action_links, tip) {
 	gform = form; gurl = url; gbox = box;
-	publishFaceBook( text, attachment, action_links, tip );
+	
+	if (form.fb_publish.checked){
+	    facebookConnect_promptPermission("publish_stream", function(perms) {
+	    	if (perms) {
+	    		publishFaceBook( text, attachment, action_links, tip );
+	    	}
+	    	else {
+	    		sendReviewForm(form, url, box);
+	    	}
+		});		
+	}
+	else {
+		sendReviewForm(form, url, box);
+	}
 	
 	return false;
 }
@@ -56,7 +69,7 @@ function publishFaceBook(msg, attachment, action_links, tip) {
 	  FB.ensureInit(function () {
 		  FB.Connect.streamPublish(
 				  msg, attachment, action_links, null
-				  , 'Vamos a publicar esto en Facebook, ¿que te parece?'
+				  , ''
 				  , stream_callback
 				  , true
 		  );

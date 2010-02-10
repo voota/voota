@@ -21,6 +21,7 @@
   //-->
 </script>
 
+<?php /* ?>
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function() {
     // show permission dialog when publish to Facebook is checked
@@ -34,6 +35,7 @@
 	  FB.Connect.ifUserConnected(function(){ $('.facebook-only').show() });
   });
 </script>
+<?php */ ?>
 
 <?php /*echo jq_form_remote_tag(array(
     'update'   => $reviewBox?$reviewBox:'sf_review',
@@ -121,9 +123,18 @@
   <p class="submit">
   	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
-  <p class="facebook-only submit">
-    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
-    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
-    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
-  </p>
+  
+  <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
+	  <p class="facebook-only submit">
+	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
+	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
+	    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" 
+	    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
+	    	checked="checked""
+	    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
+	    	checked="checked"
+	    <?php endif ?>
+	    />
+	  </p>
+  <?php endif ?>
 </form>

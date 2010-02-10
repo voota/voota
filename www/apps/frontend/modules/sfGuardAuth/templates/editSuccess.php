@@ -24,6 +24,17 @@
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
 	  facebookConnect_loadUserName();
+	  <?php if($hasDeepUpdates): ?>
+	  FB.ensureInit(function () {
+		  FB.Connect.streamPublish(
+				  '<?php echo __('ha hecho profundos cambios en su perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>'
+				  , null, null, null
+				  , ''
+				  , null
+				  , true
+		  );
+	  });
+	  <?php endif ?>
   });
   
   //-->
