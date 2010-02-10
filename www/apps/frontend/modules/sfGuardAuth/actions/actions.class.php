@@ -258,11 +258,39 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 
   public function executeEditFB(sfWebRequest $request)
   {
+  	$op = $request->getParameter("op");
   	
+	$sfGuardUser = $this->getUser()->getGuardUser();
+  	if ($op == "dis"){
+	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, null);
+	    $sfGuardUser->save();
+		$sfGuardUser->getProfile()->save();
+		$this->getUser()->getGuardUser()->getProfile()->setFaceBookUID( null );
+  	}
+  	else{
+	  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
+		    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+		    $sfGuardUser->save();
+		    $sfGuardUser->getProfile()->save();
+		    //$this->getUser()->signin( $sfGuardUser );
+		    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	  	}
+   	}
+   	
+	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());	
+	$this->profileEditForm = new ProfileEditForm( $formData );
+	
+   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
+   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
   }
   
   public function executeEdit(sfWebRequest $request)
   {
+  	if ( $this->getUser()->isAuthenticated() ){
+	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $this->getUser()->getGuardUser()->getId() );
+	   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $this->getUser()->getGuardUser()->getId() );
+  	}
+   	
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());

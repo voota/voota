@@ -1,1 +1,1 @@
-<?php include_partial('editFBSuccess', array('sf_user' => $sf_user)) ?>
+<?php include_partial('editFBSuccess', array('profileEditForm' => $profileEditForm, 'lastReview' => $lastReview, 'lastReviewOnReview' => $lastReviewOnReview)) ?>

@@ -64,3 +64,8 @@ function getAvatarFull( $user ) {
 function vo_facebook_connect_button() {
 	return "<a id=\"fbc_button\" href=\"#\">".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
 }
+
+function vo_facebook_connect_ajax_button($box) {
+	$func = "facebookConnect_connect('". url_for('@usuario_fb_edit') ."', '$box')";
+	return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
+}

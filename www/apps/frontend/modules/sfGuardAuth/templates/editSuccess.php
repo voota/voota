@@ -155,7 +155,7 @@
       <tr>
         <th><label>Facebook Connect</label></th>
         <td id="facebook-connect">
-          <?php include_partial('editFBSuccess', array('sf_user' => $sf_user)) ?>
+          <?php include_partial('editFBSuccess', array('sf_user' => $sf_user, 'profileEditForm' => $profileEditForm, 'lastReview' => $lastReview, 'lastReviewOnReview' => $lastReviewOnReview)) ?>
         </td>
       </tr>
       <tr>

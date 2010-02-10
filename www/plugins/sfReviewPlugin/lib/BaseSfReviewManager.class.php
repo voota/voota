@@ -172,4 +172,27 @@ class BaseSfReviewManager
   	SfReviewPeer::doDelete( $c );
   }
   
+  static public function getLastReviewByUserId( $userId ){
+   	$c = new Criteria();
+   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
+   	$c->add(SfReviewPeer::IS_ACTIVE, true);
+   	$c->add(SfReviewPeer::ENTITY_ID, null, Criteria::ISNOTNULL);
+   	$c->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
+   	$c->add(SfReviewPeer::TEXT, null, Criteria::ISNOTNULL);
+   	$c->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
+   	
+   	return SfReviewPeer::doSelectOne( $c ); 	
+  }
+  
+  static public function getLastReviewOnReviewByUserId( $userId ){
+   	$c = new Criteria();
+   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
+   	$c->add(SfReviewPeer::IS_ACTIVE, true);
+   	$c->add(SfReviewPeer::ENTITY_ID, null, Criteria::ISNULL);
+   	$c->addDescendingOrderByColumn(SfReviewPeer::CREATED_AT);
+   	$c->add(SfReviewPeer::TEXT, null, Criteria::ISNOTNULL);
+   	$c->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
+   	
+   	return SfReviewPeer::doSelectOne( $c ); 	
+  }
 }

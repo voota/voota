@@ -104,7 +104,7 @@ function facebookConnect_callback(){
 }
 
 function facebookConnect(){
-	jQuery(function(){sf_fb.requireSession('', facebookConnect_callback)});
+	jQuery(function(){sf_fb.requireSession(null, facebookConnect_callback)});
 	return false;
 }
 
@@ -145,6 +145,22 @@ function facebookConnect_loadPreferences() {
   });
 }
 
-function facebookConnect_disconnect() {
-  // Enviar petición Ajax indicando desconexión y sustituir #facebook_connect con el template devuelto
+function facebookConnect_disconnect(url, box) {
+	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:url});
+}
+
+function load_fbdata(){
+	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+dataBox).html(data);},url:dataUrl});
+}
+
+var dataUrl;
+var dataBox;
+function facebookConnect_connect(url, box) {
+	re_loading( box );
+	dataUrl = url;
+	dataBox = box;
+	
+	jQuery(function(){sf_fb.requireSession(null, load_fbdata)});
+
+	return false;
 }

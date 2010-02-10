@@ -33,15 +33,7 @@
 
 <div class="block" id="summary">
   <div class="block-inner">
-    <?php if ($sf_user->isAuthenticated()): ?>
-      <h2><?php echo __('Hola %1%, nos alegra verte por aquí :)', array('%1%' => fullName($sf_user->getGuardUser()))); ?></h2>
-      <h3><?php echo __('La última vez que estuviste por aquí visitaste:') ?></h3>
-      <ol class="entities">
-        <?php for($j = 0; $j < 3; $j++): ?>
-          <?php include_partial('entity_li'); // INCLUIR POLITICO_LI O PARTIDO_LI O INSTITUCION_LI ?>
-        <?php endfor; ?>
-      </ol>
-    <?php else: ?>
+
       <ul>
         <li><h2><?php echo __('Comparte opiniones sobre políticos de España.') ?></h2></li>
         <li><h2><?php echo __('De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.', array(
@@ -65,7 +57,7 @@
           </ol>
         </li>
       </ul>
-    <?php endif ?>
+
     <div class="search">
       <form method="get" action="<?php echo url_for('@search')?>">
         <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
@@ -80,64 +72,7 @@
   </div>
 </div>
 
-<?php if ($sf_user->isAuthenticated()): ?>
-  <div class="block" id="latest-comments-votes">
-    <div class="block-inner">
-      <div class="column">
-        <h3>
-          <?php echo __('Comentarios positivos más votados') ?>
-          <img src="/images/icoUp.gif" alt="yeah!" />
-        </h3>
-        <ol class="reviews">
-          <?php for($j = 0; $j < 2; $j++): ?>
-            <?php include_partial('review_li'); ?>
-          <?php endfor; ?>
-    		</ol>
-      </div>
-      <div class="column">
-        <h3>
-          <?php echo __('Comentarios negativos más votados') ?>
-          <img src="/images/icoDown.gif" alt="boo!" />
-        </h3>
-        <ol class="reviews">
-          <?php for($j = 0; $j < 2; $j++): ?>
-            <?php include_partial('review_li'); ?>
-          <?php endfor; ?>
-        </ol>
-      </div>
-    </div>
-  </div>
-  
-  <div class="block" id="latest-comments-on-comments">
-    <div class="block-inner">
-      <h3><?php echo __('Últimos comentarios en los que tú comentaste') ?></h3>
-      <?php for($i = 0; $i < 2; $i++): ?>
-        <div class="column">
-          <ol class="reviews">
-            <?php for($j = 0; $j < 2; $j++): ?>
-              <?php include_partial('review_li'); ?>
-            <?php endfor; ?>
-          </ol>
-        </div><!-- end of column -->
-      <?php endfor; ?>
-    </div>
-  </div>
-<?php elseif (!$sf_user->isAuthenticated()): // TODO: Cambiar a si el usuario no está identificado PERO es un usuario que retorna a Voota (info guardada en cookies) ?>
-  <div class="block" id="latest-comments-on-comments">
-    <div class="block-inner">
-      <h3><?php echo __('Últimos comentarios en lo que visitaste') ?></h3>
-      <?php for($i = 0; $i < 2; $i++): ?>
-        <div class="column">
-          <ol class="reviews">
-            <?php for($j = 0; $j < 2; $j++): ?>
-              <?php include_partial('review_li'); ?>
-            <?php endfor; ?>
-          </ol>
-        </div><!-- end of column -->
-      <?php endfor; ?>
-    </div>
-  </div>
-<?php endif ?>
+
 
 <div class="block" id="rankings">
   <div class="block-inner">
@@ -172,23 +107,6 @@
     </div>
   </div>
 </div>
-
-<?php if ($sf_user->isAuthenticated()): ?>
-  <div class="block" id="latest-profile-visitors">
-    <div class="block-inner">
-      <h3><?php echo __('Quién ha visto tu perfil últimamente') ?></h3>
-      <?php for($i = 0; $i < 3; $i++): ?>
-        <div class="column">
-          <ol class="entities">
-            <?php for($j = 0; $j < 3; $j++): ?>
-              <?php include_partial('user_li'); ?>
-            <?php endfor; ?>
-          </ol>
-        </div>
-      <?php endfor; ?>
-    </div>
-  </div>
-<?php endif ?>
 
 <div class="block last">
   <div class="block-inner">
