@@ -127,6 +127,12 @@ class SfVoUtil
     	return preg_match('|^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{2,})+$|i', $email);
 	}
 
-	
+	public static function isCanonicalVootaUser( $user ) {
+		return $user 
+				&& $user->getProfile()->getNombre()
+				&& $user->getProfile()->getNombre() != ''
+				&& SfVoUtil::isEmail( $user->getUsername() )
+				;
+	}	
 }
  

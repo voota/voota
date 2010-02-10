@@ -34,6 +34,14 @@ class voSecurityFilter extends sfGuardBasicSecurityFilter
       }
     }
     
+    if (
+    	$this->getContext()->getUser()->isAuthenticated() 
+    	&& !sfFacebook::getFacebookClient()->get_loggedin_user() 
+    	&& !SfVoUtil::isCanonicalVootaUser( $this->getContext()->getUser()->getGuardUser() )
+    	) {
+    		$this->getContext()->getUser()->signOut();
+    }
+    
     $filterChain->execute($filterChain);
   }
 }

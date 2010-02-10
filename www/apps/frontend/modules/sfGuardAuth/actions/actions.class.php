@@ -4,14 +4,6 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
-	private function isCanonicalVootaUser( $user ) {
-		return $user 
-				&& $user->getProfile()->getNombre()
-				&& $user->getProfile()->getNombre() != ''
-				&& SfVoUtil::isEmail( $user->getUsername() )
-				;
-	}
-	
   public function executeReminder($request)
   {
     $this->form = new ReminderForm();
@@ -270,10 +262,15 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	
 	$sfGuardUser = $this->getUser()->getGuardUser();
   	if ($op == "dis"){
-	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, null);
-	    $sfGuardUser->save();
-		$sfGuardUser->getProfile()->save();
-		$this->getUser()->getGuardUser()->getProfile()->setFaceBookUID( null );
+  		if (!SfVoUtil::isCanonicalVootaUser( $sfGuardUser )) { // Si no nos ha dado los datos solo le deslogueamos
+  			 $this->getUser()->signout();
+  		}
+  		else { // en caso contrario le desasociamos
+		    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, null);
+		    $sfGuardUser->save();
+			$sfGuardUser->getProfile()->save();
+			$this->getUser()->getGuardUser()->getProfile()->setFaceBookUID( null );
+  		}
   	}
   	else{
 	  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
@@ -284,17 +281,18 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
 	  	}
    	}
-   	
-	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());	
-	$this->profileEditForm = new ProfileEditForm( $formData );
-	
-   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
-   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
+   	if ($this->getUser()->isAuthenticated()) {
+		$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());	
+		$this->profileEditForm = new ProfileEditForm( $formData );
+		
+	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
+	   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
+   	}
   }
   
   public function executeEdit(sfWebRequest $request)
   {    
-    $this->isCanonicalVootaUser = $this->isCanonicalVootaUser( $this->getUser()->getGuardUser() );
+    $this->isCanonicalVootaUser = SfVoUtil::isCanonicalVootaUser( $this->getUser()->getGuardUser() );
     
   	if ( $this->getUser()->isAuthenticated() ){
 	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $this->getUser()->getGuardUser()->getId() );
@@ -304,6 +302,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	
 	$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());
+    
+    if(!SfVoUtil::isEmail($formData->getUsername())){
+    	$formData->setUsername('');
+    }
 	
 	$this->profileEditForm = new ProfileEditForm( $formData );
 	$imagenOri = $formData->getProfile()->getImagen();
@@ -381,6 +383,6 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     
     if (!$this->presentacionValue){
     	$this->presentacionValue = $this->profileEditForm['presentacion']->getValue(); 
-    } 
+    }
   }
 }
