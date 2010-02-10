@@ -2,7 +2,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
 
-<?php if ($sf_user->isFacebookConnected()): ?>
+<?php if ($sf_user->getProfile()->getFacebookUid() && $sf_user->getProfile()->getFacebookUid() != ''): ?>
   <h3>
     <img src="/images/icoFacebook.png" alt="Facebook Connect" />
     <?php echo __('Conectado a Facebook como:') ?> <strong><fb:name uid="<?php echo $sf_user->getProfile()->getFacebookUid() ?>" useyou="false" linked="false"></fb:name></strong>

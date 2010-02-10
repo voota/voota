@@ -4,6 +4,14 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+	private function isCanonicalVootaUser( $user ) {
+		return $user 
+				&& $user->getProfile()->getNombre()
+				&& $user->getProfile()->getNombre() != ''
+				&& SfVoUtil::isEmail( $user->getUsername() )
+				;
+	}
+	
   public function executeReminder($request)
   {
     $this->form = new ReminderForm();
@@ -285,7 +293,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   }
   
   public function executeEdit(sfWebRequest $request)
-  {
+  {    
+    $this->isCanonicalVootaUser = $this->isCanonicalVootaUser( $this->getUser()->getGuardUser() );
+    
   	if ( $this->getUser()->isAuthenticated() ){
 	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $this->getUser()->getGuardUser()->getId() );
 	   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $this->getUser()->getGuardUser()->getId() );

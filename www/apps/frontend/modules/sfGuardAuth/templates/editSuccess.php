@@ -187,6 +187,7 @@
         <td class="submit"><input type="submit" value="<?php echo __('Guardar cambios') ?>" /></td>
         <td class="hints"></td>
       </tr>
+<?php if ($isCanonicalVootaUser): ?>
       <tr>
         <th></th>
         <td class="remove">
@@ -202,6 +203,7 @@
         </td>
         <td class="hints"></td>
       </tr>
+<?php endif ?>
     </table>
   </form>
 </div>
