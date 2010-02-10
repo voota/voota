@@ -3,16 +3,16 @@
 <?php use_helper('SfReview') ?>
 
 <?php if ($sf_user->isFacebookConnected()): ?>
-  <p>
+  <h3>
     <img src="/images/icoFacebook.png" alt="Facebook Connect" />
     <?php echo __('Conectado a Facebook como:') ?> <strong><fb:name uid="<?php echo $sf_user->getProfile()->getFacebookUid() ?>" useyou="false" linked="false"></fb:name></strong>
-    <button onclick="facebookConnect_connect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', 'facebook-connect')"><?php echo __('Desconectar') ?></button>
-  </p>
+    <button onclick="facebookConnect_disconnect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>'); return false"><?php echo __('Desconectar') ?></button>
+  </h3>
   <p><?php echo __('Actualizar tu muro de Facebook:') ?></p>
   <ul>
     <li>
       <p>
-            <?php echo $profileEditForm['fb_publish_votos']->render() ?>
+        <?php echo $profileEditForm['fb_publish_votos']->render() ?>
         <label for="profile_fb_publish_votos"><?php echo __('Cada vez que agregas un voto') ?></label>
       </p>
       <?php if (isset($lastReview) && $lastReview): ?>
@@ -25,7 +25,7 @@
     </li>
     <li>
       <p>
-            <?php echo $profileEditForm['fb_publish_votos_otros']->render() ?>
+        <?php echo $profileEditForm['fb_publish_votos_otros']->render() ?>
         <label for="profile_fb_publish_votos_otros"><?php echo __('Cada vez que opinas sobre un voto hecho por otro usuario') ?></label>
       </p>
       <?php if (isset($lastReviewOnReview) && $lastReviewOnReview): ?>
@@ -39,14 +39,17 @@
     </li>
     <li>
       <p>
-            <?php echo $profileEditForm['fb_publish_cambios_perfil']->render() ?>
+        <?php echo $profileEditForm['fb_publish_cambios_perfil']->render() ?>
         <label for="profile_fb_publish_cambios_perfil"><?php echo __('Cada vez que haces cambios en tu perfil (tu foto o sobre ti)') ?></label>
       </p>
     </li>
   </ul>
 <?php else: ?>
-  Desconectado
-  
-  
-  <?php echo vo_facebook_connect_ajax_button('facebook-connect'); ?>
+  <h3>
+    <img src="/images/icoFacebook.png" alt="Facebook Connect" />
+    <?php echo __('Sincroniza Voota con Facebook') ?>
+  </h3>
+  <p><?php echo __('Sincronizando tu perfil de Voota con Facebook tus contactos podrán seguir sus Vootos y opiniones en tu muro.') ?></p>
+  <p><?php echo __('¿Te animas? Sólo tienes que pinchar sobre el siguiente botón:') ?></p>
+  <p><?php echo vo_facebook_connect_associate_button(); ?></p>
 <?php endif ?>

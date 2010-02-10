@@ -65,7 +65,13 @@ function vo_facebook_connect_button() {
 	return "<a id=\"fbc_button\" href=\"#\">".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
 }
 
-function vo_facebook_connect_ajax_button($box) {
-	$func = "facebookConnect_connect('". url_for('@usuario_fb_edit') ."', '$box')";
+function vo_facebook_connect_ajax_button($box, $func_name) {
+  // FIXME: ¿Nos hace falta para algo más que para asociar el usuario? Si no, eliminar
+	$func = $func_name."('". url_for('@usuario_fb_edit') ."', '$box')";
 	return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
+}
+
+function vo_facebook_connect_associate_button() {
+  $func = "facebookConnect_associate('". url_for('@usuario_fb_edit') ."')";
+  return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
 }

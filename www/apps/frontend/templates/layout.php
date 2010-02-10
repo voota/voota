@@ -51,11 +51,10 @@
       <h1 id="logo"><a href="<?php echo url_for('@homepage') ?>">Voota</a></h1>
       <h2 id="slogan"><?php echo __('Tú tienes la última palabra')?></h2>
 
-      <p id="user-links">
+      <div id="user-links">
         <?php slot('not_logged') ?>
-  	      <?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> 
-		      <br />
-  	      <?php echo vo_facebook_connect_button(); ?>
+          <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
+  	      <p><?php echo vo_facebook_connect_button(); ?></p>
   	      <script type="text/javascript" charset="utf-8">
   	        $(document).ready(function(){
   	          facebookConnect_autoLogin();
@@ -64,11 +63,13 @@
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
-          <?php echo getAvatar( $sf_user->getGuardUser() )?>
+          <p>
+            <?php echo getAvatar( $sf_user->getGuardUser() )?>
 
-          <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
-          ·
-          <?php echo link_to(__('salir'), '@sf_guard_signout', array('id' => 'logout')) ?>
+            <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
+            ·
+            <?php echo link_to(__('salir'), '@sf_guard_signout', array('id' => 'logout')) ?>
+          </p>
           <script type="text/javascript" charset="utf-8">
             $(document).ready(function(){
               facebookConnect_linkLogout();
@@ -77,7 +78,7 @@
         <?php end_slot('logged') ?>
 
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
-      </p>
+      </div>
 
       <?php if ($sf_context->getModuleName() != "home"): ?>
         <div id="search">

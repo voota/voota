@@ -21,6 +21,7 @@ tr.even { background-color: #fbfbfb; }
 #header, #main, #footer { text-align: center;}
 #header-inner, #main-inner, #footer { font-size: 1.3em }
 #header-inner, #main-inner { text-align: left; margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
+#header-inner { height: 110px;}
 #home-index #main,
 #general-contact #main,
 #sfGuardAuth-signin #main,
@@ -49,9 +50,11 @@ h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; colo
 /* Cabecera */
 #logo a { color: #323232; text-decoration: none; font-weight: normal; }
 #slogan { font-size: 1.2em; font-weight: normal; }
-#user-links { position: absolute; top: 10px; right: 0; }
+#user-links { position: absolute; top: 10px; right: 0; text-align: right;}
 #user-links img { padding-right: 10px;}
-#search { position: absolute; top: 55px; right: 0; text-align: right; }
+#user-links p { padding-bottom: 0.5em;}
+#user-links #fbc_button img { padding-right: 0;}
+#search { position: absolute; top: 70px; right: 0; text-align: right; }
 #search fieldset { margin: 0; padding: 0; border: none;}
 #search input[type=submit] { margin-left: 0.5em; width: 8em;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
@@ -194,6 +197,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
 #sfGuardAuth-edit #sidebar { width: 250px;}
+#sfGuardAuth-edit #facebook-connect h3 { padding-bottom: 0.5em; font-weight: normal; font-size: 1.1em;}
 #sfGuardAuth-edit #facebook-connect img { vertical-align: text-bottom;}
 #sfGuardAuth-edit #facebook-connect p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit #facebook-connect ul { margin: 0; padding: 0; list-style: none;}

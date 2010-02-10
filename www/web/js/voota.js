@@ -145,22 +145,34 @@ function facebookConnect_loadPreferences() {
   });
 }
 
-function facebookConnect_disconnect(url, box) {
-	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:url});
+function facebookConnect_disconnect(url) {
+	jQuery.ajax({
+	  type     : 'POST',
+	  dataType : 'html',
+	  url      : url,
+	  success  : function(data, textStatus) {
+	    jQuery('#facebook-connect').html(data);
+    	FB.Connect.logout();
+	  },
+	});
 }
 
-function load_fbdata(){
-	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+dataBox).html(data);},url:dataUrl});
+function facebookConnect_loadPreferences(url){
+	jQuery.ajax({
+	  type     : 'POST',
+	  dataType : 'html',
+	  url      : url,
+	  success  : function(data, textStatus) {
+	    jQuery('#facebook-connect').html(data);
+	    FB.XFBML.Host.parseDomTree();
+	  }
+	});
 }
 
-var dataUrl;
-var dataBox;
-function facebookConnect_connect(url, box) {
-	re_loading( box );
-	dataUrl = url;
-	dataBox = box;
-	
-	jQuery(function(){sf_fb.requireSession(null, load_fbdata)});
-
+function facebookConnect_associate(url) {
+	jQuery(function(){ sf_fb.requireSession(null, function(){
+  	re_loading('facebook-connect');
+	  facebookConnect_loadPreferences(url);
+	}) });
 	return false;
 }
