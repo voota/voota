@@ -24,7 +24,6 @@
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
 	  facebookConnect_loadUserName();
-	  facebookConnect_loadPreferences();
   });
   
   //-->

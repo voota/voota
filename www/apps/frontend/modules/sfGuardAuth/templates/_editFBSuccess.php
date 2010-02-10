@@ -29,7 +29,6 @@
         <label for="profile_fb_publish_votos_otros"><?php echo __('Cada vez que opinas sobre un voto hecho por otro usuario') ?></label>
       </p>
       <?php if (isset($lastReviewOnReview) && $lastReviewOnReview): ?>
-      <?php // if (usuario_tiene_último_comentario_sobre_voto): ?>
         <p>
           <?php echo __('Tu última opinión sobre un voto:') ?>
           <br />
