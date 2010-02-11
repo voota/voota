@@ -137,20 +137,19 @@ function facebookConnect_loadUserName() {
 }
 
 function facebookConnect_disconnect_logout(url, logout_url) {
-  	re_loading('facebook-connect');
+  re_loading('facebook-connect');
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    jQuery('#facebook-connect').html(data);
-
 	    FB.Connect.logoutAndRedirect(logout_url);
 	  },
 	});
 }
 function facebookConnect_disconnect(url) {
-  	re_loading('facebook-connect');
+  re_loading('facebook-connect');
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',

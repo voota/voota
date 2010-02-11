@@ -6,11 +6,20 @@
   <h3>
     <img src="/images/icoFacebook.png" alt="Facebook Connect" />
     <?php echo __('Conectado a Facebook como:') ?> <strong><fb:name uid="<?php echo $sf_user->getProfile()->getFacebookUid() ?>" useyou="false" linked="false"></fb:name></strong>
-    <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
-	    <button onclick="facebookConnect_disconnect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>'); return false"><?php echo __('Desconectar') ?></button>
-    <?php else: ?>
-	    <button onclick="facebookConnect_disconnect_logout('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>'); return false"><?php echo __('Desconectar') ?></button>
-    <?php endif ?>
+    (<a id="facebook-disconnect" href="#"><?php echo __('Desconectar') ?></a>)
+    <script type="text/javascript" charset="utf-8">
+      <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
+  	    $('#facebook-disconnect').click(function() {
+  	      facebookConnect_disconnect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>');
+  	      return false;
+  	    });
+      <?php else: ?>
+        $('#facebook-disconnect').click(function() {
+  	      facebookConnect_disconnect_logout('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
+  	      return false;
+  	    });
+      <?php endif ?>
+    </script>
   </h3>
   <p><?php echo __('Actualizar tu muro de Facebook:') ?></p>
   <ul>
