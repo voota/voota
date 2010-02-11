@@ -171,8 +171,13 @@ class perfilActions extends SfVoActions
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
   	$userProfile = SfGuardUserProfilePeer::doSelectOne( $c );
   	$this->forward404Unless($userProfile);
-  	
   	$this->user = $userProfile->getsfGuardUser();
+  	if (!$this->user->getIsActive() && is_numeric($userProfile->getFacebookUid()) ){
+  		$user = SfGuardUserPeer::retrieveByPK($userProfile->getFacebookUid());
+  		$this->forward404Unless( $user );
+  		$this->redirect('perfil/show?username='. $user->getProfile()->getVanity(), 301);
+  	}
+  	$this->forward404Unless($this->user->getIsActive());
   	
   	$criteria = new Criteria();
 	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
