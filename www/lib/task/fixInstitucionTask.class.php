@@ -57,10 +57,13 @@ EOF;
     		echo " from  " . $institucion->getVanity('es') ." ";
     		echo " to  " . str_replace("-de-", "-", $institucion->getVanity('es')) .", ";
     		echo " nombre_corto from  " . $institucion->getNombreCorto('es') ." ";
-    		echo " to  " . str_replace(" de ", " ", $institucion->getNombreCorto('es')) ." ...\n";
+    		$newNombreCorto = str_replace(" de ", " ", $institucion->getNombreCorto('es'));
+    		$newNombreCorto = str_replace("  ", " ", $newNombreCorto);
+    		$newNombreCorto = str_replace("  ", " ", $newNombreCorto);
+    		echo " to  " . $newNombreCorto ." ...\n";
     		
     		$institucion->setVanity( str_replace("Ayuntamiento-de-", "Ayuntamiento-", $institucion->getVanity('es')), 'es' );
-    		$institucion->setNombreCorto( str_replace("Ayuntamiento de ", "Ayuntamiento ", $institucion->getNombreCorto('es')), 'es' );
+    		$institucion->setNombreCorto( str_replace("Ayuntamiento de ", "Ayuntamiento ", $newNombreCorto), 'es' );
     		$institucion->save();
     		/*
     		$vanityUrl = SfVoUtil::encodeVanity($institucion->getNombreCorto()) ;
@@ -77,13 +80,13 @@ EOF;
     		*/
     	}
     	
-    	if ($institucion->getVanity('ca') == '' || $institucion->getVanity('ca') == null){
+    	//if ($institucion->getVanity('ca') == '' || $institucion->getVanity('ca') == null){
     		echo "creando ca en ". $institucion->getId() ."... \n";
     		$institucion->setVanity( str_replace("Ayuntamiento", "Ajuntament", $institucion->getVanity('es')), 'ca' );
-    		$institucion->setNombreCorto( str_replace("Ayuntamiento", "Ajuntament ", $institucion->getNombreCorto('es')), 'ca' );
-    		$institucion->setNombre( str_replace("Ayuntamiento", "Ajuntament ", $institucion->getNombre('es')), 'ca' );
+    		$institucion->setNombreCorto( str_replace("Ayuntamiento ", "Ajuntament ", $institucion->getNombreCorto('es')), 'ca' );
+    		$institucion->setNombre( str_replace("Ayuntamiento ", "Ajuntament ", $institucion->getNombre('es')), 'ca' );
     		$institucion->save();
-    	}
+    	//}
     }
   }
   
