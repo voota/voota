@@ -175,19 +175,19 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 
 /* Perfil */
 #sfGuardAuth-edit h2 { margin-bottom: 0.5em;}
-#sfGuardAuth-edit #content { width: 95%; margin-top: 2em; margin-left: 1em; position: relative; }
+#sfGuardAuth-edit #content { width: 98%; margin-top: 2em; margin-left: 1em; position: relative; }
 #sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 1em; margin-left: -1em;}
 #sfGuardAuth-edit ol.links li { margin-bottom: 1em;}
 #sfGuardAuth-edit label { font-weight: normal;}
 #sfGuardAuth-edit input[type=text],
 #sfGuardAuth-edit input[type=password],
-#sfGuardAuth-edit textarea { width: 25em;}
+#sfGuardAuth-edit textarea { width: 30em;}
 #sfGuardAuth-edit .vanity input { display: inline; width: 10em;}
 #sfGuardAuth-edit .avatar p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit input[type=submit] { width: 12em;}
 #sfGuardAuth-edit input[type=button] { width: 12em;}
-#sfGuardAuth-edit form th { width: 12em;}
-#sfGuardAuth-edit form td { width: 25em;}
+#sfGuardAuth-edit form th { width: 10em;}
+#sfGuardAuth-edit form td { width: 30em;}
 #sfGuardAuth-edit form td.email p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit .remove h3 { font-size: 1em; padding-top: 2em; padding-bottom: 0.5em;}
 #sfGuardAuth-edit .counter { padding-bottom: 0; text-align: right;}
