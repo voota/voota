@@ -45,7 +45,7 @@ abstract class BasePoliticoForm extends BaseFormPropel
       'alias'                     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'nombre'                    => new sfValidatorString(array('max_length' => 45)),
       'apellidos'                 => new sfValidatorString(array('max_length' => 150)),
-      'email'                     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'email'                     => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'sexo'                      => new sfValidatorString(array('max_length' => 1, 'required' => false)),
       'fecha_nacimiento'          => new sfValidatorDate(array('required' => false)),
       'pais'                      => new sfValidatorString(array('max_length' => 45, 'required' => false)),

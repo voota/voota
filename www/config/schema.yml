@@ -107,7 +107,7 @@ propel:
     alias: { type: VARCHAR, size: '45', required: false }
     nombre: { type: VARCHAR, size: '45', required: true }
     apellidos: { type: VARCHAR, size: '150', required: true }
-    email: { type: VARCHAR, size: '45', required: false }
+    email: { type: VARCHAR, size: '128', required: false }
     sexo: { type: CHAR, size: '1', required: false }
     fecha_nacimiento: { type: DATE, required: false }
     pais: { type: VARCHAR, size: '45', required: false }
