@@ -1620,6 +1620,94 @@ Voota en Facebook: http://www.facebook.com/pages/Voota_ca/147695619187
         <source>Socio</source>
         <target>Soci</target>
       </trans-unit>
+      <trans-unit id="340">
+        <source>Ir a Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="341">
+        <source>Vamos a publicar esto en Facebook, ¿que te parece</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="342">
+        <source>Login/Registrarse</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="343">
+        <source>Opiniones a favor y en contra de %2% en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="344">
+        <source>voota a favor de una opinión de un usuario sobre %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="345">
+        <source>voota en contra de una opinión de un usuario sobre %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="346">
+        <source>voota a favor de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="347">
+        <source>voota en contra de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="348">
+        <source>%1%, opiniones a favor y en contra en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="349">
+        <source>Página de</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="350">
+        <source>ha hecho profundos cambios en su perfil de Voota. </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="351">
+        <source>Conectado a Facebook como:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="352">
+        <source>Desconectar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="353">
+        <source>Actualizar tu muro de Facebook:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="354">
+        <source>Cada vez que agregas un voto</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="355">
+        <source>Tu último voto:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="356">
+        <source>Cada vez que opinas sobre un voto hecho por otro usuario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="357">
+        <source>Tu última opinión sobre un voto:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="358">
+        <source>Cada vez que haces cambios en tu perfil (tu foto o sobre ti)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="359">
+        <source>Sincroniza Voota con Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="360">
+        <source>Sincronizando tu perfil de Voota con Facebook tus contactos podrán seguir sus Vootos y opiniones en tu muro.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="361">
+        <source>¿Te animas? Sólo tienes que pinchar sobre el siguiente botón:</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
