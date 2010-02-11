@@ -189,9 +189,9 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit form th { width: 10em;}
 #sfGuardAuth-edit form td { width: 30em;}
 #sfGuardAuth-edit form td.email p { padding-bottom: 0.5em;}
-#sfGuardAuth-edit .remove h3 { font-size: 1em; padding-top: 2em; padding-bottom: 0.5em;}
+#sfGuardAuth-edit .remove { padding-top: 2em; }
 #sfGuardAuth-edit .counter { padding-bottom: 0; text-align: right;}
-#sfGuardAuth-edit #bajaButtonDiv { padding: 0.5em; background-color: #ff0000; float: left;}
+#sfGuardAuth-edit #bajaVoota { color: #ff0000; }
 #sfGuardAuth-edit #bajaConfirmDiv { float: left;}
 #sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}

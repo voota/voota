@@ -12,7 +12,8 @@
 	  $("#bajaVoota").click(function(){
 		  $("#bajaButtonDiv").addClass('hidden');
 		  $("#bajaConfirmDiv").removeClass('hidden');
-  	  });
+		  return false;
+	  });
 	  $("#noConfirm").click(function(){
 		  $("#bajaButtonDiv").removeClass('hidden');
 		  $("#bajaConfirmDiv").addClass('hidden');
@@ -197,23 +198,22 @@
         <td class="submit"><input type="submit" value="<?php echo __('Guardar cambios') ?>" /></td>
         <td class="hints"></td>
       </tr>
-<?php if ($isCanonicalVootaUser): ?>
-      <tr>
-        <th></th>
-        <td class="remove">
-          <h3><?php echo __('Borrarse de Voota:') ?></h3>
-          <p><?php echo __('Si no deseas utilizar más este servicio, aquí podrás abandonarnos. Por supuesto, todos tus datos asociados a Voota serán borrados.')?></p>
-          <div id="bajaButtonDiv"><input id="bajaVoota" type="button" value="<?php echo __('Borrarse de Voota')?>" /></div>
-          <div id="bajaConfirmDiv" class="hidden">
-          	<?php echo __('¿Seguro?')?>
-          	<?php echo link_to(__('Sí'), '@usuario_remove'
-  			, array('class' => 'confirm')) ?>
-          	<a href="#" id="noConfirm"><?php echo __('No')?></a>
-          </div>
-        </td>
-        <td class="hints"></td>
-      </tr>
-<?php endif ?>
+      <?php if ($isCanonicalVootaUser): ?>
+        <tr>
+          <th></th>
+          <td class="remove">
+            <p><?php echo __('Si no deseas utilizar más este servicio, aquí podrás abandonarnos. Por supuesto, todos tus datos asociados a Voota serán borrados.')?></p>
+            <div id="bajaButtonDiv"><a href="#" id="bajaVoota"><?php echo __('Borrarse de Voota') ?></a></div>
+            <div id="bajaConfirmDiv" class="hidden">
+            	<?php echo __('¿Seguro?')?>
+            	<?php echo link_to(__('Sí'), '@usuario_remove'
+    			, array('class' => 'confirm')) ?>
+            	<a href="#" id="noConfirm"><?php echo __('No')?></a>
+            </div>
+          </td>
+          <td class="hints"></td>
+        </tr>
+    <?php endif ?>
     </table>
   </form>
 </div>
