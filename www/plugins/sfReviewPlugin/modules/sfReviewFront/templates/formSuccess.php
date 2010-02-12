@@ -124,7 +124,7 @@
   	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
   
-  <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
+  <?php // if ($sf_user->getProfile()->getFacebookUid()): ?>
 	  <p class="facebook-only submit">
 	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
 	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
@@ -136,5 +136,5 @@
 	    <?php endif ?>
 	    />
 	  </p>
-  <?php endif ?>
+  <?php // endif ?>
 </form>

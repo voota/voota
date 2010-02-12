@@ -47,16 +47,23 @@ function stream_callback (post_id, exception) {
 
 function sendReviewFormFB(form, text, url, box, attachment, action_links, tip) {
 	gform = form; gurl = url; gbox = box;
-	
+
+	alert(0);
 	if (form.fb_publish.checked){
+		alert(1);
 	    facebookConnect_promptPermission("publish_stream", function(perms) {
+			alert(2);
 	    	if (perms) {
+	    		alert(4);
 	    		publishFaceBook( text, attachment, action_links, tip );
 	    	}
 	    	else {
+	    		alert(5);
 	    		sendReviewForm(form, url, box);
 	    	}
-		});		
+		});
+		alert(6);
+
 	}
 	else {
 		sendReviewForm(form, url, box);

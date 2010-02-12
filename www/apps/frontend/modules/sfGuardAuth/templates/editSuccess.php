@@ -28,7 +28,7 @@
 	  <?php if($hasDeepUpdates): ?>
 	  FB.ensureInit(function () {
 		  FB.Connect.streamPublish(
-				  '<?php echo __('ha hecho profundos cambios en su perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>'
+				  '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>'
 				  , null, null, null
 				  , ''
 				  , null

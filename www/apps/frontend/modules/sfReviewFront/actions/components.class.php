@@ -11,9 +11,9 @@ class sfReviewFrontComponents extends sfReviewComponents
   		$this->partido = PartidoPeer::retrieveByPK($this->reviewEntityId);
   	}
   	else if($this->reviewType == null){
-  		$review_ = SfReviewPeer::retrieveByPK($this->reviewId);
+  		$review_ = SfReviewPeer::retrieveByPK($this->reviewEntityId);
   		if ($review_){
-  			$this->review = $review_->getSfReviewRelatedBySfReviewId();
+  			$this->review = $review_;
 		  	if($this->review->getSfReviewTypeId() == Politico::NUM_ENTITY){
 		  		$this->politico = PoliticoPeer::retrieveByPK($this->review->getEntityId());
 		  	}
