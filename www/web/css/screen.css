@@ -197,7 +197,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
 #sfGuardAuth-edit #sidebar { position: absolute; right: 0; width: 250px;}
 #sfGuardAuth-edit #facebook-connect h3 { padding-bottom: 0.5em; font-weight: normal; font-size: 1.1em;}
-#sfGuardAuth-edit #facebook-connect img { vertical-align: text-bottom;}
+#sfGuardAuth-edit #facebook-connect img { vertical-align: text-bottom; padding-right: 5px;}
 #sfGuardAuth-edit #facebook-connect p { padding-bottom: 0.5em;}
 #sfGuardAuth-edit #facebook-connect ul { margin: 0; padding: 0; list-style: none;}
 #sfGuardAuth-edit #facebook-connect li { margin-top: 0.5em;}

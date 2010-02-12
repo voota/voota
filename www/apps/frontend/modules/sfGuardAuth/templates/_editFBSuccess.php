@@ -4,7 +4,7 @@
 
 <?php if ($sf_user->isAuthenticated() && $sf_user->getProfile()->getFacebookUid() && $sf_user->getProfile()->getFacebookUid() != ''): ?>
   <h3>
-    <img src="/images/icoFacebook.png" alt="Facebook Connect" />
+    <img src="/images/icoFacebookPref.png" alt="Facebook Connect" />
     <?php echo __('Conectado a Facebook como:') ?> <strong><fb:name uid="<?php echo $sf_user->getProfile()->getFacebookUid() ?>" useyou="false" linked="false"></fb:name></strong>
   </h3>
   <p><?php echo __('Actualizar tu muro de Facebook:') ?></p>
