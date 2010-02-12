@@ -256,6 +256,46 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
    	}
   }
 
+  public function executeConfirmMerge(){
+	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
+  		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
+  		$c = new Criteria();
+  		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
+  		$users = SfGuardUserPeer::doSelect( $c );
+  		if (count($users) > 0){
+	  		$userArray = array();
+	  		foreach ($users as $user){
+	  			$userArray[] = $user->getId();
+		  		// Desactivar
+  				$user->setIsActive( false );
+  				// Guardar id del usuario canónico en lugar del fb_uid
+  				$user->getProfile()->setFacebookUid( $this->getUser()->getGuardUser()->getId() );
+  				$user->save();
+  				$user->getProfile()->save();
+	  		}
+	  		// Reasignar opiniones
+	  		$selectCriteria = new Criteria();
+	  		$selectCriteria->add(SfReviewPeer::SF_GUARD_USER_ID, $userArray, Criteria::IN);
+	  		$updateCriteria = new Criteria();
+	  		$updateCriteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
+	  		BasePeer::doUpdate($selectCriteria, $updateCriteria, Propel::getConnection());
+  		}
+  		// FIN: Buscar conflictos
+  		
+		$sfGuardUser = $this->getUser()->getGuardUser();
+	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+	    $sfGuardUser->save();
+	    $sfGuardUser->getProfile()->save();
+	    
+	    //$this->getUser()->signin( $sfGuardUser );
+	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	}
+	
+	$this->forward('sfGuardAuth', 'editFB');
+  }
+  
   public function executeEditFB(sfWebRequest $request)
   {
   	$op = $request->getParameter("op");
@@ -273,7 +313,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		}
   	}
   	else{
-	  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
+	  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
 	  		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
 	  		$c = new Criteria();
 	  		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
@@ -281,22 +321,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
 	  		$users = SfGuardUserPeer::doSelect( $c );
 	  		if (count($users) > 0){
-		  		$userArray = array();
-		  		foreach ($users as $user){
-		  			$userArray[] = $user->getId();
-			  		// Desactivar
-	  				$user->setIsActive( false );
-	  				// Guardar id del usuario canónico en lugar del fb_uid
-	  				$user->getProfile()->setFacebookUid( $this->getUser()->getGuardUser()->getId() );
-	  				$user->save();
-	  				$user->getProfile()->save();
-		  		}
-		  		// Reasignar opiniones
-		  		$selectCriteria = new Criteria();
-		  		$selectCriteria->add(SfReviewPeer::SF_GUARD_USER_ID, $userArray, Criteria::IN);
-		  		$updateCriteria = new Criteria();
-		  		$updateCriteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
-		  		BasePeer::doUpdate($selectCriteria, $updateCriteria, Propel::getConnection());
+	  			$this->faceBookUid = sfFacebook::getFacebookClient()->get_loggedin_user();
+	  			return 'ConfirmMerge';
 	  		}
 	  		// FIN: Buscar conflictos
 	  		

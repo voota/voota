@@ -161,6 +161,7 @@ function facebookConnect_disconnect(url) {
 }
 
 function facebookConnect_loadPreferences(url){
+  	re_loading('facebook-connect');
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
@@ -170,6 +171,8 @@ function facebookConnect_loadPreferences(url){
 	    FB.XFBML.Host.parseDomTree();
 	  }
 	});
+	
+	return false;
 }
 
 function facebookConnect_associate(url) {

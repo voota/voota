@@ -133,6 +133,10 @@ usuario_fb_edit:
   url: /:sf_culture/user/editFB
   param: { module: sfGuardAuth, action: editFB }
   
+usuario_fb_confirm_merge:
+  url: /:sf_culture/user/confirmMerge
+  param: { module: sfGuardAuth, action: confirmMerge }
+  
 usuario_remove_confirm:
   url: /:sf_culture/user/remove/:codigo
   param: { module: sfGuardAuth, action: remove }

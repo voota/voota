@@ -72,6 +72,6 @@ function vo_facebook_connect_ajax_button($box, $func_name) {
 }
 
 function vo_facebook_connect_associate_button() {
-  $func = "facebookConnect_associate('". url_for('@usuario_fb_edit') ."')";
+  $func = "facebookConnect_associate('". url_for('@usuario_fb_edit') ."?op=con')";
   return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
 }
