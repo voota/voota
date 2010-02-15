@@ -48,3 +48,9 @@ function toShownUrl($str) {
 function highlightWords($str, $q) {
 	return SfVoUtil::highlightWords($str, $q);
 }
+
+function sq($str) {
+	$ret = str_replace("'", "\\'", $str);
+	
+	return $ret;
+}
