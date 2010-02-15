@@ -8,7 +8,6 @@
  * @package    sf_sandbox
  * @subpackage form
  * @author     Your name here
- * @version    SVN: $Id: sfPropelFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
  */
 abstract class BaseImagenForm extends BaseFormPropel
 {
