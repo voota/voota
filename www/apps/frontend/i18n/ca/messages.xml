@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-02-11T09:05:37Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-02-12T14:02:40Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1762,6 +1762,30 @@ que estamos.</source>
       </trans-unit>
       <trans-unit id="361">
         <source>¿Te animas? Sólo tienes que pinchar sobre el siguiente botón:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="362">
+        <source>Opiniones a favor y en contra del partido %2% en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="363">
+        <source>voota a favor de una opinión de un usuario sobre el partido %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="364">
+        <source>voota a favor del partido %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="365">
+        <source>Página de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="366">
+        <source>He hecho profundos cambios en mi perfil de Voota. </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="367">
+        <source>Ojo, ahora tienes otra cuenta asociada a tu perfil de Facebook. Unificando las dos todo será más sencillo. ¿Cómo lo ves?</source>
         <target/>
       </trans-unit>
     </body>
