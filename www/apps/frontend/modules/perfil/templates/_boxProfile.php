@@ -8,9 +8,11 @@
       <?php if ($user->getProfile()->getNumeroSocio() != null && $user->getProfile()->getNumeroSocio() != ''): ?>
 	      <br />
 	      <?php echo __('Socio número') ?>: <?php echo $user->getProfile()->getNumeroSocio() ?>
-	      <br />
-	      <?php echo __('Función en Voota') ?>: <?php echo __('Socio') ?>
 	      <a href="http://blog.voota.es/es/socios/">?</a>
+	      <?php if($user->getProfile()->getPapelVoota()): ?>
+	      	  <br />
+		      <?php echo __('Papel en Voota') ?>: <?php echo $user->getProfile()->getPapelVoota() ?>
+      	  <?php endif ?>
       <?php endif ?>
     </p>
     <h3><?php echo __('Donaciones') ?></h3>

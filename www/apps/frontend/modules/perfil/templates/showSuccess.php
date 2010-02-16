@@ -63,10 +63,12 @@
         </div>
       <?php endif ?>
 
+	  <?php if ($user->getProfile()->getMailsContacto() && SfVoUtil::isEmail( $user->getUsername() )):?>
       <p class="contact">
         <?php echo link_to(__('Mandar un mensaje a').' '.fullName($user), '@usuario_contact?username='.$user->getProfile()->getVanity()); ?>
         <img src="/images/email.png" alt="contactar" />
       </p>
+	  <?php endif ?>
     </div>
   </div>
   
@@ -85,7 +87,8 @@
     </form>
 
     <?php if ($reviews->getNbResults() > 0): ?>
-      <h2><?php echo __("%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => fullName($user), '%2%' => $reviews->getNbResults())) ?></h2>
+      <h2><?php echo format_number_choice("[0]0|[1]%1% ha comentado sobre &hellip; (%2% voto)|(1,+Inf]%1% ha comentado sobre &hellip; (%2% votos)", array('%1%' => fullName($user), '%2%' => $reviews->getNbResults()), $reviews->getNbResults()) ?></h2>
+      
         <table>
           <?php foreach ($reviews->getResults() as $review): ?>
 			      <?php include_component_slot('profileReview', array('review' => $review)) ?>

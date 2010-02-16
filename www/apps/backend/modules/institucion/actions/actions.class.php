@@ -46,5 +46,22 @@ class institucionActions extends autoInstitucionActions
 
     $this->setTemplate('edit');
   }
-
+  
+	public function executeDelete(sfWebRequest $request) {
+		$id = $request->getParameter('id');
+		
+	    $criteria = new Criteria();
+	  	$criteria->add(InstitucionI18nPeer::ID, $id);
+	  	InstitucionI18nPeer::doDelete( $criteria );
+		
+	    $criteria = new Criteria();
+	  	$criteria->add(PoliticoInstitucionPeer::INSTITUCION_ID, $id);
+	  	PoliticoInstitucionPeer::doDelete( $criteria );
+		/*
+	    $criteria = new Criteria();
+	  	$criteria->add(EnlacePeer::POLITICO_ID, $id);
+	  	EnlacePeer::doDelete( $criteria );
+	  	*/
+		parent::executeDelete($request);
+	}
 }

@@ -29,6 +29,7 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
+  		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){
   			if (SfVoUtil::matches($review->getText(), $this->q)){

@@ -109,7 +109,7 @@ class generalActions extends sfActions{
   }
   
   public function executeSearch(sfWebRequest $request) {
-  	//echo SfVoUtil::cutToLength("erales de Vizcaya. Concejal del Ayuntamiento de Güeñes. Parlamentaria en el Parlamento Vasco. Siete años como Consejera del Gobierno Vasco. Parlamentaria en el Parlamento Europeo. Funcionaria de la Administración Pública en situación de servicios especiales. ", 100, "...", TRUE);die;
+  	$culture = $this->getUser()->getCulture();
   	
    	$this->q = $request->getParameter("q");
   	
@@ -117,7 +117,7 @@ class generalActions extends sfActions{
    	
    	$cl = $this->resetSphinxClient();
 	
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'partido' );
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "partido_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -134,7 +134,7 @@ class generalActions extends sfActions{
         }	
 	}
 	
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'institucion' );
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "institucion_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -152,7 +152,7 @@ class generalActions extends sfActions{
 	}
 	
 	$cl->SetArrayResult(true);
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'politico' );
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "politico_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
@@ -170,7 +170,7 @@ class generalActions extends sfActions{
         }	
 	}
 	
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), 'usuario' );
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "usuario" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();

@@ -5,10 +5,10 @@
 <tr>
 	<td class="photo">    
 		<?php if( isset($politico) ): ?>
-			<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
+			<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
 		<?php endif ?>
 		<?php if( isset($partido) ): ?>
-			<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/cc_s_'.$partido->getImagen(), 'alt="'. __('Logo de %1%', array('%1%' => $partido)) .'"') ?>
+			<?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Logo de %1%', array('%1%' => $partido)) .'"') ?>
 		<?php endif ?>
     </td>
     

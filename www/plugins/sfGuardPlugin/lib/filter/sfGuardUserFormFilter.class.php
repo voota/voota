@@ -42,12 +42,12 @@ class sfGuardUserFormFilter extends BasesfGuardUserFormFilter
 
     $value = array_pop($values);
     if ($value)
-    	$criterion = $criteria->getNewCriterion(sfGuardUserProfilePeer::NOMBRE, $value);
+    	$criterion = $criteria->getNewCriterion(sfGuardUserProfilePeer::NOMBRE, "%$value%", Criteria::LIKE);
 
     foreach ($values as $value)
     {
     	if ($value)
-    		$criterion->addOr($criteria->getNewCriterion(sfGuardUserProfilePeer::NOMBRE, $value));
+    		$criterion->addOr($criteria->getNewCriterion(sfGuardUserProfilePeer::NOMBRE, "%$value%", Criteria::LIKE));
     }
 
     if (isset($criterion))
@@ -69,12 +69,12 @@ class sfGuardUserFormFilter extends BasesfGuardUserFormFilter
 
     $value = array_pop($values);
     if ($value)
-    	$criterion = $criteria->getNewCriterion(sfGuardUserProfilePeer::APELLIDOS, $value);
+    	$criterion = $criteria->getNewCriterion(sfGuardUserProfilePeer::APELLIDOS, "%$value%", Criteria::LIKE);
 
     foreach ($values as $value)
     {
     	if ($value)
-      		$criterion->addOr($criteria->getNewCriterion(sfGuardUserProfilePeer::APELLIDOS, $value));
+      		$criterion->addOr($criteria->getNewCriterion(sfGuardUserProfilePeer::APELLIDOS, "%$value%", Criteria::LIKE));
     }
 
     if (isset($criterion))
