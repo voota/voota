@@ -58,14 +58,17 @@
 
   <div id="politicians-most-voted" class="list-mini">
     <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
-    
+    <?php if ($politicos->getNbResults() > 0): ?>
 	  <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
 
-    <ul>
+      <ul>
     	<?php foreach ($politicos->getResults() as $politico): ?>
 			<?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
     	<?php endforeach ?>
-    </ul>
+      </ul>
+    <?php else: ?>
+      <p><?php echo __('El partido %1% aun no tiene ningún político inscrito en Voota.', array('%1%' => $partido->getAbreviatura())) ?></p>
+    <?php endif ?>
   </div>
 
   <div class="reviews">

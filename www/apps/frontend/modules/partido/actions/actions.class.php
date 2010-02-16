@@ -123,7 +123,7 @@ class partidoActions extends sfActions
     /* Lista de instituciones */ 
   	$c = new Criteria();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
-  	$c->add(InstitucionPeer::DISABLED, 'N');
+  	$c->add(InstitucionPeer::IS_MAIN, true);
   	$this->instituciones = InstitucionPeer::doSelect($c);
   	/*  Fin Lista de instituciones */
   	
@@ -269,7 +269,7 @@ class partidoActions extends sfActions
   	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
   	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
   	$c->add(PoliticoPeer::PARTIDO_ID, $this->partido->getId());
-  	$c->add(InstitucionPeer::DISABLED, 'N');
+  	$c->add(InstitucionPeer::IS_MAIN, true);
   	$c->setDistinct();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);

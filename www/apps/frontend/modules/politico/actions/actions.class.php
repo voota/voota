@@ -203,7 +203,7 @@ class politicoActions extends sfActions
 	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
   		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
   	}
-  	$c->add(InstitucionPeer::DISABLED, 'N');
+  	$c->add(InstitucionPeer::IS_MAIN, true);
   	$c->setDistinct();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);

@@ -18,6 +18,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'orden'                     => new sfWidgetFormFilterInput(),
       'url'                       => new sfWidgetFormFilterInput(),
       'imagen'                    => new sfWidgetFormFilterInput(),
+      'is_active'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'is_main'                   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
     ));
@@ -29,6 +31,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'orden'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'url'                       => new sfValidatorPass(array('required' => false)),
       'imagen'                    => new sfValidatorPass(array('required' => false)),
+      'is_active'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'is_main'                   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
     ));
@@ -105,6 +109,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'orden'                     => 'Number',
       'url'                       => 'Text',
       'imagen'                    => 'Text',
+      'is_active'                 => 'Boolean',
+      'is_main'                   => 'Boolean',
       'eleccion_institucion_list' => 'ManyKey',
       'politico_institucion_list' => 'ManyKey',
     );

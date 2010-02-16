@@ -51,6 +51,8 @@ propel:
     orden: { type: INTEGER, size: '11', required: false }
     url: { type: VARCHAR, size: '255', required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
+    is_active: { type: boolean, required: true, default: 1 }
+    is_main: { type: boolean, required: true, default: 1 }
     _indexes: { fk_geo: [geo_id] }
   institucion_i18n:
     _attributes: { phpName: InstitucionI18n }

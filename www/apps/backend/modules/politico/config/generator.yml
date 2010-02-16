@@ -26,9 +26,10 @@ generator:
         display: 
           "Datos voota": [alias,partido_id, vanity]
           "Display partido": [_partido_view]
-          "Datos personales": [imagen,nombre,apellidos,email,politico_institucion_list,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
+          "Datos personales": [imagen,nombre,apellidos,email,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]
           "Traducibles": [_bio_preview,es,ca]
           "Enlaces": []
+          "Instituciones": []
         fields:
           politico_institucion_list:
             label: Instituciones

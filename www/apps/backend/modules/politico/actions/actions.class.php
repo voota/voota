@@ -20,6 +20,13 @@ require_once dirname(__FILE__).'/../lib/politicoGeneratorHelper.class.php';
  */
 class politicoActions extends autoPoliticoActions
 {
+	public function executeAutoComplete($request)
+	{
+	  $this->getResponse()->setContentType('application/json');
+	  $instituciones = InstitucionI18nPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
+	  return $this->renderText(json_encode($instituciones));
+	}
+
 	public function executeUpdate(sfWebRequest $request)
   	{
 	  	$cacheManager = $this->getContext()->getViewCacheManager();
@@ -64,10 +71,13 @@ class politicoActions extends autoPoliticoActions
 				$img->politico( $imageFileName );
 			}
 		}
-*/
+*/		
 		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
-
+		$this->configuration->setInstituciones($this->getRoute()->getObject()->getPoliticoInstitucions());		
+		
 		parent::executeEdit( $request );
+		$this->form->setOption('url', $this->getController()->genUrl('politico/autoComplete'));	
+		$this->form->configure();
 	}
 	public function executeDelete(sfWebRequest $request) {
 		$id = $request->getParameter('id');
@@ -92,6 +102,12 @@ class politicoActions extends autoPoliticoActions
 	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
 	  $enlace->delete();
 	  $this->redirect('@politico_edit?id='.$enlace->getPolitico()->getId());
+	}
+	
+	public function executeDeleteInstitucion(sfWebRequest $request) {
+	  $institucion = PoliticoInstitucionPeer::retrieveByPK($request->getParameter('idm'), $request->getParameter('idi'));
+	  $institucion->delete();
+	  $this->redirect('@politico_edit?id='.$institucion->getPoliticoId());
 	}
 	
 }

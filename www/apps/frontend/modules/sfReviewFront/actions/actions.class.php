@@ -22,7 +22,6 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFr
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
   	public function executeForm(sfWebRequest $request){
-  		parent::executeForm( $request );
 		if( $this->getUser()->isAuthenticated() ){
 		  	$this->getUser()->setAttribute('url_back', '');
 		  	
@@ -31,6 +30,8 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  	$this->getUser()->setAttribute('review_text', '');
 		  	$this->getUser()->setAttribute('review_c', '');		  	
 		}
+		
+  		return parent::executeForm( $request );
   	}
   	
 	private function clearCache( $politico ) {
@@ -173,10 +174,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
   	
   	$this->getUser()->setFlash('notice_type', 'warning', true);
+  	/*
     $this->getUser()->setFlash(
     	'notice', 
 		sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
 		, true
 	);
+	*/
+	
+	$this->redirect('@sf_guard_signin');
   }
 }

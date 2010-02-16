@@ -81,17 +81,21 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewType = $request->getParameter("t");
   	$this->reviewEntityId = $request->getParameter("e");
   	$this->reviewBox = $request->getParameter("b");
+  	$nl = $request->getParameter("nl");
   	$this->reviewText = '';
   	$this->reviewId = '';
   	if ($request->getAttribute("cf") == 1) {
   		$this->cf = 1;	
   	}
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
-  		
   	if (! $this->getUser()->isAuthenticated()) {
-		$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
-  		
-  		echo "<script>document.location='".$this->getContext()->getController()->genUrl("@sf_guard_signin", true)."'</script>";die;
+		//$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
+  		if( $nl == 1 ){
+  			$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
+  		}
+  		else {
+			return 'NotLogged';
+  		}
   	}
   	
   	$criteria = new Criteria();

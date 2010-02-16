@@ -11,6 +11,7 @@
 class politicoGeneratorConfiguration extends BasePoliticoGeneratorConfiguration
 {
 	var $enlaces;
+	var $instituciones;
 	
   public function getFormDisplay()
   {
@@ -23,11 +24,23 @@ class politicoGeneratorConfiguration extends BasePoliticoGeneratorConfiguration
 	  	$enlacesDisplay[] = 'enlace';
 	  	$ret['Enlaces'] = $enlacesDisplay;
   	}
+  	if (isset($this->instituciones)){
+	  	$institucionesDisplay = array();
+	  	foreach ($this->instituciones as $institucion){
+	  		$institucionesDisplay[] = 'institucion'. $institucion->getInstitucion()->getId();
+	  	}
+	  	$institucionesDisplay[] = 'institucion';
+	  	$ret['Instituciones'] = $institucionesDisplay;
+  	}
     return $ret;
   }
   public function setEnlaces( $enlaces )
   {
   	$this->enlaces = $enlaces;
+  }
+  public function setInstituciones( $instituciones )
+  {
+  	$this->instituciones = $instituciones;
   }
   
 }

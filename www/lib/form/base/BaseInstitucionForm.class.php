@@ -21,6 +21,8 @@ abstract class BaseInstitucionForm extends BaseFormPropel
       'orden'                     => new sfWidgetFormInputText(),
       'url'                       => new sfWidgetFormInputText(),
       'imagen'                    => new sfWidgetFormInputText(),
+      'is_active'                 => new sfWidgetFormInputCheckbox(),
+      'is_main'                   => new sfWidgetFormInputCheckbox(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Eleccion')),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
     ));
@@ -33,6 +35,8 @@ abstract class BaseInstitucionForm extends BaseFormPropel
       'orden'                     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'url'                       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'is_active'                 => new sfValidatorBoolean(),
+      'is_main'                   => new sfValidatorBoolean(),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Eleccion', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
     ));

@@ -42,16 +42,22 @@ class PoliticoForm extends BasePoliticoForm
   		, $this['partido_txt']
   		, $this['sumu']
   		, $this['sumd']
+  		, $this['politico_institucion_list']
   		, $this['sf_guard_user_profile_id']
   	);
     
-    
+  $this->widgetSchema['sf_guard_user_profile_id'] = new sfWidgetFormChoice(array(
+    'choices'          => array(),
+    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+    'renderer_options' => array(
+      'model' => 'Institucion',
+      'url'   => $this->getOption('url')
+    )
+  ));
     
     $this->embedI18n(array('es', 'ca'));
     
   	
-    $this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();
-    $this->widgetSchema['sumd'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['sexo'] = new sfWidgetFormSelect(array('choices' => self::$generos));
     $this->widgetSchema['relacion'] = new sfWidgetFormSelect(array('choices' => self::$relaciones));
     
@@ -71,14 +77,13 @@ class PoliticoForm extends BasePoliticoForm
 	));
 	
     $this->validatorSchema['email'] = new sfValidatorEmail(array('required' => false));  
-    $this->validatorSchema['sumu'] = new sfValidatorString(array('required' => true));  
-    $this->validatorSchema['sumd'] = new sfValidatorString(array('required' => true));  
 	$this->validatorSchema['imagen'] = new sfValidatorFile(array(
    'required'   => false,
    'mime_types' => 'web_images',
 	'path' => sfConfig::get('sf_upload_dir').'/politicos',
    'validated_file_class' => 'sfResizedFile',
 	));
+  	
 	if (!$this->isNew()) {
 		// embed all enlace forms
 		foreach ($this->getObject()->getEnlaces() as $enlace) {
@@ -106,9 +111,44 @@ class PoliticoForm extends BasePoliticoForm
 
 		// set a custom label for the embedded form
 		$this->widgetSchema['enlace']->setLabel('Nuevo enlace');
-		
-		
-		
+	}	
+	
+	if (!$this->isNew()) {
+		// embed all institucion forms
+		foreach ($this->getObject()->getPoliticoInstitucions() as $institucion) {
+	   		// create a new insti form for the current insti model object
+			$institucionForm = new PoliticoInstitucionForm( $institucion );
+			$institucionForm->setOption('url', $this->getOption('url'));
+			$institucionForm->configure();
+			
+			// embed the institucion form in the main politico form
+			$this->embedForm('institucion'.$institucion->getInstitucion()->getId(), $institucionForm);
+			
+			// set a custom label for the embedded form
+			$this->widgetSchema['institucion'.$institucion->getInstitucion()->getId()]->setLabel('Institucion '.$institucion->getInstitucion()->getId());
+
+			// change the name widget to sfWidgetFormInputDelete
+			/*
+			$this->widgetSchema['institucion'.$institucion->getInstitucion()->getId()]['url'] = new sfWidgetFormInputDelete(array(
+				'url' => 'politico/deleteInstitucion',      // required
+				'model_id' => $institucion->getInstitucion()->getId(),        // required
+				'confirm' => 'Sure???',                     // optional
+			));
+			*/
+		}
+
+		// create a new institucion form for a new institucion model object
+		$politicoInstitucion = new PoliticoInstitucion();
+		$politicoInstitucion->setPoliticoId( $this->getObject()->getId() );
+		$institucionForm = new PoliticoInstitucionForm( $politicoInstitucion );
+		$institucionForm->setOption('url', $this->getOption('url'));
+		$institucionForm->configure();
+
+		// embed the institucion form in the main politico form
+		$this->embedForm('institucion', $institucionForm);
+
+		// set a custom label for the embedded form
+		$this->widgetSchema['institucion']->setLabel('Nueva institución');
 	}
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
@@ -120,6 +160,17 @@ class PoliticoForm extends BasePoliticoForm
 		
 			} else {
 				$this->embeddedForms['enlace']->getObject()->
+		                setPolitico($this->getObject());
+			}
+			
+		
+			if (is_null($taintedValues['institucion']['institucion_id']) || strlen($taintedValues['institucion']['institucion_id']) === 0 ) {
+				unset($this->embeddedForms['institucion'], $taintedValues['institucion']);
+		
+				$this->validatorSchema['institucion'] = new sfValidatorPass();
+		
+			} else {
+				$this->embeddedForms['institucion']->getObject()->
 		                setPolitico($this->getObject());
 			}
 		}	
