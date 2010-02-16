@@ -1,27 +1,29 @@
 @charset "utf-8";
 
-/* TODO: Cambiar tamaños de fuentes una vez eliminados todos los h6 */
-
 html { overflow-y: scroll; }
-body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 62.5%; }
-p { margin:0; padding-bottom: 1.5em; line-height: 150%;}
+body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, serif; color: #323232; font-size: 13px; }
+p { margin:0; padding-bottom: 20px; line-height: 150%;}
 img, a img { border: none; vertical-align: middle; }
 table { padding:0; margin:0; border-collapse: collapse; }
+
+/* Encabezados */
+h1 { font-size: 52px; margin: 0; color: #2b56ff; }
+h2 { font-size: 20px; margin: 0 0 20px 0; font-weight: normal; }
+h3 { font-size: 16px; margin: 0; }
+h4 { font-size: 13px; margin: 0; color: #323232 }
 
 /* Clases genéricas */
 .hidden { display:none; }
 .shown { display:block; }
-.tips { font-size: 0.8em; padding-top: 17px; }
-.pagination { font-size: 1.2em; margin-top: 3em; text-align: center; word-spacing: 1em; font-weight: bold; }
+.pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold; }
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
 tr.even { background-color: #fbfbfb; }
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
-#header-inner, #main-inner, #footer { font-size: 1.3em }
-#header-inner, #main-inner { text-align: left; margin: 0 auto 2em auto; width: 960px; position: relative; overflow: hidden; }
-#header-inner { height: 110px;}
+#header-inner, #main-inner { text-align: left; margin: 0 auto 20px auto; width: 960px; position: relative; overflow: hidden; }
+#header-inner { height: 120px;}
 #home-index #main,
 #general-contact #main,
 #sfGuardAuth-signin #main,
@@ -33,134 +35,125 @@ tr.even { background-color: #fbfbfb; }
 #sfGuardAuth-unsubscribe #main,
 #sfGuardAuth-passwordChanged #main,
 #sfGuardAuth-remove #main,
-/* FIXME: puede que la acción no acabe llamándose así */
 #perfil-reviews #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
-#main-inner { padding: 2em 0; }
+#main-inner { padding: 20px 0; }
 #content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
 
-/* Encabezados */
-h1 { font-size: 4em; margin: 0; color: #2b56ff; }
-h2 { font-size: 1.6em; margin: 0 0 1em 0; font-weight: normal; }
-h3 { font-size: 1.2em; margin: 0; }
-h4 { font-size: 1em; margin: 0; color: #323232 }
-h5 { font-size: 1em; margin: 0; color: #323232; }
-h6 { font-size: 1em; font-weight: normal; margin: 0; padding-bottom: 0.5em; color: #323232; line-height: 1.60em; }
-
 /* Cabecera */
 #logo a { color: #323232; text-decoration: none; font-weight: normal; }
-#slogan { font-size: 1.2em; font-weight: normal; }
+#slogan { font-size: 16px; font-weight: normal; }
 #user-links { position: absolute; top: 10px; right: 0; text-align: right;}
 #user-links img { padding-right: 10px;}
-#user-links p { padding-bottom: 0.5em;}
+#user-links p { padding-bottom: 10px;}
 #user-links #fbc_button img { padding-right: 0;}
 #search { position: absolute; top: 70px; right: 0; text-align: right; }
 #search fieldset { margin: 0; padding: 0; border: none;}
-#search input[type=submit] { margin-left: 0.5em; width: 8em;}
+#search input[type=submit] { margin-left: 10px; width: 90px;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
-#contact-links ul li { float: left; padding: 0 20px 0 2em;}
+#contact-links ul li { float: left; padding: 0 20px 0 40px;}
 #contact-links ul li.blog { background: transparent url(/images/icoBlog.gif) right center no-repeat;}
 #contact-links ul li.twitter { background: transparent url(/images/icoTwitter.png) right center no-repeat;}
 #contact-links ul li.facebook { background: transparent url(/images/icoFacebook.png) right center no-repeat;}
 
 /* IE 6 */
-#ie6 { position: relative; margin: 2em 0; padding: 1em; border: 1px solid red;}
-#ie6 h3 { font-size: 1em; padding-bottom: 1em;}
-#ie6 .close { position: absolute; top: 1em; right: 1em;}
+#ie6 { position: relative; margin: 40px 0; padding: 20px; border: 1px solid red;}
+#ie6 h3 { font-size: 16px; padding-bottom: 20px;}
+#ie6 .close { position: absolute; top: 20px; right: 20px;}
 
 
 /* Footer */
-#footer { text-align: center; padding-top: 2em; }
-#footer .nav-links, #footer .lang-links { text-align: center; margin: 0; padding-bottom: 1em; }
-#footer .nav-links a, #footer .lang-links a { margin: 0 1.25em; }
-#footer .license { background-color: #343434; padding: 0.3em; color: white; margin-bottom: 1em; }
+#footer { text-align: center; padding-top: 20px; }
+#footer .nav-links, #footer .lang-links { text-align: center; margin: 0; padding-bottom: 20px; }
+#footer .nav-links a, #footer .lang-links a { margin: 0 20px; }
+#footer .license { background-color: #343434; padding: 6px; color: white; margin-bottom: 20px; }
 #footer .license a { color: white; }
 #footer .license img { vertical-align: -13px;}
-#footer .copyright { border-top: 1px dotted #343434; padding: 1em 0; }
+#footer .copyright { border-top: 1px dotted #343434; padding: 20px 0; }
 
 /* Mensajes */
-.success-msg, .notice { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
-.warning { border: 1px solid #9398ae; width: 97%; padding: 1em; margin: 1em 0; font-weight: bold; }
-.error { border: 1px solid #9398ae; width: 26em; padding: 1em; margin: 1em 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
-.next-step-msg { padding-bottom: 0.5em; font-weight: bold;}
+.success-msg, .notice { border: 1px solid #9398ae; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.warning { border: 1px solid #9398ae; width: 97%; padding: 20px; margin: 20px 0; font-weight: bold; }
+.error { border: 1px solid #9398ae; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
+.next-step-msg { padding-bottom: 10px; font-weight: bold;}
 
 /* Cajas */
 .box { background: transparent url(/images/shadow.png); position: relative;}
-.box h2 { font-size: 1em; padding-bottom: 1em; }
-.box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 1em; position: relative; top: -5px; left: -5px; }
+.box h2 { font-size: 16px; padding-bottom: 20px; }
+.box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 20px; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
-.box-contact ul li { margin-bottom: 0.5em; padding-left: 20px; }
+.box-contact ul li { margin-bottom: 10px; padding-left: 20px; }
 .box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
 .box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; }
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
 .box-profile .box-inner { background-color: #fdffcd }
-.box-profile h3 { font-size: 1em;}
+.box-profile h3 { font-size: 16px;}
 .box-profile button { width: 180px;}
 
 /* Formularios */
 form { margin: 0; padding: 0;}
-form dl dt { margin-bottom: 0.5em;}
-form dl dd { margin: 0 0 1.5em 0;}
-form th, form td { padding-bottom: 1.5em; vertical-align: top;}
-form th { text-align: left; padding: 5px 1em 5px 0;}
-form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 0.9em; }
-input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; padding: 2px; width:20em }
-input[type=submit], button { width: 8em; color: #323232; }
-input[type=button] { width: 8em; color: #323232; }
+form dl dt { margin-bottom: 10px;}
+form dl dd { margin: 0 0 20px 0;}
+form th, form td { padding-bottom: 20px; vertical-align: top;}
+form th { text-align: left; padding: 5px 20px 5px 0;}
+form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px; }
+input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; padding: 2px; width:270px }
+input[type=submit], button { width: 90px; color: #323232; }
+input[type=button] { width: 90px; color: #323232; }
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
-textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 1em; resize: none; width:20em; padding: 2px;}
+textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
 .submit { text-align: right; clear: both;}
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
-.hints { padding: 5px 0.5em; font-size: 0.9em;}
+.hints { padding: 5px 10px; font-size: 11px;}
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
-#error #main h2 { text-align: center; color: #2b56ff; font-size: 3em; margin-bottom: 0.5em;}
-#error #message { padding: 0 240px 4em 240px;}
+#error #main h2 { text-align: center; color: #2b56ff; font-size: 40px; margin-bottom: 10px;}
+#error #message { padding: 0 240px 40px 240px;}
 #error #hands { padding-bottom: 0; text-align: center;}
 #error #footer { padding-top: 0;}
 
 /* Listado de instituciones */
-#institutions-list { margin-bottom: 2em;}
+#institutions-list { margin-bottom: 40px;}
 #institutions-list ol { list-style: none; padding: 0; overflow: hidden;}
 #institutions-list li.column { float: left; margin-right: 40px;}
 #institutions-list li.first { margin-right: 10px;}
 
 /* Home */
 #home-index #main-inner { width: 100%; margin: 0;}
-#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 2em; overflow: hidden;}
+#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 40px; overflow: hidden;}
 #home-index .block.last { background: none; padding-bottom: 0;}
-#home-index .block-inner { margin: 0 auto 3em auto; width: 960px; overflow: hidden;}
-#home-index h3 { padding-bottom: 1em;}
-#home-index #summary { margin-bottom: 1em; }
-#home-index #summary h2 { margin-bottom: 0.5em;}
-#home-index #summary ul { padding-left: 1em; }
-#home-index #summary ul li { margin-bottom: 1.5em;}
-#home-index ol.entities { list-style: none; margin: 1em 0; padding: 0 0 0 1em;}
-#home-index ol.entities li { margin: 0 3% 1em 0; float: left; height: 60px; font-weight: normal; overflow: hidden;}
+#home-index .block-inner { margin: 0 auto 40px auto; width: 960px; overflow: hidden;}
+#home-index h3 { padding-bottom: 20px;}
+#home-index #summary { margin-bottom: 20px; }
+#home-index #summary h2 { margin-bottom: 10px;}
+#home-index #summary ul { padding-left: 20px; }
+#home-index #summary ul li { margin-bottom: 20px;}
+#home-index ol.entities { list-style: none; margin: 20px 0; padding: 0 0 0 20px;}
+#home-index ol.entities li { margin: 0 30px 20px 0; float: left; height: 60px; font-weight: normal; overflow: hidden;}
 #home-index ol.entities li .avatar { float: left;}
 #home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
-#home-index ol.entities li .votes { margin: 0.5em 0 0 45px; padding: 0;}
-#home-index #summary ol.entities { padding-top: 1em;}
-#home-index #summary ol.entities li { width: 30%;}
+#home-index ol.entities li .votes { margin: 10px 0 0 45px; padding: 0;}
+#home-index #summary ol.entities { padding-top: 20px;}
+#home-index #summary ol.entities li { width: 285px;}
 #home-index #summary ul li ol.entities { padding-left: 0;}
-#home-index .search { clear: left; padding: 0; margin-top: 2em; overflow: hidden; }
-#home-index .search label { font-size: 1.4em; font-weight: bold; padding-right: 0.5em; }
+#home-index .search { clear: left; padding: 0; margin-top: 20px; overflow: hidden; }
+#home-index .search label { font-size: 16px; font-weight: bold; padding-right: 10px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
-#home-index .search input[type=submit] { margin-left: 0.5em; width: 8em; }
-#home-index #latest-comments-votes h3 { padding-bottom: 0.5em;}
+#home-index .search input[type=submit] { margin-left: 10px; width: 90px; }
+#home-index #latest-comments-votes h3 { padding-bottom: 10px;}
 #home-index #politicians-top5,
 #home-index #political-groups,
 #home-index #institutions,
-#home-index #latest-profile-visitors .column { width: 30%; margin-right: 3%; float: left;}
+#home-index #latest-profile-visitors .column { width: 285px; margin-right: 30px; float: left;}
 #home-index #latest-comments-votes .column,
 #home-index #latest-comments-on-comments .column,
 #home-index #latest-comments-on-visited .column { width: 45%; float: left; margin-right: 3%;}
-#home-index ol.reviews { padding: 0 0 0 1em;}
-#home-index .ranking-link { clear: both; padding-left: 1em;}
-#home-index .review { padding-bottom: 1em;}
+#home-index ol.reviews { padding: 0 0 0 20px;}
+#home-index .ranking-link { clear: both; padding-left: 20px;}
+#home-index .review { padding-bottom: 20px;}
 #home-index .signup { margin-left: 170px; font-weight: bold;}
 
 /* Contacto */
@@ -169,80 +162,77 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #general-contact #content { width: 70%; }
 
 /* Normas */
-#general-rules #content { width: 65%; margin-left: 1em; }
-#general-rules #content h3 { margin-bottom: 1em; }
-#general-rules #content h3#summary { margin-bottom: 2em; }
+#general-rules #content { width: 65%; margin-left: 20px; }
+#general-rules #content h3 { margin-bottom: 20px; }
+#general-rules #content h3#summary { margin-bottom: 40px; }
 
 /* Perfil */
-#sfGuardAuth-edit h2 { margin-bottom: 0.5em;}
-#sfGuardAuth-edit #content { width: 98%; margin-top: 2em; margin-left: 1em; position: relative; }
-#sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 1em; margin-left: -1em;}
-#sfGuardAuth-edit ol.links li { margin-bottom: 1em;}
+#sfGuardAuth-edit h2 { margin-bottom: 10px;}
+#sfGuardAuth-edit #content { margin-top: 2em; position: relative; }
+#sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 20px; margin-left: -20px;}
+#sfGuardAuth-edit ol.links li { margin-bottom: 20px;}
 #sfGuardAuth-edit label { font-weight: normal;}
 #sfGuardAuth-edit input[type=text],
 #sfGuardAuth-edit input[type=password],
-#sfGuardAuth-edit textarea { width: 30em;}
-#sfGuardAuth-edit .vanity input { display: inline; width: 10em;}
-#sfGuardAuth-edit .avatar p { padding-bottom: 0.5em;}
-#sfGuardAuth-edit input[type=submit] { width: 12em;}
-#sfGuardAuth-edit input[type=button] { width: 12em;}
-#sfGuardAuth-edit form th { width: 10em;}
-#sfGuardAuth-edit form td { width: 30em;}
-#sfGuardAuth-edit form td.email p { padding-bottom: 0.5em;}
-#sfGuardAuth-edit .remove { padding-top: 2em; }
+#sfGuardAuth-edit textarea { width: 390px;}
+#sfGuardAuth-edit .vanity input { display: inline; width: 130px;}
+#sfGuardAuth-edit .avatar p { padding-bottom: 10px;}
+#sfGuardAuth-edit input[type=submit] { width: 150px;}
+#sfGuardAuth-edit input[type=button] { width: 150px;}
+#sfGuardAuth-edit form th { width: 130px;}
+#sfGuardAuth-edit form td { width: 390px;}
+#sfGuardAuth-edit form td.email p { padding-bottom: 10px;}
+#sfGuardAuth-edit .remove { padding-top: 40px; }
 #sfGuardAuth-edit .counter { padding-bottom: 0; text-align: right;}
 #sfGuardAuth-edit #bajaConfirmDiv { float: left;}
-#sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 1em; }
+#sfGuardAuth-edit #bajaConfirmDiv a { padding-left: 20px; }
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
 #sfGuardAuth-edit #sidebar { position: absolute; right: 0; width: 250px;}
-#sfGuardAuth-edit #facebook-connect h3 { padding-bottom: 0.5em; font-weight: normal; font-size: 1.1em;}
+#sfGuardAuth-edit #facebook-connect h3 { padding-bottom: 10px; font-weight: normal; font-size: 16px;}
 #sfGuardAuth-edit #facebook-connect img { vertical-align: text-bottom; padding-right: 5px;}
-#sfGuardAuth-edit #facebook-connect p { padding-bottom: 0.5em;}
+#sfGuardAuth-edit #facebook-connect p { padding-bottom: 10px;}
 #sfGuardAuth-edit #facebook-connect ul { margin: 0; padding: 0; list-style: none;}
-#sfGuardAuth-edit #facebook-connect li { margin-top: 0.5em;}
+#sfGuardAuth-edit #facebook-connect li { margin-top: 10px;}
 #sfGuardAuth-edit #facebook-connect q { font-style: italic;}
 
 /* Comentarios y vootos */
 
 /* FIXME: puede que la acción no acabe llamándose así */
-#perfil-reviews #content { width: 95%; margin-top: 1em; margin-left: 1em; }
-#perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 1em 0; }
+#perfil-reviews #content { margin-top: 20px; }
+#perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 20px 0; width: 100%;}
 #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc; }
-#perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
-#perfil-reviews .comments .photo { width: 4%;}
-#perfil-reviews .comments .name { width: 34%; padding: 0 1%; }
-#perfil-reviews .comments .date { font-size: 0.8em;}
-#perfil-reviews .comments .vote { width: 4%;}
-#perfil-reviews .comments .body { width: 40%; padding-right: 2%; }
-#perfil-reviews .comments .actions { width: 14%; }
+#perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0; }
+#perfil-reviews .comments .photo { width: 36px;}
+#perfil-reviews .comments .name { width: 290px; padding: 10px; }
+#perfil-reviews .comments .date { font-size: 11px;}
+#perfil-reviews .comments .vote { width: 35px;}
+#perfil-reviews .comments .body { width: 390px; padding: 10px; }
 
 /* Perfil público */
 
-#perfil-show .balloon { width: 50%; background: transparent url(/images/balloonBottom.png) bottom left no-repeat; padding-bottom: 11px; margin-bottom: 1.5em;}
-#perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 1em 1em 0 1em;}
-#perfil-show .balloon-inner input { width: 15em;}
-#perfil-show #content { width: 95%; margin-top: 1em; margin-left: 1em; }
-#perfil-show .profile h2 a { font-size: 0.65em;}
+#perfil-show .balloon { width: 50%; background: transparent url(/images/balloonBottom.png) bottom left no-repeat; padding-bottom: 11px; margin-bottom: 20px;}
+#perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 20px 20px 0 20px;}
+#perfil-show .balloon-inner input { width: 170px;}
+#perfil-show #content { margin-top: 20px; }
+#perfil-show .profile h2 a { font-size: 13px;}
 #perfil-show .profile .photo { float: left; }
-#perfil-show .profile .description { width: 250px; margin-left: 1em; float: left; }
-#perfil-show .profile .description p { padding-bottom: 0.5em;}
-#perfil-show .profile .description .links { padding-bottom: 1em;}
-#perfil-show .profile .description .links p { padding-top: 1em; padding-bottom: 0;}
+#perfil-show .profile .description { width: 250px; margin-left: 20px; float: left; }
+#perfil-show .profile .description p { padding-bottom: 10px;}
+#perfil-show .profile .description .links { padding-bottom: 10px;}
+#perfil-show .profile .description .links p { padding-top: 20px; padding-bottom: 0;}
 #perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
-#perfil-show .profile .description .links li { padding-bottom: 0.1em;}
-#perfil-show .comments { clear: both; padding-top: 3em; }
-#perfil-show .comments table { border-top: 1px dotted #cccccc; }
+#perfil-show .comments { clear: both; padding-top: 40px; }
+#perfil-show .comments table { border-top: 1px dotted #cccccc; width: 100%;}
 #perfil-show .comments tr { border-bottom: 1px dotted #cccccc; }
-#perfil-show .comments td { border-bottom: 1px dotted #cccccc; padding: 0.5em 0; }
-#perfil-show .comments .photo { width: 4%;}
-#perfil-show .comments .name { width: 34%; padding: 0 1%; }
-#perfil-show .comments .date { font-size: 0.8em;}
-#perfil-show .comments .vote { width: 4%;}
-#perfil-show .comments .body { width: 40%; padding-right: 2%; }
-#perfil-show .comments .actions { width: 14%; }
+#perfil-show .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0; }
+#perfil-show .comments .photo { width: 36px;}
+#perfil-show .comments .name { width: 290px; padding: 10px; }
+#perfil-show .comments .date { font-size: 11px;}
+#perfil-show .comments .vote { width: 35px;}
+#perfil-show .comments .body { width: 390px; padding: 10px; }
 #perfil-show #sidebar { width: 250px; margin-top: 5px;}
-#perfil-show #more_reviews { padding-top: 0.5em;}
+#perfil-show #more_reviews { padding-top: 10px;}
 
 /* Contacto perfil */
 #perfil-contact p.textarea { padding-bottom: 0;}
@@ -252,105 +242,103 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #perfil-contact .submit { text-align: right; }
 
 /* Cambiar contraseña */
-#sfGuardAuth-changePassword form td { width: 20em;}
+#sfGuardAuth-changePassword form td { width: 270px;}
 
 /* About */
-#general-about #content { width: 65%; margin-left: 1em; }
-#general-about #content h3 { margin-bottom: 1em; line-height: 150%; }
+#general-about #content { width: 65%; margin-left: 20px; }
+#general-about #content h3 { margin-bottom: 20px; line-height: 150%; }
 #general-about #content .description h3 { font-weight: normal; }
 #general-about #content .social-data h3 { margin-bottom: 0; }
 #general-about #content .founders,
-#general-about #content .others { margin-top: 3em;}
+#general-about #content .others { margin-top: 40px;}
 #general-about #content .founders ul,
 #general-about #content .others ul { list-style: none; margin: 0; padding: 0;}
 #general-about #content .founders li,
-#general-about #content .others li { margin-bottom: 1em;}
+#general-about #content .others li { margin-bottom: 20px;}
 #general-about #content .founders .avatar,
 #general-about #content .others .avatar { float: left; width: 36px; }
 #general-about #content .founders h4,
 #general-about #content .others h4,
 #general-about #content .founders .body,
-#general-about #content .others .body { margin-left: 41px; }
+#general-about #content .others .body { margin-left: 45px; }
 #general-about #sidebar .social,
-#general-about #sidebar .history { margin-top: 1em;}
-#general-about #sidebar h3 { margin-bottom: 1em;}
-#general-about #sidebar ul { list-style: none; margin: 0; padding-left: 0.5em;}
-#general-about #sidebar li { padding-bottom: 0.5em;}
-#general-about #sidebar dl { margin: 0; padding-left: 0.5em;}
-#general-about #sidebar dt { font-size: 1.2em; font-weight: bold;}
-#general-about #sidebar dd { margin: 0; padding: 0 0 1em 0; line-height: 150%;}
+#general-about #sidebar .history { margin-top: 20px;}
+#general-about #sidebar h3 { margin-bottom: 20px;}
+#general-about #sidebar ul { list-style: none; margin: 0; padding-left: 10px;}
+#general-about #sidebar li { padding-bottom: 10px; }
+#general-about #sidebar dl { margin: 0; padding-left: 10px;}
+#general-about #sidebar dt { font-size: 16px; font-weight: bold;}
+#general-about #sidebar dd { margin: 0; padding: 0 0 20px 0; line-height: 150%;}
 
 /* SignUp y Login */ 
-#sfGuardAuth-signin #main { padding-top: 4em;}
+#sfGuardAuth-signin #main { padding-top: 40px;}
 #sfGuardAuth-signin #main h2 { color:#2b56ff; }
 #sfGuardAuth-signin #signup { float: left; }
 #sfGuardAuth-signin #login  { float: right; }
-#sfGuardAuth-signin .submit input[type=submit] { width: 13em; }
+#sfGuardAuth-signin .submit input[type=submit] { width: 150px; }
 #sfGuardAuth-signin .legal { text-align: right; }
+#sfGuardAuth-signin .hints { font-size: 12px;}
 
 /* Ranking de políticos */
-#politico-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
-#politico-ranking h2 select { font-size: 0.65em;}
+#politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
+#politico-ranking h2 select { font-size: 13px;}
 #politico-ranking table { margin: 0 auto; width: 100%; }
-#politico-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
+#politico-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
 #politico-ranking table tbody td,
-#politico-ranking table tfoot td { padding: 1em 0; }
-#politico-ranking table .ranking { text-align: right; width: 16%; }
-#politico-ranking table .position { text-align: right; width: 3%; }
-#politico-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
-#politico-ranking table .name { text-align: left; width: 24%; }
-#politico-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
-#politico-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
+#politico-ranking table tfoot td { padding: 10px 0; }
+#politico-ranking table .ranking { text-align: right; width: 175px; }
+#politico-ranking table .position { text-align: right; width: 30px; }
+#politico-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
+#politico-ranking table .name { text-align: left; width: 260px; }
+#politico-ranking table .positive-votes { text-align: right; width: 160px; }
+#politico-ranking table .negative-votes { text-align:right; width: 160px; padding-right: 100px;}
 
 /* Ranking de partidos */
 #partido-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
-#partido-ranking h2 select { font-size: 0.65em;}
+#partido-ranking h2 select { font-size: 13px;}
 #partido-ranking table { margin: 0 auto; width: 100%; }
-#partido-ranking table th { background-color: #f6f6f6; padding: 0.5em 0; }
+#partido-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
 #partido-ranking table tbody td,
-#partido-ranking table tfoot td { padding: 1em 0; }
-#partido-ranking table .ranking { text-align: right; width: 16%; }
-#partido-ranking table .position { text-align: right; width: 3%; }
-#partido-ranking table .photo { text-align: right; width: 7%; padding-right: 2%; }
-#partido-ranking table .name { text-align: left; width: 24%; }
-#partido-ranking table .positive-votes { width: 15%; text-align: right; width: 14%; }
-#partido-ranking table .negative-votes { width: 15%; text-align:right; width: 24%; padding-right: 10%;}
+#partido-ranking table tfoot td { padding: 10px 0; }
+#partido-ranking table .ranking { text-align: right; width: 175px; }
+#partido-ranking table .position { text-align: right; width: 30px; }
+#partido-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
+#partido-ranking table .name { text-align: left; width: 260px; }
+#partido-ranking table .positive-votes { text-align: right; width: 160px; }
+#partido-ranking table .negative-votes { text-align:right; width: 160px; padding-right: 100px;}
 
 /* Resultados de búsqueda */
 #general-search table { margin: 0 auto; width: 90%; }
-#general-search table th { background-color: #f6f6f6; padding: 0.5em 0; }
-#general-search table tbody td { padding: 1em 0; }
-#general-search table .photo { text-align: right; width: 10%; padding-right: 2%; }
-#general-search table .name { text-align: left; width: 82%;  }
+#general-search table th { background-color: #f6f6f6; padding: 10px 0; }
+#general-search table tbody td { padding: 10px 0; }
+#general-search table .photo { text-align: right; width: 36px; padding-right: 10px; }
 
 /* Página de político - partido */
 #politico-show h2#name .rank,
-#partido-show h2#name .rank { font-size: 0.6em;}
-#politico-show #content,
-#partido-show #content { width: 940px; padding-left: 20px;}
+#partido-show h2#name .rank { font-size: 11px;}
 #politico-show #photo,
 #partido-show #photo { width: 220px; float: left; }
 #politico-show #photo .vote,
-#partido-show #photo .vote { padding-top: 2em; }
+#partido-show #photo .vote { padding-top: 40px; }
 #politico-show .vote,
-#partido-show .vote { padding-top: 3em; padding-bottom: 1em; clear: left; font-size: 0.9em; }
+#partido-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; font-size: 12px; }
 #politico-show .vote h3,
-#partido-show .vote h3 { font-size: 1.2em; padding-bottom: 1em;}
+#partido-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
 #politico-show #sf_review2,
 #partido-show #sf_review2 { width: 35%; }
 #politico-show #description,
 #partido-show #description { margin-left: 50px; width: 330px; float: left; }
 #politico-show #description h3,
-#partido-show #description h3 { padding-top: 1em; padding-bottom: 0.5em;}
+#partido-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
 #politico-show #description p,
-#partido-show #description p { padding-bottom: 0.5em;}
-#politico-show #description .bio { margin-left: 1em;}
+#partido-show #description p { padding-bottom: 10px;}
+#politico-show #description .bio { margin-left: 20px;}
 #politico-show #external-links,
-#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 4em;}
+#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 40px;}
 #politico-show #external-links ul,
-#partido-show #external-links ul { list-style: none; margin: 0.5em 0; padding-left: 1em;}
+#partido-show #external-links ul { list-style: none; margin: 10px 0; padding-left: 20px;}
 #politico-show #external-links ul li,
-#partido-show #external-links ul li { margin: 0.5em 0;}
+#partido-show #external-links ul li { margin: 10px 0;}
 #politico-show #google-ads,
 #partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
 #politico-show .reviews,
@@ -359,11 +347,11 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
 #partido-show #politicians-most-voted ul li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
-#partido-show .list-mini ul { list-style: none; margin: 1em 0; padding: 0;}
-#partido-show .list-mini ul li { margin-bottom: 1em; overflow: hidden; height: 60px; }
+#partido-show .list-mini ul { list-style: none; margin: 20px 0; padding: 0;}
+#partido-show .list-mini ul li { margin-bottom: 20px; overflow: hidden; height: 60px; }
 #partido-show .list-mini ul li .avatar { float: left; }
 #partido-show .list-mini ul li .name { margin-left: 45px; font-weight: normal;}
-#partido-show .list-mini ul li .votes { margin: 0.5em 0 0 45px; padding: 0;}
+#partido-show .list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
 #partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Popups de ayuda */
@@ -373,11 +361,11 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #google-ads { float:right }
 
 /* Opiniones */
-.reviews { font-size: 0.9em;}
+.reviews { font-size: 12px;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
-.review-new h5, .vote h5 { font-size: 1.2em; color: #2b56ff;}
-.review-new h5 span { font-size: 0.8em;}
+.review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
+.review-new h5 span { font-size: 12px;}
 
 
 /*
