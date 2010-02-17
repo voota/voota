@@ -1,3 +1,4 @@
+<div id="fb_confirm_box">
 <?php use_helper('I18N') ?>
   <h3>
     <img src="/images/icoFacebook.png" alt="Facebook Connect" />
@@ -8,5 +9,6 @@
 <?php echo __('Ojo, ahora tienes otra cuenta asociada a tu perfil de Facebook. Unificando las dos todo será más sencillo. ¿Cómo lo ves?')?>
 </p>
 <form action="#">
-	<input onclick="return facebookConnect_loadPreferences('<?php echo url_for('@usuario_fb_confirm_merge') ?>');" type="submit" value="Ok, unificar cuentas">
+	<input onclick="return facebookConnect_loadPreferences('<?php echo url_for('@usuario_fb_confirm_merge') ?>', 'fb_confirm_box');" type="submit" value="Ok, unificar cuentas">
 </form>
+</div>

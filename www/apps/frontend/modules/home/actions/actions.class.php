@@ -34,20 +34,30 @@ class homeActions extends sfActions{
   	
   	$cuser = new Criteria();
   	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
+  	
   	$cpol = new Criteria();
   	$cpol->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+  	$cpol->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Politico::NUM_ENTITY);
+  	$cpol->add(SfReviewPeer::IS_ACTIVE, TRUE);
   	$cpol->setDistinct();
+  	
+  	$cpar = new Criteria();
+  	$cpar->addJoin(PartidoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+  	$cpar->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
+  	$cpar->add(SfReviewPeer::IS_ACTIVE, TRUE);
+  	$cpar->setDistinct();
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
   	$this->totalUsers = sfGuardUserPeer::doCount($cuser);
   	$this->totalPoliticos = PoliticoPeer::doCount($cpol);
+  	$this->totalPartidos = PartidoPeer::doCount($cpar);
   	
    	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
   			FROM politico p
 			INNER JOIN sf_review r ON r.entity_id = p.id
 			WHERE r.is_active = 1
-			AND IFNULL(r.modified_at, r.created_at) > CURDATE()
+			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 			AND r.sf_review_type_id = ". Politico::NUM_ENTITY ."
 			GROUP BY p.id
 			ORDER BY c desc
@@ -55,12 +65,44 @@ class homeActions extends sfActions{
 			//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
-
 	$statement->execute();
 	$this->politicosMasVotadosUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Politico');
+	
+	
+   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
+  			FROM partido p
+			INNER JOIN sf_review r ON r.entity_id = p.id
+			WHERE r.is_active = 1
+			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 117 DAY)
+			AND r.sf_review_type_id = ". Partido::NUM_ENTITY ."
+			GROUP BY p.id
+			ORDER BY c desc
+			LIMIT 6";
+			//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
+   	$connection = Propel::getConnection();
+	$statement = $connection->prepare($query);
+	$statement->execute();
+	$this->partidosMasVotadosUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Partido');
+		
+	
 	$exclude = "";
-	foreach ($this->politicosMasVotadosUltimamente as $p) {
-		$exclude .= ($exclude == ''?'':', ').  $p->getId();
+	$this->reviewables = array();
+	$partidosUsed = array();
+	foreach ($this->politicosMasVotadosUltimamente as $politico) {
+		//if (count($this->reviewables) < 6){
+			$isPartido = false;
+			foreach ($this->partidosMasVotadosUltimamente as $partido) {
+				if (! in_array($partido->getId(), $partidosUsed) && $partido->getTotalt() > $politico->getTotalt() && count($this->reviewables) < 6) {
+	    			$this->reviewables[] = $partido;
+	    			$partidosUsed[] = $partido->getId();
+	    			$isPartido = true;
+				}
+			}
+			if(!$isPartido && count($this->reviewables) < 6) {
+    			$this->reviewables[] = $politico;
+				$exclude .= ($exclude == ''?'':', ').  $politico->getId();
+			}
+		//}
 	}
 		
 	if (count($this->politicosMasVotadosUltimamente) < 6) {
@@ -153,5 +195,8 @@ class homeActions extends sfActions{
 	}
 	echo "==============================================<br />";
 	*/
+	
+  	$this->response->addMeta('Description', sfContext::getInstance()->getI18N()->__('Comparte opiniones sobre políticos y partidos de España. Ranking de los políticos y partidos más votados.'));
+	
   }
 }

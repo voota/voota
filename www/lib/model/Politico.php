@@ -15,13 +15,18 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class Politico extends BasePolitico
+class Politico extends BasePolitico implements reviewable
 {
 	const NUM_ENTITY = 1;
 	
   public function __toString()
   {
     return $this->getNombre() . ' ' . $this->getApellidos();
+  }
+
+  public function getLongName()
+  {
+    return SfVoUtil::cutToLength("".$this->__toString(), 35) . ($this->getPartido()?" (" . $this->getPartido() .")":'');
   }
   
   public function getPositives() {
@@ -55,5 +60,15 @@ class Politico extends BasePolitico
 	}
 	public function setSumdt($v){
 		return $this->sumdt = $v;
+	}
+	
+	public function getTotalt(){
+		return $this->sumut + $this->sumdt;
+	}
+	public function getPath(){
+		return 'politicos';
+	}
+	public function getModule(){
+		return 'politico';
 	}
 }

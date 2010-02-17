@@ -66,6 +66,12 @@
 
         <?php slot('logged') ?>
           <p>
+            <?php if($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid()): ?>
+              <div id="lo_fb_conn">
+            	<?php echo __('Tip:')?> 
+            	<?php echo vo_facebook_connect_associate_button(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'lo_fb_conn'); ?>
+              </div>
+            <?php endif ?>
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
 
             <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>

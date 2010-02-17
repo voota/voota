@@ -5,10 +5,10 @@ facebook_connect:
 security:
   class: voSecurityFilter
 
-redirect:
-  class: voRedirectFilter
 culture:
   class: voCultureFilter
+redirect:
+  class: voRedirectFilter
 vobase:
   class: voBaseFilter
 browser:

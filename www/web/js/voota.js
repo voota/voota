@@ -160,14 +160,14 @@ function facebookConnect_disconnect(url) {
 	});
 }
 
-function facebookConnect_loadPreferences(url){
-  	re_loading('facebook-connect');
+function facebookConnect_loadPreferences(url, box){
+  	re_loading( box );
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    jQuery('#facebook-connect').html(data);
+	    jQuery('#'+box).html(data);
 	    FB.XFBML.Host.parseDomTree();
 	  }
 	});
@@ -175,10 +175,9 @@ function facebookConnect_loadPreferences(url){
 	return false;
 }
 
-function facebookConnect_associate(url) {
+function facebookConnect_associate(url, box) {
 	jQuery(function(){ sf_fb.requireSession(null, function(){
-  	re_loading('facebook-connect');
-	  facebookConnect_loadPreferences(url);
+	  facebookConnect_loadPreferences(url, box);
 	}) });
 	return false;
 }

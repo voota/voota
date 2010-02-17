@@ -28,6 +28,12 @@ class voCultureFilter extends sfGuardBasicSecurityFilter
   	if ($lang != ''){
   		$this->getContext()->getResponse()->setCookie('voSfCulture', $lang, time()+60*60*24*365, '/');
       	$user->setCulture( $lang );
+      	$lastUrl = $user->getAttribute('last_url');
+      	
+		$lastUrl = preg_replace("/sf_culture=[a-z_]*/is", "sf_culture=$lang", $lastUrl);
+      	if ($lastUrl) {
+      		sfContext::getInstance()->getController()->redirect( $lastUrl );
+      	}
   	}
   	else {
 	  	$culture = sfContext::getInstance()->getRequest()->getParameter('sf_culture');

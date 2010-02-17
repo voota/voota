@@ -6,7 +6,8 @@ ALTER TABLE `voota`.`institucion` ADD COLUMN `is_active` TINYINT(4) NOT NULL DEF
 
 
 update institucion set is_main = 0 where disabled = 'Y' or disabled = 'S';
-update institucion set is_main = 1 where disabled is NULL OR disabled = 'N';
+update institucion set is_main = 1 where disabled = 'N';
+update institucion set is_main = 0 where disabled is NULL ;
 update institucion set is_active = 1;
 
 SET SQL_MODE=@OLD_SQL_MODE;

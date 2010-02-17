@@ -17,6 +17,9 @@
     <?php foreach($topPoliticos as $politico): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico)) ?>
 	  <?php endforeach?>
+    <?php foreach($partidosMasVotados as $partido): ?>
+  		<?php include_component_slot('sparkline_partido', array('id' => "sparkline_tp_".$partido->getId(), 'partido' => $partido)) ?>
+	  <?php endforeach?>
   });
   //-->
 </script>
@@ -35,21 +38,22 @@
   <div class="block-inner">
 
       <ul>
-        <li><h2><?php echo __('Comparte opiniones sobre políticos de España.') ?></h2></li>
-        <li><h2><?php echo __('De momento llevamos %1% opiniones, de %4% personas, sobre %5% políticos.', array(
+        <li><h2><?php echo __('Comparte opiniones sobre políticos y partidos de España.') ?></h2></li>
+        <li><h2><?php echo __('%1% opiniones, de %4% personas, sobre %5% políticos y %6% partidos.', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
         					//'%2%' => format_number($totalUpReviews, 'es_ES'),
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($totalUsers, 'es_ES'),
                 			'%5%' => format_number($totalPoliticos, 'es_ES'),
+        					'%6%' => format_number($totalPartidos, 'es_ES')
         				)) ?></h2></li>
         <li>
-          <h2><?php echo __('Los políticos más votados de hoy:') ?></h2>
+          <h2><?php echo __('Los más votados de esta semana:') ?></h2>
           <ol class="entities">
-            <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-  	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+            <?php foreach($reviewables as $reviewable): ?>
+  	  			  <?php include_partial('reviewable_li', array('id' => "sparkline_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
   	        <?php endforeach?>
-            <?php if(count($politicosMasVotadosUltimamente) < 6):?>
+            <?php if(count($reviewables) < 6):?>
       	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
     	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false)) ?>
               <?php endforeach?>
