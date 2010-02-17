@@ -188,6 +188,11 @@ sf_review_list:
   url:   /:sf_culture/review/list
   param: { module: sfReviewFront, action: list }
   requirements: { sf_culture: (?:es|ca) }
+  
+sf_review_filtered_list:
+  url:   /:sf_culture/review/filteredList
+  param: { module: sfReviewFront, action: filteredList }
+  requirements: { sf_culture: (?:es|ca) }
 
 about:
   url:   /:sf_culture/about

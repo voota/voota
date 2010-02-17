@@ -19,7 +19,13 @@
 class BasesfReviewFrontActions extends sfActions
 {
 	const MAX_LENGTH = 280;
-  	
+	
+  public function executeFilteredList(sfWebRequest $request)
+  {
+  	$this->entityId = $request->getParameter("entityId");  	
+  	$this->value = $request->getParameter("value");  	
+  }
+  
   public function executeList(sfWebRequest $request)
   {
   	$this->id = $request->getParameter("id");  	

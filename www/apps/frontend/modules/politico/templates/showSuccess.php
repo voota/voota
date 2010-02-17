@@ -98,6 +98,22 @@
   </div><!-- end of google-ads -->
 
   <div class="reviews">
+  
+  
+  
+  <div  style="background-color: yellow;">
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'')?>', 'review_tabs');">Todas</a> 
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1')?>', 'review_tabs');">Positivas</a> 
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1')?>', 'review_tabs');">Negativas</a> 
+  	
+  </div>
+  <div id="review_tabs" style="border:1px solid red;">
+	<?php include_component_slot('review_list', array('entityId' => $politico->getId())) ?>
+  </div>
+  
+  
+  
+  
     <div class="positive-reviews">
   	  <h3>  	  
   	  <?php echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 

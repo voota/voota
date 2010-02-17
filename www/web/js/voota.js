@@ -181,3 +181,19 @@ function facebookConnect_associate(url, box) {
 	}) });
 	return false;
 }
+
+
+function loadAjax(url, box){
+  	re_loading( box );
+	jQuery.ajax({
+	  type     : 'POST',
+	  dataType : 'html',
+	  url      : url,
+	  success  : function(data, textStatus) {
+	    jQuery('#'+box).html(data);
+	    FB.XFBML.Host.parseDomTree();
+	  }
+	});
+	
+	return false;
+}

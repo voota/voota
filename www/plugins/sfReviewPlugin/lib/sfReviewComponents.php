@@ -19,6 +19,18 @@
 
 class sfReviewComponents extends sfComponents
 {
+	public function executeReviewList(){
+		$c = new Criteria();
+		$c->add(SfReviewPeer::ENTITY_ID, $this->entityId);
+		if ($this->value){
+			$c->add(SfReviewPeer::VALUE, $this->value);
+		}		
+		$this->reviewsPager = new sfPropelPager('SfReview', 5);
+    	$this->reviewsPager->setCriteria($c);
+    	$this->reviewsPager->init();
+		
+	}
+	
   public function executeSubreviews()
   {
   	if (!isset($this->showCount)){
