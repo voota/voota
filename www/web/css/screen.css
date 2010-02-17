@@ -94,8 +94,9 @@ tr.even { background-color: #fbfbfb; }
 form { margin: 0; padding: 0;}
 form dl dt { margin-bottom: 10px;}
 form dl dd { margin: 0 0 20px 0;}
-form th, form td { padding-bottom: 20px; vertical-align: top;}
+form th, form td { vertical-align: top;}
 form th { text-align: left; padding: 5px 20px 5px 0;}
+form td { padding: 0 0 20px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px; }
 input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; padding: 2px; width:270px }
 input[type=submit], button { width: 90px; color: #323232; }
@@ -105,7 +106,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .submit { text-align: right; clear: both;}
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
-.hints { padding: 5px 10px; font-size: 11px;}
+.hints { padding: 5px 10px; }
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -124,20 +125,19 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #main-inner { width: 100%; margin: 0;}
 #home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding-bottom: 11px; margin-bottom: 40px; overflow: hidden;}
 #home-index .block.last { background: none; padding-bottom: 0;}
-#home-index .block-inner { margin: 0 auto 40px auto; width: 960px; overflow: hidden;}
+#home-index .block-inner { margin: 0 auto 40px auto; width: 960px; }
 #home-index h3 { padding-bottom: 20px;}
 #home-index #summary { margin-bottom: 20px; }
 #home-index #summary h2 { margin-bottom: 10px;}
-#home-index #summary ul { padding-left: 20px; }
+#home-index #summary ul { margin: 0 0 0 -20px; padding: 0 0 0 20px; }
 #home-index #summary ul li { margin-bottom: 20px;}
-#home-index ol.entities { list-style: none; margin: 20px 0; padding: 0 0 0 20px;}
+#home-index ol.entities { list-style: none; margin: 10px 0; padding: 0;}
 #home-index ol.entities li { margin: 0 30px 20px 0; float: left; height: 60px; font-weight: normal; overflow: hidden;}
 #home-index ol.entities li .avatar { float: left;}
 #home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
 #home-index ol.entities li .votes { margin: 10px 0 0 45px; padding: 0;}
-#home-index #summary ol.entities { padding-top: 20px;}
-#home-index #summary ol.entities li { width: 285px;}
-#home-index #summary ul li ol.entities { padding-left: 0;}
+#home-index #summary ol.entities { padding: 20px 0 20px 0; overflow: hidden;}
+#home-index #summary ol.entities li { width: 255px; margin-right: 60px;}
 #home-index .search { clear: left; padding: 0; margin-top: 20px; overflow: hidden; }
 #home-index .search label { font-size: 16px; font-weight: bold; padding-right: 10px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
@@ -245,7 +245,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-changePassword form td { width: 270px;}
 
 /* About */
-#general-about #content { width: 65%; margin-left: 20px; }
+#general-about #content { width: 65%; }
 #general-about #content h3 { margin-bottom: 20px; line-height: 150%; }
 #general-about #content .description h3 { font-weight: normal; }
 #general-about #content .social-data h3 { margin-bottom: 0; }
@@ -277,7 +277,6 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #sfGuardAuth-signin #login  { float: right; }
 #sfGuardAuth-signin .submit input[type=submit] { width: 150px; }
 #sfGuardAuth-signin .legal { text-align: right; }
-#sfGuardAuth-signin .hints { font-size: 12px;}
 
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
@@ -321,7 +320,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-show #photo .vote,
 #partido-show #photo .vote { padding-top: 40px; }
 #politico-show .vote,
-#partido-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; font-size: 12px; }
+#partido-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; }
 #politico-show .vote h3,
 #partido-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
 #politico-show #sf_review2,
@@ -361,11 +360,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #google-ads { float:right }
 
 /* Opiniones */
-.reviews { font-size: 12px;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
 .review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
-.review-new h5 span { font-size: 12px;}
+.review-new h5 span { font-size: 13px;}
 
 
 /*

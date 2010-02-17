@@ -82,7 +82,7 @@
 
   <p id="sf-review-body">
     <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr" title="<?php echo __('¿Algo que comentar? Es el mejor momento :-)') ?>"><?php echo $reviewText ?></textarea>
-    <div id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></div>
+    <span id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></span>
   </p>
 
   <?php if ($reviewId != ''): ?>
@@ -120,8 +120,8 @@
 	  </p>
   */?>
 
-  <p class="submit">
-  	<input type="submit" value="<?php echo __('Enviar')?>" class='sfr_button', id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
+  <p class="sf-review-submit">
+  	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
   
   <?php // if ($sf_user->getProfile()->getFacebookUid()): ?>
