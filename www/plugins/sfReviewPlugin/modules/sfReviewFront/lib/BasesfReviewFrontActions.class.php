@@ -113,6 +113,7 @@ class BasesfReviewFrontActions extends sfActions
   		$this->reviewValue = $review[0]->getValue();
   		$this->reviewText = $review[0]->getText();
   		$this->reviewId = $review[0]->getId();
+  		$this->reviewToFb = $review[0]->getToFb();
   	}
    }
   
@@ -186,6 +187,7 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
   	$review->setCookie( $request->getCookie('symfony') );
 	$review->setCulture( $this->getUser()->getCulture() );	
+	$review->setToFb( $request->getParameter("fb_publish") );	
   	
   	if ($request->getParameter("i") != '') {
   		if ($review->isModified()) {

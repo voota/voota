@@ -3,6 +3,7 @@
 <?php use_helper('VoFormat') ?>
 <?php use_helper('Date') ?>
 <?php use_helper('Number') ?>
+<?php use_helper('SfReview') ?>
 
 <script type="text/javascript">
   <!--

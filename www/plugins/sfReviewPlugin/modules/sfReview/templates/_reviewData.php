@@ -13,6 +13,7 @@
 <tr><td>created at:</td><td><?php echo $form->getObject()->getCreatedAt() ?></td></tr> 
 <tr><td>modified at:</td><td><?php echo $form->getObject()->getModifiedAt() ?></td></tr> 
 <tr><td>is active:</td><td><?php echo $form->getObject()->getIsActive() ?></td></tr> 
+<tr><td>sent to Facebook:</td><td><?php echo $form->getObject()->getToFb() ?></td></tr> 
 </table>
 
 	

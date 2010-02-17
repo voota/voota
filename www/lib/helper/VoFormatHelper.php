@@ -24,27 +24,7 @@ function cutToLength($str, $length = 35) {
 }
 
 
-function toUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') !== 0 ){
-		$ret = "http://$str";	
-	}
-	
-	return $ret;
-}
 
-function toShownUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') === 0 ){
-		$ret = substr($str,7);	
-	}
-	
-	if (strlen($ret) > 30){
-		$ret = cutToLength($ret, 30) . "...";
-	}
-	
-	return $ret;
-}
 function highlightWords($str, $q) {
 	return SfVoUtil::highlightWords($str, $q);
 }

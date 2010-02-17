@@ -80,14 +80,14 @@ propel:
     _attributes: { phpName: Partido, isI18N: true, i18nTable: partido_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     abreviatura: { type: VARCHAR, size: '64', required: false }
-    color: { type: VARCHAR, size: '8', required: false }
+    color: { type: VARCHAR, size: '8', required: false, default: '#ffffff' }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     imagen: { type: VARCHAR, size: '50', required: false }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
-    is_active: { type: boolean, required: true, default: 0 }
-    is_main: { type: boolean, required: true, default: 0 }
+    is_active: { type: boolean, required: true, default: false }
+    is_main: { type: boolean, required: true, default: false }
     _indexes: { fk_partido_partido: [partido_id] }
     _uniques: { uniq_abreviatura: [abreviatura] }
   partido_i18n:

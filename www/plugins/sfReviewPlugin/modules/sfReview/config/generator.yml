@@ -39,9 +39,9 @@ generator:
             label: v
         sort: [created_at, desc]
         title:   Last reviews
-        display: [=sf_guard_user, =sf_review_status, value, text, culture, created_at, modified_at, is_active]
+        display: [=sf_guard_user, =sf_review_status, value, text, culture, created_at, modified_at, is_active, to_fb]
       filter:
-        display: [sf_review_status_id, value, text, culture, created_at, modified_at, cookie, ip_address, sf_review_type_id, value, is_active]
+        display: [sf_review_status_id, value, text, culture, created_at, modified_at, cookie, ip_address, sf_review_type_id, value, is_active, to_fb]
       form:
         display: 
           "Moderation": [sf_review_status_id, culture, sf_guard_user_id]

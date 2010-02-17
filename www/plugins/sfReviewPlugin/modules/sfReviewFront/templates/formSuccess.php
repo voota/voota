@@ -128,12 +128,18 @@
 	  <p class="facebook-only submit">
 	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
 	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
-	    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" 
-	    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
-	    	checked="checked""
-	    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
-	    	checked="checked"
-	    <?php endif ?>
+	    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>"
+		<?php if ($reviewId != ''): ?>
+			<?php if ($reviewToFb): ?>
+		    	checked="checked"
+		    <?php endif ?>
+		<?php else: ?>
+		    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
+		    	checked="checked"
+		    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
+		    	checked="checked"
+		    <?php endif ?>
+		<?php endif ?>
 	    />
 	  </p>
   <?php // endif ?>

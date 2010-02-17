@@ -91,6 +91,28 @@ function _autolink_find_URLS( $text )
   return( array() );
 }
 
+function toUrl($str) {
+	$ret = $str; 
+	if (strpos($str, 'http://') !== 0 ){
+		$ret = "http://$str";	
+	}
+	
+	return $ret;
+}
+
+function toShownUrl($str) {
+	$ret = $str; 
+	if (strpos($str, 'http://') === 0 ){
+		$ret = substr($str,7);	
+	}
+	
+	if (strlen($ret) > 30){
+		$ret = sfVoUtil::cutToLength($ret, 30) . "...";
+	}
+	
+	return $ret;
+}
+
 function _autolink_create_html_tags( &$value, $key, $other=null )
 {
   $target = $nofollow = null;
@@ -100,7 +122,7 @@ function _autolink_create_html_tags( &$value, $key, $other=null )
     // see: http://www.google.com/googleblog/2005/01/preventing-comment-spam.html
     $nofollow    =  ( $other['nofollow'] ? ' rel="nofollow"'            : null );     
   }
-  $value = "<a href=\"$key\"$target$nofollow>$key</a>";
+  $value = "<a href=\"".toUrl($key)."\"$target$nofollow>".toShownUrl($key)."</a>";
 } 
 
 function format_plural($count, $singular, $plural, $args = array(), $langcode = NULL) {
