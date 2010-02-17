@@ -23,7 +23,9 @@ class BasesfReviewFrontActions extends sfActions
   public function executeFilteredList(sfWebRequest $request)
   {
   	$this->entityId = $request->getParameter("entityId");  	
-  	$this->value = $request->getParameter("value");  	
+  	$this->value = $request->getParameter("value");  		
+  	$this->page = $request->getParameter("page");		
+  	$this->sfReviewType = $request->getParameter("sfReviewType");
   }
   
   public function executeList(sfWebRequest $request)

@@ -20,15 +20,36 @@
 class sfReviewComponents extends sfComponents
 {
 	public function executeReviewList(){
-		$c = new Criteria();
-		$c->add(SfReviewPeer::ENTITY_ID, $this->entityId);
-		if ($this->value){
-			$c->add(SfReviewPeer::VALUE, $this->value);
-		}		
-		$this->reviewsPager = new sfPropelPager('SfReview', 5);
-    	$this->reviewsPager->setCriteria($c);
-    	$this->reviewsPager->init();
+		$this->page = $this->page?$this->page:1;
+		$this->value = $this->value?$this->value:'';
+
 		
+  		$exclude = array();
+  		$lastReviewsPager = SfReviewManager::getLastReviewsByEntityAndValue(
+    							null
+    							, $this->sfReviewType
+    							, $this->entityId
+    							, $this->value?$this->value:null
+    							, SfReviewManager::NUM_LAST_REVIEWS
+    						);
+	    foreach ($lastReviewsPager->getResults() as $result){
+	  		$exclude[] = $result->getId();
+	  	}	  		
+  		if ($this->page == 1){
+  			$this->lastReviewsPager = $lastReviewsPager ;
+  		}
+  		$this->reviewsPager = SfReviewManager::getReviewsByEntityAndValue(
+    							null
+    							, $this->sfReviewType
+    							, $this->entityId
+    							, $this->value?$this->value:null
+    							, BaseSfReviewManager::NUM_REVIEWS - SfReviewManager::NUM_LAST_REVIEWS
+    							, $exclude
+    							, $this->page
+    						);
+  		//$this->pageU = $request->getParameter("pageU")+1;
+  		//$this->getUser()->setAttribute('pageU', $this->pageU);
+  		
 	}
 	
   public function executeSubreviews()

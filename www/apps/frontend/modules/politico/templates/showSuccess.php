@@ -102,18 +102,18 @@
   
   
   <div  style="background-color: yellow;">
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'')?>', 'review_tabs');">Todas</a> 
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1')?>', 'review_tabs');">Positivas</a> 
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1')?>', 'review_tabs');">Negativas</a> 
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Todas</a> 
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Positivas</a> 
+  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Negativas</a> 
   	
   </div>
   <div id="review_tabs" style="border:1px solid red;">
-	<?php include_component_slot('review_list', array('entityId' => $politico->getId())) ?>
+	<?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'sfReviewType' => Politico::NUM_ENTITY)) ?>
   </div>
   
   
   
-  
+  <?php /* ?>
     <div class="positive-reviews">
   	  <h3>  	  
   	  <?php echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
@@ -137,6 +137,7 @@
   	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU, $type_id = 1)) ?>
 
     </div>
+  <?php */ ?>
   </div>
 
   <div class="vote">

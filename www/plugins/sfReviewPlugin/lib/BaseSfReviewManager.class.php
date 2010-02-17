@@ -50,11 +50,12 @@ class BaseSfReviewManager
     return $pager;
   }
   
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false, $offset = 1)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	$criteria->setOffset( $offset );
     
   	if ($type_id != '') {
   		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	

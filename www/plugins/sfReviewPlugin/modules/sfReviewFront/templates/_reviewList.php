@@ -4,10 +4,10 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 
-<?php if(!isset($lastPager) || $lastPager->getNbResults() > 0): ?>
-	<?php if(isset($lastPager)): ?>
+<?php if(!isset($lastReviewsPager) || $lastReviewsPager->getNbResults() > 0): ?>
+	<?php if(isset($lastReviewsPager)): ?>
 		<ol>
-		  <?php foreach($lastPager->getResults() as $review): ?>
+		  <?php foreach($lastReviewsPager->getResults() as $review): ?>
 		    <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
 		  <?php endforeach ?>
 		</ol>
@@ -24,16 +24,18 @@
 <?php endif ?>
 
 	
-<div id="more_fr">
+<div id="<?php echo "more_fr_".$reviewsPager->getPage()?>">
   <?php if ($reviewsPager->haveToPaginate() && $reviewsPager->getLastPage() > $reviewsPager->getPage()): ?>
       <?php echo jq_form_remote_tag(array(
-    	'update'   => "more_fr",
-    	'url'      => "@politico_more_comments",
+    	'update'   => "more_fr_".$reviewsPager->getPage(),
+    	'url'      => "sfReviewFront/filteredList",
 		),
         array('id' => "frm_fr"
       )) ?>
-      <input type="hidden" id="entityId" name="id" value="<?php echo $entityId ?>" />
-      <input type="hidden" id="page" value="<?php echo $page ?>" />      
+      <input type="hidden" id="entityId" name="entityId" value="<?php echo $entityId ?>" />
+      <input type="hidden" id="value" name="value" value="<?php echo $value ?>" />
+      <input type="hidden" id="value" name="sfReviewType" value="<?php echo $sfReviewType ?>" />
+      <input type="hidden" id="page" name="page" value="<?php echo $reviewsPager->getPage()+1 ?>" />      
 	  <center><input type="submit" value="<?php echo __('más') ?>" /></center>
 	</form>
   <?php endif ?>
