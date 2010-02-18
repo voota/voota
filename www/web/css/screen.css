@@ -5,6 +5,8 @@ body { margin: 0; padding: 0; font-family: Georgia, "Times New Roman", Times, se
 p { margin:0; padding-bottom: 20px; line-height: 150%;}
 img, a img { border: none; vertical-align: middle; }
 table { padding:0; margin:0; border-collapse: collapse; }
+a { color: #0000ee;}
+a:visited { color: #551a8b;}
 
 /* Encabezados */
 h1 { font-size: 52px; margin: 0; color: #2b56ff; }
@@ -22,9 +24,14 @@ tr.even { background-color: #fbfbfb; }
 
 /* Tabs */
 .ui-widget { font-size: 13px;}
-.ui-tabs .ui-tabs-nav li { margin-left: 20px;}
+.ui-tabs .ui-tabs-nav { padding-left: 10px;}
+.ui-tabs .ui-tabs-nav li { margin-right: 20px;}
 .ui-widget-content { border: none;}
 .ui-widget-header { background: none; border-left: none; border-right: none; border-top: none;}
+.ui-tabs .ui-tabs-panel { padding: 10px 0 0 0;}
+.ui-widget-content a { color: #0000ee;}
+.ui-widget-content a:visited { color: #551a8b;}
+
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
@@ -113,6 +120,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
 .hints { padding: 5px 10px; }
+input[type=submit].login_or_register { width: 200px;}
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -346,7 +354,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #politico-show #google-ads,
 #partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
 #politico-show .reviews,
-#partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
+#partido-show .reviews { clear: both; padding-top: 35px; width: 720px;}
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}

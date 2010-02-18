@@ -12,5 +12,5 @@
 	<input type="hidden" id="b" name="b" value="<?php echo $reviewBox ?>" />
 	<input type="hidden" id="v" name="v" value="<?php echo $reviewValue ?>" />
 	<input type="hidden" id="nl" name="nl" value="1" />
-	<input type="submit" value="<?php echo __('Hacer login o crear una cuenta')?>" />
+	<input type="submit" value="<?php echo __('Hacer login o crear una cuenta')?>" class="login_or_register" />
 </form>

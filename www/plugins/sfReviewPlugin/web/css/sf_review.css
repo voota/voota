@@ -1,18 +1,18 @@
-.reviews ol { list-style: none; margin: 0; padding: 0;}
-.reviews li { margin: 0.7em; }
+.reviews ol { list-style: none; margin: 0; padding: 0 0 0 10px;}
+.reviews li { margin: 20px 0; }
 .reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 20px; }
-.review-avatar {float:left; width: 36px; height: 36px; margin-right: 5px}
+.review-avatar {float:left; width: 36px; height: 36px; margin-right: 10px}
 .review-name { font-weight: normal;}
 .review-date { margin-top: 5px; padding-bottom: 0; font-size: 11px;}
 .review-about { margin-top: 10px; padding-bottom: 0;}
 .review-body { padding: 10px 0; clear: left; overflow: hidden;}
 .review-actions { padding: 10px 0;}
 .review-actions img { vertical-align: -10px;}
-.add-subreview { padding-top: 0; padding-bottom: 20px;}
+.add-subreview { padding: 0; margin-bottom: 10px;}
 
-.subreviews { background: transparent url(/images/subreviewsTop.png) top left no-repeat; padding-top: 11px; padding-bottom: 20px; }
-.subreviews ol { padding: 10px; background-color: #fff; border: 1px solid #bcbcbc; border-top: none;}
-.subreviews-pagination { padding-top: 20px; padding-bottom: 20px; text-align: center;}
+.subreviews { padding-left: 40px; margin-bottom: 20px; overflow: hidden}
+.subreviews ol { border-left: 2px solid #999999; background-color: #fff; }
+.subreviews-pagination { padding-top: 20px; text-align: center; width: 250px}
 .subreviews-pagination input { width: 180px;}
 .subreviews-pagination .more { padding-bottom: 0;}
 
