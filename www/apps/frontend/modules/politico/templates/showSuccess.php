@@ -8,6 +8,8 @@
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
+    $('.reviews').tabs();
+
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
@@ -98,46 +100,11 @@
   </div><!-- end of google-ads -->
 
   <div class="reviews">
-  
-  
-  
-  <div  style="background-color: yellow;">
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Todas</a> 
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Positivas</a> 
-  	<a href="#" onclick="return loadAjax('<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>', 'review_tabs');">Negativas</a> 
-  	
-  </div>
-  <div id="review_tabs" style="border:1px solid red;">
-	<?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'sfReviewType' => Politico::NUM_ENTITY)) ?>
-  </div>
-  
-  
-  
-  <?php /* ?>
-    <div class="positive-reviews">
-  	  <h3>  	  
-  	  <?php echo format_number_choice('[0]0 positivo|[1]%1% positivo &#40;%2%%&#41;|(1,+Inf]%1% positivos &#40;%2%%&#41;', 
-  	  		array('%1%' => format_number($politico->getSumU(), 'es_ES'), '%2%' => format_number($positivePerc, 'es_ES'))
-  	  		, $politico->getSumU()) 
-  	  ?>
-  	  </h3>
-
-  	  <?php include_partial('reviews', array('lastPager' => $lastPositives, 'pager' => $positives, 'politico' => $politico, 'reviewType' => __('positiva'), 't' => 1, 'pageU' => $pageU, $type_id = 1)) ?>
-	
-    </div>
-	        
-    <div class="negative-reviews">
-	    <h3>
-	  	  <?php echo format_number_choice('[0]0 negativo|[1]%1% negativo &#40;%2%%&#41;|(1,+Inf]%1% negativos &#40;%2%%&#41;', 
-	  	  		array('%1%' => format_number($politico->getSumD(), 'es_ES'), '%2%' => format_number($negativePerc, 'es_ES'))
-	  	  		, $politico->getSumD()) 
-	  	  ?>
-	    </h3>
-	
-  	  <?php include_partial('reviews', array('lastPager' => $lastNegatives, 'pager' => $negatives, 'politico' => $politico, 'reviewType' => __('negativa'), 't' => -1, 'pageD' => $pageU, $type_id = 1)) ?>
-
-    </div>
-  <?php */ ?>
+    <ul>
+      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => 999)) // TODO: sustituir número de vootos ?></a></li>
+      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+    </ul>
   </div>
 
   <div class="vote">

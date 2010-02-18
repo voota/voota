@@ -1,6 +1,3 @@
-
-	
-	
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 

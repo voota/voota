@@ -20,6 +20,12 @@ strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
 tr.even { background-color: #fbfbfb; }
 
+/* Tabs */
+.ui-widget { font-size: 13px;}
+.ui-tabs .ui-tabs-nav li { margin-left: 20px;}
+.ui-widget-content { border: none;}
+.ui-widget-header { background: none; border-left: none; border-right: none; border-top: none;}
+
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
 #header-inner, #main-inner { text-align: left; margin: 0 auto 20px auto; width: 960px; position: relative; overflow: hidden; }
@@ -152,7 +158,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #home-index #latest-comments-on-comments .column,
 #home-index #latest-comments-on-visited .column { width: 45%; float: left; margin-right: 3%;}
 #home-index ol.reviews { padding: 0 0 0 20px;}
-#home-index .ranking-link { clear: both; padding-left: 20px;}
+#home-index .ranking-link { clear: both;}
 #home-index .review { padding-bottom: 20px;}
 #home-index .signup { margin-left: 170px; font-weight: bold;}
 
@@ -331,11 +337,10 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 #partido-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
 #politico-show #description p,
 #partido-show #description p { padding-bottom: 10px;}
-#politico-show #description .bio { margin-left: 20px;}
 #politico-show #external-links,
 #partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 40px;}
 #politico-show #external-links ul,
-#partido-show #external-links ul { list-style: none; margin: 10px 0; padding-left: 20px;}
+#partido-show #external-links ul { list-style: none; margin: 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
 #partido-show #external-links ul li { margin: 10px 0;}
 #politico-show #google-ads,
