@@ -1,6 +1,5 @@
 .reviews ol { list-style: none; margin: 0; padding: 0 0 0 10px;}
 .reviews li { margin: 20px 0; }
-.reviews h3 { border-bottom: 1px dotted #646464; margin-bottom: 20px; }
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 10px}
 .review-name { font-weight: normal;}
 .review-date { margin-top: 5px; padding-bottom: 0; font-size: 11px;}
@@ -18,14 +17,14 @@
 
 .sf-review-cancel { font-size: 11px; font-weight: normal; }
 .sf-review-cancel { margin-left: 20px;}
-.sf-review-remove { float: left; }
+.sf-review-remove { padding-right: 10px }
 .sf-review-remove span { margin-left: 10px;}
-.sf-review-submit { margin-bottom: 10px; text-align: right; float: right;}
+.sf-review-submit { width: 215px; margin: 0 5px 10px 0; text-align: right;}
 .sf-review-submit input { margin: 0; padding: 0;}
 .sf-review-hands { float: left; margin: 20px 0 10px 0; }
 .sf-review-hands img, .sf-review-hands label { cursor: pointer; }
 .sf-review-positive, .sf-review-negative { float:left; }
 .sf-review-negative { margin-left: 20px; }
-.sf-review-counter { float: right; padding-bottom: 10px; text-align: right; overflow: hidden;}
+.sf-review-counter { text-align: right; padding-bottom: 10px; width: 215px;}
 #sf-review-body { clear: both; padding-bottom: 0; overflow: hidden;}
-.sf-review-text { width: 97%; height: 90px;}
+.sf-review-text { width: 210px; height: 90px;}

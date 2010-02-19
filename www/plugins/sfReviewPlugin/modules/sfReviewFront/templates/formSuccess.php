@@ -82,36 +82,9 @@
 
   <p id="sf-review-body">
     <textarea id="<?php echo "sf-review-text_$reviewBox" ?>" name="review_text" class="sf-review-text sfr" title="<?php echo __('¿Algo que comentar? Es el mejor momento :-)') ?>"><?php echo $reviewText ?></textarea>
-    <span id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></span>
   </p>
-
-  <?php if ($reviewId != ''): ?>
-	  <?php if (!isset($cf)): ?>
-	    <p class="sf-review-remove">
-				<?php echo jq_link_to_remote(__('Eliminar opinión'), array(
-			    'update'   => $reviewBox?$reviewBox:'sf_review',
-			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
-				)) ?>
-			</p>
-	  <?php else: ?>
-	  	<p class="sf-review-remove">
-	  	  <?php echo __('¿Seguro?') ?>
-	  	  <span>
-  	  	  <?php echo jq_link_to_remote(__('Sí'), array(
-  			    'update'   => $reviewBox?$reviewBox:'sf_review',
-  			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType&cf=1".($reviewBox==''?'':"&b=$reviewBox"),		    		
-  	  				'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
-  			  )) ?>
-			  </span>
-			  <span>
-			    <?php echo jq_link_to_remote(__('No'), array(
-			      'update'   => $reviewBox?$reviewBox:'sf_review',
-			      'url'    => "@sf_review_form?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),	
-			)) ?>
-			  </span>
-			</p>
-		<?php endif ?>
-  <?php endif ?>
+  
+  <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
 
   <?php 
 	  /*
@@ -121,11 +94,38 @@
   */?>
 
   <p class="sf-review-submit">
+    <?php if ($reviewId != ''): ?>
+  	  <?php if (!isset($cf)): ?>
+  	    <span class="sf-review-remove">
+  				<?php echo jq_link_to_remote(__('Eliminar opinión'), array(
+  			    'update'   => $reviewBox?$reviewBox:'sf_review',
+  			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
+  				)) ?>
+  			</span>
+  	  <?php else: ?>
+  	  	<span class="sf-review-remove">
+  	  	  <?php echo __('¿Seguro?') ?>
+  	  	  <span>
+    	  	  <?php echo jq_link_to_remote(__('Sí'), array(
+    			    'update'   => $reviewBox?$reviewBox:'sf_review',
+    			    'url'    => "@sf_review_delete?i=$reviewId&e=$reviewEntityId&t=$reviewType&cf=1".($reviewBox==''?'':"&b=$reviewBox"),		    		
+    	  				'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
+    			  )) ?>
+  			  </span>
+  			  <span>
+  			    <?php echo jq_link_to_remote(__('No'), array(
+  			      'update'   => $reviewBox?$reviewBox:'sf_review',
+  			      'url'    => "@sf_review_form?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),	
+  			)) ?>
+  			  </span>
+  			</span>
+  		<?php endif ?>
+    <?php endif ?>
   	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
   
   <?php // if ($sf_user->getProfile()->getFacebookUid()): ?>
-	  <p class="facebook-only submit">
+	  <p class="facebook-only sf-review-submit">
 	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
 	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
 	    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>"

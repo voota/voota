@@ -4,10 +4,8 @@
 
 <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
 
-<?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
+  <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 
-  
-  
 	<p class="review-date">
 	  <?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?>
 	</p>
@@ -31,6 +29,9 @@
   		    <img alt="En contra, buu" src="/images/icoMiniDown.png" />
   	    <?php endif ?>
   	    )
+      <?php endif ?>
+      <?php if (!$sf_user->isAuthenticated()): ?>
+        (<?php echo __('accede a %your_account% para opinar', array('%your_account%' => link_to(__('tu cuenta'), 'sfGuardAuth/signin'))) ?>)
       <?php endif ?>
     </p>
   <?php endif ?>

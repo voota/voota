@@ -11,7 +11,7 @@ a:visited { color: #551a8b;}
 /* Encabezados */
 h1 { font-size: 52px; margin: 0; color: #2b56ff; }
 h2 { font-size: 20px; margin: 0 0 20px 0; font-weight: normal; }
-h3 { font-size: 16px; margin: 0; }
+h3 { font-size: 16px; margin: 0; line-height: 150%;}
 h4 { font-size: 13px; margin: 0; color: #323232 }
 
 /* Clases genéricas */
@@ -21,6 +21,9 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
 tr.even { background-color: #fbfbfb; }
+.note { background-color: #ffffcc; border: 1px solid #999999; padding: 10px;}
+.note h3 { font-size: 13px;}
+.note fieldset { margin: 0; padding: 0; border: none;}
 
 /* Tabs */
 .ui-widget { font-size: 13px;}
@@ -337,6 +340,8 @@ input[type=submit].login_or_register { width: 200px;}
 #partido-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; }
 #politico-show .vote h3,
 #partido-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
+#politico-show .note h3,
+#partido-show .note h3 { padding-bottom: 0; font-size: 13px; }
 #politico-show #sf_review2,
 #partido-show #sf_review2 { width: 35%; }
 #politico-show #description,
@@ -376,7 +381,6 @@ input[type=submit].login_or_register { width: 200px;}
 .positive-reviews, .negative-reviews { width: 45%; float: left;}
 .negative-reviews { margin-left: 10%; }
 .review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
-.review-new h5 span { font-size: 13px;}
 
 
 /*
