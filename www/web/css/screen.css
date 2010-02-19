@@ -26,7 +26,9 @@ tr.even { background-color: #fbfbfb; }
 .note fieldset { margin: 0; padding: 0; border: none;}
 
 /* Tabs */
-.ui-widget { font-size: 13px;}
+
+.ui-widget { font-size: 13px; font-family: Georgia, "Times New Roman", Times, serif;}
+.ui-tabs .ui-tabs-nav li a,
 .ui-tabs .ui-tabs-nav { padding-left: 10px;}
 .ui-tabs .ui-tabs-nav li { margin-right: 20px;}
 .ui-widget-content { border: none;}
@@ -34,6 +36,7 @@ tr.even { background-color: #fbfbfb; }
 .ui-tabs .ui-tabs-panel { padding: 10px 0 0 0;}
 .ui-widget-content a { color: #0000ee;}
 .ui-widget-content a:visited { color: #551a8b;}
+.ui-widget input { font-size: 13px;}
 
 
 /* Layout básico */
@@ -122,8 +125,8 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 .submit { text-align: right; clear: both;}
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
-.hints { padding: 5px 10px; }
-input[type=submit].login_or_register { width: 200px;}
+.hints { padding: 5px 0; }
+input[type=submit].login_or_register { width: 200px; }
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -185,6 +188,7 @@ input[type=submit].login_or_register { width: 200px;}
 
 /* Perfil */
 #sfGuardAuth-edit h2 { margin-bottom: 10px;}
+#sfGuardAuth-edit .hints { padding: 5px 10px;}
 #sfGuardAuth-edit #content { margin-top: 2em; position: relative; }
 #sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 20px; margin-left: -20px;}
 #sfGuardAuth-edit ol.links li { margin-bottom: 20px;}
