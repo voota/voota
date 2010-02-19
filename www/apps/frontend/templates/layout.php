@@ -78,11 +78,6 @@
             ·
             <?php echo link_to(__('salir'), '@sf_guard_signout', array('id' => 'logout')) ?>
           </p>
-          <script type="text/javascript" charset="utf-8">
-            $(document).ready(function(){
-              facebookConnect_linkLogout();
-            });
-          </script>
         <?php end_slot('logged') ?>
 
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
