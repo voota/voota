@@ -33,8 +33,7 @@
 	    });
       <?php if ($sf_user->getFlash('logToFB')):  ?>  
 		    publishFaceBook("He comenzado a compartir mis opiniones sobre políticos de España en Voota", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece') ?>');
-	    <?php endif ?>
-	    
+	    <?php endif ?>	    
 	  });
     <?php if( $sf_request->getAttribute("ie6") ):?>
 	  	$("#ie6 .close a").click(function(){
@@ -67,10 +66,10 @@
         <?php slot('logged') ?>
           <p>
             <?php if($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid()): ?>
-              <div id="lo_fb_conn">
+              <span id="lo_fb_conn">
             	<?php echo __('Tip:')?> 
             	<?php echo vo_facebook_connect_associate_button(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'lo_fb_conn'); ?>
-              </div>
+              </span>
             <?php endif ?>
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
 

@@ -3,7 +3,14 @@
 <?php use_helper('VoNotice') ?>
 
 <?php echo showNotices( $sf_user ) ?>
+<?php if ($op == "fb"): ?>
+	<p class='notice'>
+		<?php echo __('Si ya tienes una cuenta en Voota, puedes introducir tu usuario y contraseña ahora para que ésta quede vinculada con tu usuario de Facebook.')?>
+		<a href="<?php echo url_for('sfFacebookConnectAuth/signin') ?>"><?php echo __('No, no tengo cuenta en Voota') ?></a>
+	</p>
+<?php endif ?>
 
+<?php if ($op != "fb"): ?>
 <div id="signup">
   <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
   <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
@@ -57,10 +64,12 @@
     </table>
   </form>
 </div><!-- FIN SIGNUP -->
+<?php endif ?>
 
-<div id="login">
+<div <?php if ($op != "fb"): ?>id="login"<?php endif ?>>
   <h2><?php echo __('¿Ya estás registrado? Adelante :)')?></h2>
   <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+    <input type="hidden" name="op" value="<?php echo $op ?>" />
     <table>
       <tr>
         <th><label for="signin_username"><?php echo __('Tu Email') ?></label></th>

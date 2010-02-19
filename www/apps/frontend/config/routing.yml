@@ -218,7 +218,4 @@ usuario_contact:
   url:   /:username/contact
   param: { module: perfil, action: contact }
   
-fbdemo:
-  url:   /fb/demo
-  param: { module: sfFacebookConnectDemo, action: index }
   

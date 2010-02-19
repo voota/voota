@@ -4,6 +4,57 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+  private function doSignin($request, $op = '')
+  {
+    $user = $this->getUser();
+    if ($user->isAuthenticated())
+    {
+      return $this->redirect('@homepage');
+    }
+
+    if ($request->isXmlHttpRequest())
+    {
+      $this->getResponse()->setHeaderOnly(true);
+      $this->getResponse()->setStatusCode(401);
+
+      return sfView::NONE;
+    }
+
+    $class = sfConfig::get('app_sf_guard_plugin_signin_form', 'sfGuardFormSignin');
+    $this->form = new $class();
+
+    if ($request->isMethod('post'))
+    {
+      $this->form->bind($request->getParameter('signin'));
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+        $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
+
+        // always redirect to a URL set in app.yml
+        // or to the referer
+        // or to the homepage
+        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer('@homepage'));
+        
+        $this->redirect($signinUrl);
+      }
+    }
+    else
+    {
+      // if we have been forwarded, then the referer is the current URL
+      // if not, this is the referer of the current request
+      $user->setReferer($this->getContext()->getActionStack()->getSize() > 1 ? $request->getUri() : $request->getReferer());
+
+      $module = sfConfig::get('sf_login_module');
+      if ($this->getModuleName() != $module)
+      {
+        return $this->redirect($module.'/'.sfConfig::get('sf_login_action'));
+      }
+
+      $this->getResponse()->setStatusCode(401);
+    }
+  }
+  
   public function executeReminder($request)
   {
     $this->form = new ReminderForm();
@@ -118,11 +169,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   
   public function executeSignin($request)
   {
-    $this->registrationform = new RegistrationForm();
+  	$this->op = $request->getParameter('op');
+  	
+  	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
     if ($request->isMethod('post') ){
     	// Register
-    	if ($request->getParameter('op') == 'r') {
+    	if ($this->op == 'r') {
 	      $this->registrationform = new RegistrationForm();    
 	      $this->registrationform->bind($request->getParameter('registration'));
 	      
@@ -176,7 +229,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		  */
       	}
       	// Signin
-      	else {
+      	else { 	
 	      $r = new SigninForm();    
 	      $r->bind($request->getParameter('signin'));
 	      
@@ -184,9 +237,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      	$r->addPostValidation();
 	      	$r->bind($request->getParameter('signin'));
 		      if ($r->isValid()) {
-	  			parent::executeSignin($request);
+		      	if ($this->op == 'fb'){
+					$this->getUser()->setAttribute('logToFB', 'true');
+	  			}		     
+		      	
+	  			$this->doSignin($request, $this->op);
 		      }
 	      }
+	      
 	      /*
 	      else {
       		$this->getUser()->setFlash('notice_type', 'error', false);
@@ -299,47 +357,38 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeEditFB(sfWebRequest $request)
   {
   	$op = $request->getParameter("op");
+  	$this->box = $request->getParameter("box");
   	
-	$sfGuardUser = $this->getUser()->getGuardUser();
-  	if ($op == "dis"){
-  		if (!SfVoUtil::isCanonicalVootaUser( $sfGuardUser )) { // Si no nos ha dado los datos solo le deslogueamos
-  			 $this->getUser()->signout();
+
+  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
+  		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
+  		$c = new Criteria();
+  		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
+  		$users = SfGuardUserPeer::doSelect( $c );
+  		if (count($users) > 0){
+  			$this->faceBookUid = sfFacebook::getFacebookClient()->get_loggedin_user();
+  			return 'ConfirmMerge';
   		}
-  		else { // en caso contrario le desasociamos
-		    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, null);
-		    $sfGuardUser->save();
-			$sfGuardUser->getProfile()->save();
-			$this->getUser()->getGuardUser()->getProfile()->setFaceBookUID( null );
-  		}
+  		// FIN: Buscar conflictos
+  		
+	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+	    $sfGuardUser->save();
+	    $sfGuardUser->getProfile()->save();
+	    
+	    //$this->getUser()->signin( $sfGuardUser );
+	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
   	}
-  	else{
-	  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
-	  		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
-	  		$c = new Criteria();
-	  		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
-	  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
-	  		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
-	  		$users = SfGuardUserPeer::doSelect( $c );
-	  		if (count($users) > 0){
-	  			$this->faceBookUid = sfFacebook::getFacebookClient()->get_loggedin_user();
-	  			return 'ConfirmMerge';
-	  		}
-	  		// FIN: Buscar conflictos
-	  		
-		    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
-		    $sfGuardUser->save();
-		    $sfGuardUser->getProfile()->save();
-		    
-		    //$this->getUser()->signin( $sfGuardUser );
-		    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
-	  	}
-   	}
+	  	
    	if ($this->getUser()->isAuthenticated()) {
 		$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());	
 		$this->profileEditForm = new ProfileEditForm( $formData );
 		
-	   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
-	   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
+		if (isset($sfGuardUser)){
+		   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
+		   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
+		}
    	}
   }
   
