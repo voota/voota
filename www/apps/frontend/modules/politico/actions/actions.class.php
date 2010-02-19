@@ -337,9 +337,9 @@ class politicoActions extends sfActions
   	$this->getUser()->setAttribute('pageU', '');
   	$this->getUser()->setAttribute('pageD', '');
 	
-	$totalCount = $positiveCount + $negativeCount;
-	if ($totalCount > 0) {
-		$this->positivePerc = intval( $positiveCount * 100 / $totalCount );
+	$this->totalCount = $positiveCount + $negativeCount;
+	if ($this->totalCount > 0) {
+		$this->positivePerc = intval( $positiveCount * 100 / $this->totalCount );
 		$this->negativePerc = 100 - $this->positivePerc;
 	}  
 	else {

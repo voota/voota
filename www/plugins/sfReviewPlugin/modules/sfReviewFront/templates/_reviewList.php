@@ -17,7 +17,7 @@
 	  </ol>
 	<?php endif ?>
 <?php else: ?>
-	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => $reviewType, '%2%' => $politico))?></p>
+	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => ($value?($value==1?__('positiva'):__('negativa')):''), '%2%' => $entity))?></p>
 <?php endif ?>
 
 	

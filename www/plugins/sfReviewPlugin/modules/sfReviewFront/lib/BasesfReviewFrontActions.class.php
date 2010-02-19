@@ -26,6 +26,14 @@ class BasesfReviewFrontActions extends sfActions
   	$this->value = $request->getParameter("value");  		
   	$this->page = $request->getParameter("page");		
   	$this->sfReviewType = $request->getParameter("sfReviewType");
+  	
+  	$c = new Criteria;
+  	$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	$reviewType = SfReviewTypePeer::doSelectOne( $c );
+  	$peer = $reviewType->getModel() .'Peer';
+  	$c = new Criteria;
+  	$c->add($peer::ID, $this->entityId);
+  	$this->entity = $peer::doSelectOne( $c ); 
   }
   
   public function executeList(sfWebRequest $request)
@@ -195,7 +203,7 @@ class BasesfReviewFrontActions extends sfActions
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
   	$review->setCookie( $request->getCookie('symfony') );
 	$review->setCulture( $this->getUser()->getCulture() );	
-	$review->setToFb( $request->getParameter("fb_publish") );	
+	$review->setToFb( $request->getParameter("fb_publish")==1?1:0 );	
   	
   	if ($request->getParameter("i") != '') {
   		if ($review->isModified()) {
