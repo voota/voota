@@ -65,11 +65,16 @@
 
         <?php slot('logged') ?>
           <p>
-            <?php if($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid()): ?>
-              <span id="lo_fb_conn">
-            	<?php echo __('Tip:')?> 
-            	<?php echo vo_facebook_connect_associate_button(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'lo_fb_conn'); ?>
-              </span>
+            <?php if (true): // TODO: Comprobar que el usuario no ha cerrado el tip o que no tiene ambas cuentas asociadas ?>
+            <span id="lo_fb_conn">
+          	  <strong><?php echo __('Tip:')?> </strong>
+              <?php if($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid()): ?>
+          	    <?php echo vo_facebook_connect_associate_button(__('Sincronizar tu cuenta en Voota con Facebook'), 'lo_fb_conn'); ?>
+              <?php elseif ($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid() && !$sf_user->getGuardUser()->getPassword()): // Usuario de Facebook sin cuenta canónica ?>
+                <?php echo link_to(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'sfGuardAuth/signin') ?>
+              <?php endif ?>
+              <span class="close"><a href="#" onclick="close_sync_tip(); return false">(<?php echo __('Cerrar') ?>)</a></span>
+            </span>
             <?php endif ?>
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
 

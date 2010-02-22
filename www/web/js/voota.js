@@ -197,3 +197,8 @@ function loadAjax(url, box){
 	
 	return false;
 }
+
+function close_sync_tip() {
+  $('#lo_fb_conn').remove();
+  // TODO: Enviar notificación de cierre de tip a controlador
+}

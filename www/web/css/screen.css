@@ -66,6 +66,8 @@ tr.even { background-color: #fbfbfb; }
 #user-links img { padding-right: 10px;}
 #user-links p { padding-bottom: 10px;}
 #user-links #fbc_button img { padding-right: 0;}
+#user-links #lo_fb_conn { padding-right: 10px;}
+#user-links #lo_fb_conn .close { font-size: 9px;}
 #search { position: absolute; top: 70px; right: 0; text-align: right; }
 #search fieldset { margin: 0; padding: 0; border: none;}
 #search input[type=submit] { margin-left: 10px; width: 90px;}
