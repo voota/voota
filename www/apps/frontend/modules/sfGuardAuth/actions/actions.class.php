@@ -36,6 +36,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         // or to the homepage
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer('@homepage'));
         
+        if ($op = 'fb'){
+        	$this->getUser()->getProfile()->setFacebookUid( sfFacebook::getAnyFacebookUid() );
+        	$this->getUser()->getProfile()->save();
+        }
         $this->redirect($signinUrl);
       }
     }
@@ -170,6 +174,16 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
   	$this->op = $request->getParameter('op');
+  	if ($this->op == 'fb'){
+  		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
+  		if ($sfGuardUser){
+  			$this->redirect('sfFacebookConnectAuth/signin');
+  		}
+  		else {
+  			
+  		}
+  		//$c->add(SfGuardUserProfile::FACEBOOK_UID, )
+  	}
   	
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
@@ -236,11 +250,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      if ($r->isValid()) {
 	      	$r->addPostValidation();
 	      	$r->bind($request->getParameter('signin'));
-		      if ($r->isValid()) {
-		      	if ($this->op == 'fb'){
-					$this->getUser()->setAttribute('logToFB', 'true');
-	  			}		     
-		      	
+		      if ($r->isValid()) {		      	
 	  			$this->doSignin($request, $this->op);
 		      }
 	      }
