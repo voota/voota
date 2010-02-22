@@ -21,13 +21,14 @@
 <?php endif ?>
 
 	
-<div id="<?php echo "more_fr_".$reviewsPager->getPage()?>">
+<div id="<?php echo "more_fr_${value}_".$reviewsPager->getPage()?>">
   <?php if ($reviewsPager->haveToPaginate() && $reviewsPager->getLastPage() > $reviewsPager->getPage()): ?>
       <?php echo jq_form_remote_tag(array(
-    	'update'   => "more_fr_".$reviewsPager->getPage(),
+    	'update'   => "more_fr_${value}_".$reviewsPager->getPage(),
     	'url'      => "sfReviewFront/filteredList",
+      	'before'   => "re_loading( 'more_fr_". $value ."_". $reviewsPager->getPage() ."' )"
 		),
-        array('id' => "frm_fr"
+        array('id' => "frm_fr_${value}_"
       )) ?>
       <input type="hidden" id="entityId" name="entityId" value="<?php echo $entityId ?>" />
       <input type="hidden" id="value" name="value" value="<?php echo $value ?>" />
