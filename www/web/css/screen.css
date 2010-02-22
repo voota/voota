@@ -301,6 +301,7 @@ input[type=submit].login_or_register { width: 200px; }
 #sfGuardAuth-signin #login  { float: right; }
 #sfGuardAuth-signin .submit input[type=submit] { width: 150px; }
 #sfGuardAuth-signin .legal { text-align: right; }
+#sfGuardAuth-signin .notice { width: 95%;}
 
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
