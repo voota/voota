@@ -216,6 +216,7 @@ input[type=submit].login_or_register { width: 200px; }
 #sfGuardAuth-edit #facebook-connect ul { margin: 0; padding: 0; list-style: none;}
 #sfGuardAuth-edit #facebook-connect li { margin-top: 10px;}
 #sfGuardAuth-edit #facebook-connect q { font-style: italic;}
+#sfGuardAuth-edit .notice { width: 503px;}
 
 /* Comentarios y vootos */
 
