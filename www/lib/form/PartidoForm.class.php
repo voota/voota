@@ -9,7 +9,15 @@
  * @version    SVN: $Id: sfPropelFormTemplate.php 10377 2008-07-21 07:10:32Z dwhittle $
  */
 class PartidoForm extends BasePartidoForm
-{
+{	
+  protected function processUploadedFile($field, $filename = null, $values = null)
+  {
+  	  $column = call_user_func(array(constant(get_class($this->getObject()).'::PEER'), 'translateFieldName'), $field, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_PHPNAME);
+      $getter = 'get'.$column;
+
+      return $this->getObject()->$getter();
+  }
+  
   public function configure()
   {
   	unset(
@@ -17,6 +25,7 @@ class PartidoForm extends BasePartidoForm
   		, $this['created_at']
   		, $this['partido_id']
     	, $this['sumu']
+    	, $this['sumd']  
     	, $this['sumd']   		  		
   	);
     

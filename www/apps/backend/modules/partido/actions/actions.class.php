@@ -43,10 +43,13 @@ class partidoActions extends autoPartidoActions
 		    $this->form->getObject()->setImagen( $imagen->getOriginalName() );
 	    }
     }
+    echo "1";
     $this->processForm($request, $this->form);
+    echo "2";
     
     $this->setTemplate('edit');
   }
+  
 	public function executeEdit(sfWebRequest $request) {
 		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		parent::executeEdit( $request );
