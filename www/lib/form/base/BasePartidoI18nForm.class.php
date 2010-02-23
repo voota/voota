@@ -24,7 +24,7 @@ abstract class BasePartidoI18nForm extends BaseFormPropel
       'id'           => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'culture'      => new sfValidatorPropelChoice(array('model' => 'PartidoI18n', 'column' => 'culture', 'required' => false)),
       'nombre'       => new sfValidatorString(array('max_length' => 150)),
-      'presentacion' => new sfValidatorString(array('max_length' => 500)),
+      'presentacion' => new sfValidatorString(array('max_length' => 600)),
     ));
 
     $this->widgetSchema->setNameFormat('partido_i18n[%s]');

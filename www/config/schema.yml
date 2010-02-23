@@ -95,7 +95,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
-    presentacion: { type: VARCHAR, size: '500', required: true }
+    presentacion: { type: VARCHAR, size: '600', required: true }
     _indexes: { fk_partido_i18n_1: [id] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
@@ -133,7 +133,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     formacion: { type: VARCHAR, size: '255', required: false }
-    presentacion: { type: VARCHAR, size: '500', required: false }
+    presentacion: { type: VARCHAR, size: '600', required: false }
     bio: { type: CLOB, required: false }
     _indexes: { fk_politico_i18n_1: [id] }
   politico_institucion:
@@ -177,7 +177,7 @@ propel:
     pais: { type: VARCHAR, size: '45', required: false }
     formacion: { type: VARCHAR, size: '255', required: false }
     residencia: { type: VARCHAR, size: '45', required: false }
-    presentacion: { type: VARCHAR, size: '500', required: false }
+    presentacion: { type: VARCHAR, size: '600', required: false }
     created_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     imagen: { type: VARCHAR, size: '50', required: false }

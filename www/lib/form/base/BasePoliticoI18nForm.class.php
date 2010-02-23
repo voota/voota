@@ -25,7 +25,7 @@ abstract class BasePoliticoI18nForm extends BaseFormPropel
       'id'           => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
       'culture'      => new sfValidatorPropelChoice(array('model' => 'PoliticoI18n', 'column' => 'culture', 'required' => false)),
       'formacion'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'presentacion' => new sfValidatorString(array('max_length' => 500, 'required' => false)),
+      'presentacion' => new sfValidatorString(array('max_length' => 600, 'required' => false)),
       'bio'          => new sfValidatorString(array('required' => false)),
     ));
 
