@@ -69,7 +69,7 @@
   <target name="build_symfony" depends="model,forms,filters">
   </target>
   <target name="deploy_test" depends="prepare">
-  	<exec command="ssh root@r25797.ovh.net ${project.dir}/scripts/deploy.sh\ test" dir="${project.dir}"  passthru="true"/>
+  	<exec command="ssh root@r25797.ovh.net ${project.dir}/scripts/deploy.sh\ test" dir="${project.dir}/www"  passthru="true"/>
   </target>
   <target name="deploy_prod" depends="prepare">
   	<exec command="ssh ubuntu@makalu.voota.es ${project.dir}/scripts/deploy.sh\ prod" dir="${project.dir}"  passthru="true"/>
@@ -86,7 +86,7 @@
 
   <target name="updatesvn">
   	<echo>Updating from svn ...</echo>
-  	<exec command="svn update" dir="${project.dir}"  passthru="true" />
+  	<exec command="svn update" dir="${project.dir}/www"  passthru="true" />
   </target>
   <target name="i18n">
   	<echo>Updating i18n ...</echo>

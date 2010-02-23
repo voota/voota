@@ -68,11 +68,14 @@
             <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && !$sf_user->getProfile()->getFacebookUid()): ?>
             <span id="lo_fb_conn">
           	  <strong><?php echo __('Tip:')?> </strong>
-              <?php if($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid()): ?>
           	    <?php echo vo_facebook_connect_associate_button(__('Sincronizar tu cuenta en Voota con Facebook'), 'lo_fb_conn'); ?>
-              <?php // elseif ($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid() && !$sf_user->getGuardUser()->getPassword()): // Usuario de Facebook sin cuenta canónica ?>
-                <?php // echo link_to(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'sfGuardAuth/signin') ?>
-              <?php endif ?>
+              <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
+            </span>
+            <?php endif ?>
+            <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && $sf_user->getProfile()->getFacebookUid() && !SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
+            <span id="lo_fb_conn">
+          	  <strong><?php echo __('Tip:')?> </strong>
+          	  	<a href="<?php echo url_for('sfGuardAuth/signin?op=fb')?>"><?php echo __('¿Ya tenías cuenta en Voota? Sincronizar con tu Facebook') ?></a>
               <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
             </span>
             <?php endif ?>

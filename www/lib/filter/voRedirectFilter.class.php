@@ -19,17 +19,17 @@ class voRedirectFilter extends sfFilter
 {
   public function execute ($filterChain)
   {
-  	if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest()){  	
+  	if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest()){  
+		$lastUrl = sfContext::getInstance()->getRouting()->getCurrentInternalUri();	
 	  	$user = sfContext::getInstance()->getUser();
 	  	$urlBack = $user->getAttribute('url_back');
 	  	if ($urlBack != '') {
-	  		if ($user->isAuthenticated()) {
+	  		if ($user->isAuthenticated() && !preg_match("/sfGuardAuth\/signin/is", $lastUrl)) {
 				$user->setAttribute('url_back', '');
 	  			sfContext::getInstance()->getController()->redirect( $urlBack );
 		  	}
 		}
 	
-		$lastUrl = sfContext::getInstance()->getRouting()->getCurrentInternalUri();
 		if (preg_match("/sfGuardAuth\/signin/is", $lastUrl) && !$urlBack){
 			$user->setAttribute('url_back', $user->getAttribute('last_url'));
 		}
