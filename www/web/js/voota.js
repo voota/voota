@@ -184,7 +184,7 @@ function facebookConnect_associate(url, box) {
 
 
 function loadAjax(url, box){
-  	re_loading( box );
+  re_loading( box );
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',

@@ -3,71 +3,13 @@
 <?php use_helper('VoNotice') ?>
 
 <?php echo showNotices( $sf_user ) ?>
-<?php if ($op == "fb"): ?>
-	<p class='notice'>
-		<?php echo __('Si ya tienes una cuenta en Voota, puedes introducir tu usuario y contraseña ahora para que ésta quede vinculada con tu usuario de Facebook.')?>
-		<a href="<?php echo url_for('sfFacebookConnectAuth/signin') ?>"><?php echo __('No, no tengo cuenta en Voota') ?></a>
-	</p>
-<?php endif ?>
 
-<?php if ($op != "fb"): ?>
-<div id="signup">
-  <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
-  <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
-    <div><input type="hidden" name="op" value="r" /></div>
-    <table>
-      <tr>
-        <th><label for="registration_username"><?php echo __('Tu Email') ?></label></th>
-        <td>
-          <?php echo $registrationform['username']->render() ?>
-          <?php echo $registrationform['username']->renderError() ?>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="registration_nombre"><?php echo __('Nombre') ?></label></th>
-        <td>
-          <?php echo $registrationform['nombre']->render() ?>
-          <?php echo $registrationform['nombre']->renderError() ?>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="registration_apellidos"><?php echo __('Apellidos') ?></label></th>
-        <td>
-          <?php echo $registrationform['apellidos']->render() ?>
-          <?php echo $registrationform['apellidos']->renderError() ?>
-        </td>
-      </tr>
-      <tr>
-        <th><label for="registration_password"><?php echo __('Contraseña') ?></label></th>
-        <td>
-          <?php echo $registrationform['password']->render() ?>
-          <?php echo $registrationform['password']->renderError() ?>
-          <p class="hints">
-            <span id="show_pass_label"><a href="#" onclick="return showHidePass('registration_password')"><?php echo __('Ver la contraseña')?></a></span>
-  		      <span id="hide_pass_label" class="hidden"><a href="#" onclick="return showHidePass('registration_password')"><?php echo __('Ocultar la contraseña')?></a></span>
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <th></th>
-        <td class="legal">
-          <label for="registration_accept">He leído y acepto el <?php echo link_to(__('aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array()) ?><?php echo $registrationform['accept']->render() ?></label>
-          <?php echo $registrationform['accept']->renderError() ?>
-        </td>
-      </tr>
-      <tr>
-        <th></th>
-        <td class="submit">
-          <input name="button" type="submit" class="button" value="<?php echo __('Regístrate en Voota')?>" />
-        </td>
-      </tr>
-    </table>
-  </form>
-</div><!-- FIN SIGNUP -->
-<?php endif ?>
+<h2><?php echo __('Una cosilla antes de continuar...')?></h2>
 
-<div <?php if ($op != "fb"): ?>id="login"<?php endif ?>>
-  <h2><?php echo __('¿Ya estás registrado? Adelante :)')?></h2>
+<div id="accounts-join-login">
+  <p>
+  	<?php echo __('Si ya tienes una cuenta Voota, es el mejor momento para vincularla con tu usuario de Facebook. Sólo tienes que introducir tu email y tu contraseña en Voota, y todo quedará unificado. ¿Cómo lo ves?')?>
+  </p>
   <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
     <input type="hidden" name="op" value="<?php echo $op ?>" />
     <table>
@@ -95,4 +37,12 @@
   </form>
 </div>
 
+<div id="accounts-join-skip">
+  <p>
+    Si prefieres continuar sin unificar ambas o no tienes cuenta en Voota no pasa nada, ¿eh?
+  </p>
 
+  <p>
+  	<a href="<?php echo url_for('sfFacebookConnectAuth/signin') ?>"><?php echo __("Pa'lante, quizás en otro momento") ?></a>
+  </p>
+</div>
