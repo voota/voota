@@ -24,7 +24,7 @@ cli:
 
 test:
   view_cache:
-    class: sfMemcacheCache
+    class: sfNocache
     param:
       lifetime:                  86400 #24h
       prefix:                    vo
