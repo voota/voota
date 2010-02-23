@@ -73,7 +73,7 @@
               <?php // elseif ($sf_user->getProfile() && !$sf_user->getProfile()->getFacebookUid() && !$sf_user->getGuardUser()->getPassword()): // Usuario de Facebook sin cuenta canónica ?>
                 <?php // echo link_to(__('Sincronizar tu Facebook con tu cuenta en Voota'), 'sfGuardAuth/signin') ?>
               <?php endif ?>
-              <span class="close"><a href="#" onclick="close_sync_tip(); return false">(<?php echo __('Cerrar') ?>)</a></span>
+              <span class="close">(<a href="#" onclick="close_sync_tip(); return false"><?php echo __('Cerrar') ?></a>)</span>
             </span>
             <?php endif ?>
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
