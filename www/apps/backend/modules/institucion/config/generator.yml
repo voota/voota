@@ -12,7 +12,9 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        is_main:
+          label: Aparece en el listado principal
       list:    
         display: [nombre_corto,nombre,geo,is_active, is_main,orden]
         sort: [orden, asc]

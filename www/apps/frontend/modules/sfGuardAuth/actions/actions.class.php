@@ -268,6 +268,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->title .= ' - Voota';
   	  	
     $this->response->setTitle( $this->title );
+    
+    if ($this->op == 'fb'){
+    	return 'FB';
+    }
   }
   
   private function sendWelcome( $user ){

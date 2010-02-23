@@ -67,7 +67,7 @@ class S3Voota extends S3 {
 		$directory = dirname($file);
 		$arr = array_reverse( split("/", $file) );
 		$fileName = $arr[0];
-		$uri = "partidos/$fileName";
+		$uri = "partidos/$fileName";		
 		
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "partidos/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );

@@ -44,7 +44,7 @@ class partidoActions extends autoPartidoActions
 	    }
     }
     $this->processForm($request, $this->form);
-
+    
     $this->setTemplate('edit');
   }
 	public function executeEdit(sfWebRequest $request) {
