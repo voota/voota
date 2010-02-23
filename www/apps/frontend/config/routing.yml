@@ -112,6 +112,11 @@ usuario_unsubscribe:
   param: { module: sfGuardAuth, action: unsubscribe }
   requirements: { sf_culture: (?:es|ca) }
 
+usuario_removeTip:
+  url:   /:sf_culture/user/removetip
+  param: { module: sfGuardAuth, action: removeTip }
+  requirements: { sf_culture: (?:es|ca) }
+
 usuario_votos:
   url:   /:sf_culture/user/reviews
   param: { module: perfil, action: reviews }

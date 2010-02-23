@@ -372,8 +372,8 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   {
   	$op = $request->getParameter("op");
   	$this->box = $request->getParameter("box");
+	$sfGuardUser = $this->getUser()->getGuardUser();
   	
-
   	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
@@ -404,6 +404,9 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
 		}
    	}
+	if ($this->box == 'lo_fb_conn'){
+		die;
+	} 
   }
   
   public function executeEdit(sfWebRequest $request)
@@ -514,5 +517,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     if (!$this->presentacionValue){
     	$this->presentacionValue = $this->profileEditForm['presentacion']->getValue(); 
     }
+  }
+  
+  public function executeRemoveTip(sfWebRequest $request)
+  {
+  	if( $this->getUser()->isAuthenticated()){
+  		$this->getUser()->getProfile()->setFbTip(0);
+  		$this->getUser()->getProfile()->save();
+  	}
   }
 }

@@ -198,7 +198,16 @@ function loadAjax(url, box){
 	return false;
 }
 
-function close_sync_tip() {
-  $('#lo_fb_conn').remove();
-  // TODO: Enviar notificación de cierre de tip a controlador
+function close_sync_tip(url) {
+	  re_loading( 'lo_fb_conn' );
+	jQuery.ajax({
+		  type     : 'POST',
+		  dataType : 'html',
+		  url      : url,
+		  success  : function(data, textStatus) {
+		    jQuery('#lo_fb_conn').html(data);
+		  }
+		});
+	
+  //$('#lo_fb_conn').remove();
 }
