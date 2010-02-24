@@ -303,8 +303,8 @@ input[type=submit].login_or_register { width: 200px; }
 #sfGuardAuth-signin .legal { text-align: right; }
 #sfGuardAuth-signin .notice { width: 95%;}
 #sfGuardAuth-signin #accounts-join-login { float: left; width: 350px; padding-right: 130px; background: transparent url(/images/login_separator.png) right center no-repeat;}
-#sfGuardAuth-signin #accounts-join-skip { float: left; width: 380px; padding-left: 100px; padding-top: 95px;}
-#sfGuardAuth-signin #accounts-join-skip p { padding-bottom: 5px;}
+#sfGuardAuth-signin #accounts-join-skip { float: left; width: 380px; padding-left: 100px; padding-top: 122px;}
+#sfGuardAuth-signin #accounts-join-skip p { padding-bottom: 0;}
 
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }

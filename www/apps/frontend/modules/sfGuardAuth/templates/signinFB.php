@@ -39,7 +39,7 @@
 
 <div id="accounts-join-skip">
   <p>
-    Si prefieres continuar sin unificar ambas o no tienes cuenta en Voota no pasa nada, ¿eh?
+    Si no tienes cuenta en Voota no pasa nada, ¿eh?
   </p>
 
   <p>
