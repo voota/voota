@@ -38,8 +38,12 @@ class api_demoActions extends sfActions
   public function executeMostRecentlyVoted(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
 	
-	$this->entities = $vootaApi->getMostRecentlyVoted(1);
+	$this->entities = $vootaApi->getMostRecentlyVoted(1);	
+  }
 
+  public function executePoliticos(sfWebRequest $request){
+	$vootaApi =  new VootaApi();
 	
+	$this->entities = $vootaApi->getPoliticos(1);	
   }
 }

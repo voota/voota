@@ -239,3 +239,7 @@ api_demo_callback:
 api_demo_most_recently_voted:
   url:   /api_demo/most_recently_voted
   param: { module: api_demo, action: mostRecentlyVoted }
+  
+api_demo_politicos:
+  url:   /api_demo/politicos
+  param: { module: api_demo, action: politicos }

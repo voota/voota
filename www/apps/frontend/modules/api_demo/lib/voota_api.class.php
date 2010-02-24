@@ -16,7 +16,7 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class VootaApi{
-  const SERVER_URL = "http://dummy.voota.es:81/frontend_dev.php";
+  const SERVER_URL = "http://localhost/frontend_dev.php";
   
   /**
    * Class constructor.
@@ -89,38 +89,24 @@ class VootaApi{
   }
 
   public function getPoliticos($userId){
-  	// The request uri being called.
-	$request_uri = 'http://localhost/frontend_dev.php/api/politicos';
-	
-	// Parameters, appended to the request depending on the request method.
-	// Will become the POST body or the GET query string.
 	$params = array(
-	           'method' => 'politicos'
+	           'method' => 'entities',
+	           'type' => 'politicos',
 	     );
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
-	// Obtain a request object for the request we want to make
-	$req = new OAuthRequester($request_uri, 'GET', $params);
-	
-	// Sign the request, perform a curl request and return the results, throws OAuthException exception on an error
 	$result = $req->doRequest( $userId );
 	
 	return json_decode( $result['body'] );
   }
   
   public function getMostRecentlyVoted($userId){
-  	// The request uri being called.
-	$request_uri = 'http://localhost/frontend_dev.php/a1';
-	
-	// Parameters, appended to the request depending on the request method.
-	// Will become the POST body or the GET query string.
 	$params = array(
 	           'method' => 'most_recently_voted'
 	     );
 	
-	// Obtain a request object for the request we want to make
-	$req = new OAuthRequester($request_uri, 'GET', $params);
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
-	// Sign the request, perform a curl request and return the results, throws OAuthException exception on an error
 	$result = $req->doRequest( $userId );
 	
 	return json_decode( $result['body'] );

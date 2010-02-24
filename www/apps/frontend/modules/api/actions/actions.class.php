@@ -47,48 +47,29 @@ class apiActions extends sfActions{
   	return $entities;
   }
   
-  public function executePoliticos(sfWebRequest $request) {
-	$data = RestUtils::processRequest();
+  private function entities($data) {
+	$type = $this->getRequestParameter("type");	
+  	
+	return $this->$type( $data );
+  }
+  
+  private function politicos($data) {
+  	$c = new Criteria();
+  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
+  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$pager = new sfPropelPager('Politico', self::PAGE_SIZE);
+	$c->setDistinct();
 	
-	switch($data->getMethod())
-	{
-		// this is a request for all users, not one in particular
-		case 'get':
-			$user_list = array('nombre' => $this->getUser()->getProfile()->getNombre(), 'dos' => 'Antonio'); // assume this returns an array
+    $pager->setCriteria($c);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->init();
+    
+    $entities = array();
+    foreach ($pager->getResults() as $politico){
+    	$entities[] = new Entity( $politico ); 	
+    }
 	
-			/*if($data->getHttpAccept() == 'json')
-			{*/
-				RestUtils::sendResponse(200, json_encode($user_list), 'application/json');
-			/*}*/
-			/*
-			else if ($data->getHttpAccept() == 'xml')
-			{
-				// using the XML_SERIALIZER Pear Package
-				$options = array
-				(
-					'indent' => '     ',
-					'addDecl' => false,
-					'rootName' => $fc->getAction(),
-					XML_SERIALIZER_OPTION_RETURN_RESULT => true
-				);
-				$serializer = new XML_Serializer($options);
-	
-				RestUtils::sendResponse(200, $serializer->serialize($user_list), 'application/xml');
-			}
-			*/
-			break;
-		// new user create
-		case 'post':
-			/*
-			$user = new User();
-			$user->setFirstName($data->getData()->first_name);  // just for example, this should be done cleaner
-			// and so on...
-			$user->save();
-	
-			// just send the new ID as the body
-			RestUtils::sendResponse(201, $user->getId());
-			*/
-	}
-  	die;
+  	return $entities;
   }
 }
