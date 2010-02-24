@@ -22,6 +22,8 @@ class Entity implements reviewable {
   	public function __construct($entity)
   	{
   		$this->nombre = $entity->__toString();
+  		$peer = $entity->getPeer();
+  		$this->type = $peer::TABLE_NAME;
   	}
     public function getNombre(){
     	return $entity;
