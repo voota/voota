@@ -65,19 +65,21 @@
 
         <?php slot('logged') ?>
           <p>
-            <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && !$sf_user->getProfile()->getFacebookUid()): ?>
-            <span id="lo_fb_conn">
-          	  <strong><?php echo __('Tip:')?> </strong>
-          	    <?php echo vo_facebook_connect_associate_button(__('Sincronizar tu cuenta en Voota con Facebook'), 'lo_fb_conn'); ?>
-              <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
-            </span>
-            <?php endif ?>
-            <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && $sf_user->getProfile()->getFacebookUid() && !SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
-            <span id="lo_fb_conn">
-          	  <strong><?php echo __('Tip:')?> </strong>
-          	  	<a href="<?php echo url_for('sfGuardAuth/signin?op=fb')?>"><?php echo __('¿Ya tenías cuenta en Voota? Sincronizar con tu Facebook') ?></a>
-              <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
-            </span>
+            <?php if ($sf_context->getModuleName()."-". $sf_context->getActionName() != "sfGuardAuth-signin"): ?>
+              <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && !$sf_user->getProfile()->getFacebookUid()): ?>
+              <span id="lo_fb_conn">
+            	  <strong><?php echo __('Tip:')?> </strong>
+            	    <?php echo vo_facebook_connect_associate_button(__('Sincronizar tu cuenta en Voota con Facebook'), 'lo_fb_conn'); ?>
+                <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
+              </span>
+              <?php endif ?>
+              <?php if($sf_user->getProfile() && $sf_user->getProfile()->getFbTip() && $sf_user->getProfile()->getFacebookUid() && !SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
+              <span id="lo_fb_conn">
+            	  <strong><?php echo __('Tip:')?> </strong>
+            	  	<a href="<?php echo url_for('sfGuardAuth/signin?op=fb')?>"><?php echo __('¿Ya tenías cuenta en Voota? Sincronizar con tu Facebook') ?></a>
+                <span class="close">(<a href="#" onclick="close_sync_tip('<?php echo url_for('sfGuardAuth/removeTip')?>'); return false"><?php echo __('Cerrar') ?></a>)</span>
+              </span>
+              <?php endif ?>
             <?php endif ?>
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
 

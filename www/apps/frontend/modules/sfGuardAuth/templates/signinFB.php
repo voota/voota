@@ -43,6 +43,6 @@
   </p>
 
   <p>
-  	<a href="<?php echo url_for('sfFacebookConnectAuth/signin') ?>"><?php echo __("Pa'lante, quizás en otro momento") ?></a>
+  	<a href="<?php echo url_for('sfFacebookConnectAuth/signin') ?>"><?php echo __("Paa'lante, quizás en otro momento &raquo;") ?></a>
   </p>
 </div>
