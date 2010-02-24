@@ -9,9 +9,9 @@
     <span class="review-years">· <?php echo __('%1% años', array('%1%' => review_date_diff( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() )))?></span>
   <?php endif ?>
 	<?php if ($review->getValue() == -1): ?>
-		<?php echo ' · ' . image_tag('icoMiniDown.png', 'alt="buu"'); ?>
+		<?php echo ' · ' . image_tag('icoMiniDown.png', 'alt="buu"') . ' ' . __('Vooto en contra'); ?>
 	<?php endif ?>
 	<?php if ($review->getValue() == 1): ?>
-		<?php echo ' · ' . image_tag('icoMiniUp.png', 'alt="yeah"'); ?>
+		<?php echo ' · ' . image_tag('icoMiniUp.png', 'alt="yeah"') . ' ' . __('Vooto a favor'); ?>
 	<?php endif ?>
 </h4>
