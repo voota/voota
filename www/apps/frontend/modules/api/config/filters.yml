@@ -1,0 +1,27 @@
+rendering: ~
+
+facebook_connect:
+  class: sfFacebookConnectFilter
+  enabled: false	
+
+security:
+  class: voSecurityFilter
+  
+culture:
+  class: voCultureFilter
+  enabled: false	
+redirect:
+  class: voRedirectFilter
+  enabled: false	
+vobase:
+  class: voBaseFilter
+  enabled: false	
+browser:
+  class: voBrowserFilter
+  enabled: false	
+
+
+cache:     ~
+common:
+  class: sfCommonFilter
+execution: ~

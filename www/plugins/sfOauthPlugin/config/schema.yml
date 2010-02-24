@@ -1,0 +1,9 @@
+propel:
+  _attributes:      { package: plugins.sfOauthPlugin.lib.model }
+  
+  sf_application:
+    _attributes: { phpName: SfApplication }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    name: { type: VARCHAR, size: '45', required: true }
+    sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_sf_review_1: [sf_guard_user_id] }

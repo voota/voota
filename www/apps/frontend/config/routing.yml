@@ -1,4 +1,8 @@
 # default rules
+api:
+  url:   /a1
+  param: { module: api, action: api }
+
 homepage_redirect:
   url:   /
   param: { module: home, action: indexWithoutCulture }
@@ -224,3 +228,14 @@ usuario_contact:
   param: { module: perfil, action: contact }
   
   
+api_demo_auth:
+  url:   /api_demo/auth
+  param: { module: api_demo, action: auth }
+
+api_demo_callback:
+  url:   /api_demo/callback
+  param: { module: api_demo, action: callback }
+  
+api_demo_most_recently_voted:
+  url:   /api_demo/most_recently_voted
+  param: { module: api_demo, action: mostRecentlyVoted }

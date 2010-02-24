@@ -20,6 +20,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfJqueryReloadedPlugin');
     $this->enablePlugins('sfGuardPlugin');
     $this->enablePlugins('sfReviewPlugin');
+    $this->enablePlugins('sfOauthPlugin');
     $this->enablePlugins('sfImageTransformPlugin');
   }
 }
