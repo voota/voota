@@ -1,6 +1,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('I18N') ?>
 <?php $reviewable = isset($reviewable)?$reviewable:false; $uc=new Criteria(); $uc->add(SfReviewPeer::VALUE, 1); $dc=new Criteria(); $dc->add(SfReviewPeer::VALUE, -1) ?>
+<?php $listValue = isset($listValue)?$listValue:''?>
 
 <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
 
@@ -14,7 +15,7 @@
   </p>
   <?php if(trim(review_text( $review )) != ''):?>
     <p class="add-subreview">
-    	<a href="#" onclick="document.getElementById('<?php echo "subreviews_box".$review->getId() ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sf_review_c".$review->getId() ?>' )"><?php echo __('Opinar sobre este comentario')?></a>
+    	<a href="#" onclick="document.getElementById('<?php echo "subreviews_box${listValue}_".$review->getId() ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sfrc${listValue}_".$review->getId() ?>' )"><?php echo __('Opinar sobre este comentario')?></a>
     	<?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0 || count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0 ): ?> 
   		  <?php echo __('(Lleva') ?> 
     	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0  ): ?> 
@@ -37,7 +38,6 @@
   <?php endif ?>
   
 	<?php if ($reviewable): ?>
-	<?php $listValue = isset($listValue)?$listValue:''?>
 		<div id="<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId(), 'listValue' => $listValue)) ?></div>
 	<?php endif ?>
 </li>

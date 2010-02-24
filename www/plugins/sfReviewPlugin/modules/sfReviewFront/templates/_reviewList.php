@@ -5,14 +5,14 @@
 	<?php if(isset($lastReviewsPager)): ?>
 		<ol>
 		  <?php foreach($lastReviewsPager->getResults() as $review): ?>
-		    <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
+		    <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
 		  <?php endforeach ?>
 		</ol>
 	<?php endif ?>
 	<?php if ($reviewsPager->getNbResults() > 0): ?>
 	  <ol>
   	  <?php foreach($reviewsPager->getResults() as $review): ?>
-  		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => $value)) ?>
+  		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
   		<?php endforeach ?>
 	  </ol>
 	<?php endif ?>

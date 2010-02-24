@@ -2,9 +2,9 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
 
-<div id="<?php echo "subreviews_box$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
+<div id="<?php echo "subreviews_box${listValue}_$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
   <ol>
-    <li id="<?php echo "sf_review_c".$id ?>" class="review-new">
+    <li id="<?php echo "sfrc${listValue}_".$id ?>" class="review-new">
 
     </li>
     <?php foreach ($reviewLastList->getResults() as $review): ?>    
@@ -46,7 +46,7 @@
   <script type="text/javascript">
     <!--
   	document.getElementById('<?php echo "subreviews_box$id" ?>').className = 'subreviews shown';
-  	loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sf_review_c".$id ?>' );
+  	loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $id ?>,  0, '<?php echo "sfrc${listValue}_".$id ?>' );
     //-->
   </script>
   <?php $sf_user->setAttribute('review_c', ''); ?>

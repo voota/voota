@@ -120,7 +120,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 				  , 'comentario' => $request->getParameter('review_text')
 				  , 'vanity' => $politico->getVanity()
 				  , 'codigo' => $user->getProfile()->getCodigo()
-				  , 'voto' => $review->getValue()
+				  , 'voto' => $request->getParameter('v')
 				));
 				
 		  		VoMail::send(
