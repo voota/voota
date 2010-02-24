@@ -39,7 +39,7 @@
 
 <div id="accounts-join-skip">
   <p>
-    Si no tienes cuenta en Voota no pasa nada, ¿eh?
+    <?php __('Si no tienes cuenta en Voota no pasa nada, ¿eh?')?>
   </p>
 
   <p>

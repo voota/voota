@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-02-12T14:02:40Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-02-24T20:47:59Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -1786,6 +1786,90 @@ que estamos.</source>
       </trans-unit>
       <trans-unit id="367">
         <source>Ojo, ahora tienes otra cuenta asociada a tu perfil de Facebook. Unificando las dos todo será más sencillo. ¿Cómo lo ves?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="368">
+        <source>Tip:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="369">
+        <source>Sincronizar tu cuenta en Voota con Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="370">
+        <source>¿Ya tenías cuenta en Voota? Sincronizar con tu Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="371">
+        <source>Vooto en contra</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="372">
+        <source>Vooto a favor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="373">
+        <source>[0]%1% votos|[1]%1% voto|(1,+Inf]%1% votos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="374">
+        <source>Todos los vootos, %votes_count%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="375">
+        <source>Sólo positivos, %positive_votes_perc%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="376">
+        <source>Sólo negativos, %negative_votes_perc%%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="377">
+        <source>Comparte opiniones sobre políticos y partidos de España. Ranking de los políticos y partidos más votados.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="378">
+        <source>Comparte opiniones sobre políticos y partidos de España.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="379">
+        <source>%1% opiniones, de %4% personas, sobre %5% políticos y %6% partidos.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="380">
+        <source>Los más votados de esta semana:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="381">
+        <source>Una cosilla antes de continuar...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="382">
+        <source>Si ya tienes una cuenta Voota, es el mejor momento para vincularla con tu usuario de Facebook. Sólo tienes que introducir tu email y tu contraseña en Voota, y todo quedará unificado. ¿Cómo lo ves?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="383">
+        <source>Paa'lante, quizás en otro momento &amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="384">
+        <source>El partido %1% aun no tiene ningún político inscrito en Voota.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="385">
+        <source>[0]0|[1]%1% ha comentado sobre &amp;hellip; (%2% voto)|(1,+Inf]%1% ha comentado sobre &amp;hellip; (%2% votos)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="386">
+        <source>Papel en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="387">
+        <source>He comenzado a compartir mis opiniones sobre políticos de España en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="388">
+        <source>Si no tienes cuenta en Voota no pasa nada, ¿eh?</source>
         <target/>
       </trans-unit>
     </body>
