@@ -8,7 +8,11 @@
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
-    $('.reviews').tabs();
+	    $('.reviews').tabs({
+	        load: function() {
+		    	FB.XFBML.Host.parseDomTree();
+			}
+		});
 
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	

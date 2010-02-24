@@ -30,7 +30,7 @@
       <li class="subreviews-pagination">
       	<p><?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?></p>
         <?php if($total > $showCount): ?>
-          <?php echo jq_form_remote_tag(array('update' => "sf_review_sr_c".$id, 'url' => '@sf_review_list')) ?>
+          <?php echo jq_form_remote_tag(array('update' => "sf_review_sr_c${listValue}_".$id, 'url' => '@sf_review_list')) ?>
           		<input type="hidden" name="id" value="<?php echo $id?>" />
           		<input type="hidden" name="showCount" value="<?php echo $seeMoreCount?>" />
 		        <p class="more"><input type="submit" value="<?php echo __('más')?>" /></p>

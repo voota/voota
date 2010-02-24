@@ -37,6 +37,7 @@
   <?php endif ?>
   
 	<?php if ($reviewable): ?>
-		<div id="<?php echo "sf_review_sr_c".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId())) ?></div>
+	<?php $listValue = isset($listValue)?$listValue:''?>
+		<div id="<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId(), 'listValue' => $listValue)) ?></div>
 	<?php endif ?>
 </li>

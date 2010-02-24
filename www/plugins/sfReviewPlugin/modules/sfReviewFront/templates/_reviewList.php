@@ -12,7 +12,7 @@
 	<?php if ($reviewsPager->getNbResults() > 0): ?>
 	  <ol>
   	  <?php foreach($reviewsPager->getResults() as $review): ?>
-  		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true)) ?>
+  		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => $value)) ?>
   		<?php endforeach ?>
 	  </ol>
 	<?php endif ?>
