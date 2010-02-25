@@ -19,12 +19,16 @@
       #selector_partido_actual {
         display: block;
         width: 155px;
-        height: 27px;
+        height: 17px;
         padding: 5px 20px 5px 5px;
         background: transparent url(images/selector_bg.png) top left no-repeat;
         cursor: hand;
         color: #000;
         text-decoration: none;
+      }
+      #selector_partido_actual.selected {
+        color: #fff;
+        background-position: -27px left;
       }
       #selector_partido_area {
         border: 1px solid #999999;
@@ -34,7 +38,7 @@
       #selector_partido_buscador {
         width: 145px;
         padding-right: 20px;
-        background: transparent url(images/selector_buscador_bg.png) right center no-repeat;
+        background: transparent url(images/selector_buscador_bg.png) center right no-repeat;
       }
       #selector_partido_favoritos {
         margin: 10px 0;
@@ -57,7 +61,7 @@
     	  return false;
     	}
 
-      $().ready(function() {
+      $(document).ready(function() {
 
         var partidos = [
         	{ nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "1" },
@@ -71,8 +75,6 @@
         	{ nombre: "CHA", siglas: "", id: "9" },
         	{ nombre: "CiU", siglas: "", id: "10" }
         ];
-      	
-
 
       	$("#selector_partido_buscador").autocomplete(partidos, {
       		matchContains: true,
@@ -92,11 +94,14 @@
       		
       	});
       	
+      	$("#selector_partido_actual").click(function (){
+      	  $("#selector_partido_actual").toggleClass('selected');
+      	  $("#selector_partido_area").toggle();
+      	});
+      	
       	$("#selector_partido_buscador").result(function(event, data, formatted) {
       	  select_and_close_results(formatted);
       	});
-      	
-      	$("#selector_partido_actual").click(function (){ $("#selector_partido_area").toggle(); });
       	
       	var offset = $("#selector_partido_actual").offset();
       	$("#selector_partido_area").css({
