@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+
+.oauth_label {
+	float: left;
+	width: 12em;
+}
+.oauth_keys .oauth_data {
+	font-weight: bold;
+}
+
+
+.oauth_keys {
+	border: 1px solid grey;
+	padding: 8px;
+	margin-bottom: 12px;
+}
+
+.oauth_notice {
+	margin-top: 32px;
+}

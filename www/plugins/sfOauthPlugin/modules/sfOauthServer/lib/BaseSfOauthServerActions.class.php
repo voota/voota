@@ -35,23 +35,26 @@ class BaseSfOauthServerActions extends sfActions
 	$this->form = new OauthRegisterForm( );
 	
     if ( $request->isMethod('post') ) {
+      $this->form->bind($request->getParameter('application'));
+      if ($this->form->isValid())
+      {
 		// The currently logged on user
 		$user_id = $this->getUser()->getGuardUser()->getId()+1000;
 		
 		// This should come from a form filled in by the requesting user
 		$consumer = array(
 		    // These two are required
-		    'requester_name' => 'John Doe',
-		    'requester_email' => 'john@example.com',
+		    'requester_name' => $this->form['name']->getValue(),
+		    'requester_email' => $this->form['email']->getValue(),
 		
 		    // These are all optional
-		    'callback_uri' => 'http://www.myconsumersite.com/oauth_callback',
-		    'application_uri' => 'http://www.myconsumersite.com/',
-		    'application_title' => 'John Doe\'s consumer site',
-		    'application_descr' => 'Make nice graphs of all your data',
-		    'application_notes' => 'Bladibla',
-		    'application_type' => 'website',
-		    'application_commercial' => 0
+		    'callback_uri' => $this->form['callback_uri']->getValue(),
+		    'application_uri' => $this->form['application_uri']->getValue(),
+		    'application_title' => $this->form['application_title']->getValue(),
+		    'application_descr' => $this->form['application_descr']->getValue(),
+		    'application_notes' => $this->form['application_notes']->getValue(),
+		    'application_type' => $this->form['application_type']->getValue(),
+		    'application_commercial' => $this->form['application_commercial']->getValue()
 		);
 		
 		// Register the consumer
@@ -67,21 +70,15 @@ class BaseSfOauthServerActions extends sfActions
 		$consumer = $store->getConsumer($key, $user_id);
 		
 		// Some interesting fields, the user will need the key and secret
+		$this->consumer = $consumer;
 		$this->consumer_id = $consumer['id'];
 		$this->consumer_key = $consumer['consumer_key'];
 		$this->consumer_secret = $consumer['consumer_secret'];
 		
-		echo $this->consumer_id;
-		echo "<br>";
-		echo $this->consumer_key;
-		echo "<br>";
-		echo $this->consumer_secret;
-		echo "<br>";
-		echo "<pre>";
-		var_dump($consumer);
-		echo "</pre>";
+		//$this->list = $store->listConsumers($user_id);
 		
-		$this->list = $store->listConsumers($user_id);
+		return 'ShowData';
+      }
     }
   }
   
@@ -116,4 +113,30 @@ class BaseSfOauthServerActions extends sfActions
   	
 	$server->accessToken();
   }
+  
+	private function send ($subject, $mailBody, $to, $from) {
+		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
+		
+		$mailEnabled = sfConfig::get('sf_mail_enabled');
+		$mailServer = sfConfig::get('sf_mail_server');
+		$mailPort = sfConfig::get('sf_mail_port');
+		$mailUser = sfConfig::get('sf_mail_user');
+
+		if ($mailEnabled == 'on') {		
+			$transport = Swift_SmtpTransport::newInstance($mailServer, $mailPort)
+                    ->setUsername( $mailUser )
+                    ->setPassword( $smtp_pass );
+			 		       
+			$mailer = Swift_Mailer::newInstance($transport);
+			  
+			$message = Swift_Message::newInstance( $subject )
+						->setCharset('utf-8')
+	  					->setFrom( $from )
+	  					->setTo( $to )
+	  					->setBody( $mailBody, 'text/html', 'utf-8' )
+	  					;
+	  					
+	  		$result = $mailer->send($message);
+		}	
+	}
 }

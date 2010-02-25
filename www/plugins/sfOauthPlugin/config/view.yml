@@ -1,0 +1,2 @@
+default:
+  stylesheets:    [/sfOauthPlugin/css/oauth.css]

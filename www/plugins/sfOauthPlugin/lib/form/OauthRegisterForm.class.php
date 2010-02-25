@@ -17,7 +17,7 @@
  */
 class OauthRegisterForm extends sfGuardUserAdminForm
 {
-  protected static $tipos = array('W' => 'Web', 'M' => 'Móvil', 'O' => 'Otros');
+  protected static $tipos = array('Web' => 'Web', 'Mobile' => 'Móvil', 'Others' => 'Otros');
   
   public function configure()
   {
@@ -38,15 +38,16 @@ class OauthRegisterForm extends sfGuardUserAdminForm
     $this->setValidators(array(
 	  'name'   => new sfValidatorString(array('required' => true)),    
 	  'email'   => new sfValidatorEmail(array('required' => true)),    
-	  'callback_uri'   => new sfValidatorUrl(array('required' => true)),    
-	  'application_uri'   => new sfValidatorUrl(array('required' => true)),    
-	  'application_title'   => new sfValidatorString(array('required' => true)),    
-	  'application_descr'   => new sfValidatorString(array('required' => true)),    
-	  'application_notes'   => new sfValidatorString(array('required' => true)),    
-	  'application_type'   => new sfValidatorString(array('required' => true)),    
-	  'application_commercial'   => new sfValidatorString(array('required' => true)), 
+	  'callback_uri'   => new sfValidatorString(array('required' => false)),    
+	  'application_uri'   => new sfValidatorUrl(array('required' => false)),    
+	  'application_title'   => new sfValidatorString(array('required' => false)),    
+	  'application_descr'   => new sfValidatorString(array('required' => false)),    
+	  'application_notes'   => new sfValidatorString(array('required' => false)),    
+	  'application_type'   => new sfValidatorString(array('required' => false)),    
+	  'application_commercial'   => new sfValidatorString(array('required' => false)), 
 	));
        
+    $this->widgetSchema->setNameFormat('application[%s]');
 
     $uniqValidator = new sfValidatorAnd(array(
     	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUser', 'column'=>array('username')), sfVoForm::getUniqueMessages()    ),

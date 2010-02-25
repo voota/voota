@@ -1,5 +1,7 @@
 <?php use_helper('I18N') ?>
 
+<p><?php echo __('Sólo unos pocos datos sobre tí y tu aplicación para que puedas obtener las claves de conexión:')?></p>
+
 <form action="<?php echo url_for('sfOauthServer/register') ?>" method="post" method="post" enctype="multipart/form-data">
 	<table>
       <tr>
