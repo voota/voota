@@ -31,11 +31,63 @@ class apiActions extends sfActions{
 	
 	RestUtils::sendResponse(200, json_encode($res), 'application/json');
   }
+
+  private function search( $data ){
+  	$q = $this->getRequestParameter("q", '');
+  	$culture = "es";
+  	
+  	$cl = new SphinxClient ();
+  	
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	$sphinxServer = sfConfig::get('sf_sphinx_server');
+  	$cl->SetServer ( $sphinxServer, 3312 );
+	$this->limit = 1000;
+	$cl->SetLimits ( 0, $this->limit, $this->limit );
+	$cl->SetArrayResult ( true );
+  	
+    $entities = array();
+  	$cl->SetArrayResult(true);
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $q ), "politico_$culture" );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+			$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+			$c = new Criteria;
+        	$c->add(PoliticoPeer::ID, $list, Criteria::IN);
+  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  			$c->setLimit( 20 );
+  			
+  			$politicos = PoliticoPeer::doSelect($c);
+    
+		    foreach ($politicos as $politico){
+		    	$entities[] = new Entity( $politico ); 	
+		    }
+		}	
+	}
+	
+  	return $entities;
+  }
   
-  private function most_recently_voted( $data ){
+  private function top6( $data ){
+  	$sort = $this->getRequestParameter("sort", 'positive');	
+  	
   	$c = new Criteria();
-  	$pager = new sfPropelPager('Politico', self::PAGE_SIZE);
-   	$pager->setCriteria($c);
+  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
+  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+  	if($sort == 'negative') {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+  	}
+  	else {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+   	}
+  	$pager = new sfPropelPager('Politico', 6);
+	$c->setDistinct();
+	
+    $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
     
@@ -43,7 +95,7 @@ class apiActions extends sfActions{
     foreach ($pager->getResults() as $politico){
     	$entities[] = new Entity( $politico ); 	
     }
-  	
+	
   	return $entities;
   }
   
