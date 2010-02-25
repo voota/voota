@@ -7,17 +7,40 @@
     <script type="text/javascript" src="sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js"></script> 
     <script type='text/javascript' src='jquery-autocomplete/jquery.autocomplete.js'></script>
 
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ui-lightness/jquery-ui-1.7.2.custom.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="sfReviewPlugin/css/sf_review.css" /> 
+    <link rel="stylesheet" type="text/css" media="screen" href="css/screen.css" />
     <link rel="stylesheet" type="text/css" href="jquery-autocomplete/jquery.autocomplete.css" />
 
     <style>
       #selector_partido {
-        border: 1px solid #000;
-        padding: 5px 20px;
+        position: relative;
+      }
+      #selector_partido_actual {
+        display: block;
+        width: 155px;
+        height: 27px;
+        padding: 5px 20px 5px 5px;
+        background: transparent url(images/selector_bg.png) top left no-repeat;
+        cursor: hand;
+        color: #000;
+        text-decoration: none;
       }
       #selector_partido_area {
-        border: 1px solid #000;
+        border: 1px solid #999999;
         border-top: none;
-        padding: 20px;
+        padding: 5px 20px 5px 5px;
+      }
+      #selector_partido_buscador {
+        width: 145px;
+        padding-right: 20px;
+        background: transparent url(images/selector_buscador_bg.png) right center no-repeat;
+      }
+      #selector_partido_favoritos {
+        margin: 10px 0;
+      }
+      #selector_partido_favoritos p {
+        padding-bottom: 0px;
       }
       .ac_results {
         border: none;
@@ -29,7 +52,7 @@
 
     <script type="text/javascript">
       function select_and_close_results(name) {
-    	  $("#selector_partido").html(name);
+    	  $("#selector_partido_actual").html(name);
     	  $("#selector_partido_area").toggle();
     	  return false;
     	}
@@ -51,7 +74,7 @@
       	
 
 
-      	$("#partidos").autocomplete(partidos, {
+      	$("#selector_partido_buscador").autocomplete(partidos, {
       		matchContains: true,
       		minChars: 0,
       		matchContains: "word",
@@ -69,33 +92,38 @@
       		
       	});
       	
-      	$("#partidos").result(function(event, data, formatted) {
+      	$("#selector_partido_buscador").result(function(event, data, formatted) {
       	  select_and_close_results(formatted);
       	});
       	
-      	$("#selector_partido").click(function (){ $("#selector_partido_area").toggle(); });
+      	$("#selector_partido_actual").click(function (){ $("#selector_partido_area").toggle(); });
       	
-      	var offset = $("#selector_partido").offset();
+      	var offset = $("#selector_partido_actual").offset();
       	$("#selector_partido_area").css({
       	  position: "absolute",
-      	  width: $("#selector_partido").width(),
-      	  top: offset.top + $("#selector_partido").offsetHeight,
+      	  width: $("#selector_partido_actual").width() - 2
+      	}).offset({
+      	  top: offset.top + $("#selector_partido_actual").offsetHeight,
   				left: offset.left
       	});
       });
     </script>
   </head>
   <body>
-    <div>
-			<label>Ranking de políticos en</label>
-			<a href="#" id="selector_partido">Todos los partidos v</a>
-			<div id="selector_partido_area" style="display: none">
-  			<input type="text" id="partidos" />
-  			<div id="selector_partido_favoritos">
-	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PSOE</a></p>
-	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PP</a></p>
-  			</div>
-			</div>
+    <div id="main">
+      <div id="main-inner" style="height: 500px">
+        <div id="selector_partido">
+          <label>Ranking de políticos en</label>
+    			<a href="#" id="selector_partido_actual">Todos los partidos</a>
+        </div>
+        <div id="selector_partido_area" style="display: none">
+    			<input type="text" id="selector_partido_buscador" />
+    			<div id="selector_partido_favoritos">
+  	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PSOE</a></p>
+  	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PP</a></p>
+    			</div>
+  			</div>  			
+      </div>
 		</div>
   </body>
 </html>
