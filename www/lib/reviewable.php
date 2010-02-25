@@ -1,5 +1,6 @@
 <?php
 interface reviewable{
+    public function getId();
     public function getSumu();
     public function getSumd();
 	public function getSumut();

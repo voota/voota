@@ -19,6 +19,7 @@ class Entity {
 	const IMAGE_PATH = 'http://imagesvoota.s3.amazonaws.com/';
 	
 	var $type = 'unknown';
+	var $id;
 	var $name;
 	var $longName;
 	var $image;
@@ -31,6 +32,7 @@ class Entity {
 	
   	public function __construct(reviewable $entity)
   	{
+  		$this->id = $entity->getId();
   		$this->name = $entity->__toString();
   		$peer = $entity->getPeer();
   		$this->type = $peer::TABLE_NAME;
