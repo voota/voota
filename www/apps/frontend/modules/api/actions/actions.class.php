@@ -24,7 +24,7 @@ class apiActions extends sfActions{
   	
 	switch($data->getMethod()) {
 		case 'get':
-			$method = $request->getParameter('method', 'most_recently_voted');
+			$method = $request->getParameter('method', 'top6');
 			$res = $this->$method( $data );
 			break;
 	}
@@ -178,5 +178,25 @@ class apiActions extends sfActions{
     }
 	
   	return $entities;
+  }
+    
+  /* Reviews methods */
+  
+  private function reviews($data) {
+  	$page = $this->getRequestParameter("page", '1');
+  	$type = $this->getRequestParameter("type");
+  	$entity = $this->getRequestParameter("entity");
+  	$value = $this->getRequestParameter("value", NULL);
+  	
+  	$obj = ucwords($type);
+  		
+  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $obj::NUM_ENTITY, $entity, $value, self::PAGE_SIZE, false, $page);
+  
+    $reviews = array();
+    foreach ($sfReviewsPager->getResults() as $sfReview){
+    	$reviews[] = new Review( $sfReview ); 	
+    }
+    
+    return $reviews;
   }
 }
