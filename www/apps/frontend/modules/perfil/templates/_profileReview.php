@@ -19,7 +19,7 @@
 			<?php elseif ($review->getSfReviewRelatedBySfReviewId()->getSfReviewType()->getId() == Partido::NUM_ENTITY): ?>
                 <?php echo __('Otro comentario sobre')?> <?php echo link_to($partido, 'partido/show?id='.$partido->getAbreviatura())?>, <span class="date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></span>
 			<?php endif ?>
-		<?php elseif ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY): ?>
+		<?php elseif ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY && $politico): ?>
                 <?php echo link_to($politico, 'politico/show?id='.$politico->getVanity())?><?php if($politico->getPartido()):?> (<?php echo $politico->getPartido()?>)<?php endif?>, <span class="date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></span>
 		<?php elseif ($review->getSfReviewType()->getId() == Partido::NUM_ENTITY): ?>
                 <?php echo link_to($partido, 'partido/show?id='.$partido->getAbreviatura())?>, <span class="date"><?php echo ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() ))?></span>

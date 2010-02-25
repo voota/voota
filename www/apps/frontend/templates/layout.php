@@ -178,5 +178,31 @@
       pageTracker._trackPageview();
     } catch(err) {}
   </script><!-- FIN GOOGLE ANALYTICS -->
+  
+  <script type="text/javascript">
+var uservoiceOptions = {
+  /* required */
+  key: 'voota',
+  host: 'voota.uservoice.com', 
+  forum: '42379',
+  showTab: true,  
+  /* optional */
+  alignment: 'left',
+  background_color:'#00f', 
+  text_color: 'white',
+  hover_color: '#06C',
+  lang: 'es'
+};
+
+function _loadUserVoice() {
+  var s = document.createElement('script');
+  s.setAttribute('type', 'text/javascript');
+  s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
+  document.getElementsByTagName('head')[0].appendChild(s);
+}
+_loadSuper = window.onload;
+window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+</script>
+
 </body>
 </html>

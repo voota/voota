@@ -48,16 +48,23 @@ class apiActions extends sfActions{
   }
   
   private function entities($data) {
-	$type = $this->getRequestParameter("type");	
+	$type = "entities_". $this->getRequestParameter("type");	
   	
 	return $this->$type( $data );
   }
-  
-  private function politicos($data) {
+
+  private function entities_politico($data) {
+  	$sort = $this->getRequestParameter("sort", 'positive');	
+  	
   	$c = new Criteria();
   	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
   	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
-  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	if($sort == 'negative') {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+  	}
+  	else {
+  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+   	}
   	$pager = new sfPropelPager('Politico', self::PAGE_SIZE);
 	$c->setDistinct();
 	
@@ -68,6 +75,30 @@ class apiActions extends sfActions{
     $entities = array();
     foreach ($pager->getResults() as $politico){
     	$entities[] = new Entity( $politico ); 	
+    }
+	
+  	return $entities;
+  }
+  private function entities_partido($data) {
+  	$sort = $this->getRequestParameter("sort", 'positive');	
+  	
+  	$c = new Criteria();
+  	if($sort == 'negative') {
+  		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
+  	}
+  	else {
+  		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+   	}
+  	$pager = new sfPropelPager('Partido', self::PAGE_SIZE);
+	$c->setDistinct();
+	
+    $pager->setCriteria($c);
+    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->init();
+    
+    $entities = array();
+    foreach ($pager->getResults() as $partido){
+    	$entities[] = new Entity( $partido ); 	
     }
 	
   	return $entities;
