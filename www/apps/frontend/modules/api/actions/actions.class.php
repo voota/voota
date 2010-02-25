@@ -32,6 +32,8 @@ class apiActions extends sfActions{
 	RestUtils::sendResponse(200, json_encode($res), 'application/json');
   }
 
+  /* General methods */
+    
   private function search( $data ){
   	$q = $this->getRequestParameter("q", '');
   	$culture = "es";
@@ -98,13 +100,28 @@ class apiActions extends sfActions{
 	
   	return $entities;
   }
+
+  /* Entities methods */
   
   private function entities($data) {
 	$type = "entities_". $this->getRequestParameter("type");	
   	
 	return $this->$type( $data );
   }
+  
+  private function entity($data) {
+	$type = "entity_". $this->getRequestParameter("type");	
+  	
+	return $this->$type( $data );
+  }
 
+  private function entity_politico($data) {
+  	$id = $this->getRequestParameter("id");
+  	$politico = PoliticoPeer::retrieveByPK( $id );
+  	$this->forward404Unless( $politico );  	
+	
+  	return new Entity( $politico );
+  }
   private function entities_politico($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
   	
@@ -130,6 +147,13 @@ class apiActions extends sfActions{
     }
 	
   	return $entities;
+  }
+  private function entity_partido($data) {
+  	$id = $this->getRequestParameter("id");
+  	$partido = PartidoPeer::retrieveByPK( $id );
+  	$this->forward404Unless( $partido );  	
+	
+  	return new Entity( $partido );
   }
   private function entities_partido($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
