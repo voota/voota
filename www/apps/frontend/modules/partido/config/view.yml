@@ -3,6 +3,7 @@ default:
     sparkline:  [partido, sparkline]
     sparkline_politico:  [politico, sparkline]
     subreviews:  [sfReviewFront, subreviews]
+    review_list:  [sfReviewFront, reviewList]
     
 all:
   javascripts: [jquery.sparkline.min.js]
