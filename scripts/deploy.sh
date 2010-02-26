@@ -12,6 +12,7 @@ if [ $ENV -eq $TEST ] ; then
   case "$1" in
     test)
 		cd $DEST
+		rm -rf $DEST/www/cache/*
         phing test
         cd $POOTLE_DIR
         sudo -u pootle svn update
