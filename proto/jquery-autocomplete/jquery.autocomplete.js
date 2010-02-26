@@ -46,6 +46,9 @@ $.fn.extend({
 	},
 	unautocomplete: function() {
 		return this.trigger("unautocomplete");
+	},
+	displayFavorites: function() {
+	  return this.trigger("displayFavorites");
 	}
 });
 
@@ -197,7 +200,9 @@ $.Autocompleter = function(input, options) {
 		select.unbind();
 		$input.unbind();
 		$(input.form).unbind(".autocomplete");
-	});
+	}).bind("displayFavorites", function() {
+	  select.displayFavorites();
+  });
 	
 	
 	function selectCurrent() {
@@ -402,7 +407,8 @@ $.Autocompleter = function(input, options) {
 	function stopLoading() {
 		$input.removeClass(options.loadingClass);
 	};
-
+	
+	select.displayFavorites();
 };
 
 $.Autocompleter.defaults = {
@@ -428,8 +434,8 @@ $.Autocompleter.defaults = {
 	highlight: function(value, term) {
 		return value.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + term.replace(/([\^\$\(\)\[\]\{\}\*\.\+\?\|\\])/gi, "\\$1") + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
 	},
-    scroll: true,
-    scrollHeight: 180
+  scroll: true,
+  scrollHeight: 180
 };
 
 $.Autocompleter.Cache = function(options) {
@@ -456,9 +462,9 @@ $.Autocompleter.Cache = function(options) {
 			length++;
 		}
 		data[q] = value;
-	}
+	};
 	
-	function populate(){
+  function populate(){
 		if( !options.data ) return false;
 		// track the matches
 		var stMatchSets = {},
@@ -466,20 +472,20 @@ $.Autocompleter.Cache = function(options) {
 
 		// no url was specified, we need to adjust the cache length to make sure it fits the local data store
 		if( !options.url ) options.cacheLength = 1;
-		
+
 		// track all options for minChars = 0
 		stMatchSets[""] = [];
-		
+
 		// loop through the array and create a lookup structure
 		for ( var i = 0, ol = options.data.length; i < ol; i++ ) {
 			var rawValue = options.data[i];
 			// if rawValue is a string, make an array otherwise just reference the array
-			rawValue = (typeof rawValue == "string") ? [rawValue] : rawValue;
-			
-			var value = options.formatMatch(rawValue, i+1, options.data.length);
+  		rawValue = (typeof rawValue == "string") ? [rawValue] : rawValue;
+
+      var value = options.formatMatch(rawValue, i+1, options.data.length);      
 			if ( value === false )
 				continue;
-				
+
 			var firstChar = value.charAt(0).toLowerCase();
 			// if no lookup array for this character exists, look it up now
 			if( !stMatchSets[firstChar] ) 
@@ -491,7 +497,7 @@ $.Autocompleter.Cache = function(options) {
 				data: rawValue,
 				result: options.formatResult && options.formatResult(rawValue) || value
 			};
-			
+
 			// push the current match into the set list
 			stMatchSets[firstChar].push(row);
 
@@ -509,14 +515,14 @@ $.Autocompleter.Cache = function(options) {
 			add(i, value);
 		});
 	}
-	
+
 	// populate any existing data
 	setTimeout(populate, 25);
 	
 	function flush(){
 		data = {};
 		length = 0;
-	}
+	};
 	
 	return {
 		flush: flush,
@@ -658,7 +664,7 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			? options.max
 			: available;
 	}
-	
+
 	function fillList() {
 		list.empty();
 		var max = limitNumberOfItems(data.length);
@@ -681,12 +687,46 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			list.bgiframe();
 	}
 	
+  function favoritesSet(){
+	  if( !options.favorites ) return false;
+
+	  var stMatchSet = [];
+
+    // loop through the array and create a lookup structure
+    for ( var i = 0, ol = options.favorites.length; i < ol; i++ ) {
+    	var rawValue = options.data[i];
+    	// if rawValue is a string, make an array otherwise just reference the array
+    	rawValue = (typeof rawValue == "string") ? [rawValue] : rawValue;
+
+      var value = options.formatMatch(rawValue, i+1, options.data.length);
+      if ( value === false )
+    		continue;
+
+      // if the match is a string
+    	var row = {
+    		value: value,
+    		data: rawValue,
+    		result: options.formatResult && options.formatResult(rawValue) || value
+    	};
+
+    	// push the current match into the set list
+    	stMatchSet.push(row);
+    };
+
+    return stMatchSet;
+	};
+	
 	return {
 		display: function(d, q) {
 			init();
 			data = d;
 			term = q;
 			fillList();
+		},
+		displayFavorites: function() {
+		  data = favoritesSet();
+		  this.display(data, "");
+		  this.show();
 		},
 		next: function() {
 			moveSelect(1);
@@ -726,27 +766,27 @@ $.Autocompleter.Select = function (options, input, select, config) {
 				top: offset.top + input.offsetHeight,
 				left: offset.left
 			}).show();
-            if(options.scroll) {
-                list.scrollTop(0);
-                list.css({
+      if(options.scroll) {
+        list.scrollTop(0);
+        list.css({
 					maxHeight: options.scrollHeight,
 					overflow: 'auto'
 				});
 				
-                if($.browser.msie && typeof document.body.style.maxHeight === "undefined") {
+        if($.browser.msie && typeof document.body.style.maxHeight === "undefined") {
 					var listHeight = 0;
 					listItems.each(function() {
 						listHeight += this.offsetHeight;
 					});
 					var scrollbarsVisible = listHeight > options.scrollHeight;
-                    list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );
+          list.css('height', scrollbarsVisible ? options.scrollHeight : listHeight );
 					if (!scrollbarsVisible) {
 						// IE doesn't recalculate width when scrollbar disappears
 						listItems.width( list.width() - parseInt(listItems.css("padding-left")) - parseInt(listItems.css("padding-right")) );
 					}
-                }
-                
-            }
+        }
+          
+      }
 		},
 		selected: function() {
 			var selected = listItems && listItems.filter("." + CLASSES.ACTIVE).removeClass(CLASSES.ACTIVE);

@@ -20,6 +20,8 @@
         display: block;
         width: 155px;
         height: 17px;
+        line-height: 19px;
+        overflow: hidden;
         padding: 5px 20px 5px 5px;
         background: transparent url(images/selector_bg.png) top left no-repeat;
         cursor: hand;
@@ -33,21 +35,18 @@
       #selector_partido_area {
         border: 1px solid #999999;
         border-top: none;
-        padding: 5px 20px 5px 5px;
+        padding: 5px;
       }
       #selector_partido_buscador {
         width: 145px;
         padding-right: 20px;
         background: transparent url(images/selector_buscador_bg.png) center right no-repeat;
       }
-      #selector_partido_favoritos {
-        margin: 10px 0;
-      }
-      #selector_partido_favoritos p {
-        padding-bottom: 0px;
-      }
       .ac_results {
         border: none;
+      }
+      .ac_results ul li {
+        height: 16px; overflow: hidden;
       }
       .ac_results strong {
         text-decoration: underline;
@@ -57,10 +56,11 @@
     <script type="text/javascript">
       function select_and_close_results(name) {
     	  $("#selector_partido_actual").html(name);
+    	  $("#selector_partido_actual").toggleClass('selected');
     	  $("#selector_partido_area").toggle();
     	  return false;
     	}
-
+    	
       $(document).ready(function() {
 
         var partidos = [
@@ -75,12 +75,20 @@
         	{ nombre: "CHA", siglas: "", id: "9" },
         	{ nombre: "CiU", siglas: "", id: "10" }
         ];
+        
+        var favoritos = [
+          { nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "1" },
+        	{ nombre: "Partido Popular", siglas: "PP", id: "2" }
+        ];
 
       	$("#selector_partido_buscador").autocomplete(partidos, {
       		matchContains: true,
       		minChars: 0,
+      		width: 168,
       		matchContains: "word",
       		autoFill: false,
+      		selectFirst: false,
+      		favorites: favoritos,
       		resultsContainer: $("#selector_partido_area"),
       		formatItem: function(row, i, max) {
       			return row.nombre;
@@ -93,10 +101,11 @@
       		}
       		
       	});
-      	
-      	$("#selector_partido_actual").click(function (){
+
+      	$("#selector_partido_actual").click(function (event){
       	  $("#selector_partido_actual").toggleClass('selected');
       	  $("#selector_partido_area").toggle();
+      	  $('#selector_partido_buscador').attr("value","");
       	});
       	
       	$("#selector_partido_buscador").result(function(event, data, formatted) {
@@ -106,7 +115,7 @@
       	var offset = $("#selector_partido_actual").offset();
       	$("#selector_partido_area").css({
       	  position: "absolute",
-      	  width: $("#selector_partido_actual").width() - 2
+      	  width: $("#selector_partido_actual").width() + 13
       	}).offset({
       	  top: offset.top + $("#selector_partido_actual").offsetHeight,
   				left: offset.left
@@ -123,10 +132,6 @@
         </div>
         <div id="selector_partido_area" style="display: none">
     			<input type="text" id="selector_partido_buscador" />
-    			<div id="selector_partido_favoritos">
-  	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PSOE</a></p>
-  	   			<p><a href="#" onclick="select_and_close_results($(this).text())">PP</a></p>
-    			</div>
   			</div>  			
       </div>
 		</div>
