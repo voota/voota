@@ -28,6 +28,9 @@ class institucionActions extends autoInstitucionActions
   	
     $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
   	if ($this->form->isValid()) {
+	  		if($this->form->getValue('imagen_delete') == "on"){
+				    $this->form->getObject()->setImagen( null );
+	  		}
 	  	$imagen = $this->form->getValue('imagen');
 	    if ($imagen && $imagen->getOriginalName()){
 			$arr = array_reverse( split("\.", $imagen->getOriginalName()) );

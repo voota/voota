@@ -38,7 +38,7 @@
     <p>
       <?php echo __('Asociación Voota,')?><br />
       <?php echo __('CIF: G85756625,')?><br />
-      <?php echo __('Domicilio soical en C/ Ruiz de Alarcón 14 1ºD')?><br />
+      <?php echo __('Domicilio social en C/ Conde de Aranda 20, 2º Izq. 28001 Madrid')?><br />
       <?php echo __('28014 Madrid')?>
     </p>
   </div>

@@ -79,6 +79,7 @@ class PartidoForm extends BasePartidoForm
 		// set a custom label for the embedded form
 		$this->widgetSchema['enlace']->setLabel('Nuevo enlace');
 	}
+	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
 		if (!$this->isNew()) {

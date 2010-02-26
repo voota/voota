@@ -157,6 +157,7 @@ class PoliticoForm extends BasePoliticoForm
 		// set a custom label for the embedded form
 		$this->widgetSchema['institucion']->setLabel('Nueva institución');
 	}
+	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
 		if (!$this->isNew()) {

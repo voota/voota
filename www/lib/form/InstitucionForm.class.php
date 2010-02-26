@@ -44,6 +44,8 @@ class InstitucionForm extends BaseInstitucionForm
    'path' => sfConfig::get('sf_upload_dir').'/instituciones',
    'validated_file_class' => 'sfResizedFile',
 	));
+	
+	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
   }
   
   protected function setValue($key, $value) {
