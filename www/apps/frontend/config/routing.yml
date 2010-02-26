@@ -67,6 +67,16 @@ partido_es:
   param: { module: partido, action: show }
   requirements: { sf_culture: (?:es) }
 
+politico_take_es:
+  url:   /:sf_culture/take
+  param: { module: politico, action: take }
+  requirements: { sf_culture: (?:es) }
+  
+politico_take_ca:
+  url:   /:sf_culture/take
+  param: { module: politico, action: take }
+  requirements: { sf_culture: (?:es) }
+  
 partido_ca:
   url: /:sf_culture/partit/:id
   param: { module: partido, action: show }
@@ -243,3 +253,4 @@ api_demo_most_recently_voted:
 api_demo_politicos:
   url:   /api_demo/politicos
   param: { module: api_demo, action: politicos }
+

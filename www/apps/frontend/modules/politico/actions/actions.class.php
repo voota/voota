@@ -22,6 +22,15 @@ define("ALL_FORM_VALUE", '0');
 class politicoActions extends sfActions
 {
 	
+  public function executeTake(sfWebRequest $request)
+  {
+  	$op = $request->getParameter("op", "a");
+  	if ($op == "c"){
+  		return "Confirm";
+  	}
+  	return "Ask";
+  }
+  
   public function executeMoreComments(sfWebRequest $request)
   {
   	$id = $request->getParameter("id");
