@@ -12,6 +12,7 @@
 	    $('.reviews').tabs({
 	        load: function() {
 		    	FB.XFBML.Host.parseDomTree();
+		    	$('#review_preload').remove();
 			}
 		, selected: -1
 		});
@@ -119,7 +120,10 @@
       <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
     </ul>
     
+    <div id="review_preload">
+    <br />
     <?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Politico::NUM_ENTITY, 'entity' => $politico)) ?>
+    </div>
     
   </div>
 
