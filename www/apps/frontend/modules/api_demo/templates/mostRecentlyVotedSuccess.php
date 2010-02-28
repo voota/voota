@@ -1,5 +1,7 @@
-<ol>
+<table>
 <?php foreach($entities as $entity):?>
-	<li><?php echo $entity->nombre ?></li>	
+<tr>
+<td><?php echo $entity->name ?></td><td><?php echo ($entity->recentPositives + $entity->recentNegatives) ?></td><td><?php echo $entity->recentPositives ?></td><td><?php echo $entity->recentNegatives ?></td>
+</tr>
 <?php endforeach ?>
-</ol>
+</table>

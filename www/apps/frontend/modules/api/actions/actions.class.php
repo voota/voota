@@ -75,6 +75,7 @@ class apiActions extends sfActions{
   }
   
   private function top6( $data ){
+  	/*
   	$sort = $this->getRequestParameter("sort", 'positive');	
   	
   	$c = new Criteria();
@@ -97,8 +98,8 @@ class apiActions extends sfActions{
     foreach ($pager->getResults() as $politico){
     	$entities[] = new Entity( $politico ); 	
     }
-	
-  	return $entities;
+	*/
+  	return EntityManager::getTopEntities( 6 );
   }
 
   /* Entities methods */

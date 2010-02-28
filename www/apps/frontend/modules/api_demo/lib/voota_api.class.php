@@ -102,7 +102,7 @@ class VootaApi{
   
   public function getMostRecentlyVoted($userId){
 	$params = array(
-	           'method' => 'most_recently_voted'
+	           'method' => 'top6'
 	     );
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);

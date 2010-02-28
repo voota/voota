@@ -43,5 +43,7 @@ class Entity {
   		$this->image_bw = self::IMAGE_PATH . $this->type . "s/bw_" . $entity->getImagen();
   	  	$this->image_s_bw = self::IMAGE_PATH . $this->type . "s/bw_s_" . $entity->getImagen();
   	  	$this->longName = $entity->getLongName();
+  	  	$this->recentPositives = $entity->getSumut();
+  	  	$this->recentNegatives = $entity->getSumdt();
   	} 
 }
