@@ -27,6 +27,10 @@ class apiActions extends sfActions{
 			$method = $request->getParameter('method', 'top6');
 			$res = $this->$method( $data );
 			break;
+		case 'get':
+			$method = $request->getParameter('method', 'review') . "_post";
+			$res = $this->$method( $data );
+			break;
 	}
 	
 	RestUtils::sendResponse(200, json_encode($res), 'application/json');
@@ -73,36 +77,12 @@ class apiActions extends sfActions{
 	
   	return $entities;
   }
-  
-  private function top6( $data ){
-  	/*
-  	$sort = $this->getRequestParameter("sort", 'positive');	
-  	
-  	$c = new Criteria();
-  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
-  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
-  	if($sort == 'negative') {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-  	}
-  	else {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-   	}
-  	$pager = new sfPropelPager('Politico', 6);
-	$c->setDistinct();
-	
-    $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
-    $pager->init();
-    
-    $entities = array();
-    foreach ($pager->getResults() as $politico){
-    	$entities[] = new Entity( $politico ); 	
-    }
-	*/
-  	return EntityManager::getTopEntities( 6 );
-  }
 
   /* Entities methods */
+  
+  private function top6( $data ){
+  	return EntityManager::getTopEntities( 6 );
+  }
   
   private function entities($data) {
 	$type = "entities_". $this->getRequestParameter("type");	
@@ -199,5 +179,9 @@ class apiActions extends sfActions{
     }
     
     return $reviews;
+  }
+  
+  private function review_post($data) {
+  	
   }
 }
