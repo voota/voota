@@ -198,6 +198,7 @@ input[type=submit].login_or_register { width: 200px; }
 #sfGuardAuth-edit input[type=text],
 #sfGuardAuth-edit input[type=password],
 #sfGuardAuth-edit textarea { width: 390px;}
+#sfGuardAuth-edit .politico { padding-top: 5px;}
 #sfGuardAuth-edit .vanity input { display: inline; width: 130px;}
 #sfGuardAuth-edit .avatar p { padding-bottom: 10px;}
 #sfGuardAuth-edit input[type=submit] { width: 150px;}
@@ -381,6 +382,16 @@ input[type=submit].login_or_register { width: 200px; }
 #partido-show .list-mini ul li .name { margin-left: 45px; font-weight: normal;}
 #partido-show .list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
 #partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
+
+/* Página de asignación de usuario con político */
+#politico-take #photo { float: left; width: 200px; text-align: right;}
+#politico-take #content { float: none; margin-left: 220px; width: 520px;}
+#politico-take #content h2 { font-size: 16px; font-weight: bold;}
+#politico-take #content .cancel { float: left; padding: 4px 0 3px 0;}
+#politico-take #content .submit { clear: none; }
+#politico-take #content button { width: 200px;}
+#politico-take p.pre-ul { padding-bottom: 0;}
+#politico-take ul { padding-left: 20px;}
 
 /* Popups de ayuda */
 #help-dialog { display:none; }

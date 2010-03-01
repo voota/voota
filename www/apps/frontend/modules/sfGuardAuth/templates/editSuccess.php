@@ -57,18 +57,32 @@
     <table>
       <tr>
         <th><label for="profile_nombre"><?php echo __('Tu nombre') ?></label></th>
-        <td>
-          <?php echo $profileEditForm['nombre']->render() ?>
-          <?php echo $profileEditForm['nombre']->renderError() ?>
-        </td>
+        <?php // TODO: Cambiar condición a "Si el usuario es un político" ?>
+        <?php if (false): ?>
+          <td class="politico">
+            <?php // TODO: Pintar nombre de político ?>
+          </td>
+        <?php else: ?>
+          <td>
+            <?php echo $profileEditForm['nombre']->render() ?>
+            <?php echo $profileEditForm['nombre']->renderError() ?>
+          </td>
+        <?php endif ?>
         <td class="hints"></td>
       </tr>
       <tr>
         <th><label for="profile_apellidos"><?php echo __('Tus apellidos') ?></label></th>
-        <td>
-          <?php echo $profileEditForm['apellidos']->render() ?>
-          <?php echo $profileEditForm['apellidos']->renderError() ?>
-        </td>
+        <?php // TODO: Cambiar condición a "Si el usuario es un político" ?>
+        <?php if (false): ?>
+          <td class="politico">
+            <?php // TODO: Pintar apellidos de político ?>
+          </td>
+        <?php else: ?>
+          <td>
+            <?php echo $profileEditForm['apellidos']->render() ?>
+            <?php echo $profileEditForm['apellidos']->renderError() ?>
+          </td>
+        <?php endif ?>
         <td class="hints"><?php echo __('(Opcional, pero ayuda)') ?></td>
       </tr>
       <tr>

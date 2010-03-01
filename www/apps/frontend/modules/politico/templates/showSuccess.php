@@ -87,6 +87,18 @@
 
     <div title="biografia" class="bio">
       <?php echo formatBio( $politico->getBio() ) ?>
+      
+      <?php if ($sf_user->isAuthenticated() && true): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
+        <p>
+          <?php // TODO: Editar enlace para que use la URL apropiada ?>
+          <?php echo link_to(__('Hacer cambios en tu perfil'), '@usuario_edit') ?>
+        </p>
+      <?php else: ?>
+        <p>
+          <?php // TODO: Editar enlace para que redirija al usuario al "takeAsk" tras el login ?>
+          <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico->getNombre() . ' ' . $politico->getApellidos())), 'sfGuardAuth/signin') ?>
+        </p>
+      <?php endif ?>
     </div>
 
   </div><!-- end of description -->
