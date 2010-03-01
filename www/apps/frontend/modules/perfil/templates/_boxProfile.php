@@ -9,9 +9,10 @@
 	      <br />
 	      <?php echo __('Socio número') ?>: <?php echo $user->getProfile()->getNumeroSocio() ?>
 	      <a href="http://blog.voota.es/es/socios/">?</a>
-	      <?php if($user->getProfile()->getPapelVoota()): ?>
+	      <?php $politicos = $user->getPoliticos(); $politico = ($politicos && count($politicos) > 0)?$politicos[0]:false; ?>
+	      <?php if($user->getProfile()->getPapelVoota() || $politico): ?>
 	      	  <br />
-		      <?php echo __('Papel en Voota') ?>: <?php echo $user->getProfile()->getPapelVoota() ?>
+		      <?php echo __('Papel en Voota') ?>: <?php echo $politico?__('Político'):$user->getProfile()->getPapelVoota() ?>
       	  <?php endif ?>
       <?php endif ?>
     </p>

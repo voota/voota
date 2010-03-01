@@ -70,9 +70,16 @@
           ?><?php endforeach ?>
 	    </p>
     <?php endif ?>
-
-    <?php if ($politico->getFechaNacimiento() != ''): ?>
-	    <p><?php echo ($politico->getSexo()=='M')?__('Nacida el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd'))):__('Nacido el %1%', array('%1%' => format_date($politico->getFechaNacimiento(), 'd')))?></p>
+	<?php 
+	if ($politico->getsfGuardUser() && $politico->getsfGuardUser()->getProfile()->getFechaNacimiento()){
+		$fechaNacimiento = $politico->getsfGuardUser()->getProfile()->getFechaNacimiento();
+	}
+	else {
+		$fechaNacimiento = $politico->getFechaNacimiento();
+	} 
+	?>
+    <?php if ($fechaNacimiento != ''): ?>
+	    <p><?php echo ($politico->getSexo()=='M')?__('Nacida el %1%', array('%1%' => format_date($fechaNacimiento, 'd'))):__('Nacido el %1%', array('%1%' => format_date($fechaNacimiento, 'd')))?></p>
     <?php endif ?>
 
     <?php if ($politico->getResidencia() != ''): ?>
@@ -86,18 +93,19 @@
 	  <h3><?php echo __('Su biografía')?></h3>
 
     <div title="biografia" class="bio">
-      <?php echo formatBio( $politico->getBio() ) ?>
+      <?php echo formatBio( $politico->getsfGuardUser()?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
       
-      <?php if ($sf_user->isAuthenticated() && true): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
+      <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
         <p>
-          <?php // TODO: Editar enlace para que use la URL apropiada ?>
           <?php echo link_to(__('Hacer cambios en tu perfil'), '@usuario_edit') ?>
         </p>
       <?php else: ?>
+      	<?php if(!$sf_user->isAuthenticated() || ($sf_user->isAuthenticated() && count( $sf_user->getGuardUser()->getPoliticos() ) == 0 )): ?>
         <p>
-          <?php // TODO: Editar enlace para que redirija al usuario al "takeAsk" tras el login ?>
-          <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico->getNombre() . ' ' . $politico->getApellidos())), 'sfGuardAuth/signin') ?>
+          <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico)), 'politico/take?id='.$politico->getId()) ?>
         </p>
+      	<?php else: ?>
+      	<?php endif ?>
       <?php endif ?>
     </div>
 

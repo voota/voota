@@ -114,7 +114,7 @@ propel:
     fecha_nacimiento: { type: DATE, required: false }
     pais: { type: VARCHAR, size: '45', required: false }
     residencia: { type: VARCHAR, size: '45', required: false }
-    sf_guard_user_profile_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user_profile, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     partido_txt: { type: VARCHAR, size: '150', required: false }
@@ -126,7 +126,7 @@ propel:
     relacion: { type: CHAR, size: '2', required: false }
     hijos: { type: INTEGER, size: '11', required: false }
     hijas: { type: INTEGER, size: '11', required: false }
-    _indexes: { fk_usuario: [sf_guard_user_profile_id], fk_politico_partido: [partido_id] }
+    _indexes: { fk_usuario: [sf_guard_user_id], fk_politico_partido: [partido_id] }
     _uniques: { uniq_politico_vanity: [vanity] }
   politico_i18n:
     _attributes: { phpName: PoliticoI18n }

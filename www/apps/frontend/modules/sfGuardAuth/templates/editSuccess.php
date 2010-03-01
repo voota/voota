@@ -58,9 +58,9 @@
       <tr>
         <th><label for="profile_nombre"><?php echo __('Tu nombre') ?></label></th>
         <?php // TODO: Cambiar condición a "Si el usuario es un político" ?>
-        <?php if (false): ?>
+        <?php if ($politico): ?>
           <td class="politico">
-            <?php // TODO: Pintar nombre de político ?>
+            <?php echo $politico->getNombre(); ?>
           </td>
         <?php else: ?>
           <td>
@@ -73,17 +73,17 @@
       <tr>
         <th><label for="profile_apellidos"><?php echo __('Tus apellidos') ?></label></th>
         <?php // TODO: Cambiar condición a "Si el usuario es un político" ?>
-        <?php if (false): ?>
+        <?php if ($politico): ?>
           <td class="politico">
-            <?php // TODO: Pintar apellidos de político ?>
+            <?php echo $politico->getApellidos(); ?>
           </td>
         <?php else: ?>
           <td>
             <?php echo $profileEditForm['apellidos']->render() ?>
             <?php echo $profileEditForm['apellidos']->renderError() ?>
           </td>
-        <?php endif ?>
         <td class="hints"><?php echo __('(Opcional, pero ayuda)') ?></td>
+        <?php endif ?>
       </tr>
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>

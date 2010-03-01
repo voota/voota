@@ -77,6 +77,11 @@ class politicoActions extends autoPoliticoActions
 			}
 		}
 */		
+		$op = $request->getParameter("op");
+		if ($op == 'rmusr'){
+			$this->getRoute()->getObject()->setSfGuardUserId(null);
+			$this->getRoute()->getObject()->save();
+		}
 		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		$this->configuration->setInstituciones($this->getRoute()->getObject()->getPoliticoInstitucions());		
 		

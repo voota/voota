@@ -423,6 +423,15 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     }
 	
 	$this->profileEditForm = new ProfileEditForm( $formData );
+  	$politicos = $this->getUser()->getGuardUser()->getPoliticos();
+  	if ( $politicos && count($politicos) != 0){
+  		$this->politico = $politicos[0];  		
+  		
+	  	unset(
+	  		$this->profileEditForm['nombre'],
+	  		$this->profileEditForm['apellidos']
+	  		);
+  	}
 	$imagenOri = $formData->getProfile()->getImagen();
 	
 	$criteria = new Criteria();

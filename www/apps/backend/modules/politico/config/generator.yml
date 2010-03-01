@@ -25,6 +25,7 @@ generator:
       form:
         display: 
           "Datos voota": [alias,partido_id, vanity]
+          "Usuario": [_usuario_view]
           "Display partido": [_partido_view]
           "Instituciones": []
           "Datos personales": [imagen,nombre,apellidos,email,sexo,fecha_nacimiento,lugar_nacimiento,residencia,relacion,hijos,hijas]

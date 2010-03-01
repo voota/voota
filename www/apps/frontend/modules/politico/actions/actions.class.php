@@ -24,9 +24,25 @@ class politicoActions extends sfActions
 	
   public function executeTake(sfWebRequest $request)
   {
-  	$op = $request->getParameter("op", "a");
-  	if ($op == "c"){
-  		return "Confirm";
+  	$id = $request->getParameter('id');
+  	$this->politico = PoliticoPeer::retrieveByPK( $id );
+  	
+  	if (!$this->getUser()->isAuthenticated())
+  		$this->getUser()->setAttribute('url_back', 'politico/take?id='. $id);
+  		
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	
+  	$id = $request->getParameter('id');
+  	$this->politico = PoliticoPeer::retrieveByPK( $id );
+  	
+  	if ($this->politico){
+	  	$op = $request->getParameter("op", "a");
+	  	if ($op == "c"){
+	  		$this->politico->setSfGuardUserId($this->getUser()->getGuardUser()->getId());
+	  		$this->politico->save();
+	  		
+	  		return "Confirm";
+	  	}
   	}
   	return "Ask";
   }
@@ -384,7 +400,13 @@ class politicoActions extends sfActions
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
 	$c->add( $rCriterion );
-	$c->add(EnlacePeer::POLITICO_ID, $id);
+	if ($politico->getsfGuardUser()){
+		$c->add(EnlacePeer::SF_GUARD_USER_ID, $politico->getsfGuardUser()->getId());
+	}
+	else {
+		$c->add(EnlacePeer::POLITICO_ID, $id);
+	}
+	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
     $this->twitterUser = FALSE;
