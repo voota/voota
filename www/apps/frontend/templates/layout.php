@@ -188,7 +188,7 @@ var uservoiceOptions = {
   showTab: true,  
   /* optional */
   alignment: 'left',
-  background_color:'#00f', 
+  background_color:'#3366FF', 
   text_color: 'white',
   hover_color: '#06C',
   lang: 'es'
