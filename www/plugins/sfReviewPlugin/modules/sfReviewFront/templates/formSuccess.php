@@ -133,7 +133,7 @@
 			<?php if ($reviewToFb): ?>
 		    	checked="checked"
 		    <?php endif ?>
-		<?php else: ?>
+		<?php elseif ($sf_user->getProfile()->getFacebookUid()): ?>
 		    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
 		    	checked="checked"
 		    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>

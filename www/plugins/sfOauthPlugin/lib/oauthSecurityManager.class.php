@@ -16,16 +16,18 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class oauthSecurityFilter extends sfBasicSecurityFilter
+class oauthSecurityManager extends sfBasicSecurityFilter
 {
-  protected function sendNotAuthorized() {
+  protected static function sendNotAuthorized() {
 	// The request was signed, but failed verification
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: OAuth realm=""');
     header('Content-Type: text/plain; charset=utf8');
+    
+    die;
   }
   
-  public function execute ($filterChain)
+  public static function checkAuthorized ()
   {
   	OAuthStore::instance('MySQL', array(
 							'server' => sfConfig::get('app_oauth_server')
@@ -51,7 +53,6 @@ class oauthSecurityFilter extends sfBasicSecurityFilter
 	    catch (OAuthException $e) {
 		        $this->sendNotAuthorized();
 	    }
-    	$filterChain->execute($filterChain);
 	}
 	else {
 		$this->sendNotAuthorized();

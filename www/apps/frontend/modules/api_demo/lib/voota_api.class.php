@@ -111,4 +111,19 @@ class VootaApi{
 	
 	return json_decode( $result['body'] );
   }
+  
+  public function postReview($userId){
+	$params = array(
+	           'method' => 'review'
+	     );
+	
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
+	/*
+	$curlHeaders = array('Content-Length: ' . 1);
+	$curlOptions = array(CURLOPT_HTTPHEADER => $curlHeaders);
+	*/
+	$result = $req->doRequest( $userId );
+	
+	return json_decode( $result['body'] );
+  }
 }

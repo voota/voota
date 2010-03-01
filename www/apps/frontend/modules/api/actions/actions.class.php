@@ -22,13 +22,15 @@ class apiActions extends sfActions{
   	$data = RestUtils::processRequest();
   	$res = "";
   	
-	switch($data->getMethod()) {
+  	switch($data->getMethod()) {
 		case 'get':
 			$method = $request->getParameter('method', 'top6');
 			$res = $this->$method( $data );
 			break;
-		case 'get':
-			$method = $request->getParameter('method', 'review') . "_post";
+		case 'post':
+            //parse_str(file_get_contents('php://input'), $put_vars); 
+            
+			$method = "post_" . $request->getParameter('method', 'review');
 			$res = $this->$method( $data );
 			break;
 	}
@@ -181,7 +183,9 @@ class apiActions extends sfActions{
     return $reviews;
   }
   
-  private function review_post($data) {
-  	
+  private function post_review($data) {
+  	oauthSecurityManager::checkAuthorized();
+  	echo 1;
+  	return 100;
   }
 }

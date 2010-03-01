@@ -46,4 +46,12 @@ class api_demoActions extends sfActions
 	
 	$this->entities = $vootaApi->getPoliticos(1);	
   }
+  
+  public function executePostReview(sfWebRequest $request){
+    if ( $request->isMethod('post') ) {
+		$vootaApi =  new VootaApi();
+		
+		$this->entities = $vootaApi->postReview(1);	
+    }
+  }
 }

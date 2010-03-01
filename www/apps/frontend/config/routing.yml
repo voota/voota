@@ -253,4 +253,7 @@ api_demo_most_recently_voted:
 api_demo_politicos:
   url:   /api_demo/politicos
   param: { module: api_demo, action: politicos }
+api_demo_put:
+  url:   /api_demo/post
+  param: { module: api_demo, action: postReview }
 
