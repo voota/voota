@@ -15,6 +15,8 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
+
+class BadRequestException extends Exception { }
 class VootaApi{
   const SERVER_URL = "http://localhost/frontend_dev.php";
   
@@ -53,7 +55,9 @@ class VootaApi{
 		);
 		$consumer_key = $store->updateServer($server, $userId);
 	}
-	catch(Exception $e) { }
+	catch(Exception $e) { 
+		throw new BadRequestException($e->getMessage());
+	}
 	
 	$token = OAuthRequester::requestRequestToken($consumerKey, $userId);
 	
@@ -88,28 +92,136 @@ class VootaApi{
   	OAuthRequester::requestAccessToken($consumerKey, $oauthToken, $userId);
   }
 
-  public function getPoliticos($userId){
+  public function getPoliticos($userId, $limit = 20, $page = 1, $sort = 'positive'){
 	$params = array(
 	           'method' => 'entities',
-	           'type' => 'politicos',
+	           'type' => 'politician',
+	           'limit' => $limit,
+	           'page' => $page,
+	           'sort' => $sort,
 	     );
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
+  }
+
+  public function getPolitico($userId, $id){
+	$params = array(
+	           'method' => 'entity',
+	           'type' => 'politician',
+	           'id' => $id,
+	     );
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
-	return json_decode( $result['body'] );
+	$result = $req->doRequest( $userId );
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
+  }
+
+  public function getPartido($userId, $id){
+	$params = array(
+	           'method' => 'entity',
+	           'type' => 'party',
+	           'id' => $id,
+	     );
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	
+	$result = $req->doRequest( $userId );
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
   }
   
-  public function getMostRecentlyVoted($userId){
+  public function getPartidos($userId, $limit = 20, $page = 1){
 	$params = array(
-	           'method' => 'top6'
+	           'method' => 'entities',
+	           'type' => 'party',
+	           'limit' => $limit,
+	           'page' => $page,
 	     );
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
+	$result = $req->doRequest( $userId );
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
+  }
+  
+  public function search($userId, $q, $type = false, $limit = 20, $page = 1, $culture = 'es'){
+	$params = array(
+	           'method' => 'search',
+	           'q' => $q,
+	           'limit' => $limit,
+	           'page' => $page,
+	           'culture' => $culture,
+	           'type' => $type,
+	     );
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
 	
-	return json_decode( $result['body'] );
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}	
+  }
+  
+  public function getTopEntities($userId, $limit = 6){
+	$params = array(
+	           'method' => 'top',
+	           'limit' => $limit
+		     );
+	
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	
+	$result = $req->doRequest( $userId );
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
   }
   
   public function postReview($userId, $entity, $type, $value, $text){
@@ -126,8 +238,16 @@ class VootaApi{
 	$curlHeaders = array('Content-Length: ' . 1);
 	$curlOptions = array(CURLOPT_HTTPHEADER => $curlHeaders);
 	*/
-	$result = $req->doRequest( $userId );
-	
-	return json_decode( $result['body'] );
+	$result = $req->doRequest( $userId );	
+  
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
   }
 }

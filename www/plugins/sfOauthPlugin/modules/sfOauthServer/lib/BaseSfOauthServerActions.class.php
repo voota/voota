@@ -122,6 +122,7 @@ class BaseSfOauthServerActions extends sfActions
 			header('Content-Type: text/plain');
 			
 			echo "Failed OAuth Request: " . $e->getMessage();
+			die;    		
 		}
     }
   }

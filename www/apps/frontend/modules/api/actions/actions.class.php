@@ -27,7 +27,7 @@ class apiActions extends sfActions{
   	try {
 	  	switch($data->getMethod()) {
 			case 'get':
-				$method = $request->getParameter('method', 'top6');
+				$method = $request->getParameter('method');
 				$res = $this->$method( $data );
 				break;
 			case 'post':
@@ -47,14 +47,20 @@ class apiActions extends sfActions{
   		$code = 500;
   	}
 	
-	RestUtils::sendResponse(200, json_encode($res), 'application/json');
+	RestUtils::sendResponse($code, json_encode($res), 'application/json');
   }
 
   /* General methods */
     
   private function search( $data ){
   	$q = $this->getRequestParameter("q", '');
-  	$culture = "es";
+  	if (!$q)
+  		throw new BadRequestException('A search string must be provided.');
+  		
+  	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  	$culture = $this->getRequestParameter("culture", 'es');
+  	$type = $this->getRequestParameter("type", false);
   	
   	$cl = new SphinxClient ();
   	
@@ -68,27 +74,57 @@ class apiActions extends sfActions{
   	
     $entities = array();
   	$cl->SetArrayResult(true);
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $q ), "politico_$culture" );
-	if ( $this->res!==false ) {
-		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-			$c = new Criteria();
-        	$list = array();
-        	foreach ($this->res["matches"] as $idx => $match) {
-        		$list[] = $match['id'];
-        	}
-			$c = new Criteria;
-        	$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  			$c->setLimit( 20 );
-  			
-  			$politicos = PoliticoPeer::doSelect($c);
-    
-		    foreach ($politicos as $politico){
-		    	$entities[] = new Entity( $politico ); 	
-		    }
-		}	
-	}
-	
+  
+  	if ($type && $type != 'party' && $type != 'politician'){
+  			throw new BadRequestException('Invalid type.');
+   	}
+  	if(!$type || $type == 'party'){
+		$this->res = $cl->Query ( SfVoUtil::stripAccents( $q ), "partido_$culture" );
+		if ( $this->res!==false ) {
+			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+				$c = new Criteria;
+	        	$list = array();
+	        	foreach ($this->res["matches"] as $idx => $match) {
+	        		$list[] = $match['id'];
+	        	}
+	        	
+	        	$c->add(PartidoPeer::ID, $list, Criteria::IN);
+	  			$c->addDescendingOrderByColumn(PartidoPeer::SUMU);  					  			
+			  	$pager = new sfPropelPager('Partido', $limit);
+			    $pager->setCriteria($c);
+			    $pager->setPage($this->getRequestParameter('page', $page));
+			    $pager->init();
+			    foreach ($pager->getResults() as $partido){
+			    	$entities[] = new Entity( $partido ); 	
+			    }	    
+	        }	
+		}
+  	}
+  	
+  	if(!$type || $type == 'politician'){
+		$this->res = $cl->Query ( SfVoUtil::stripAccents( $q ), "politico_$culture" );
+		if ( $this->res!==false ) {
+			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+				$c = new Criteria;
+	        	$list = array();
+	        	foreach ($this->res["matches"] as $idx => $match) {
+	        		$list[] = $match['id'];
+	        	}
+	        	
+				$c = new Criteria;
+	        	$c->add(PoliticoPeer::ID, $list, Criteria::IN);
+	  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);  					  			
+			  	$pager = new sfPropelPager('Politico', $limit);
+			    $pager->setCriteria($c);
+			    $pager->setPage($this->getRequestParameter('page', $page));
+			    $pager->init();
+			    foreach ($pager->getResults() as $politico){
+			    	$entities[] = new Entity( $politico ); 	
+			    }
+			}	
+		}
+  	}
+  		
   	return $entities;
   }
 
@@ -96,6 +132,11 @@ class apiActions extends sfActions{
   
   private function top6( $data ){
   	return EntityManager::getTopEntities( 6 );
+  }
+  
+  private function top( $data ){
+  	$limit = $this->getRequestParameter("limit", '6');
+  	return EntityManager::getTopEntities( $limit );
   }
   
   private function entities($data) {
@@ -109,17 +150,32 @@ class apiActions extends sfActions{
   	
 	return $this->$type( $data );
   }
-
+  
   private function entity_politico($data) {
+  	return $this->entity_politician($data);
+  }
+  private function entity_politician($data) {
   	$id = $this->getRequestParameter("id");
+  	if (!$id)
+  		throw new BadRequestException('The entity id must be provided.');
+  		
   	$politico = PoliticoPeer::retrieveByPK( $id );
   	$this->forward404Unless( $politico );  	
 	
   	return new Entity( $politico );
   }
   private function entities_politico($data) {
+  	return $this->entities_politician($data);
+  }
+  private function entities_politician($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
-  	
+  	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  
+  	if ($sort != 'positive' && $sort != 'negative'){
+  			throw new BadRequestException('Invalid sort value.');
+   	}
+   	
   	$c = new Criteria();
   	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
   	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
@@ -129,11 +185,11 @@ class apiActions extends sfActions{
   	else {
   		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
    	}
-  	$pager = new sfPropelPager('Politico', self::PAGE_SIZE);
+  	$pager = new sfPropelPager('Politico', $limit);
 	$c->setDistinct();
 	
     $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->setPage($this->getRequestParameter('page', $page));
     $pager->init();
     
     $entities = array();
@@ -144,15 +200,29 @@ class apiActions extends sfActions{
   	return $entities;
   }
   private function entity_partido($data) {
+  	return $this->entity_party($data);
+  }
+  private function entity_party($data) {
   	$id = $this->getRequestParameter("id");
+  	if (!$id)
+  		throw new BadRequestException('The entity id must be provided.');
   	$partido = PartidoPeer::retrieveByPK( $id );
   	$this->forward404Unless( $partido );  	
 	
   	return new Entity( $partido );
   }
   private function entities_partido($data) {
+  	return $this->entities_party($data);
+  }
+  private function entities_party($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
-  	
+  	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  
+  	if ($sort != 'positive' && $sort != 'negative'){
+  			throw new BadRequestException('Invalid sort value.');
+   	}
+   	
   	$c = new Criteria();
   	if($sort == 'negative') {
   		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
@@ -160,11 +230,11 @@ class apiActions extends sfActions{
   	else {
   		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
    	}
-  	$pager = new sfPropelPager('Partido', self::PAGE_SIZE);
+  	$pager = new sfPropelPager('Partido', $limit);
 	$c->setDistinct();
 	
     $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->setPage($this->getRequestParameter('page', $page));
     $pager->init();
     
     $entities = array();
@@ -179,6 +249,7 @@ class apiActions extends sfActions{
   
   private function reviews($data) {
   	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
   	$type = $this->getRequestParameter("type");
   	$entity = $this->getRequestParameter("entity");
   	$value = $this->getRequestParameter("value", NULL);
@@ -194,7 +265,7 @@ class apiActions extends sfActions{
 		default:
   			throw new BadRequestException('Invalid type.');
   	}  	
-  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $typeId, $entity, $value, self::PAGE_SIZE, false, $page);
+  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $typeId, $entity, $value, $limit, false, $page);
   
     $reviews = array();
     foreach ($sfReviewsPager->getResults() as $sfReview){

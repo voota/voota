@@ -31,7 +31,6 @@ class sfOauthRouting
 	$r->prependRoute('sf_oauth_request_token', new sfRoute('/oauth/request_token', array('module' => 'sfOauthServer', 'action' => 'requestToken')));
 	$r->prependRoute('sf_oauth_access_token', new sfRoute('/oauth/access_token', array('module' => 'sfOauthServer', 'action' => 'accessToken')));
 	$r->prependRoute('sf_oauth_authorize', new sfRoute('/oauth/authorize', array('module' => 'sfOauthServer', 'action' => 'authorize')));
-	$r->prependRoute('sf_oauth_test', new sfRoute('/oauth/test', array('module' => 'sfOauthServer', 'action' => 'test')));
   }
   
   static public function addRouteForSfOauthRegister(sfEvent $event)

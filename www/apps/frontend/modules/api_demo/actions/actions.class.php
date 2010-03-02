@@ -18,9 +18,9 @@
  */
 class api_demoActions extends sfActions
 {	
-  	const CONSUMER_KEY = '985db2f2f8182873148ee1c19e6f88fa04b8d2a86';
-  	const CONSUMER_SECRET = '0a4b8723947b2a584708ff33f513f2fc';
-	const USER_ID = 95;
+  	const CONSUMER_KEY = 'dc8bdeeace2bf2e4061de5eca8f8fc4a04b8d80b0';
+  	const CONSUMER_SECRET = 'ec2867202655b604ed5b848e7e0c592a';
+	const USER_ID = 99;
 	
   public function executeAuth(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
@@ -38,13 +38,16 @@ class api_demoActions extends sfActions
   public function executeMostRecentlyVoted(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
 	
-	$this->entities = $vootaApi->getMostRecentlyVoted(self::USER_ID);	
+	$this->entities = $vootaApi->getTop(self::USER_ID, 6);	
   }
 
   public function executePoliticos(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
 	
-	$this->entities = $vootaApi->getPoliticos(self::USER_ID);	
+	$this->entities = array();
+
+	$this->entities = $vootaApi->getPoliticos(self::USER_ID);
+	//var_dump($this->entity);
   }
   
   public function executePostReview(sfWebRequest $request){
@@ -57,8 +60,6 @@ class api_demoActions extends sfActions
 		$vootaApi =  new VootaApi();
 
 		$this->res = $vootaApi->postReview(self::USER_ID, $entity, $type, $value, $text);
-		
-		var_dump($this->res);
     }
   }
 }
