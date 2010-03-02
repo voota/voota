@@ -64,6 +64,10 @@
     <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
   </div>
   
+  <div id="report-error">
+    <?php include_partial('report_error') ?>
+  </div>
+  
   <div id="politicians-most-voted" class="list-mini">
     <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
     <?php if ($politicos->getNbResults() > 0): ?>

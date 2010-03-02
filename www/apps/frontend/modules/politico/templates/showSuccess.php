@@ -111,19 +111,19 @@
 
   </div><!-- end of description -->
 
-    <div id="external-links">
-  <?php if(count($activeEnlaces) > 0): ?>
+  <div id="external-links">
+    <?php if(count($activeEnlaces) > 0): ?>
       <h3><?php echo __('Enlaces externos')?></h3>
       <ul>
         <?php foreach($activeEnlaces as $enlace): ?>
-		  <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+		      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
         <?php endforeach ?>
       </ul>
-	<?php endif ?>
-	<?php if($twitterUser):?>
+    <?php endif ?>
+    <?php if($twitterUser):?>
       <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
-  	  <?php include_partial('tuits', array('user' => $twitterUser)) ?>
-	<?php endif ?>
+	    <?php include_partial('tuits', array('user' => $twitterUser)) ?>
+    <?php endif ?>
   </div>
 	
   <div>
@@ -132,6 +132,10 @@
   <div id="google-ads">
     <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
   </div><!-- end of google-ads -->
+  
+  <div id="report-error">
+    <?php include_partial('report_error') ?>
+  </div>
 
   <div class="reviews">
     <ul>

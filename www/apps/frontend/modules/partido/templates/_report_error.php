@@ -1,0 +1,1 @@
+<?php require(sfConfig::get('sf_app_template_dir').'/_report_error.php'); ?>

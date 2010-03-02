@@ -120,7 +120,7 @@ form th { text-align: left; padding: 5px 20px 5px 0;}
 form td { padding: 0 0 20px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px; }
 input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; padding: 2px; width:270px }
-input[type=submit], button { width: 90px; color: #323232; }
+input[type=submit], button { width: 90px; color: #323232; border: 1px solid #809db9; background: #ededed url(/images/button_bg.png) left center repeat-x;}
 input[type=button] { width: 90px; color: #323232; }
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
@@ -363,11 +363,19 @@ input[type=submit].login_or_register { width: 200px; }
 #politico-show #description p,
 #partido-show #description p { padding-bottom: 10px;}
 #politico-show #external-links,
-#partido-show #external-links { width: 290px; margin-left: 50px; float: left; margin-bottom: 40px;}
+#partido-show #external-links { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #politico-show #external-links ul,
 #partido-show #external-links ul { list-style: none; margin: 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
 #partido-show #external-links ul li { margin: 10px 0;}
+#partido-show #report-error,
+#politico-show #report-error { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
+#partido-show #report-error select,
+#politico-show #report-error select { width: 240px; border: 1px solid #809db9; font-size: 13px; }
+#partido-show #report-error .submit,
+#politico-show #report-error .submit { padding-top: 10px; width: 240px }
+#partido-show #report-error option,
+#politico-show #report-error option { padding: 5px; }
 #politico-show #google-ads,
 #partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
 #politico-show .reviews,
