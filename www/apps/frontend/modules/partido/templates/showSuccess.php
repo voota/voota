@@ -59,12 +59,12 @@
     </div>
   <?php endif ?>
 
-  <div id="google-ads">
-    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div>
-  
   <div id="report-error">
     <?php include_partial('report_error') ?>
+  </div>
+
+  <div id="google-ads">
+    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
   </div>
   
   <div id="politicians-most-voted" class="list-mini">

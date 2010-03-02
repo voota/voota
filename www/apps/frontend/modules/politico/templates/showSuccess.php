@@ -118,22 +118,22 @@
         <?php endforeach ?>
       </ul>
     <?php endif ?>
+  </div>
+
+  <div id="report-error">
+    <?php include_partial('report_error') ?>
+  </div>
+	
+  <div id="twitter">
     <?php if($twitterUser):?>
       <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
 	    <?php include_partial('tuits', array('user' => $twitterUser)) ?>
     <?php endif ?>
   </div>
-	
-  <div>
-  </div>
 
   <div id="google-ads">
     <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
   </div><!-- end of google-ads -->
-  
-  <div id="report-error">
-    <?php include_partial('report_error') ?>
-  </div>
 
   <div class="reviews">
     <ul>

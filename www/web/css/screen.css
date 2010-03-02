@@ -368,6 +368,7 @@ input[type=submit].login_or_register { width: 200px; }
 #partido-show #external-links ul { list-style: none; margin: 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
 #partido-show #external-links ul li { margin: 10px 0;}
+#politico-show #twitter { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error,
 #politico-show #report-error { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error select,
