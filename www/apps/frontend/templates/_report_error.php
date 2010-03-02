@@ -2,7 +2,7 @@
 <?php //TODO: Asignar acción a formulario ?>
 <form>
   <div>
-    <select name="tipo" id="tipo" multiple size="6">
+    <select name="tipo" id="tipo" size="6">
       <option value="incompleto">Faltan datos o son incorrectos</option>
       <option value="suplantacion">Suplantación de identidad</option>
       <option value="ofensivo">Hay algo ofensivo</option>
