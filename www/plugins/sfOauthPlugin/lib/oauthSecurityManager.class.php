@@ -41,12 +41,12 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 		try
 	        {
 	        	$req = new OAuthRequestVerifier();
-	                $user_id = $req->verify();
+	                $userId = $req->verify();
 	
 	                // If we have an user_id, then login as that user (for this request)
-	                if ($user_id)
+	                if ($userId)
 	                {
-	                	$user = SfGuardUserPeer::retrieveByPK($user_id);
+	                	$user = SfGuardUserPeer::retrieveByPK($userId);
 	                	sfContext::getInstance()->getUser()->signin( $user );
 	                }
 		}
@@ -58,5 +58,6 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 		$this->sendNotAuthorized();
 	}
   	    
+	return $userId;
   }
 }

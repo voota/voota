@@ -112,9 +112,13 @@ class VootaApi{
 	return json_decode( $result['body'] );
   }
   
-  public function postReview($userId){
+  public function postReview($userId, $entity, $type, $value, $text){
 	$params = array(
-	           'method' => 'review'
+	           'method' => 'review',
+	           'entity' => $entity,
+	           'type' => $type,
+	           'value' => $value,
+	           'text' => $text
 	     );
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);

@@ -25,7 +25,7 @@ class api_demoActions extends sfActions
   public function executeAuth(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
 	
-	$politicos = $vootaApi->authenticate(self::CONSUMER_KEY, self::CONSUMER_SECRET, self::USER_ID, 'http://localhost/frontend_dev.php/api_demo/callback');
+	$vootaApi->authenticate(self::CONSUMER_KEY, self::CONSUMER_SECRET, self::USER_ID, 'http://localhost/frontend_dev.php/api_demo/callback');
   }    
 
   
@@ -49,9 +49,16 @@ class api_demoActions extends sfActions
   
   public function executePostReview(sfWebRequest $request){
     if ( $request->isMethod('post') ) {
+	  	$entity = $this->getRequestParameter("entity");
+	  	$value = $this->getRequestParameter("value");
+	  	$text = $this->getRequestParameter("text");
+	  	$type = $this->getRequestParameter("type");
+  	
 		$vootaApi =  new VootaApi();
-		
-		$this->entities = $vootaApi->postReview(1);	
+
+		$this->res = $vootaApi->postReview(1, $entity, $type, $value, $text);
+
+		var_dump( $this->res );
     }
   }
 }

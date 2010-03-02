@@ -8,32 +8,44 @@
  */
 
 /**
- * politico actions.
+ * api actions.
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage API
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
+class BadRequestException extends Exception { }
 class apiActions extends sfActions{
   const PAGE_SIZE = 20;
   
   public function executeApi(sfWebRequest $request){
   	$data = RestUtils::processRequest();
   	$res = "";
+  	$code = 200;
   	
-  	switch($data->getMethod()) {
-		case 'get':
-			$method = $request->getParameter('method', 'top6');
-			$res = $this->$method( $data );
-			break;
-		case 'post':
-            //parse_str(file_get_contents('php://input'), $put_vars); 
-            
-			$method = "post_" . $request->getParameter('method', 'review');
-			$res = $this->$method( $data );
-			break;
-	}
+  	try {
+	  	switch($data->getMethod()) {
+			case 'get':
+				$method = $request->getParameter('method', 'top6');
+				$res = $this->$method( $data );
+				break;
+			case 'post':
+	            //parse_str(file_get_contents('php://input'), $put_vars); 
+	            
+				$method = "post_" . $request->getParameter('method', 'review');
+				$res = $this->$method( $data );
+				break;
+		}
+  	}
+  	catch (BadRequestException $e){
+  		$res = $e->getMessage();
+  		$code = 400;
+  	}
+  	catch (Exception $e){
+  		$res = $e->getMessage();
+  		$code = 500;
+  	}
 	
 	RestUtils::sendResponse(200, json_encode($res), 'application/json');
   }
@@ -184,8 +196,54 @@ class apiActions extends sfActions{
   }
   
   private function post_review($data) {
-  	oauthSecurityManager::checkAuthorized();
-  	echo 1;
-  	return 100;
+  	$userId = oauthSecurityManager::checkAuthorized();
+  	
+  	$entity = $this->getRequestParameter("entity");
+  	$value = $this->getRequestParameter("value");
+  	$text = $this->getRequestParameter("text");
+  	$type = $this->getRequestParameter("type");
+  	
+  	if (!$entity || !$value || !$type){
+  		throw new BadRequestException("Not enough parameters.");
+  	}
+  	if ($value != -1 && $value != 1){
+  		throw new BadRequestException("Invalid data for 'value'.");
+  	}
+  	
+   	$typeId = -1;
+  	switch($type) {
+		case 'politician':
+			$typeId = Politico::NUM_ENTITY;
+			break;
+		case 'party':
+			$typeId = Partido::NUM_ENTITY;
+			break;
+		default:
+  			throw new BadRequestException('Invalid type.');
+  	}  	
+  	
+  	// Check if already exists
+  	$c = new Criteria;
+  	$c->add(SfReviewPeer::ENTITY_ID, $entity);
+  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
+  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId);
+  	$review = SfReviewPeer::doSelectOne( $c );
+  	if (!$review){
+  		$review = new SfReview;
+  		$review->setEntityId($entity);
+  		$review->setSfReviewTypeId($typeId);
+  		$review->setSfGuardUserId($userId);
+  	}
+  	$review->setValue($value);
+  	$review->setText($text);
+  	$review->setSfReviewStatusId(1);
+  	try {
+  		$review->save();
+  	}
+  	catch (Exception $e){
+  		throw new Exception('Error writing review.');
+  	}
+
+  	return $review;
   }
 }
