@@ -14,7 +14,7 @@
 
 <p>Esta es tu página de político en Voota:  %urlPolitico%</p>
 
-<p>Si quieres volver al pasado escríbenos y todo volverá a su situación inicial:  http://www.voota.es/contactar</p>
+<p>Si quieres volver al pasado, escríbenos y todo volverá a su situación inicial:  http://www.voota.es/contactar</p>
 
 <p>Esperamos serte útiles.</p>
 
@@ -32,6 +32,6 @@
 		'%nombrePolitico%' => $nombrePolitico
 		, '%nombreUsuario%' => $nombreUsuario
 		, '%urlUsuario%' => url_for("perfil/show?username=$vanityUsuario", true)
-		, '%urlPolitico%' => url_for("perfil/show?username=$vanityPolitico", true)
+		, '%urlPolitico%' => url_for("politico/show?id=$vanityPolitico", true)
 		)
 ) ?>

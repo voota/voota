@@ -274,7 +274,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  VoMail::send('Confirmar tu registro Voota', $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
+	  VoMail::send(sfContext::getInstance()->getI18N()->__('Confirmar tu registro Voota'), $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
   }
   
   private function sendReminder( $user ){
@@ -283,7 +283,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	"codigo" => $user->getProfile()->getCodigo()
 	  ));
 	 
-	  VoMail::send('Tu contraseña en Voota', $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
+	  VoMail::send(sfContext::getInstance()->getI18N()->__('Tu contraseña en Voota'), $mailBody, $user->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'));
   }
   
   public function executeRemove(sfWebRequest $request)
@@ -302,7 +302,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	  	
 	  	$this->email = $this->getUser()->getUsername(); 
 	 
-	  	VoMail::send('Borrarse de Voota', $mailBody, $this->getUser()->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), false);
+	  	VoMail::send(sfContext::getInstance()->getI18N()->__('Borrarse de Voota'), $mailBody, $this->getUser()->getUsername(), array('no-reply@voota.es' => 'no-reply Voota'), false);
    	}
   	else {
 		$c = new Criteria();

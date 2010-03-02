@@ -41,6 +41,39 @@ class politicoActions extends sfActions
 	  		$this->politico->setSfGuardUserId($this->getUser()->getGuardUser()->getId());
 	  		$this->politico->save();
 	  		
+	  		// Send mail to politician
+	  		if ($this->politico->getEmail() && SfVoUtil::isEmail($this->politico->getEmail())){
+				$mailBody = $this->getPartial('mailTakePolitico', array(
+				  	'nombrePolitico' => $this->politico->getNombre(), 
+				  	"nombreUsuario" => $this->getUser()->getGuardUser()->getProfile()->getNombreOri() .' '. $this->getUser()->getGuardUser()->getProfile()->getApellidosOri(),
+				  	"vanityUsuario" => $this->getUser()->getGuardUser()->getProfile()->getVanity(),
+				  	"vanityPolitico" => $this->politico->getVanity()
+				));
+				VoMail::send(
+					sfContext::getInstance()->getI18N()->__('%usuario% ha sido autorizado para editar tu información en Voota', array('%usuario%' => $this->getUser()->getGuardUser()->getProfile()->getNombreOri() .' '. $this->getUser()->getGuardUser()->getProfile()->getApellidosOri())), 
+					$mailBody, 
+					$this->politico->getEmail(), 
+					array('no-reply@voota.es' => 'no-reply Voota'),
+					true
+				);
+	  		}
+	  		if(SfVoUtil::isEmail($this->getUser()->getGuardUser()->getUsername()) && (!$this->politico->getEmail() || ($this->politico->getEmail() != $this->getUser()->getGuardUser()->getUsername()))){
+				$mailBody = $this->getPartial('mailTakeUsuario', array(
+				  	'nombrePolitico' => $this->politico->getNombre(), 
+				  	"nombreUsuario" => $this->getUser()->getGuardUser()->getProfile()->getNombreOri() .' '. $this->getUser()->getGuardUser()->getProfile()->getApellidosOri(),
+				  	"vanityUsuario" => $this->getUser()->getGuardUser()->getProfile()->getVanity(),
+				  	"vanityPolitico" => $this->politico->getVanity()
+				));
+				VoMail::send(
+					sfContext::getInstance()->getI18N()->__('bienvenido a la comunidad de políticos de Voota'), 
+					$mailBody, 
+					$this->getUser()->getGuardUser()->getUsername(), 
+					array('no-reply@voota.es' => 'no-reply Voota'),
+					true
+				);
+	  		}
+	  		
+	  		
 	  		return "Confirm";
 	  	}
   	}

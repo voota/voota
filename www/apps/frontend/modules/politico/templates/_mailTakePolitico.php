@@ -1,7 +1,7 @@
 <?php use_helper('I18N') ?>
 
 <?php echo __('<p>¡Hola %nombrePolitico%!</p>
-<p>Queremos avisarte que a partir de ahora [Pelaez - nombre y apellidos usuario] podrá hacer cambios sobre tu perfil (biografía, fotografía, enlaces externos, etc.) y responder a las opiniones de otros usuarios sobre tu actividad política.</p>
+<p>Queremos avisarte que a partir de ahora %nombreUsuario% podrá hacer cambios sobre tu perfil (biografía, fotografía, enlaces externos, etc.) y responder a las opiniones de otros usuarios sobre tu actividad política.</p>
 
 <p>Este es el perfil de %nombreUsuario% en Voota:  %urlUsuario%</p>
 
@@ -21,6 +21,6 @@
 		'%nombrePolitico%' => $nombrePolitico
 		, '%nombreUsuario%' => $nombreUsuario
 		, '%urlUsuario%' => url_for("perfil/show?username=$vanityUsuario", true)
-		, '%urlPolitico%' => url_for("perfil/show?username=$vanityPolitico", true)
+		, '%urlPolitico%' => url_for("politico/show?id=$vanityPolitico", true)
 		)
 ) ?>
