@@ -121,7 +121,7 @@
   </div>
 
   <div id="report-error">
-    <?php include_partial('report_error') ?>
+    <?php include_partial('global/report_error', array('entity' => $politico)) ?>
   </div>
 	
   <div id="twitter">

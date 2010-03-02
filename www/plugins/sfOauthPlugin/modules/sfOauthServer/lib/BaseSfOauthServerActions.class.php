@@ -39,7 +39,7 @@ class BaseSfOauthServerActions extends sfActions
       if ($this->form->isValid())
       {
 		// The currently logged on user
-		$user_id = $this->getUser()->getGuardUser()->getId()+1000;
+		$user_id = $this->getUser()->getGuardUser()->getId();
 		
 		// This should come from a form filled in by the requesting user
 		$consumer = array(
@@ -92,25 +92,41 @@ class BaseSfOauthServerActions extends sfActions
     }
   }
   
-  public function executeAuthorize(){
+  public function executeAuthorize(sfWebRequest $request){
+  	if (!$this->getUser()->isAuthenticated())
+  		$this->getUser()->setAttribute('url_back', 'oauth/authorize');
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	
+  	$this->oauth_token = $request->getParameter('oauth_token', '');
+  	$authorized = $request->getParameter('authorized', '');
+  	
 	$store = $this->getStore();
   	$server = new OAuthServer();
   	
-  	try
-	{
-		$server->authorizeVerify();
-		$server->authorizeFinish(true, 1);
-	}
-	catch (OAuthException $e)
-	{
-		header('HTTP/1.1 400 Bad Request');
-		header('Content-Type: text/plain');
-		
-		echo "Failed OAuth Request: " . $e->getMessage();
-	}
+    if ( $request->isMethod('post') ) {
+    	if (!$authorized){
+			header('HTTP/1.1 401 Not authorized');
+			header('Content-Type: text/plain');
+			
+			echo "Not authorized.";
+			die;    		
+    	}
+	  	try
+		{
+			$server->authorizeVerify();
+			$server->authorizeFinish(true, $this->getUser()->getGuardUser()->getId());
+		}
+		catch (OAuthException $e)
+		{
+			header('HTTP/1.1 400 Bad Request');
+			header('Content-Type: text/plain');
+			
+			echo "Failed OAuth Request: " . $e->getMessage();
+		}
+    }
   }
   
-  public function executeRequestToken(){
+  public function executeRequestToken(sfWebRequest $request){
 	$store = $this->getStore();
   	$server = new OAuthServer();
   	

@@ -211,7 +211,7 @@ class apiActions extends sfActions{
   	$value = $this->getRequestParameter("value");
   	$text = $this->getRequestParameter("text");
   	$type = $this->getRequestParameter("type");
-  	
+  		
   	if (!$entity || !$value || !$type){
   		throw new BadRequestException("Not enough parameters.");
   	}
