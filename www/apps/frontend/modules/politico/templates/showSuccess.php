@@ -9,12 +9,10 @@
   <!--
   $(document).ready(function(){
 	  
-	    $('.reviews').tabs({
-	        load: function() {
-		    	FB.XFBML.Host.parseDomTree();
-		    	$('#review_preload').remove();
-			}
-		, selected: -1
+    $('.reviews').tabs({
+      load: function() {
+	      FB.XFBML.Host.parseDomTree();
+		  }
 		});
 	
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
@@ -139,14 +137,13 @@
 
   <div class="reviews">
     <ul>
-      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
+      <li><a href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
       <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
       <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
     </ul>
     
-    <div id="review_preload">
-    <br />
-    <?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Politico::NUM_ENTITY, 'entity' => $politico)) ?>
+    <div id="tab-all-reviews">
+      <?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Politico::NUM_ENTITY, 'entity' => $politico)) ?>
     </div>
     
   </div>
