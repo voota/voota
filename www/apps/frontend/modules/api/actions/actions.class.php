@@ -130,9 +130,6 @@ class apiActions extends sfActions{
 
   /* Entities methods */
   
-  private function top6( $data ){
-  	return EntityManager::getTopEntities( 6 );
-  }
   
   private function top( $data ){
   	$limit = $this->getRequestParameter("limit", '6');
@@ -151,9 +148,6 @@ class apiActions extends sfActions{
 	return $this->$type( $data );
   }
   
-  private function entity_politico($data) {
-  	return $this->entity_politician($data);
-  }
   private function entity_politician($data) {
   	$id = $this->getRequestParameter("id");
   	if (!$id)
@@ -164,9 +158,7 @@ class apiActions extends sfActions{
 	
   	return new Entity( $politico );
   }
-  private function entities_politico($data) {
-  	return $this->entities_politician($data);
-  }
+  
   private function entities_politician($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
   	$page = $this->getRequestParameter("page", '1');
@@ -199,9 +191,7 @@ class apiActions extends sfActions{
 	
   	return $entities;
   }
-  private function entity_partido($data) {
-  	return $this->entity_party($data);
-  }
+  
   private function entity_party($data) {
   	$id = $this->getRequestParameter("id");
   	if (!$id)
@@ -211,9 +201,7 @@ class apiActions extends sfActions{
 	
   	return new Entity( $partido );
   }
-  private function entities_partido($data) {
-  	return $this->entities_party($data);
-  }
+  
   private function entities_party($data) {
   	$sort = $this->getRequestParameter("sort", 'positive');	
   	$page = $this->getRequestParameter("page", '1');
