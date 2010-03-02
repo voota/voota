@@ -183,9 +183,18 @@ class apiActions extends sfActions{
   	$entity = $this->getRequestParameter("entity");
   	$value = $this->getRequestParameter("value", NULL);
   	
-  	$obj = ucwords($type);
-  		
-  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $obj::NUM_ENTITY, $entity, $value, self::PAGE_SIZE, false, $page);
+   	$typeId = -1;
+  	switch($type) {
+		case 'politician':
+			$typeId = Politico::NUM_ENTITY;
+			break;
+		case 'party':
+			$typeId = Partido::NUM_ENTITY;
+			break;
+		default:
+  			throw new BadRequestException('Invalid type.');
+  	}  	
+  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $typeId, $entity, $value, self::PAGE_SIZE, false, $page);
   
     $reviews = array();
     foreach ($sfReviewsPager->getResults() as $sfReview){
@@ -244,6 +253,6 @@ class apiActions extends sfActions{
   		throw new Exception('Error writing review.');
   	}
 
-  	return $review;
+  	return "saved.";
   }
 }
