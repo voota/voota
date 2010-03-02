@@ -32,7 +32,7 @@ class BaseSfOauthServerActions extends sfActions
   {
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
-	$this->form = new OauthRegisterForm( );
+	$this->form = new OauthRegisterForm(  );
 	
     if ( $request->isMethod('post') ) {
       $this->form->bind($request->getParameter('application'));
@@ -75,7 +75,17 @@ class BaseSfOauthServerActions extends sfActions
 		$this->consumer_key = $consumer['consumer_key'];
 		$this->consumer_secret = $consumer['consumer_secret'];
 		
-		//$this->list = $store->listConsumers($user_id);
+		$mailBody = $this->getPartial('mailBody', array(
+		  	'nombre' => $this->getUser()->getProfile()->getNombre(), 
+		  	"consumer" => $consumer
+		));
+		VoMail::send(
+			sfContext::getInstance()->getI18N()->__('Datos del registro de tu aplicación'), 
+			$mailBody, 
+			$this->getUser()->getGuardUser()->getUsername(), 
+			array('no-reply@voota.es' => 'no-reply Voota'),
+			false
+		);
 		
 		return 'ShowData';
       }

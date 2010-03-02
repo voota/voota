@@ -60,7 +60,7 @@
   <?php endif ?>
 
   <div id="report-error">
-    <?php include_partial('report_error') ?>
+    <?php include_partial('global/report_error', array('entity' => $partido)) ?>
   </div>
 
   <div id="google-ads">

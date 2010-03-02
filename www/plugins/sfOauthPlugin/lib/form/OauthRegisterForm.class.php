@@ -20,11 +20,15 @@ class OauthRegisterForm extends sfGuardUserAdminForm
   protected static $tipos = array('Web' => 'Web', 'Mobile' => 'Móvil', 'Others' => 'Otros');
   
   public function configure()
-  {
+  {  	
+  	$nameWidget = new sfWidgetFormInputText(array());
+  	$nameWidget->setDefault(sfContext::getInstance()->getUser());
+  	$emailWidget = new sfWidgetFormInputText(array());
+  	$emailWidget->setDefault(sfContext::getInstance()->getUser()->getGuardUser()->getUsername());
   	
     $this->setWidgets(array(
-      'name'   => new sfWidgetFormInputText(array()),
-      'email'   => new sfWidgetFormInputText(array()),
+      'name'   => $nameWidget,
+      'email'   => $emailWidget,
     	    'callback_uri' => new sfWidgetFormInputText(array()),
 		    'application_uri' => new sfWidgetFormInputText(array()),
 		    'application_title' => new sfWidgetFormInputText(array()),
@@ -47,13 +51,6 @@ class OauthRegisterForm extends sfGuardUserAdminForm
 	  'application_commercial'   => new sfValidatorString(array('required' => false)), 
 	));
        
-    $this->widgetSchema->setNameFormat('application[%s]');
-
-    $uniqValidator = new sfValidatorAnd(array(
-    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUser', 'column'=>array('username')), sfVoForm::getUniqueMessages()    ),
-    	new sfValidatorPropelUniqueUpdater(array('model'=>'sfGuardUserProfile', 'column'=>array('vanity')), sfVoForm::getUniqueMessages()    )
-    ));
-       
-    $this->validatorSchema->setPostValidator($uniqValidator);
+    $this->widgetSchema->setNameFormat('application[%s]');    
   }
 }

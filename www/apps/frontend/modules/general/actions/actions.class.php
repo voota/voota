@@ -21,8 +21,14 @@ class generalActions extends sfActions{
   public function executeRules(sfWebRequest $request) {
   }
   public function executeContact(sfWebRequest $request) {
-    $this->form = new ContactForm();
-    if ( $request->isMethod('post') ) {
+   	$t = $request->getParameter("t", '');
+   	$e = $request->getParameter("e", '');
+   	
+  	$this->form = new ContactForm();
+  	if ($t){
+  		$this->form->setDefaultMsg( "$e: $t" );
+  	}
+    if ( $request->isMethod('post') && !$t) {
       $this->form->bind($request->getParameter('contact'));
       
       if ($this->form->isValid()) {
