@@ -84,7 +84,7 @@ class BaseSfOauthServerActions extends sfActions
 			$mailBody, 
 			$this->getUser()->getGuardUser()->getUsername(), 
 			array('no-reply@voota.es' => 'no-reply Voota'),
-			false
+			true
 		);
 		
 		return 'ShowData';
@@ -139,30 +139,4 @@ class BaseSfOauthServerActions extends sfActions
   	
 	$server->accessToken();
   }
-  
-	private function send ($subject, $mailBody, $to, $from) {
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		
-		$mailEnabled = sfConfig::get('sf_mail_enabled');
-		$mailServer = sfConfig::get('sf_mail_server');
-		$mailPort = sfConfig::get('sf_mail_port');
-		$mailUser = sfConfig::get('sf_mail_user');
-
-		if ($mailEnabled == 'on') {		
-			$transport = Swift_SmtpTransport::newInstance($mailServer, $mailPort)
-                    ->setUsername( $mailUser )
-                    ->setPassword( $smtp_pass );
-			 		       
-			$mailer = Swift_Mailer::newInstance($transport);
-			  
-			$message = Swift_Message::newInstance( $subject )
-						->setCharset('utf-8')
-	  					->setFrom( $from )
-	  					->setTo( $to )
-	  					->setBody( $mailBody, 'text/html', 'utf-8' )
-	  					;
-	  					
-	  		$result = $mailer->send($message);
-		}	
-	}
 }
