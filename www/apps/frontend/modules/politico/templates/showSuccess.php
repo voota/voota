@@ -41,7 +41,7 @@
 
 <div id="content">
   <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" id="photo">
-    <?php echo image_tag(S3Voota::getImagesUrl().'/politicos/'.$image, 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
+	    <?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/bw_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>

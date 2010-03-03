@@ -5,7 +5,7 @@
 <tr>
 	<td class="photo">    
 		<?php if( isset($politico) ): ?>
-			<?php echo image_tag(S3Voota::getImagesUrl().'/politicos/cc_s_'.($politico->getImagen()!=''?$politico->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
+			<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
 		<?php endif ?>
 		<?php if( isset($partido) ): ?>
 			<?php echo image_tag(S3Voota::getImagesUrl().'/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Logo de %1%', array('%1%' => $partido)) .'"') ?>

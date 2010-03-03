@@ -71,4 +71,21 @@ class Politico extends BasePolitico implements reviewable
 	public function getModule(){
 		return 'politico';
 	}
+	public function getImagen(){
+		if ($this->getsfGuardUser() && $this->getsfGuardUser()->getProfile()->getImagen()){
+			return $this->getsfGuardUser()->getProfile()->getImagen();
+		}
+		else {
+			$img = parent::getImagen();
+			return $img?$img:'p_unknown.png';
+		}
+	}
+	public function getImagePath(){
+		if ($this->getsfGuardUser() && $this->getsfGuardUser()->getProfile()->getImagen()){
+			return "usuarios";
+		}
+		else {
+			return "politicos";
+		}
+	}
 }

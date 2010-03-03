@@ -32,9 +32,9 @@ abstract class sfImageVootaGD extends sfImageTransformAbstract
   public function transform(sfImage $img)
   {
 	$this->directory = dirname($img->getFilename());
-	$arr = array_reverse( split("/", $img->getFilename()) );
+	$arr = array_reverse( explode("/", $img->getFilename()) );
 	$this->fileName = $arr[0];
-	$arr2 = split("\.", $this->fileName);
+	$arr2 = explode(".", $this->fileName);
 	if (count( $arr2 ) == 1){
 		$this->fileName .= '.png';
 	}

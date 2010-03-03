@@ -466,12 +466,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	      		$imagen = $this->profileEditForm->getValue('imagen');
 	      		$this->profileEditForm->save();
 	      		if ($imagen){
-		      		$arr = array_reverse( split("\.", $imagen->getOriginalName()) );
+		      		$arr = array_reverse( explode  ( "."  , $imagen->getOriginalName() ) );
 					$ext = strtolower($arr[0]);
 					if (!$ext || $ext == ""){
 						$ext = "png";
 					}      		
-		      		$imageName = $this->profileEditForm->getValue('nombre');
+		      		$imageName = $this->profileEditForm->getValue('nombre')?$this->profileEditForm->getValue('nombre'):$arr[1];
 		      		if ($this->profileEditForm->getValue('apellidos') != '') {
 		      			$imageName .= "-". $this->profileEditForm->getValue('apellidos');
 		      		}

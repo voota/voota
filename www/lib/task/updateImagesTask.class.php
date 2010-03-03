@@ -48,9 +48,12 @@ EOF;
   {
   	if ($options['table'] == 'politico'){
     	$this->politico($arguments, $options);
-   	}
+  	}
    	else if ($options['table'] == 'institucion'){
     	$this->institucion($arguments, $options);
+   	}
+   	else if ($options['table'] == 'usuario'){
+    	$this->usuario($arguments, $options);
    	}
    	else {
    		echo "No conozco esa tabla (".$options['table'].").\n";
@@ -86,6 +89,21 @@ EOF;
     	if ($institucion->getImagen() != ''){
     		echo "Creating " . $institucion->getImagen() ." ...\n";
     		$s3->createInstitucionFromOri( $institucion->getImagen() );
+    	}
+    }
+  }
+  private function usuario($arguments = array(), $options = array())
+  {
+    // initialize the database connection
+    $databaseManager = new sfDatabaseManager($this->configuration);
+    $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
+
+    $s3 = new S3Voota();
+    $usuarios = SfGuardUserProfilePeer::doSelect(new Criteria());
+    foreach ($usuarios as $usuario){
+    	if ($usuario->getImagen() != ''){
+    		echo "Creating " . $usuario->getImagen() ." ...\n";
+    		$s3->createUsuarioFromOri( $usuario->getImagen() );
     	}
     }
   }

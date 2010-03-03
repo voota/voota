@@ -38,7 +38,7 @@ class S3Voota extends S3 {
 
 	public function createPoliticoFromFile( $file ) {
 		$directory = dirname($file);
-		$arr = array_reverse( split("/", $file) );
+		$arr = array_reverse( explode("/", $file) );
 		$fileName = $arr[0];
 		$uri = "politicos/$fileName";
 		
@@ -70,7 +70,7 @@ class S3Voota extends S3 {
 
 	public function createPartidoFromFile( $file ) {
 		$directory = dirname($file);
-		$arr = array_reverse( split("/", $file) );
+		$arr = array_reverse( explode("/", $file) );
 		$fileName = $arr[0];
 		$uri = "partidos/$fileName";		
 		
@@ -101,7 +101,7 @@ class S3Voota extends S3 {
 	
 	public function createInstitucionFromFile( $file ) {
 		$directory = dirname($file);
-		$arr = array_reverse( split("/", $file) );
+		$arr = array_reverse( explode("/", $file) );
 		$fileName = $arr[0];
 		$uri = "instituciones/$fileName";
 		
@@ -133,20 +133,22 @@ class S3Voota extends S3 {
 
 	public function createUsuarioFromFile( $file ) {
 		$directory = dirname($file);
-		$arr = array_reverse( split("/", $file) );
+		$arr = array_reverse( explode("/", $file) );
 		$fileName = $arr[0];
 		$uri = "usuarios/$fileName";
 		
-		$uploaded = $this->upload($file, S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE);
-		if ( $uploaded ){
+		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->usuario(  );
-			$uploaded = $this->upload("/tmp/cc_$fileName", S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
+			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
+			//$uploaded = $this->upload("/tmp/cc_$fileName", S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			if ($uploaded) {
-				$uploaded = $this->upload("/tmp/cc_s_$fileName", S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
-				unlink ( "/tmp/cc_s_$fileName" );
-			}
+			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_$fileName" );
+			$uploaded = $this->upload("/tmp/cc_s_$fileName", S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/cc_s_$fileName" );
+			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			unlink ( "/tmp/bw_s_$fileName" );
 		}
 		
 		return $uploaded;

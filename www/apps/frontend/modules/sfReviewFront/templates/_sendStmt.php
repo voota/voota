@@ -11,7 +11,7 @@
 			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'
-	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/politicos/cc_s_<?php echo $politico->getImagen() ?>'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		}] 
 	  };	  		
@@ -25,7 +25,7 @@
 			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'
-	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/partidos/cc_s_<?php echo $partido->getImagen() ?>'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/partidos/cc_s_<?php echo $partido->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		}] 
 	  };
@@ -39,7 +39,7 @@
 			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'
-	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/politicos/cc_s_<?php echo $politico->getImagen() ?>'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		}] 
 	  };	  		
@@ -53,7 +53,7 @@
 			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'
-	  			, 'src': 'http://imagesvoota.s3.amazonaws.com/partidos/cc_s_<?php echo $partido->getImagen() ?>'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/partidos/cc_s_<?php echo $partido->getImagen() ?>'
 	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		}] 
 	  };
