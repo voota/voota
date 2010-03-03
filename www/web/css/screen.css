@@ -154,7 +154,7 @@ input[type=submit].login_or_register { width: 200px; }
 #home-index #summary ul { margin: 0 0 0 -20px; padding: 0 0 0 20px; }
 #home-index #summary ul li { margin-bottom: 20px;}
 #home-index ol.entities { list-style: none; margin: 10px 0; padding: 0;}
-#home-index ol.entities li { margin: 0 30px 20px 0; float: left; height: 60px; font-weight: normal; overflow: hidden;}
+#home-index ol.entities li { margin: 0 30px 20px 0; float: left; height: 80px; font-weight: normal; overflow: hidden;}
 #home-index ol.entities li .avatar { float: left;}
 #home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
 #home-index ol.entities li .votes { margin: 10px 0 0 45px; padding: 0;}
@@ -384,9 +384,9 @@ input[type=submit].login_or_register { width: 200px; }
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
-#partido-show #politicians-most-voted ul li { margin: 0 30px 25px 0; float: left; height: 60px; width: 280px }
+#partido-show #politicians-most-voted ul li { margin: 0 30px 25px 0; float: left; height: 80px; width: 280px }
 #partido-show .list-mini ul { list-style: none; margin: 20px 0; padding: 0;}
-#partido-show .list-mini ul li { margin-bottom: 20px; overflow: hidden; height: 60px; }
+#partido-show .list-mini ul li { margin-bottom: 20px; overflow: hidden; height: 80px; }
 #partido-show .list-mini ul li .avatar { float: left; }
 #partido-show .list-mini ul li .name { margin-left: 45px; font-weight: normal;}
 #partido-show .list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
