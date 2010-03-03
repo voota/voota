@@ -13,12 +13,12 @@
  * @package    Voota
  * @subpackage Api
  * @author     Sergio Viteri
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
+ * @version    1.0
  */
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://dummy.voota.es";
+  const SERVER_URL = "http://localhost/frontend_dev.php";
   
   /**
    * Class constructor.
@@ -39,6 +39,15 @@ class VootaApi{
 	);
   }
   
+	/**
+	* Authenticate - Asks permission to a user to authorize the application
+	*
+	* @param string $consumerKey Access key 
+	* @param string $secretKey Secret key
+	* @param integer $userId A user identificator
+	* @param string $callbackUri This url will be called to finish authorization
+	* @return void
+	*/  
   public function authenticate($consumerKey, $consumerSecret, $userId, $callbackUri){  
 	// Save the server in the the OAuthStore
 	$store = OAuthStore::instance();
@@ -88,14 +97,33 @@ class VootaApi{
 	die;
   }
   
+	/**
+	* finishAuthenticate - Should be invoked from callback uri passed to authorize
+	*
+	* @param string $consumerKey Access key 
+	* @param integer $userId A user identificator
+	* @param string $oauthToken Token got in call to authorize
+	* @return void
+	*/  
   public function finishAuthenticate($consumerKey, $userId, $oauthToken){ 
   	OAuthRequester::requestAccessToken($consumerKey, $oauthToken, $userId);
   }
 
-  public function getPoliticos($userId, $limit = 20, $page = 1, $sort = 'positive'){
+	/**
+	* getEntities - Retrives a sorted list of entities
+	*
+	* @param integer $userId A user identificator
+	* @param string $type Type of entities to retrieve: 'politician' or 'party'
+	* @param integer $limit Max number of results per page
+	* @param integer $page Page number
+	* @param string $sort Define order of results: 'positive' (sorted desc by positives votes) 
+	* 											or 'negatives'(sorted desc by negatives votes)
+	* @return array a list of entities
+	*/  
+  public function getEntities($userId, $type = 'politician', $limit = 20, $page = 1, $sort = 'positive'){
 	$params = array(
 	           'method' => 'entities',
-	           'type' => 'politician',
+	           'type' => $type,
 	           'limit' => $limit,
 	           'page' => $page,
 	           'sort' => $sort,
@@ -114,11 +142,20 @@ class VootaApi{
 			throw new Exception('Error');
 	}
   }
-
-  public function getPolitico($userId, $id){
+  
+	/**
+	* getEntity - Retrives the entity identified by $id
+	*
+	* @param integer $userId A user identificator
+	* @param string $type Type of the entity to retrieve: 'politician' or 'party'
+	* @param integer $id The entity id
+	* @param integer $page Page number
+	* @return Entity an entity
+	*/  
+  public function getEntity($userId, $type = 'politician', $id){
 	$params = array(
 	           'method' => 'entity',
-	           'type' => 'politician',
+	           'type' => $type,
 	           'id' => $id,
 	     );
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
@@ -135,50 +172,19 @@ class VootaApi{
 			throw new Exception('Error');
 	}
   }
-
-  public function getPartido($userId, $id){
-	$params = array(
-	           'method' => 'entity',
-	           'type' => 'party',
-	           'id' => $id,
-	     );
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
-	
-	$result = $req->doRequest( $userId );
   
-	switch( $result['code'] ){
-		case 200:
-			return json_decode( $result['body'] );
-		case 400:
-			throw new BadRequestException('Bad request');
-			break;
-		default:
-			throw new Exception('Error');
-	}
-  }
-  
-  public function getPartidos($userId, $limit = 20, $page = 1){
-	$params = array(
-	           'method' => 'entities',
-	           'type' => 'party',
-	           'limit' => $limit,
-	           'page' => $page,
-	     );
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
-	
-	$result = $req->doRequest( $userId );
-  
-	switch( $result['code'] ){
-		case 200:
-			return json_decode( $result['body'] );
-		case 400:
-			throw new BadRequestException('Bad request');
-			break;
-		default:
-			throw new Exception('Error');
-	}
-  }
-  
+	/**
+	* search - Searchs entities
+	*
+	* @param integer $userId A user identificator
+	* @param string $q The search string
+	* @param string $type Type of the entity to retrieve: 'politician', 'party' or false
+	* 						if false, returns entities of any type
+	* @param integer $limit Max number of results per page
+	* @param integer $page Page number
+	* @param string $culture Finds results in this language
+	* @return array a list of entities
+	*/  
   public function search($userId, $q, $type = false, $limit = 20, $page = 1, $culture = 'es'){
 	$params = array(
 	           'method' => 'search',
@@ -203,6 +209,13 @@ class VootaApi{
 	}	
   }
   
+	/**
+	* getTopEntities - Returns the most active entities this week
+	*
+	* @param integer $userId A user identificator
+	* @param integer $limit Max number of results
+	* @return array a list of entities
+	*/  
   public function getTopEntities($userId, $limit = 6){
 	$params = array(
 	           'method' => 'top',
@@ -224,6 +237,16 @@ class VootaApi{
 	}
   }
   
+	/**
+	* search - Posts a review on an entity.
+	*
+	* @param integer $userId A user identificator
+	* @param integer $entity Id of the entity beeing reviewed
+	* @param integer $type Type of the entity to review: 'politician', 'party'
+	* @param integer $value Vote: 1 for positive or -1 for negative
+	* @param string $text Text of the review itself 
+	* @return void
+	*/  
   public function postReview($userId, $entity, $type, $value, $text){
 	$params = array(
 	           'method' => 'review',
@@ -234,10 +257,6 @@ class VootaApi{
 	     );
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
-	/*
-	$curlHeaders = array('Content-Length: ' . 1);
-	$curlOptions = array(CURLOPT_HTTPHEADER => $curlHeaders);
-	*/
 	$result = $req->doRequest( $userId );	
   
 	switch( $result['code'] ){
