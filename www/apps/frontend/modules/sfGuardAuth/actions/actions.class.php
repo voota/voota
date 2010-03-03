@@ -423,6 +423,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     }
 	
 	$this->profileEditForm = new ProfileEditForm( $formData );
+	$this->politico = false;
   	$politicos = $this->getUser()->getGuardUser()->getPoliticos();
   	if ( $politicos && count($politicos) != 0){
   		$this->politico = $politicos[0];  		
@@ -444,6 +445,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
+			if ($this->politico){
+			  	$cacheManager = $this->getContext()->getViewCacheManager();
+			  	if ($cacheManager != null) {
+			  		$politico = $this->getRoute()->getObject();
+			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=es");
+			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
+			  	}				
+			}
 	      	$profile = $request->getParameter('profile');
 	    	$this->hasDeepUpdates = ($profile['presentacion'] != $formData->getProfile()->getPresentacion()); 
       		

@@ -77,10 +77,10 @@ class PoliticoForm extends BasePoliticoForm
 
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
-   'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/cc_'.$this->getObject()->getImagen(),
+   'file_src'  => S3Voota::getImagesUrl().'/politicos/cc_'.$this->getObject()->getImagen(),
    'is_image'  => true,
    'edit_mode' => !$this->isNew(),
-   'template'  => '<div>%file%  <img src="https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
+   'template'  => '<div>%file%  <img src="'.S3Voota::getImagesUrl().'/politicos/bw_'.$this->getObject()->getImagen().'"><br /><label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',
 	));
 	
     $this->validatorSchema['email'] = new sfValidatorEmail(array('required' => false));  

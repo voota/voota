@@ -18,12 +18,17 @@
 class S3Voota extends S3 {
 	const _BUCKET_ORI = 'sf_s3_bucket_originals';
 	const _BUCKET_PUB = 'sf_s3_bucket_public';
+	const _IMAGES_URL = 'sf_images_url';
 	
 	public static function getBucketOri(){
 		return sfConfig::get(S3Voota::_BUCKET_ORI); 
 	}
 	public static function getBucketPub(){
 		return sfConfig::get(S3Voota::_BUCKET_PUB); 
+	}
+	
+	public static function getImagesUrl(){
+		return sfConfig::get(S3Voota::_IMAGES_URL); 
 	}
 	
 	public function __construct() {

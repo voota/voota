@@ -137,6 +137,7 @@
       <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Facebook'), __('http://www.facebook.com/Voota'), array('class' => "enlacesPie")) ?>
+      <a href="#" onclick="UserVoice.Popin.show(uservoiceOptions);return false;"><?php echo __('Sugerencias')?></a>
       <?php echo link_to(__('Contactar'), '@contact', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
     </p>

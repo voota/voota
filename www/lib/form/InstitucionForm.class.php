@@ -32,7 +32,7 @@ class InstitucionForm extends BaseInstitucionForm
   
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
-   'file_src'  => 'https://'.S3Voota::getBucketPub().'.s3.amazonaws.com/instituciones/cc_s_'.$this->getObject()->getImagen(),
+   'file_src'  => S3Voota::getImagesUrl().'/instituciones/cc_s_'.$this->getObject()->getImagen(),
 	'is_image'  => true,
    'edit_mode' => !$this->isNew(),
    'template'  => '<div>%file% <label></label>%input%<br /><label></label>%delete% Eliminar imagen actual</div>',

@@ -9,7 +9,7 @@ new TWTR.Widget({
   height: 300,
   theme: {
     shell: {
-      background: '#ffffff',
+      background: '#f8f8f8',
       color: '#000000'
     },
     tweets: {
@@ -21,7 +21,7 @@ new TWTR.Widget({
   features: {
     scrollbar: false,
     loop: false,
-    live: false,
+    live: true,
     hashtags: true,
     timestamp: true,
     avatars: false,

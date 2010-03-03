@@ -37,7 +37,7 @@
 
 <div id="content">
   <div title="<?php echo $partido->getNombre() ?>" id="photo">
-    <?php echo image_tag('http://'.S3Voota::getBucketPub().'.s3.amazonaws.com/partidos/'.$image, 'alt="'. __('Logo de %1%', array('%1%' => $partido->getAbreviatura())) .'"') ?>
+    <?php echo image_tag(S3Voota::getImagesUrl().'/partidos/'.$image, 'alt="'. __('Logo de %1%', array('%1%' => $partido->getAbreviatura())) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $partido->getAbreviatura(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>

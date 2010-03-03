@@ -46,7 +46,7 @@ class api_demoActions extends sfActions
 	
 	$this->entities = array();
 
-	$this->entities = $vootaApi->getPoliticos(self::USER_ID);
+	$this->entities = $vootaApi->getEntities(self::USER_ID, 'politician');
 	//var_dump($this->entity);
   }
   
