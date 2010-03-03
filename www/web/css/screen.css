@@ -28,6 +28,7 @@ tr.even { background-color: #fbfbfb; }
 /* Tabs */
 
 .ui-widget { font-size: 13px; font-family: Georgia, "Times New Roman", Times, serif;}
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Georgia, "Times New Roman", Times, serif; }
 .ui-tabs .ui-tabs-nav li a,
 .ui-tabs .ui-tabs-nav { padding-left: 10px;}
 .ui-tabs .ui-tabs-nav li { margin-right: 20px;}
