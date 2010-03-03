@@ -393,6 +393,7 @@ input[type=submit].login_or_register { width: 200px; }
 #partido-show .reviews { clear: both; padding-top: 35px; width: 600px;}
 
 /* Página de asignación de usuario con político */
+#politico-take #main { height: 400px;}
 #politico-take #photo { float: left; width: 200px; text-align: right;}
 #politico-take #content { float: none; margin-left: 220px; width: 520px;}
 #politico-take #content h2 { font-size: 16px; font-weight: bold;}
