@@ -85,8 +85,8 @@
   </target>
 
   <target name="updatesvn">
-  	<echo>Updating from svn ...</echo>
-  	<exec command="svn update" dir="${project.dir}/www"  passthru="true" />
+  	<echo>Updating from git ...</echo>
+  	<exec command="git pull" dir="${project.dir}/www"  passthru="true" />
   </target>
   <target name="i18n">
   	<echo>Updating i18n ...</echo>
