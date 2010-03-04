@@ -5,6 +5,7 @@
 </div>
 <h4 class="review-name">
   <?php echo link_to(fullName( $review->getsfGuardUser() ), '@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>
+  <?php echo party( $review->getsfGuardUser() ) ?>
   <?php if( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() ): ?>
     <span class="review-years">· <?php echo __('%1% años', array('%1%' => review_date_diff( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() )))?></span>
   <?php endif ?>

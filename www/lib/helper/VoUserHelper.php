@@ -15,6 +15,20 @@ function fullName( $user ) {
   	return $ret;
 }
 
+function party( $user ) {
+	$ret = "";
+  	
+  	if($user && count($user->getPoliticos()) > 0 ){
+  		$politicos = $user->getPoliticos();
+  		$politico = $politicos[0];
+  		if ($politico->getPartido()){
+  			$ret = " (". $politico->getPartido() .")";
+  		}
+  	}
+	
+  	return $ret;
+}
+
 function fullNameForAttr( $user ) {
   // TODO: Refactorizar con fullName
 
