@@ -94,8 +94,10 @@ class BaseSfOauthServerActions extends sfActions
   
   public function executeAuthorize(sfWebRequest $request){
   	$this->oauth_token = $request->getParameter('oauth_token', '');
+  	$this->oauth_callback = $request->getParameter('oauth_callback', '');
+  	
   	if (!$this->getUser()->isAuthenticated())
-  		$this->getUser()->setAttribute('url_back', 'sfOauthServer/authorize?oauth_token='. $this->oauth_token);
+  		$this->getUser()->setAttribute('url_back', 'sfOauthServer/authorize?oauth_callback='.$this->oauth_callback.'&oauth_token='. $this->oauth_token);
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$authorized = $request->getParameter('authorized', '');
@@ -115,6 +117,10 @@ class BaseSfOauthServerActions extends sfActions
 		{
 			$server->authorizeVerify();
 			$server->authorizeFinish(true, $this->getUser()->getGuardUser()->getId());
+			if ($this->oauth_callback){
+				header('Location: '. $this->oauth_callback);
+				die;
+			}
 		}
 		catch (OAuthException $e)
 		{

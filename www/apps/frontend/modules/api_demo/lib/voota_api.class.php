@@ -65,7 +65,7 @@ class VootaApi{
 		$consumer_key = $store->updateServer($server, $userId);
 	}
 	catch(Exception $e) { 
-		throw new BadRequestException($e->getMessage());
+		//throw new BadRequestException($e->getMessage());
 	}
 	
 	$token = OAuthRequester::requestRequestToken($consumerKey, $userId);
