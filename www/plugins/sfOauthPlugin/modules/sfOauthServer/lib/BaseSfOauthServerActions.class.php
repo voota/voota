@@ -93,11 +93,11 @@ class BaseSfOauthServerActions extends sfActions
   }
   
   public function executeAuthorize(sfWebRequest $request){
+  	$this->oauth_token = $request->getParameter('oauth_token', '');
   	if (!$this->getUser()->isAuthenticated())
-  		$this->getUser()->setAttribute('url_back', 'oauth/authorize');
+  		$this->getUser()->setAttribute('url_back', 'sfOauthServer/authorize?oauth_token='. $this->oauth_token);
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
-  	$this->oauth_token = $request->getParameter('oauth_token', '');
   	$authorized = $request->getParameter('authorized', '');
   	
 	$store = $this->getStore();

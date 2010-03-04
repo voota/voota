@@ -4,8 +4,8 @@ prod:
     cache:                  true
     logging_enabled:        false
     s3_bucket_originals:       imagesvoota-ori
-    s3_bucket_public:          imagesvoota
-    images_url:          http://imagesvoota.s3.amazonaws.com
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
     sphinx_server: ip-10-226-31-16.eu-west-1.compute.internal
     mail_enabled: true
     mail_server: ssl://smtp.gmail.com
@@ -21,8 +21,8 @@ dev:
     no_script_name:         false
     etag:                   false
     s3_bucket_originals:       imagesvoota-ori-dummy
-    s3_bucket_public:          imagesvoota
-    images_url:          http://imagesvoota.s3.amazonaws.com
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
     sphinx_server: localhost
     mail_enabled: true
     mail_server: ssl://smtp.gmail.com
@@ -38,8 +38,8 @@ test:
     no_script_name:         true
     #etag:                   false
     s3_bucket_originals:       imagesvoota-ori
-    s3_bucket_public:          imagesvoota
-    images_url:          http://imagesvoota.s3.amazonaws.com
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
     sphinx_server: localhost
     mail_enabled: true
     mail_server: ssl://smtp.gmail.com
