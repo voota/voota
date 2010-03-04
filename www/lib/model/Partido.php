@@ -49,4 +49,7 @@ class Partido extends BasePartido implements reviewable
 	public function getModule(){
 		return 'partido';
 	}
+	public function getImagePath(){
+		return "partidos";
+	}
 }
