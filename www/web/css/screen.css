@@ -373,7 +373,7 @@ input[type=submit].login_or_register { width: 250px; }
 #partido-show #report-error,
 #politico-show #report-error { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error select,
-#politico-show #report-error select { width: 240px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; }
+#politico-show #report-error select { width: 240px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
 #partido-show #report-error .submit,
 #politico-show #report-error .submit { padding-top: 10px; width: 240px }
 #partido-show #report-error option,
