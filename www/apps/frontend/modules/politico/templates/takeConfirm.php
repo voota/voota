@@ -3,8 +3,6 @@
 <?php use_helper('VoUser') ?>
 
 <div id="photo">
-  <?php // TODO: Reemplazar imagen con imagen del político o usuario ?>
-  <img src="/images/proto/politico_medium" alt="<?php $sf_user->getGuardUser()->getProfile() ?>" />
   <?php echo getAvatarFull($sf_user->getGuardUser()); ?>  
 </div>
 
