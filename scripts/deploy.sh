@@ -14,8 +14,8 @@ if [ $ENV -eq $TEST ] ; then
 		cd $DEST
 		rm -rf $DEST/www/cache/*
         phing test
-        cd $POOTLE_DIR
-        sudo -u pootle svn update
+        #cd $POOTLE_DIR
+        #sudo -u pootle svn update
         ;;
     prod)
 		cd $DEST

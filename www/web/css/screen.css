@@ -38,7 +38,8 @@ tr.even { background-color: #fbfbfb; }
 .ui-widget-content a { color: #0000ee;}
 .ui-widget-content a:visited { color: #551a8b;}
 .ui-widget input { font-size: 13px;}
-
+.ui-helper-clearfix { float: left;}
+.ui-tabs-panel { clear: left;}
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
@@ -375,13 +376,15 @@ input[type=submit].login_or_register { width: 250px; }
 #partido-show #report-error select,
 #politico-show #report-error select { width: 240px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
 #partido-show #report-error .submit,
-#politico-show #report-error .submit { padding-top: 10px; width: 240px }
+#politico-show #report-error .submit { padding-top: 10px; width: 240px;}
 #partido-show #report-error option,
 #politico-show #report-error option { padding: 2px 5px; }
 #politico-show #google-ads,
 #partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
 #politico-show .reviews,
-#partido-show .reviews { clear: both; padding-top: 35px; width: 720px;}
+#partido-show .reviews { clear: left; padding-top: 35px; width: 600px;}
+#politico-show .ui-helper-clearfix { width: 600px; }
+#partido-show .ui-helper-clearfix { width: 720px; }
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
