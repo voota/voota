@@ -11,8 +11,8 @@
 
 <p>Un saludo, Comunidad Voota</p>
 
+<p>--</p>
 <p>Voota es una web que sirve para compartir opiniones sobre los políticos de España.</p>
-
 <p>Nuestra web:  http://voota.es/es</p>
 <p>Blog de Voota:  http://blog.voota.es</p>
 <p>Voota en Twitter:  http://twitter.com/voota</p>
