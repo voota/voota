@@ -1,0 +1,7 @@
+www/apps/frontend/config/app.yml
+www/cache
+www/config/databases.yml
+www/log
+www/web/sfOauthPlugin
+www/web/sfReviewPlugin
+www/web/sfPropelPlugin
