@@ -105,10 +105,11 @@ tr.even { background-color: #fbfbfb; }
 .box h2 { font-size: 16px; padding-bottom: 20px; }
 .box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 20px; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
-.box-contact ul li { margin-bottom: 10px; padding-left: 20px; }
+.box-contact ul li { margin-bottom: 10px; padding-left: 20px; height: 16px;}
 .box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
 .box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; }
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
+.box-contact ul li.uservoice { background: transparent url(/images/uservoice.png) left center no-repeat; }
 .box-profile .box-inner { background-color: #fdffcd }
 .box-profile h3 { font-size: 16px;}
 .box-profile button { width: 180px;}

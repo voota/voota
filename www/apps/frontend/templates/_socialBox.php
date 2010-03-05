@@ -4,6 +4,7 @@
       <li class="blog"><a href="<?php echo __('http://blog.voota.es/es') ?>"><?php echo __('Nuestro blog') ?></a></li>
       <li class="twitter"><a href="<?php echo __('http://twitter.com/Voota') ?>"><?php echo __('Voota en Twitter') ?></a></li>
       <li class="facebook"><a href="<?php echo __('http://www.facebook.com/Voota') ?>"><?php echo __('Voota en Facebook') ?></a></li>
+      <li class="uservoice"><a href="#" onclick="UserVoice.Popin.show(uservoiceOptions);return false;"><?php echo __('Sugerencias')?></a></li>
     </ul>
   </div>
 </div>
