@@ -4,7 +4,8 @@ prod:
     logging_enabled:        false
     cache:                  true
     s3_bucket_originals:       imagesvoota-ori
-    s3_bucket_public:          imagesvoota
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
 
 dev:
   .settings:
@@ -14,7 +15,8 @@ dev:
     no_script_name:         false
     etag:                   false
     s3_bucket_originals:       imagesvoota-ori
-    s3_bucket_public:          imagesvoota
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
 
 test:
   .settings:
@@ -24,8 +26,9 @@ test:
     no_script_name:         false
     etag:                   false
     cache:                  true
-    s3_bucket_originals:       imagesvoota-ori-dummy
-    s3_bucket_public:          imagesvoota-dummy
+    s3_bucket_originals:       imagesvoota-ori
+    s3_bucket_public:          images.voota.es
+    images_url:          http://images.voota.es
 
 all:
   .settings:
