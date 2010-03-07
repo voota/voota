@@ -19,7 +19,7 @@
 <form method="post">
 	<input type="hidden" name="oauth_token" value="<?php echo $oauth_token ?>" />
 	<input type="hidden" name="oauth_callback" value="<?php echo $oauth_callback ?>" />
-	<input type="hidden" name="authorized" value="0" id="oauth_authorize_field" />
+	<input type="hidden" name="authorized" value="1" id="oauth_authorize_field" />
 	<input type="submit" value="<?php echo __('Autorizar') ?>" id="oauth_authorize_button" />
 	<input type="submit" value="<?php echo __('Denegar') ?>" />
 </form>

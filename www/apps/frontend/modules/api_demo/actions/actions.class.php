@@ -18,14 +18,14 @@
  */
 class api_demoActions extends sfActions
 {	
-  	const CONSUMER_KEY = 'dc8bdeeace2bf2e4061de5eca8f8fc4a04b8d80b0';
-  	const CONSUMER_SECRET = 'ec2867202655b604ed5b848e7e0c592a';
-	const USER_ID = 99;
+  	const CONSUMER_KEY = 'ee23478466f8e85ffc1414a9c2c15dc004b912f61';
+  	const CONSUMER_SECRET = '27f33419d6deb62e6332df05a252ec98';
+	const USER_ID = 4;
 	
   public function executeAuth(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
 	
-	$vootaApi->authenticate(self::CONSUMER_KEY, self::CONSUMER_SECRET, self::USER_ID, 'http://localhost/frontend_dev.php/api_demo/callback');
+	$vootaApi->authenticate(self::CONSUMER_KEY, self::CONSUMER_SECRET, self::USER_ID, $this->getController()->genUrl('api_demo/callback', true));
   }    
 
   
