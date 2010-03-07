@@ -10,30 +10,6 @@
   <target name="prepare_admin">
 	<property name="project.dir" value="/var/www/voota_admin" />
   </target>
-  <target name="prod" depends="update">
-  	<delete file="${project.dir}/www/web/frontend_dev.php" />
-  	<delete file="${project.dir}/www/web/backend_dev.php" />
-  	<delete file="${project.dir}/www/web/frontend_test.php" />
-  	<delete file="${project.dir}/www/web/backend_test.php" />
-  	<delete file="${project.dir}/www/web/backend.php" />
-  </target>
-  <target name="test" depends="update">
-  	<delete file="${project.dir}/www/web/frontend_dev.php" />
-  	<delete file="${project.dir}/www/web/backend_dev.php" />
-  	<delete file="${project.dir}/www/web/index.php" />
-  	<delete file="${project.dir}/www/web/backend.php" />
-  	<move file="${project.dir}/www/web/backend_test.php" tofile="${project.dir}/www/web/backend.php" overwrite="true"/>
-  	<move file="${project.dir}/www/web/frontend_test.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
-  </target>
-  <target name="admin" depends="prepare_admin, updatesvn, i18n, assets, clear">
-  	<delete file="${project.dir}/www/web/frontend_dev.php" />
-  	<delete file="${project.dir}/www/web/backend_dev.php" />
-  	<delete file="${project.dir}/www/web/frontend_test.php" />
-  	<delete file="${project.dir}/www/web/backend_test.php" />
-  	<delete file="${project.dir}/www/web/index.php" />
-  	<move file="${project.dir}/www/web/backend.php" tofile="${project.dir}/www/web/index.php" overwrite="true"/>
-    <phingcall target="pruebas_admin" />
-  </target>
   <target name="update" depends="prepare, updatesvn, i18n, assets, clear">
   	<exec command="chmod +x ${project.dir}/scripts/deploy.sh" passthru="true" />
   	<echo>Updated.</echo>
@@ -86,16 +62,9 @@
 
   <target name="updatesvn">
   	<echo>Updating from git ...</echo>
-  	<exec command="git pull" dir="${project.dir}/www"  passthru="true" />
+  	<exec command="git pull --rebase" dir="${project.dir}/www"  passthru="true" />
   </target>
   <target name="i18n">
-  	<echo>Updating i18n ...</echo>
-  	<copy file="${project.dir}/metadata/pootle/voota/ca/messages.xlf"
-  		tofile="${project.dir}/www/apps/frontend/i18n/ca/messages.xml"
-  		overwrite="true" />
-  	<copy file="${project.dir}/metadata/pootle/voota/ca/notices.xlf"
-  		tofile="${project.dir}/www/apps/frontend/i18n/ca/notices.xml"
-  		overwrite="true" />
   </target>
    <target name="switchsvn">
 	<input propertyname="branch">svn branch to switch to</input>

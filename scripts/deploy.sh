@@ -13,17 +13,15 @@ if [ $ENV -eq $TEST ] ; then
     test)
 		cd $DEST
 		rm -rf $DEST/www/cache/*
-        phing test
-        #cd $POOTLE_DIR
-        #sudo -u pootle svn update
+        phing update
         ;;
     prod)
 		cd $DEST
-        phing prod
+        phing update
         ;;
     admin)
 		cd $DEST_ADMIN
-        phing admin
+        phing update
         ;;
   esac
 fi
