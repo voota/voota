@@ -4,6 +4,7 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Number') ?>
 <?php use_helper('SfReview') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
   <!--
@@ -98,7 +99,7 @@
           <?php echo link_to(__('Hacer cambios en tu perfil'), '@usuario_edit') ?>
         </p>
       <?php else: ?>
-      	<?php if(!$sf_user->isAuthenticated() || ($sf_user->isAuthenticated() && count( $sf_user->getGuardUser()->getPoliticos() ) == 0 )): ?>
+      	<?php if(!$sf_user->isAuthenticated() || ($sf_user->isAuthenticated() && !isPolitico( $sf_user->getGuardUser() ))): ?>
         <p>
           <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico)), 'politico/take?id='.$politico->getId()) ?>
         </p>
