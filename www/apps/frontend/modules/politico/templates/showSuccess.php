@@ -103,7 +103,8 @@
         <p>
           <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico)), 'politico/take?id='.$politico->getId()) ?>
         </p>
-      	<?php else: ?>
+      	<?php elseif(true): // TODO: Añadir condición "si el político tiene usuario en Voota" ?>
+          <p><?php echo link_to(__('Ver su perfil en Voota'), "@homepage") // TODO: Enlazar con página de perfil del usuario asociado al político ?></p>
       	<?php endif ?>
       <?php endif ?>
     </div>

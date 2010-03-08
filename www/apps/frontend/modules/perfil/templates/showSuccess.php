@@ -48,6 +48,9 @@
     </div>
     <div title="info" class="description">
       <p><?php echo getAutolink($user->getProfile()->getPresentacion())?></p>
+      <?php if (true): // TODO: Añadir condición "si es un político" ?>
+        <p><?php echo link_to(__('Su página de político en Voota'), "@homepage") // TODO: Enlazar con página de político ?></p>
+      <?php endif ?>
 
       <?php if (count($user->getEnlaces()) > 0): ?>
         <div class="links">
