@@ -72,7 +72,7 @@ tr.even { background-color: #fbfbfb; }
 #user-links #lo_fb_conn .close { font-size: 9px;}
 #search { position: absolute; top: 70px; right: 0; text-align: right; }
 #search fieldset { margin: 0; padding: 0; border: none;}
-#search input[type=submit] { margin-left: 10px; width: 90px; padding: 3px 6px 3px 6px;}
+#search input[type=submit] { margin-left: 10px; width: 90px;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
 #contact-links ul li { float: left; padding: 0 20px 0 40px;}
 #contact-links ul li.blog { background: transparent url(/images/icoBlog.gif) right center no-repeat;}
@@ -131,7 +131,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
 .hints { padding: 5px 0; }
-input[type=submit].login_or_register { width: 250px; }
+input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -167,7 +167,7 @@ input[type=submit].login_or_register { width: 250px; }
 #home-index .search label { font-size: 16px; font-weight: bold; padding-right: 10px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
-#home-index .search input[type=submit] { margin-left: 10px; width: 90px; padding: 3px 6px 3px 6px;}
+#home-index .search input[type=submit] { margin-left: 10px; width: 90px; }
 #home-index #latest-comments-votes h3 { padding-bottom: 10px;}
 #home-index #politicians-top5,
 #home-index #political-groups,
