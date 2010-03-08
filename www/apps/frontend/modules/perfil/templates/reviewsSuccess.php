@@ -1,5 +1,6 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('SfReview') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
   <!--
