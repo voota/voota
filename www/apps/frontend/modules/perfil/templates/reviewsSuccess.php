@@ -14,6 +14,9 @@
 <h2><?php echo __('Comentarios y vootos que has hecho hasta ahora (en total, %1%)', array('%1%' => $reviews->getNbResults()))?></h2>
 <p class="next-step-msg"><?php echo link_to(__('Tu perfil'), "@usuario_edit"); ?></p>
 <p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
+<?php if (true): // TODO: Añadir condición "si es un político" ?>
+  <p class="next-step-msg"><?php echo link_to(__('Tu página de político y lo que opinan sobre ti'), "@homepage") // TODO: Enlazar con página de político ?></p>
+<?php endif ?>
 
 <div id="content">
 <form action="<?php echo url_for('@usuario_votos') ?>" id="filterForm">
