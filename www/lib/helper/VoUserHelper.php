@@ -18,12 +18,10 @@ function fullName( $user ) {
 function party( $user ) {
 	$ret = "";
   	
-  	if($user && count($user->getPoliticos()) > 0 ){
-  		$politicos = $user->getPoliticos();
-  		$politico = $politicos[0];
-  		if ($politico->getPartido()){
-  			$ret = " (". $politico->getPartido() .")";
-  		}
+	$politico = isPolitico($user);
+	
+  	if ($politico && $politico->getPartido()){
+  		$ret = " (". $politico->getPartido() .")";
   	}
 	
   	return $ret;
@@ -88,4 +86,15 @@ function vo_facebook_connect_ajax_button($box, $func_name) {
 function vo_facebook_connect_associate_button($text = '', $box = 'facebook-connect') {
   $func = "facebookConnect_associate('". url_for('@usuario_fb_edit?op=con&box='.$box). "', '$box')";
   return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  ($text?$text:image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"')) . "</a>";
+}
+
+function isPolitico($user){
+	$ret = false;
+  	if($user && count($user->getPoliticos()) > 0 ){
+  		$politicos = $user->getPoliticos();
+  		$politico = $politicos[0];
+  		$ret = $politico;
+  	}
+  	
+  	return $ret;
 }
