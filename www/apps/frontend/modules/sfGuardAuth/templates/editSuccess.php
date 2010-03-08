@@ -45,6 +45,9 @@
 <h2><?php echo __('Hola %1%, este es tu perfil', array('%1%' => fullName($sf_user))) ?></h2>
 <p class="next-step-msg"><?php echo link_to(__("Tus comentarios y vootos (en total %1%)", array('%1%' => format_number($numReviews, 'es_ES'))), '@usuario_votos') ?></p>
 <p class="next-step-msg"><?php echo link_to(__("Tu perfil público"), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()) ?></p>
+<?php if (true): // TODO: Añadir condición "si es un político" ?>
+  <p class="next-step-msg"><?php echo link_to(__('Tu página de político y lo que opinan sobre ti'), "@homepage") // TODO: Enlazar con página de político ?></p>
+<?php endif ?>
 
 <div id="content">
   <?php echo showNotices( $sf_user ) ?>
