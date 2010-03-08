@@ -131,7 +131,7 @@ textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", T
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
 .hints { padding: 5px 0; }
-input[type=submit].login_or_register { width: 210px; }
+input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
