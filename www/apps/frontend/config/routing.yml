@@ -75,7 +75,7 @@ politico_take_es:
 politico_take_ca:
   url:   /:sf_culture/take
   param: { module: politico, action: take }
-  requirements: { sf_culture: (?:es) }
+  requirements: { sf_culture: (?:ca) }
   
 partido_ca:
   url: /:sf_culture/partit/:id
@@ -237,23 +237,3 @@ usuario_contact:
   url:   /:username/contact
   param: { module: perfil, action: contact }
   
-  
-api_demo_auth:
-  url:   /api_demo/auth
-  param: { module: api_demo, action: auth }
-
-api_demo_callback:
-  url:   /api_demo/callback
-  param: { module: api_demo, action: callback }
-  
-api_demo_most_recently_voted:
-  url:   /api_demo/most_recently_voted
-  param: { module: api_demo, action: mostRecentlyVoted }
-  
-api_demo_politicos:
-  url:   /api_demo/politicos
-  param: { module: api_demo, action: politicos }
-api_demo_put:
-  url:   /api_demo/post
-  param: { module: api_demo, action: postReview }
-
