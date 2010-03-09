@@ -18,6 +18,10 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .hidden { display:none; }
 .shown { display:block; }
 .pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold; }
+.politico-pagination a,
+.politico-pagination span { padding-right: 20px;}
+.politico-pagination a.back { padding-left: 40px;}
+
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
 tr.even { background-color: #fbfbfb; }
