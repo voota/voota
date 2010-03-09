@@ -75,7 +75,7 @@ politico_take_es:
 politico_take_ca:
   url:   /:sf_culture/take
   param: { module: politico, action: take }
-  requirements: { sf_culture: (?:es) }
+  requirements: { sf_culture: (?:ca) }
   
 partido_ca:
   url: /:sf_culture/partit/:id
