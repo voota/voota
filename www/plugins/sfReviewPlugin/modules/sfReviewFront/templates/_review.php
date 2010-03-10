@@ -1,5 +1,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('I18N') ?>
+<?php use_helper('jQuery') ?>
+
 <?php $reviewable = isset($reviewable)?$reviewable:false; $uc=new Criteria(); $uc->add(SfReviewPeer::VALUE, 1); $dc=new Criteria(); $dc->add(SfReviewPeer::VALUE, -1) ?>
 <?php $listValue = isset($listValue)?$listValue:''?>
 
@@ -18,7 +20,7 @@
     	<a href="#" onclick="document.getElementById('<?php echo "subreviews_box${listValue}_".$review->getId() ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sfrc${listValue}_".$review->getId() ?>' )"><?php echo __('Opinar sobre este comentario')?></a>
     	<?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0 || count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0 ): ?> 
   		  <?php echo __('(Lleva') ?> 
-    	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0  ): ?> 
+    	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0  ): ?>
     		  <?php echo count($review->getSfReviewsRelatedBySfReviewId($uc)) ?>
   		    <img alt="A favor, yeah" src="/images/icoMiniUp.png" />
   	    <?php endif ?>
@@ -38,6 +40,25 @@
   <?php endif ?>
   
 	<?php if ($reviewable): ?>
-		<div id="<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId(), 'listValue' => $listValue)) ?></div>
+	  <p class="subreviews-summary">
+  	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0 || count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0 ): ?>
+  		  (<?php echo __('Lleva') ?>
+    	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0  ): ?>
+    		  <?php echo count($review->getSfReviewsRelatedBySfReviewId($uc)) ?>
+    		  <?php echo __('a favor') ?>
+  	    <?php endif ?>
+  	    <?php if( count($review->getSfReviewsRelatedBySfReviewId($uc)) > 0 && count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0 ): ?>
+  		    <?php echo __('y') ?>
+  	    <?php endif ?>
+    	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0  ): ?>
+    		  <?php echo count($review->getSfReviewsRelatedBySfReviewId($dc)) ?>
+          <?php echo __('en contra') ?>
+  	    <?php endif ?>, 
+      	<?php echo link_to_function(__('ver'), "$('#sf_review_sr_c${listValue}_".$review->getId()."').slideDown()") ?>)
+  	  <?php else: ?>
+  	    (<?php echo __('de momento no tiene') ?>)
+    	<?php endif ?>
+    </p>
+	  <div style="display: none" id="<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId(), 'listValue' => $listValue)) ?></div>
 	<?php endif ?>
 </li>

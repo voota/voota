@@ -27,6 +27,9 @@
   //-->
 </script>
 
+<?php // TODO: Pasar variables necesarias al paginador ?>
+<?php include_partial('politico_pagination') ?>
+
 <h2 id="name">
   <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
   <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
@@ -154,5 +157,8 @@
     <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
+
+  <?php // TODO: Pasar variables necesarias al paginador ?>
+  <?php include_partial('politico_pagination') ?>
 
 </div><!-- end of content -->
