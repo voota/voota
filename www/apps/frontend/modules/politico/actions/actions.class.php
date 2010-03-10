@@ -39,6 +39,7 @@ class politicoActions extends sfActions
 	  	$op = $request->getParameter("op", "a");
 	  	if ($op == "c"){
 	  		$this->politico->setSfGuardUserId($this->getUser()->getGuardUser()->getId());
+	  		$this->politico->setModifiedAt(new DateTime());
 	  		$this->politico->save();
 	  		
 	  		// Send mail to politician
