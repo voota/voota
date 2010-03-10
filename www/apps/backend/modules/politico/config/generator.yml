@@ -15,10 +15,10 @@ generator:
         _delete: {credentials: [superadmin]}
       list:
         title:   Pol&iacute;ticos
-        display: [id,alias,nombre,apellidos,partido,_usuario]
+        display: [id,alias,nombre,apellidos,partido,_usuario,modified_at]
         
       filter:
-        display: [nombre,apellidos,partido_id]
+        display: [nombre,apellidos,partido_id,modified_at]
         fields:
           politico_institucion_list:
             label: Institucion
