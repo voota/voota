@@ -19,7 +19,17 @@
 class BasesfReviewFrontActions extends sfActions
 {
 	const MAX_LENGTH = 280;
-	
+
+  
+  public function executeShow(sfWebRequest $request)
+  {
+  	$id = $request->getParameter("id");
+  	
+  	$this->review = SfReviewPeer::retrieveByPK( $id );
+  	  	
+  	$this->forward404Unless( $this->review );
+  }
+  
   public function executeFilteredList(sfWebRequest $request)
   {
   	$this->entityId = $request->getParameter("entityId");  	

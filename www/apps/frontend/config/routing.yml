@@ -178,10 +178,9 @@ usuario_change_password2:
   param: { module: sfGuardAuth, action: changePassword }
   requirements: { sf_culture: (?:es|ca) }
 
-sf_review_form:
-  url:   /:sf_culture/review/form
-  param: { module: sfReviewFront, action: form }
-  requirements: { sf_culture: (?:es|ca) }
+sf_review_show:
+  url:   /r/:id
+  param: { module: sfReviewFront, action: show }
 
 sf_review_preview:
   url:   /:sf_culture/review/preview
