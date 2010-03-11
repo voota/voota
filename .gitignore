@@ -1,4 +1,5 @@
 www/apps/frontend/config/app.yml
+www/apps/frontend/config/settings.yml
 www/cache
 www/config/databases.yml
 www/log
