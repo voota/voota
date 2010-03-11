@@ -19,7 +19,7 @@
   <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>
 </p>
 
-<?php if ($reviewable): ?>
+<?php if (!$review->getSfReviewId()): ?>
   <?php include_partial('sfReviewFront/add_subreview', array('sf_user' => $sf_user, 'review' => $review, 'uc' => $uc, 'dc' => $dc, 'listValue' => $listValue)) ?>
   <?php include_partial('sfReviewFront/subreviews_summary', array('sf_user' => $sf_user, 'review' => $review, 'uc' => $uc, 'dc' => $dc, 'listValue' => $listValue)) ?>
 <?php endif ?>
