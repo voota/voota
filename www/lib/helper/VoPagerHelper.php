@@ -95,17 +95,17 @@ function orderedBy( ) {
 	if ($filter){
 		switch($filter['order']){
 			case 'pa':
-				$ret = __('votos positivos ascendente');
+				$ret = __('votos positivos inverso');
 				break;
 			case 'na':
-				$ret = __('votos negativos ascendente');
+				$ret = __('votos negativos inverso');
 				break;
 			case 'nd':
-				$ret = __('votos negativos descendente');
+				$ret = __('votos negativos');
 				break;
 			case 'pd':
 			default:
-				$ret = __('votos positivos descendente');
+				$ret = __('votos positivos');
 		}
 	}
 	

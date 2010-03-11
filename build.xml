@@ -47,12 +47,6 @@
   <target name="deploy_test" depends="prepare">
   	<exec command="ssh root@r25797.ovh.net ${project.dir}/scripts/deploy.sh\ test" dir="${project.dir}/www"  passthru="true"/>
   </target>
-  <target name="deploy_prod" depends="prepare">
-  	<exec command="ssh ubuntu@makalu.voota.es ${project.dir}/scripts/deploy.sh\ prod" dir="${project.dir}"  passthru="true"/>
-  </target>
-  <target name="deploy_admin" depends="prepare_admin">
-  	<exec command="ssh ubuntu@aneto.voota.es ${project.dir}/scripts/deploy.sh\ admin" dir="/tmp"  passthru="true"/>
-  </target>
   <target name="pruebas" depends="prepare">
   	<exec command="php symfony test:functional frontend" dir="${project.dir}/www"  passthru="true"/>
   </target>
