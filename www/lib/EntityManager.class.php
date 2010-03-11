@@ -20,14 +20,20 @@ class EntityManager {
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-  		$memcache=new sfMemcacheCache();
-  		$memcache->initialize();
-  		$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
-  		$data = $memcache->get($key);
+	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cacheManager != null) {
+  			//$cacheManager=new sfMemcacheCache();
+  			//$cacheManager->initialize();
+  			$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
+  			$data = $cacheManager->get($key);
+	  	}
+	  	else {
+	  		$data = false;
+	  	}
   		if ($data){
-  			$totalUp = unserialize($memcache->get("$key-totalUp"));
-  			$totalDown = unserialize($memcache->get("$key-totalDown"));	
-  			return unserialize($memcache->get("$key"));  		
+  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
+  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
+  			return unserialize($cacheManager->get("$key"));  		
   		}
   		else {  		
 		  	$c = new Criteria();
@@ -83,10 +89,12 @@ class EntityManager {
 		    	$totalDown += $aPolitico->getSumd();
 		    }
 			/* Fin Calcula totales */
-		    		    
-  			$memcache->set($key,serialize($pager), 3600);
-  			$memcache->set("$key-totalUp",serialize($totalUp), 3600);
-  			$memcache->set("$key-totalDown",serialize($totalDown), 3600);
+		    
+	  		if ($cacheManager != null) {
+	  			$cacheManager->set($key,serialize($pager), 3600);
+	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
+	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		}
 	    	return $pager;
   		}
   	}
