@@ -84,9 +84,9 @@
 
   <div class="reviews">
     <ul>
-      <li><a href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount)) // TODO: sustituir número de vootos ?></a></li>
-      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
-      <li><a href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=-1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+      <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount)) // TODO: sustituir número de vootos ?></a></li>
+      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=-1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
     </ul>
     
     <div id="tab-all-reviews">
