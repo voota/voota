@@ -8,6 +8,11 @@
   <?php echo review_text( $review ) ?>
 </h2>
 
+<p class="review-about">
+  <?php // TODO: Sustituir nombre de político, partido o propuesta, y corregir URL del enlace ?>
+  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to('Nombre del político/partido/propuesta', '@homepage')))?>
+</p>
+
 <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 
 <p class="review-date">

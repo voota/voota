@@ -415,6 +415,12 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-take p.pre-ul { padding-bottom: 0;}
 #politico-take ul { padding-left: 20px;}
 
+/* Página de opinión */
+#sfReviewFront-show .review-body { padding-bottom: 0; margin-bottom: 0;}
+#sfReviewFront-show .review-about { margin-top: 0; padding-bottom: 10px; font-size: 11px;}
+#sfReviewFront-show .review-name { font-size: 16px;}
+#sfReviewFront-show .review-date { margin-top: 0;}
+
 /* Popups de ayuda */
 #help-dialog { display:none; }
 
