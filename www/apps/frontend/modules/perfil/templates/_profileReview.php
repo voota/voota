@@ -42,7 +42,7 @@
 		<?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getId() == $review->getSfGuardUser()->getId()):?>
 	        <?php echo link_to(__('Hacer cambios'), "@usuario_votos?o=e&t=".$review->getSfReviewTypeId()."&e=".($review->getSfReviewType()?$review->getEntityId():$review->getSfReviewRelatedBySfReviewId()->getId())."&r=". $review->getId()); ?>
         <?php else: ?>
-	        <?php echo link_to(__('Ir a su comentario'), "@usuario_votos?o=v&t=".$review->getSfReviewTypeId()."&e=".($review->getSfReviewType()?$review->getEntityId():$review->getSfReviewRelatedBySfReviewId()->getId())."&r=". $review->getId()); ?>
+	        <?php echo link_to(__('Ir a su comentario'), "sfReviewFront/show?id=".($review->getId())); ?>
         <?php endif ?>
 	</td>
 </tr>

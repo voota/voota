@@ -11,8 +11,8 @@
 	  <?php if( count($review->getSfReviewsRelatedBySfReviewId($dc)) > 0  ): ?>
 		  <?php echo count($review->getSfReviewsRelatedBySfReviewId($dc)) ?>
       <?php echo __('en contra') ?>
-    <?php endif ?>, 
-  	<?php echo link_to_function(__('ver'), "$('#sf_review_sr_c${listValue}_".$review->getId()."').slideDown()") ?>)
+    <?php endif ?>,
+    <a href="#" onclick="$('#<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>').slideDown();return false;"><?php echo __('ver') ?></a>)
   <?php else: ?>
     (<?php echo __('de momento no tiene') ?>)
 	<?php endif ?>
