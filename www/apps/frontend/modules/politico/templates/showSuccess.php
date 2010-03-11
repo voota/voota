@@ -2,7 +2,6 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
 <?php use_helper('Date') ?>
-<?php use_helper('Number') ?>
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
 
@@ -27,8 +26,9 @@
   //-->
 </script>
 
-<?php // TODO: Pasar variables necesarias al paginador ?>
-<?php include_partial('politico_pagination') ?>
+<?php if ($politicosPager): ?>
+	<?php include_partial('politico_pagination', array('pager' => $politicosPager, 'id' => $politico->getId())) ?>
+<?php endif ?>
 
 <h2 id="name">
   <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
@@ -158,7 +158,8 @@
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
 
-  <?php // TODO: Pasar variables necesarias al paginador ?>
-  <?php include_partial('politico_pagination') ?>
+<?php if ($politicosPager): ?>
+	<?php include_partial('politico_pagination', array('pager' => $politicosPager, 'id' => $politico->getId())) ?>
+<?php endif ?>
 
 </div><!-- end of content -->
