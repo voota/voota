@@ -16,6 +16,81 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class EntityManager {	
+	const PAGE_SIZE = 20;
+  
+  	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp, &$totalDown)
+  	{
+  		$memcache=new sfMemcacheCache();
+  		$memcache->initialize();
+  		$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
+  		$data = $memcache->get($key);
+  		if ($data){
+  			$totalUp = unserialize($memcache->get("$key-totalUp"));
+  			$totalDown = unserialize($memcache->get("$key-totalDown"));	
+  			return unserialize($memcache->get("$key"));  		
+  		}
+  		else {  		
+		  	$c = new Criteria();
+		  	
+		  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
+		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
+		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
+		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+		  	
+		  	if ($partido && $partido != ALL_URL_STRING){
+		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
+		  	}
+		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  		$c->add(InstitucionI18nPeer::VANITY, $institucion);
+		  	}
+		  	$pager = new sfPropelPager('Politico', $limit);
+		  	
+		  	/* Orden de resultados
+		  	 * pa: positivos ascendente
+		  	 * pd: positivos descendente
+		  	 * na: negativos ascendente
+		  	 * nd: negativos descendente
+		  	 */
+		  	if ($order == "pa"){
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+		  	}
+		  	else if ($order == "pd") {
+		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+		  	}
+		  	else if ($order == "na"){
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+		  	}
+		  	else if ($order == "nd") {
+		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+		  	}
+		  	/* Fin Orden */
+		  	
+			$c->setDistinct();
+		    
+		    $pager->setCriteria($c);
+		    $pager->setPage( $page );
+		    $pager->init();
+		    
+	    	/* Calcula totales. Ver impacto en rendimiento */ 
+		    $allPoliticos = PoliticoPeer::doSelect( $c );    
+		    $totalUp = 0;
+		    $totalDown = 0;
+		    foreach ($allPoliticos as $aPolitico){
+			    $totalUp += $aPolitico->getSumu();
+		    	$totalDown += $aPolitico->getSumd();
+		    }
+			/* Fin Calcula totales */
+		    		    
+  			$memcache->set($key,serialize($pager), 3600);
+  			$memcache->set("$key-totalUp",serialize($totalUp), 3600);
+  			$memcache->set("$key-totalDown",serialize($totalDown), 3600);
+	    	return $pager;
+  		}
+  	}
+  	
   	public static function getTopEntities($limit = 6, &$exclude = "")
   	{
 	   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
