@@ -325,7 +325,7 @@ class politicoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {  	  	  	
   	$vanity = $request->getParameter('id');
-  	$this->showPager = $request->getParameter('sp', false);
+  	$s = $request->getParameter('s', 0);
   	
   	$culture = $this->getUser()->getCulture();
   	
@@ -465,6 +465,27 @@ class politicoActions extends sfActions
     		break;
     	}
     }
+    
+    /* Si paginador */
+    $this->politicosPager = false;
+  	$filter = $this->getUser()->getAttribute('filter', false);
+  	if ($filter){
+  		if ($s != 0){
+  			$filter['page'] += $s;
+  			$this->getUser()->setAttribute('filter', $filter);
+  			$this->redirect('politico/show?id='.$politico->getVanity());
+  		}
+  		/*
+  		if (isset($filter['page_upd'])) {
+  			$filter['page'] += $filter['page_upd'];
+  			echo '1'.'='.$filter['page_upd'];
+  			$filter['page_upd'] = 0;
+  			$this->getUser()->setAttribute('filter', $filter);
+  		}
+  		*/
+	  	$this->politicosPager = EntityManager::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
+  	}
+    /* / paginador */
     
   }
 

@@ -11,7 +11,7 @@ prod:
       prefix:                    vo
       servers:
         server_01:
-          host: ip-10-227-11-6.eu-west-1.compute.internal
+          host: ip-10-226-229-177.eu-west-1.compute.internal
           post: 11211
 test:
   view_cache:

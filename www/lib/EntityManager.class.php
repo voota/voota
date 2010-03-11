@@ -18,7 +18,7 @@
 class EntityManager {	
 	const PAGE_SIZE = 20;
   
-  	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp, &$totalDown)
+  	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
   		$memcache=new sfMemcacheCache();
   		$memcache->initialize();

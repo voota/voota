@@ -1,8 +1,18 @@
-<?php if(true): // TODO: Si se viene del ranking general o del top5 de la home, pero no del buscador o de políticos más votados de la semana ?>
+<?php use_helper('VoPager') ?>
+
   <p class="politico-pagination">
-    <a href="#"><?php echo __('&laquo; Político anterior') ?></a>
-    <span><?php echo __('<strong>%actual%</strong> de %total%', array('%actual%' => 4, '%total%' => 133)) ?></span>
-    <a href="#"><?php echo __('Político siguiente &raquo;') ?></a>
-    <a class="back" href="#"><?php echo __('Listado de políticos (%filtro%) %orden%', array('%filtro%' => 'PP, Madrid', '%orden%' => 'por votos negativos')) ?></a>
+    <?php if($entity = prevEntity($pager, $id, $s_prev)): ?>
+    	<a href="<?php echo url_for('politico/show?id='.$entity->getVanity().($s_prev==''?'':'&s='.$s_prev)) ?>"><?php echo __('&laquo; Político anterior') ?></a>
+    <?php endif ?>
+    <span><?php echo __('<strong>%actual%</strong> de %total%', array('%actual%' => currentIndex($pager, $id), '%total%' => numberFormat($pager->getNbResults(), 'es_ES'))) ?></span>
+    
+    <?php if($n_entity = nextEntity($pager, $id, $s_next)): ?>
+    	<a href="<?php echo url_for('politico/show?id='.$n_entity->getVanity().'&s='.$s_next) ?>"><?php echo __('Político siguiente &raquo;') ?></a>
+    <?php endif ?>
+    <a class="back" href="<?php echo url_for('politico/ranking'.rankingParams()) ?>"><?php echo __('Listado de políticos %filtro% %orden%', 
+    	array(
+    		'%filtro%' => filteredBy()
+    		, '%orden%' => orderedBy()
+    	)
+    	) ?></a>
   </p>
-<?php endif ?>
