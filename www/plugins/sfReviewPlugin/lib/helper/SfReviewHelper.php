@@ -49,14 +49,14 @@ function review_date_diff( $date ){
 	return floor(($d1 - $d2)/(60*60*24*365));
 }
 
-function getAutolink($text, $nofollow=true) {
+function getAutolink($text, $nofollow=false) {
 	$value = $text;
 	autolink($text, $nofollow);
 	
 	return $text;
 }
 //function autolink( &$text, $target='_blank', $nofollow=true )
-function autolink( &$text, $nofollow=true )
+function autolink( &$text, $nofollow=false )
 {
   // grab anything that looks like a URL...
   $urls  =  _autolink_find_URLS( $text );

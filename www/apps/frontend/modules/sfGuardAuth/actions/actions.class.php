@@ -368,7 +368,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->box = $request->getParameter("box");
 	$sfGuardUser = $this->getUser()->getGuardUser();
   	
-  	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
+  	if ($this->getUser()->isAuthenticated() && $op == 'dis'){
+  		$this->getUser()->getProfile()->setFacebookUid(null);
+  		$this->getUser()->getProfile()->save();
+  	}
+	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
   		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);

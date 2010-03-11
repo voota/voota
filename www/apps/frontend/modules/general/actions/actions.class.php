@@ -132,7 +132,8 @@ class generalActions extends sfActions{
         		$list[] = $match['id'];
         	}
   			$c->add(PartidoPeer::ID, $list, Criteria::IN);
-  			$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  			$c->addDescendingOrderByColumn("(sumu + sumd)");
   			
   			$partidos = PartidoPeer::doSelect($c);
   			
@@ -167,7 +168,8 @@ class generalActions extends sfActions{
         		$list[] = $match['id'];
         	}
   			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  			//$c->addSelectColumn("(sumu + sumd) sumt");
+  			$c->addDescendingOrderByColumn("(sumu + sumd)");
   			$c->setLimit( 100 );
   			
   			$politicos = PoliticoPeer::doSelect($c);

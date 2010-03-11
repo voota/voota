@@ -15,7 +15,7 @@
 	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		}] 
 	  };	  		
-	  var text_intro = this.v[0].checked?'<?php echo sq( __('voota a favor de una opinión de un usuario sobre %1%', array('%1%' => $politico)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $politico)) )?>';
+	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor de una opinión de un usuario sobre %1%', array('%1%' => $politico)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $politico)) )?>';
 	  text = text_intro + (text != ''?(': '+text):'');
 	  
 	<?php /* Otra opinion sobre un partido */?>
@@ -29,7 +29,7 @@
 	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		}] 
 	  };
-	  var text_intro = this.v[0].checked?'<?php echo sq( __('voota a favor de una opinión de un usuario sobre el partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $partido)) )?>';
+	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor de una opinión de un usuario sobre el partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $partido)) )?>';
 	  text = text_intro + (text != ''?(': '+text):'');
 	  
 	<?php /* Sobre un politico */?>
@@ -43,7 +43,7 @@
 	  			, 'href': '<?php echo url_for('politico/show?id='.$politico->getVanity(), true) ?>'
 	  		}] 
 	  };	  		
-	  var text_intro = this.v[0].checked?'<?php echo __('voota a favor de %1%', array('%1%' => $politico))?>':'<?php echo __('voota en contra de %1%', array('%1%' => $politico))?>';
+	  var text_intro = this.v[0].checked?'<?php echo __('vooto a favor de %1%', array('%1%' => $politico))?>':'<?php echo __('voota en contra de %1%', array('%1%' => $politico))?>';
 	  text = text_intro + (text != ''?(': '+text):'');
 	  
 	<?php /* Sobre un partido */?>
@@ -57,7 +57,7 @@
 	  			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		}] 
 	  };
-	  var text_intro = this.v[0].checked?'<?php echo sq( __('voota a favor del partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de %1%', array('%1%' => $partido)) )?>';
+	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor del partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de %1%', array('%1%' => $partido)) )?>';
 	  text = text_intro + (text != ''?(': '+text):'');
 	  
 	<?php else: ?>

@@ -6,8 +6,8 @@
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
-	  <?php foreach($politicosMasVotadosUltimamente as $politico): ?>
-	    <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+	  <?php foreach($reviewables as $reviewable): ?>
+	    <?php include_component_slot('sparkline', array('politico' => $reviewable, 'id' => "sparkline_t6_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
     <?php if(count($politicosMasVotadosUltimamente) < 6):?>
     	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
@@ -51,7 +51,7 @@
           <h2><?php echo __('Los más votados de esta semana:') ?></h2>
           <ol class="entities">
             <?php foreach($reviewables as $reviewable): ?>
-  	  			  <?php include_partial('reviewable_li', array('id' => "sparkline_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
+  	  			  <?php include_partial('reviewable_li', array('id' => "sparkline_t6_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
   	        <?php endforeach?>
             <?php if(count($reviewables) < 6):?>
       	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
