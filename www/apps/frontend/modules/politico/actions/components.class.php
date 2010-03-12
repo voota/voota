@@ -30,8 +30,10 @@ class politicoComponents extends sfComponents
 	
   	$this->sparklineData = "0, 0";
   	$last = 0;	
+  	$idx = 0;
 	foreach ($data as $element) {
-		$this->sparklineData .= ", " .($element->sum - $last);
+		$idx++;
+		$this->sparklineData .= ($this->sparklineData?", ":'')."[$idx, " .($element->sum - $last)."]";
 		$last = $element->sum;
 	}
 	

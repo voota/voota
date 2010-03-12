@@ -1,2 +1,1 @@
-  <span title="<?php echo __('Evolución del número de votos positivos por mes (último punto = mes
- actual)')?>" id="<?php echo $id ?>"></span>
+<div id="<?php echo $id ?>" style="width:200px;height:50px;"></div>

@@ -105,7 +105,7 @@ function orderedBy( ) {
 				break;
 			case 'pd':
 			default:
-				$ret = __('votos positivos');
+				$ret = '';
 		}
 	}
 	
