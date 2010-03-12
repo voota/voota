@@ -2,7 +2,7 @@
 .reviews li { margin: 20px 0; }
 .review-avatar {float:left; width: 36px; height: 36px; margin-right: 10px}
 .review-name { font-weight: normal;}
-.review-date { margin-top: 5px; padding-bottom: 0; font-size: 11px;}
+.review-date { margin-top: 0; padding-bottom: 0; font-size: 11px;}
 .review-about { margin-top: 10px; padding-bottom: 0;}
 .review-body { padding: 10px 0; clear: left; overflow: hidden;}
 .review-actions { padding: 10px 0;}
