@@ -17,7 +17,7 @@ dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              false
-    cache:                  false
+    cache:                  true
     no_script_name:         false
     etag:                   false
     s3_bucket_originals:       imagesvoota-ori-dummy

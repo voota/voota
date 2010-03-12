@@ -29,6 +29,7 @@ class Entity {
 	var $positives;
 	var $negatives;
 	var $description;
+	var $vanity;
 	
   	public function __construct(reviewable $entity)
   	{
@@ -45,5 +46,16 @@ class Entity {
   	  	$this->longName = $entity->getLongName();
   	  	$this->recentPositives = $entity->getSumut();
   	  	$this->recentNegatives = $entity->getSumdt();
+  	  	$this->vanity = $entity->getVanity();
   	} 
+
+  	public function __toString(){
+  		return $this->longName;
+  	}
+  	public function getType(){
+  		return $this->type;
+  	}
+  	public function getVanity(){
+  		return $this->vanity;
+  	}
 }

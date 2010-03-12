@@ -28,6 +28,16 @@ class BasesfReviewFrontActions extends sfActions
   	$this->review = SfReviewPeer::retrieveByPK( $id );
   	  	
   	$this->forward404Unless( $this->review );
+  	
+  	if ($this->review->getSfReviewTypeId()) {
+	  	$c = new Criteria;
+	  	$c->add(SfReviewTypePeer::ID, $this->review->getSfReviewTypeId());
+	  	$reviewType = SfReviewTypePeer::doSelectOne( $c );
+	  	$peer = $reviewType->getModel() .'Peer';
+	  	$c = new Criteria;
+	  	$c->add($peer::ID, $this->review->getEntityId());
+	  	$this->entity = new Entity($peer::doSelectOne( $c ));   		
+  	}
   }
   
   public function executeFilteredList(sfWebRequest $request)

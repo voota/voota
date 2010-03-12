@@ -9,8 +9,11 @@
 </h2>
 
 <p class="review-about">
-  <?php // TODO: Sustituir nombre de político, partido o propuesta, y corregir URL del enlace ?>
-  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to('Nombre del político/partido/propuesta', '@homepage')))?>
+<?php if (isset($entity)):?>
+  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to($entity, $entity->getType().'/show?id='.$entity->getVanity())))?>
+<?php else: ?>
+  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to("otro comentario", 'sfReviewFront/show?id='.$review->getSfReviewId())))?>
+<?php endif ?>
 </p>
 
 <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
