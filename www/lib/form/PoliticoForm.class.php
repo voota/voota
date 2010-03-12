@@ -53,14 +53,14 @@ class PoliticoForm extends BasePoliticoForm
   		, $this['sf_guard_user_id']
   	);
     
-  $this->widgetSchema['sf_guard_user_profile_id'] = new sfWidgetFormChoice(array(
-    'choices'          => array(),
-    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
-    'renderer_options' => array(
-      'model' => 'Institucion',
-      'url'   => $this->getOption('url')
-    )
-  ));
+	$this->widgetSchema['sf_guard_user_profile_id'] = new sfWidgetFormChoice(array(
+	    'choices'          => array(),
+	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+	    'renderer_options' => array(
+	      'model' => 'Institucion',
+	      'url'   => $this->getOption('url')
+	    )
+	));
     
     $this->embedI18n(array('es', 'ca'));
     
