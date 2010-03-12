@@ -50,7 +50,7 @@ class PoliticoForm extends BasePoliticoForm
   		, $this['sumu']
   		, $this['sumd']
   		, $this['politico_institucion_list']
-  		, $this['sf_guard_user_profile_id']
+  		, $this['sf_guard_user_id']
   	);
     
   $this->widgetSchema['sf_guard_user_profile_id'] = new sfWidgetFormChoice(array(
