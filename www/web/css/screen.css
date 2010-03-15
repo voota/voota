@@ -368,20 +368,20 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show #sf_review2,
 #partido-show #sf_review2 { width: 35%; }
 #politico-show #description,
-#partido-show #description { margin-left: 50px; width: 330px; float: left; }
+#partido-show #description { margin-left: 50px; width: 380px; float: left; }
 #politico-show #description h3,
 #partido-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
 #politico-show #description p,
 #partido-show #description p { padding-bottom: 10px;}
 #politico-show #external-links,
-#partido-show #external-links { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#partido-show #external-links { width: 260px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #politico-show #external-links ul,
 #partido-show #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
 #partido-show #external-links ul li { margin: 0 0 10px 0;}
-#politico-show #twitter { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
+#politico-show #twitter { width: 260px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error,
-#politico-show #report-error { width: 290px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
+#politico-show #report-error { width: 260px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error select,
 #politico-show #report-error select { width: 240px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
 #partido-show #report-error .submit,
@@ -389,7 +389,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-show #report-error option,
 #politico-show #report-error option { padding: 2px 5px; }
 #politico-show #google-ads,
-#partido-show #google-ads { width: 290px; margin-left: 50px; float: left; }
+#partido-show #google-ads { width: 260px; margin-left: 50px; float: left; }
 #politico-show .reviews,
 #partido-show .reviews { clear: left; padding-top: 35px; width: 600px;}
 #politico-show .ui-helper-clearfix { width: 600px; }
