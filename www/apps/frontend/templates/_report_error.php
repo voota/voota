@@ -12,7 +12,7 @@
   //-->
 </script>
 
-<h3><?php echo __('¿Algún error? ¡Te escuchamos!')?></h3>
+<h3><?php echo __('¿Ves algún error?')?></h3>
 <form action="<?php echo url_for('@contact') ?>" id="feedback_form" method="post">
   <input type="hidden" name="e" value="<?php echo $entity ?>" />
   <div>
