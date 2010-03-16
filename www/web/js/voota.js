@@ -21,12 +21,14 @@ function changeParam(param, value){
 	
 	return false;
 }
-function rankingReady() {	
-	$("#partido_selector").change(function(){
-		partidoSelector = document.getElementById('partido_selector');
-		
-		changeParam("p", partidoSelector.value);
-	});}
+
+function cargarSelectorPartido(partidos, favoritos) {	
+  // $("#partido_selector").change(function(){
+  //  partidoSelector = document.getElementById('partido_selector');
+  //  changeParam("p", partidoSelector.value);
+  // });
+  
+}
 
 // mode: init/form
 function politicoReady( url, id, box ){

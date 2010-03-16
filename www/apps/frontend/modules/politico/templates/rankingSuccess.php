@@ -5,22 +5,22 @@
  
 <script type="text/javascript">  
 $(document).ready(function(){
-	rankingReady();
-	  <?php foreach($politicosPager->getResults() as $politico): ?>
-	  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
-	  <?php endforeach ?>
+  <?php foreach($politicosPager->getResults() as $politico): ?>
+  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+  <?php endforeach ?>
 });
 </script>
 
-<h2>
+<!-- <h2>
   <?php echo $pageTitle ?>
   <select name="partido" id="partido_selector" class="input">
-	<?php foreach ($partidos_arr as $value => $desc): ?>
-		<option value="<?php echo $value?>" <?php echo $partido==$value?'selected="selected"':''?>><?php echo $desc?></option>		
-	<?php endforeach ?>
+  <?php foreach ($partidos_arr as $value => $desc): ?>
+    <option value="<?php echo $value?>" <?php echo $partido==$value?'selected="selected"':''?>><?php echo $desc?></option>    
+  <?php endforeach ?>
   </select>
-  
-</h2>
+</h2> -->
+
+<?php include_partial('selectorPartido', array('pageTitle' => $pageTitle, 'partidos_arr' => $partidos_arr)) ?>
 
 <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
 

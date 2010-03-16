@@ -5,10 +5,9 @@
  
 <script type="text/javascript">  
 $(document).ready(function(){
-	rankingReady();
-	  <?php foreach($partidosPager->getResults() as $partido): ?>
-	  <?php include_component_slot('sparkline', array('partido' => $partido)) ?>
-	  <?php endforeach ?>
+  <?php foreach($partidosPager->getResults() as $partido): ?>
+  <?php include_component_slot('sparkline', array('partido' => $partido)) ?>
+  <?php endforeach ?>
 });
 </script>
 

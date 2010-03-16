@@ -33,6 +33,49 @@ tr.even { background-color: #fbfbfb; }
 .note h3 { font-size: 13px;}
 .note fieldset { margin: 0; padding: 0; border: none;}
 
+/* Selector partido */
+#selector_partido {
+  display: inline-block;
+  font-size: 13px;
+}
+#selector_partido_actual {
+  display: block;
+  width: 155px;
+  height: 17px;
+  line-height: 19px;
+  overflow: hidden;
+  padding: 5px 20px 5px 5px;
+  background: transparent url(/images/selector_bg.png) top left no-repeat;
+  cursor: hand;
+  color: #000;
+  text-decoration: none;
+}
+#selector_partido_actual.selected {
+  color: #fff;
+  background-position: 0 -27px;
+}
+#selector_partido_area {
+  z-index: 5000;
+  background-color: #fff;
+  border: 1px solid #999999;
+  border-top: none;
+  padding: 5px;
+}
+#selector_partido_buscador {
+  width: 145px;
+  padding-right: 20px;
+  background: transparent url(/images/selector_buscador_bg.png) center right no-repeat;
+}
+.ac_results {
+  border: none;
+}
+.ac_results ul li {
+  height: 16px; overflow: hidden;
+}
+.ac_results strong {
+  text-decoration: underline;
+}
+
 /* Tabs */
 
 .ui-widget { font-size: 13px; font-family: Georgia, "Times New Roman", Times, serif;}
