@@ -19,7 +19,8 @@
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
   	$("#help-dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
-  	<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+  	<?php # TODO: Comentado temporalmente ?>
+  	<?php # include_component_slot('sparkline', array('politico' => $politico)) ?>
   });
 
 

@@ -20,7 +20,7 @@
 .sf-review-remove { padding-right: 10px }
 .sf-review-remove span { margin-left: 10px;}
 .sf-review-submit { width: 215px; margin: 0 5px 10px 0; text-align: right;}
-.sf-review-submit input { margin: 0; padding: 0;}
+.sf-review-submit input { margin: 0; }
 .sf-review-hands { float: left; margin: 20px 0 10px 0; }
 .sf-review-hands img, .sf-review-hands label { cursor: pointer; }
 .sf-review-positive, .sf-review-negative { float:left; }

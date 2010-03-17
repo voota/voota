@@ -91,8 +91,9 @@ tr.even { background-color: #fbfbfb; }
 #user-links #lo_fb_conn { padding-right: 10px;}
 #user-links #lo_fb_conn .close { font-size: 9px;}
 #search { position: absolute; top: 70px; right: 0; text-align: right; }
-#search fieldset { margin: 0; padding: 0; border: none;}
-#search input[type=submit] { margin-left: 10px; width: 90px;}
+#search fieldset { margin: 0; padding: 0; border: none; }
+#search input { float: left;}
+#search button { margin-left: 10px; width: 90px; float: left;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
 #contact-links ul li { float: left; padding: 0 20px 0 40px;}
 #contact-links ul li.blog { background: transparent url(/images/icoBlog.gif) right center no-repeat;}
@@ -142,9 +143,8 @@ form th, form td { vertical-align: top;}
 form th { text-align: left; padding: 5px 20px 5px 0;}
 form td { padding: 0 0 20px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px; }
-input[type=text], input[type=password] { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; padding: 2px; width:270px }
-input[type=submit], button { width: 90px; color: #323232; border: 1px solid #809db9; background: #ededed url(/images/button_bg.png) left center repeat-x;}
-input[type=button] { width: 90px; color: #323232; }
+input[type=text], input[type=password] { font-size: 13px; line-height: 13px; padding: 2px; width:270px; border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif;}
+input[type=submit], input[type=button], button { font-size: 13px; overflow: visible; width: 90px; color: #323232; border: 1px solid #809db9; background: #ededed url(/images/button_bg.png) left center repeat-x;}
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
 .submit { text-align: right; clear: both;}
@@ -187,7 +187,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index .search label { font-size: 16px; font-weight: bold; padding-right: 10px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
-#home-index .search input[type=submit] { margin-left: 10px; width: 90px; }
+#home-index .search button { margin-left: 10px; width: 90px; }
 #home-index #latest-comments-votes h3 { padding-bottom: 10px;}
 #home-index #politicians-top5,
 #home-index #political-groups,

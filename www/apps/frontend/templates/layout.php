@@ -17,6 +17,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
+  <style>
+    <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
+      input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
+    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
+      input[type=submit], input[type=button], button { padding: 0 10px 1px 10px; line-height: 13px; }
+    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
+      input[type=submit], input[type=button], button { margin-top: 1px; padding: 3px 10px 0 10px; line-height: 12px; }
+    <?php endif ?>
+  </style>
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
@@ -97,7 +106,7 @@
           <form method="get" action="<?php echo url_for('@search')?>">
             <fieldset>
               <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
-      	      <input type="submit" value="<?php echo __('Buscar') ?>" class="button" />
+      	      <button type="submit"><?php echo __('Buscar') ?></button>
             </fieldset>
           </form>
         </div>

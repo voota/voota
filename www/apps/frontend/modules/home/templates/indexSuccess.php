@@ -70,7 +70,7 @@
           <br />
           <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
         </p>
-        <p><input type="submit" value="<?php echo __('Buscar') ?>" class="button" /></p>
+        <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>
     </div>
   </div>
@@ -126,7 +126,7 @@
           <br />
           <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
         </p>
-        <p><input type="submit" value="<?php echo __('Buscar') ?>" class="button" /></p>
+        <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>
     </div>
   </div>
