@@ -13,7 +13,7 @@
   <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js"></script>
   <script type="text/javascript" src="/js/voota.js"></script>
   <script type="text/javascript" src="/sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js"></script>
-  <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-lightness/jquery-ui-1.7.2.custom.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.7.2.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/sfReviewPlugin/css/sf_review.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css" />
 </head>

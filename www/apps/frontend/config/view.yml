@@ -9,7 +9,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [jquery.autocomplete.css, ui-lightness/jquery-ui-1.7.2.custom.css, /sfReviewPlugin/css/sf_review.css?'. sfConfig::get('sf_ml') .', screen.css?'. sfConfig::get('sf_ml') .']
+  stylesheets:    [jquery.autocomplete.css, ui-voota/jquery-ui-1.7.2.custom.css, /sfReviewPlugin/css/sf_review.css?'. sfConfig::get('sf_ml') .', screen.css?'. sfConfig::get('sf_ml') .']
 
   javascripts: [jquery-autocomplete/jquery.autocomplete.js, flot/jquery.flot.js, /sfReviewPlugin/js/sf_review.js?'. sfConfig::get('sf_ml') .', /sfReviewPlugin/js/jquery.hint.js, voota.js?'. sfConfig::get('sf_ml') .', /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js]
 
