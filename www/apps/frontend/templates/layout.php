@@ -23,7 +23,8 @@
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
       input[type=submit], input[type=button], button { padding: 0 10px 1px 10px; line-height: 13px; }
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
-      input[type=submit], input[type=button], button { margin-top: 1px; padding: 3px 10px 0 10px; line-height: 12px; }
+      input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
+      .search button { margin-top: 1px; }
     <?php endif ?>
   </style>
 </head>
