@@ -30,6 +30,7 @@
   		matchContains: true,
   		minChars: 0,
   		width: 168,
+  		matchCase: false,
   		matchContains: "word",
   		autoFill: false,
   		selectFirst: false,

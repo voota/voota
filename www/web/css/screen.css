@@ -358,6 +358,21 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-ranking table .positive-votes { text-align: right; width: 160px; }
 #partido-ranking table .negative-votes { text-align:right; width: 160px; padding-right: 100px;}
 
+/* Ranking de propuestas */
+#propuesta-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
+#propuesta-ranking h2 select { font-size: 13px;}
+#propuesta-ranking table { margin: 0 auto; width: 100%; }
+#propuesta-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
+#propuesta-ranking table tbody td,
+#propuesta-ranking table tfoot td { padding: 10px 0; }
+#propuesta-ranking table .ranking { text-align: right; width: 150px; }
+#propuesta-ranking table .position { text-align: right; width: 30px; }
+#propuesta-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
+#propuesta-ranking table .name { text-align: left; width: 200px; }
+#propuesta-ranking table .positive-votes { text-align: right; width: 160px; }
+#propuesta-ranking table .negative-votes { text-align:right; width: 160px; }
+#propuesta-ranking table .date { text-align: right; width: 160px; padding-right: 65px;}
+
 /* Resultados de búsqueda */
 #general-search table { margin: 0 auto; width: 90%; }
 #general-search table th { background-color: #f6f6f6; padding: 10px 0; }
