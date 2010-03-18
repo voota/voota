@@ -16,6 +16,7 @@
   <script type="text/javascript" src="/js/voota.js?1.4"></script>
   <script type="text/javascript" src="/sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js"></script>
   <script type="text/javascript" src="/js/jquery.sparkline.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.qtip-1.0.0-rc3.min.js"></script>
   <link rel="stylesheet" type="text/css" media="screen" href="/css/jquery.autocomplete.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.7.2.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/sfReviewPlugin/css/sf_review.css?1.4" />
@@ -48,6 +49,18 @@
   <!-- MAIN -->
   <div id="main">
     <div id="main-inner">
+      <script type="text/javascript" charset="utf-8">
+        $(document).ready(function (){
+          $('a.tooltip_propuesta').each(function(){
+            $(this).qtip({
+              content: $($(this).attr('title')).html(),
+              position: { corner: { target: 'rightBottom', tooltip_propuesta: 'topMiddle' } },
+              style: { name: 'light' }
+            });
+          });
+        });
+      </script>
+
       <h2>Ranking de propuestas: de momento 358</h2>
 
       <table border="0" cellpadding="0" cellspacing="0">
@@ -58,16 +71,22 @@
             <th class="photo"></th>
             <th class="name">Nombre</th>
             <th class="positive-votes">
-            	<a href="/frontend_dev.php/es/propuestas?o=pa">Votos +</a>
+            	<a href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen menos votos positivos primero">Votos +</a>
+            	<!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
+            	<!-- <a href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen más votos positivos primero">Votos +</a> -->
             	<img alt="yeah" src="/images/icoUp20px.gif" />
             	<img alt="descendente" src="/images/flechaDown.gif" />      	    	
             </th>
             <th class="negative-votes">
-            	<a href="/frontend_dev.php/es/propuestas?o=nd">Votos -</a>
+            	<a href="/frontend_dev.php/es/propuestas?o=nd" title="Ordenar por votos negativos: los que tienen más votos negativos primero">Votos -</a>
+            	<!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
+            	<!-- <a href="/frontend_dev.php/es/propuestas?o=nd" title="Ordenar por votos negativos: los que tienen menos votos negativos primero">Votos -</a> -->
             	<img alt="buu" src="/images/icoDown20px.gif" />
             </th>
             <th class="date">
-              <a href="/frontend_dev.php/es/propuestas?o=fd" title="Ordenar por fecha: las más antiguas primero / las más recientes primero">Fecha</a>
+              <a href="/frontend_dev.php/es/propuestas?o=fd" title="Ordenar por fecha: las más recientes primero">Fecha</a>
+              <!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
+              <!-- <a href="/frontend_dev.php/es/propuestas?o=fd" title="Ordenar por fecha: las más antiguas primero">Fecha</a> -->
             </th>
           </tr>
         </thead>
@@ -104,7 +123,11 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Implantación de un subsidio de...</a>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_1" class="tooltip_propuesta">Implantación de un subsidio de...</a>
+              <div id="propuesta_1" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>
@@ -121,7 +144,11 @@
               <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Alternativas a los impuestos par...</a>
+              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_2">Alternativas a los impuestos par...</a>
+              <div id="propuesta_2" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">60</td>
             <td class="negative-votes">29</td>
@@ -138,7 +165,11 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Implantación de un subsidio de...</a>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_3" class="tooltip_propuesta">Implantación de un subsidio de...</a>
+              <div id="propuesta_3" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>
@@ -155,7 +186,11 @@
               <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Alternativas a los impuestos par...</a>
+              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_4">Alternativas a los impuestos par...</a>
+              <div id="propuesta_4" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">60</td>
             <td class="negative-votes">29</td>
@@ -172,7 +207,11 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Implantación de un subsidio de...</a>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_5" class="tooltip_propuesta">Implantación de un subsidio de...</a>
+              <div id="propuesta_5" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>
@@ -189,7 +228,11 @@
               <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Alternativas a los impuestos par...</a>
+              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_6">Alternativas a los impuestos par...</a>
+              <div id="propuesta_6" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">60</td>
             <td class="negative-votes">29</td>
@@ -206,7 +249,11 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Implantación de un subsidio de...</a>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_7" class="tooltip_propuesta">Implantación de un subsidio de...</a>
+              <div id="propuesta_7" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>
@@ -223,7 +270,11 @@
               <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Alternativas a los impuestos par...</a>
+              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_8">Alternativas a los impuestos par...</a>
+              <div id="propuesta_8" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">60</td>
             <td class="negative-votes">29</td>
@@ -240,7 +291,11 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Implantación de un subsidio de...</a>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_9" class="tooltip_propuesta">Implantación de un subsidio de...</a>
+              <div id="propuesta_9" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>
@@ -257,7 +312,11 @@
               <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" title="Sobre esta propuesta: En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.">Alternativas a los impuestos par...</a>
+              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_10">Alternativas a los impuestos par...</a>
+              <div id="propuesta_10" style="display: none">
+                <p><strong>Sobre esta propuesta:</strong></p>
+                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
+              </div>
             </td>
             <td class="positive-votes">60</td>
             <td class="negative-votes">29</td>
