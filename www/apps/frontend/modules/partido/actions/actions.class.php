@@ -23,7 +23,19 @@ class partidoActions extends sfActions
 {
 	
   public function executeFilter(sfWebRequest $request){
-  	
+    $culture = $this->getUser()->getCulture();
+   	$q = $request->getParameter("q");
+    
+   	$c = new Criteria();
+  	$c->addJoin(PartidoPeer::ID, PartidoI18nPeer::ID);
+   	$c->add(PartidoI18nPeer::CULTURE, $culture);
+   	
+	$rCriterion = $c->getNewCriterion(PartidoPeer::ABREVIATURA, "%$q%", Criteria::LIKE);
+	$rCriterion->addOr($c->getNewCriterion(PartidoI18nPeer::NOMBRE, "%$q%", Criteria::LIKE));
+	$c->add($rCriterion);
+	$c->setLimit( 20 );
+	
+   	$this->partidos = PartidoPeer::doSelect( $c );
   }
   
   public function executeMoreComments(sfWebRequest $request)

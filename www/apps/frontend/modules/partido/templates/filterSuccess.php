@@ -1,2 +1,4 @@
-Partido Socialista Obrero Español|PSOE
-Partido Pirata|Partido-Pirata
+<?php foreach ($partidos as $partido):?>
+<?php echo $partido->getNombre() ?>|<?php echo $partido->getVanity() ?>
+
+<?php endforeach ?>

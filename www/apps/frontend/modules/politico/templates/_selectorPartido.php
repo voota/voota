@@ -14,8 +14,9 @@
 	  var partidos = '<?php echo url_for( '@partido_filter', true ); ?>';
 
     var favoritos = [
-      ["Partido Socialista Obrero Español", "PSOE"],
-    	["Partido Popular", "PP"]
+<?php foreach ($favoritos as $abreviatura => $nombre): ?>
+      ["<?php echo $nombre?>", "<?php echo $abreviatura?>"],
+<?php endforeach ?>
     ];
     
     $("#selector_partido_buscador").autocomplete(partidos, {
