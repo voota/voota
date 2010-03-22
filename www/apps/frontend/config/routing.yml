@@ -82,6 +82,10 @@ partido_ca:
   param: { module: partido, action: show }
   requirements: { sf_culture: (?:ca) }
 
+partido_filter:
+  url: /partidos/filter
+  param: { module: partido, action: filter }
+
 partido_more_comments:
   url: /:sf_culture/partidos/more
   param: { module: partido, action: moreComments }

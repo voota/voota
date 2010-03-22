@@ -22,6 +22,10 @@ define("ALL_FORM_VALUE", '0');
 class partidoActions extends sfActions
 {
 	
+  public function executeFilter(sfWebRequest $request){
+  	
+  }
+  
   public function executeMoreComments(sfWebRequest $request)
   {
   	$id = $request->getParameter("id");

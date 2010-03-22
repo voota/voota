@@ -7,4 +7,6 @@ default:
     
 all:
   javascripts: [jquery.sparkline.min.js]
-    
+
+filterSuccess:
+  has_layout: false

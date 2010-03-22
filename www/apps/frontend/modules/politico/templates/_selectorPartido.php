@@ -10,6 +10,8 @@
 
 <script type="text/javascript">  
   $(document).ready(function(){
+	  var partidos = '<?php echo url_for( '@partido_filter', true ); ?>';
+	  /*
     var partidos = [
     	{ nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "PSOE" },
     	{ nombre: "Partido Popular", siglas: "PP", id: "PP" },
@@ -20,7 +22,7 @@
     	{ nombre: "Partido Pirata", siglas: "", id: "Partido-Pirata" },
     	{ nombre: "Partido de los Partidos", siglas: "", id: "Partido-de-Partidos" },
     ];
-    
+    */
     var favoritos = [
       { nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "PSOE" },
     	{ nombre: "Partido Popular", siglas: "PP", id: "PP" }
@@ -52,6 +54,7 @@
   	  $("#selector_partido_actual").toggleClass('selected');
   	  $("#selector_partido_area").toggle();
   	  $('#selector_partido_buscador').attr("value","");
+  	  return false;
   	});
 
   	$("#selector_partido_buscador").result(function(event, data, formatted) {
