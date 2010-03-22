@@ -694,11 +694,11 @@ $.Autocompleter.Select = function (options, input, select, config) {
 
     // loop through the array and create a lookup structure
     for ( var i = 0, ol = options.favorites.length; i < ol; i++ ) {
-    	var rawValue = options.data[i];
+    	var rawValue = options.favorites[i];
     	// if rawValue is a string, make an array otherwise just reference the array
     	rawValue = (typeof rawValue == "string") ? [rawValue] : rawValue;
 
-      var value = options.formatMatch(rawValue, i+1, options.data.length);
+      var value = options.formatMatch(rawValue, i+1, options.favorites.length);
       if ( value === false )
     		continue;
 
@@ -724,9 +724,9 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			fillList();
 		},
 		displayFavorites: function() {
-		  //data = favoritesSet();
-		  //this.display(data, "");
-		  //this.show();
+      data = favoritesSet();
+      this.display(data, "");
+      this.show();
 		},
 		next: function() {
 			moveSelect(1);

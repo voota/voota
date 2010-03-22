@@ -14,8 +14,8 @@
 	  var partidos = '<?php echo url_for( '@partido_filter', true ); ?>';
 
     var favoritos = [
-      { nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "PSOE" },
-    	{ nombre: "Partido Popular", siglas: "PP", id: "PP" }
+      ["Partido Socialista Obrero Español", "PSOE"],
+    	["Partido Popular", "PP"]
     ];
     
     $("#selector_partido_buscador").autocomplete(partidos, {
