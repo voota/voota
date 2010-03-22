@@ -258,7 +258,7 @@ class VootaApi{
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
 	$result = $req->doRequest( $userId );	
-  
+
 	switch( $result['code'] ){
 		case 200:
 			return json_decode( $result['body'] );

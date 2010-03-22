@@ -19,6 +19,8 @@
 class oauthSecurityManager extends sfBasicSecurityFilter
 {
   protected static function sendNotAuthorized() {
+  	sfContext::getInstance()->getLogger()->info( "NOT AUTHORIZED." );
+  	
 	// The request was signed, but failed verification
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: OAuth realm=""');
@@ -29,6 +31,8 @@ class oauthSecurityManager extends sfBasicSecurityFilter
   
   public static function checkAuthorized ()
   {
+  	sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 1" );
+  	
   	OAuthStore::instance('MySQL', array(
 							'server' => sfConfig::get('app_oauth_server')
 							, 'username' => sfConfig::get('app_oauth_username')
@@ -36,28 +40,34 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 							, 'database' => sfConfig::get('app_oauth_database')
 							)
 						); 
+ 	
+	sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 2" );
 						
   	if (OAuthRequestVerifier::requestIsSigned()){
-		try
-	        {
-	        	$req = new OAuthRequestVerifier();
-	                $userId = $req->verify();
+		sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 3" );
+		try {
+	        $req = new OAuthRequestVerifier();
+	        $userId = $req->verify();
 	
-	                // If we have an user_id, then login as that user (for this request)
-	                if ($userId)
-	                {
-	                	$user = SfGuardUserPeer::retrieveByPK($userId);
-	                	sfContext::getInstance()->getUser()->signin( $user );
-	                }
+	        // If we have an user_id, then login as that user (for this request)
+	        if ($userId) {
+				$user = SfGuardUserPeer::retrieveByPK($userId);
+ 				sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized userId: $userId" );
+				sfContext::getInstance()->getUser()->signin( $user );
+	            
+  				sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized userId: $userId" );
+			}
 		}
 	    catch (OAuthException $e) {
 		        $this->sendNotAuthorized();
 	    }
 	}
 	else {
+		sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 4" );
 		$this->sendNotAuthorized();
 	}
   	    
+  	sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized userId: $userId" );
 	return $userId;
   }
 }
