@@ -1,6 +1,7 @@
 <h2>
   <label><?php echo $pageTitle ?></label>
   <span id="selector_partido">
+    <?php // TODO: Sustituir "Todos los partidos" por las siglas del partido si se está filtrando por uno ?>
 	  <a href="#" id="selector_partido_actual">Todos los partidos</a>
 	  <div id="selector_partido_area" style="display: none">
 			<input type="text" id="selector_partido_buscador" />
@@ -11,18 +12,7 @@
 <script type="text/javascript">  
   $(document).ready(function(){
 	  var partidos = '<?php echo url_for( '@partido_filter', true ); ?>';
-	  /*
-    var partidos = [
-    	{ nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "PSOE" },
-    	{ nombre: "Partido Popular", siglas: "PP", id: "PP" },
-    	{ nombre: "Aralar", siglas: "", id: "Aralar" },
-    	{ nombre: "Bloc", siglas: "", id: "Bloc" },
-    	{ nombre: "BNG", siglas: "", id: "BNG" },
-    	{ nombre: "BpM", siglas: "", id: "BpM" },
-    	{ nombre: "Partido Pirata", siglas: "", id: "Partido-Pirata" },
-    	{ nombre: "Partido de los Partidos", siglas: "", id: "Partido-de-Partidos" },
-    ];
-    */
+
     var favoritos = [
       { nombre: "Partido Socialista Obrero Español", siglas: "PSOE", id: "PSOE" },
     	{ nombre: "Partido Popular", siglas: "PP", id: "PP" }
