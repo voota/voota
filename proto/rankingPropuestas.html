@@ -53,7 +53,7 @@
         $(document).ready(function (){
           $('a.tooltip_propuesta').each(function(){
             $(this).qtip({
-              content: $($(this).attr('title')).html(),
+              content: '<p><strong>' + $(this).attr('title').split('|')[0] + '</strong></p><p>' + $(this).attr('title').split('|')[1] + '</p>',
               position: { corner: { target: 'rightBottom', tooltip_propuesta: 'topMiddle' } },
               style: { name: 'light' }
             });
@@ -71,11 +71,14 @@
             <th class="photo"></th>
             <th class="name">Nombre</th>
             <th class="positive-votes">
-            	<a href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen menos votos positivos primero">Votos +</a>
+            	<a id="positive-votes-link" href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen menos votos positivos primero">Votos +</a>
             	<!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
             	<!-- <a href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen más votos positivos primero">Votos +</a> -->
             	<img alt="yeah" src="/images/icoUp20px.gif" />
             	<img alt="descendente" src="/images/flechaDown.gif" />      	    	
+            	<div id="positive-votes-tooltip" style="display: none">
+                <p><strong>Ordenar por votos positivos:</strong> los que tienen menos votos positivos primero</p>
+              </div>
             </th>
             <th class="negative-votes">
             	<a href="/frontend_dev.php/es/propuestas?o=nd" title="Ordenar por votos negativos: los que tienen más votos negativos primero">Votos -</a>
@@ -123,11 +126,7 @@
               <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
             </td>
             <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_1" class="tooltip_propuesta">Implantación de un subsidio de...</a>
-              <div id="propuesta_1" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
+              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta:|En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero." class="tooltip_propuesta">Implantación de un subsidio de...</a>
             </td>
             <td class="positive-votes">68</td>
             <td class="negative-votes">33</td>

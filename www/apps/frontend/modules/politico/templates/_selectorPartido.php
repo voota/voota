@@ -38,15 +38,15 @@
   		selectFirst: false,
   		favorites: favoritos,
   		resultsContainer: $("#selector_partido_area"),
-  		formatItem: function(row, i, max) {
-  			return row.nombre;
-  		},
-  		formatMatch: function(row, i, max) {
-  			return row.nombre + " " + row.siglas;
-  		},
-  		formatResult: function(row) {
-  			return row.nombre;
-  		}
+      formatItem: function(row, i, max) {
+        return row[0];
+      },
+      formatMatch: function(row, i, max) {
+        return row[0];
+      },
+      formatResult: function(row) {
+        return row[1];
+      }
 
   	});
 
@@ -58,7 +58,7 @@
   	});
 
   	$("#selector_partido_buscador").result(function(event, data, formatted) {
-  	  $("#selector_partido_actual").html(data.nombre);
+  	  $("#selector_partido_actual").html(formatted);
   	  $("#selector_partido_actual").toggleClass('selected');
   	  $("#selector_partido_area").toggle();
       var separator = "?";
@@ -66,7 +66,7 @@
     	if(dest.indexOf("?") != -1){
     		separator = "&";
     	}
-    	document.location = document.location + separator + "p=" + data.id;
+    	document.location = document.location + separator + "p=" + data[1];
   	});
 
   	var offset = $("#selector_partido_actual").offset();

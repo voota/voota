@@ -724,9 +724,9 @@ $.Autocompleter.Select = function (options, input, select, config) {
 			fillList();
 		},
 		displayFavorites: function() {
-		  data = favoritesSet();
-		  this.display(data, "");
-		  this.show();
+		  //data = favoritesSet();
+		  //this.display(data, "");
+		  //this.show();
 		},
 		next: function() {
 			moveSelect(1);
