@@ -20,7 +20,7 @@
 
   	$("#help-dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
   	<?php # TODO: Comentado temporalmente ?>
-  	<?php # include_component_slot('sparkline', array('politico' => $politico)) ?>
+  	<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
   });
 
 
@@ -34,7 +34,7 @@
 <h2 id="name">
   <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
   <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
-	<?php include_partial('sparkline_box', array('politico' => $politico)) ?>
+	<?php include_partial('general/sparkline_box', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
   <span class="rank">
     <?php if ($politico->getSumU() == 1):?>
 	    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 

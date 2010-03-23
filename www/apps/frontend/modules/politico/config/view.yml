@@ -1,6 +1,6 @@
 default:
   components:
-    sparkline:  [politico, sparkline]
+    sparkline:  [general, sparkline]
     subreviews:  [sfReviewFront, subreviews]
     review_list:  [sfReviewFront, reviewList]
     
