@@ -33,7 +33,7 @@ class politicoComponents extends sfComponents
   	$idx = 0;
 	foreach ($data as $element) {
 		$idx++;
-		$this->sparklineData .= ($this->sparklineData?", ":'')."[$idx, " .($element->sum - $last)."]";
+		$this->sparklineData .= ($this->sparklineData?", ":'')."[" .($element->sum - $last)."]";
 		$last = $element->sum;
 	}
 	

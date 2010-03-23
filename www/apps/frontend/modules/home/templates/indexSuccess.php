@@ -11,7 +11,7 @@
 	  <?php endforeach ?>
     <?php if(count($politicosMasVotadosUltimamente) < 6):?>
     	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-	  		<?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+	  		<?php include_component_slot('sparkline', array('politico' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
     	<?php endforeach?>
 	  <?php endif ?>
     <?php foreach($topPoliticos as $politico): ?>
