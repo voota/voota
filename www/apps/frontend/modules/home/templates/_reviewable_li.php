@@ -5,8 +5,8 @@
     	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$reviewable->getImagePath().'/cc_s_'.$reviewable->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $reviewable)) .'"') ?>
     </div>
 	<h4 class="name"><?php echo link_to(cutToLength($reviewable->getLongName()), $reviewable->getModule().'/show?id='.$reviewable->getVanity())?></h4>
-    <p class="votes">
-  		<?php include_partial('general/sparkline_box', array('id' => 'sparkline_t6_'.$reviewable->getId())) ?>
+  <div class="votes">
+		<?php include_partial('general/sparkline_box', array('id' => 'sparkline_t6_'.$reviewable->getId())) ?>
 		<span class="votes-count">
 			<?php if ($showVotes):?>
 				<?php if ($reviewable->getSumut() > 0 && $reviewable->getSumdt() > 0): ?>
@@ -19,5 +19,5 @@
 				<?php endif?>  
 			<?php endif ?>
 		</span>
-	</p>
+	</div>
 </li>
