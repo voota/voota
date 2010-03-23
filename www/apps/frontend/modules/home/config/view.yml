@@ -3,4 +3,4 @@ default:
     sparkline:  [general, sparkline]
 
 all:
-  javascripts: [jquery.sparkline.min.js]
+  javascripts: 
