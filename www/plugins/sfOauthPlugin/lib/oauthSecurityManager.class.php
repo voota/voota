@@ -9,12 +9,11 @@
  */
 
 /**
- * politico actions.
+ * oauthSecurity Manager.
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage OauthPlugin
  * @author     Sergio Viteri
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class oauthSecurityManager extends sfBasicSecurityFilter
 {
@@ -46,8 +45,11 @@ class oauthSecurityManager extends sfBasicSecurityFilter
   	if (OAuthRequestVerifier::requestIsSigned()){
 		sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 3" );
 		try {
+			sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized verifier" );
 	        $req = new OAuthRequestVerifier();
+			sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized verify" );
 	        $userId = $req->verify();
+ 			sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized userId: $userId" );
 	
 	        // If we have an user_id, then login as that user (for this request)
 	        if ($userId) {
@@ -59,15 +61,17 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 			}
 		}
 	    catch (OAuthException $e) {
-		        $this->sendNotAuthorized();
+			sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized exception" );
+			sfContext::getInstance()->getLogger()->info( "Message: "+ $e->getMessage() );
+		    $this->sendNotAuthorized();
 	    }
 	}
 	else {
-		sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized 4" );
+		sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized request not signed" );
 		$this->sendNotAuthorized();
 	}
   	    
-  	sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized userId: $userId" );
+  	sfContext::getInstance()->getLogger()->info( "oauthSecurityManager::checkAuthorized return userId: $userId" );
 	return $userId;
   }
 }
