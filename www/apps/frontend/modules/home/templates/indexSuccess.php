@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
   <!--
-  $(document).ready(function(){
+  window.onload = function() {
 	  <?php foreach($reviewables as $reviewable): ?>
 	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sparkline_t6_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
@@ -20,7 +20,7 @@
     <?php foreach($partidosMasVotados as $partido): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
 	  <?php endforeach?>
-  });
+  };
   //-->
 </script>
 

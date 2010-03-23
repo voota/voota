@@ -1,4 +1,3 @@
-$(document).ready(function() {
   var g = new Bluff.Line('<?php echo "$id" ?>', '100x15');
   g.set_theme({
       colors: ['blue'],
@@ -16,4 +15,3 @@ $(document).ready(function() {
   g.set_font('Georgia');
   g.data("<?php echo __('votos positivos') ?>", [<?php echo $sparklineData ?>]);
   g.draw();
-});
