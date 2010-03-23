@@ -110,12 +110,14 @@ class generalComponents extends sfComponents
   public function executeSparkline(){
 	$query = "SELECT f.year, f.month, IFNULL(MAX(r.sum), 0) AS sum
 				FROM (SELECT DISTINCT MONTH(date) AS month, YEAR(date) AS year FROM sf_review_type_entity ORDER BY year, month) f
-				left JOIN sf_review_type_entity  r ON (f.year = YEAR(r.date) AND f.month = MONTH(r.date) AND r.value = 1 AND r.entity_id = ?)
+				LEFT JOIN sf_review_type_entity  r ON (f.year = YEAR(r.date) AND f.month = MONTH(r.date) AND r.value = 1 
+					AND r.entity_id = ? AND r.sf_review_type_id = ?)
 				group by f.year, f.month
 				order by f.year, f.month";
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
 	$statement->bindValue(1, $this->reviewable->getId());
+	$statement->bindValue(2, $this->reviewable->getType());
 
 	$statement->execute();
 	$data = $statement->fetchAll(PDO::FETCH_OBJ);

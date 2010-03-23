@@ -13,4 +13,5 @@ interface reviewable{
 	public function getVanity();
 	public function getPath();
 	public function getModule();
+	public function getType();
 } 

@@ -3,6 +3,7 @@
 class Partido extends BasePartido implements reviewable
 {
 	const NUM_ENTITY = 2;
+	
   public function __toString()
   {
     return $this->getAbreviatura();  // getTitle() se hereda de BaseArticle
@@ -52,4 +53,9 @@ class Partido extends BasePartido implements reviewable
 	public function getImagePath(){
 		return "partidos";
 	}
+	
+  public function getType()
+  {
+    return self::NUM_ENTITY;
+  }
 }

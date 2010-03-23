@@ -88,4 +88,9 @@ class Politico extends BasePolitico implements reviewable
 			return "politicos";
 		}
 	}
+	
+  public function getType()
+  {
+    return self::NUM_ENTITY;
+  }
 }
