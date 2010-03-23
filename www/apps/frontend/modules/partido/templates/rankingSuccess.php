@@ -6,7 +6,7 @@
 <script type="text/javascript">  
 $(document).ready(function(){
   <?php foreach($partidosPager->getResults() as $partido): ?>
-  <?php include_component_slot('sparkline', array('partido' => $partido)) ?>
+  <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
   <?php endforeach ?>
 });
 </script>
@@ -64,7 +64,7 @@ $(document).ready(function(){
   <tbody>
     <?php foreach($partidosPager->getResults() as $idx => $partido): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
-  	    <td class="ranking"><?php include_partial('sparkline_box', array('partido' => $partido)) ?></td>
+  	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?></td>
   	    <td class="position"><?php echo format_number($partidosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo image_tag(S3Voota::getImagesUrl().'/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"') ?>

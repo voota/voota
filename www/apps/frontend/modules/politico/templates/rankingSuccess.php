@@ -6,7 +6,7 @@
 <script type="text/javascript">  
 $(document).ready(function(){
   <?php foreach($politicosPager->getResults() as $politico): ?>
-  <?php include_component_slot('sparkline', array('politico' => $politico)) ?>
+  <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?>
   <?php endforeach ?>
 });
 </script>
@@ -71,7 +71,7 @@ $(document).ready(function(){
   <tbody>
     <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
-  	    <td class="ranking"><?php include_partial('sparkline_box', array('politico' => $politico)) ?></td>
+  	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?></td>
   	    <td class="position"><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
