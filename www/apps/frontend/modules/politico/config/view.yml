@@ -5,5 +5,5 @@ default:
     review_list:  [sfReviewFront, reviewList]
     
 all:
-  javascripts: [jquery.sparkline.min.js]
+  javascripts: 
     
