@@ -4,11 +4,11 @@
 <?php use_helper('VoFormat') ?>
  
 <script type="text/javascript">  
-$(document).ready(function(){
-  <?php foreach($politicosPager->getResults() as $politico): ?>
-  <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?>
-  <?php endforeach ?>
-});
+  window.onload = function() {
+    <?php foreach($politicosPager->getResults() as $politico): ?>
+      <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?>
+    <?php endforeach ?>
+  };
 </script>
 
 <!-- <h2>
