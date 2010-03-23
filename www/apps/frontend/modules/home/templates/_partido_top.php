@@ -4,7 +4,8 @@
     </div>
 	<h4 class="name"><?php echo link_to($partido->getNombre()." (".$partido->getAbreviatura().")", 'partido/show?id='.$partido->getAbreviatura())?></h4>
    <p class="votes">
-  		<?php include_partial('partido/sparkline_box', array('partido' => $partido, 'prefix' => 'sparkline_tp_')) ?>
+  		<?php // include_partial('partido/sparkline_box', array('partido' => $partido, 'prefix' => 'sparkline_tp_')) ?>
+  		<?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_tp_'.$partido->getId())) ?>
 		<span class="votes-count">
 				<?php if ($partido->getSumu() > 0 && $partido->getSumd() > 0): ?>
 					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => $partido->getSumu()),$partido->getSumu())) ?>

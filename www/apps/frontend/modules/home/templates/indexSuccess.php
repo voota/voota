@@ -7,18 +7,18 @@
   <!--
   $(document).ready(function(){
 	  <?php foreach($reviewables as $reviewable): ?>
-	    <?php include_component_slot('sparkline', array('politico' => $reviewable, 'id' => "sparkline_t6_".$reviewable->getId())) ?>
+	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sparkline_t6_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
     <?php if(count($politicosMasVotadosUltimamente) < 6):?>
     	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-	  		<?php include_component_slot('sparkline', array('politico' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
+	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
     	<?php endforeach?>
 	  <?php endif ?>
     <?php foreach($topPoliticos as $politico): ?>
-  		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico)) ?>
+  		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'reviewable' => $politico)) ?>
 	  <?php endforeach?>
     <?php foreach($partidosMasVotados as $partido): ?>
-  		<?php include_component_slot('sparkline_partido', array('id' => "sparkline_tp_".$partido->getId(), 'partido' => $partido)) ?>
+  		<?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
 	  <?php endforeach?>
   });
   //-->

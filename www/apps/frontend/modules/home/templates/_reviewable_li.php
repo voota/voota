@@ -6,7 +6,7 @@
     </div>
 	<h4 class="name"><?php echo link_to(cutToLength($reviewable->getLongName()), $reviewable->getModule().'/show?id='.$reviewable->getVanity())?></h4>
     <p class="votes">
-  		<?php include_partial('home/sparkline_box', array('id' => 'sparkline_t6_'.$reviewable->getId())) ?>
+  		<?php include_partial('general/sparkline_box', array('id' => 'sparkline_t6_'.$reviewable->getId())) ?>
 		<span class="votes-count">
 			<?php if ($showVotes):?>
 				<?php if ($reviewable->getSumut() > 0 && $reviewable->getSumdt() > 0): ?>

@@ -1,7 +1,6 @@
 default:
   components:
-    sparkline:  [politico, sparkline]
-    sparkline_partido:  [partido, sparkline]
+    sparkline:  [general, sparkline]
 
 all:
   javascripts: [jquery.sparkline.min.js]

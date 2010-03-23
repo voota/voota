@@ -13,5 +13,5 @@
     g.hide_line_numbers = true;
     g.hide_title = true;
     g.set_font('Georgia');
-    g.data("votos positivos (abr/10)", [<?php echo $sparklineData ?>]);
+    g.data("<?php echo __('votos positivos') ?>", [<?php echo $sparklineData ?>]);
     g.draw();
