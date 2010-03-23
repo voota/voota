@@ -52,4 +52,9 @@ class Partido extends BasePartido implements reviewable
 	public function getImagePath(){
 		return "partidos";
 	}
+	
+  public function getType()
+  {
+    return self::NUM_ENTITY;
+  }
 }

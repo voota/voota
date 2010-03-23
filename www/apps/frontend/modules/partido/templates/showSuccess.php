@@ -17,10 +17,10 @@
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 
-  	<?php include_component_slot('sparkline', array('partido' => $partido)) ?>
+  	<?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_pt_'.$partido->getId())) ?>
 
   	<?php foreach($politicos->getResults() as $politico): ?>
-	  		<?php include_component_slot('sparkline_politico', array('politico' => $politico)) ?>
+	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId())) ?>
   	<?php endforeach?>
   });
   //-->
@@ -29,7 +29,7 @@
 <h2 id="name">
   <?php echo $partido->getNombre(); ?>
   (<?php echo $partido->getAbreviatura() ?>)
-  <?php include_partial('sparkline_box', array('partido' => $partido)) ?>    
+  <?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_pt_'.$partido->getId())) ?>    
   <span class="rank">
     <?php echo format_number_choice('[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $partido->getSumu()), $partido->getSumu()) ?>
   </span>
