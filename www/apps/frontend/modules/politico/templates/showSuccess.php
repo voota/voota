@@ -20,9 +20,10 @@
 
   	$("#help-dialog").dialog({autoOpen: false, resizable: false, position: 'top' });
   	<?php # TODO: Comentado temporalmente ?>
-  	<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
   });
-
+  window.onload = function() {
+    <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
+  };
 
   //-->
 </script>
