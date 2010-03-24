@@ -197,8 +197,9 @@ class perfilActions extends SfVoActions
     $this->reviews->setCriteria($criteria);
     $this->reviews->init();
     
-    $this->response->setTitle( sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => $this->user)) );
-    $this->response->addMeta('Description', SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true));
+    $this->response->setTitle( sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => $this->user?$this->user:$user->getProfile()->getVanity())) );
+    $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
+    $this->response->addMeta('Description', $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos a favor y encontra de %1% sobre políticos y partidos de España', array('%1%' => $this->user?$this->user:$user->getProfile()->getVanity())) );
   }
   public function executeMore(sfWebRequest $request)
   {

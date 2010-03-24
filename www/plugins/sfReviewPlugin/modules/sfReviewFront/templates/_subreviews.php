@@ -28,7 +28,9 @@
 	  <?php endif ?>
 	  <?php if($total > 0):?>    
       <li class="subreviews-pagination">
-      	<p><?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?></p>
+        <?php if($showCount<$total):?>
+      		<p><?php echo __('Mostrando <strong>%1%</strong> comentarios de <strong>%2%</strong>', array('%1%' => ($showCount<$total?$showCount:$total), '%2%' => ($total))) ?></p>
+        <?php endif ?>
         <?php if($total > $showCount): ?>
           <?php echo jq_form_remote_tag(array('update' => "sf_review_sr_c${listValue}_".$id, 'url' => '@sf_review_list')) ?>
           		<input type="hidden" name="id" value="<?php echo $id?>" />
