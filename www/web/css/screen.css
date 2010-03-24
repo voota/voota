@@ -18,10 +18,12 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .hidden { display:none; }
 .shown { display:block; }
 .pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold; }
-.politico-pagination { clear: both; padding-top: 20px;}
+.politico-pagination { clear: both; }
 .politico-pagination a,
 .politico-pagination span { padding-right: 20px;}
 .politico-pagination a.back { padding-left: 40px;}
+.politico-pagination-top { padding: 0 0 40px 0; }
+.politico-pagination-bottom { padding: 40px 0 0 0; }
 .add-subreview { padding-bottom: 0; margin-bottom: 0;}
 .subreviews-summary { font-size: 11px;}
 .sparkline { display: inline-block; width: 100px; height: 15px; }
