@@ -10,7 +10,7 @@
 .add-subreview { padding: 0; margin-bottom: 10px;}
 
 .subreviews { padding-left: 40px; margin-bottom: 20px; overflow: hidden}
-.subreviews ol { border-left: 2px solid #999999; background-color: #fff; }
+.subreviews ol { border-left: 2px solid #999999; background-color: #fff; list-style: none; padding: 0px 0px 0px 10px;}
 .subreviews-pagination { padding-top: 20px; text-align: center; width: 250px}
 .subreviews-pagination input { width: 180px;}
 .subreviews-pagination .more { padding-bottom: 0;}
