@@ -4,9 +4,7 @@
 
 <div id="<?php echo "subreviews_box${listValue}_$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
   <ol>
-    <li id="<?php echo "sfrc${listValue}_".$id ?>" class="review-new">
-
-    </li>
+    <li id="<?php echo "sfrc${listValue}_".$id ?>" class="review-new"></li>
     <?php foreach ($reviewLastList->getResults() as $review): ?>    
       <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
       	<?php include_partial('sfReviewFront/user_header', array('review' => $review, 'isSubreview' => true)) ?>

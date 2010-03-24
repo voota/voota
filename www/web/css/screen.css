@@ -24,8 +24,10 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .politico-pagination a.back { padding-left: 40px;}
 .politico-pagination-top { padding: 0 0 40px 0; }
 .politico-pagination-bottom { padding: 40px 0 0 0; }
-.add-subreview { padding-bottom: 0; margin-bottom: 0;}
-.subreviews-summary { font-size: 11px;}
+.add-subreview { padding: 5px 0 0 0; margin: 0;}
+.review-new { display: none;}
+.subreviews-wrapper { padding: 0; margin: 0;}
+.subreviews-summary { font-size: 11px; padding: 0;}
 .sparkline { display: inline-block; width: 100px; height: 15px; }
 .bluff-tooltip { background: #fff; border: 1px solid #d1edf5; padding: 5px; font-size: 13px;}
 .bluff-tooltip .color {display: none; }
@@ -60,7 +62,7 @@ tr.even { background-color: #fbfbfb; }
 .ui-tabs .ui-tabs-nav li { margin-right: 20px;}
 .ui-widget-content { border: none;}
 .ui-widget-header { background: none; border-left: none; border-right: none; border-top: none;}
-.ui-tabs .ui-tabs-panel { padding: 10px 0 0 0;}
+.ui-tabs .ui-tabs-panel { padding: 20px 0 0 0;}
 .ui-widget-content a { color: #0000ee;}
 .ui-widget-content a:visited { color: #551a8b;}
 .ui-widget input { font-size: 13px;}
@@ -455,7 +457,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfReviewFront-show .review-name { font-size: 16px;}
 #sfReviewFront-show .subreviews .review-name { font-size: 13px;}
 #sfReviewFront-show .review-date { margin-top: 0;}
-#sfReviewFront-show .add-subreview { margin-top: 10px;}
 
 /* Popups de ayuda */
 #help-dialog { display:none; }
