@@ -1,8 +1,7 @@
 <h2>
   <label><?php echo $pageTitle ?></label>
   <span id="selector_partido">
-    <?php // TODO: Sustituir "Todos los partidos" por las siglas del partido si se está filtrando por uno ?>
-	  <a href="#" id="selector_partido_actual">Todos los partidos</a>
+	  <a href="#" id="selector_partido_actual"><?php echo $partido == 'all'?__('Todos los partidos'):$partido?></a>
 	  <div id="selector_partido_area" style="display: none">
 			<input type="text" id="selector_partido_buscador" />
 		</div>
