@@ -27,6 +27,7 @@
   		autoFill: false,
   		selectFirst: false,
   		favorites: favoritos,
+  		max: 200,
   		resultsContainer: $("#selector_partido_area"),
       formatItem: function(row, i, max) {
         return row[0];

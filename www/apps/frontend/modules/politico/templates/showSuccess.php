@@ -29,7 +29,7 @@
 </script>
 
 <?php if ($politicosPager): ?>
-	<?php include_partial('politico_pagination', array('pager' => $politicosPager, 'id' => $politico->getId())) ?>
+	<?php include_partial('politico_pagination', array('position' => 'top', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
 <?php endif ?>
 
 <h2 id="name">
@@ -161,7 +161,7 @@
   </div>
 
 <?php if ($politicosPager): ?>
-	<?php include_partial('politico_pagination', array('pager' => $politicosPager, 'id' => $politico->getId())) ?>
+	<?php include_partial('politico_pagination', array('position' => 'bottom', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
 <?php endif ?>
 
 </div><!-- end of content -->

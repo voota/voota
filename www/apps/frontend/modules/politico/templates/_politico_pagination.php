@@ -2,7 +2,7 @@
 
 <?php $n_entity = nextEntity($pager, $id, $s_next);
 if(($p_entity = prevEntity($pager, $id, $s_prev)) || $n_entity): ?>
-  <p class="politico-pagination">
+  <p class="politico-pagination politico-pagination-<?php echo $position ?>">
     <?php if($p_entity): ?>
     	<a href="<?php echo url_for('politico/show?id='.$p_entity->getVanity().($s_prev==''?'':'&s='.$s_prev)) ?>"><?php echo __('&laquo; Político anterior') ?></a>
     <?php endif ?>
