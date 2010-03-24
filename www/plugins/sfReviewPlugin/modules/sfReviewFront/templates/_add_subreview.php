@@ -1,10 +1,12 @@
 <?php if(trim(review_text( $review )) != ''):?>
   <?php 
   $isUpdate = false;
-  foreach ( $review->getSfReviewsRelatedBySfReviewId() as $subreview ){
-  	if( $subreview->getSfGuardUserId() == $sf_user->getGuardUser()->getId()){
-  		$isUpdate = true;
-  	}
+  if ($sf_user->isAuthenticated()){
+	  foreach ( $review->getSfReviewsRelatedBySfReviewId() as $subreview ){
+	  	if( $subreview->getSfGuardUserId() == $sf_user->getGuardUser()->getId()){
+	  		$isUpdate = true;
+	  	}
+	  }
   }
   ?>
   <p class="add-subreview">
