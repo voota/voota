@@ -134,9 +134,12 @@ class OAuthRequestVerifier extends OAuthRequest
 		$consumer_key = $this->getParam('oauth_consumer_key');
 		$token        = $this->getParam('oauth_token');
 		$user_id      = false;
-
+		
+		sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verify start" );
+		
 		if ($consumer_key && ($token_type === false || $token))
 		{
+			sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verify in ($consumer_key, $token_type)" );
 			$secrets = $this->store->getSecretsForVerify(	$this->urldecode($consumer_key), 
 															$this->urldecode($token), 
 															$token_type);
@@ -147,6 +150,7 @@ class OAuthRequestVerifier extends OAuthRequest
 											$this->getParam('oauth_nonce', true));
 
 			$oauth_sig = $this->getParam('oauth_signature');
+			sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verify oauth_sig: $oauth_sig" );
 			if (empty($oauth_sig))
 			{
 				throw new OAuthException('Verification of signature failed (no oauth_signature in request).');
@@ -154,10 +158,12 @@ class OAuthRequestVerifier extends OAuthRequest
 			
 			try
 			{
+				sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verify verifying" );
 				$this->verifySignature($secrets['consumer_secret'], $secrets['token_secret'], $token_type);
 			}
 			catch (OAuthException $e)
 			{
+				sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verify exception: ".$this->signatureBaseString() );
 				throw new OAuthException('Verification of signature failed (signature base string was "'.$this->signatureBaseString().'").');
 			}
 			
@@ -228,17 +234,21 @@ class OAuthRequestVerifier extends OAuthRequest
 			$required[] = 'oauth_token';
 		}
 
+		sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verifySignature start " );
 		foreach ($required as $req)
 		{
 			if (!isset($this->param[$req]))
 			{
+				sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verifySignature $req not set " );
 				throw new OAuthException('Can\'t verify request signature, missing parameter "'.$req.'"');
 			}
 		}
 
+				sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verifySignature checks " );
 		$this->checks();
 
 		$base = $this->signatureBaseString();
+				sfContext::getInstance()->getLogger()->info( "OAuthRequestVerifier::verifySignature base $base " );
 		$this->verifyDataSignature($base, $consumer_secret, $token_secret, $this->param['oauth_signature_method'], $this->param['oauth_signature']);
 	}
 

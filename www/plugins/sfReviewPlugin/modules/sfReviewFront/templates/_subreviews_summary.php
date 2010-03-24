@@ -12,9 +12,7 @@
 		  <?php echo count($review->getSfReviewsRelatedBySfReviewId($dc)) ?>
       <?php echo __('en contra') ?>
     <?php endif ?>,
-    <a href="#" onclick="$('#<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>').slideDown();return false;"><?php echo __('ver') ?></a>)
-  <?php else: ?>
-    (<?php echo __('de momento no tiene') ?>)
-	<?php endif ?>
+    <span id="<?php echo "ver_sr_c${listValue}_".$review->getId() ?>"><a href="#" onclick="$('#<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>').slideDown();$('#<?php echo "ver_sr_c${listValue}_".$review->getId() ?>').hide();$('#<?php echo "ocultar_sr_c${listValue}_".$review->getId() ?>').show();return false;"><?php echo __('ver') ?></a></span><span style="display:none" id="<?php echo "ocultar_sr_c${listValue}_".$review->getId() ?>"><a href="#" onclick="$('#<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>').slideUp();$('#<?php echo "ver_sr_c${listValue}_".$review->getId() ?>').show();$('#<?php echo "ocultar_sr_c${listValue}_".$review->getId() ?>').hide();return false;"><?php echo __('ocultar') ?></a></span>)
+  <?php endif ?>
 </p>
 <div style="display: none" id="<?php echo "sf_review_sr_c${listValue}_".$review->getId() ?>" ><?php include_component_slot('subreviews', array('id' => $review->getId(), 'listValue' => $listValue)) ?></div>

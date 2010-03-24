@@ -103,6 +103,10 @@ class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod
 		// We have to compare the decoded values
 		$valA  = base64_decode($a);
 		$valB  = base64_decode($b);
+				
+		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify signature: $signature" );
+		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify valA: $valA, $a" );
+		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify valB: $valB, $b" );
 
 		// Crude binary comparison
 		return rawurlencode($a) == rawurlencode($b);
