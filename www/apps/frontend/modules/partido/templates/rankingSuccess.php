@@ -4,11 +4,11 @@
 <?php use_helper('VoFormat') ?>
  
 <script type="text/javascript">  
-$(document).ready(function(){
-  <?php foreach($partidosPager->getResults() as $partido): ?>
-  <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
-  <?php endforeach ?>
-});
+  window.onload = function() {
+    <?php foreach($partidosPager->getResults() as $partido): ?>
+      <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
+      <?php endforeach ?>
+  };
 </script>
 
 <h2>
