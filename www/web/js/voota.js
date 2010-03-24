@@ -223,15 +223,15 @@ Bluff.Tooltip.show = function(name, color, data) {
 }
 
 function sparkline(id, label, data) {
-  var g = new Bluff.Line(id, '100x15');
+  var g = new Bluff.Line(id, '100x25');
   g.set_theme({
       colors: ['blue'],
       font_color: 'black',
-      background_colors: ['#fafafa', '#f0f0f0']
+      background_colors: ['transparent', 'transparent']
   });
   g.line_width = 1;
   g.tooltips = true;
-  g.dot_radius = 15;
+  g.dot_radius = 10;
   g.hide_mini_legend = true;
   g.hide_legend = true;
   g.hide_line_markers = true;
