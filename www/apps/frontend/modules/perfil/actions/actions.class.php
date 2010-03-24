@@ -196,6 +196,9 @@ class perfilActions extends SfVoActions
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
     $this->reviews->init();
+    
+    $this->response->setTitle( sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => $this->user)) );
+    $this->response->addMeta('Description', SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true));
   }
   public function executeMore(sfWebRequest $request)
   {
