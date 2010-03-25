@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-03-07T22:48:47Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-03-25T14:07:19Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5007,6 +5007,122 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="419">
+        <source>¿Ves algún error?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="420">
+        <source>vooto a favor de una opinión de un usuario sobre %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="421">
+        <source>vooto a favor de una opinión de un usuario sobre el partido %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="422">
+        <source>vooto a favor de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="423">
+        <source>vooto a favor del partido %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="424">
+        <source>&amp;laquo; Político anterior</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="425">
+        <source>&lt;strong&gt;%actual%&lt;/strong&gt; de %total%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="426">
+        <source>Político siguiente &amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="427">
+        <source>Listado de políticos %filtro% %orden%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="428">
+        <source>Ver su perfil en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="429">
+        <source>Tu página de político y lo que opinan sobre ti</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="430">
+        <source>Página de usuario de %1% en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="431">
+        <source>Votos a favor y encontra de %1% sobre políticos y partidos de España</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="432">
+        <source>Su página de político en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="433">
+        <source>Sobre %nombre%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="434">
+        <source>Mostrando &lt;strong&gt;%1%&lt;/strong&gt; comentarios de &lt;strong&gt;%2%&lt;/strong&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="435">
+        <source>Lleva</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="436">
+        <source>ver</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="437">
+        <source>ocultar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="438">
+        <source>Hacer cambios en tu opinión</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="439">
+        <source>Opinar sobre este comentario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="440">
+        <source>Ejem. Para votar necesitas tener una cuenta en Voota.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="441">
+        <source>Si no tienes cuenta aun, este es el mejor momento. Luego volveremos por aquí.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="442">
+        <source>¿Vamos a ello?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="443">
+        <source>Hacer login o crear una cuenta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="444">
+        <source>Tu voto</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="445">
+        <source>Tu opinión</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="446">
+        <source>¿Algo que comentar? Es el mejor momento :-)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="447">
+        <source>Publicar en mi Facebook</source>
         <target/>
       </trans-unit>
     </body>

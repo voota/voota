@@ -3,245 +3,229 @@ api:
   url:   /a1
   param: { module: api, action: api }
 
-homepage_redirect:
-  url:   /
-  param: { module: home, action: indexWithoutCulture }
-
 homepage:
-  url:   /:sf_culture
+  url:   /
   param: { module: home, action: index }
-  requirements: { sf_culture: (?:es|ca) }
-  
-bad_homepage_redir:
-  url:   /:sf_culture/
-  param: { module: home, action: redir }
-  requirements: { sf_culture: (?:es|ca) }
 
-politico_es:
-  url: /:sf_culture/politico/:id
+politico:
+  url: /politico/:id
   param: { module: politico, action: show }
-  requirements: { sf_culture: (?:es) }
+  
   
 politico_more_comments:
-  url: /:sf_culture/politics/more
+  url: /politics/more
   param: { module: politico, action: moreComments }
-  requirements: { sf_culture: (?:es|ca) }
-
-politico_ca:
-  url: /:sf_culture/politic/:id
-  param: { module: politico, action: show }
-  requirements: { sf_culture: (?:ca) }
   
-ranking_es:
-  url: /:sf_culture/politicos/:partido/:institucion
-  param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:es) }
 
-ranking_ca:
-  url: /:sf_culture/politics/:partido/:institucion
+politico:
+  url: /politic/:id
+  param: { module: politico, action: show }
+  
+  
+ranking:
+  url: /politicos/:partido/:institucion
   param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:ca) }
+  
+
+ranking:
+  url: /politics/:partido/:institucion
+  param: { module: politico, action: ranking }
+  
 
 ranking_es_partido:
-  url: /:sf_culture/politicos/:partido
+  url: /politicos/:partido
   param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:es) }
+  
 
 ranking_ca_partido:
-  url: /:sf_culture/politics/:partido
+  url: /politics/:partido
   param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:ca) }
+  
 
 ranking_es_all:
-  url: /:sf_culture/politicos
+  url: /politicos
   param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:es) }
+  
 
 ranking_ca_all:
-  url: /:sf_culture/politics
+  url: /politics
   param: { module: politico, action: ranking }
-  requirements: { sf_culture: (?:ca) }
-
-partido_es:
-  url: /:sf_culture/partido/:id
-  param: { module: partido, action: show }
-  requirements: { sf_culture: (?:es) }
-
-politico_take_es:
-  url:   /:sf_culture/take
-  param: { module: politico, action: take }
-  requirements: { sf_culture: (?:es) }
   
-politico_take_ca:
-  url:   /:sf_culture/take
-  param: { module: politico, action: take }
-  requirements: { sf_culture: (?:ca) }
-  
-partido_ca:
-  url: /:sf_culture/partit/:id
+
+partido:
+  url: /partido/:id
   param: { module: partido, action: show }
-  requirements: { sf_culture: (?:ca) }
+  
+
+politico_take:
+  url:   /take
+  param: { module: politico, action: take }
+  
+partido:
+  url: /partit/:id
+  param: { module: partido, action: show }
+  
 
 partido_filter:
   url: /partidos/filter
   param: { module: partido, action: filter }
 
 partido_more_comments:
-  url: /:sf_culture/partidos/more
+  url: /partidos/more
   param: { module: partido, action: moreComments }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 ranking_partidos_es_institucion:
-  url: /:sf_culture/partidos/:institucion
+  url: /partidos/:institucion
   param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:es) }
+  
   
 ranking_partidos_ca_institucion:
-  url: /:sf_culture/partits/:institucion
+  url: /partits/:institucion
   param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:ca) }
-
-ranking_partidos_es:
-  url: /:sf_culture/partidos
-  param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:es) }
   
-ranking_partidos_ca:
-  url: /:sf_culture/partits
+
+ranking_partidos:
+  url: /partidos
   param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:ca) }
+  
+  
+ranking_partidos:
+  url: /partits
+  param: { module: partido, action: ranking }
+  
 
 sf_guard_signin:
-  url:   /:sf_culture/user/login
+  url:   /user/login
   param: { module: sfGuardAuth, action: signin }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
 
 usuario_confirm:
-  url:   /:sf_culture/user/confirm/:codigo
+  url:   /user/confirm/:codigo
   param: { module: sfGuardAuth, action: confirm }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 usuario_unsubscribe:
-  url:   /:sf_culture/user/unsubscribe/:codigo
+  url:   /user/unsubscribe/:codigo
   param: { module: sfGuardAuth, action: unsubscribe }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 usuario_removeTip:
-  url:   /:sf_culture/user/removetip
+  url:   /user/removetip
   param: { module: sfGuardAuth, action: removeTip }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 usuario_votos:
-  url:   /:sf_culture/user/reviews
+  url:   /user/reviews
   param: { module: perfil, action: reviews }
-  
-usuario:
-  url:   /:username
-  param: { module: perfil, action: show }
 
 profile_more_comments:
-  url: /:sf_culture/user/more
+  url: /user/more
   param: { module: perfil, action: more }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 usuario_edit:
-  url: /:sf_culture/user/edit
+  url: /user/edit
   param: { module: sfGuardAuth, action: edit }
 
 usuario_fb_edit:
-  url: /:sf_culture/user/editFB
+  url: /user/editFB
   param: { module: sfGuardAuth, action: editFB }
   
 usuario_fb_confirm_merge:
-  url: /:sf_culture/user/confirmMerge
+  url: /user/confirmMerge
   param: { module: sfGuardAuth, action: confirmMerge }
   
 usuario_remove_confirm:
-  url: /:sf_culture/user/remove/:codigo
+  url: /user/remove/:codigo
   param: { module: sfGuardAuth, action: remove }
   
 usuario_remove:
-  url: /:sf_culture/user/remove
+  url: /user/remove
   param: { module: sfGuardAuth, action: remove }
   
 usuario_reminder:
-  url: /:sf_culture/user/reminder 
+  url: /user/reminder 
   param: { module: sfGuardAuth, action: reminder }
 
 usuario_change_password:
-  url:   /:sf_culture/user/password/:codigo
+  url:   /user/password/:codigo
   param: { module: sfGuardAuth, action: changePassword }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 usuario_change_password2:
-  url:   /:sf_culture/user/password
+  url:   /user/password
   param: { module: sfGuardAuth, action: changePassword }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 sf_review_form:
-  url:   /:sf_culture/review/form
+  url:   /review/form
   param: { module: sfReviewFront, action: form }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 sf_review_show:
   url:   /r/:id
   param: { module: sfReviewFront, action: show }
 
 sf_review_preview:
-  url:   /:sf_culture/review/preview
+  url:   /review/preview
   param: { module: sfReviewFront, action: preview }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 sf_review_send:
-  url:   /:sf_culture/review/send
+  url:   /review/send
   param: { module: sfReviewFront, action: send }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 sf_review_init:
-  url:   /:sf_culture/review/init
+  url:   /review/init
   param: { module: sfReviewFront, action: init }
-  requirements: { sf_culture: (?:es|ca) }
+  
  
 sf_review_delete:
-  url:   /:sf_culture/review/delete
+  url:   /review/delete
   param: { module: sfReviewFront, action: delete }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 sf_review_list:
-  url:   /:sf_culture/review/list
+  url:   /review/list
   param: { module: sfReviewFront, action: list }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 sf_review_filtered_list:
-  url:   /:sf_culture/review/filteredList
+  url:   /review/filteredList
   param: { module: sfReviewFront, action: filteredList }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 about:
-  url:   /:sf_culture/about
+  url:   /about
   param: { module: general, action: about }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 rules:
-  url:   /:sf_culture/dos-and-donts
+  url:   /dos-and-donts
   param: { module: general, action: rules }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 search:
-  url:   /:sf_culture/search
+  url:   /search
   param: { module: general, action: search }
-  requirements: { sf_culture: (?:es|ca) }
+  
 
 contact:
-  url:   /:sf_culture/contact
+  url:   /contact
   param: { module: general, action: contact }
-  requirements: { sf_culture: (?:es|ca) }
+  
   
 usuario_contact:
   url:   /:username/contact
   param: { module: perfil, action: contact }
+  
+usuario:
+  url:   /:username
+  param: { module: perfil, action: show }
   

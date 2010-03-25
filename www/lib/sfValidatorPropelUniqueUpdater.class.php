@@ -22,7 +22,12 @@
  */
 class sfValidatorPropelUniqueUpdater extends sfValidatorPropelUnique
 {
-  protected $keywords = array('logout');
+  protected $keywords = array(
+  	'politico','politics','politic','politicos',
+  	'politics','take','partit','partidos','partits','partido',
+  	'user','logout','user','review','r','about','dos-and-donts','search','contact',
+  	'a1'
+  );
   
   /**
    * @see sfValidatorBase
