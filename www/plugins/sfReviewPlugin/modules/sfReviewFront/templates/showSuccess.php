@@ -18,11 +18,13 @@
 
 <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 
+<p></p>
 <p class="review-date">
   <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>
 </p>
 
 <?php if (!$review->getSfReviewId()): ?>
+<p></p>
   <?php include_partial('sfReviewFront/add_subreview', array('sf_user' => $sf_user, 'review' => $review, 'uc' => $uc, 'dc' => $dc, 'listValue' => $listValue)) ?>
   <?php include_partial('sfReviewFront/subreviews_summary', array('sf_user' => $sf_user, 'review' => $review, 'uc' => $uc, 'dc' => $dc, 'listValue' => $listValue)) ?>
 <?php endif ?>
