@@ -18,7 +18,7 @@
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://api.voota.org";
+  const SERVER_URL = "http://localhost/frontend_dev.php";
   
   /**
    * Class constructor.
@@ -26,11 +26,19 @@ class VootaApi{
    * @see initialize()
    */
   public function __construct() {
+  	
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	if (preg_match("/dbname=(.*);host=(.*)$/", $dsn, $matches)){
+  		$db = $matches[1];
+  		$host = $matches[2];
+  	}
+  	
   	$databaseArray = array(
-		'server' => sfConfig::get('app_oauth_server')
-		, 'username' => sfConfig::get('app_oauth_username')
-		, 'password' => sfConfig::get('app_oauth_password')
-		, 'database' => sfConfig::get('app_oauth_database')
+		'server' => $host
+		, 'username' => $dbConf['datasources']['propel']['connection']['user']
+		, 'password' => $dbConf['datasources']['propel']['connection']['password']
+		, 'database' => $db
 		);
   	
   	OAuthStore::instance(
@@ -123,7 +131,7 @@ class VootaApi{
   public function getEntities($userId, $type = 'politician', $limit = 20, $page = 1, $sort = 'positive'){
 	$params = array(
 	           'method' => 'entities',
-	           'type' => $type,
+	           'etype' => $type,
 	           'limit' => $limit,
 	           'page' => $page,
 	           'sort' => $sort,
@@ -155,7 +163,7 @@ class VootaApi{
   public function getEntity($userId, $type = 'politician', $id){
 	$params = array(
 	           'method' => 'entity',
-	           'type' => $type,
+	           'etype' => $type,
 	           'id' => $id,
 	     );
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
@@ -192,7 +200,7 @@ class VootaApi{
 	           'limit' => $limit,
 	           'page' => $page,
 	           'culture' => $culture,
-	           'type' => $type,
+	           'etype' => $type,
 	     );
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
 	
@@ -251,7 +259,7 @@ class VootaApi{
 	$params = array(
 	           'method' => 'review',
 	           'entity' => $entity,
-	           'type' => $type,
+	           'etype' => $type,
 	           'value' => $value,
 	           'text' => $text
 	     );

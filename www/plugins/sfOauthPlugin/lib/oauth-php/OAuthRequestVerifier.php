@@ -155,6 +155,7 @@ class OAuthRequestVerifier extends OAuthRequest
 			try
 			{
 				$this->verifySignature($secrets['consumer_secret'], $secrets['token_secret'], $token_type);
+				
 			}
 			catch (OAuthException $e)
 			{
@@ -263,8 +264,10 @@ class OAuthRequestVerifier extends OAuthRequest
 		}
 
 		$sig = $this->getSignatureMethod($signature_method);
+			sfContext::getInstance()->getLogger()->err( "verifyDataSignature 1" );
 		if (!$sig->verify($this, $data, $consumer_secret, $token_secret, $signature))
 		{
+			sfContext::getInstance()->getLogger()->err( "verifyDataSignature 2" );
 			throw new OAuthException('Signature verification failed ('.$signature_method.')');
 		}
 	}

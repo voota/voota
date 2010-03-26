@@ -18,9 +18,9 @@
  */
 class api_demoActions extends sfActions
 {	
-  	const CONSUMER_KEY = 'a7c92de59ca74e7629c775bb26e8ef0c04baa4c87';
-  	const CONSUMER_SECRET = '41d1925c089bdcaa8b7ce956a117a742';
-	const USER_ID = 1;
+  	const CONSUMER_KEY = '1c709983023280cf952beeca85fbfe6804bab9bcc';
+  	const CONSUMER_SECRET = '4f376b79b0dd39b7dc7db06c2fe0ecc3';
+	const USER_ID = 101;
 	
   public function executeAuth(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
