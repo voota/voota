@@ -32,6 +32,7 @@
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
+      <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
       	<?php echo link_to(__('Votos +'), "$route&o=".($order=='pd'?'pa':'pd'));?>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
@@ -55,6 +56,7 @@
       <td class="position"></td>
       <td class="photo"></td>
       <td class="name"></td>
+      <td class="voto"></td>
       <td class="positive-votes">
         <?php echo __('Total') ?>
     	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
@@ -79,6 +81,20 @@
         <td class="name">
           <?php echo link_to(	cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 35) . ($politico->getPartido()?" (" . $politico->getPartido() .")":''), 'politico/show?id='.$politico->getVanity()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
           ) ?>
+        </td>
+        <td class="voto">
+          <div id="mv_1">
+        	<span style="float:left; margin:0px 25px 0px 0px;">
+        	  <a href="#">
+        		<?php echo image_tag('icoMiniUp_dis.png', 'title="'. __('Votar a favor') .'" alt="'. __('yeah') .'"') ?>
+        	  </a>
+        	</span>
+        	<span style="float:left">
+        	  <a href="#">
+        		<?php echo image_tag('icoMiniDown_dis.png', 'title="'. __('Votar en contra') .'" alt="'. __('buu') .'"') ?>
+        	  </a>
+        	</span>
+          </div>
         </td>
         <td class="positive-votes"><?php echo $politico->getSumu()?></td>
         <td class="negative-votes"><?php echo $politico->getSumd()?></td>

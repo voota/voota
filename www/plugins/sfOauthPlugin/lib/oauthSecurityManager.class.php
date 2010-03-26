@@ -9,16 +9,17 @@
  */
 
 /**
- * politico actions.
+ * oauthSecurity Manager.
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage OauthPlugin
  * @author     Sergio Viteri
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class oauthSecurityManager extends sfBasicSecurityFilter
 {
   protected static function sendNotAuthorized() {
+  	sfContext::getInstance()->getLogger()->info( "NOT AUTHORIZED." );
+  	
 	// The request was signed, but failed verification
     header('HTTP/1.1 401 Unauthorized');
     header('WWW-Authenticate: OAuth realm=""');
@@ -36,25 +37,26 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 							, 'database' => sfConfig::get('app_oauth_database')
 							)
 						); 
-						
+ 	
   	if (OAuthRequestVerifier::requestIsSigned()){
-		try
-	        {
-	        	$req = new OAuthRequestVerifier();
-	                $userId = $req->verify();
+		try {
+	        $req = new OAuthRequestVerifier();
+	        $userId = $req->verify();
 	
-	                // If we have an user_id, then login as that user (for this request)
-	                if ($userId)
-	                {
-	                	$user = SfGuardUserPeer::retrieveByPK($userId);
-	                	sfContext::getInstance()->getUser()->signin( $user );
-	                }
+	        // If we have an user_id, then login as that user (for this request)
+	        if ($userId) {
+				$user = SfGuardUserPeer::retrieveByPK($userId);
+				sfContext::getInstance()->getUser()->signin( $user );
+			}
 		}
 	    catch (OAuthException $e) {
-		        $this->sendNotAuthorized();
+			sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::checkAuthorized exception" );
+			sfContext::getInstance()->getLogger()->err( "Message: "+ $e->getMessage() );
+		    $this->sendNotAuthorized();
 	    }
 	}
 	else {
+		sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::checkAuthorized request not signed" );
 		$this->sendNotAuthorized();
 	}
   	    

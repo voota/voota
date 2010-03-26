@@ -348,9 +348,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-ranking table .ranking { text-align: right; width: 175px; }
 #politico-ranking table .position { text-align: right; width: 30px; }
 #politico-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
-#politico-ranking table .name { text-align: left; width: 260px; }
-#politico-ranking table .positive-votes { text-align: right; width: 160px; }
-#politico-ranking table .negative-votes { text-align:right; width: 160px; padding-right: 100px;}
+#politico-ranking table .name { text-align: left; width: 320px; }
+#politico-ranking table .voto { text-align: left; width: 140px; padding-left: 20px }
+#politico-ranking table .positive-votes { text-align: right; width: 90px; }
+#politico-ranking table .negative-votes { text-align:right; width: 90px; padding-right: 100px;}
 
 /* Ranking de partidos */
 #partido-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }

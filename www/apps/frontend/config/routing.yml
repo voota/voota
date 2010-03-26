@@ -93,7 +93,6 @@ ranking_partidos:
 ranking_partidos:
   url: /partits
   param: { module: partido, action: ranking }
-  
 
 sf_guard_signin:
   url:   /user/login
@@ -126,7 +125,6 @@ usuario_votos:
 profile_more_comments:
   url: /user/more
   param: { module: perfil, action: more }
-  
 
 usuario_edit:
   url: /user/edit
@@ -205,12 +203,10 @@ about:
   url:   /about
   param: { module: general, action: about }
   
-
 rules:
   url:   /dos-and-donts
   param: { module: general, action: rules }
   
-
 search:
   url:   /search
   param: { module: general, action: search }
@@ -220,7 +216,6 @@ contact:
   url:   /contact
   param: { module: general, action: contact }
   
-  
 usuario_contact:
   url:   /:username/contact
   param: { module: perfil, action: contact }
@@ -228,4 +223,22 @@ usuario_contact:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
+
+api_demo_auth:
+  url:   /api_demo/auth
+  param: { module: api_demo, action: auth }
+
+api_demo_callback:
+  url:   /api_demo/callback
+  param: { module: api_demo, action: callback }
   
+api_demo_most_recently_voted:
+  url:   /api_demo/most_recently_voted
+  param: { module: api_demo, action: mostRecentlyVoted }
+  
+api_demo_politicos:
+  url:   /api_demo/politicos
+  param: { module: api_demo, action: politicos }
+api_demo_put:
+  url:   /api_demo/post
+  param: { module: api_demo, action: postReview }

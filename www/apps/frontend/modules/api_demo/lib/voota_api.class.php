@@ -18,7 +18,7 @@
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://api.voota.org/frontend_dev.php";
+  const SERVER_URL = "http://localhost";
   
   /**
    * Class constructor.
@@ -26,11 +26,19 @@ class VootaApi{
    * @see initialize()
    */
   public function __construct() {
+  	
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	if (preg_match("/dbname=(.*);host=(.*)$/", $dsn, $matches)){
+  		$db = $matches[1];
+  		$host = $matches[2];
+  	}
+  	
   	$databaseArray = array(
-		'server' => sfConfig::get('app_oauth_server')
-		, 'username' => sfConfig::get('app_oauth_username')
-		, 'password' => sfConfig::get('app_oauth_password')
-		, 'database' => sfConfig::get('app_oauth_database')
+		'server' => $host
+		, 'username' => $dbConf['datasources']['propel']['connection']['user']
+		, 'password' => $dbConf['datasources']['propel']['connection']['password']
+		, 'database' => $db
 		);
   	
   	OAuthStore::instance(
@@ -258,7 +266,7 @@ class VootaApi{
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
 	$result = $req->doRequest( $userId );	
-  
+
 	switch( $result['code'] ){
 		case 200:
 			return json_decode( $result['body'] );
