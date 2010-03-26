@@ -55,19 +55,9 @@ tr.even { background-color: #fbfbfb; }
 
 /* Tabs */
 
-.ui-widget { font-size: 13px; font-family: Georgia, "Times New Roman", Times, serif;}
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Georgia, "Times New Roman", Times, serif; }
-.ui-tabs .ui-tabs-nav li a,
-.ui-tabs .ui-tabs-nav { padding-left: 10px;}
-.ui-tabs .ui-tabs-nav li { margin-right: 20px;}
-.ui-widget-content { border: none;}
-.ui-widget-header { background: none; border-left: none; border-right: none; border-top: none;}
-.ui-tabs .ui-tabs-panel { padding: 20px 0 0 0;}
-.ui-widget-content a { color: #0000ee;}
-.ui-widget-content a:visited { color: #551a8b;}
-.ui-widget input { font-size: 13px;}
-.ui-helper-clearfix { float: left;}
-.ui-tabs-panel { clear: left;}
+.reviews .ui-widget-header { border-bottom: 1px solid #aaaaaa; }
+
+
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
