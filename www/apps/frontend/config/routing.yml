@@ -242,3 +242,7 @@ api_demo_politicos:
 api_demo_put:
   url:   /api_demo/post
   param: { module: api_demo, action: postReview }
+api_demo_reviews:
+  url:   /api_demo/reviews
+  param: { module: api_demo, action: reviews }
+  

@@ -93,4 +93,8 @@ class Politico extends BasePolitico implements reviewable
   {
     return self::NUM_ENTITY;
   }
+  public function updateCalcs(){
+  	$this->setSumu($this->getPositives());
+  	$this->setSumd($this->getNegatives());
+  }
 }

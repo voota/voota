@@ -62,4 +62,13 @@ class api_demoActions extends sfActions
 		$this->res = $vootaApi->postReview(self::USER_ID, $entity, $type, $value, $text);
     }
   }
+  
+  public function executeReviews(sfWebRequest $request){  	
+	$type = $this->getRequestParameter("type");
+	$entity = $this->getRequestParameter("entity");
+	
+	$vootaApi =  new VootaApi();
+	$this->reviews = $vootaApi->getReviews(self::USER_ID, $entity, $type);
+
+  }
 }

@@ -57,10 +57,7 @@ class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod
 		$key = $request->urlencode($consumer_secret).'&'.$request->urlencode($token_secret);
 		if (function_exists('hash_hmac'))
 		{
-			sfContext::getInstance()->getLogger()->err( "OAuthSignatureMethod_HMAC_SHA1::signature base_string:$base_string" );
-			sfContext::getInstance()->getLogger()->err( "OAuthSignatureMethod_HMAC_SHA1::signature key:$key" );
 			$signature = base64_encode(hash_hmac("sha1", $base_string, $key, true));
-			sfContext::getInstance()->getLogger()->err( "OAuthSignatureMethod_HMAC_SHA1::signature signature:$signature" );
 		}
 		else
 		{
@@ -103,15 +100,9 @@ class OAuthSignatureMethod_HMAC_SHA1 extends OAuthSignatureMethod
 		$a = $request->urldecode($signature);
 		$b = $request->urldecode($this->signature($request, $base_string, $consumer_secret, $token_secret));
 
-			sfContext::getInstance()->getLogger()->err( "OAuthSignatureMethod_HMAC_SHA1::verify $a $b" );
-			
 		// We have to compare the decoded values
 		$valA  = base64_decode($a);
 		$valB  = base64_decode($b);
-				
-		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify signature: $signature" );
-		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify valA: $valA, $a" );
-		sfContext::getInstance()->getLogger()->info( "OAuthSignatureMethod_HMAC_SHA1::verify valB: $valB, $b" );
 
 		// Crude binary comparison
 		return rawurlencode($a) == rawurlencode($b);

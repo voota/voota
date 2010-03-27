@@ -244,9 +244,44 @@ class VootaApi{
 			throw new Exception('Error');
 	}
   }
+
+	/**
+	* getReviews - Gets reviews on an entity.
+	*
+	* @param integer $userId A user identificator
+	* @param integer $entity Id of the entity beeing reviewed
+	* @param integer $type Type of the entity to review: 'politician', 'party'
+	* @param integer $value Vote: 1 for positive or -1 for negative
+	* @param integer $limit Max number of results per page
+	* @param integer $page Page number
+	* @return void
+	*/  
+  public function getReviews($userId, $entity, $type, $value = false, $limit = 20, $page = 1){
+	$params = array(
+	           'method' => 'reviews',
+	           'entity' => $entity,
+	           'type' => $type,
+	           'value' => $value,
+	           'page' => $page,
+	           'limit' => $limit
+	     );
+	
+	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$result = $req->doRequest( $userId );	
+
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}
+  }
   
 	/**
-	* search - Posts a review on an entity.
+	* postReview - Posts a review on an entity.
 	*
 	* @param integer $userId A user identificator
 	* @param integer $entity Id of the entity beeing reviewed

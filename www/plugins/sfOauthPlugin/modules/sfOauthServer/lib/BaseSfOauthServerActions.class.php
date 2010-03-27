@@ -18,21 +18,8 @@
  */
 class BaseSfOauthServerActions extends sfActions
 {
-  protected function getStore() {
-  	
-  	$dbConf = Propel::getConfiguration();
-  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
-  	if (preg_match("/dbname=(.*);host=(.*)$/", $dsn, $matches)){
-  		$db = $matches[1];
-  		$host = $matches[2];
-  	}
-  	return OAuthStore::instance('MySQL', array(
-							'server' => $host
-							, 'username' => $dbConf['datasources']['propel']['connection']['user']
-							, 'password' => $dbConf['datasources']['propel']['connection']['password']
-							, 'database' => $db
-							)
-						); 
+  protected function getStore() {  	
+  	oauthSecurityManager::storeInstance();
   } 
 
   public function executeRegister(sfWebRequest $request)

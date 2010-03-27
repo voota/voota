@@ -16,6 +16,8 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class BadRequestException extends Exception { }
+class NotAuthorizedException extends Exception { }
+
 class apiActions extends sfActions{
   const PAGE_SIZE = 20;
   
@@ -253,7 +255,7 @@ class apiActions extends sfActions{
 		default:
   			throw new BadRequestException('Invalid type.');
   	}  	
-  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $typeId, $entity, $value, $limit, false, $page);
+  	$sfReviewsPager = SfReviewManager::getLastReviewsByEntityAndValue(false, $typeId, $entity, $value, $limit, false, $page);
   
     $reviews = array();
     foreach ($sfReviewsPager->getResults() as $sfReview){
@@ -264,14 +266,19 @@ class apiActions extends sfActions{
   }
   
   private function post_review($data) {
-  	$userId = oauthSecurityManager::checkAuthorized();
+  	try{
+  		$userId = oauthSecurityManager::checkAuthorized();
+  	}
+  	catch(Exception $e){
+  		throw new NotAuthorizedException($e->getMessage());
+  	}
   	
-  	$entity = $this->getRequestParameter("entity");
+  	$entityId = $this->getRequestParameter("entity");
   	$value = $this->getRequestParameter("value");
   	$text = $this->getRequestParameter("text");
   	$type = $this->getRequestParameter("type");
   		
-  	if (!$entity || !$value || !$type){
+  	if (!$entityId || !$value || !$type){
   		throw new BadRequestException("Not enough parameters.");
   	}
   	if ($value != -1 && $value != 1){
@@ -282,9 +289,11 @@ class apiActions extends sfActions{
   	switch($type) {
 		case 'politician':
 			$typeId = Politico::NUM_ENTITY;
+			$entity = PoliticoPeer::retrieveByPK($entityId);
 			break;
 		case 'party':
 			$typeId = Partido::NUM_ENTITY;
+			$entity = PartidoPeer::retrieveByPK($entityId);
 			break;
 		default:
   			throw new BadRequestException('Invalid type.');
@@ -292,21 +301,28 @@ class apiActions extends sfActions{
   	
   	// Check if already exists
   	$c = new Criteria;
-  	$c->add(SfReviewPeer::ENTITY_ID, $entity);
+  	$c->add(SfReviewPeer::ENTITY_ID, $entityId);
   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
   	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId);
+  	
   	$review = SfReviewPeer::doSelectOne( $c );
   	if (!$review){
   		$review = new SfReview;
-  		$review->setEntityId($entity);
+  		$review->setEntityId($entityId);
   		$review->setSfReviewTypeId($typeId);
   		$review->setSfGuardUserId($userId);
+  		$review->setCreatedAt(new DateTime());
   	}
+  	else {
+  		$review->setModifiedAt(new DateTime());
+   	}
   	$review->setValue($value);
   	$review->setText($text);
   	$review->setSfReviewStatusId(1);
   	try {
   		$review->save();
+  		$entity->updateCalcs();
+  		$entity->save();
   	}
   	catch (Exception $e){
   		throw new Exception('Error writing review.');

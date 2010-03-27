@@ -28,15 +28,34 @@ class oauthSecurityManager extends sfBasicSecurityFilter
     die;
   }
   
-  public static function checkAuthorized ()
+  public static function storeInstance ()
   {
-  	OAuthStore::instance('MySQL', array(
-							'server' => sfConfig::get('app_oauth_server')
-							, 'username' => sfConfig::get('app_oauth_username')
-							, 'password' => sfConfig::get('app_oauth_password')
-							, 'database' => sfConfig::get('app_oauth_database')
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	if (preg_match("/dbname=(.*);host=(.*)$/", $dsn, $matches)){
+  		$db = $matches[1];
+  		$host = $matches[2];
+  	}  	
+
+  	sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::storeInstance 1" );
+  	$store = OAuthStore::instance('MySQL', array(
+							'server' => $host
+							, 'username' => $dbConf['datasources']['propel']['connection']['user']
+							, 'password' => $dbConf['datasources']['propel']['connection']['password']
+							, 'database' => $db
 							)
 						); 
+					
+	if (!$store){
+  		throw new OAuthException("Cannot connect to database.");
+	}
+	
+	return $store;
+  }
+  
+  public static function checkAuthorized ()
+  {
+  	self::storeInstance();
  	
   	if (OAuthRequestVerifier::requestIsSigned()){
 		try {
