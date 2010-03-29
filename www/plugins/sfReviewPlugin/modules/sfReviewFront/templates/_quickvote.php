@@ -18,9 +18,7 @@
   $(document).ready(function(){
 	function vote(v){
     	<?php if($sf_user->isAuthenticated()):?>
-        	jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){
-                            		jQuery('#<?php echo "mv_up_".$entity->getId()?>').html(data);
-                            	},url:'<?php echo url_for('sfReviewFront/quickvote?t='. $entity->getType() .'&e='. $entity->getId() .'&v=') ?>'+v});
+        	jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#<?php echo "mv_up_".$entity->getId()?>').html(data);},url:'<?php echo url_for('sfReviewFront/quickvote?t='. $entity->getType() .'&e='. $entity->getId() .'&v=') ?>'+v});
 		<?php else: ?>
  	    	$("#sfr_dialog").dialog('open');
         <?php endif ?>

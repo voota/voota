@@ -130,19 +130,19 @@ class politicoActions extends sfActions
   	
   	if ($p_url == "" && $i_url == ""){
   		// Todos. Sin filtro
-  		$url = "@ranking_${culture}_all";
+  		$url = "politico/ranking";
   	}
   	else if ($p_url != "" && $i_url != ""){
   		// Filtro por partido e institucion
-  		$url = "@ranking_${culture}?partido=$p_url&institucion=$i_url";
+  		$url = "politico/ranking?partido=$p_url&institucion=$i_url";
   	}
   	else if ($i_url == "" ){
   		// Filtro por partido
-  		$url = "@ranking_${culture}_partido?partido=$p_url";
+  		$url = "politico/ranking?partido=$p_url";
   	}
   	else if ($p_url == ""){
   		// Filtro por institucion
-  		$url = "@ranking_${culture}?partido=all&institucion=$i_url";
+  		$url = "politico/ranking?partido=all&institucion=$i_url";
   	}
   	
   	return $url;
@@ -245,7 +245,7 @@ class politicoActions extends sfActions
   			$params .= "$name=$value";
   		}
   	}
-  	$this->route = "@$rule$params";
+  	$this->route = "politico/ranking$params";
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
   	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
