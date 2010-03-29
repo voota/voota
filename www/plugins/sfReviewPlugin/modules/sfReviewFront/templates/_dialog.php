@@ -13,5 +13,6 @@
 
 
 <script>
-	$("#sfr_dialog").dialog({ autoOpen: false, resizable: false })
+	$("#sfr_dialog").dialog({ autoOpen: false, resizable: false, modal: true, closeText: '<?php echo __('cerrar')?>' })
 </script>
+

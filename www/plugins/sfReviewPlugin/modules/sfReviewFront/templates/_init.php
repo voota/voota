@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.7.2.custom.css" />
+
 <div class="sf-review-hands <?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>">
   <div class="sf-review-positive">
 		<input type="radio" name="v" value="1" id="v-<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>-positive" />
@@ -18,13 +20,26 @@
 	</div>
 </div>
 
+
+<?php if(!$sf_user->isAuthenticated()): ?>
+	<?php include_partial('sfReviewFront/dialog') ?>
+<?php endif ?>
+	
 <script type="text/javascript">
-<!--
+<!--//
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-positive input").click(function(){
-	loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>,  <?php echo $reviewEntityId ?>, 1,  '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
+	<?php if(!$sf_user->isAuthenticated()): ?>
+		$("#sfr_dialog").dialog('open');
+	<?php else: ?>
+		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>,  <?php echo $reviewEntityId ?>, 1,  '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
+	<?php endif ?>
 });
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-negative input").click(function(){
-	loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>, <?php echo $reviewEntityId ?>, -1, '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
+	<?php if(!$sf_user->isAuthenticated()): ?>
+		$("#sfr_dialog").dialog('open');
+	<?php else: ?>
+		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>, <?php echo $reviewEntityId ?>, -1, '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
+	<?php endif ?>
 });
 //-->
 </script>

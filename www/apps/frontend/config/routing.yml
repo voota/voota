@@ -198,6 +198,10 @@ sf_review_filtered_list:
   url:   /review/filteredList
   param: { module: sfReviewFront, action: filteredList }
   
+sf_review_quickvote:
+  url:   /review/qv
+  param: { module: sfReviewFront, action: quickvote }
+  
 
 about:
   url:   /about

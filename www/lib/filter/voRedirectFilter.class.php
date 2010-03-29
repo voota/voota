@@ -23,10 +23,11 @@ class voRedirectFilter extends sfFilter
 		$lastUrl = sfContext::getInstance()->getRouting()->getCurrentInternalUri();	
 	  	$user = sfContext::getInstance()->getUser();
 	  	$urlBack = $user->getAttribute('url_back');
-	  	if ($urlBack != '') {
-	  		if ($user->isAuthenticated() && !preg_match("/sfGuardAuth\/signin/is", $lastUrl)) {
+	  	if ($urlBack) {
+	  		if ($user->isAuthenticated() && !preg_match("/sfGuardAuth\/signin/is", $urlBack)) {
 				$user->setAttribute('url_back', '');
 	  			sfContext::getInstance()->getController()->redirect( $urlBack );
+				die;
 		  	}
 		}
 	

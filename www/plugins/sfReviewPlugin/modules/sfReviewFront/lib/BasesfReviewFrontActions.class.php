@@ -258,5 +258,29 @@ class BasesfReviewFrontActions extends sfActions
   		SfReviewManager::removeReview( $request->getParameter("i") );
   	}
   }
-  
+
+  public function executeQuickvote(sfWebRequest $request){
+  	$type = $request->getParameter("t", false);
+  	$entityId = $request->getParameter("e", false);
+  	$value = $request->getParameter("v", false);
+  	$this->review = false;
+  	
+  	switch($type) {
+		case Politico::NUM_ENTITY:
+			$this->entity = PoliticoPeer::retrieveByPK($entityId);
+			break;
+		case Partido::NUM_ENTITY:
+			$this->entity = PartidoPeer::retrieveByPK($entityId);
+			break;
+		default:
+  			throw new Exception('Invalid type.');
+  	}  	
+  	
+  	try {  	
+  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, null, $this->entity);
+  	}
+  	catch(Exception $e){
+  		echo "fail:". $e->getMessage();
+  	}
+  }
 }

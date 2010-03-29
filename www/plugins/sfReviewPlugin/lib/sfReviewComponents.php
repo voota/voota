@@ -83,4 +83,21 @@ class sfReviewComponents extends sfComponents
   {
   	
   }
+  
+  public function executeQuickvote()
+  {
+  	$this->review = false;
+  	
+  	$sf_user = sfContext::getInstance()->getUser();
+  	if ($sf_user->isAuthenticated()){
+	  	$c = new Criteria();
+	  	$c->add(SfReviewPeer::ENTITY_ID, $this->entity->getId());
+	  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $sf_user->getGuardUser()->getId());
+	  	$c->add(SfReviewPeer::IS_ACTIVE, true);
+	  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->entity->getType());
+	  	
+	  	$this->review = SfReviewPeer::doSelectOne( $c );
+  	}
+  }
+  
 }

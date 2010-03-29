@@ -196,4 +196,46 @@ class BaseSfReviewManager
    	
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
+  
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = null, $entity = false ){
+  	if (!$entityId || !$value || !$typeId){
+  		throw new Exception("Not enough parameters.");
+  	}
+  	if ($value != -1 && $value != 1){
+  		throw new Exception("Invalid data for 'value'.");
+  	}
+  	
+  	// Check if already exists
+  	$c = new Criteria;
+  	$c->add(SfReviewPeer::ENTITY_ID, $entityId);
+  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
+  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId);
+  	
+  	$review = SfReviewPeer::doSelectOne( $c );
+  	if (!$review){
+  		$review = new SfReview;
+  		$review->setEntityId($entityId);
+  		$review->setSfReviewTypeId($typeId);
+  		$review->setSfGuardUserId($userId);
+  		$review->setCreatedAt(new DateTime());
+  	}
+  	else {
+  		$review->setModifiedAt(new DateTime());
+   	}
+  	$review->setValue($value);
+  	$review->setText($text);
+  	$review->setSfReviewStatusId(1);
+  	try {
+  		$review->save();
+  		if ($entity){
+  			$entity->updateCalcs();
+  			$entity->save();
+  		}
+  	}
+  	catch (Exception $e){
+  		throw new Exception('Error writing review.');
+  	}
+  	
+  	return $review;
+  }  
 }

@@ -181,61 +181,6 @@ class politicoActions extends sfActions
   		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
   	}  	
-  	/*
-  	$c = new Criteria();
-  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
-  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
-  	$this->partido = ALL_FORM_VALUE;
-  	$this->institucion = ALL_FORM_VALUE;
-  	
-  	if ($partido && $partido != ALL_URL_STRING){
-  		$this->partido = $partido; 
-  		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
-  	}
-  	else {
-  		$this->partido = ALL_URL_STRING; 
-   	}
-  	if ($institucion && $institucion != ALL_URL_STRING){
-  		$this->institucion = $institucion; 
-  		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
-  		
-  		$aInstitucionCriteria = new Criteria();
-		$aInstitucionCriteria->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-  		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
-  		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
-  	}
-  	$pager = new sfPropelPager('Politico', 20);
-  	
-  	if (!$o){
-  		$o = "pd";
-  	}
-  	if ($o == "pa"){
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
-  	}
-  	else if ($o == "pd") {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
-  	}
-  	else if ($o == "na"){
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
-  	}
-  	else if ($o == "nd") {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
-  	}
-  	$this->order = $o;
-  	
-	$c->setDistinct();
-    
-    $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
-    $pager->init();
-    $this->forward404Unless( $pager->getNbResults() != 0 );
-    $this->politicosPager = $pager;
-    */
   	
   	$filter = array(
   		'type' => 'politico',

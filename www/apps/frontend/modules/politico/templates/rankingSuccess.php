@@ -23,7 +23,7 @@
 <?php include_partial('selectorPartido', array('pageTitle' => $pageTitle, 'partidos_arr' => $partidos_arr, 'favoritos' => $partidos_arr, 'partido' => $partido)) ?>
 
 <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
-<?php include_partial('sfReviewFront/dialog', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
+<?php include_partial('sfReviewFront/dialog') ?>
 
 
 <table border="0" cellpadding="0" cellspacing="0">
@@ -84,27 +84,7 @@
           ) ?>
         </td>
         <td class="voto">
-          <div id="<?php echo "mv_up_".$politico->getId()?>">
-          <script>
-            $("#<?php echo "mv_up_".$politico->getId()?>").click(function(){
-              	$("#sfr_dialog").dialog('open');
-              	return false;
-            });          
-          </script>
-          <style>
-          	.ui-widget-content { border: 1px solid #3366ff; }
-          </style>
-        	<span style="float:left; margin:0px 25px 0px 0px;">
-        	  <a href="#" id="<?php echo "mv_up_$politico"?>">
-        		<?php echo image_tag('icoMiniUp_dis.png', 'title="'. __('Votar a favor') .'" alt="'. __('yeah') .'"') ?>
-        	  </a>
-        	</span>
-        	<span style="float:left">
-        	  <a href="#">
-        		<?php echo image_tag('icoMiniDown_dis.png', 'title="'. __('Votar en contra') .'" alt="'. __('buu') .'"') ?>
-        	  </a>
-        	</span>
-          </div>
+            <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
         <td class="positive-votes"><?php echo $politico->getSumu()?></td>
         <td class="negative-votes"><?php echo $politico->getSumd()?></td>
