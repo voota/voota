@@ -16,6 +16,7 @@
 </h2>
 
 <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'linkType' => 'partido')) ?>
+<?php include_partial('sfReviewFront/dialog') ?>
 
 
 <table border="0" cellpadding="0" cellspacing="0">
@@ -25,15 +26,16 @@
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
+      <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
-      	<?php echo link_to(__('Votos +'), "$route&o=".($order=='pd'?'pa':'pd'));?>
+      	<?php echo link_to(__('Votos +'), "partido/ranking?o=".($order=='pd'?'pa':'pd'));?>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
       		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
-      	<?php echo link_to(__('Votos -'), "$route&o=".($order=='nd'?'na':'nd'));?>
+      	<?php echo link_to(__('Votos -'), "partido/ranking?o=".($order=='nd'?'na':'nd'));?>
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php if (strpos($order, 'n') === 0):?>
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
@@ -48,6 +50,7 @@
       <td class="position"></td>
       <td class="photo"></td>
       <td class="name"></td>
+      <td class="voto"></td>
       <td class="positive-votes">
         <?php echo __('Total') ?>
     	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
@@ -72,6 +75,9 @@
         <td class="name">
           <?php echo link_to(	$partido->getNombre() . ' (' . $partido->getAbreviatura() . ')', 'partido/show?id='.$partido->getAbreviatura() ); ?>
         </td>
+        <td class="voto">
+            <?php include_component_slot('quickvote', array('entity' => $partido)) ?>
+        </td>
         <td class="positive-votes"><?php echo $partido->getSumu()?></td>
         <td class="negative-votes"><?php echo $partido->getSumd()?></td>
       </tr>
@@ -80,5 +86,5 @@
 </table>
 
 <p class="pagination">
-  <?php include_partial('global/pagination_full', array('pager' => $partidosPager, 'url' => "$route&", 'page_var' => "page", 'order' => $order)) ?>
+  <?php include_partial('global/pagination_full', array('pager' => $partidosPager, 'url' => "$route".(!preg_match("/\?/",$route)?'?':'&'), 'page_var' => "page", 'order' => $order)) ?>
 </p>

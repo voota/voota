@@ -1,11 +1,11 @@
 <div id="<?php echo "mv_up_".$entity->getId()?>">
-    <span style="float:left; margin:0px 25px 0px 0px;">
+    <span style="margin:0px 25px 0px 0px;">
         <?php if($review && $review->getValue() == 1):?>+<?php endif ?>
         <a href="#" id="<?php echo "qv_up_".$entity->getId()?>">
         	<?php echo image_tag($review && $review->getValue() == 1?'icoMiniUp.png':'icoMiniUp_dis.png', 'title="'. __('Votar a favor') .'" alt="'. __('yeah') .'"') ?>
 		</a>
     </span>
-    <span style="float:left">
+    <span>
         <?php if($review && $review->getValue() == -1):?>-<?php endif ?>
         <a href="#" id="<?php echo "qv_down_".$entity->getId()?>">
         	<?php echo image_tag($review && $review->getValue() == -1?'icoMiniDown.png':'icoMiniDown_dis.png', 'title="'. __('Votar en contra') .'" alt="'. __('buu') .'"') ?>

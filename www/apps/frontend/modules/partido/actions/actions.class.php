@@ -143,7 +143,7 @@ class partidoActions extends sfActions
   	$this->instituciones = InstitucionPeer::doSelect($c);
   	/*  Fin Lista de instituciones */
   	
-  	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
+  	//$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
   		if ($name != 'module' && $name != 'action'){
@@ -156,7 +156,7 @@ class partidoActions extends sfActions
   			$params .= "$name=$value";
   		}
   	}
-  	$this->route = "@$rule$params";
+  	$this->route = "partido/ranking$params";
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
   	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
