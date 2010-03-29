@@ -85,14 +85,16 @@ ranking_partidos_ca_institucion:
   param: { module: partido, action: ranking }
   
 
-ranking_partidos:
+ranking_partidos_es:
   url: /partidos
   param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:es) }
+
   
-  
-ranking_partidos:
+ranking_partidos_ca:
   url: /partits
   param: { module: partido, action: ranking }
+  requirements: { sf_culture: (?:ca) }
 
 sf_guard_signin:
   url:   /user/login
