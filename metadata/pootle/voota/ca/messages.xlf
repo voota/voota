@@ -1731,9 +1731,9 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>voota a favor del partido %1%</source>
         <target>voota a favor del partit %1%</target>
       <note/><note/></trans-unit>
-      <trans-unit id="365">
+      <trans-unit id="365" approved="yes">
         <source>Página de %1%</source>
-        <target state="needs-review-translation">Pàgina de %1%</target>
+        <target>Pàgina de %1%</target>
       <note/><note/></trans-unit>
       <trans-unit id="366" approved="yes">
         <source>He hecho profundos cambios en mi perfil de Voota. </source>
@@ -2242,4 +2242,3 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
     </body>
   </file>
 </xliff>
-
