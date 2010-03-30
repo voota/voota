@@ -211,7 +211,7 @@ class politicoActions extends sfActions
   	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
   	$this->partidos = PartidoPeer::doSelect( $c );
   	$this->partidos_arr = array();
-  	$this->partidos_arr["0"] = "Todos los partidos";
+  	$this->partidos_arr["0"] = sfContext::getInstance()->getI18N()->__('Todos los partidos');
   	foreach($this->partidos as $aPartido){
   		$this->partidos_arr[$aPartido->getAbreviatura()] = $aPartido->getAbreviatura();
   	}

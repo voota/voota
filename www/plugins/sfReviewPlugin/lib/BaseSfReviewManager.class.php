@@ -197,7 +197,7 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = null, $entity = false ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false ){
   	if (!$entityId || !$value || !$typeId){
   		throw new Exception("Not enough parameters.");
   	}
@@ -223,7 +223,8 @@ class BaseSfReviewManager
   		$review->setModifiedAt(new DateTime());
    	}
   	$review->setValue($value);
-  	$review->setText($text);
+  	if ($text)
+  		$review->setText($text);
   	$review->setSfReviewStatusId(1);
   	try {
   		$review->save();

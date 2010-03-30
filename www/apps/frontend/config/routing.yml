@@ -7,65 +7,88 @@ homepage:
   url:   /
   param: { module: home, action: index }
 
-politico:
-  url: /politico/:id
-  param: { module: politico, action: show }
-  
-  
 politico_more_comments:
   url: /politics/more
   param: { module: politico, action: moreComments }
   
+politico_es:
+  url: /politico/:id
+  param: { module: politico, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
 
-politico:
+politico_ca:
   url: /politic/:id
   param: { module: politico, action: show }
-  
-  
-ranking:
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ranking_es:
   url: /politicos/:partido/:institucion
   param: { module: politico, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
   
 
-ranking:
+ranking_ca:
   url: /politics/:partido/:institucion
   param: { module: politico, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
   
 
 ranking_es_partido:
   url: /politicos/:partido
   param: { module: politico, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
   
 
 ranking_ca_partido:
   url: /politics/:partido
   param: { module: politico, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
   
-
+    
 ranking_es_all:
   url: /politicos
   param: { module: politico, action: ranking }
-  
-
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
 ranking_ca_all:
   url: /politics
   param: { module: politico, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
   
-
-partido:
-  url: /partido/:id
-  param: { module: partido, action: show }
-  
-
 politico_take:
   url:   /take
   param: { module: politico, action: take }
+    
+partido_es:
+  url: /partido/:id
+  param: { module: partido, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
   
-partido:
+partido_cat:
   url: /partit/:id
   param: { module: partido, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
   
-
 partido_filter:
   url: /partidos/filter
   param: { module: partido, action: filter }
@@ -74,27 +97,33 @@ partido_more_comments:
   url: /partidos/more
   param: { module: partido, action: moreComments }
   
-  
 ranking_partidos_es_institucion:
   url: /partidos/:institucion
   param: { module: partido, action: ranking }
-  
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
   
 ranking_partidos_ca_institucion:
   url: /partits/:institucion
   param: { module: partido, action: ranking }
-  
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
 
 ranking_partidos_es:
   url: /partidos
   param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:es) }
-
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
   
 ranking_partidos_ca:
   url: /partits
   param: { module: partido, action: ranking }
-  requirements: { sf_culture: (?:ca) }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
 
 sf_guard_signin:
   url:   /user/login

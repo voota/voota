@@ -277,7 +277,7 @@ class BasesfReviewFrontActions extends sfActions
   	}  	
   	
   	try {  	
-  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, null, $this->entity);
+  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, false, $this->entity);
   	}
   	catch(Exception $e){
   		echo "fail:". $e->getMessage();
