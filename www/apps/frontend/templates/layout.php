@@ -155,11 +155,11 @@
     <p class="lang-links">
       <?php slot('langLink_ca') ?>
       	Català
-      	<?php echo link_to('Español', '@homepage?l=es', array('class' => "enlacesPie")) ?>
+      	<?php echo link_to('Español', changeCulture('es'), array('class' => "enlacesPie")) ?>
       <?php end_slot('langLink_ca') ?>
 
       <?php slot('langLink_es') ?>
-      	<?php echo link_to('Català', '@homepage?l=ca', array('class' => "enlacesPie")) ?>
+      	<?php echo link_to('Català', changeCulture('ca'), array('class' => "enlacesPie")) ?>
       	Español
       <?php end_slot('langLink_es') ?>
 

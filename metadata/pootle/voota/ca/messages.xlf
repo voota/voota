@@ -2029,7 +2029,7 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>Tu contraseña en Voota</source>
         <target>La teva contrassenya a Voota</target>
       </trans-unit>
-      <trans-unit id="417">
+      <trans-unit id="417" approved="yes">
         <source>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
 &lt;p&gt;En primer lugar, queremos darte las gracias por animarte a participar como político en Voota. Nos hace mucha ilusión tenerte entre nosotros, de verdad.&lt;/p&gt;
 
@@ -2057,9 +2057,35 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target/>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt;
+&lt;p&gt;En primer lloc, volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt;
+
+&lt;p&gt;A partir d'ara podràs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Editar la informació que apareix al teu perfil (foto, biografia, enllaços externs, etc.).&lt;/li&gt;
+&lt;li&gt;Respondre a les opinions que altres usuaris fan sobre tu.&lt;/li&gt;
+&lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt;
+
+&lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt;
+
+&lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la situació inicial: http://voota.es/ca/contact&lt;/p&gt;
+
+&lt;p&gt;Esperem ser-te d'utilitat.&lt;/p&gt;
+
+&lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+&lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt;
+&lt;p&gt;La nostra web: http://voota.es/ca&lt;/p&gt;
+&lt;p&gt;Blog de Voota: http://blog.voota.es/ca&lt;/p&gt;
+&lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt;
+&lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;
+</target>
       </trans-unit>
-      <trans-unit id="418">
+      <trans-unit id="418" approved="yes">
         <source>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
 &lt;p&gt;Queremos avisarte que a partir de ahora %nombreUsuario% podrá hacer cambios sobre tu perfil (biografía, fotografía, enlaces externos, etc.) y responder a las opiniones de otros usuarios sobre tu actividad política.&lt;/p&gt;
 
@@ -2078,123 +2104,140 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target/>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt;
+&lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis al teu perfil (biografia, foto, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt;
+
+&lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt;
+
+&lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt;
+
+&lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.es/ca/contact&lt;/p&gt;
+
+&lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt;
+
+&lt;p&gt;--&lt;/p&gt;
+&lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt;
+&lt;p&gt;La nostra web: http://voota.es/ca&lt;/p&gt;
+&lt;p&gt;Blog de Voota: http://blog.voota.es/ca&lt;/p&gt;
+&lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt;
+&lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;
+</target>
       </trans-unit>
-      <trans-unit id="419">
+      <trans-unit id="419" approved="yes">
         <source>¿Ves algún error?</source>
-        <target/>
+        <target>Veus algun error?</target>
       </trans-unit>
-      <trans-unit id="420">
+      <trans-unit id="420" approved="yes">
         <source>vooto a favor de una opinión de un usuario sobre %1%</source>
-        <target/>
+        <target>voot a favor d'una opinió d'un usuari sobre %1%</target>
       </trans-unit>
-      <trans-unit id="421">
+      <trans-unit id="421" approved="yes">
         <source>vooto a favor de una opinión de un usuario sobre el partido %1%</source>
-        <target/>
+        <target>voot a favor d'una opinió d'un usuari sobre el partit %1%</target>
       </trans-unit>
-      <trans-unit id="422">
+      <trans-unit id="422" approved="yes">
         <source>vooto a favor de %1%</source>
-        <target/>
+        <target>voot a favor de %1%</target>
       </trans-unit>
-      <trans-unit id="423">
+      <trans-unit id="423" approved="yes">
         <source>vooto a favor del partido %1%</source>
-        <target/>
+        <target>voot a favor del partit %1%</target>
       </trans-unit>
-      <trans-unit id="424">
+      <trans-unit id="424" approved="yes">
         <source>&amp;laquo; Político anterior</source>
-        <target/>
+        <target>&amp;laquo; Polític anterior</target>
       </trans-unit>
-      <trans-unit id="425">
+      <trans-unit id="425" approved="yes">
         <source>&lt;strong&gt;%actual%&lt;/strong&gt; de %total%</source>
-        <target/>
+        <target>&lt;strong&gt;%actual%&lt;/strong&gt; de %total%</target>
       </trans-unit>
-      <trans-unit id="426">
+      <trans-unit id="426" approved="yes">
         <source>Político siguiente &amp;raquo;</source>
-        <target/>
+        <target>Polític següent &amp;raquo;</target>
       </trans-unit>
-      <trans-unit id="427">
+      <trans-unit id="427" approved="yes">
         <source>Listado de políticos %filtro% %orden%</source>
-        <target/>
+        <target>Llistat de polítics %filtro% %orden%</target>
       </trans-unit>
-      <trans-unit id="428">
+      <trans-unit id="428" approved="yes">
         <source>Ver su perfil en Voota</source>
-        <target/>
+        <target>Veure el seu perfil a Voota</target>
       </trans-unit>
-      <trans-unit id="429">
+      <trans-unit id="429" approved="yes">
         <source>Tu página de político y lo que opinan sobre ti</source>
-        <target/>
+        <target>La teva pàgina de polític i les opinions sobre tu</target>
       </trans-unit>
-      <trans-unit id="430">
+      <trans-unit id="430" approved="yes">
         <source>Página de usuario de %1% en Voota</source>
-        <target/>
+        <target>Pàgina d'usuari de %1% a Voota</target>
       </trans-unit>
-      <trans-unit id="431">
+      <trans-unit id="431" approved="yes">
         <source>Votos a favor y encontra de %1% sobre políticos y partidos de España</source>
-        <target/>
+        <target>Vots a favor i en contra de %1% sobre polítics i partits</target>
       </trans-unit>
-      <trans-unit id="432">
+      <trans-unit id="432" approved="yes">
         <source>Su página de político en Voota</source>
-        <target/>
+        <target>La seva pàgina de politic a Voota</target>
       </trans-unit>
-      <trans-unit id="433">
+      <trans-unit id="433" approved="yes">
         <source>Sobre %nombre%</source>
-        <target/>
+        <target>Sobre %nombre%</target>
       </trans-unit>
-      <trans-unit id="434">
+      <trans-unit id="434" approved="yes">
         <source>Mostrando &lt;strong&gt;%1%&lt;/strong&gt; comentarios de &lt;strong&gt;%2%&lt;/strong&gt;</source>
-        <target/>
+        <target>Mostrant &lt;strong&gt;%1%&lt;/strong&gt; comentaris de &lt;strong&gt;%2%&lt;/strong&gt;</target>
       </trans-unit>
-      <trans-unit id="435">
+      <trans-unit id="435" approved="yes">
         <source>Lleva</source>
-        <target/>
+        <target>Porta</target>
       </trans-unit>
-      <trans-unit id="436">
+      <trans-unit id="436" approved="yes">
         <source>ver</source>
-        <target/>
+        <target>veure</target>
       </trans-unit>
-      <trans-unit id="437">
+      <trans-unit id="437" approved="yes">
         <source>ocultar</source>
-        <target/>
+        <target>ocultar</target>
       </trans-unit>
-      <trans-unit id="438">
+      <trans-unit id="438" approved="yes">
         <source>Hacer cambios en tu opinión</source>
-        <target/>
+        <target>Editar la teva opinió</target>
       </trans-unit>
-      <trans-unit id="439">
+      <trans-unit id="439" approved="yes">
         <source>Opinar sobre este comentario</source>
-        <target/>
+        <target>Opinar sobre aquest comentari</target>
       </trans-unit>
-      <trans-unit id="440">
+      <trans-unit id="440" approved="yes">
         <source>Ejem. Para votar necesitas tener una cuenta en Voota.</source>
-        <target/>
+        <target>Ejem. Per votar necessites tenir una compta a Voota.</target>
       </trans-unit>
-      <trans-unit id="441">
+      <trans-unit id="441" approved="yes">
         <source>Si no tienes cuenta aun, este es el mejor momento. Luego volveremos por aquí.</source>
-        <target/>
+        <target>Si encara no temps una compta, aquest és el millor moment per crear-ne una. Després tornarem aquí.</target>
       </trans-unit>
-      <trans-unit id="442">
+      <trans-unit id="442" approved="yes">
         <source>¿Vamos a ello?</source>
-        <target/>
+        <target>Som-hi?</target>
       </trans-unit>
-      <trans-unit id="443">
+      <trans-unit id="443" approved="yes">
         <source>Hacer login o crear una cuenta</source>
-        <target/>
+        <target>Fer login o crear una compta</target>
       </trans-unit>
-      <trans-unit id="444">
+      <trans-unit id="444" approved="yes">
         <source>Tu voto</source>
-        <target/>
+        <target>El teu vot</target>
       </trans-unit>
-      <trans-unit id="445">
+      <trans-unit id="445" approved="yes">
         <source>Tu opinión</source>
-        <target/>
+        <target>La teva opinió</target>
       </trans-unit>
-      <trans-unit id="446">
+      <trans-unit id="446" approved="yes">
         <source>¿Algo que comentar? Es el mejor momento :-)</source>
-        <target/>
+        <target>Alguna cosa a comentar? És el millor moment :-)</target>
       </trans-unit>
-      <trans-unit id="447">
+      <trans-unit id="447" approved="yes">
         <source>Publicar en mi Facebook</source>
-        <target/>
+        <target>Publicar al meu Facebook</target>
       </trans-unit>
     </body>
   </file>

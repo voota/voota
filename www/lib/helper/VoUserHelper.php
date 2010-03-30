@@ -98,3 +98,25 @@ function isPolitico($user){
   	
   	return $ret;
 }
+
+ 
+function changeCulture( $culture ){
+	$extensions = array('es' => 'es', 'ca' => 'cat');
+	
+	$sf_context = sfContext::getInstance();
+	$request = $sf_context->getRequest();
+	$parameterNames = $request->getParameterHolder()->getNames();
+	$curCulture = $sf_context->getUser()->getCulture('es');
+	$routeName = $sf_context->getRouting()->getCurrentRouteName();
+	$routeName = preg_replace("/_$curCulture$/", "_$culture", $routeName);
+	$params = "";
+	foreach($parameterNames as $name){
+		if ($name != 'module' && $name != 'action')
+			$params .= ($params == ""?'?':'&'). "$name=".$request->getParameter($name);
+	}
+	$route = sfContext::getInstance()->getController()->genUrl("@$routeName$params");
+	
+	$host = preg_replace("/\.[a-zA-Z]*$/is", ".".$extensions[$culture], $_SERVER['HTTP_HOST']);
+	
+	return "http://$host$route";
+}

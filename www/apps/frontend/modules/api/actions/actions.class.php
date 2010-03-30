@@ -275,7 +275,7 @@ class apiActions extends sfActions{
   	
   	$entityId = $this->getRequestParameter("entity");
   	$value = $this->getRequestParameter("value");
-  	$text = $this->getRequestParameter("text");
+  	$text = $this->getRequestParameter("text", false);
   	$type = $this->getRequestParameter("type");
   		
   	if (!$entityId || !$value || !$type){
@@ -297,35 +297,13 @@ class apiActions extends sfActions{
 			break;
 		default:
   			throw new BadRequestException('Invalid type.');
-  	}  	
+  	} 
   	
-  	// Check if already exists
-  	$c = new Criteria;
-  	$c->add(SfReviewPeer::ENTITY_ID, $entityId);
-  	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
-  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId);
-  	
-  	$review = SfReviewPeer::doSelectOne( $c );
-  	if (!$review){
-  		$review = new SfReview;
-  		$review->setEntityId($entityId);
-  		$review->setSfReviewTypeId($typeId);
-  		$review->setSfGuardUserId($userId);
-  		$review->setCreatedAt(new DateTime());
-  	}
-  	else {
-  		$review->setModifiedAt(new DateTime());
-   	}
-  	$review->setValue($value);
-  	$review->setText($text);
-  	$review->setSfReviewStatusId(1);
   	try {
-  		$review->save();
-  		$entity->updateCalcs();
-  		$entity->save();
+  		$this->review = SfReviewManager::postReview($userId, $typeId, $entityId, $value, $text, $entity);
   	}
-  	catch (Exception $e){
-  		throw new Exception('Error writing review.');
+  	catch(Exception $e){
+  		echo "fail:". $e->getMessage();
   	}
 
   	return "saved.";
