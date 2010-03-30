@@ -34,3 +34,30 @@ function sq($str) {
 	
 	return $ret;
 }
+
+function sumu( $entity ){
+	$ret = 0;
+  	$culture = sfContext::getInstance()->getUser()->getCulture('es');
+  	
+  	if ($culture == 'es'){
+  		$ret = $entity->getSumu('es') + $entity->getSumu('ca'); 
+  	}
+  	else {
+  		$ret = $entity->getSumu(); 
+  	}
+  	
+  	return $ret;
+}
+function sumd( $entity ){
+	$ret = 0;
+  	$culture = sfContext::getInstance()->getUser()->getCulture('es');
+  	
+  	if ($culture == 'es'){
+  		$ret = $entity->getSumd('es') + $entity->getSumd('ca'); 
+  	}
+  	else {
+  		$ret = $entity->getSumd(); 
+  	}
+  	
+  	return $ret;
+}

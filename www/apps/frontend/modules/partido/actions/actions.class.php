@@ -66,6 +66,7 @@ class partidoActions extends sfActions
   
   public function executeRanking(sfWebRequest $request)
   {
+  	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
   	
   	$c = new Criteria();
@@ -78,6 +79,10 @@ class partidoActions extends sfActions
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->institucion = ALL_FORM_VALUE;
   	
+  				$c->addJoin(
+					array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
+					array(PartidoI18nPeer::ID, "'$culture'")
+				);
   	/* Orden de resultados
   	 * pa: positivos ascendente
   	 * pd: positivos descendente
@@ -95,15 +100,15 @@ class partidoActions extends sfActions
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
   	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
   	$this->title = $this->pageTitle . ' - Voota';
-  		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
+  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
   	}
   	else if ($o == "na"){
-  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
   	}
   	else if ($o == "nd") {
-  		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
-  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
+  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMD);
+  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
   	}
   	$this->order = $o;
   	/* Fin Orden */

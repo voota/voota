@@ -20,6 +20,8 @@ class EntityManager {
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
+  		$culture = sfContext::getInstance()->getUser()->getCulture('es');
+  		
 	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
   			//$cacheManager=new sfMemcacheCache();
@@ -38,11 +40,18 @@ class EntityManager {
   		else {  		
 		  	$c = new Criteria();
 		  	
+		  	$c->setDistinct();
 		  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
 		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
 		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+		  	
+				$c->addJoin(
+					array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
+					array(PoliticoI18nPeer::ID, "'$culture'")
+				);
+		  	
 		  	
 		  	if ($partido && $partido != ALL_URL_STRING){
 		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
@@ -59,18 +68,18 @@ class EntityManager {
 		  	 * nd: negativos descendente
 		  	 */
 		  	if ($order == "pa"){
-		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMU);
 		  	}
 		  	else if ($order == "pd") {
-		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+		  		$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
 		  	}
 		  	else if ($order == "na"){
-		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
 		  	}
 		  	else if ($order == "nd") {
-		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+		  		$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMU);
 		  	}
 		  	/* Fin Orden */
 		  	

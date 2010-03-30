@@ -52,13 +52,16 @@ class homeActions extends sfActions{
   	$this->totalUsers = sfGuardUserPeer::doCount($cuser);
   	$this->totalPoliticos = PoliticoPeer::doCount($cpol);
   	$this->totalPartidos = PartidoPeer::doCount($cpar);
+  	$culture = $this->getUser()->getCulture();
   	
    	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
   			FROM politico p
 			INNER JOIN sf_review r ON r.entity_id = p.id
 			WHERE r.is_active = 1
 			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
-			AND r.sf_review_type_id = ". Politico::NUM_ENTITY ."
+			AND r.sf_review_type_id = ". Politico::NUM_ENTITY .
+   			($culture != 'es'?" AND r.culture = '$culture' ":" ").
+			"
 			GROUP BY p.id
 			ORDER BY c desc
 			LIMIT 6";
@@ -74,7 +77,9 @@ class homeActions extends sfActions{
 			INNER JOIN sf_review r ON r.entity_id = p.id
 			WHERE r.is_active = 1
 			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
-			AND r.sf_review_type_id = ". Partido::NUM_ENTITY ."
+			AND r.sf_review_type_id = ". Partido::NUM_ENTITY .
+   			($culture != 'es'?" AND r.culture = '$culture' ":" ").
+			"
 			GROUP BY p.id
 			ORDER BY c desc
 			LIMIT 6";
@@ -109,7 +114,9 @@ class homeActions extends sfActions{
 	   	$query = "SELECT p.*, max(IFNULL(r.modified_at, r.created_at)) max
 	  			FROM politico p
 				INNER JOIN sf_review r ON r.entity_id = p.id
-				WHERE r.is_active = 1 
+				WHERE r.is_active = 1" .
+	   			($culture != 'es'?" AND r.culture = '$culture' ":" ").
+				"
 				AND r.sf_review_type_id = ". Politico::NUM_ENTITY ." ";
 		$query .= $exclude == ''?'':" and p.id not in ($exclude) ";
 		$query .= "GROUP BY p.id
@@ -131,8 +138,9 @@ class homeActions extends sfActions{
 	*/
 	
   	$c = new Criteria();
-  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	$c->addJoin(PoliticoPeer::ID, PoliticoI18nPeer::ID);
+  	$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
   	$c->setLimit(5);
   	$this->topPoliticos = PoliticoPeer::doSelect($c);
   	/*
@@ -143,8 +151,9 @@ class homeActions extends sfActions{
 	*/
   		
   	$c = new Criteria();
-  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
+  	$c->addJoin(PartidoPeer::ID, PartidoI18nPeer::ID);
+  	$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
   	$c->setLimit(5);
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->partidosMasVotados = PartidoPeer::doSelect($c);

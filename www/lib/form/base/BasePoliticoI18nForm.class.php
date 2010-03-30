@@ -19,6 +19,8 @@ abstract class BasePoliticoI18nForm extends BaseFormPropel
       'formacion'    => new sfWidgetFormInputText(),
       'presentacion' => new sfWidgetFormInputText(),
       'bio'          => new sfWidgetFormTextarea(),
+      'sumu'         => new sfWidgetFormInputText(),
+      'sumd'         => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -27,6 +29,8 @@ abstract class BasePoliticoI18nForm extends BaseFormPropel
       'formacion'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'presentacion' => new sfValidatorString(array('max_length' => 600, 'required' => false)),
       'bio'          => new sfValidatorString(array('required' => false)),
+      'sumu'         => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'sumd'         => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
     ));
 
     $this->widgetSchema->setNameFormat('politico_i18n[%s]');

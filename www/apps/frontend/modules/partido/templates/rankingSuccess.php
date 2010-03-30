@@ -78,8 +78,8 @@
         <td class="voto">
             <?php include_component_slot('quickvote', array('entity' => $partido)) ?>
         </td>
-        <td class="positive-votes"><?php echo $partido->getSumu()?></td>
-        <td class="negative-votes"><?php echo $partido->getSumd()?></td>
+        <td class="positive-votes"><?php echo sumu($partido)?></td>
+        <td class="negative-votes"><?php echo sumd($partido)?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

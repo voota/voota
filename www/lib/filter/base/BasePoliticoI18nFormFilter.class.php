@@ -15,12 +15,16 @@ abstract class BasePoliticoI18nFormFilter extends BaseFormFilterPropel
       'formacion'    => new sfWidgetFormFilterInput(),
       'presentacion' => new sfWidgetFormFilterInput(),
       'bio'          => new sfWidgetFormFilterInput(),
+      'sumu'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'sumd'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'formacion'    => new sfValidatorPass(array('required' => false)),
       'presentacion' => new sfValidatorPass(array('required' => false)),
       'bio'          => new sfValidatorPass(array('required' => false)),
+      'sumu'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'sumd'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('politico_i18n_filters[%s]');
@@ -43,6 +47,8 @@ abstract class BasePoliticoI18nFormFilter extends BaseFormFilterPropel
       'formacion'    => 'Text',
       'presentacion' => 'Text',
       'bio'          => 'Text',
+      'sumu'         => 'Number',
+      'sumd'         => 'Number',
     );
   }
 }
