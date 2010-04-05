@@ -251,6 +251,23 @@ class politicoActions extends sfActions
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
   	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
   	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
+  	if ($this->order != 'pd') {
+  		switch($this->order){
+  			case 'pa':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  				break;
+  			case 'nd':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  				break;
+  			case 'na':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  				break;
+  		}
+  		$this->pageTitle .= ", $orderTxt";
+   	}
+  	if ($page && $page != 1) {
+  		$this->pageTitle .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
+  	}
   	$this->title = $this->pageTitle . ' - Voota';
   	
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
@@ -261,6 +278,23 @@ class politicoActions extends sfActions
 	  	if ($this->institucion != '0') {
 	  		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
    		}
+  	}
+  	if ($this->order != 'pd') {
+  		switch($this->order){
+  			case 'pa':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  				break;
+  			case 'nd':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  				break;
+  			case 'na':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  				break;
+  		}
+  		$description .= ", $orderTxt";
+   	}
+  	if ($page && $page != 1) {
+  		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
   	$this->response->addMeta('Description', $description);
   	

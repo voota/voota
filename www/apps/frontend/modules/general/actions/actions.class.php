@@ -127,6 +127,10 @@ class generalActions extends sfActions{
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
+			$c->addJoin(
+				array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
+				array(PartidoI18nPeer::ID, "'$culture'")
+			);
         	$list = array();
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];
@@ -163,6 +167,11 @@ class generalActions extends sfActions{
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
+			$c->addJoin(
+				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
+				array(PoliticoI18nPeer::ID, "'$culture'")
+			);
+			
         	$list = array();
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];

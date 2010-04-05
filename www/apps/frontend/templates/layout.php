@@ -5,8 +5,8 @@
 
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<?php if ($sf_request->getParameter('sf_culture')): ?>
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_request->getParameter('sf_culture') ?>" lang="<?php echo $sf_request->getParameter('sf_culture') ?>">
+<?php if ($sf_user->getCulture()): ?>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_user->getCulture() ?>" lang="<?php echo $sf_user->getCulture() ?>">
 <?php else: ?>
 <html xmlns='http://www.w3.org/1999/xhtml'>
 <?php endif ?>
@@ -185,7 +185,7 @@
   </script>
   <script type="text/javascript">
     try {
-      var pageTracker = _gat._getTracker("UA-10529881-1");
+      var pageTracker = _gat._getTracker("<?php echo $sf_user->getCulture() == 'ca'?'UA-10529881-3':'UA-10529881-1'?>");
       pageTracker._trackPageview();
     } catch(err) {}
   </script><!-- FIN GOOGLE ANALYTICS -->
@@ -193,8 +193,8 @@
   <script type="text/javascript">
 var uservoiceOptions = {
   /* required */
-  key: 'voota',
-  host: 'voota.uservoice.com', 
+  key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
+  host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
   forum: '42379',
   showTab: true,  
   /* optional */

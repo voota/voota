@@ -68,6 +68,7 @@ class partidoActions extends sfActions
   {
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
+    $page = $this->getRequestParameter('page', 1);
   	
   	$c = new Criteria();
   	$c->addJoin(PartidoPeer::ID, PoliticoPeer::PARTIDO_ID, Criteria::LEFT_JOIN);
@@ -94,7 +95,7 @@ class partidoActions extends sfActions
   		$o = "pd";
   	}
   	if ($o == "pa"){
-  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
+  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
   	}
   	else if ($o == "pd") {
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
@@ -135,7 +136,7 @@ class partidoActions extends sfActions
   	$pager = new sfPropelPager('Partido', 20);
   	
     $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->setPage($page);
     $pager->init();
     $this->forward404Unless( $pager->getNbResults() != 0 );
     
@@ -165,6 +166,23 @@ class partidoActions extends sfActions
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
   	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
+  	if ($this->order != 'pd') {
+  		switch($this->order){
+  			case 'pa':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  				break;
+  			case 'nd':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  				break;
+  			case 'na':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  				break;
+  		}
+  		$this->pageTitle .= ", $orderTxt";
+   	}
+  	if ($page && $page != 1) {
+  		$this->pageTitle .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
+  	}
   	$this->title = $this->pageTitle . ' - Voota';
   	$this->response->addMeta('Title', $this->title);
   	
@@ -175,6 +193,23 @@ class partidoActions extends sfActions
   				$description .= ($idx==0?"":", ") . $partido->getAbreviatura();	
   			}  			
   		}
+  	}
+  	if ($this->order != 'pd') {
+  		switch($this->order){
+  			case 'pa':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  				break;
+  			case 'nd':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  				break;
+  			case 'na':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  				break;
+  		}
+  		$description .= ", $orderTxt";
+   	}
+  	if ($page && $page != 1) {
+  		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
   	$this->response->addMeta('Description', $description);
   }
