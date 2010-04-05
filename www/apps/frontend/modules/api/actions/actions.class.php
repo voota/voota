@@ -170,21 +170,7 @@ class apiActions extends sfActions{
   			throw new BadRequestException('Invalid sort value.');
    	}
    	
-  	$c = new Criteria();
-  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
-  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
-  	if($sort == 'negative') {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-  	}
-  	else {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-   	}
-  	$pager = new sfPropelPager('Politico', $limit);
-	$c->setDistinct();
-	
-    $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', $page));
-    $pager->init();
+   	$pager = EntityManager::getPoliticos("", "", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"pa", $limit);
     
     $entities = array();
     foreach ($pager->getResults() as $politico){
@@ -212,20 +198,8 @@ class apiActions extends sfActions{
   	if ($sort != 'positive' && $sort != 'negative'){
   			throw new BadRequestException('Invalid sort value.');
    	}
-   	
-  	$c = new Criteria();
-  	if($sort == 'negative') {
-  		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
-  	}
-  	else {
-  		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-   	}
-  	$pager = new sfPropelPager('Partido', $limit);
-	$c->setDistinct();
-	
-    $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', $page));
-    $pager->init();
+   	  	
+   	$pager = EntityManager::getPartidos("", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"pa", $limit);
     
     $entities = array();
     foreach ($pager->getResults() as $partido){

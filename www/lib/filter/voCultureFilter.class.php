@@ -27,7 +27,7 @@ class voCultureFilter extends sfGuardBasicSecurityFilter
   	$user = sfContext::getInstance()->getUser();
   	
   	$host = @$_SERVER['HTTP_HOST'];
-  	if (preg_match("/\.([a-zA-Z]*)$/", $host, $matches)) {
+  	if (preg_match("/\.([a-zA-Z]*)(\:[0-9]*)?$/", $host, $matches)) {
   		if (in_array($matches[1], array('es', 'cat'))){
   			$culture = self::$domains[ $matches[1] ];
   			$user->setCulture( $culture );

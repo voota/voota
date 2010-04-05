@@ -17,6 +17,7 @@
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 
+define("ALL_URL_STRING", 'all');
 define("ALL_FORM_VALUE", '0');
 
 class partidoActions extends sfActions
@@ -69,78 +70,20 @@ class partidoActions extends sfActions
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
     $page = $this->getRequestParameter('page', 1);
+  	$this->order = $request->getParameter("o", "pd");  	
   	
-  	$c = new Criteria();
-  	$c->addJoin(PartidoPeer::ID, PoliticoPeer::PARTIDO_ID, Criteria::LEFT_JOIN);
-  	$c->addJoin(PoliticoPeer::ID, PoliticoInstitucionPeer::POLITICO_ID, Criteria::LEFT_JOIN);
-  	$c->addJoin(PoliticoInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID, Criteria::LEFT_JOIN);
-  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID, Criteria::LEFT_JOIN);
-  	$c->setDistinct();
-  	$c->add(PartidoPeer::ABREVIATURA, null, Criteria::ISNOTNULL);
-  	$c->add(PartidoPeer::IS_ACTIVE, true);
-  	$this->institucion = ALL_FORM_VALUE;
-  	
-  				$c->addJoin(
-					array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
-					array(PartidoI18nPeer::ID, "'$culture'")
-				);
-  	/* Orden de resultados
-  	 * pa: positivos ascendente
-  	 * pd: positivos descendente
-  	 * na: negativos ascendente
-  	 * nd: negativos descendente
-  	 */
-  	$o = $request->getParameter("o");
-  	if (!$o){
-  		$o = "pd";
-  	}
-  	if ($o == "pa"){
-  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
-  	}
-  	else if ($o == "pd") {
-  	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
-  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
-  	$this->title = $this->pageTitle . ' - Voota';
-  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
-  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
-  	}
-  	else if ($o == "na"){
-  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
-  	}
-  	else if ($o == "nd") {
-  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMD);
-  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
-  	}
-  	$this->order = $o;
-  	/* Fin Orden */
-  	
-	/* Calcula totales. Ver impacto en rendimiento */
-    $allPartidos = PartidoPeer::doSelect( $c );    
-    $this->totalUp = 0;
-    $this->totalDown = 0;
-    foreach ($allPartidos as $aPartido){
-	    	$this->totalUp += $aPartido->getSumu();
-    	$this->totalDown += $aPartido->getSumd();
-    }
-	/* Fin Calcula totales */  
+  	$this->partidosPager = EntityManager::getPartidos($institucion, $culture, $page, $this->order, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
+  	 
+    $this->totalUp = $totalUp;
+    $this->totalDown = $totalDown;
     	
-  	if ($institucion){
-  		$this->institucion = $institucion; 
-  		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
-  		
+  	$this->institucion = $institucion;
+  	if ($institucion){ 
   		$aInstitucionCriteria = new Criteria();
 		$aInstitucionCriteria->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
   		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
   	}
-  	$pager = new sfPropelPager('Partido', 20);
-  	
-    $pager->setCriteria($c);
-    $pager->setPage($page);
-    $pager->init();
-    $this->forward404Unless( $pager->getNbResults() != 0 );
-    
-    $this->partidosPager = $pager;
     
     /* Lista de instituciones */ 
   	$c = new Criteria();
@@ -152,7 +95,7 @@ class partidoActions extends sfActions
   	//$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
-  		if ($name != 'module' && $name != 'action'){
+  		if ($name != 'module' && $name != 'action' && $name != 'o'){
   			if ($params === ""){
   				$params .= "?";
   			}
@@ -165,8 +108,8 @@ class partidoActions extends sfActions
   	$this->route = "partido/ranking$params";
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de partidos', array());
-  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
-  	if ($this->order != 'pd') {
+  	$this->pageTitle .= (!$this->institucion || $this->institucion=='0' || !isset($aInstitucion))?'':", " . $aInstitucion->getNombre();
+  	if ($this->order && $this->order != 'pd') {
   		switch($this->order){
   			case 'pa':
   				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');

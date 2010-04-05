@@ -151,7 +151,7 @@ class politicoActions extends sfActions
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
-  	$culture = $request->getParameter("sf_culture");
+  	$culture = $this->getUser()->getCulture("es");
   	$partido = $request->getParameter("partido", ALL_FORM_VALUE);
   	$institucion = $request->getParameter("institucion", ALL_FORM_VALUE);
   	$page = $request->getParameter("page", 1);
@@ -236,7 +236,7 @@ class politicoActions extends sfActions
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
-  		if ($name != 'module' && $name != 'action'){
+  		if ($name != 'module' && $name != 'action' && $name != 'o'){
   			if ($params === ""){
   				$params .= "?";
   			}
