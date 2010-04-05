@@ -26,7 +26,8 @@
       <?php echo jq_form_remote_tag(array(
     	'update'   => "more_fr_${value}_".$reviewsPager->getPage(),
     	'url'      => "sfReviewFront/filteredList",
-      	'before'   => "re_loading( 'more_fr_". $value ."_". $reviewsPager->getPage() ."' )"
+      	'before'   => "re_loading( 'more_fr_". $value ."_". $reviewsPager->getPage() ."' )",
+        'complete'	   => "FB.XFBML.Host.parseDomTree()"
 		),
         array('id' => "frm_fr_${value}_"
       )) ?>

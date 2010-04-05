@@ -45,14 +45,12 @@ class EntityManager {
 		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
-		  	
-				$c->addJoin(
-					array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
-					array(PoliticoI18nPeer::ID, "'$culture'")
-				);
-		  	
-		  	
+		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
+			$c->addJoin(
+				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
+				array(PoliticoI18nPeer::ID, "'$culture'")
+			);
+		  			  	
 		  	if ($partido && $partido != ALL_URL_STRING){
 		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
 		  	}
@@ -83,21 +81,33 @@ class EntityManager {
 		  	}
 		  	/* Fin Orden */
 		  	
-			$c->setDistinct();
+			//$c->setDistinct();
+		    
+	    	/* Calcula totales. Ver impacto en rendimiento */
+  			$query = "SELECT sum(sumu) as total_u, sum(sumd) as total_d 
+  				FROM `politico`
+  				INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID
+  				INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID 
+  				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
+  				INNER JOIN `politico_i18n` ON (politico.ID=politico_i18n.ID AND politico_i18n.culture = '$culture') 
+  				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
+  				WHERE politico.VANITY IS NOT NULL ".
+  				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA='$partido' ":" ") .
+  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY='$institucion' ":" ") .
+  				"";
+		   	$connection = Propel::getConnection();
+			$statement = $connection->prepare($query);
+			$statement->execute();
+			$results = $statement->fetchAll();
+			foreach($results as $result){
+				$totalUp = $result['total_u'];
+				$totalDown = $result['total_d'];
+			}					  	
+			/* Fin Calcula totales */
 		    
 		    $pager->setCriteria($c);
 		    $pager->setPage( $page );
-		    $pager->init();
-		    
-	    	/* Calcula totales. Ver impacto en rendimiento */ 
-		    $allPoliticos = PoliticoPeer::doSelect( $c );    
-		    $totalUp = 0;
-		    $totalDown = 0;
-		    foreach ($allPoliticos as $aPolitico){
-			    $totalUp += $aPolitico->getSumu();
-		    	$totalDown += $aPolitico->getSumd();
-		    }
-			/* Fin Calcula totales */
+		    $pager->init();		    
 		    
 	  		if ($cacheManager != null) {
 	  			$cacheManager->set($key,serialize($pager), 3600);

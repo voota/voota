@@ -12,46 +12,50 @@ ALTER TABLE `voota`.`politico_i18n` ADD COLUMN `sumd` INT(11) NOT NULL DEFAULT 0
 
 UPDATE politico_i18n
 INNER JOIN (
-	SELECT r.entity_id, count(*) as cnt
+	SELECT r.entity_id, sum(r.value=1) as cnt, sum(r.value=-1) as cntd
 	FROM sf_review r
 	WHERE r.sf_review_type_id = 1
 	AND (r.culture = 'es' OR r.culture IS NULL)
 	GROUP BY r.entity_id
 ) r ON politico_i18n.id=r.entity_id
 SET sumu = r.cnt
+, sumd = r.cntd
 WHERE culture = 'es';
 
 UPDATE politico_i18n
 INNER JOIN (
-	SELECT r.entity_id, count(*) as cnt
+	SELECT r.entity_id, sum(r.value=1) as cnt, sum(r.value=-1) as cntd
 	FROM sf_review r
 	WHERE r.sf_review_type_id = 1
 	AND (r.culture = 'ca' OR r.culture IS NULL)
 	GROUP BY r.entity_id
 ) r ON politico_i18n.id=r.entity_id
 SET sumu = r.cnt
+, sumd = r.cntd
 WHERE culture = 'ca';
 
 UPDATE partido_i18n
 INNER JOIN (
-	SELECT r.entity_id, count(*) as cnt
+	SELECT r.entity_id, sum(r.value=1) as cnt, sum(r.value=-1) as cntd
 	FROM sf_review r
 	WHERE r.sf_review_type_id = 2
 	AND (r.culture = 'es' OR r.culture IS NULL)
 	GROUP BY r.entity_id
 ) r ON partido_i18n.id=r.entity_id
 SET sumu = r.cnt
+, sumd = r.cntd
 WHERE culture = 'es';
 
 UPDATE partido_i18n
 INNER JOIN (
-	SELECT r.entity_id, count(*) as cnt
+	SELECT r.entity_id, sum(r.value=1) as cnt, sum(r.value=-1) as cntd
 	FROM sf_review r
 	WHERE r.sf_review_type_id = 2
 	AND (r.culture = 'ca' OR r.culture IS NULL)
 	GROUP BY r.entity_id
 ) r ON partido_i18n.id=r.entity_id
 SET sumu = r.cnt
+, sumd = r.cntd
 WHERE culture = 'ca';
 
 SET SQL_MODE=@OLD_SQL_MODE;

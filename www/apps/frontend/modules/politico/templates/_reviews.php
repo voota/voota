@@ -26,6 +26,7 @@
       <?php echo jq_form_remote_tag(array(
     	'update'   => "more_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD),
     	'url'      => "@politico_more_comments",
+        'complete'	   => "FB.XFBML.Host.parseDomTree()"
 		),
         array('id' => "frm_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD)
       )) ?>
