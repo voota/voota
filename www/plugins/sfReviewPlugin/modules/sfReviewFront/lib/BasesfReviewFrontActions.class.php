@@ -263,6 +263,8 @@ class BasesfReviewFrontActions extends sfActions
   	$type = $request->getParameter("t", false);
   	$entityId = $request->getParameter("e", false);
   	$value = $request->getParameter("v", false);
+  	$rm = $request->getParameter("rm", false);
+  	
   	$this->review = false;
   	
   	switch($type) {
@@ -277,7 +279,7 @@ class BasesfReviewFrontActions extends sfActions
   	}  	
   	
   	try {  	
-  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, false, $this->entity);
+  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, false, $this->entity, $rm);
   	}
   	catch(Exception $e){
   		echo "fail:". $e->getMessage();

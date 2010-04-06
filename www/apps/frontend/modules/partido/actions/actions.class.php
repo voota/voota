@@ -160,6 +160,8 @@ class partidoActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
   	$abreviatura = $request->getParameter('id');
+  	$culture = $this->getUser()->getCulture("es");
+  	
   	$this->institucion = $request->getParameter("institucion");
   	if ($this->institucion == ''){
   		$this->institucion = "0";
@@ -252,10 +254,16 @@ class partidoActions extends sfActions
     
     // Politicos mas votados
     $c = new Criteria();
+	$c->addJoin(
+		array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
+		array(PoliticoI18nPeer::ID, "'$culture'")
+		, Criteria::LEFT_JOIN
+	);
+    
   	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
   	$c->add(PoliticoPeer::PARTIDO_ID, $this->partido->getId());
-  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
   	
   	$this->politicos = new sfPropelPager('Politico', 6);
   	

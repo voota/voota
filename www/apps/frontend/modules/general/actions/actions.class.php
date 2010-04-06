@@ -170,6 +170,7 @@ class generalActions extends sfActions{
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
 				array(PoliticoI18nPeer::ID, "'$culture'")
+				, Criteria::LEFT_JOIN
 			);
 			
         	$list = array();

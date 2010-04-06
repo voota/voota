@@ -197,7 +197,9 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false ){
+  	$prevValue = false;
+  	
   	if (!$entityId || !$value || !$typeId){
   		throw new Exception("Not enough parameters.");
   	}
@@ -220,6 +222,12 @@ class BaseSfReviewManager
   		$review->setCreatedAt(new DateTime());
   	}
   	else {
+  		if ($rm && $value == $review->getValue() && $review->getIsActive()) {
+  			$review->setIsActive(false);
+  		}
+  		else {  			
+  			$review->setIsActive(true);
+  		}
   		$review->setModifiedAt(new DateTime());
    	}
   	$review->setValue($value);
@@ -237,6 +245,6 @@ class BaseSfReviewManager
   		throw new Exception('Error writing review.');
   	}
   	
-  	return $review;
+  	return $review->getIsActive()?$review:false;
   }  
 }

@@ -82,7 +82,7 @@ partido_es:
   requirements:
     sf_host_culture: es
   
-partido_cat:
+partido_ca:
   url: /partit/:id
   param: { module: partido, action: show }
   class:  sfRequestHostCultureRoute

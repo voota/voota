@@ -48,6 +48,7 @@ class EntityManager {
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
 				array(PoliticoI18nPeer::ID, "'$culture'")
+				, Criteria::LEFT_JOIN
 			);
 		  			  	
 		  	if ($partido && $partido != ALL_URL_STRING){
@@ -88,7 +89,7 @@ class EntityManager {
   				INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID
   				INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID 
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
-  				INNER JOIN `politico_i18n` ON (politico.ID=politico_i18n.ID AND politico_i18n.culture = '$culture') 
+  				LEFT JOIN `politico_i18n` ON (politico.ID=politico_i18n.ID AND politico_i18n.culture = '$culture') 
   				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
   				WHERE politico.VANITY IS NOT NULL ".
   				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA='$partido' ":" ") .
@@ -141,6 +142,7 @@ class EntityManager {
 			$c->addJoin(
 				array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
 				array(PartidoI18nPeer::ID, "'$culture'")
+				, Criteria::LEFT_JOIN
 			);
 		  			  	
 		  	if ($institucion && $institucion != ALL_URL_STRING){
@@ -148,6 +150,11 @@ class EntityManager {
 			  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 			  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 			  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
+				$c->addJoin(
+					array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
+					array(InstitucionI18nPeer::ID, "'$culture'")
+					, Criteria::LEFT_JOIN
+				);
 		  		$c->add(InstitucionI18nPeer::VANITY, $institucion);
 		  	}
 		  	
@@ -184,7 +191,7 @@ class EntityManager {
   				INNER JOIN `politico_institucion` ON politico_institucion.Politico_ID = politico.ID
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ":" ").
-  				" INNER JOIN `partido_i18n` ON (partido.ID=partido_i18n.ID AND partido_i18n.culture = '$culture') ".
+  				" LEFT JOIN `partido_i18n` ON (partido.ID=partido_i18n.ID AND partido_i18n.culture = '$culture') ".
   				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY='$institucion' ":" ") .
   				"";
 		   	$connection = Propel::getConnection();

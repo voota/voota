@@ -472,3 +472,10 @@ table.sparkline td {padding:0px;}
 
 #partido-show .active { text-decoration:none; color:#333333; font-weight:bold; }
 .highlight_word {font-weight:bold;}
+
+.quickvote_hand {
+	text-align: right; width:2.2em; float:left;
+}
+.left_hand {
+	margin:0px 25px 0px 0px;
+}

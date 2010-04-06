@@ -23,17 +23,14 @@ class PartidoForm extends BasePartidoForm
   	unset(
   		$this['partido_lista_list']
   		, $this['created_at']
-  		, $this['partido_id']
-    	, $this['sumu']
-    	, $this['sumd']  
-    	, $this['sumd']   		  		
+  		, $this['partido_id']    		  		
   	);
     
     
     $this->embedI18n(array('es', 'ca'));
     
-    $this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();
-    $this->widgetSchema['sumd'] = new sfWidgetFormInputHidden();
+    //$this->widgetSchema['sumu'] = new sfWidgetFormInputHidden();
+    //$this->widgetSchema['sumd'] = new sfWidgetFormInputHidden();
 	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
    'label'     => 'Imagen Principal',
    'file_src'  => S3Voota::getImagesUrl().'/partidos/cc_s_'.$this->getObject()->getImagen(),
@@ -48,8 +45,8 @@ class PartidoForm extends BasePartidoForm
 	'path' => sfConfig::get('sf_upload_dir').'/partidos',
    'validated_file_class' => 'sfResizedFile',
 	));
-    $this->validatorSchema['sumu'] = new sfValidatorString(array('required' => true));  
-    $this->validatorSchema['sumd'] = new sfValidatorString(array('required' => true));  
+    //$this->validatorSchema['sumu'] = new sfValidatorString(array('required' => true));  
+    //$this->validatorSchema['sumd'] = new sfValidatorString(array('required' => true));  
   
 	if (!$this->isNew()) {
 		// embed all enlace forms
