@@ -94,5 +94,5 @@
 </table>
 
 <p class="pagination">
-  <?php include_partial('global/pagination_full', array('pager' => $politicosPager, 'url' => "$route".(!preg_match("/\?/",$route)?'?':'&'), 'page_var' => "page", 'order' => $order)) ?>
+  <?php include_partial('global/pagination_full', array('pager' => $politicosPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>
 </p>

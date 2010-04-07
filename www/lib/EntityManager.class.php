@@ -47,7 +47,7 @@ class EntityManager {
 		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
-				array(PoliticoI18nPeer::ID, "'$culture'")
+				array (PoliticoI18nPeer::ID, "'$culture'")
 				, Criteria::LEFT_JOIN
 			);
 		  			  	
@@ -66,30 +66,29 @@ class EntityManager {
 		  	 * nd: negativos descendente
 		  	 */
 		  	if ($order == "pa"){
-		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
 		  	}
 		  	else if ($order == "pd") {
-		  		$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
-		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
+		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
 		  	}
 		  	else if ($order == "na"){
-		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
 		  	}
 		  	else if ($order == "nd") {
-		  		$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMD);
-		  		$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMU);
+		  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
 		  	}
 		  	/* Fin Orden */
 		  	
 			//$c->setDistinct();
 		    
 	    	/* Calcula totales. Ver impacto en rendimiento */
-  			$query = "SELECT sum(sumu) as total_u, sum(sumd) as total_d 
+  			$query = "SELECT sum(politico.sumu) as total_u, sum(politico.sumd) as total_d 
   				FROM `politico`
   				INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID
   				INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID 
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
-  				LEFT JOIN `politico_i18n` ON (politico.ID=politico_i18n.ID AND politico_i18n.culture = '$culture') 
   				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
   				WHERE politico.VANITY IS NOT NULL ".
   				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA='$partido' ":" ") .
@@ -167,31 +166,30 @@ class EntityManager {
 		  	 * nd: negativos descendente
 		  	 */
 		  	if ($order == "pa"){
-		  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
 		  	}
 		  	else if ($order == "pd") {
-		  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
-		  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
+		  		$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
 		  	}
 		  	else if ($order == "na"){
-		  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
 		  	}
 		  	else if ($order == "nd") {
-		  		$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMD);
-		  		$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMU);
+		  		$c->addDescendingOrderByColumn(PartidoPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PartidoPeer::SUMU);
 		  	}
 		  	/* Fin Orden */
 		  	
 			//$c->setDistinct();
 		    
 	    	/* Calcula totales. Ver impacto en rendimiento */
-  			$query = "SELECT sum(sumu) as total_u, sum(sumd) as total_d 
+  			$query = "SELECT sum(partido.sumu) as total_u, sum(partido.sumd) as total_d 
   				FROM `partido` ".
   				(($institucion && $institucion != ALL_URL_STRING)?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
   				INNER JOIN `politico_institucion` ON politico_institucion.Politico_ID = politico.ID
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ":" ").
-  				" LEFT JOIN `partido_i18n` ON (partido.ID=partido_i18n.ID AND partido_i18n.culture = '$culture') ".
   				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY='$institucion' ":" ") .
   				"";
 		   	$connection = Propel::getConnection();

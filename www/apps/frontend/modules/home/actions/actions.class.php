@@ -60,7 +60,6 @@ class homeActions extends sfActions{
 			WHERE r.is_active = 1
 			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 			AND r.sf_review_type_id = ". Politico::NUM_ENTITY .
-   			($culture != 'es'?" AND r.culture = '$culture' ":" ").
 			"
 			GROUP BY p.id
 			ORDER BY c desc
@@ -78,7 +77,6 @@ class homeActions extends sfActions{
 			WHERE r.is_active = 1
 			AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 			AND r.sf_review_type_id = ". Partido::NUM_ENTITY .
-   			($culture != 'es'?" AND r.culture = '$culture' ":" ").
 			"
 			GROUP BY p.id
 			ORDER BY c desc
@@ -138,9 +136,8 @@ class homeActions extends sfActions{
 	*/
 	
   	$c = new Criteria();
-  	$c->addJoin(PoliticoPeer::ID, PoliticoI18nPeer::ID);
-  	$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
   	$c->setLimit(5);
   	$this->topPoliticos = PoliticoPeer::doSelect($c);
   	/*
@@ -151,9 +148,8 @@ class homeActions extends sfActions{
 	*/
   		
   	$c = new Criteria();
-  	$c->addJoin(PartidoPeer::ID, PartidoI18nPeer::ID);
-  	$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PartidoI18nPeer::SUMD);
+  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PartidoPeer::SUMD);
   	$c->setLimit(5);
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->partidosMasVotados = PartidoPeer::doSelect($c);

@@ -280,4 +280,7 @@ api_demo_put:
 api_demo_reviews:
   url:   /api_demo/reviews
   param: { module: api_demo, action: reviews }
+api_demo_search:
+  url:   /api_demo/search
+  param: { module: api_demo, action: search }
   

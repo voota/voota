@@ -91,7 +91,7 @@ class apiActions extends sfActions{
 	        	}
 	        	
 	        	$c->add(PartidoPeer::ID, $list, Criteria::IN);
-	  			$c->addDescendingOrderByColumn(PartidoPeer::SUMU);  					  			
+	  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);  					  			
 			  	$pager = new sfPropelPager('Partido', $limit);
 			    $pager->setCriteria($c);
 			    $pager->setPage($this->getRequestParameter('page', $page));
@@ -115,7 +115,7 @@ class apiActions extends sfActions{
 	        	
 				$c = new Criteria;
 	        	$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-	  			$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);  					  			
+	  			//$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);  					  			
 			  	$pager = new sfPropelPager('Politico', $limit);
 			    $pager->setCriteria($c);
 			    $pager->setPage($this->getRequestParameter('page', $page));
@@ -170,9 +170,9 @@ class apiActions extends sfActions{
   			throw new BadRequestException('Invalid sort value.');
    	}
    	
-   	$pager = EntityManager::getPoliticos("", "", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"pa", $limit);
+   	$pager = EntityManager::getPoliticos("", "", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"nd", $limit);
     
-    $entities = array();
+   	$entities = array();
     foreach ($pager->getResults() as $politico){
     	$entities[] = new Entity( $politico ); 	
     }
@@ -199,7 +199,7 @@ class apiActions extends sfActions{
   			throw new BadRequestException('Invalid sort value.');
    	}
    	  	
-   	$pager = EntityManager::getPartidos("", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"pa", $limit);
+   	$pager = EntityManager::getPartidos("", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"nd", $limit);
     
     $entities = array();
     foreach ($pager->getResults() as $partido){

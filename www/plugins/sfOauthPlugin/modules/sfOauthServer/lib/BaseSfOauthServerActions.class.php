@@ -96,28 +96,38 @@ class BaseSfOauthServerActions extends sfActions
   	
   	$authorized = $request->getParameter('authorized', '');
   	
-	$store = $this->getStore();
-  	$server = new OAuthServer();
+	sfContext::getInstance()->getLogger()->debug( "executeAuthorize: authorized: $authorized");
   	
+	$store = $this->getStore();
+	$server = new OAuthServer();
+	
     if ( $request->isMethod('post') ) {
     	if (!$authorized){
 			header('HTTP/1.1 401 Not authorized');
 			header('Content-Type: text/plain');
 			
+			sfContext::getInstance()->getLogger()->warning( "Not authorized by user." );
 			echo "Not authorized.";
 			die;    		
     	}
 	  	try
 		{
+			sfContext::getInstance()->getLogger()->debug( "executeAuthorize: calling authorizeVerify");
 			$server->authorizeVerify();
+			sfContext::getInstance()->getLogger()->debug( "executeAuthorize: calling authorizeFinish");
 			$server->authorizeFinish(true, $this->getUser()->getGuardUser()->getId());
 			if ($this->oauth_callback){
+				sfContext::getInstance()->getLogger()->info( "Authorized invoking callback." );
+				
 				header('Location: '. $this->oauth_callback);
 				die;
 			}
+			sfContext::getInstance()->getLogger()->info( "Authorized." );
 		}
 		catch (OAuthException $e)
 		{
+			sfContext::getInstance()->getLogger()->err( "Failed OAuth Request: " . $e->getMessage() );
+			
 			header('HTTP/1.1 400 Bad Request');
 			header('Content-Type: text/plain');
 			
@@ -131,13 +141,39 @@ class BaseSfOauthServerActions extends sfActions
   	$store = $this->getStore();
   	$server = new OAuthServer();
   	
-	$server->requestToken();
+	try
+	{
+		$server->requestToken();
+		sfContext::getInstance()->getLogger()->info( "Got request token " );
+		die;
+	}	
+	catch (OAuthException $e)
+	{
+		sfContext::getInstance()->getLogger()->err( "Request token: OAuth Execption: " . $e->getMessage() );
+	}	
+	catch (Exception $e)
+	{
+		sfContext::getInstance()->getLogger()->err( "Request token error: " . $e->getMessage() );
+	}	
   }
   
   public function executeAccessToken(sfWebRequest $request){
 	$store = $this->getStore();	
   	$server = new OAuthServer(  );
   	
-	$server->accessToken();
+	try
+	{
+		$server->accessToken();
+		sfContext::getInstance()->getLogger()->info( "Got access token " );
+		die;
+	}	
+	catch (OAuthException $e)
+	{
+		sfContext::getInstance()->getLogger()->err( "Access token: OAuth Execption: " . $e->getMessage() );
+	}	
+	catch (Exception $e)
+	{
+		sfContext::getInstance()->getLogger()->err( "Access token error: " . $e->getMessage() );
+	}	
   }
 }

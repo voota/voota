@@ -18,8 +18,6 @@ abstract class BasePartidoI18nForm extends BaseFormPropel
       'culture'      => new sfWidgetFormInputHidden(),
       'nombre'       => new sfWidgetFormInputText(),
       'presentacion' => new sfWidgetFormInputText(),
-      'sumu'         => new sfWidgetFormInputText(),
-      'sumd'         => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -27,8 +25,6 @@ abstract class BasePartidoI18nForm extends BaseFormPropel
       'culture'      => new sfValidatorPropelChoice(array('model' => 'PartidoI18n', 'column' => 'culture', 'required' => false)),
       'nombre'       => new sfValidatorString(array('max_length' => 150)),
       'presentacion' => new sfValidatorString(array('max_length' => 600)),
-      'sumu'         => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
-      'sumd'         => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
     ));
 
     $this->widgetSchema->setNameFormat('partido_i18n[%s]');

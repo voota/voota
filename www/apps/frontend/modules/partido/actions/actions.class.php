@@ -95,7 +95,7 @@ class partidoActions extends sfActions
   	//$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
-  		if ($name != 'module' && $name != 'action' && $name != 'o'){
+  		if ($name != 'module' && $name != 'action' && $name != 'o' && $name != 'page'){
   			if ($params === ""){
   				$params .= "?";
   			}
@@ -136,6 +136,9 @@ class partidoActions extends sfActions
   				$description .= ($idx==0?"":", ") . $partido->getAbreviatura();	
   			}  			
   		}
+  	}
+  	if ($this->partidosPager->getNbResults() > 5){
+  		$description .= ', ...';
   	}
   	if ($this->order != 'pd') {
   		switch($this->order){

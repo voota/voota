@@ -84,6 +84,8 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     imagen: { type: VARCHAR, size: '50', required: false }
+    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     is_active: { type: boolean, required: true, default: false }
     is_main: { type: boolean, required: true, default: false }
     _indexes: { fk_partido_partido: [partido_id] }
@@ -94,8 +96,6 @@ propel:
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
     presentacion: { type: VARCHAR, size: '600', required: true }
-    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
-    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     _indexes: { fk_partido_i18n_1: [id] }
   partido_lista:
     _attributes: { phpName: PartidoLista }
@@ -122,6 +122,8 @@ propel:
     imagen: { type: VARCHAR, size: '50', required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     lugar_nacimiento: { type: VARCHAR, size: '150', required: false }
+    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     relacion: { type: CHAR, size: '2', required: false }
     hijos: { type: INTEGER, size: '11', required: false }
     hijas: { type: INTEGER, size: '11', required: false }
@@ -134,8 +136,6 @@ propel:
     formacion: { type: VARCHAR, size: '255', required: false }
     presentacion: { type: VARCHAR, size: '600', required: false }
     bio: { type: CLOB, required: false }
-    sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
-    sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     _indexes: { fk_politico_i18n_1: [id] }
   politico_institucion:
     _attributes: { phpName: PoliticoInstitucion }

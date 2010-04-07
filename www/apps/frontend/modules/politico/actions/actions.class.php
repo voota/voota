@@ -206,10 +206,9 @@ class politicoActions extends sfActions
 	  	$c->setDistinct();
   		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
   	}
-  	$c->addJoin(PartidoPeer::ID, PartidoI18nPeer::ID);
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$c->add(PartidoPeer::IS_MAIN, true);
-  	$c->addDescendingOrderByColumn(PartidoI18nPeer::SUMU);
+  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
   	$this->partidos = PartidoPeer::doSelect( $c );
   	$this->partidos_arr = array();
   	$this->partidos_arr["0"] = sfContext::getInstance()->getI18N()->__('Todos los partidos');
@@ -236,7 +235,7 @@ class politicoActions extends sfActions
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
-  		if ($name != 'module' && $name != 'action' && $name != 'o'){
+  		if ($name != 'module' && $name != 'action' && $name != 'o' && $name != 'page'){
   			if ($params === ""){
   				$params .= "?";
   			}
@@ -250,7 +249,10 @@ class politicoActions extends sfActions
   	
   	$this->pageTitle = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
   	$this->pageTitle .= $this->partido=='all'?'':', '.$this->partido;
-  	$this->pageTitle .= $this->institucion=='0'?'':", " . $aInstitucion->getNombre();
+  	$this->pageTitle .= $this->institucion=='0'?'':", ";
+  	if (isset($aInstitucion)){
+  		$this->pageTitle .= $aInstitucion->getNombre();
+  	}
   	if ($this->order != 'pd') {
   		switch($this->order){
   			case 'pa':

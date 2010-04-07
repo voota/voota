@@ -37,7 +37,6 @@ class oauthSecurityManager extends sfBasicSecurityFilter
   		$host = $matches[2];
   	}  	
 
-  	sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::storeInstance 1" );
   	$store = OAuthStore::instance('MySQL', array(
 							'server' => $host
 							, 'username' => $dbConf['datasources']['propel']['connection']['user']
@@ -47,7 +46,8 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 						); 
 					
 	if (!$store){
-  		throw new OAuthException("Cannot connect to database.");
+  		sfContext::getInstance()->getLogger()->err( "Cannot connect to database." );
+		throw new OAuthException("Cannot connect to database.");
 	}
 	
 	return $store;
