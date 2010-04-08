@@ -54,6 +54,7 @@ class homeActions extends sfActions{
   	$this->totalPartidos = PartidoPeer::doCount($cpar);
   	$culture = $this->getUser()->getCulture();
   	
+  	/*
    	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
   			FROM politico p
 			INNER JOIN sf_review r ON r.entity_id = p.id
@@ -107,7 +108,11 @@ class homeActions extends sfActions{
 			}
 		//}
 	}
-		
+	*/
+	
+	$this->reviewables = EntityManager::getTopEntities();
+	
+	/*
 	if (count($this->politicosMasVotadosUltimamente) < 6) {
 	   	$query = "SELECT p.*, max(IFNULL(r.modified_at, r.created_at)) max
 	  			FROM politico p
@@ -128,6 +133,7 @@ class homeActions extends sfActions{
 		$statement->execute();
 		$this->politicosMasVotadosUltimamenteCont = $statement->fetchAll(PDO::FETCH_CLASS, 'Politico');
 	}
+	*/
 	/*
 	foreach($this->politicosMasVotadosUltimamente as $politico){
 		echo $politico->getNombre(). " ".$politico->getApellidos()."(".$politico->getPartido().")"."<br>";

@@ -260,7 +260,7 @@ class EntityManager {
 		    			$isPartido = true;
 					}
 				}
-				if(!$isPartido && count($entities) < $limit) {
+				if(count($entities) < $limit) {
 	    			$entities[] = new Entity( $politico );
 					$exclude .= ($exclude == ''?'':', ').  $politico->getId();
 				}
