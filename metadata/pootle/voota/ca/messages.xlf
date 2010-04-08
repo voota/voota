@@ -2239,6 +2239,30 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>Publicar en mi Facebook</source>
         <target>Publicar al meu Facebook</target>
       </trans-unit>
+      <trans-unit id="448">
+        <source>votos positivos inverso</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="449">
+        <source>votos negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="450">
+        <source>votos negativos inverso</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="451">
+        <source>(Pág. %1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="452">
+        <source>Voto múltiple</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="453">
+        <source>Votos y opiniones de %1% sobre políticos y partidos de España</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
