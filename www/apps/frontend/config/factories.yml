@@ -17,7 +17,7 @@ prod:
     class: sfViewCacheManager
     param:
       cache_key_use_vary_headers: true
-      cache_key_use_host_name:    false
+      cache_key_use_host_name:    true
 cli:
   controller:
     class: sfConsoleController
