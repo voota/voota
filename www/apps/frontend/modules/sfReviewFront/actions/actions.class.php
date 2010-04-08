@@ -37,16 +37,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	private function clearCache( $politico ) {
 	  	$cacheManager = $this->getContext()->getViewCacheManager();
 	  	if ($cacheManager != null) {
-	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=es");
-	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
+	    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."");
 	  	}
 	}
   	
 	private function clearCachePartido( $partido ) {
 	  	$cacheManager = $this->getContext()->getViewCacheManager();
 	  	if ($cacheManager != null) {
-	  		$cacheManager->remove("partido/show?id=".$partido->getAbreviatura()."&sf_culture=es");
-	  		$cacheManager->remove("partido/show?id=".$partido->getAbreviatura()."&sf_culture=ca");
+	  		$cacheManager->remove("partido/show?id=".$partido->getAbreviatura()."");
 	  	}
 	}
 	

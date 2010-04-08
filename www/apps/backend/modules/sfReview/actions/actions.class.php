@@ -24,8 +24,7 @@ class sfReviewActions extends BaseSfReviewActions
 		   	}
 		   	if ($review->getSfReviewTypeId() == 1){
 		   		$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
-		  		$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=es");
-		    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
+		    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."");
 		   	}
 	  	}
 		parent::executeUpdate( $request );

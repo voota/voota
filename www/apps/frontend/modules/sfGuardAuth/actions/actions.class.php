@@ -453,8 +453,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 			  	$cacheManager = $this->getContext()->getViewCacheManager();
 			  	if ($cacheManager != null) {
 			  		$politico = $this->getRoute()->getObject();
-			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=es");
-			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."&sf_culture=ca");
+			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."");
 			  	}				
 			}
 	      	$profile = $request->getParameter('profile');

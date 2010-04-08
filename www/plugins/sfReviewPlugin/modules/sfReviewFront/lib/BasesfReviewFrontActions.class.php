@@ -182,6 +182,7 @@ class BasesfReviewFrontActions extends sfActions
   }
   
   	
+  // TODO: Limpiar cache
   public function executeSend(sfWebRequest $request)
   {  	
   	if (! $this->getUser()->isAuthenticated()) {
