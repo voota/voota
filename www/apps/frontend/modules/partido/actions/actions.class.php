@@ -265,8 +265,8 @@ class partidoActions extends sfActions
     
   	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
   	$c->add(PoliticoPeer::PARTIDO_ID, $this->partido->getId());
-  	$c->addDescendingOrderByColumn(PoliticoI18nPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PoliticoI18nPeer::SUMD);
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
   	
   	$this->politicos = new sfPropelPager('Politico', 6);
   	
