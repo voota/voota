@@ -18,7 +18,7 @@
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://api.voota.org";
+  const SERVER_URL = "http://localhost";
   
   /**
    * Class constructor.

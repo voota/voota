@@ -18,16 +18,16 @@
  */
 class api_demoActions extends sfActions
 {	
-	/* Local 
+	/* Local */ 
 	const CONSUMER_KEY = '4f9ebe0ee2536d34340007a186fa09d204bb9d5be';
   	const CONSUMER_SECRET = 'dd1ed090c1ccc40caa2d1d6d6740ab5d';
 	const USER_ID = 105;
-	/* 
-	/* Test	 */
+	/* */
+	/* Test	 
   	const CONSUMER_KEY = '5126ba4d6c7b9c20d8293c3d522cd60204bb9d344';
   	const CONSUMER_SECRET = '51d72371e20c6adc2c289838ed20e249';
 	const USER_ID = 9;
-	/* */
+	 */
 	
   public function executeAuth(sfWebRequest $request){
 	$vootaApi =  new VootaApi();
@@ -87,6 +87,5 @@ class api_demoActions extends sfActions
 	
 	$vootaApi =  new VootaApi();
 	$this->entities = $vootaApi->search(self::USER_ID, $q);
-
   }
 }

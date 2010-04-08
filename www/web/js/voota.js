@@ -227,7 +227,7 @@ function sparkline(id, label, data) {
   g.set_theme({
       colors: ['blue'],
       font_color: 'black',
-      background_colors: ['transparent', 'transparent']
+      background_colors: ['white', 'white']
   });
   g.line_width = 1;
   g.tooltips = true;
@@ -240,4 +240,8 @@ function sparkline(id, label, data) {
   g.set_font('Georgia');
   g.data(label, data);
   g.draw();
+}
+
+function sparkline2(id, label, data) {
+
 }

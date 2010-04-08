@@ -174,12 +174,12 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index #summary ul { margin: 0 0 0 -20px; padding: 0 0 0 20px; }
 #home-index #summary ul li { margin-bottom: 20px;}
 #home-index ol.entities { list-style: none; margin: 10px 0; padding: 0;}
-#home-index ol.entities li { margin: 0 30px 20px 0; float: left; height: 80px; font-weight: normal; overflow: hidden;}
+#home-index ol.entities li { margin: 0 30px 20px 0; height: 80px; font-weight: normal; overflow: hidden;}
 #home-index ol.entities li .avatar { float: left;}
 #home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
 #home-index ol.entities li .votes { margin: 10px 0 0 45px; padding: 0;}
 #home-index #summary ol.entities { padding: 20px 0 20px 0; overflow: hidden;}
-#home-index #summary ol.entities li { width: 255px; margin-right: 60px;}
+#home-index #summary ol.entities li { width: 255px; margin-right: 60px;float: left; }
 #home-index .search { clear: left; padding: 0; margin-top: 20px; overflow: hidden; }
 #home-index .search label { font-size: 16px; font-weight: bold; padding-right: 10px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
