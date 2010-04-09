@@ -45,20 +45,12 @@ class partidoActions extends sfActions
   	$this->t = $request->getParameter("t");
   	$exclude = array();
   	if ($this->t == 1) {
-  		$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, 3);
-	    foreach ($this->lastPositives->getResults() as $result){
-	  		$exclude[] = $result->getId();
-	  	}	  		
-  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, BaseSfReviewManager::NUM_REVIEWS);
   		$this->pageU = $request->getParameter("pageU")+1;
   		$this->getUser()->setAttribute('pageU', $this->pageU);
   	}
   	else {	  	
-  		$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, 3);
-  		foreach ($this->lastNegatives->getResults() as $result){
-	  		$exclude[] = $result->getId();
-	  	}
-  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, BaseSfReviewManager::NUM_REVIEWS-3, $exclude);
+  		$this->pager = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, BaseSfReviewManager::NUM_REVIEWS);
   		$this->pageD = $request->getParameter("pageD")+1;
   		$this->getUser()->setAttribute('pageD', $this->pageD);
   	}
@@ -218,19 +210,11 @@ class partidoActions extends sfActions
 	}	
   	
   	$id = $this->partido->getId();
-  	$exclude = array();
-	$this->lastPositives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, 3);
-	$this->lastNegatives = SfReviewManager::getLastReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, 3);
-    foreach ($this->lastPositives->getResults() as $result){
-  		$exclude[] = $result->getId();
-  	}
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, $resU-3, $exclude);
-    foreach ($this->lastNegatives->getResults() as $result){
-  		$exclude[] = $result->getId();
-  	}
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, $resD-3, $exclude);
-	$positiveCount =  $this->lastPositives->getNbResults();
-	$negativeCount =  $this->lastNegatives->getNbResults();
+  	
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, 1, $resU);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Partido::NUM_ENTITY, $id, -1, $resD);
+	$positiveCount =  $this->positives->getNbResults();
+	$negativeCount =  $this->negatives->getNbResults();
 	
   	$this->getUser()->setAttribute('pageU', '');
   	$this->getUser()->setAttribute('pageD', '');

@@ -25,6 +25,7 @@ class sfReviewComponents extends sfComponents
 
 		
   		$exclude = array();
+  		/*
   		$lastReviewsPager = SfReviewManager::getLastReviewsByEntityAndValue(
     							null
     							, $this->sfReviewType
@@ -38,12 +39,13 @@ class sfReviewComponents extends sfComponents
   		if ($this->page == 1){
   			$this->lastReviewsPager = $lastReviewsPager ;
   		}
+  		*/
   		$this->reviewsPager = SfReviewManager::getReviewsByEntityAndValue(
     							null
     							, $this->sfReviewType
     							, $this->entityId
     							, $this->value?$this->value:null
-    							, BaseSfReviewManager::NUM_REVIEWS - SfReviewManager::NUM_LAST_REVIEWS
+    							, BaseSfReviewManager::NUM_REVIEWS
     							, $exclude
     							, $this->page
     						);
@@ -55,20 +57,20 @@ class sfReviewComponents extends sfComponents
   public function executeSubreviews()
   {
   	if (!isset($this->showCount)){
-  		$this->showCount = SfReviewManager::NUM_LAST_REVIEWS;
+  		$this->showCount = SfReviewManager::NUM_REVIEWS;
   	}
+  	/*
   	$this->reviewLastList = SfReviewManager::getLastReviewsByEntityAndValue(false, $this->type_id, $this->id, null, SfReviewManager::NUM_LAST_REVIEWS);
   	$exclude = array();
   	foreach ($this->reviewLastList->getResults() as $result){
   		$exclude[] = $result->getId();
   	}
-  	if ($this->showCount > SfReviewManager::NUM_LAST_REVIEWS){
-  		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, $this->type_id, $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
-  	}
+  	*/
+  	$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, $this->type_id, $this->id, null, $this->showCount);
   	
 	//$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
 	//$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
-	$this->total = $this->reviewLastList->getNbResults();// + $this->reviewList->getNbResults();
+	$this->total = $this->reviewList->getNbResults();// + $this->reviewList->getNbResults();
 	
 	$this->seeMoreCount = 0;
 	if ($this->total > $this->showCount){

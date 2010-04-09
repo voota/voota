@@ -1,3 +1,4 @@
+<?php if (!isset($GLOBALS['sf_dialog_included'])): ?>
 <div id="sfr_dialog">
 	  <h3><?php echo __('Ejem. Para votar necesitas tener una cuenta en Voota.')?></h3>
 	
@@ -15,4 +16,4 @@
 <script>
 	$("#sfr_dialog").dialog({ autoOpen: false, resizable: false, modal: true, closeText: '<?php echo __('cerrar')?>' })
 </script>
-
+<?php $GLOBALS['sf_dialog_included'] = true ?><?php endif ?>

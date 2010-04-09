@@ -182,65 +182,26 @@ class BasesfReviewFrontActions extends sfActions
   }
   
   	
-  // TODO: Limpiar cache
   public function executeSend(sfWebRequest $request)
   {  	
   	if (! $this->getUser()->isAuthenticated()) {
   		echo "error";die;
   	}
   	
-  	if ($request->getParameter("i") != '') {
-	  	$criteria = new Criteria();
-	  	$t = $request->getParameter("t");
-	  	if ($t != '') {
-		  	$criteria->add(SfReviewPeer::ENTITY_ID, $request->getParameter("e"));  	
-		  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $t);  	
-	  	}
-	  	else {
-	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $request->getParameter("e")); 
-	  	}
-	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-	  	$criteria->add(SfReviewPeer::ID, $request->getParameter("i"));	
-	  	$reviews = SfReviewPeer::doSelect($criteria);
-  		$review = $reviews[0];
-  	}
-  	else  {
-  		$review = new SfReview();
-  	}
-  	$review->setValue( $request->getParameter("v") );
-  	$aText = utf8_decode($request->getParameter("review_text"));
-  	$aText = strip_tags( substr($aText, 0, BasesfReviewFrontActions::MAX_LENGTH) );
-  	$review->setText( utf8_encode( $aText ) );
-  	$t = $request->getParameter("t");
-  	if ($t != '') {
-  		$review->setSfReviewTypeId( $t );
-  		$review->setEntityId( $request->getParameter("e") );
-  	}
-  	else {
-  		$review->setSfReviewId( $request->getParameter("e") );
-  	}
-  	$review->setSfReviewStatusId( 1 );
-  	$review->setSfGuardUserId( $this->getUser()->getGuardUser()->getId() );
-  	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
-  	$review->setCookie( $request->getCookie('symfony') );
-	$review->setCulture( $this->getUser()->getCulture() );	
-	$review->setToFb( $request->getParameter("fb_publish")==1?1:0 );	
+  	SfReviewManager::postReview(
+  		$this->getUser()->getGuardUser()->getId()
+  		, $request->getParameter("t")
+  		, $request->getParameter("e")
+  		, $request->getParameter("v")
+  		, $request->getParameter("review_text")
+  		, $entity = $request->getParameter("e")
+  		, false
+  		, $request->getParameter("fb_publish")==1?1:0
+  	);  		
   	
-  	if ($request->getParameter("i") != '') {
-  		if ($review->isModified()) {
-  			$review->setModifiedAt( date(DATE_ATOM) );
-  			//SfReviewPeer::doUpdate($review);
-  		}
-   	}
-  	else {
-  		$review->setCreatedAt( date(DATE_ATOM) );
-  		//SfReviewPeer::doInsert($review);
-  	}
-  	$review->setIsActive( true );
-  	$review->save();
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   	
-	if ($t == '') {
+	if ( !$t ) {
 		$parentReview = SfReviewPeer::retrieveByPk( $request->getParameter("e") );
 		$parentReview->setBalance( SfReviewManager::getBalanceByReviewId( $parentReview->getId() ) );
 		$parentReview->save();

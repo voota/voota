@@ -22,9 +22,10 @@ class BaseSfReviewManager
    *
    * @param sfEvent An sfEvent instance
    */
-	const NUM_LAST_REVIEWS = 2;
+	//const NUM_LAST_REVIEWS = 2;
 	const NUM_REVIEWS = 20;
 	
+	/*
   static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_LAST_REVIEWS)
   {
     $criteria = new Criteria();
@@ -49,6 +50,7 @@ class BaseSfReviewManager
     $pager->init();
     return $pager;
   }
+  */
   
   static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false, $offset = 1)
   {
@@ -70,8 +72,8 @@ class BaseSfReviewManager
   	if ($exclude){
   		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
   	}
-  	$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
-  	$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
+  	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
+  	//$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 
   	$pager = new sfPropelPager('SfReview', $numberOfResults);
@@ -172,7 +174,7 @@ class BaseSfReviewManager
   	
   	SfReviewPeer::doDelete( $c );
   }
-  
+  /*
   static public function getLastReviewByUserId( $userId ){
    	$c = new Criteria();
    	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
@@ -196,8 +198,8 @@ class BaseSfReviewManager
    	
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
-  
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false ){
+  */
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0 ){
   	$prevValue = false;
   	
   	if (!$entityId || !$value || !$typeId){
@@ -231,9 +233,17 @@ class BaseSfReviewManager
   		$review->setModifiedAt(new DateTime());
    	}
   	$review->setValue($value);
-  	if ($text)
-  		$review->setText($text);
+  	if ($text) {
+	  	$aText = utf8_decode( $text );
+	  	$aText = strip_tags( substr($aText, 0, BasesfReviewFrontActions::MAX_LENGTH) );
+	  	$review->setText( utf8_encode( $aText ) );
+  	}
   	$review->setSfReviewStatusId(1);
+  	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
+  	$review->setCookie( sfContext::getInstance()->getRequest()->getCookie('symfony') );
+	$review->setCulture( sfContext::getInstance()->getUser()->getCulture() );
+	$review->setToFb( $fb );
+	
   	try {
   		$review->save();
   		if ($entity){
