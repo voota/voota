@@ -18,7 +18,7 @@
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://localhost";
+  const SERVER_URL = "http://voota.es";
   
   /**
    * Class constructor.
@@ -300,7 +300,7 @@ class VootaApi{
 	     );
 	
 	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
-	$result = $req->doRequest( $userId );	
+	$result = $req->doRequest( $userId );
 
 	switch( $result['code'] ){
 		case 200:
