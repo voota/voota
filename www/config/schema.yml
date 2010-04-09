@@ -103,6 +103,16 @@ propel:
     lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_partido: [partido_id], fk_lista: [lista_id], fk_pl_partido: [partido_id], fk_pl_lista: [lista_id] }
+  propuesta:
+    _attributes: { phpName: Propuesta }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    titulo: { type: VARCHAR, size: '150', required: false }
+    descripcion: { type: VARCHAR, size: '600', required: false }
+    culture: { type: VARCHAR, size: '7', required: false }    
+    imagen: { type: VARCHAR, size: '50', required: false }
+    doc: { type: VARCHAR, size: '50', required: false }
+    sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_propuesta_1: [sf_guard_user_id] }
   politico:
     _attributes: { phpName: Politico, isI18N: true, i18nTable: politico_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

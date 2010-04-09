@@ -184,28 +184,29 @@ class BasesfReviewFrontActions extends sfActions
   	
   public function executeSend(sfWebRequest $request)
   {  	
+  	$t = $request->getParameter("t", false);
+  	$e = $request->getParameter("e", false);
+  	$v = $request->getParameter("v", false);
+  	$review_text = $request->getParameter("review_text", false);
+  	$fb_publish = $request->getParameter("fb_publish", 0);
+  	
   	if (! $this->getUser()->isAuthenticated()) {
   		echo "error";die;
   	}
   	
   	SfReviewManager::postReview(
   		$this->getUser()->getGuardUser()->getId()
-  		, $request->getParameter("t")
-  		, $request->getParameter("e")
-  		, $request->getParameter("v")
-  		, $request->getParameter("review_text")
-  		, $entity = $request->getParameter("e")
+  		, $t, $e, $v, $review_text
   		, false
-  		, $request->getParameter("fb_publish")==1?1:0
-  	);  		
+  		, false
+  		, $fb_publish==1?1:0
+  	);
   	
-  	$this->reviewText = strip_tags( $request->getParameter("review_text") );
+  	if (!$t ){
+		$this->getUser()->setAttribute('sfr_lastvoted_review_id', $e);
+   	}
   	
-	if ( !$t ) {
-		$parentReview = SfReviewPeer::retrieveByPk( $request->getParameter("e") );
-		$parentReview->setBalance( SfReviewManager::getBalanceByReviewId( $parentReview->getId() ) );
-		$parentReview->save();
-	}
+  	$this->reviewText = strip_tags( $review_text );
   }
   
   public function executeDelete(sfWebRequest $request){

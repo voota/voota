@@ -23,7 +23,7 @@
           		<input type="hidden" name="showCount" value="<?php echo $seeMoreCount?>" />
 		        <p class="more"><input type="submit" value="<?php echo __('más')?>" /></p>
 		      </form>
-        	<?php /*?><input type="submit" value="Ver 10 comentarios más" /><?php */ ?>
+        	<?php /*?><input type="submit" value="<?php echo __('Ver 10 comentarios más')?>" /><?php */ ?>
         </li>
       <?php endif ?>
     <?php endif ?>

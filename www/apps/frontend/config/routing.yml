@@ -7,6 +7,34 @@ homepage:
   url:   /
   param: { module: home, action: index }
 
+ranking_propuesta_es:
+  url: /propuestas
+  param: { module: propuesta, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+
+ranking_propuesta_ca:
+  url: /propuestas
+  param: { module: propuesta, action: ranking }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: ca
+        
+propuesta_new:
+  url: /propuesta/new
+  param: { module: propuesta, action: new }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+        
+propuesta_show:
+  url: /propuesta/:id
+  param: { module: propuesta, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
 politico_more_comments:
   url: /politics/more
   param: { module: politico, action: moreComments }
@@ -283,4 +311,3 @@ api_demo_reviews:
 api_demo_search:
   url:   /api_demo/search
   param: { module: api_demo, action: search }
-  

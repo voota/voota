@@ -202,7 +202,7 @@ class BaseSfReviewManager
   static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0 ){
   	$prevValue = false;
   	
-  	if (!$entityId || !$value || !$typeId){
+  	if (!$entityId || !$value){  		
   		throw new Exception("Not enough parameters.");
   	}
   	if ($value != -1 && $value != 1){
@@ -213,13 +213,13 @@ class BaseSfReviewManager
   	$c = new Criteria;
   	$c->add(SfReviewPeer::ENTITY_ID, $entityId);
   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
-  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId);
+  	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId?$typeId:null);
   	
   	$review = SfReviewPeer::doSelectOne( $c );
   	if (!$review){
   		$review = new SfReview;
   		$review->setEntityId($entityId);
-  		$review->setSfReviewTypeId($typeId);
+  		$review->setSfReviewTypeId($typeId?$typeId:null);
   		$review->setSfGuardUserId($userId);
   		$review->setCreatedAt(new DateTime());
   	}
@@ -231,7 +231,7 @@ class BaseSfReviewManager
   			$review->setIsActive(true);
   		}
   		$review->setModifiedAt(new DateTime());
-   	}
+   	}   	
   	$review->setValue($value);
   	if ($text) {
 	  	$aText = utf8_decode( $text );
@@ -246,10 +246,30 @@ class BaseSfReviewManager
 	
   	try {
   		$review->save();
-  		if ($entity){
-  			$entity->updateCalcs();
-  			$entity->save();
+  		
+  		if(!$typeId){
+			$parentReview = SfReviewPeer::retrieveByPk( $entityId );
+			$parentReview->setBalance( SfReviewManager::getBalanceByReviewId( $entityId ) );
+			$parentReview->save();  			
   		}
+  		if (!$entity){
+  			if (! $typeId){
+  				$aEntityId = $parentReview->getEntityId();
+  				$aTypeId = $parentReview->getSfReviewTypeId();
+  			}
+  			else {
+  				$aTypeId = $typeId;
+  				$aEntityId = $entityId;
+  			}
+  			
+  			$reviewType = SfReviewTypePeer::retrieveByPK ( $aTypeId );
+  			$peer = $reviewType->getModel() .'Peer';
+  			
+  			$entity = $peer::retrieveByPK($aEntityId);
+  		}
+  		
+  		$entity->updateCalcs();
+  		$entity->save();
   	}
   	catch (Exception $e){
   		throw new Exception('Error writing review.');

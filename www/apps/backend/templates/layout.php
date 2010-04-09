@@ -19,6 +19,7 @@ Administraci&oacute;n
 <?php if ($sf_user->hasCredential('admin')) { ?>
 	<?php echo link_to('politicos', 'politico/index') ?>
 	<?php echo link_to('partidos', 'partido/index') ?> 
+	<?php echo link_to('propuestas', 'propuesta/index') ?> 
 	<?php /* ?> 
 	<?php echo link_to('elecciones', 'eleccion/index') ?> 
 	<? */ ?> 
