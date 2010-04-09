@@ -215,7 +215,7 @@ class EntityManager {
   		}
   	}
   	
-  	public static function getTopEntities($limit = 6, &$exclude = "")
+  	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity')
   	{
 	   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
 	  			FROM politico p
@@ -255,19 +255,19 @@ class EntityManager {
 				$isPartido = false;
 				foreach ($partidosMasVotadosUltimamente as $partido) {
 					if (! in_array($partido->getId(), $partidosUsed) && $partido->getTotalt() > $politico->getTotalt() && count($entities) < $limit) {
-		    			$entities[] = new Entity( $partido );
+		    			$entities[] = new $entityClass( $partido );
 		    			$partidosUsed[] = $partido->getId();
 		    			$isPartido = true;
 					}
 				}
 				if(count($entities) < $limit) {
-	    			$entities[] = new Entity( $politico );
+	    			$entities[] = new $entityClass( $politico );
 					$exclude .= ($exclude == ''?'':', ').  $politico->getId();
 				}
 		}
 		foreach ($partidosMasVotadosUltimamente as $partido) {
 			if (! in_array($partido->getId(), $partidosUsed) && count($entities) < $limit) {
-    			$entities[] = new Entity( $partido );
+    			$entities[] = new $entityClass( $partido );
 			}
 		}
 		

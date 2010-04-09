@@ -22,7 +22,6 @@ class Entity {
 	var $id;
 	var $name;
 	var $longName;
-	var $imagen;
 	var $image;
 	var $image_s;
 	var $image_bw;
@@ -31,8 +30,6 @@ class Entity {
 	var $negatives;
 	var $description;
 	var $vanity;
-	var $imagePath;
-	var $module;
 	
   	public function __construct(reviewable $entity)
   	{
@@ -50,41 +47,15 @@ class Entity {
   	  	$this->recentPositives = $entity->getSumut();
   	  	$this->recentNegatives = $entity->getSumdt();
   	  	$this->vanity = $entity->getVanity();
-  	  	$this->imagePath = $entity->getImagePath();
-  	  	$this->module = $entity->getModule();
-  	  	$this->sumut = $entity->getSumut();
-  	  	$this->sumdt = $entity->getSumdt();
-  	  	$this->imagen = $entity->getImagen();
   	} 
 
   	public function __toString(){
-  		return $this->getLongName();
+  		return $this->longName;
   	}
   	public function getType(){
   		return $this->type;
   	}
   	public function getVanity(){
   		return $this->vanity;
-  	}
-  	public function getId(){
-  		return $this->vanity;
-  	}
-  	public function getImagePath(){
-  		return $this->imagePath;
-  	}
-  	public function getImagen(){
-  		return $this->imagen;
-  	}
-  	public function getLongName(){
-  		return $this->longName;
-  	}
-  	public function getModule(){
-  		return $this->module;
-  	}
-  	public function getSumut(){
-  		return $this->sumut;
-  	}
-  	public function getSumdt(){
-  		return $this->sumdt;
   	}
 }
