@@ -37,6 +37,7 @@ class WebEntity extends Entity implements reviewable {
   	  	$this->sumut = $entity->getSumut();
   	  	$this->sumdt = $entity->getSumdt();
   	  	$this->imagen = $entity->getImagen();
+  	  	$this->type = $entity->getType();
   	} 
 
 
