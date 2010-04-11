@@ -41,7 +41,7 @@ class WebEntity extends Entity implements reviewable {
 
 
   	public function getId(){
-  		return $this->vanity;
+  		return $this->id;
   	}
   	public function getImagePath(){
   		return $this->imagePath;
