@@ -28,6 +28,8 @@ class Entity {
 	var $image_s_bw;
 	var $positives;
 	var $negatives;
+	var $recentPositives;
+	var $recentNegatives;
 	var $description;
 	var $vanity;
 	
