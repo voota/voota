@@ -174,7 +174,7 @@ class BaseSfReviewManager
   	
   	SfReviewPeer::doDelete( $c );
   }
-  /*
+  
   static public function getLastReviewByUserId( $userId ){
    	$c = new Criteria();
    	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
@@ -198,7 +198,7 @@ class BaseSfReviewManager
    	
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
-  */
+  
   static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0 ){
   	$prevValue = false;
   		

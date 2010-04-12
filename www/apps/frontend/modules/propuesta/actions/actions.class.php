@@ -99,6 +99,9 @@ class propuestaActions extends sfActions
   public function executeNew(sfWebRequest $request)
   {
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	
+  	$this->form = new NuevaPropuestaForm();
+  	
   }
   
   public function executeShow(sfWebRequest $request)

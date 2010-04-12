@@ -80,36 +80,24 @@ class perfilActions extends SfVoActions
   		$e = $request->getParameter('e');
   		$r = $request->getParameter('r');
   		if ($t == ''){
-		  	$c = new Criteria();
-		  	$c->add(SfReviewPeer::ID, $e);
-		  	$review = SfReviewPeer::doSelectOne($c);
+		  	$review = SfReviewPeer::retrieveByPk($e);
   			
-  			if ($review->getSfReviewType()->getId() == Politico::NUM_ENTITY){
-			  	$c = new Criteria();
-			  	$c->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
-			  	$c->add(SfReviewPeer::ID, $e);
-			  	
-			  	$entity = PoliticoPeer::doSelectOne($c);
-  				$dest = "politico/show?id=".$entity->getVanity();
-  			}
-  			else if ($review->getSfReviewType()->getId() == Partido::NUM_ENTITY){
-			  	$c = new Criteria();
-			  	$c->addJoin(PartidoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
-			  	$c->add(SfReviewPeer::ID, $e);
-			  	
-			  	$entity = PartidoPeer::doSelectOne($c);  	
-  				$dest = "partido/show?id=".$entity->getAbreviatura();			
-  			}
+		  	$type = $review->getSfReviewType();
+  			$peer = $type->getModel() . 'Peer';
+  			
+		  	$c = new Criteria();
+		  	$c->addJoin($peer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+		  	$c->add(SfReviewPeer::ID, $e);
+		  	
+		  	$entity = $peer::doSelectOne($c);
+  			$dest = $type->getModule()."/show?id=".$entity->getVanity();
 		}
   		else {
-  			if ($t == Politico::NUM_ENTITY){
-				$entity = PoliticoPeer::retrieveByPK($e);
-  				$dest = "politico/show?id=".$entity->getVanity();
-   			}
-  			else if ($t == Partido::NUM_ENTITY){
-				$entity = PartidoPeer::retrieveByPK($e);
-  				$dest = "partido/show?id=".$entity->getAbreviatura();
-  			}
+  			$type = SfReviewTypePeer::retrieveByPk( $t );
+  			$peer = $type->getModel() . 'Peer';
+  			
+			$entity = $peer::retrieveByPK($e);
+  			$dest = $type->getModule()."/show?id=".$entity->getVanity();   			
    		}
    		
    		
