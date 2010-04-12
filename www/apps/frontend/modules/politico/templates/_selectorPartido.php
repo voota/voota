@@ -13,9 +13,11 @@
 	  var partidos = '<?php echo url_for( '@partido_filter', true ); ?>';
 
     var favoritos = [
-<?php foreach ($favoritos as $abreviatura => $nombre): ?>
-      ["<?php echo $nombre?>", "<?php echo $abreviatura?>"],
-<?php endforeach ?>
+      <?php $idx = 0 ?>
+      <?php foreach ($favoritos as $abreviatura => $nombre): ?>
+        <?php $idx++ ?>
+        <?php echo $idx>1?',':''?>["<?php echo $nombre?>", "<?php echo $abreviatura?>"]
+      <?php endforeach ?>
     ];
     
     $("#selector_partido_buscador").autocomplete(partidos, {
@@ -38,7 +40,6 @@
       formatResult: function(row) {
         return row[1];
       }
-
   	});
 
   	$("#selector_partido_actual").click(function (event){
