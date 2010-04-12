@@ -223,26 +223,21 @@ class BasesfReviewFrontActions extends sfActions
   }
 
   public function executeQuickvote(sfWebRequest $request){
-  	$type = $request->getParameter("t", false);
+  	$typeId = $request->getParameter("t", false);
   	$entityId = $request->getParameter("e", false);
   	$value = $request->getParameter("v", false);
   	$rm = $request->getParameter("rm", false);
   	
   	$this->review = false;
   	
-  	switch($type) {
-		case Politico::NUM_ENTITY:
-			$this->entity = PoliticoPeer::retrieveByPK($entityId);
-			break;
-		case Partido::NUM_ENTITY:
-			$this->entity = PartidoPeer::retrieveByPK($entityId);
-			break;
-		default:
-  			throw new Exception('Invalid type.');
-  	}  	
+  	$type = SfReviewTypePeer::retrieveByPk( $typeId );
+  	if ($type){
+  		$peer = $type->getModel() . 'Peer';
+  		$this->entity = $peer::retrieveByPK($entityId);
+  	}
   	
   	try {  	
-  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $type, $entityId, $value, false, $this->entity, $rm);
+  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $typeId, $entityId, $value, false, $this->entity, $rm);
   	}
   	catch(Exception $e){
   		echo "fail:". $e->getMessage();

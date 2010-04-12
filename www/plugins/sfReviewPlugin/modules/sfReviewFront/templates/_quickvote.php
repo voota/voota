@@ -1,3 +1,5 @@
+<?php include_partial('sfReviewFront/dialog') ?>
+
 <div id="<?php echo "mv_up_".$entity->getId()?>">
     <div class="quickvote_hand left_hand">
         <?php if($review && $review->getValue() == 1):?>+<?php endif ?>

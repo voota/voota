@@ -3,8 +3,7 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoFormat') ?>
 
-  <div id="main">
-    <div id="main-inner">
+
       <script type="text/javascript" charset="utf-8">
         $(document).ready(function (){
           $('a.tooltip_propuesta').each(function(){
@@ -86,16 +85,6 @@
   
       </table>
 
-      <p class="pagination">
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=1&amp;o=pd">&laquo;Anterior</a>  
-        1
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=2&amp;o=pd">2</a>
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=3&amp;o=pd">3</a>
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=4&amp;o=pd">4</a>
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=5&amp;o=pd">5</a>
-        ...
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=494&amp;o=pd">494</a>
-        <a class="numerosPag" href="/frontend_dev.php/es/propuestas?page=2&amp;o=pd">Siguiente&raquo;</a>
-      </p>
-    </div>
-  </div>
+<p class="pagination">
+  <?php include_partial('global/pagination_full', array('pager' => $propuestasPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>
+</p>
