@@ -201,7 +201,7 @@ class BaseSfReviewManager
   */
   static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0 ){
   	$prevValue = false;
-  	
+  		
   	if (!$entityId || !$value){  		
   		throw new Exception("Not enough parameters.");
   	}
@@ -211,18 +211,29 @@ class BaseSfReviewManager
   	
   	// Check if already exists
   	$c = new Criteria;
-  	$c->add(SfReviewPeer::ENTITY_ID, $entityId);
+  	
+  	if (!$typeId){
+  		$c->add(SfReviewPeer::SF_REVIEW_ID , $entityId);  
+  	}
+  	else {
+  		$c->add(SfReviewPeer::ENTITY_ID, $entityId);  		
+  	}
   	$c->add(SfReviewPeer::SF_GUARD_USER_ID, $userId);
   	$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $typeId?$typeId:null);
   	
   	$review = SfReviewPeer::doSelectOne( $c );
   	if (!$review){
   		$review = new SfReview;
-  		$review->setEntityId($entityId);
+	  	if (!$typeId){
+	  		$review->setSfReviewId($entityId);
+	  	}
+	  	else {
+	  		$review->setEntityId($entityId);	
+	  	}
   		$review->setSfReviewTypeId($typeId?$typeId:null);
   		$review->setSfGuardUserId($userId);
   		$review->setCreatedAt(new DateTime());
-  	}
+	}
   	else {
   		if ($rm && $value == $review->getValue() && $review->getIsActive()) {
   			$review->setIsActive(false);
