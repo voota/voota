@@ -30,11 +30,11 @@ class Politico extends BasePolitico implements reviewable
   }
   
   public function getPositives() {
-  	return SfReviewManager::getTotalReviewsByEntityAndValue(1, $this->getId(), 1);
+  	return SfReviewManager::getTotalReviewsByEntityAndValue(Politico::NUM_ENTITY, $this->getId(), 1);
   }
   
   public function getNegatives(){
-  	return SfReviewManager::getTotalReviewsByEntityAndValue(1, $this->getId(), -1);
+  	return SfReviewManager::getTotalReviewsByEntityAndValue(Politico::NUM_ENTITY, $this->getId(), -1);
   }
   
   	public function applyDefaultValues()

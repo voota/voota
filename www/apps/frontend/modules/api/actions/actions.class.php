@@ -229,7 +229,7 @@ class apiActions extends sfActions{
 		default:
   			throw new BadRequestException('Invalid type.');
   	}  	
-  	$sfReviewsPager = SfReviewManager::getLastReviewsByEntityAndValue(false, $typeId, $entity, $value, $limit, false, $page);
+  	$sfReviewsPager = SfReviewManager::getReviewsByEntityAndValue(false, $typeId, $entity, $value, $limit, false, $page);
   
     $reviews = array();
     foreach ($sfReviewsPager->getResults() as $sfReview){

@@ -1,3 +1,8 @@
+<?php use_helper('I18N') ?>
+<?php use_helper('jQuery') ?>
+<?php use_helper('Number') ?>
+<?php use_helper('VoFormat') ?>
+
   <div id="main">
     <div id="main-inner">
       <script type="text/javascript" charset="utf-8">
@@ -15,264 +20,70 @@
       <h2>Ranking de propuestas: de momento 358</h2>
 
       <table border="0" cellpadding="0" cellspacing="0">
-        <thead>
-          <tr>
-            <th class="ranking"></th>
-            <th class="position"></th>
-            <th class="photo"></th>
-            <th class="name">Nombre</th>
-            <th class="positive-votes">
-            	<a id="positive-votes-link" href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen menos votos positivos primero">Votos +</a>
-            	<!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
-            	<!-- <a href="/frontend_dev.php/es/propuestas?o=pa" title="Ordenar por votos positivos: los que tienen más votos positivos primero">Votos +</a> -->
-            	<img alt="yeah" src="/images/icoUp20px.gif" />
-            	<img alt="descendente" src="/images/flechaDown.gif" />      	    	
-            	<div id="positive-votes-tooltip" style="display: none">
-                <p><strong>Ordenar por votos positivos:</strong> los que tienen menos votos positivos primero</p>
-              </div>
-            </th>
-            <th class="negative-votes">
-            	<a href="/frontend_dev.php/es/propuestas?o=nd" title="Ordenar por votos negativos: los que tienen más votos negativos primero">Votos -</a>
-            	<!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
-            	<!-- <a href="/frontend_dev.php/es/propuestas?o=nd" title="Ordenar por votos negativos: los que tienen menos votos negativos primero">Votos -</a> -->
-            	<img alt="buu" src="/images/icoDown20px.gif" />
-            </th>
-            <th class="date">
-              <a href="/frontend_dev.php/es/propuestas?o=fd" title="Ordenar por fecha: las más recientes primero">Fecha</a>
-              <!-- OJO: El texto del tooltip cambia si varía el orden. Ej: -->
-              <!-- <a href="/frontend_dev.php/es/propuestas?o=fd" title="Ordenar por fecha: las más antiguas primero">Fecha</a> -->
-            </th>
-          </tr>
-        </thead>
+  <thead>
+    <tr>
+      <th class="ranking"></th>
+      <th class="position"></th>
+      <th class="photo"></th>
+      <th class="name"><?php echo __('Nombre')?></th>
+      <th class="voto"><?php echo __('Voto múltiple')?></th>
+      <th class="positive-votes">
+      	<?php echo link_to(__('Votos +'), "$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''), array('rel'  => 'nofollow'));?>
+      	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
+      	<?php if (strpos($order, 'p') === 0):?>
+      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
+      	<?php endif?>    	
+      </th>
+      <th class="negative-votes">
+      	<?php echo link_to(__('Votos -'), "$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='nd'?'na':'nd'), array('rel'  => 'nofollow'));?>
+      	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
+      	<?php if (strpos($order, 'n') === 0):?>
+      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
+      	<?php endif?>
+      </th>
+    </tr>
+  </thead>
 
-        <tfoot>
-          <tr>
-            <td class="ranking"></td>
-            <td class="position"></td>
-            <td class="photo"></td>
-            <td class="name"></td>
-            <td class="positive-votes">
-              Total
-              <img alt="yeah" src="/images/icoUp20px.gif" />
-              528
-            </td>
-            <td class="negative-votes">
-            	Total
-            	<img alt="buu" src="/images/icoDown20px.gif" />
-            	414
-            </td>
-            <td class="date"></td>
-          </tr>
-        </tfoot>
+  <tfoot>
+    <tr>
+      <td class="ranking"></td>
+      <td class="position"></td>
+      <td class="photo"></td>
+      <td class="name"></td>
+      <td class="voto"></td>
+      <td class="positive-votes">
+        <?php echo __('Total') ?>
+    	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
+    	  <?php echo format_number($totalUp, 'es_ES')?>
+      </td>
+      <td class="negative-votes">
+      	<?php echo __('Total')?>
+      	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
+      	<?php echo format_number($totalDown, 'es_ES')?>
+      </td>
+    </tr>
+  </tfoot>
 
-        <tbody>
-          <tr class="odd">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_84">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-      	    <td class="position">1.</td>
-      	    <td class="photo">
-              <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="Sobre esta propuesta:|En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero." class="tooltip_propuesta">Implantación de un subsidio de...</a>
-            </td>
-            <td class="positive-votes">68</td>
-            <td class="negative-votes">33</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="even">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_1171">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-        	  <td class="position">2.</td>
-        	  <td class="photo">
-              <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_2">Alternativas a los impuestos par...</a>
-              <div id="propuesta_2" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">60</td>
-            <td class="negative-votes">29</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="odd">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_84">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-      	    <td class="position">3.</td>
-      	    <td class="photo">
-              <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_3" class="tooltip_propuesta">Implantación de un subsidio de...</a>
-              <div id="propuesta_3" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">68</td>
-            <td class="negative-votes">33</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="even">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_1171">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-        	  <td class="position">4.</td>
-        	  <td class="photo">
-              <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_4">Alternativas a los impuestos par...</a>
-              <div id="propuesta_4" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">60</td>
-            <td class="negative-votes">29</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="odd">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_84">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-      	    <td class="position">5.</td>
-      	    <td class="photo">
-              <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_5" class="tooltip_propuesta">Implantación de un subsidio de...</a>
-              <div id="propuesta_5" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">68</td>
-            <td class="negative-votes">33</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="even">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_1171">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-        	  <td class="position">6.</td>
-        	  <td class="photo">
-              <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_6">Alternativas a los impuestos par...</a>
-              <div id="propuesta_6" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">60</td>
-            <td class="negative-votes">29</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="odd">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_84">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-      	    <td class="position">7.</td>
-      	    <td class="photo">
-              <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_7" class="tooltip_propuesta">Implantación de un subsidio de...</a>
-              <div id="propuesta_7" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">68</td>
-            <td class="negative-votes">33</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="even">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_1171">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-        	  <td class="position">8.</td>
-        	  <td class="photo">
-              <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_8">Alternativas a los impuestos par...</a>
-              <div id="propuesta_8" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">60</td>
-            <td class="negative-votes">29</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="odd">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_84">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-      	    <td class="position">9.</td>
-      	    <td class="photo">
-              <img alt="Foto de François Derbaix" src="http://images.voota.es/usuarios/cc_s_Fran%C3%A7ois-Derbaix-0747.jpg" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/implantacion-subsidio" title="#propuesta_9" class="tooltip_propuesta">Implantación de un subsidio de...</a>
-              <div id="propuesta_9" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">68</td>
-            <td class="negative-votes">33</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-          <tr class="even">
-      	    <td class="ranking">
-      	      <span title="Evolución del número de votos positivos por mes (último punto = mes actual)" id="sparkline_1171">
-      	        <img src="/images/proto/sparkline.png">
-      	      </span>
-            </td>
-        	  <td class="position">10.</td>
-        	  <td class="photo">
-              <img alt="Foto de Pablo Gavilán" src="http://images.voota.es/usuarios/v.png" />
-            </td>
-            <td class="name">
-              <a href="/frontend_dev.php/es/propuesta/alternativas-impuestos" class="tooltip_propuesta" title="#propuesta_10">Alternativas a los impuestos par...</a>
-              <div id="propuesta_10" style="display: none">
-                <p><strong>Sobre esta propuesta:</strong></p>
-                <p>En Bélgica se aprobó la implantación de un subsidio de paro indefinido (también llamado 'minimex') donde todas las personas en edad de trabajar que no tuviesen trabajo recibían una prestación fija de dinero.</p>
-              </div>
-            </td>
-            <td class="positive-votes">60</td>
-            <td class="negative-votes">29</td>
-            <td class="date">07/06/2010</td>
-          </tr>
-        </tbody>
+  <tbody>
+    <?php foreach($propuestasPager->getResults() as $idx => $propuesta): ?>
+      <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
+  	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?></td>
+  	    <td class="position"><?php echo format_number($propuestasPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
+  	    <td class="photo">
+          <?php echo image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"') ?>
+  	    </td>
+        <td class="name">
+          <?php echo link_to(	cutToLength("".$propuesta->getTitulo(), 35) , 'propuesta/show?id='.$propuesta->getVanity()) ?>
+        </td>
+        <td class="voto">
+            <?php include_component_slot('quickvote', array('entity' => $propuesta)) ?>
+        </td>
+        <td class="positive-votes"><?php echo sumu($propuesta)?></td>
+        <td class="negative-votes"><?php echo sumd($propuesta)?></td>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
+  
       </table>
 
       <p class="pagination">

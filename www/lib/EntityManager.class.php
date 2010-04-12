@@ -117,6 +117,80 @@ class EntityManager {
   		}
   	}
   	
+  	public static function getPropuestas($culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
+  	{
+	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cacheManager != null) {
+  			//$cacheManager=new sfMemcacheCache();
+  			//$cacheManager->initialize();
+  			$key=md5("propuestas_$partido-$institucion-$culture-$page-$order");
+  			$data = $cacheManager->get($key);
+	  	}
+	  	else {
+	  		$data = false;
+	  	}
+  		if ($data){
+  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
+  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
+  			return unserialize($cacheManager->get("$key"));  		
+  		}
+  		else {  		
+		  	$c = new Criteria();
+		  	
+		  	$c->setDistinct();
+		  	$pager = new sfPropelPager('Propuesta', $limit);
+		  	
+		  	/* Orden de resultados
+		  	 * pa: positivos ascendente
+		  	 * pd: positivos descendente
+		  	 * na: negativos ascendente
+		  	 * nd: negativos descendente
+		  	 */
+		  	if ($order == "pa"){
+		  		$c->addAscendingOrderByColumn(PropuestaPeer::SUMU);
+		  	}
+		  	else if ($order == "pd") {
+		  		$c->addDescendingOrderByColumn(PropuestaPeer::SUMU);
+		  		$c->addAscendingOrderByColumn(PropuestaPeer::SUMD);
+		  	}
+		  	else if ($order == "na"){
+		  		$c->addAscendingOrderByColumn(PropuestaPeer::SUMD);
+		  	}
+		  	else if ($order == "nd") {
+		  		$c->addDescendingOrderByColumn(PropuestaPeer::SUMD);
+		  		$c->addAscendingOrderByColumn(PropuestaPeer::SUMU);
+		  	}
+		  	/* Fin Orden */
+		  	
+			//$c->setDistinct();
+		    
+	    	/* Calcula totales. Ver impacto en rendimiento */
+  			$query = "SELECT sum(propuesta.sumu) as total_u, sum(propuesta.sumd) as total_d 
+  				FROM `propuesta` ".
+  				"";
+		   	$connection = Propel::getConnection();
+			$statement = $connection->prepare($query);
+			$statement->execute();
+			$results = $statement->fetchAll();
+			foreach($results as $result){
+				$totalUp = $result['total_u'];
+				$totalDown = $result['total_d'];
+			}					  	
+			/* Fin Calcula totales */
+		    
+		    $pager->setCriteria($c);
+		    $pager->setPage( $page );
+		    $pager->init();		    
+		    
+	  		if ($cacheManager != null) {
+	  			$cacheManager->set($key,serialize($pager), 3600);
+	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
+	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		}
+	    	return $pager;
+  		}
+  	}
+  	
   	public static function getPartidos($institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
 	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();

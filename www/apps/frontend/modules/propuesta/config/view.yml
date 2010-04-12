@@ -1,0 +1,10 @@
+default:
+  components:
+    sparkline:  [general, sparkline]
+    subreviews:  [sfReviewFront, subreviews]
+    review_list:  [sfReviewFront, reviewList]
+    quickvote:  [sfReviewFront, quickvote]
+    
+all:
+  javascripts: 
+    
