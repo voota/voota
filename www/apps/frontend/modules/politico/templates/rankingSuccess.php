@@ -20,10 +20,11 @@
   </select>
 </h2> -->
 
+<?php include_partial('sfReviewFront/dialog') ?>
+
 <?php include_partial('selectorPartido', array('pageTitle' => $pageTitle, 'partidos_arr' => $partidos_arr, 'favoritos' => $partidos_arr, 'partido' => $partido)) ?>
 
 <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
-
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
