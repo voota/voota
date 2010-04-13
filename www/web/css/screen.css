@@ -417,7 +417,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show #google-ads,
 #partido-show #google-ads { width: 220px; margin-left: 50px; float: left; }
 #politico-show .reviews,
-#partido-show .reviews { clear: left; padding-top: 35px; width: 600px;}
+#partido-show .reviews { clear: left; float: left; padding-top: 35px; width: 600px;}
+#politico-show .reviews .ui-tabs-panel,
+#partido-show .reviews .ui-tabs-panel { width: 600px;}
 #politico-show .ui-helper-clearfix { width: 600px; }
 #partido-show .ui-helper-clearfix { width: 720px; }
 
