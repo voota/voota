@@ -34,11 +34,7 @@
   <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
 	<?php include_partial('general/sparkline_box', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
   <span class="rank">
-    <?php if ($politico->getSumU() == 1):?>
-	    <?php echo __('%1% voto positivo', array('%1%' => $politico->getSumU())) ?> 
-    <?php else: ?>
-	    <?php echo __('%1% votos positivos', array('%1%' => $politico->getSumU())) ?> 
-    <?php endif ?>
+  	<?php echo format_number_choice('[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $politico->getSumu()), $politico->getSumu()) ?>
   </span>
 </h2>
 

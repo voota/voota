@@ -41,10 +41,10 @@ class Entity {
   		$this->type = $peer::TABLE_NAME;
   		$this->positives = $entity->getSumu();
   		$this->negatives = $entity->getSumd();
-  		$this->image = self::IMAGE_PATH . $this->type . "s/cc_" . $entity->getImagen();
-  		$this->image_s = self::IMAGE_PATH . $this->type . "s/cc_s_" . $entity->getImagen();
-  		$this->image_bw = self::IMAGE_PATH . $this->type . "s/bw_" . $entity->getImagen();
-  	  	$this->image_s_bw = self::IMAGE_PATH . $this->type . "s/bw_s_" . $entity->getImagen();
+  		$this->image = self::IMAGE_PATH . $entity->getImagePath() . "/cc_" . $entity->getImagen();
+  		$this->image_s = self::IMAGE_PATH . $entity->getImagePath() . "/cc_s_" . $entity->getImagen();
+  		$this->image_bw = self::IMAGE_PATH . $entity->getImagePath() . "/bw_" . $entity->getImagen();
+  	  	$this->image_s_bw = self::IMAGE_PATH . $entity->getImagePath() . "/bw_s_" . $entity->getImagen();
   	  	$this->longName = $entity->getLongName();
   	  	$this->recentPositives = $entity->getSumut();
   	  	$this->recentNegatives = $entity->getSumdt();
