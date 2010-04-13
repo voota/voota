@@ -1,11 +1,18 @@
 # default rules
+
+### API ###
+
 api:
   url:   /a1
   param: { module: api, action: api }
 
+### HOME ###
+
 homepage:
   url:   /
   param: { module: home, action: index }
+
+### PROPUESTAS ###
 
 ranking_propuesta_es:
   url: /propuestas
@@ -15,25 +22,41 @@ ranking_propuesta_es:
     sf_host_culture: es
 
 ranking_propuesta_ca:
-  url: /propuestas
+  url: /propostes
   param: { module: propuesta, action: ranking }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: ca
+    sf_host_culture: cat
         
-propuesta_new:
-  url: /propuesta/new
+propuesta_add_es:
+  url: /propuesta/add
   param: { module: propuesta, action: new }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: es
         
-propuesta_show:
+propuesta_add_ca:
+  url: /proposta/add
+  param: { module: propuesta, action: new }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat  
+        
+propuesta_show_es:
   url: /propuesta/:id
   param: { module: propuesta, action: show }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: es
+        
+propuesta_show_ca:
+  url: /proposta/:id
+  param: { module: propuesta, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+### POLITICOS ###
     
 politico_more_comments:
   url: /politics/more
@@ -60,7 +83,6 @@ ranking_es:
   requirements:
     sf_host_culture: es
   
-
 ranking_ca:
   url: /politics/:partido/:institucion
   param: { module: politico, action: ranking }
@@ -68,7 +90,6 @@ ranking_ca:
   requirements:
     sf_host_culture: cat
   
-
 ranking_partido_es:
   url: /politicos/:partido
   param: { module: politico, action: ranking }
@@ -76,14 +97,12 @@ ranking_partido_es:
   requirements:
     sf_host_culture: es
   
-
 ranking_partido_ca:
   url: /politics/:partido
   param: { module: politico, action: ranking }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: cat
-  
+    sf_host_culture: cat 
     
 ranking_all_es:
   url: /politicos
@@ -102,6 +121,8 @@ ranking_all_ca:
 politico_take:
   url:   /take
   param: { module: politico, action: take }
+    
+### PARTIDOS ###
     
 partido_es:
   url: /partido/:id
@@ -153,10 +174,11 @@ ranking_partidos_ca:
   requirements:
     sf_host_culture: cat
 
+### USUARIOS ###
+
 sf_guard_signin:
   url:   /user/login
-  param: { module: sfGuardAuth, action: signin }
-  
+  param: { module: sfGuardAuth, action: signin } 
 
 sf_guard_signout:
   url:   /logout
@@ -174,8 +196,7 @@ usuario_unsubscribe:
 
 usuario_removeTip:
   url:   /user/removetip
-  param: { module: sfGuardAuth, action: removeTip }
-  
+  param: { module: sfGuardAuth, action: removeTip }  
 
 usuario_votos:
   url:   /user/reviews
@@ -212,17 +233,16 @@ usuario_reminder:
 usuario_change_password:
   url:   /user/password/:codigo
   param: { module: sfGuardAuth, action: changePassword }
-  
 
 usuario_change_password2:
   url:   /user/password
   param: { module: sfGuardAuth, action: changePassword }
   
+### REVIEWS ###
   
 sf_review_form:
   url:   /review/form
-  param: { module: sfReviewFront, action: form }
-  
+  param: { module: sfReviewFront, action: form } 
 
 sf_review_show:
   url:   /r/:id
@@ -230,28 +250,23 @@ sf_review_show:
 
 sf_review_preview:
   url:   /review/preview
-  param: { module: sfReviewFront, action: preview }
-  
+  param: { module: sfReviewFront, action: preview }  
 
 sf_review_send:
   url:   /review/send
-  param: { module: sfReviewFront, action: send }
-  
+  param: { module: sfReviewFront, action: send }  
   
 sf_review_init:
   url:   /review/init
-  param: { module: sfReviewFront, action: init }
-  
+  param: { module: sfReviewFront, action: init } 
  
 sf_review_delete:
   url:   /review/delete
-  param: { module: sfReviewFront, action: delete }
-  
+  param: { module: sfReviewFront, action: delete } 
   
 sf_review_list:
   url:   /review/list
-  param: { module: sfReviewFront, action: list }
-  
+  param: { module: sfReviewFront, action: list } 
   
 sf_review_filtered_list:
   url:   /review/filteredList
@@ -260,7 +275,8 @@ sf_review_filtered_list:
 sf_review_quickvote:
   url:   /review/qv
   param: { module: sfReviewFront, action: quickvote }
-  
+
+### GENERAL/OTROS ###  
 
 about:
   url:   /about
@@ -274,6 +290,7 @@ search:
   url:   /search
   param: { module: general, action: search }
   
+### PERFIL ###  
 
 contact:
   url:   /contact
@@ -286,6 +303,8 @@ usuario_contact:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
+
+### API DEMO ###  
 
 api_demo_auth:
   url:   /api_demo/auth
@@ -302,12 +321,15 @@ api_demo_most_recently_voted:
 api_demo_politicos:
   url:   /api_demo/politicos
   param: { module: api_demo, action: politicos }
+  
 api_demo_put:
   url:   /api_demo/post
   param: { module: api_demo, action: postReview }
+  
 api_demo_reviews:
   url:   /api_demo/reviews
   param: { module: api_demo, action: reviews }
+  
 api_demo_search:
   url:   /api_demo/search
   param: { module: api_demo, action: search }
