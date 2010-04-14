@@ -47,7 +47,4 @@
       </tr>
     </table>
   </form>
-</div><!-- FIN SIGNUP -->
-
-
-
+</div>

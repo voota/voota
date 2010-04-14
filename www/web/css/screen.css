@@ -189,7 +189,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index #latest-comments-votes h3 { padding-bottom: 10px;}
 #home-index #politicians-top5,
 #home-index #political-groups,
-#home-index #institutions,
+#home-index #proposals-top5,
 #home-index #latest-profile-visitors .column { width: 285px; margin-right: 30px; float: left;}
 #home-index #latest-comments-votes .column,
 #home-index #latest-comments-on-comments .column,

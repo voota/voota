@@ -87,7 +87,8 @@
   			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?></strong></p>
+      <?php // TODO: Sustituir contador de políticos por valor real ?>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?> (358)</strong></p>
     </div>
 
     <div id="political-groups" class="list-mini">
@@ -97,17 +98,20 @@
   	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?></strong></p>
+      <?php // TODO: Sustituir contador de partidos por valor real ?>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (358)</strong></p>
     </div>
 
-    <div id="institutions" class="list-mini">
-      <h3><?php echo __('Instituciones en Voota')?></h3>
+    <?php // TODO: Sustituir variables que hacen referencia a partidos por las propuestas ?>
+    <div id="proposals-top5" class="list-mini">
+      <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
-        <?php foreach($institucionesMasVotadas as $institucion): ?>
-  	  	<?php include_partial('institucion_top', array('institucion' => $institucion)) ?>
+        <?php foreach($partidosMasVotados as $partido): ?>
+  	  	<?php include_partial('propuesta_top', array('partido' => $partido)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Listado de instituciones'), 'politico/ranking')?></strong></p>
+      <?php // TODO: Sustituir contador de propuestas por valor real ?>
+      <p class="ranking-link"><strong><?php echo link_to(__('Todas las propuestas'), 'propuesta/ranking')?> (358)</strong></p>
     </div>
   </div>
 </div>
