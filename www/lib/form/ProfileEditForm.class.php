@@ -150,6 +150,8 @@ class ProfileEditForm extends sfGuardUserAdminForm
   
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {	
 		// remove the embedded new form if the name field was not provided
+		$taintedValues['vanity'] = SfVoUtil::fixVanityChars($taintedValues['vanity']);
+		
 		for ($idx = 1;$idx <= 5;$idx++){
 			if (is_null($taintedValues["enlace_n$idx"]['url'])) {
 		

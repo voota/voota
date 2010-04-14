@@ -40,4 +40,9 @@ class SfGuardUserProfile extends BaseSfGuardUserProfile
   
   	return parent::getApellidos();
   }
+  /*
+  public function getVanity() {
+  	return SfVoUtil::fixVanityChars(parent::getVanity());
+  }
+  */
 }

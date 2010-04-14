@@ -23,7 +23,9 @@ class PartidoForm extends BasePartidoForm
   	unset(
   		$this['partido_lista_list']
   		, $this['created_at']
-  		, $this['partido_id']    		  		
+  		, $this['partido_id']   
+  		, $this['sumu']   
+  		, $this['sumd']    		  		
   	);
     
     
@@ -79,6 +81,7 @@ class PartidoForm extends BasePartidoForm
 	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
+		$taintedValues['abreviatura'] = SfVoUtil::fixVanityChars($taintedValues['abreviatura']);
 		if (!$this->isNew()) {
 			if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
 				unset($this->embeddedForms['enlace'], $taintedValues['enlace']);
