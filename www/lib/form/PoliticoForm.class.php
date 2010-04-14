@@ -160,6 +160,7 @@ class PoliticoForm extends BasePoliticoForm
 	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
  }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
+		$taintedValues['vanity'] = SfVoUtil::fixVanityChars($taintedValues['vanity']);
 		if (!$this->isNew()) {
 			if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
 				unset($this->embeddedForms['enlace'], $taintedValues['enlace']);

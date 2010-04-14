@@ -134,5 +134,11 @@ class SfVoUtil
 				&& SfVoUtil::isEmail( $user->getUsername() )
 				;
 	}	
+	
+	public static function fixVanityChars( $v ) {
+		return strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '--------------------------');
+	}
 }
  
+
+

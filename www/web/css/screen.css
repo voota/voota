@@ -482,3 +482,6 @@ table.sparkline td {padding:0px;}
 .left_hand {
 	margin:0px 25px 0px -12px;
 }
+#sfr_dialog {
+	display:none;
+}
