@@ -33,6 +33,10 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .bluff-tooltip .color {display: none; }
 .bluff-tooltip .data { font-weight: bold; }
 .bluff-wrapper { display: inline-block;}
+.search form { float: right;}
+.search fieldset { margin: 0; padding: 0; border: none; }
+.search input { float: left;}
+.search button { margin-left: 10px; width: 90px; float: left;}
 
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
@@ -87,10 +91,7 @@ tr.even { background-color: #fbfbfb; }
 #user-links #fbc_button img { padding-right: 0;}
 #user-links #lo_fb_conn { padding-right: 10px;}
 #user-links #lo_fb_conn .close { font-size: 9px;}
-#search { position: absolute; top: 70px; right: 0; text-align: right; }
-#search fieldset { margin: 0; padding: 0; border: none; }
-#search input { float: left;}
-#search button { margin-left: 10px; width: 90px; float: left;}
+#header .search { position: absolute; top: 70px; right: 0; text-align: right; }
 #contact-links ul { list-style: none; margin: 0; padding: 0; float: right;}
 #contact-links ul li { float: left; padding: 0 20px 0 40px;}
 #contact-links ul li.blog { background: transparent url(/images/icoBlog.gif) right center no-repeat;}
@@ -359,7 +360,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 
 /* Ranking de propuestas */
 #propuesta-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
-#propuesta-ranking h2 select { font-size: 13px;}
+#propuesta-ranking h2 { margin-bottom: 5px;}
 #propuesta-ranking table { margin: 0 auto; width: 100%; }
 #propuesta-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
 #propuesta-ranking table tbody td,

@@ -103,7 +103,7 @@
       </div>
 
       <?php if ($sf_context->getModuleName() != "home"): ?>
-        <div id="search">
+        <div class="search">
           <form method="get" action="<?php echo url_for('@search')?>">
             <fieldset>
               <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />

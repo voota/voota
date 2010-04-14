@@ -27,6 +27,9 @@
 <?php // TODO: Sustituir 358 por el número de propuestas totales ?>
 <h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => 358)) ?></h2>
 
+<?php // TODO: Sustituir enlace con URL apropiada ?>
+<p><a href="#"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
@@ -91,7 +94,7 @@
           <?php echo image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"') ?>
   	    </td>
         <td class="name">
-          <?php echo link_to(	cutToLength("".$propuesta->getTitulo(), 35), 'propuesta/show?id='.$propuesta->getVanity(), 'class="tooltip_propuesta" title="'.__('Sobre esta propuesta').'|'.$propuesta->getDescripcion().'"') ?>
+          <?php echo link_to(	cutToLength("".$propuesta->getTitulo(), 35), 'propuesta/show?id='.$propuesta->getVanity(), 'class="tooltip_propuesta" title="'.__('Sobre esta propuesta').'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true).'"') ?>
         </td>
         <td class="voto">
             <?php include_component_slot('quickvote', array('entity' => $propuesta)) ?>
@@ -106,6 +109,18 @@
   </tbody>  
 </table>
 
+<?php // TODO: Sustituir enlace con URL apropiada ?>
+<p><a href="#"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+
 <p class="pagination">
   <?php include_partial('global/pagination_full', array('pager' => $propuestasPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>
 </p>
+
+<div class="search">
+  <form method="get" action="<?php echo url_for('@search')?>">
+    <fieldset>
+      <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
+      <button type="submit"><?php echo __('Buscar') ?></button>
+    </fieldset>
+  </form>
+</div>
