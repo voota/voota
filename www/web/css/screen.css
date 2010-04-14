@@ -131,7 +131,8 @@ tr.even { background-color: #fbfbfb; }
 .box-contact ul li.uservoice { background: transparent url(/images/uservoice.png) left center no-repeat; }
 .box-profile .box-inner { background-color: #fdffcd }
 .box-profile h3 { font-size: 16px;}
-.box-profile button { width: 180px;}
+.box-profile button, .box-propuestas button { width: 180px;}
+.box-propuestas { margin-top: 40px;}
 
 /* Formularios */
 form { margin: 0; padding: 0;}

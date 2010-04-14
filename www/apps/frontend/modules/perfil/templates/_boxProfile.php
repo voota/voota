@@ -21,7 +21,7 @@
     <p><button><?php echo __('¿Hacer una donación?') ?></button></p>
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
-        $('#sidebar button').click(function() {
+        $('.box-profile button').click(function() {
           window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=10999422';
         })
       })
