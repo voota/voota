@@ -37,6 +37,7 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .search fieldset { margin: 0; padding: 0; border: none; }
 .search input { float: left;}
 .search button { margin-left: 10px; width: 90px; float: left;}
+.document { padding-left: 18px; padding-top: 2px; background: transparent url(/images/document.gif) left center no-repeat;}
 
 strong.email { color: #2b56ff;}
 .blur { color:#b6b6b6; }
@@ -453,6 +454,26 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfReviewFront-show .review-name { font-size: 16px;}
 #sfReviewFront-show .subreviews .review-name { font-size: 13px;}
 #sfReviewFront-show .review-date { margin-top: 0;}
+
+/* Nueva propuesta */
+#propuesta-new h2 { margin-bottom: 10px;}
+#propuesta-new .hints { padding: 5px 10px;}
+#propuesta-new #content { margin-top: 2em; position: relative; }
+#propuesta-new ol.links { margin: 0; padding: 0 0 0 20px; margin-left: -20px;}
+#propuesta-new ol.links li { margin-bottom: 20px;}
+#propuesta-new label { font-weight: normal;}
+#propuesta-new input[type=text],
+#propuesta-new input[type=password],
+#propuesta-new textarea { width: 290px;}
+#propuesta-new input[type=submit] { width: 150px;}
+#propuesta-new input[type=button] { width: 150px;}
+#propuesta-new form th { width: 130px;}
+#propuesta-new form td { width: 290px;}
+#propuesta-new .counter { padding-bottom: 0; text-align: right;}
+#propuesta-new .submit span { padding-right: 20px;}
+#propuesta-new #ultimas-propuestas { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#propuesta-new #ultimas-propuestas ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
+#propuesta-new #ultimas-propuestas ul li { margin: 0 0 10px 0;}
 
 /* Popups de ayuda */
 #help-dialog { display:none; }
