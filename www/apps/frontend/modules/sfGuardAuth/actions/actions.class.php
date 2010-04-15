@@ -411,6 +411,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   {    
 	$this->hasDeepUpdates = false;
 	
+	$c = new Criteria();
+	$c->add(PropuestaPeer::IS_ACTIVE, true);
+	$this->propuestasCount = PropuestaPeer::doCount( $c );
+	
   	$this->isCanonicalVootaUser = SfVoUtil::isCanonicalVootaUser( $this->getUser()->getGuardUser() );
     
   	if ( $this->getUser()->isAuthenticated() ){

@@ -114,6 +114,9 @@ propel:
     sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
+    is_active: { type: boolean, required: true, default: false }
+    created_at: { type: TIMESTAMP, required: false }
+    modified_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_propuesta_1: [sf_guard_user_id] }
   politico:
     _attributes: { phpName: Politico, isI18N: true, i18nTable: politico_i18n }

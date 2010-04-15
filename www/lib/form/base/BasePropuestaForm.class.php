@@ -21,6 +21,11 @@ abstract class BasePropuestaForm extends BaseFormPropel
       'imagen'           => new sfWidgetFormInputText(),
       'doc'              => new sfWidgetFormInputText(),
       'sf_guard_user_id' => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'sumu'             => new sfWidgetFormInputText(),
+      'sumd'             => new sfWidgetFormInputText(),
+      'is_active'        => new sfWidgetFormInputCheckbox(),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'modified_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -31,6 +36,11 @@ abstract class BasePropuestaForm extends BaseFormPropel
       'imagen'           => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'doc'              => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'sf_guard_user_id' => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id', 'required' => false)),
+      'sumu'             => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'sumd'             => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
+      'is_active'        => new sfValidatorBoolean(),
+      'created_at'       => new sfValidatorDateTime(array('required' => false)),
+      'modified_at'      => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('propuesta[%s]');

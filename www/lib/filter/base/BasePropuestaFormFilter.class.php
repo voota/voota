@@ -18,6 +18,11 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'imagen'           => new sfWidgetFormFilterInput(),
       'doc'              => new sfWidgetFormFilterInput(),
       'sf_guard_user_id' => new sfWidgetFormPropelChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'sumu'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'sumd'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'is_active'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'modified_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
@@ -27,6 +32,11 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'imagen'           => new sfValidatorPass(array('required' => false)),
       'doc'              => new sfValidatorPass(array('required' => false)),
       'sf_guard_user_id' => new sfValidatorPropelChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
+      'sumu'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'sumd'             => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'is_active'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'modified_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
     $this->widgetSchema->setNameFormat('propuesta_filters[%s]');
@@ -51,6 +61,11 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'imagen'           => 'Text',
       'doc'              => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
+      'sumu'             => 'Number',
+      'sumd'             => 'Number',
+      'is_active'        => 'Boolean',
+      'created_at'       => 'Date',
+      'modified_at'      => 'Date',
     );
   }
 }
