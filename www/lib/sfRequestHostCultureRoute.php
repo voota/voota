@@ -1,5 +1,5 @@
 <?php
-class sfRequestHostCultureRoute extends sfRequestRoute
+class sfRequestHostCultureRoute extends sfRoute
 {
 
   public function matchesUrl($url, $context = array())

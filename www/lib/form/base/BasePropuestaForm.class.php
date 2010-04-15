@@ -46,7 +46,10 @@ abstract class BasePropuestaForm extends BaseFormPropel
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Propuesta', 'column' => array('vanity')))
+      new sfValidatorAnd(array(
+        new sfValidatorPropelUnique(array('model' => 'Propuesta', 'column' => array('vanity'))),
+        new sfValidatorPropelUnique(array('model' => 'Propuesta', 'column' => array('titulo'))),
+      ))
     );
 
     $this->widgetSchema->setNameFormat('propuesta[%s]');

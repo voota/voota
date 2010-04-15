@@ -109,8 +109,7 @@
   </tbody>  
 </table>
 
-<?php // TODO: Sustituir enlace con URL apropiada ?>
-<p><a href="#"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <p class="pagination">
   <?php include_partial('global/pagination_full', array('pager' => $propuestasPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>

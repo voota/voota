@@ -26,14 +26,13 @@
     <?php include_partial('ultimasPropuestas') ?>
   </div>
   
-  <form method="post">
+  <form method="post" action="<?php echo url_for('propuesta/new')?>">
     <div><input type="hidden" name="op" value="r" /></div>
     <table>
       <tr>
         <th><label for="propuesta_titulo"><?php echo __('Titular de la propuesta') ?></label></th>
         <td>
-          <?php //echo $form['titulo']->render() ?>
-          <textarea rows="4" cols="30" name="propuesta[titulo]" id="propuesta_titulo"></textarea>
+          <?php echo $form['titulo']->render() ?>
           <?php echo $form['titulo']->renderError() ?>
           <p id="propuesta_titulo_counter" class="counter"></p>
         </td>
@@ -42,8 +41,7 @@
       <tr>
         <th><label for="propuesta_descripcion"><?php echo __('Descripción') ?></label></th>
         <td>
-          <?php //echo $form['descripcion']->render() ?>
-          <textarea rows="20" cols="30" name="propuesta[descripcion]" id="propuesta_descripcion"></textarea>
+          <?php echo $form['descripcion']->render() ?>
           <?php echo $form['descripcion']->renderError() ?>
           <p id="propuesta_descripcion_counter" class="counter"></p>
         </td>

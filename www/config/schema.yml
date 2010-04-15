@@ -119,7 +119,7 @@ propel:
     modified_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '150', required: true }
     _indexes: { fk_propuesta_1: [sf_guard_user_id] }
-    _uniques: { vanity_UNIQUE: [vanity] }
+    _uniques: { vanity_UNIQUE: [vanity], titulo_UNIQUE: [titulo] }
   politico:
     _attributes: { phpName: Politico, isI18N: true, i18nTable: politico_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

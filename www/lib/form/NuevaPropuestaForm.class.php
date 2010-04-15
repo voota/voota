@@ -1,13 +1,25 @@
 <?php
 class NuevaPropuestaForm extends PropuestaForm
 {
- 
+	
+	public function bind(array $taintedValues = null, array $taintedFiles = null) {
+		$taintedValues['sf_guard_user_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getId();
+
+		parent::bind($taintedValues, $taintedFiles);
+	}
+	
+	
   public function configure()
   {
+  	unset(
+  		$this['id']
+  		, $this['vanity']
+  	);
+  	
     $this->setWidgets(array(
       'op' => new sfWidgetFormInputHidden(),
-      'titulo'   => new sfWidgetFormInputText(array()),
-      'descripcion'   => new sfWidgetFormInputText(array()),
+      'titulo'   => new sfWidgetFormTextArea(array()),
+      'descripcion'   => new sfWidgetFormTextArea(array(), array('rows'=>20,'cols'=>30)),
       'imagen'   => new sfWidgetFormInputFileEditable(array(
 			   'label'     => sfContext::getInstance()->getI18N()->__('Imagen', array(), 'notices'),
    			 'file_src'  => $this->getObject()?''.S3Voota::getImagesUrl().'/usuarios/cc_s_'.$this->getObject()->getImagen():'',
@@ -29,8 +41,10 @@ class NuevaPropuestaForm extends PropuestaForm
 	  'descripcion'    => sfContext::getInstance()->getI18N()->__('Descripción', array(), 'notices'),
 	)); 
 	$this->setValidators(array(
-      'titulo'   => new sfValidatorEmail(array('required' => true), sfVoForm::getStringMessages()),  
+      'titulo'   => new sfValidatorString(array("min_length" => SfVoUtil::VANITY_MIN_LENGTH, 'required' => true), sfVoForm::getStringMessages()),  
       'descripcion'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),
+      'vanity'   => new sfValidatorString(array('required' => true)),
+      'sf_guard_user_id'   => new sfValidatorInteger(array('required' => true)),
       'imagen'   => new sfValidatorFile(array(
 				   'required'   => false,
     			   'max_size' => '512000',
@@ -47,5 +61,11 @@ class NuevaPropuestaForm extends PropuestaForm
 	  ), sfVoForm::getImageMessages()),
     ));
     
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorAnd(array(
+        new sfValidatorPropelUnique(array('model' => 'Propuesta', 'column' => array('vanity')), sfVoForm::getUniqueMessages()),
+        new sfValidatorPropelUnique(array('model' => 'Propuesta', 'column' => array('titulo')), sfVoForm::getUniqueMessages()),
+      ))
+    );
   }
 }

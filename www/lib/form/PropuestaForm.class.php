@@ -21,12 +21,14 @@ class PropuestaForm extends BasePropuestaForm
   }
   
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
-		$vanity = $taintedValues['vanity'];
+		$vanity = isset($taintedValues['vanity'])?$taintedValues['vanity']:false;
+		$id = isset($taintedValues['id'])?$taintedValues['id']:false;
+		
 		if ($vanity){
 			$taintedValues['vanity'] = SfVoUtil::fixVanityChars( $vanity ); 	
 		}
 		else {
-			if (!$taintedValues['id']){
+			if (!$id){
 				$taintedValues['vanity'] = SfVoUtil::fixVanityChars( $taintedValues['titulo'] );
 			}
 		}

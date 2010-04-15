@@ -92,8 +92,32 @@ class propuestaActions extends sfActions
   {
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
+  	$op = $request->getParameter("op", "r");
+  	
+  	$this->title = sfContext::getInstance()->getI18N()->__('Añadir una nueva propuesta - Voota ', array());
   	$this->form = new NuevaPropuestaForm();
   	
+    if ($request->isMethod('post') ){    	
+    	$this->form->bind($request->getParameter('propuesta'), $request->getFiles('propuesta'));
+    	
+		if ($this->form->isValid()){
+			if($op == 'r') {
+				$this->form = new PreviewPropuestaForm( );
+				$this->form->bind( $request->getParameter('propuesta') );
+				
+				return 'Preview';					
+			}
+			else {
+				$this->form->save();
+			
+				$this->propuesta = $this->form->getObject();
+				$this->redirect("propuesta/show?id=".$this->propuesta->getId());			
+				
+			}
+				
+		}
+    }
+    
   }
   
   public function executeShow(sfWebRequest $request)
