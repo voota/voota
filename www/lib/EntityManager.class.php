@@ -136,6 +136,7 @@ class EntityManager {
   		}
   		else {  		
 		  	$c = new Criteria();
+		  	$c->add(PropuestaPeer::IS_ACTIVE, true);
 		  	
 		  	$c->setDistinct();
 		  	$pager = new sfPropelPager('Propuesta', $limit);

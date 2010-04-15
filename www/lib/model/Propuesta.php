@@ -29,10 +29,6 @@ class Propuesta extends BasePropuesta implements reviewable {
   {
   	return $this->getTitulo();
   }
-  public function getVanity()
-  {
-  	return $this->getId();
-  }
   
   public function getPositives() {
   	return SfReviewManager::getTotalReviewsByEntityAndValue(Propuesta::NUM_ENTITY, $this->getId(), 1);

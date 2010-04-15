@@ -1,5 +1,6 @@
 default:
   components:
+    propuestaResult:  [general, propuestaResult]
     politicoResult:  [general, politicoResult]
     partidoResult:  [general, partidoResult]
     institucionResult:  [general, institucionResult]

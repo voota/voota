@@ -69,29 +69,24 @@ class homeActions extends sfActions{
   	$c->setLimit(5);
   	$c->add(PartidoPeer::IS_ACTIVE, true);
   	$this->partidosMasVotados = PartidoPeer::doSelect($c);
+  	  		
+  	$c = new Criteria();
+  	$c->addDescendingOrderByColumn(PropuestaPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PropuestaPeer::SUMD);
+  	$c->setLimit(5);
+  	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$this->propuestasMasVotadas = PropuestaPeer::doSelect($c);
+  	
+  	//Totales  	
+  	$c = new Criteria();
+  	$this->totalPoliticos = PoliticoPeer::doCount($c);
+  	$c = new Criteria();
+  	$c->add(PartidoPeer::IS_ACTIVE, true);
+  	$this->totalPartidos = PartidoPeer::doCount($c);
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$this->totalPropuestas = PropuestaPeer::doCount($c);
   	/*
-   	$query = "SELECT pa.*, count( * ) c
-			FROM partido pa
-			INNER JOIN politico p ON p.partido_id = pa.id
-			INNER JOIN sf_review r ON r.entity_id = p.id
-			WHERE r.is_active =1
-			AND r.value =1
-			GROUP BY pa.id
-			ORDER BY c DESC
-			LIMIT 5";
-			//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
-   	$connection = Propel::getConnection();
-	$statement = $connection->prepare($query);
-
-	$statement->execute();
-	$this->partidosMasVotados = $statement->fetchAll(PDO::FETCH_CLASS, 'Partido');
-	*/
-	/*
-	foreach($this->partidosMasVotados as $partido){
-		echo $partido->getNombre(). "<br>";
-	}
-	echo "==============================================<br />";
-	*/	
    	$query = "SELECT i.*, ii.*, count( * ) c
 			FROM institucion i
 			INNER JOIN institucion_i18n ii on (i.id = ii.id AND ii.culture = ?)
@@ -109,12 +104,6 @@ class homeActions extends sfActions{
 
 	$statement->execute( array($this->getUser()->getCulture()) );
 	$this->institucionesMasVotadas = $statement->fetchAll();
-	
-	/*
-	foreach($this->institucionesMasVotadose as $institucion){
-		echo $institucion->getNombre(). "<br>";
-	}
-	echo "==============================================<br />";
 	*/
 	
   	$this->response->addMeta('Description', sfContext::getInstance()->getI18N()->__('Comparte opiniones sobre políticos y partidos de España. Ranking de los políticos y partidos más votados.'));

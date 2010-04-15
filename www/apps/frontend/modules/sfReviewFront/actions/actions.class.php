@@ -21,6 +21,33 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFr
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+
+	public function executeShow(sfWebRequest $request){
+		parent::executeShow( $request );
+		
+		$entityText = '';
+		if( $this->review->getSfReviewTypeId() ){
+			$entityText = $this->entity;
+		}
+	  	$this->title = sfContext::getInstance()->getI18N()->__('Opinión de %1% sobre %2%'
+	  					, array(
+	  						'%1%' => $this->review->getSfGuardUser(), 
+	  						'%2%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario')
+	  					)
+	  	);
+  	
+  		$description = sfContext::getInstance()->getI18N()->__('Opinión de %1% sobre %2%. %3%'
+	  					, array(
+	  						'%1%' => $this->review->getSfGuardUser(), 
+	  						'%2%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario'),
+	  						'%3%' => $this->review->getText()?$this->review->getText():''
+	  					)
+	  	);
+	    $this->response->addMeta('Description', $description);
+  	
+    	$this->response->setTitle( $this->title );
+ 	}
+	
   	public function executeForm(sfWebRequest $request){
 		if( $this->getUser()->isAuthenticated() ){
 		  	$this->getUser()->setAttribute('url_back', '');

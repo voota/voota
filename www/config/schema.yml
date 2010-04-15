@@ -111,13 +111,15 @@ propel:
     culture: { type: VARCHAR, size: '7', required: false }    
     imagen: { type: VARCHAR, size: '50', required: false }
     doc: { type: VARCHAR, size: '50', required: false }
-    sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
-    is_active: { type: boolean, required: true, default: false }
+    is_active: { type: boolean, required: true, default: true }
     created_at: { type: TIMESTAMP, required: false }
     modified_at: { type: TIMESTAMP, required: false }
+    vanity: { type: VARCHAR, size: '150', required: true }
     _indexes: { fk_propuesta_1: [sf_guard_user_id] }
+    _uniques: { vanity_UNIQUE: [vanity] }
   politico:
     _attributes: { phpName: Politico, isI18N: true, i18nTable: politico_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

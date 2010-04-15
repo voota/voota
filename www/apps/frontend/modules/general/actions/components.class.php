@@ -4,6 +4,36 @@
  
 class generalComponents extends sfComponents
 {
+  public function executePropuestaResult(){
+  	$this->quote = '';
+  	
+  	if (SfVoUtil::matches($this->obj->getTitulo(), $this->q)){
+  	}
+  	else if (SfVoUtil::matches($this->obj->getDescripcion(), $this->q)){
+  		$this->quote = $this->obj->getDescripcion();
+  	}
+  	else {
+  		$c = new Criteria();
+  		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
+  		$c->add(SfReviewPeer::SF_REVIEW_ID, Propuesta::NUM_ENTITY);
+  		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
+  		$reviews = SfReviewPeer::doSelect( $c );
+  		foreach($reviews as $review){
+  			if (SfVoUtil::matches($review->getText(), $this->q)){
+  				$this->quote = $review->getText();
+  			}
+  		}
+  		if ($this->quote == ''){
+	  		foreach($reviews as $review){
+	  			if (SfVoUtil::matches($review->getText(), $this->q, true)){
+	  				$this->quote = $review->getText();
+	  			}
+	  		}
+  		}
+  	}
+  
+  	$this->quote = SfVoUtil::highlightWords($this->quote, $this->q);
+  }
   public function executePoliticoResult(){
   	$this->quote = '';
   	
@@ -29,6 +59,7 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
+  		$c->add(SfReviewPeer::SF_REVIEW_ID, Politico::NUM_ENTITY);
   		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){
@@ -61,6 +92,8 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
+  		$c->add(SfReviewPeer::SF_REVIEW_ID, Partido::NUM_ENTITY);
+  		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){
   			if (SfVoUtil::matches($review->getText(), $this->q)){

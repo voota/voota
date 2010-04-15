@@ -64,15 +64,7 @@ class propuestaActions extends sfActions
   	}
   	$this->title = $this->pageTitle . ' - Voota';
   	
-  	$description = sfContext::getInstance()->getI18N()->__('Ranking de políticos', array());
-  	if (isset($aaPartido)){
-  		if ($this->partido != '0' && $aaPartido) {
-	  		$description .= ", " . $aaPartido->getNombre();
-   		}
-	  	if ($this->institucion != '0') {
-	  		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
-   		}
-  	}
+  	$description = sfContext::getInstance()->getI18N()->__('Ranking de propuestas', array());
   	if ($this->order != 'pd') {
   		switch($this->order){
   			case 'pa':

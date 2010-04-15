@@ -20,6 +20,9 @@
     <?php foreach($partidosMasVotados as $partido): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
 	  <?php endforeach?>
+    <?php foreach($propuestasMasVotadas as $p): ?>
+  		<?php include_component_slot('sparkline', array('id' => "sparkline_tpr_".$p->getId(), 'reviewable' => $p)) ?>
+	  <?php endforeach?>
   };
   //-->
 </script>
@@ -87,8 +90,7 @@
   			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
       <?php endforeach?>
       </ol>
-      <?php // TODO: Sustituir contador de políticos por valor real ?>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?> (358)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
     </div>
 
     <div id="political-groups" class="list-mini">
@@ -99,19 +101,19 @@
       <?php endforeach?>
       </ol>
       <?php // TODO: Sustituir contador de partidos por valor real ?>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (358)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
     </div>
 
     <?php // TODO: Sustituir variables que hacen referencia a partidos por las propuestas ?>
     <div id="proposals-top5" class="list-mini">
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
-        <?php foreach($partidosMasVotados as $partido): ?>
-  	  	<?php include_partial('propuesta_top', array('partido' => $partido)) ?>
+        <?php foreach($propuestasMasVotadas as $p): ?>
+  	  	<?php include_partial('propuesta_top', array('p' => $p)) ?>
       <?php endforeach?>
       </ol>
       <?php // TODO: Sustituir contador de propuestas por valor real ?>
-      <p class="ranking-link"><strong><?php echo link_to(__('Todas las propuestas'), 'propuesta/ranking')?> (358)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Todas las propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
     </div>
   </div>
 </div>
