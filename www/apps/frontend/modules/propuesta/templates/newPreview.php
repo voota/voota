@@ -16,7 +16,6 @@ Descripción: <?php echo $form['descripcion']->getValue() ?>
           <?php echo $form['descripcion']->render() ?>
           <?php echo $form['imagen']->render() ?>
           <?php echo $form['doc']->render() ?>
-          <?php echo $form['doc']->renderError() ?>
           
           <input name="button" type="submit" class="button" value="<?php echo __('Ok')?>" />
   </form>

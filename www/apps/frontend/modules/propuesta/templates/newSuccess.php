@@ -26,7 +26,7 @@
     <?php include_partial('ultimasPropuestas') ?>
   </div>
   
-  <form method="post" action="<?php echo url_for('propuesta/new')?>">
+  <form method="post" action="<?php echo url_for('propuesta/new')?>" enctype="multipart/form-data">
     <div><input type="hidden" name="op" value="r" /></div>
     <table>
       <tr>

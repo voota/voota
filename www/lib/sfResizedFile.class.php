@@ -74,20 +74,25 @@ class sfResizedFile extends sfValidatedFile
 		$ret = parent::save($file, $fileMode, $create, $dirMode);
 		
 		//$img = new sfImage( $file );
-
 		if ($ret){
 			$s3 = new S3Voota();
 			if (strpos  ( $file , "politicos" )){
 			    $s3->createPoliticoFromFile($file);
 			}
-			if (strpos  ( $file , "instituciones" )){
+			else if (strpos  ( $file , "instituciones" )){
 				$s3->createInstitucionFromFile($file);
 			}
-			if (strpos  ( $file , "usuarios" )){
+			else if (strpos  ( $file , "usuarios" )){
 				$ret = $s3->createUsuarioFromFile($file);
 			}
-			if (strpos  ( $file , "partidos" )){
+			else if (strpos  ( $file , "partidos" )){
 				$s3->createPartidoFromFile($file);
+			}
+			else if (strpos  ( $file , "propuestas" )){
+				$s3->createFromFile("propuestas", $file);
+			}
+			else if (strpos  ( $file , "docs" )){
+				$s3->createDocFromFile("docs", $file);
 			}
 		}		
 		return $ret;

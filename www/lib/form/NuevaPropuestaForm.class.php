@@ -55,8 +55,7 @@ class NuevaPropuestaForm extends PropuestaForm
       'doc'   => new sfValidatorFile(array(
 				   'required'   => false,
     			   'max_size' => '512000',
-				   'mime_types' => 'web_images',
-				   'path' => sfConfig::get('sf_upload_dir').'/propuestas',
+				   'path' => sfConfig::get('sf_upload_dir').'/docs',
 				   'validated_file_class' => 'sfResizedFile',
 	  ), sfVoForm::getImageMessages()),
     ));

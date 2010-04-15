@@ -92,25 +92,60 @@ class propuestaActions extends sfActions
   {
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
-  	$op = $request->getParameter("op", "r");
+  	$op = $request->getParameter("op", "n");
   	
   	$this->title = sfContext::getInstance()->getI18N()->__('Añadir una nueva propuesta - Voota ', array());
-  	$this->form = new NuevaPropuestaForm();
+  	if ($op == 'c'){
+	  	$this->form = new PreviewPropuestaForm();
+  	}
+  	else {
+	  	$this->form = new NuevaPropuestaForm();
+  	}
   	
     if ($request->isMethod('post') ){    	
     	$this->form->bind($request->getParameter('propuesta'), $request->getFiles('propuesta'));
     	
 		if ($this->form->isValid()){
 			if($op == 'r') {
+	      		$imagen = $this->form->getValue('imagen');
+	      		
+	      		if ($imagen){
+		      		$arr = array_reverse( explode  ( "."  , $imagen->getOriginalName() ) );
+					$ext = strtolower($arr[0]);
+					if (!$ext || $ext == ""){
+						$ext = "png";
+					}      		
+		      		$imageName = SfVoUtil::fixVanityChars( $arr[1] );
+		      		$imageName .= "-".sprintf("%04d", rand(0, 999));
+		      		$imageName .= ".$ext";
+		      		$imagen->save(sfConfig::get('sf_upload_dir').'/propuestas/'.$imageName);
+		      		$this->form->getObject()->setImagen( $imageName );
+	      		}
+	      		
+	      		$doc = $this->form->getValue('doc');
+	      		
+	      		if ($doc){
+		      		$arr = array_reverse( explode  ( "."  , $doc->getOriginalName() ) );
+					$ext = strtolower($arr[0]);
+					if (!$ext || $ext == ""){
+						$ext = "png";
+					}      		
+		      		$docName = SfVoUtil::fixVanityChars( $arr[1] );
+		      		$docName .= "-".sprintf("%04d", rand(0, 999));
+		      		$docName .= ".$ext";
+		      		$doc->save(sfConfig::get('sf_upload_dir').'/docs/'.$docName);
+		      		$this->form->getObject()->setDoc( $docName );
+	      		}
+      		
 				$this->form = new PreviewPropuestaForm( );
-				$this->form->bind( $request->getParameter('propuesta') );
+				$this->form->bind( $request->getParameter('propuesta'), array(), isset($imageName)?$imageName:false, isset($docName)?$docName:false);
 				
-				return 'Preview';					
+				return 'Preview';
 			}
-			else {
+			elseif($op == 'c')  {
 				$this->form->save();
-			
 				$this->propuesta = $this->form->getObject();
+			
 				$this->redirect("propuesta/show?id=".$this->propuesta->getId());			
 				
 			}
