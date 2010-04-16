@@ -237,4 +237,20 @@ class propuestaActions extends sfActions
      paginador */
     
   }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	$vanity = $request->getParameter('id');
+  	
+  	$op = $request->getParameter("op", "n");
+    
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::VANITY, $vanity);
+  	$this->propuesta = PropuestaPeer::doSelectOne( $c );
+  	$this->forward404Unless( $this->propuesta );
+  	
+  	$this->title = sfContext::getInstance()->getI18N()->__('Edición de la propuesta "%1%" - Voota ', array('%1%' => $this->propuesta->getTitulo()));
+    $this->response->setTitle( $this->title );
+  }
 }
