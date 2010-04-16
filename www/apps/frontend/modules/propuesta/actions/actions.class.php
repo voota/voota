@@ -95,6 +95,8 @@ class propuestaActions extends sfActions
   	$op = $request->getParameter("op", "n");
   	
   	$this->title = sfContext::getInstance()->getI18N()->__('Añadir una nueva propuesta - Voota ', array());
+    $this->response->setTitle( $this->title );
+    
   	if ($op == 'c'){
 	  	$this->form = new PreviewPropuestaForm();
   	}
@@ -145,6 +147,7 @@ class propuestaActions extends sfActions
 			elseif($op == 'c')  {
 				$this->form->save();
 				$this->propuesta = $this->form->getObject();
+				$this->getUser()->setFlash('propuestaToFB', $this->propuesta, true);
 			
 				$this->redirect("propuesta/show?id=".$this->propuesta->getVanity());			
 				
