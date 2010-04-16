@@ -20,8 +20,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'imagen'                    => new sfWidgetFormFilterInput(),
       'is_active'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'is_main'                   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
-      'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
+      'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -33,8 +33,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'imagen'                    => new sfValidatorPass(array('required' => false)),
       'is_active'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'is_main'                   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
-      'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
+      'eleccion_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('institucion_filters[%s]');
@@ -42,31 +42,6 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addEleccionInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(EleccionInstitucionPeer::ELECCION_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(EleccionInstitucionPeer::ELECCION_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function addPoliticoInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
@@ -94,6 +69,31 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addEleccionInstitucionListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(EleccionInstitucionPeer::ELECCION_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(EleccionInstitucionPeer::ELECCION_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'Institucion';
@@ -111,8 +111,8 @@ abstract class BaseInstitucionFormFilter extends BaseFormFilterPropel
       'imagen'                    => 'Text',
       'is_active'                 => 'Boolean',
       'is_main'                   => 'Boolean',
-      'eleccion_institucion_list' => 'ManyKey',
       'politico_institucion_list' => 'ManyKey',
+      'eleccion_institucion_list' => 'ManyKey',
     );
   }
 }

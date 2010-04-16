@@ -11,6 +11,21 @@ class PreviewPropuestaForm extends PropuestaForm
 		$taintedValues['sf_guard_user_id'] = sfContext::getInstance()->getUser()->getGuardUser()->getId();
 		$taintedValues['culture'] = sfContext::getInstance()->getUser()->getCulture();
 
+	
+		for ($idx = 1;$idx <= 5;$idx++){
+			if (is_null($taintedValues["enlace_n$idx"]['url'])) {
+		
+				unset($this->embeddedForms["enlace_n$idx"], $taintedValues["enlace_n$idx"]);
+		
+				$this->validatorSchema["enlace_n$idx"]['url'] = new sfValidatorUrl(array('required' => false));
+		
+			} else {
+				$this->validatorSchema["enlace_n$idx"]['url'] = new sfVoValidatorUrl(array('required' => false), sfVoForm::getUrlMessages());
+				$this->embeddedForms["enlace_n$idx"]->getObject()->setPropuesta($this->getObject());
+		
+			}
+		}
+		
 		parent::bind($taintedValues, $taintedFiles);
 	}
 	
@@ -43,7 +58,20 @@ class PreviewPropuestaForm extends PropuestaForm
       'doc'   => new sfValidatorString(array('required' => false)),
       'culture'   => new sfValidatorFile(array('required' => false))
     ));
+    	
+  		// Vacíos
+  		$idx = 0;
+		while ($idx < 5){
+			$idx++;
+			// create a new enlace form for a new enlace model object
+			$enlaceForm = new PropuestaEnlaceForm();
 	
+			// embed the enlace form in the main politico form
+			$this->embedForm("enlace_n$idx", $enlaceForm);
+			$this->widgetSchema["enlace_n$idx"]['orden'] = new sfWidgetFormInputHidden();
+			$this->widgetSchema["enlace_n$idx"]['url'] = new sfWidgetFormInputHidden();
+			
+		}	
     
   }
 }

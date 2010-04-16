@@ -146,7 +146,7 @@ class propuestaActions extends sfActions
 				$this->form->save();
 				$this->propuesta = $this->form->getObject();
 			
-				$this->redirect("propuesta/show?id=".$this->propuesta->getId());			
+				$this->redirect("propuesta/show?id=".$this->propuesta->getVanity());			
 				
 			}
 				
@@ -157,18 +157,20 @@ class propuestaActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {  	  	  	
-  	$id = $request->getParameter('id');
+  	$vanity = $request->getParameter('id');
   	$s = $request->getParameter('s', 0);
   	
   	$culture = $this->getUser()->getCulture();
   	  	
-  	$this->propuesta = PropuestaPeer::retrieveByPk( $id );
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::VANITY, $vanity);
+  	$this->propuesta = PropuestaPeer::doSelectOne( $c );
   	$this->forward404Unless( $this->propuesta );
 	
   	$exclude = array();
   	
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $id, 1);
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $id, -1);
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), 1);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), -1);
 	$positiveCount =  $this->positives->getNbResults();
 	$negativeCount =  $this->negatives->getNbResults();
 	
