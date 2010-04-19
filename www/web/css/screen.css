@@ -404,7 +404,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show #description p,
 #partido-show #description p { padding-bottom: 10px;}
 #politico-show #external-links,
-#partido-show #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#partido-show #external-links,
+#propuesta-new #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #politico-show #external-links ul,
 #partido-show #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
@@ -474,6 +475,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new #ultimas-propuestas { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #propuesta-new #ultimas-propuestas ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #propuesta-new #ultimas-propuestas ul li { margin: 0 0 10px 0;}
+
+#propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
+#propuesta-new .propuesta-preview .picture { float: left;}
+#propuesta-new .propuesta-preview .picture a { font-weight: bold; font-size: 16px;}
+#propuesta-new .propuesta-preview .description { margin-left: 240px;}
+#propuesta-new .vooto { margin-left: 240px; width: 280px; padding: 20px 0;}
+#propuesta-new .vooto strong { font-weight: normal; color: #ff0000;}
 
 /* Popups de ayuda */
 #help-dialog { display:none; }
