@@ -112,6 +112,7 @@ propel:
     culture: { type: VARCHAR, size: '7', required: false }    
     imagen: { type: VARCHAR, size: '50', required: false }
     doc: { type: VARCHAR, size: '50', required: false }
+    doc_size: { type: INTEGER, size: '50', required: false }
     sf_guard_user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sumu: { type: INTEGER, size: '11', required: true, defaultValue: '0' }
     sumd: { type: INTEGER, size: '11', required: true, defaultValue: '0' }

@@ -226,10 +226,12 @@ class S3Voota extends S3 {
 		}
 	}
 	
-	public static function getSize( $uri ){
+	public function getSize( $uri ){
 		$cacheManager = sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
-  			$key=md5("docinfo_$uri");
+	  		$ukey = preg_replace("/\//i", "-", $uri);
+  			$key= "propuesta/show?key=". md5( "$uri" );
+  			
   			$data = $cacheManager->get("$key");
 	  	}
 	  	else {
@@ -239,7 +241,7 @@ class S3Voota extends S3 {
   			$info = unserialize($cacheManager->get("$key"));
   		}
   		else{
-			$info = parent::getObjectInfo(self::getBucketPub(), $uri);
+			$info = $this->getObjectInfo(self::getBucketPub(), $uri);
 	  		if ($cacheManager != null)
 	  			$cacheManager->set("$key",serialize($info), 3600);
   		}

@@ -118,23 +118,23 @@ class EntityManager {
   	}
   	
   	public static function getPropuestas($culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
-  	{
-	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+  	{ 
+	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
-  			//$cacheManager=new sfMemcacheCache();
-  			//$cacheManager->initialize();
-  			$key=md5("propuestas_$partido-$institucion-$culture-$page-$order");
+  			$key= "propuesta/ranking?key=". md5("propuestas-$culture-$page-$order");
+  			$key_totalUp= "propuesta/ranking?key-totalUp=". md5("propuestas-$culture-$page-$order");
+  			$key_totalDown= "propuesta/ranking?key-totalDown=". md5("propuestas-$culture-$page-$order");
   			$data = $cacheManager->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
-  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
-  			return unserialize($cacheManager->get("$key"));  		
+			$totalUp = unserialize( $cacheManager->get($key_totalUp) );
+			$totalDown = unserialize( $cacheManager->get($key_totalDown) );
+  			return unserialize( $cacheManager->get("$key") );  		
   		}
-  		else {  		
+  		else {
 		  	$c = new Criteria();
 		  	$c->add(PropuestaPeer::IS_ACTIVE, true);
 		  	
@@ -182,7 +182,7 @@ class EntityManager {
 			foreach($results as $result){
 				$totalUp = $result['total_u'];
 				$totalDown = $result['total_d'];
-			}					  	
+			}			
 			/* Fin Calcula totales */
 		    
 		    $pager->setCriteria($c);
@@ -190,9 +190,9 @@ class EntityManager {
 		    $pager->init();		    
 		    
 	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);
-	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  			$cacheManager->set($key,serialize($pager), 3600);		  	
+	  			$cacheManager->set($key_totalUp,serialize($totalUp), 3600);
+	  			$cacheManager->set($key_totalDown,serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -200,7 +200,7 @@ class EntityManager {
   	
   	public static function getPartidos($institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
   			//$cacheManager=new sfMemcacheCache();
   			//$cacheManager->initialize();

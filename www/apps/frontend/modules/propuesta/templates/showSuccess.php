@@ -16,6 +16,16 @@
 
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
+	  $('#edit_enlaces').click(function(){
+			re_loading( 'ee_box' );
+			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces')?>'});
+			return false;
+	  });
+	  $('#edit_doc').click(function(){
+			re_loading( 'ed_box' );
+			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc')?>'});
+			return false;
+	  });
   });
   window.onload = function() {
     <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_pt_'.$propuesta->getId())) ?>
@@ -33,7 +43,7 @@
 
 <div id="content">
   <div title="<?php echo $propuesta->getTitulo() ?>" id="photo">
-    <?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/'.$propuesta->getImagen(), 'alt="'. __('Logo de %1%', array('%1%' => $propuesta->getTitulo())) .'"') ?>
+    <?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_'.$propuesta->getImagen(), 'alt="'. __('Logo de %1%', array('%1%' => $propuesta->getTitulo())) .'"') ?>
     <div class="vote">
       <h3><?php echo __('Voota sobre')?> <?php echo $propuesta->getTitulo(); ?></h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
@@ -42,19 +52,30 @@
 
   <div id="description">
     <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
-    <?php if (true): // TODO: Sustituir por 'si hay documento adjunto' ?>  
-      <p>Documento: <a class="document" href="#">Normas_Generales.pdf</a> (245Mb)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
+    <?php if($propuesta->getDoc() || $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
+      <p><?php echo __('Documento')?>: 
+      <?php if($propuesta->getDoc()):?>
+      	<a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>"><?php echo $propuesta->getDoc() ?></a> (<?php echo ByteSize( $propuesta->getDocSize() ) ?>)</p>
+      <?php else: ?>
+      	<?php echo __('ninguno')?>
+      <?php endif ?>
+	  	<div id="ed_box"><a href="#" id="edit_doc"><?php echo __('Hacer cambios')?></a></div>
     <?php endif ?>
   </div><!-- end of description -->
 
-  <?php  if(count($activeEnlaces) > 0): ?>
+  <?php  if(count($activeEnlaces) > 0 || $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
     <div id="external-links">
-      <h3><?php echo __('Enlaces externos de "%1%"', array('%1%' => $propuesta->getTitulo()))?></h3>
-      <ul>
-        <?php foreach($activeEnlaces as $enlace): ?>
-  	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
-        <?php endforeach ?>
-      </ul>
+      <h3><?php echo __('Enlaces externos', array('%1%' => $propuesta->getTitulo()))?></h3>
+	  <?php  if(count($activeEnlaces) > 0): ?>
+	      <ul>
+	        <?php foreach($activeEnlaces as $enlace): ?>
+	  	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+	        <?php endforeach ?>
+	      </ul>
+	  <?php else: ?>
+	  	<?php echo __('ninguno')?>
+	  <?php endif ?>
+  		<div id="ee_box"><a href="#" id="edit_enlaces"><?php echo __('Hacer cambios')?></a></div> 
     </div>
   <?php endif  ?>
 

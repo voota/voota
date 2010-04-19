@@ -18,6 +18,12 @@
 
 class propuestaActions extends sfActions
 {
+  public function executeEditEnlaces(sfWebRequest $request){
+  }
+  public function executeEditDoc(sfWebRequest $request){
+  	
+  }
+  
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
@@ -142,7 +148,10 @@ class propuestaActions extends sfActions
 			elseif($op == 'c')  {
 				$this->form->save();
 				$this->propuesta = $this->form->getObject();
-				$this->getUser()->setFlash('propuestaToFB', $this->propuesta, true);
+				
+				$s = new S3Voota();
+				$this->propuesta->setDocSize( $s->getSize('docs/'.$this->propuesta->getDoc()) );
+				$this->propuesta->save();
 			
 				$this->redirect("propuesta/show?id=".$this->propuesta->getVanity());			
 				

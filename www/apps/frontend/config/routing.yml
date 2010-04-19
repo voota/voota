@@ -13,6 +13,13 @@ homepage:
   param: { module: home, action: index }
 
 ### PROPUESTAS ###
+propuesta_edit_links:
+  url: /propuesta/el
+  param: { module: propuesta, action: editEnlaces }
+    
+propuesta_edit_doc:
+  url: /propuesta/ed
+  param: { module: propuesta, action: editDoc }    
 
 ranking_propuesta_es:
   url: /propuestas
@@ -68,7 +75,6 @@ propuesta_show_ca:
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
-    
 ### POLITICOS ###
     
 politico_more_comments:

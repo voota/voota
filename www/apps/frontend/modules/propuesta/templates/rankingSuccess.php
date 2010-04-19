@@ -25,7 +25,7 @@
   });
 </script>
 
-<h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => 358)) ?></h2>
+<h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => $propuestasPager->getNbResults())) ?></h2>
 
 <p><a href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 

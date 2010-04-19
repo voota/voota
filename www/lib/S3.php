@@ -435,7 +435,7 @@ class S3 {
 	* @return mixed | false
 	*/
 	public static function getObjectInfo($bucket, $uri, $returnInfo = true) {
-		$rest = new S3Request('HEAD', $bucket, $uri);
+		$rest = new S3Request('GET', $bucket, $uri);
 		$rest = $rest->getResponse();
 		if ($rest->error === false && ($rest->code !== 200 && $rest->code !== 404))
 			$rest->error = array('code' => $rest->code, 'message' => 'Unexpected HTTP status');
