@@ -21,6 +21,46 @@ class propuestaActions extends sfActions
   public function executeEditEnlaces(sfWebRequest $request){
   }
   public function executeEditDoc(sfWebRequest $request){
+  	$op = $request->getParameter("op", "d");
+  	$id = $request->getParameter("id", 0);
+  	$this->propuesta = PropuestaPeer::retrieveByPk( $id );
+  	$this->forward404Unless( $this->propuesta );
+  	$files = $request->getFiles();
+  	
+  	switch( $op ){
+  		case 'd':
+  			break;
+  		case 'f':
+			$this->propuesta->setDoc( null );
+			$this->propuesta->setDocSize( null );
+			$this->propuesta->save();
+			
+  			return 'Form';
+  		case 'u':
+	      			$doc = $files['doc'];
+					if ($doc){
+			      		$arr = array_reverse( explode  ( "."  , $doc['name'] ) );
+						$ext = strtolower($arr[0]);
+						if (!$ext || $ext == ""){
+							$ext = "png";
+						}      		
+			      		$docName = SfVoUtil::fixVanityChars( $arr[1] );
+			      		$docName .= "-".sprintf("%04d", rand(0, 999));
+			      		$docName .= ".$ext";
+			      		$fileName = sfConfig::get('sf_upload_dir').'/docs/'.$docName;
+			      		move_uploaded_file($doc['tmp_name'], $fileName);
+			      		$s = new S3Voota();
+			      		$s->createDocFromFile( 'docs', $fileName );
+			      		
+			      		$this->propuesta->setDoc( $docName );
+			      		$this->propuesta->setDocSize( $s->getSize( "docs/$docName" ) );
+			      		$this->propuesta->save();
+			      		echo "0";die;
+	      			}
+				  			
+  			return 'Form';
+  	}
+  	
   	
   }
   

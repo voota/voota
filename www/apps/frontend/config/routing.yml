@@ -14,11 +14,11 @@ homepage:
 
 ### PROPUESTAS ###
 propuesta_edit_links:
-  url: /propuesta/el
+  url: /propuesta/el/:id
   param: { module: propuesta, action: editEnlaces }
     
 propuesta_edit_doc:
-  url: /propuesta/ed
+  url: /propuesta/ed/:id
   param: { module: propuesta, action: editDoc }    
 
 ranking_propuesta_es:

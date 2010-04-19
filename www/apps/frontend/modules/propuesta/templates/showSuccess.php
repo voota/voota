@@ -18,12 +18,12 @@
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 	  $('#edit_enlaces').click(function(){
 			re_loading( 'ee_box' );
-			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces')?>'});
+			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId()) ?>'});
 			return false;
 	  });
 	  $('#edit_doc').click(function(){
 			re_loading( 'ed_box' );
-			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc')?>'});
+			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId())?>'});
 			return false;
 	  });
   });
@@ -53,12 +53,14 @@
   <div id="description">
     <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
     <?php if($propuesta->getDoc() || $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-      <p><?php echo __('Documento')?>: 
+      <p><?php echo __('Documento')?>: <span id="fileName"> 
       <?php if($propuesta->getDoc()):?>
-      	<a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>"><?php echo $propuesta->getDoc() ?></a> (<?php echo ByteSize( $propuesta->getDocSize() ) ?>)</p>
+      	<a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>"><?php echo $propuesta->getDoc() ?></a> (<?php echo ByteSize( $propuesta->getDocSize() ) ?>)
       <?php else: ?>
       	<?php echo __('ninguno')?>
       <?php endif ?>
+      </span>
+      </p>
 	  	<div id="ed_box"><a href="#" id="edit_doc"><?php echo __('Hacer cambios')?></a></div>
     <?php endif ?>
   </div><!-- end of description -->

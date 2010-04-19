@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [jquery.autocomplete.css, ui-voota/jquery-ui-1.7.2.custom.css, /sfReviewPlugin/css/sf_review.css?'. sfConfig::get('sf_ml') .', screen.css?'. sfConfig::get('sf_ml') .']
 
-  javascripts: [bluff/js-class.js, bluff/excanvas.js, bluff/bluff.js, jquery-autocomplete/jquery.autocomplete.js, /sfReviewPlugin/js/sf_review.js?'. sfConfig::get('sf_ml') .', /sfReviewPlugin/js/jquery.hint.js, voota.js?'. sfConfig::get('sf_ml') .', /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js, jquery.qtip-1.0.0-rc3.min.js]
+  javascripts: [bluff/js-class.js, bluff/excanvas.js, bluff/bluff.js, jquery-autocomplete/jquery.autocomplete.js, ajaxupload.js, /sfReviewPlugin/js/sf_review.js?'. sfConfig::get('sf_ml') .', /sfReviewPlugin/js/jquery.hint.js, voota.js?'. sfConfig::get('sf_ml') .', /sfJqueryReloadedPlugin/js/jquery-ui-1.7.2.custom.min.js, jquery.qtip-1.0.0-rc3.min.js]
 
   has_layout:     true
   layout:         layout
