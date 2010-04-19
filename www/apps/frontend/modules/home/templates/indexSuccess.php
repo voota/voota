@@ -100,11 +100,9 @@
   	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
       <?php endforeach?>
       </ol>
-      <?php // TODO: Sustituir contador de partidos por valor real ?>
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
     </div>
 
-    <?php // TODO: Sustituir variables que hacen referencia a partidos por las propuestas ?>
     <div id="proposals-top5" class="list-mini">
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
@@ -112,7 +110,6 @@
   	  	<?php include_partial('propuesta_top', array('p' => $p)) ?>
       <?php endforeach?>
       </ol>
-      <?php // TODO: Sustituir contador de propuestas por valor real ?>
       <p class="ranking-link"><strong><?php echo link_to(__('Todas las propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
     </div>
   </div>

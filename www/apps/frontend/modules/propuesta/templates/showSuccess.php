@@ -44,16 +44,16 @@
       <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
   </div><!-- end of description -->
 
-  <?php /* if(count($activeEnlaces) > 0): ?>
+  <?php  if(count($activeEnlaces) > 0): ?>
     <div id="external-links">
-      <h3><?php echo __('Enlaces externos del ')?><?php echo $partido->getAbreviatura() ?></h3>
+      <h3><?php echo __('Enlaces externos de "%1%"', array('%1%' => $propuesta->getTitulo()))?></h3>
       <ul>
         <?php foreach($activeEnlaces as $enlace): ?>
   	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
         <?php endforeach ?>
       </ul>
     </div>
-  <?php endif */ ?>
+  <?php endif  ?>
 
   <div id="report-error">
     <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>

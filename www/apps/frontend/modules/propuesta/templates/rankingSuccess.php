@@ -1,6 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
+<?php use_helper('Date') ?>
 <?php use_helper('VoFormat') ?>
 
 <script type="text/javascript">  
@@ -24,11 +25,9 @@
   });
 </script>
 
-<?php // TODO: Sustituir 358 por el número de propuestas totales ?>
 <h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => 358)) ?></h2>
 
-<?php // TODO: Sustituir enlace con URL apropiada ?>
-<p><a href="#"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
@@ -39,27 +38,30 @@
       <th class="name"><?php echo __('Nombre')?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
-        <?php // TODO: Añadir atributo 'title' al enlace, con un texto que describa lo que hace al pulsarse según el caso ?>
-        <?php // TODO: Ejemplo: "Ordenar por votos positivos: los que tienen más votos positivos primero" ?>
-      	<?php echo link_to(__('Votos +'), "$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''), array('rel'  => 'nofollow'));?>
+        <a href="<?php echo url_for("$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''))?>"
+        	title="<?php echo __('Ordenar por votos positivos: Las más votadas primero / los menos votadas primero') ?>" 
+        	rel="nofollow"><?php echo __('Votos +')?></a>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
       		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
-        <?php // TODO: Añadir atributo 'title' al enlace, con un texto que describa lo que hace al pulsarse según el caso ?>
-        <?php // TODO: Ejemplo: "Ordenar por votos positivos: los que tienen más votos positivos primero" ?>
-      	<?php echo link_to(__('Votos -'), "$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='nd'?'na':'nd'), array('rel'  => 'nofollow'));?>
+        <a href="<?php echo url_for("$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='nd'?'na':'nd'))?>"
+        	title="<?php echo __('Ordenar por votos negativos: Las más votadas primero / las menos votadas primero') ?>" 
+        	rel="nofollow"><?php echo __('Votos -')?></a>
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php if (strpos($order, 'n') === 0):?>
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>
       </th>
       <th class="date">
-        <?php // TODO: Añadir atributo 'title' al enlace, con un texto que describa lo que hace al pulsarse según el caso ?>
-        <?php // TODO: Ejemplo: "Ordenar por fecha: las más antiguas primero" ?>
-        <?php echo link_to(__('Fecha'), "$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='fd'?'fa':'fd'), array('rel' => 'nofollow'));?>
+        <a href="<?php echo url_for("$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='fd'?'fa':'fd'))?>"
+        	title="<?php echo __('Ordenar por fecha: Las más antiguas primero / las mas recientes primero') ?>" 
+        	rel="nofollow"><?php echo __('Fecha')?></a>
+      	<?php if (strpos($order, 'f') === 0):?>
+      		<?php echo image_tag($order=='fd'?'flechaDown.gif':'flechaUp.gif', $order=='fd'?'alt="descendente"':'alt="ascendente"') ?>
+      	<?php endif?>
       </th>
     </tr>
   </thead>
@@ -102,7 +104,7 @@
         <td class="positive-votes"><?php echo sumu($propuesta)?></td>
         <td class="negative-votes"><?php echo sumd($propuesta)?></td>
         <td class="date">
-          <?php // TODO: Pintar fecha de la propuesta en formato DD/MM/YYYY ?>
+          <?php echo format_date($propuesta->getCreatedAt(), 'd') ?>
         </td>
       </tr>
     <?php endforeach ?>

@@ -56,6 +56,12 @@ class propuestaActions extends sfActions
   			case 'na':
   				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
   				break;
+  			case 'fd':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('fecha inverso');
+  				break;
+  			case 'fa':
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('fecha');
+  				break;
   		}
   		$this->pageTitle .= ", $orderTxt";
    	}
@@ -66,17 +72,6 @@ class propuestaActions extends sfActions
   	
   	$description = sfContext::getInstance()->getI18N()->__('Ranking de propuestas', array());
   	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
   		$description .= ", $orderTxt";
    	}
   	if ($page && $page != 1) {
@@ -199,18 +194,13 @@ class propuestaActions extends sfActions
     $this->response->setTitle( $this->title );
     
     // Enlaces
-    /*
+    
     $c = new Criteria();
 	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
-	$c->add( $rCriterion );
-	if ($politico->getsfGuardUser()){
-		$c->add(EnlacePeer::SF_GUARD_USER_ID, $politico->getsfGuardUser()->getId());
-	}
-	else {
-		$c->add(EnlacePeer::POLITICO_ID, $id);
-	}
+	$c->add(EnlacePeer::PROPUESTA_ID, $this->propuesta->getId());
+		
 	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
@@ -221,7 +211,7 @@ class propuestaActions extends sfActions
     		break;
     	}
     }
-    */
+    
     
     /* Si paginador 
     $this->politicosPager = false;
