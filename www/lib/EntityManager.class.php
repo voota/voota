@@ -161,6 +161,12 @@ class EntityManager {
 		  		$c->addDescendingOrderByColumn(PropuestaPeer::SUMD);
 		  		$c->addAscendingOrderByColumn(PropuestaPeer::SUMU);
 		  	}
+		  	else if ($order == "fa") {
+		  		$c->addAscendingOrderByColumn(PropuestaPeer::CREATED_AT);
+		  	}
+		  	else if ($order == "fd") {
+		  		$c->addDescendingOrderByColumn(PropuestaPeer::CREATED_AT);
+		  	}
 		  	/* Fin Orden */
 		  	
 			//$c->setDistinct();
