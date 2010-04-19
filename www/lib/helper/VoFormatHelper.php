@@ -43,3 +43,25 @@ function sumd( $entity ){
   	
   	return $entity->getSumd();
 }
+
+function ByteSize($bytes) {
+    $size = $bytes / 1024;
+    if($size < 1024){
+        $size = format_number( number_format($size, 2), 'es_ES' );
+        $size .= ' KB';
+    } 
+    else {
+        if($size / 1024 < 1024) 
+            {
+            $size = format_number( number_format($size / 1024, 2), 'es_ES' );
+            $size .= ' MB';
+            } 
+        else if ($size / 1024 / 1024 < 1024)  
+            {
+            $size = format_number( number_format($size / 1024 / 1024, 2), 'es_ES' );
+            $size .= ' GB';
+            } 
+    }
+    
+    return $size;
+}
