@@ -27,7 +27,7 @@
       <h3><?php echo __('Sobre la propuesta') ?></h3>
       <?php echo formatDesc($form['descripcion']->getValue()) ?>
       <?php if (true): // TODO: Sustituir por 'si ha subido subido un fichero' ?>
-        <p>Documento: <a href="#">Normas_Generales.pdf</a> (245Mb)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
+        <p>Documento: <a class="document" href="#">Normas_Generales.pdf</a> (245Mb)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
       <?php endif ?>
     </div>
   </div>
