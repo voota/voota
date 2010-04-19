@@ -382,51 +382,71 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #general-search table tbody td { padding: 10px 0; }
 #general-search table .photo { text-align: right; width: 36px; padding-right: 10px; }
 
-/* Página de político - partido */
+/* Página de político - partido - propuesta */
 #politico-show h2#name .rank,
-#partido-show h2#name .rank { font-size: 11px;}
+#partido-show h2#name .rank,
+#propuesta-show h2#name .rank { font-size: 11px;}
 #politico-show #photo,
-#partido-show #photo { width: 220px; float: left; }
+#partido-show #photo,
+#propuesta-show #photo { width: 220px; float: left; }
 #politico-show #photo .vote,
-#partido-show #photo .vote { padding-top: 40px; }
+#partido-show #photo .vote,
+#propuesta-show #photo .vote { padding-top: 40px; }
 #politico-show .vote,
-#partido-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; }
+#partido-show .vote,
+#propuesta-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; }
 #politico-show .vote h3,
-#partido-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
+#partido-show .vote h3,
+#propuesta-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
 #politico-show .note h3,
-#partido-show .note h3 { padding-bottom: 0; font-size: 13px; }
+#partido-show .note h3,
+#propuesta-show .note h3 { padding-bottom: 0; font-size: 13px; }
 #politico-show #sf_review2,
-#partido-show #sf_review2 { width: 35%; }
+#partido-show #sf_review2,
+#propuesta-show #sf_review2 { width: 35%; }
 #politico-show #description,
-#partido-show #description { margin-left: 50px; width: 420px; float: left; }
+#partido-show #description,
+#propuesta-show #description { margin-left: 50px; width: 420px; float: left; }
 #politico-show #description h3,
-#partido-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
+#partido-show #description h3,
+#propuesta-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
 #politico-show #description p,
-#partido-show #description p { padding-bottom: 10px;}
+#partido-show #description p,
+#propuesta-show #description p { padding-bottom: 10px;}
 #politico-show #external-links,
 #partido-show #external-links,
 #propuesta-new #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #politico-show #external-links ul,
-#partido-show #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
+#partido-show #external-links ul,
+#propuesta-new #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
-#partido-show #external-links ul li { margin: 0 0 10px 0;}
+#partido-show #external-links ul li,
+#propuesta-new #external-links ul li { margin: 0 0 10px 0;}
 #politico-show #twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error,
-#politico-show #report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
+#politico-show #report-error,
+#propuesta-show #report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error select,
-#politico-show #report-error select { width: 220px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
+#politico-show #report-error select,
+#propuesta-show #report-error select { width: 220px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
 #partido-show #report-error .submit,
-#politico-show #report-error .submit { padding-top: 10px; width: 220px;}
+#politico-show #report-error .submit,
+#propuesta-show #report-error .submit { padding-top: 10px; width: 220px;}
 #partido-show #report-error option,
-#politico-show #report-error option { padding: 2px 5px; }
+#politico-show #report-error option,
+#propuesta-show #report-error option { padding: 2px 5px; }
 #politico-show #google-ads,
-#partido-show #google-ads { width: 220px; margin-left: 50px; float: left; }
+#partido-show #google-ads,
+#propuesta-show #google-ads { width: 220px; margin-left: 50px; float: left; }
 #politico-show .reviews,
-#partido-show .reviews { clear: left; float: left; padding-top: 35px; width: 600px;}
+#partido-show .reviews,
+#propuesta-show .reviews { clear: left; float: left; padding-top: 35px; width: 600px;}
 #politico-show .reviews .ui-tabs-panel,
-#partido-show .reviews .ui-tabs-panel { width: 600px;}
+#partido-show .reviews .ui-tabs-panel,
+#propuesta-show .reviews .ui-tabs-panel { width: 600px;}
 #politico-show .ui-helper-clearfix { width: 600px; }
 #partido-show .ui-helper-clearfix { width: 720px; }
+#propuesta-show .ui-helper-clearfix { width: 720px; }
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
@@ -457,6 +477,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfReviewFront-show .review-date { margin-top: 0;}
 
 /* Nueva propuesta */
+#propuesta-new #main-inner { width: 100%; margin: 0;}
+#propuesta-new .new-success { margin: 0 auto; width: 960px; }
 #propuesta-new h2 { margin-bottom: 10px;}
 #propuesta-new .hints { padding: 5px 10px;}
 #propuesta-new #content { margin-top: 2em; position: relative; }
@@ -475,12 +497,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new #ultimas-propuestas { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #propuesta-new #ultimas-propuestas ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #propuesta-new #ultimas-propuestas ul li { margin: 0 0 10px 0;}
-
 #propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
 #propuesta-new .propuesta-preview .picture { float: left;}
 #propuesta-new .propuesta-preview .picture a { font-weight: bold; font-size: 16px;}
 #propuesta-new .propuesta-preview .description { margin-left: 240px;}
-#propuesta-new .vooto { margin-left: 240px; width: 280px; padding: 20px 0;}
+#propuesta-new .propuesta-preview .inner { margin: 0 auto; width: 960px; }
+#propuesta-new .vooto { margin: 0 auto; width: 960px; }
+#propuesta-new .vooto .inner { margin-left: 240px; width: 280px; padding: 20px 0;}
 #propuesta-new .vooto strong { font-weight: normal; color: #ff0000;}
 
 /* Popups de ayuda */

@@ -41,7 +41,10 @@
   </div>
 
   <div id="description">
-      <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
+    <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
+    <?php if (true): // TODO: Sustituir por 'si hay documento adjunto' ?>  
+      <p>Documento: <a class="document" href="#">Normas_Generales.pdf</a> (245Mb)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
+    <?php endif ?>
   </div><!-- end of description -->
 
   <?php  if(count($activeEnlaces) > 0): ?>

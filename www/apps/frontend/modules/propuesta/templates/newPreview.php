@@ -20,6 +20,7 @@
 </script>
 
 <div class="propuesta-preview">
+  <div class="inner">
 
   <h2><?php echo __('Así se verá: %nombre%', array('%nombre%' => $form['titulo']->getValue())) ?></h2>
   <div class="picture">
@@ -54,16 +55,22 @@
     <h3><?php echo __('Sobre la propuesta') ?></h3>
     <?php echo formatDesc($form['descripcion']->getValue()) ?>
     <?php if($form['doc']->getValue()): ?>
-      <p><?php echo __('Documento')?>: <a href="<?php echo S3Voota::getImagesUrl().'/docs/'.$form['doc']->getValue() ?>"><?php echo $form['doc']->getValue() ?></a> (<?php echo ByteSize( S3Voota::getSize('docs/'.$form['doc']->getValue()) );?>)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
+      <p><?php echo __('Documento')?>: <a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$form['doc']->getValue() ?>"><?php echo $form['doc']->getValue() ?></a> (<?php $s=new S3Voota();echo ByteSize( $s->getSize('docs/'.$form['doc']->getValue()) );?>)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
     <?php endif ?>
+    </div>
+
   </div>
 </div>
 
 <div class="vooto">
-  <h3><?php echo __('¿Todo en orden? ¿Seguimos?') ?></h3>
-  <p><strong><?php echo __('Importante')?></strong>: <?php echo __('una vez subida, no podrás borrar ni editar la propuesta. Sólo podrás hacer cambios sobre los enlaces o el fichero incluído.') ?></p>
-<form method="post" action="<?php echo url_for('propuesta/new')?>" id="propuesta_form">
-	<input type="hidden" name="op" value="c" id="op" />
+
+  <div class="inner">
+    <h3><?php echo __('¿Todo en orden? ¿Seguimos?') ?></h3>
+    <p><strong><?php echo __('Importante')?></strong>: <?php echo __('una vez subida, no podrás borrar ni editar la propuesta. Sólo podrás hacer cambios sobre los enlaces o el fichero incluído.') ?></p>
+
+
+<form method="post" action="<?php echo url_for('propuesta/new')?>">
+	<input type="hidden" name="op" value="c" />
         <?php echo $form['titulo']->render() ?>
         <?php echo $form['descripcion']->render() ?>
         <?php echo $form['imagen']->render() ?>
