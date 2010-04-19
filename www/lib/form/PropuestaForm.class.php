@@ -18,6 +18,7 @@ class PropuestaForm extends BasePropuestaForm
   		, $this['modified_at']
   	);
     $this->widgetSchema['descripcion'] = new sfWidgetFormTextarea(array(), array('style' => "width: 500px; height:200px"));
+    
   }
   
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
@@ -32,6 +33,29 @@ class PropuestaForm extends BasePropuestaForm
 				$taintedValues['vanity'] = SfVoUtil::fixVanityChars( $taintedValues['titulo'] );
 			}
 		}
+
+		if (!$this->isNew()) {
+			if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
+				unset($this->embeddedForms['enlace'], $taintedValues['enlace']);
+		
+				$this->validatorSchema['enlace'] = new sfValidatorPass();
+		
+			} else {
+				$this->embeddedForms['enlace']->getObject()->
+		                setPropuesta($this->getObject());
+			}
+			
+		
+			if (is_null($taintedValues['institucion']['institucion_id']) || strlen($taintedValues['institucion']['institucion_id']) === 0 ) {
+				unset($this->embeddedForms['institucion'], $taintedValues['institucion']);
+		
+				$this->validatorSchema['institucion'] = new sfValidatorPass();
+		
+			} else {
+				$this->embeddedForms['institucion']->getObject()->
+		                setPropuesta($this->getObject());
+			}
+		}	
 		
 		parent::bind($taintedValues, $taintedFiles);
 	}

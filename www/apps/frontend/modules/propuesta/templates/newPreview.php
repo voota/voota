@@ -30,7 +30,6 @@
       <p>Documento: <a href="#">Normas_Generales.pdf</a> (245Mb)</p><?php // TODO: Sustituir por enlace a fichero y tamaño de fichero correcto?>
     <?php endif ?>
   </div>
-
 </div>
 
 <div class="vooto">
@@ -45,3 +44,24 @@
 	  <p class="submit"><input type="submit" value="<?php echo __('¡Ok! Subir propuesta') ?>" /></p>
   </form>
 </div>
+
+<form method="post" action="<?php echo url_for('propuesta/new')?>">
+	<input type="hidden" name="op" value="c" />;
+        <?php echo $form['titulo']->render() ?>
+        <?php echo $form['descripcion']->render() ?>
+        <?php echo $form['imagen']->render() ?>
+        <?php echo $form['doc']->render() ?>
+        
+        <?php echo $form['enlace_n1']['orden']->render() ?>
+        <?php echo $form['enlace_n1']['url']->render() ?>
+        <?php echo $form['enlace_n2']['orden']->render() ?>
+        <?php echo $form['enlace_n2']['url']->render() ?>
+        <?php echo $form['enlace_n3']['orden']->render() ?>
+        <?php echo $form['enlace_n3']['url']->render() ?>
+        <?php echo $form['enlace_n4']['orden']->render() ?>
+        <?php echo $form['enlace_n4']['url']->render() ?>
+        <?php echo $form['enlace_n5']['orden']->render() ?>
+        <?php echo $form['enlace_n5']['url']->render() ?>
+        
+        <input name="button" type="submit" class="button" value="<?php echo __('Ok')?>" />
+</form>

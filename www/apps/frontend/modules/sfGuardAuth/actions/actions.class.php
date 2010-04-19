@@ -521,7 +521,6 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		
 		
 	    	if ($profile->isColumnModified(SfGuardUserProfilePeer::PRESENTACION)){ 
-	    		echo "deep"; 
 	    		$this->hasDeepUpdates = true;
 	    	}
        		

@@ -2254,7 +2254,7 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
       <trans-unit id="451">
         <source>(Pág. %1%)</source>
         <target/>
-      </trans-unit>
+      <alt-trans xml:space="preserve" origin="sergio"><target>(pàg. %1%)</target></alt-trans></trans-unit>
       <trans-unit id="452">
         <source>Voto múltiple</source>
         <target/>

@@ -23,8 +23,8 @@ abstract class BaseInstitucionForm extends BaseFormPropel
       'imagen'                    => new sfWidgetFormInputText(),
       'is_active'                 => new sfWidgetFormInputCheckbox(),
       'is_main'                   => new sfWidgetFormInputCheckbox(),
-      'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Eleccion')),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
+      'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Eleccion')),
     ));
 
     $this->setValidators(array(
@@ -37,8 +37,8 @@ abstract class BaseInstitucionForm extends BaseFormPropel
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'is_active'                 => new sfValidatorBoolean(),
       'is_main'                   => new sfValidatorBoolean(),
-      'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Eleccion', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
+      'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Eleccion', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('institucion[%s]');
@@ -67,17 +67,6 @@ abstract class BaseInstitucionForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['eleccion_institucion_list']))
-    {
-      $values = array();
-      foreach ($this->object->getEleccionInstitucions() as $obj)
-      {
-        $values[] = $obj->getEleccionId();
-      }
-
-      $this->setDefault('eleccion_institucion_list', $values);
-    }
-
     if (isset($this->widgetSchema['politico_institucion_list']))
     {
       $values = array();
@@ -89,49 +78,25 @@ abstract class BaseInstitucionForm extends BaseFormPropel
       $this->setDefault('politico_institucion_list', $values);
     }
 
+    if (isset($this->widgetSchema['eleccion_institucion_list']))
+    {
+      $values = array();
+      foreach ($this->object->getEleccionInstitucions() as $obj)
+      {
+        $values[] = $obj->getEleccionId();
+      }
+
+      $this->setDefault('eleccion_institucion_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveEleccionInstitucionList($con);
     $this->savePoliticoInstitucionList($con);
-  }
-
-  public function saveEleccionInstitucionList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['eleccion_institucion_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(EleccionInstitucionPeer::INSTITUCION_ID, $this->object->getPrimaryKey());
-    EleccionInstitucionPeer::doDelete($c, $con);
-
-    $values = $this->getValue('eleccion_institucion_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new EleccionInstitucion();
-        $obj->setInstitucionId($this->object->getPrimaryKey());
-        $obj->setEleccionId($value);
-        $obj->save();
-      }
-    }
+    $this->saveEleccionInstitucionList($con);
   }
 
   public function savePoliticoInstitucionList($con = null)
@@ -164,6 +129,41 @@ abstract class BaseInstitucionForm extends BaseFormPropel
         $obj = new PoliticoInstitucion();
         $obj->setInstitucionId($this->object->getPrimaryKey());
         $obj->setPoliticoId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveEleccionInstitucionList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['eleccion_institucion_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(EleccionInstitucionPeer::INSTITUCION_ID, $this->object->getPrimaryKey());
+    EleccionInstitucionPeer::doDelete($c, $con);
+
+    $values = $this->getValue('eleccion_institucion_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new EleccionInstitucion();
+        $obj->setInstitucionId($this->object->getPrimaryKey());
+        $obj->setEleccionId($value);
         $obj->save();
       }
     }

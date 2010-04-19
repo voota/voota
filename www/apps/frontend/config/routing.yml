@@ -40,6 +40,19 @@ propuesta_add_ca:
   param: { module: propuesta, action: new }
   class:  sfRequestHostCultureRoute
   requirements:
+        
+propuesta_edit_es:
+  url: /propuesta/edit/:id
+  param: { module: propuesta, action: edit }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+        
+propuesta_edit_ca:
+  url: /proposta/edit/:id
+  param: { module: propuesta, action: edit }
+  class:  sfRequestHostCultureRoute
+  requirements:
     sf_host_culture: cat  
         
 propuesta_show_es:

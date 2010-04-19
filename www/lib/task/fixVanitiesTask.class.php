@@ -76,5 +76,18 @@ EOF;
     			echo "partido:$vanity\n";
     		}
     }
+    
+    // Instituciones
+    $instituciones = InstitucionI18nPeer::doSelect( $c );
+    foreach ($instituciones as $institucion){
+    		
+    		$vanity = $institucion->getVanity();
+    		if ($vanity != ($new = SfVoUtil::fixVanityChars($vanity))){
+    			echo "institucion:$vanity\n";
+    			$institucion->setVanity( $new );
+    			$institucion->save();
+    			echo "cambia a:$new\n";
+    		}
+    }
   }
 }

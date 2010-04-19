@@ -31,6 +31,18 @@
 	  };
 	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor de una opinión de un usuario sobre el partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre %1%', array('%1%' => $partido)) )?>';
 	  text = text_intro + (text != ''?(': '+text):'');
+	<?php elseif($reviewType == null): ?>
+	  var attachment = { 
+			'name': '<?php echo __('Opiniones a favor y en contra de \"%2%\" en Voota', array('%2%' => $entity))?>'
+			, 'href': '<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity(), true) ?>'
+	  		, 'media': [{ 
+	  			'type': 'image'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/<?php echo $entity->getImagePath() ?>/cc_s_<?php echo $entity->getImagen() ?>'
+	  			, 'href': '<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity(), true) ?>'
+	  		}] 
+	  };
+	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor de una opinión de un usuario sobre \"%1%\"', array('%1%' => $entity)) )?>':'<?php echo sq( __('voota en contra de una opinión de un usuario sobre \"%1%\"', array('%1%' => $entity)) )?>';
+	  text = text_intro + (text != ''?(': '+text):'');
 	  
 	<?php /* Sobre un politico */?>
 	<?php elseif($reviewType == Politico::NUM_ENTITY): ?>
@@ -58,10 +70,19 @@
 	  		}] 
 	  };
 	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor del partido %1%', array('%1%' => $partido)) )?>':'<?php echo sq( __('voota en contra de %1%', array('%1%' => $partido)) )?>';
-	  text = text_intro + (text != ''?(': '+text):'');
-	  
+	  text = text_intro + (text != ''?(': '+text):'');	  
 	<?php else: ?>
-		var attachment = null;
+	  var attachment = { 
+			'name': '<?php echo sq( __('Opiniones a favor y en contra de %2% en Voota', array('%2%' => $entity)) )?>'
+			, 'href': '<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity(), true) ?>'
+	  		, 'media': [{ 
+	  			'type': 'image'
+	  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/<?php echo $entity->getImagePath() ?>/cc_s_<?php echo $entity->getImagen() ?>'
+	  			, 'href': '<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity(), true) ?>'
+	  		}] 
+	  };
+	  var text_intro = this.v[0].checked?'<?php echo sq( __('vooto a favor de \"%1%\"', array('%1%' => $entity)) )?>':'<?php echo sq( __('voota en contra de \"%1%\"', array('%1%' => $entity)) )?>';
+	  text = text_intro + (text != ''?(': '+text):'');	
 	<?php endif ?>	
 
 	sendReviewFormFB(this, 	text, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>', attachment, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}]);

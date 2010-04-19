@@ -6,7 +6,7 @@
   </div>
 	<h4 class="name">
 	  <?php // TODO: Sustituir por título de la propuesta ?>
-	  <?php echo link_to($p->getTitulo(), 'propuesta/show?id='.$p->getId())?>
+	  <?php echo link_to($p->getTitulo(), 'propuesta/show?id='.$p->getVanity())?>
 	</h4>
   <div class="votes">
 		<?php include_partial('general/sparkline_box', array('reviewable' => $p, 'id' => 'sparkline_tpr_'.$p->getId())) ?>

@@ -95,6 +95,8 @@ class propuestaActions extends sfActions
   	$op = $request->getParameter("op", "n");
   	
   	$this->title = sfContext::getInstance()->getI18N()->__('Añadir una nueva propuesta - Voota ', array());
+    $this->response->setTitle( $this->title );
+    
   	if ($op == 'c'){
 	  	$this->form = new PreviewPropuestaForm();
   	}
@@ -145,8 +147,9 @@ class propuestaActions extends sfActions
 			elseif($op == 'c')  {
 				$this->form->save();
 				$this->propuesta = $this->form->getObject();
+				$this->getUser()->setFlash('propuestaToFB', $this->propuesta, true);
 			
-				$this->redirect("propuesta/show?id=".$this->propuesta->getId());			
+				$this->redirect("propuesta/show?id=".$this->propuesta->getVanity());			
 				
 			}
 				
@@ -157,18 +160,20 @@ class propuestaActions extends sfActions
   
   public function executeShow(sfWebRequest $request)
   {  	  	  	
-  	$id = $request->getParameter('id');
+  	$vanity = $request->getParameter('id');
   	$s = $request->getParameter('s', 0);
   	
   	$culture = $this->getUser()->getCulture();
   	  	
-  	$this->propuesta = PropuestaPeer::retrieveByPk( $id );
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::VANITY, $vanity);
+  	$this->propuesta = PropuestaPeer::doSelectOne( $c );
   	$this->forward404Unless( $this->propuesta );
 	
   	$exclude = array();
   	
-	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $id, 1);
-	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $id, -1);
+	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), 1);
+	$this->negatives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), -1);
 	$positiveCount =  $this->positives->getNbResults();
 	$negativeCount =  $this->negatives->getNbResults();
 	
@@ -231,5 +236,21 @@ class propuestaActions extends sfActions
   	}
      paginador */
     
+  }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+  	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
+  	$vanity = $request->getParameter('id');
+  	
+  	$op = $request->getParameter("op", "n");
+    
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::VANITY, $vanity);
+  	$this->propuesta = PropuestaPeer::doSelectOne( $c );
+  	$this->forward404Unless( $this->propuesta );
+  	
+  	$this->title = sfContext::getInstance()->getI18N()->__('Edición de la propuesta "%1%" - Voota ', array('%1%' => $this->propuesta->getTitulo()));
+    $this->response->setTitle( $this->title );
   }
 }
