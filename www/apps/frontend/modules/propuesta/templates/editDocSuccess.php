@@ -16,10 +16,12 @@
   //-->
 </script>
 
-<?php echo $propuesta->getDoc() ?>
+<?php if($propuesta->getDoc()): ?>
+	<a class="doc-link"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>">
+	<?php echo $propuesta->getDoc() ?>
+	</a>
+<?php endif ?>
 
-<?php // TODO: Sustituir por enlace a documento adjunto ?>
-<a class="doc-link" href="#">Normas_Generales.pdf</a>
 <a href="#" class="confirm_delete"><?php echo __('Borrar para añadir uno nuevo')?></a>
 <a href="#" class="confirm_delete"><?php echo __('Sí')?></a>
 <a href="#" class="cancel_delete"><?php echo __('No')?></a>
