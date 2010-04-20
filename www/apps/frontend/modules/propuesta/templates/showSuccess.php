@@ -79,7 +79,7 @@
 	        <?php endforeach ?>
 	      </ul>
 	  <?php else: ?>
-	  	<?php echo __('ninguno')?>
+	  	<p><?php echo __('ninguno')?></p>
 	  <?php endif ?>
   		<div id="ee_box"><a href="#" id="edit_enlaces"><?php echo __('Hacer cambios')?></a></div> 
     </div>

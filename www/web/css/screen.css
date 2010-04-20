@@ -418,6 +418,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-show #external-links,
 #propuesta-show #external-links,
 #propuesta-new #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#propuesta-show #external-links p { padding-bottom: 5px;}
 #politico-show #external-links ul,
 #partido-show #external-links ul,
 #propuesta-show #external-links ul,
@@ -458,6 +459,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #ed_box a.confirm_delete { color: red;}
 #propuesta-show #edit_doc { font-size: 9px;}
 #propuesta-show #close_ed_box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
+#propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}

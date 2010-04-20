@@ -4,7 +4,7 @@
 
 <form method="post" action="<?php echo url_for('propuesta/new')?>">
   <div><input type="hidden" name="op" value="r" /></div>
-  <ol class="links">
+  <ul class="links">
     <li>
       <?php echo $form['enlace_n1']['orden']->render(array('value' => 1)) ?>
       <?php echo $form['enlace_n1']['url']->render(array('title' => __('Ejemplo: Voota.es'))) ?>
@@ -30,7 +30,7 @@
       <?php echo $form['enlace_n5']['url']->render() ?>
       <?php echo $form['enlace_n5']['url']->renderError() ?>
     </li>
-  </ol>
+  </ul>
   <p class="submit">
     <input name="button" type="submit" class="button" value="<?php echo __('Guardar')?>" />
   </p>
