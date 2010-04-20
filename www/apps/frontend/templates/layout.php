@@ -1,10 +1,11 @@
+<?php echo "<?xml version='1.0' encoding='utf-8' ?>\n" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('sfFacebookConnect'); ?>
 <?php use_helper('VoUser'); ?>
 
-<?php echo "<?xml version='1.0' encoding='utf-8' ?>" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <?php if ($sf_user->getCulture()): ?>
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_user->getCulture() ?>" lang="<?php echo $sf_user->getCulture() ?>">
 <?php else: ?>
@@ -17,7 +18,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
-  <style>
+  <style type="text/css">
     <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>

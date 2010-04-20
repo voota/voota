@@ -270,6 +270,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #perfil-show .profile .description .links { padding-bottom: 10px;}
 #perfil-show .profile .description .links p { padding-top: 20px; padding-bottom: 0;}
 #perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
+#perfil-show .profile .description .contact a { padding-right: 20px; background: transparent url(/images/email.png) right top no-repeat;}
 #perfil-show .comments { clear: both; padding-top: 40px; }
 #perfil-show .comments table { border-top: 1px dotted #cccccc; width: 100%;}
 #perfil-show .comments tr { border-bottom: 1px dotted #cccccc; }
@@ -425,8 +426,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-show #external-links ul li,
 #propuesta-show #external-links ul li,
 #propuesta-new #external-links ul li { margin: 0 0 10px 0;}
-#propuesta-show #external-links ol { padding-left: 0;}
-#propuesta-show #external-links input[type="text"] { width: 210px;}
+#propuesta-show #external-links ol { padding-left: 0; list-style: none;}
+#propuesta-show #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809db9;}
 #politico-show #twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error,
 #politico-show #report-error,
@@ -452,7 +453,11 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show .ui-helper-clearfix { width: 600px; }
 #partido-show .ui-helper-clearfix { width: 720px; }
 #propuesta-show .ui-helper-clearfix { width: 720px; }
-#propuesta-show .edit-doc a { padding-left: 10px;}
+#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
+#propuesta-show #ed_box a { padding-right: 5px;}
+#propuesta-show #ed_box a.confirm_delete { color: red;}
+#propuesta-show #edit_doc { font-size: 9px;}
+#propuesta-show #close_ed_box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
