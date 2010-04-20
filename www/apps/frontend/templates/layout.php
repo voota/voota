@@ -18,7 +18,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
-  <style>
+  <style type="text/css">
     <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
