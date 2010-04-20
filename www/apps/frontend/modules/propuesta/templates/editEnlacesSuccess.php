@@ -2,7 +2,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
-    <form method="post" action="<?php echo url_for('propuesta/new')?>" enctype="multipart/form-data">
+    <form method="post" action="<?php echo url_for('propuesta/new')?>">
       <div><input type="hidden" name="op" value="r" /></div>
       <table>
         <tr>

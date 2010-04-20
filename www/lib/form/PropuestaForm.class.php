@@ -23,7 +23,16 @@ class PropuestaForm extends BasePropuestaForm
   
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
 		$vanity = isset($taintedValues['vanity'])?$taintedValues['vanity']:false;
+		$titulo = isset($taintedValues['titulo'])?$taintedValues['titulo']:false;
+		$descripcion = isset($taintedValues['descripcion'])?$taintedValues['descripcion']:false;
 		$id = isset($taintedValues['id'])?$taintedValues['id']:false;
+		
+		if ($titulo){
+			$taintedValues['titulo'] = SfVoUtil::cutToLength($taintedValues['titulo'], 150);
+		}		
+		if ($descripcion){
+			$taintedValues['descripcion'] = SfVoUtil::cutToLength($taintedValues['descripcion'], 600);
+		}		
 		
 		if ($vanity){
 			$taintedValues['vanity'] = SfVoUtil::fixVanityChars( $vanity ); 	

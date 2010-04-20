@@ -150,7 +150,7 @@ class propuestaActions extends sfActions
 	  	$this->form = new NuevaPropuestaForm();
   	}
   	
-    if ($request->isMethod('post') ){    	
+    if ($request->isMethod('post')){    	
     	$this->form->bind($request->getParameter('propuesta'), $request->getFiles('propuesta'));
     	
 		if ($this->form->isValid()){
@@ -193,10 +193,12 @@ class propuestaActions extends sfActions
 			elseif($op == 'c')  {
 				$this->form->save();
 				$this->propuesta = $this->form->getObject();
-				
-				$s = new S3Voota();
-				$this->propuesta->setDocSize( $s->getSize('docs/'.$this->propuesta->getDoc()) );
-				$this->propuesta->save();
+								
+	      		if ($this->propuesta->getDoc()){
+					$s = new S3Voota();
+					$this->propuesta->setDocSize( $s->getSize('docs/'.$this->propuesta->getDoc()) );
+					$this->propuesta->save();
+	      		}
 			
 				$this->redirect("propuesta/show?id=".$this->propuesta->getVanity());			
 				

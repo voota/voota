@@ -44,18 +44,6 @@
 	      <?php if ($sf_user->getFlash('logToFB')):  ?>  
 		    publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
 	    <?php endif ?>	
-	      <?php if ($propuesta = $sf_user->getFlash('propuestaToFB')):  ?>
-		  var attachment = { 
-					'name': '<?php echo sq( __('Opiniones a favor y en contra de la propuesta \"%2%\" en Voota', array('%2%' => $propuesta->getTitulo())) )?>'
-					, 'href': '<?php echo url_for('propuesta/show?id='.$propuesta->getVanity(), true) ?>'
-			  		, 'media': [{ 
-			  			'type': 'image'
-			  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/propuestas/cc_s_<?php echo $propuesta->getImagen() ?>'
-			  			, 'href': '<?php echo url_for('propuesta/show?id='.$propuesta->getVanity(), true) ?>'
-			  		}] 
-			  };  
-		    publishFaceBook("<?php echo __('He dejado una nueva propuesta en Voota: \"%1\"', array('%1' => $propuesta->getTitulo()))?>", attachment, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
-	    <?php endif ?>	    
 	  });
     <?php if( $sf_request->getAttribute("ie6") ):?>
 	  	$("#ie6 .close a").click(function(){

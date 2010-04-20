@@ -11,9 +11,34 @@
   $(document).ready(function(){	  
 	  $('#back').click(function(){
 		  $('#op').val( 'n' );
-		  $('#propuesta_form').submit();
+		  $('#nueva_propuesta_frm').submit();
 	
 		  return false;
+	  });
+
+	  $('#nueva_propuesta_frm').submit(function(){
+			if ($('#publicar_propuesta_en_facebook').is(':checked')){
+			    facebookConnect_promptPermission("publish_stream", function(perms) {
+			    	if (perms) {
+			    		//ublishFaceBook( text, attachment, action_links, tip );
+			  		  var attachment = { 
+								'name': '<?php echo sq( __('Opiniones a favor y en contra de la propuesta \"%2%\" en Voota', array('%2%' => $form['titulo']->getValue())) )?>'
+								, 'href': '<?php echo url_for('propuesta/show?id='.SfVoUtil::fixVanityChars($form['titulo']->getValue()), true) ?>'
+						  		, 'media': [{ 
+						  			'type': 'image'
+						  			, 'src': '<?php echo S3Voota::getImagesUrl() ?>/propuestas/cc_s_<?php echo $form['imagen']->getValue() ?>'
+						  			, 'href': '<?php echo url_for('propuesta/show?id='.SfVoUtil::fixVanityChars($form['titulo']->getValue()), true) ?>'
+						  		}] 
+						  };  
+					  try {
+					    publishFaceBook("<?php echo __('He dejado una nueva propuesta en Voota: \"%1\"', array('%1' => $form['titulo']->getValue()))?>", attachment, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
+					  }
+					  catch(err){}
+					}
+				});
+			}
+			
+			return true;
 	  });
   });
   //-->
@@ -69,8 +94,8 @@
     <p><strong><?php echo __('Importante')?></strong>: <?php echo __('una vez subida, no podrás borrar ni editar la propuesta. Sólo podrás hacer cambios sobre los enlaces o el fichero incluído.') ?></p>
 
 
-<form method="post" action="<?php echo url_for('propuesta/new')?>">
-	<input type="hidden" name="op" value="c" />
+<form id="nueva_propuesta_frm" method="post" action="<?php echo url_for('propuesta/new')?>">
+	<input id="op" type="hidden" name="op" value="c" />
         <?php echo $form['titulo']->render() ?>
         <?php echo $form['descripcion']->render() ?>
         <?php echo $form['imagen']->render() ?>
