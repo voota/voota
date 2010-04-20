@@ -36,7 +36,7 @@
 
 <h4><?php echo __('Añadir nuevo documento')?></h4>
 
-<p>PDF, Office, OpenOffice... (Máx 500Mb)</p>
+<p>PDF, Office, OpenOffice... (Máx 2Mb)</p>
 
 <form method="post" id="ed_form" enctype="multipart/form-data" action="<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId()) ?>">
 	<div><input type="hidden" name="op" value="a" /></div>

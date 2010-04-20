@@ -59,11 +59,7 @@
         <tr>
           <th><label for="propuesta_documento"><?php echo __('Documento') ?></label></th>
           <td>
-            <?php if (false): // TODO: Sustituir por 'si ya tiene subido un fichero' ?>
-              <p><a class="document" href="">Nombre_del_fichero.pdf</a> (233Mb)</p><?php //TODO: Sustituir enlace y tamaño del fichero ?>
-            <?php else: ?>
-              <p>PDF, Office, OpenOffice... (Máx 500Mb)</p>
-            <?php endif ?>
+              <p>PDF, Office, OpenOffice... (Máx 2Mb)</p>
             <?php echo $form['doc']->render() ?>
             <?php echo $form['doc']->renderError() ?>
           </td>

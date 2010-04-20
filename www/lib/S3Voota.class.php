@@ -227,7 +227,7 @@ class S3Voota extends S3 {
 	}
 	
 	public function getSize( $uri ){
-		$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+		$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
 	  		$ukey = preg_replace("/\//i", "-", $uri);
   			$key= "propuesta/show?key=". md5( "$uri" );
