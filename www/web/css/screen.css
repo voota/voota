@@ -338,13 +338,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
 #politico-ranking table tbody td,
 #politico-ranking table tfoot td { padding: 10px 0; }
-#politico-ranking table .ranking { text-align: right; width: 175px; }
+#politico-ranking table .ranking { text-align: right; width: 155px; }
 #politico-ranking table .position { text-align: right; width: 30px; }
 #politico-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
 #politico-ranking table .name { text-align: left; width: 320px; }
-#politico-ranking table .voto { text-align: left; width: 140px; padding-left: 20px }
-#politico-ranking table .positive-votes { text-align: right; width: 90px; }
-#politico-ranking table .negative-votes { text-align:right; width: 90px; padding-right: 100px;}
+#politico-ranking table .voto { text-align: left; width: 120px; padding-left: 20px }
+#politico-ranking table .positive-votes { text-align: right; width: 100px; }
+#politico-ranking table .negative-votes { text-align:right; width: 100px; padding-right: 60px;}
 
 /* Ranking de partidos */
 #partido-ranking .active { text-decoration:none; color:#333333; font-weight:bold; }
@@ -353,13 +353,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-ranking table th { background-color: #f6f6f6; padding: 10px 0; }
 #partido-ranking table tbody td,
 #partido-ranking table tfoot td { padding: 10px 0; }
-#partido-ranking table .ranking { text-align: right; width: 175px; }
+#partido-ranking table .ranking { text-align: right; width: 155px; }
 #partido-ranking table .position { text-align: right; width: 30px; }
 #partido-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
 #partido-ranking table .name { text-align: left; width: 320px; }
-#partido-ranking table .voto { text-align: left; width: 140px; padding-left: 20px }
-#partido-ranking table .positive-votes { text-align: right; width: 90px; }
-#partido-ranking table .negative-votes { text-align:right; width: 90px; padding-right: 100px;}
+#partido-ranking table .voto { text-align: left; width: 130px; padding-left: 20px }
+#partido-ranking table .positive-votes { text-align: right; width: 100px; }
+#partido-ranking table .negative-votes { text-align:right; width: 100px; padding-right: 60px;}
 
 /* Ranking de propuestas */
 #propuesta-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
