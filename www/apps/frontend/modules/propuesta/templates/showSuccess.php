@@ -22,6 +22,7 @@
 			return false;
 	  });
 	  $('#edit_doc').click(function(){
+	    $('#ed_box').show();
 			re_loading( 'ed_box' );
 			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId())?>'});
 			return false;
@@ -53,15 +54,18 @@
   <div id="description">
     <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
     <?php if($propuesta->getDoc() || $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-      <p><?php echo __('Documento')?>: <span id="fileName"> 
-      <?php if($propuesta->getDoc()):?>
-      	<a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>"><?php echo $propuesta->getDoc() ?></a> (<?php echo ByteSize( $propuesta->getDocSize() ) ?>)
-      <?php else: ?>
-      	<?php echo __('ninguno')?>
-      <?php endif ?>
-      </span>
+      <p>
+        <?php echo __('Documento')?>:
+        <span id="fileName"> 
+          <?php if($propuesta->getDoc()):?>
+      	    <a class="document"  href="<?php echo S3Voota::getImagesUrl().'/docs/'.$propuesta->getDoc() ?>"><?php echo $propuesta->getDoc() ?></a> (<?php echo ByteSize( $propuesta->getDocSize() ) ?>)
+          <?php else: ?>
+      	    <?php echo __('ninguno')?>
+          <?php endif ?>
+        </span>
+        <a href="#" id="edit_doc"><?php echo __('Hacer cambios')?></a>
       </p>
-	  	<div id="ed_box"><a href="#" id="edit_doc"><?php echo __('Hacer cambios')?></a></div>
+	  	<div id="ed_box" style="display: none"></div>
     <?php endif ?>
   </div><!-- end of description -->
 

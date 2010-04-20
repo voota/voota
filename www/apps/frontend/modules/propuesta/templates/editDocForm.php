@@ -4,6 +4,9 @@
 <script type="text/javascript" charset="utf-8">
   <!--//
   		$(document).ready(function() {
+  		  $('.cancel_delete').click(function(){
+    	    $('#ed_box').hide();
+    	  });
   	  		/*
 
 		*/
@@ -31,22 +34,15 @@
   //-->
 </script>
 
-<?php echo __('Añadir nuevo documento')?> 
+<h4><?php echo __('Añadir nuevo documento')?></h4>
+
+<p>PDF, Office, OpenOffice... (Máx 500Mb)</p>
 
 <form method="post" id="ed_form" enctype="multipart/form-data" action="<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId()) ?>">
-	<input type="hidden" name="op" value="a" />
-      <table>
-        <tr>
-          <td>
-            <input type="file" name="doc" id="doc" />
-            <div id="file_name"></div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input type="submit" value="<?php echo __('Guardar')?>" />
-          </td>
-        </tr>
-        </table>
-
+	<div><input type="hidden" name="op" value="a" /></div>
+  <p><input type="file" name="doc" id="doc" /></p>
+  <div id="file_name"></div>
+  <p><input type="submit" value="<?php echo __('Guardar')?>" /></p>
 </form>
+
+<a href="#" class="cancel_delete" id="close_ed_box"><?php echo __('(Cerrar)')?></a>
