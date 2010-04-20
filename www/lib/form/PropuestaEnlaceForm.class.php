@@ -20,6 +20,9 @@ class PropuestaEnlaceForm extends RelatedEnlaceForm
 	
   public function configure()
   {
+  	parent::configure();
+	unset($this['id']);  	
+	
     $this->validatorSchema['url'] = new sfValidatorString(array('required' => false)); 
   }
   

@@ -2,8 +2,22 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
-<form method="post" action="<?php echo url_for('propuesta/new')?>">
-  <div><input type="hidden" name="op" value="r" /></div>
+<script type="text/javascript" charset="utf-8">
+  <!--//
+	$(document).ready(function() {
+		$('#el_form').submit(function(){
+			re_loading( 'ee_box' );
+	
+			jQuery.ajax({type:'POST',dataType:'html',data:jQuery(this).serialize(),success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId())?>'});
+			
+			return false;
+	  	});
+  });
+  //-->
+</script>
+
+
+<form method="post" id="el_form">
   <ul class="links">
     <li>
       <?php echo $form['enlace_n1']['orden']->render(array('value' => 1)) ?>

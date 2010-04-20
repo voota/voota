@@ -18,13 +18,13 @@
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
 	  $('#edit_enlaces').click(function(){
 			re_loading( 'ee_box' );
-			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId()) ?>'});
+			jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId()) ?>'});
 			return false;
 	  });
 	  $('#edit_doc').click(function(){
 	    $('#ed_box').show();
 			re_loading( 'ed_box' );
-			jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId())?>'});
+			jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#ed_box').html(data);},url:'<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId())?>'});
 			return false;
 	  });
   });
@@ -69,7 +69,7 @@
     <?php endif ?>
   </div><!-- end of description -->
 
-  <?php  if(count($activeEnlaces) > 0 || $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
+  <?php  if(count($activeEnlaces) > 0 || ($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId())): ?>
     <div id="external-links">
       <h3><?php echo __('Enlaces externos', array('%1%' => $propuesta->getTitulo()))?></h3>
 	  <?php  if(count($activeEnlaces) > 0): ?>
