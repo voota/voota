@@ -35,3 +35,9 @@
     <input name="button" type="submit" class="button" value="<?php echo __('Guardar')?>" />
   </p>
 </form>
+
+<script type="text/javascript" charset="utf-8">
+  $(function(){ 
+		$('input[title!=""]').hint();
+	});
+</script>
