@@ -68,7 +68,6 @@
 	  <?php if ($user->getProfile()->getMailsContacto() && SfVoUtil::isEmail( $user->getUsername() )):?>
       <p class="contact">
         <?php echo link_to(__('Mandar un mensaje a').' '.fullName($user), '@usuario_contact?username='.$user->getProfile()->getVanity()); ?>
-        <img src="/images/email.png" alt="contactar" />
       </p>
 	  <?php endif ?>
     </div>
