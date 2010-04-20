@@ -12,9 +12,11 @@
   });
   //-->
 </script>
+
 <?php echo $propuesta->getDoc() ?>
 
-<?php echo __('Borrar para añadir uno nuevo')?> 
-
-<a href="#" id="confirm_delete"><?php echo __('Sí')?></a>
-<a href="#"><?php echo __('No')?></a>
+<p class="edit-doc">
+  <?php echo __('Borrar para añadir uno nuevo')?> 
+  <a href="#" id="confirm_delete"><?php echo __('Sí')?></a>
+  <a href="#"><?php echo __('No')?></a>
+</p>

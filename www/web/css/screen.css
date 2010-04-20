@@ -452,6 +452,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show .ui-helper-clearfix { width: 600px; }
 #partido-show .ui-helper-clearfix { width: 720px; }
 #propuesta-show .ui-helper-clearfix { width: 720px; }
+#propuesta-show .edit-doc a { padding-left: 10px;}
 
 /* Página de partido */
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
