@@ -19,6 +19,11 @@
 class propuestaActions extends sfActions
 {
   public function executeEditEnlaces(sfWebRequest $request){
+  	$id = $request->getParameter("id", 0);
+  	$this->propuesta = PropuestaPeer::retrieveByPk( $id );
+  	$this->forward404Unless( $this->propuesta );
+  	
+  	$this->form = new NuevaPropuestaForm();
   }
   public function executeEditDoc(sfWebRequest $request){
   	$op = $request->getParameter("op", "d");
