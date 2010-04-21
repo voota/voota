@@ -448,11 +448,11 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #google-ads { width: 220px; margin-left: 50px; clear: right; float: right; }
 #politico-show .reviews,
 #partido-show .reviews,
-#propuesta-show .reviews { clear: left; float: left; padding-top: 35px; width: 600px;}
+#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px;}
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
-#propuesta-show .reviews .ui-tabs-panel { width: 600px;}
-#politico-show .ui-helper-clearfix { width: 600px; }
+#propuesta-show .reviews .ui-tabs-panel { width: 680px;}
+#politico-show .ui-helper-clearfix { width: 680px; }
 #partido-show .ui-helper-clearfix { width: 680px; }
 #propuesta-show .ui-helper-clearfix { width: 680px; }
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
