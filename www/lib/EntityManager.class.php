@@ -328,10 +328,49 @@ class EntityManager {
 		$statement = $connection->prepare($query);
 		$statement->execute();
 		$partidosMasVotadosUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Partido');
-  		$entities = array();
   		
+	   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
+	  			FROM propuesta p
+				INNER JOIN sf_review r ON r.entity_id = p.id
+				WHERE r.is_active = 1
+				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
+				AND r.sf_review_type_id = ". Propuesta::NUM_ENTITY ."
+				GROUP BY p.id
+				ORDER BY c desc
+				LIMIT $limit";
+				//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
+	   	$connection = Propel::getConnection();
+		$statement = $connection->prepare($query);
+		$statement->execute();
+		$propuestasMasVotadasUltimamente = $statement->fetchAll(PDO::FETCH_CLASS, 'Propuesta');
+		
+  		$entities = array();  		
 		$exclude = "";
 		$partidosUsed = array();
+		$idx = 0;
+		$idxPolitico = 0;$idxPartido = 0;$idxPropuesta = 0;
+		
+		while($idx < $limit){
+			$idx++;
+			
+			$politico = isset($politicosMasVotadosUltimamente[$idxPolitico])?$politicosMasVotadosUltimamente[$idxPolitico]:false;
+			$partido = isset($partidosMasVotadosUltimamente[$idxPartido])?$partidosMasVotadosUltimamente[$idxPartido]:false;
+			$propuesta = isset($propuestasMasVotadasUltimamente[$idxPropuesta])?$propuestasMasVotadasUltimamente[$idxPropuesta]:false;
+			
+			if ($propuesta && (!$partido || $propuesta->getTotalt() >= $partido->getTotalt()) && (!$politico || $propuesta->getTotalt() >= $politico->getTotalt())){
+		    	$entities[] = new $entityClass( $propuesta );
+		    	$idxPropuesta++;
+			}
+			elseif ($partido /*&& (!$propuesta || $partido->getTotalt() >= $propuesta->getTotalt())*/){
+		    	$entities[] = new $entityClass( $partido );
+		    	$idxPartido++;
+			}
+			elseif ($politico){
+		    	$entities[] = new $entityClass( $politico );
+		    	$idxPolitico++;
+			}
+		}
+		/*
 		foreach ($politicosMasVotadosUltimamente as $politico) {
 				$isPartido = false;
 				foreach ($partidosMasVotadosUltimamente as $partido) {
@@ -351,7 +390,7 @@ class EntityManager {
     			$entities[] = new $entityClass( $partido );
 			}
 		}
-		
+		*/
 		return $entities;
   	} 
 }

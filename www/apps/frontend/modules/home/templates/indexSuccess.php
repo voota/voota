@@ -56,11 +56,11 @@
             <?php foreach($reviewables as $reviewable): ?>
   	  			  <?php include_partial('reviewable_li', array('id' => "sparkline_t6_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
   	        <?php endforeach?>
-            <?php if(count($reviewables) < 6):?>
+            <?php /* if(count($reviewables) < 6):?>
       	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
     	  			  <?php include_partial('politico_li', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false)) ?>
               <?php endforeach?>
-            <?php endif ?>
+            <?php endif */ ?>
           </ol>
         </li>
       </ul>
