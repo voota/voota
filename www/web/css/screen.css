@@ -408,7 +408,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #sf_review2 { width: 35%; }
 #politico-show #description,
 #partido-show #description,
-#propuesta-show #description { margin-left: 50px; width: 420px;    }
+#propuesta-show #description { margin-left: 50px; width: 420px; float: left;}
 #politico-show #description h3,
 #partido-show #description h3,
 #propuesta-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
