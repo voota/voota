@@ -512,9 +512,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new #ultimas-propuestas ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #propuesta-new #ultimas-propuestas ul li { margin: 0 0 10px 0;}
 #propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
-#propuesta-new .propuesta-preview .picture { float: left;}
+#propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px;}
 #propuesta-new .propuesta-preview .picture a { font-weight: bold; font-size: 16px;}
-#propuesta-new .propuesta-preview .description { margin-left: 240px;}
+#propuesta-new .propuesta-preview .description { float: left; margin-left: 45px;}
 #propuesta-new .propuesta-preview .inner { margin: 0 auto; width: 960px; }
 #propuesta-new .vooto { margin: 0 auto; width: 960px; }
 #propuesta-new .vooto .inner { margin-left: 240px; width: 280px; padding: 20px 0;}
