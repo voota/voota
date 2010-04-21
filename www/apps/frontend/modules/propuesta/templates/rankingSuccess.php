@@ -4,12 +4,23 @@
 <?php use_helper('Date') ?>
 <?php use_helper('VoFormat') ?>
 
+<?php include_partial('sfReviewFront/dialog') ?>
+
 <script type="text/javascript">  
   window.onload = function() {
     <?php foreach($propuestasPager->getResults() as $propuesta): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?>
     <?php endforeach ?>
   };
+  
+  $(document).ready(function(){
+    $('.login-required').click(function(){
+      <?php if (!$sf_user->isAuthenticated()): ?>
+        $("#sfr_dialog").dialog('open');
+        return false;
+      <?php endif ?>
+    });
+  });
 </script>
 
 <script type="text/javascript" charset="utf-8">
@@ -27,7 +38,7 @@
 
 <h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => $propuestasPager->getNbResults())) ?></h2>
 
-<p><a href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a class="login-required" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
@@ -110,7 +121,7 @@
   </tbody>  
 </table>
 
-<p><a href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a class="login-required" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <p class="pagination">
   <?php include_partial('global/pagination_full', array('pager' => $propuestasPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>
