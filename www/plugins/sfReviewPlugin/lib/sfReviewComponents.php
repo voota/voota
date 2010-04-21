@@ -48,6 +48,8 @@ class sfReviewComponents extends sfComponents
     							, BaseSfReviewManager::NUM_REVIEWS
     							, $exclude
     							, $this->page
+    							, 1
+    							, $this->filter
     						);
   		//$this->pageU = $request->getParameter("pageU")+1;
   		//$this->getUser()->setAttribute('pageU', $this->pageU);

@@ -46,6 +46,7 @@ class BasesfReviewFrontActions extends sfActions
   	$this->value = $request->getParameter("value");  		
   	$this->page = $request->getParameter("page");		
   	$this->sfReviewType = $request->getParameter("sfReviewType");
+  	$this->filter = $request->getParameter("filter", false);
   	
   	$c = new Criteria;
   	$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
