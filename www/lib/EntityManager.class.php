@@ -296,7 +296,7 @@ class EntityManager {
   		}
   	}
   	
-  	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity')
+  	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity', $showPropuestas = false)
   	{
 	   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
 	  			FROM politico p
@@ -357,11 +357,11 @@ class EntityManager {
 			$partido = isset($partidosMasVotadosUltimamente[$idxPartido])?$partidosMasVotadosUltimamente[$idxPartido]:false;
 			$propuesta = isset($propuestasMasVotadasUltimamente[$idxPropuesta])?$propuestasMasVotadasUltimamente[$idxPropuesta]:false;
 			
-			if ($propuesta && (!$partido || $propuesta->getTotalt() >= $partido->getTotalt()) && (!$politico || $propuesta->getTotalt() >= $politico->getTotalt())){
+			if ($showPropuestas && $propuesta && (!$partido || $propuesta->getTotalt() >= $partido->getTotalt()) && (!$politico || $propuesta->getTotalt() >= $politico->getTotalt())){
 		    	$entities[] = new $entityClass( $propuesta );
 		    	$idxPropuesta++;
 			}
-			elseif ($partido /*&& (!$propuesta || $partido->getTotalt() >= $propuesta->getTotalt())*/){
+			elseif ($partido && (!$propuesta || $partido->getTotalt() >= $propuesta->getTotalt())){
 		    	$entities[] = new $entityClass( $partido );
 		    	$idxPartido++;
 			}

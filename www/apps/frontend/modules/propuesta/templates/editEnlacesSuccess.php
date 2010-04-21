@@ -6,16 +6,15 @@
   <!--//
 	$(document).ready(function() {
 		$('#el_form').submit(function(){
-			re_loading( 'ee_box' );
+			re_loading( 'external-links' );
 	
-			jQuery.ajax({type:'POST',dataType:'html',data:jQuery(this).serialize(),success:function(data, textStatus){jQuery('#ee_box').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId())?>'});
+			jQuery.ajax({type:'POST',dataType:'html',data:jQuery(this).serialize(),success:function(data, textStatus){jQuery('#external-links').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId())?>'});
 			
 			return false;
 	  	});
   });
   //-->
 </script>
-
 
 <form method="post" id="el_form">
   <ul class="links">

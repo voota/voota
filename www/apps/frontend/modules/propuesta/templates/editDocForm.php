@@ -19,7 +19,9 @@
 				}		
 				, onComplete: function(file, response) {
 					if (response == '0'){
-						location.reload(true);
+						re_loading( 'docbox' );
+						jQuery.ajax({type:'POST',dataType:'html',data:jQuery(this).serialize(),success:function(data, textStatus){jQuery('#docbox').html(data);},url:'<?php echo url_for('propuesta/editDoc?op=s&id='.$propuesta->getId())?>'});
+						//location.reload(true);
 					}
 				}		
 			});

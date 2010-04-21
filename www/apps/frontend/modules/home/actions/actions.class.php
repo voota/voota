@@ -55,7 +55,7 @@ class homeActions extends sfActions{
   	$culture = $this->getUser()->getCulture();
 	
   	$exclude = "";
-	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity");
+	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity", true);
 	
   	$c = new Criteria();
   	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);

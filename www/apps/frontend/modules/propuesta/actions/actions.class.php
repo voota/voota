@@ -29,6 +29,10 @@ class propuestaActions extends sfActions
   		$this->form->bind($request->getParameter('propuesta'), $request->getFiles('propuesta'));
 		if ($this->form->isValid()){
 			$this->form->save();
+			
+			$this->activeEnlaces = $this->getEnlaces( $this->propuesta );
+			
+			return 'Saved';
 		}
     }
   }
@@ -40,6 +44,9 @@ class propuestaActions extends sfActions
   	$files = $request->getFiles();
   	
   	switch( $op ){
+  		case 's':
+  			return 'Saved';
+  			break;
   		case 'd':
   			break;
   		case 'f':
@@ -257,16 +264,7 @@ class propuestaActions extends sfActions
     $this->response->setTitle( $this->title );
     
     // Enlaces
-    
-    $c = new Criteria();
-	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
-	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
-	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
-	$c->add(EnlacePeer::PROPUESTA_ID, $this->propuesta->getId());
-		
-	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
-    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
-    $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    $this->activeEnlaces = $this->getEnlaces( $this->propuesta );
     $this->twitterUser = FALSE;
     foreach ($this->activeEnlaces as $enlace){
     	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){
@@ -289,6 +287,18 @@ class propuestaActions extends sfActions
   	}
      paginador */
     
+  }
+  
+  private function getEnlaces( $propuesta ){
+    $c = new Criteria();
+	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+	$c->add(EnlacePeer::PROPUESTA_ID, $propuesta->getId());
+		
+	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
+    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+    return EnlacePeer::doSelect( $c );
   }
 
   public function executeEdit(sfWebRequest $request)
