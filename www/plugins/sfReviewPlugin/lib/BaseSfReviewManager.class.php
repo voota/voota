@@ -75,7 +75,7 @@ class BaseSfReviewManager
   	
   	if($filter == 'text'){
 		$criteria->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
-		//$criteria->add(SfReviewPeer::TEXT, null, Criteria::ISNOTNULL);
+		$criteria->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture(''));
 	}
 	
   	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");

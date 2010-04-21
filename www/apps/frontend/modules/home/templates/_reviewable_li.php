@@ -13,9 +13,9 @@
 					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => $reviewable->getSumut()),$reviewable->getSumut())) ?>
 					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1] y 1 negativo|(1,+Inf] y %1% negativos', array('%1%' => $reviewable->getSumdt()), $reviewable->getSumdt())) ?>
 				<?php elseif ($reviewable->getSumut() > 0): ?>
-					<?php echo format_number_choice('[0]0|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $reviewable->getSumut()), $reviewable->getSumut()) ?>				
+					<?php echo format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => $reviewable->getSumut()), $reviewable->getSumut()) ?>				
 				<?php elseif ($reviewable->getSumdt() > 0): ?>
-					<?php echo format_number_choice('[0]0|[1]1 voto negativo|(1,+Inf]%1% votos negativos', array('%1%' => $reviewable->getSumdt()), $reviewable->getSumdt()) ?>				
+					<?php echo format_number_choice('[0]0|[1]1 negativo|(1,+Inf]%1% negativos', array('%1%' => $reviewable->getSumdt()), $reviewable->getSumdt()) ?>				
 				<?php endif?>  
 			<?php endif ?>
 		</span>
