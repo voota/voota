@@ -452,8 +452,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 600px;}
 #politico-show .ui-helper-clearfix { width: 600px; }
-#partido-show .ui-helper-clearfix { width: 720px; }
-#propuesta-show .ui-helper-clearfix { width: 720px; }
+#partido-show .ui-helper-clearfix { width: 680px; }
+#propuesta-show .ui-helper-clearfix { width: 680px; }
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
 #propuesta-show #ed_box a { padding-right: 5px;}
 #propuesta-show #ed_box a.confirm_delete { color: red;}
