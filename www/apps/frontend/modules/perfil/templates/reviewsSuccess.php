@@ -22,7 +22,7 @@
 <div id="content">
 <form action="<?php echo url_for('@usuario_votos') ?>" id="filterForm">
   <p class="filter">
-    <label for="filter"><?php echo __('Filtrar comentarios por:')?></label>
+    <label for="f"><?php echo __('Filtrar comentarios por:')?></label>
     <br />
     	<select id="f" name="f">
     		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>

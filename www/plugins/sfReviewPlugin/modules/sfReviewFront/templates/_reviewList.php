@@ -1,6 +1,27 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 
+<script type="text/javascript">
+  <!--
+  $(document).ready(function(){
+	  $('#f').change(function(){
+		  $('#filterForm').submit();
+	  });
+  });
+  //-->
+</script>
+
+<?php // TODO: Incluir URL de action al formulario ?>
+<form id="filterForm">
+  <p>
+    <label for="f"><?php echo __("Filtrar Vootos:") ?></label>
+    <select id="f" name="f">
+      <option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __("Todos los vootos") ?></option>
+      <option value="text" <?php echo $f!="text"?'':'selected="selected"'?>><?php echo __("Sólo vootos con texto") ?></option>
+    </select>
+  </p>
+</form>
+
 <?php if(!isset($lastReviewsPager) || $lastReviewsPager->getNbResults() > 0): ?>
 	<?php if(isset($lastReviewsPager)): ?>
 		<ol>
