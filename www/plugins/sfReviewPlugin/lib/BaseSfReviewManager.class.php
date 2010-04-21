@@ -52,7 +52,7 @@ class BaseSfReviewManager
   }
   */
   
-  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false, $offset = 1)
+  static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false, $offset = 1, $filter = false)
   {
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -72,6 +72,12 @@ class BaseSfReviewManager
   	if ($exclude){
   		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
   	}
+  	
+  	if($filter == 'text'){
+		$criteria->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
+		//$criteria->add(SfReviewPeer::TEXT, null, Criteria::ISNOTNULL);
+	}
+	
   	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
   	//$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
