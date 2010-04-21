@@ -90,7 +90,7 @@
   			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking general de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
     </div>
 
     <div id="political-groups" class="list-mini">
@@ -110,7 +110,7 @@
   	  	<?php include_partial('propuesta_top', array('p' => $p)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Todas las propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
     </div>
   </div>
 </div>
