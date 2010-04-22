@@ -2263,6 +2263,254 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>Votos y opiniones de %1% sobre políticos y partidos de España</source>
         <target/>
       </trans-unit>
+      <trans-unit id="454">
+        <source>Vamos a publicar esto en Facebook, ¿que te parece?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="455">
+        <source>Ranking de propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="456">
+        <source>fecha inverso</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="457">
+        <source>fecha</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="458">
+        <source>Añadir una nueva propuesta - Voota </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="459">
+        <source>Edición de la propuesta "%1%" - Voota </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="460">
+        <source>Documento</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="461">
+        <source>ninguno</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="462">
+        <source>Añadir nuevo documento</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="463">
+        <source>Guardar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="464">
+        <source>(Cerrar)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="465">
+        <source>[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="466">
+        <source>Sugerida por</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="467">
+        <source>Autor</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="468">
+        <source>Imagen de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="469">
+        <source>Proponer una propuesta política:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="470">
+        <source>Titular de la propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="471">
+        <source>Necesario. Indica brevemende de qué va la propuesta política.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="472">
+        <source>Descripción</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="473">
+        <source>Necesario. Ofrece al resto de la comunidad una descripción de la propuesta. Recuerda que dispones de 600 caracteres.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="474">
+        <source>Imagen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="475">
+        <source>Alguna imagen que sirva para ilustrar la propuesta (opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="476">
+        <source>Incluye 1 fichero que ofrezca información adicional sobre la propuesta (opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="477">
+        <source>Enlaces</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="478">
+        <source>(opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="479">
+        <source>Ver cómo quedará</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="480">
+        <source>Borrar para añadir uno nuevo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="481">
+        <source>Opiniones a favor y en contra de la propuesta \"%2%\" en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="482">
+        <source>He dejado una nueva propuesta en Voota: \"%1\"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="483">
+        <source>Así se verá: %nombre%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="484">
+        <source>&amp;laquo; Volver, hacer cambios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="485">
+        <source>Sobre la propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="486">
+        <source>¿Todo en orden? ¿Seguimos?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="487">
+        <source>Importante</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="488">
+        <source>una vez subida, no podrás borrar ni editar la propuesta. Sólo podrás hacer cambios sobre los enlaces o el fichero incluído.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="489">
+        <source>¡Ok! Subir propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="490">
+        <source>Últimas propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="491">
+        <source>Ranking de propuestas: de momento %count%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="492">
+        <source>Dar de alta tu propuesta política</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="493">
+        <source>Ordenar por votos positivos: Las más votadas primero / los menos votadas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="494">
+        <source>Ordenar por votos negativos: Las más votadas primero / las menos votadas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="495">
+        <source>Ordenar por fecha: Las más antiguas primero / las mas recientes primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="496">
+        <source>Fecha</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="497">
+        <source>Total:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="498">
+        <source>Sobre esta propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="499">
+        <source>[0]0|[1]1 negativo|(1,+Inf]%1% negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="500">
+        <source>Top 5 propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="501">
+        <source>Propuestas políticas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="502">
+        <source>Dar de alta propuestas políticas para que el resto de la comunidad opine sobre ellas.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="503">
+        <source>¡Ya llevamos %count%!</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="504">
+        <source>¿Te animas?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="505">
+        <source>Proponer propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="506">
+        <source>Opinión de %1% sobre %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="507">
+        <source>Otro comentario</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="508">
+        <source>Opinión de %1% sobre %2%. %3%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="509">
+        <source>%1%publicado por %2% sobre %3% el %4%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="510">
+        <source>Opiniones a favor y en contra de \"%2%\" en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="511">
+        <source>vooto a favor de una opinión de un usuario sobre \"%1%\"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="512">
+        <source>voota en contra de una opinión de un usuario sobre \"%1%\"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="513">
+        <source>vooto a favor de \"%1%\"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="514">
+        <source>voota en contra de \"%1%\"</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="515">
+        <source>(propuesta)</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

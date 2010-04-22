@@ -18,6 +18,7 @@
  */
 
 require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.php');
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
@@ -41,6 +42,15 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  						'%1%' => $this->review->getSfGuardUser(), 
 	  						'%2%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario'),
 	  						'%3%' => $this->review->getText()?$this->review->getText():''
+	  					)
+	  	);
+	  	
+	  	$description = sfContext::getInstance()->getI18N()->__("%1%publicado por %2% sobre %3% el %4%"
+	  					, array(
+	  						'%1%' => $this->review->getText()?(SfVoUtil::cutToLength($this->review->getText(), 60, '...', true).', '):'', 
+	  						'%2%' => $this->review->getSfGuardUser(),
+	  						'%3%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario'),
+	  						'%4%' => format_date( $this->review->getCreatedAt(), 'd' )
 	  					)
 	  	);
 	    $this->response->addMeta('Description', $description);

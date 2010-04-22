@@ -83,9 +83,9 @@ class sfVoForm extends BaseForm
 			'invalid' => sfContext::getInstance()->getI18N()->__('El email o la contraseña no son válidos.', array(), 'notices')
 		);
 	}
-	public static function getImageMessages() {
+	public static function getImageMessages($maxSize = '%max_size%') {
 		return array(
-			'max_size' => sfContext::getInstance()->getI18N()->__('Imagen demasiado grande. No más de %max_size%b.', array(), 'notices'),
+			'max_size' => sfContext::getInstance()->getI18N()->__('Fichero demasiado grande. No más de %1%b.', array('%1%' => $maxSize), 'notices'),
 			'mime_types' => sfContext::getInstance()->getI18N()->__('Formato de imagen no válido.', array(), 'notices'),
 			'extension' => sfContext::getInstance()->getI18N()->__('Formato de imagen no válido.', array(), 'notices')
     		);

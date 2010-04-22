@@ -122,10 +122,10 @@ class propuestaActions extends sfActions
   				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
   				break;
   			case 'fd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('fecha inverso');
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('más recientes');
   				break;
   			case 'fa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('fecha');
+  				$orderTxt = sfContext::getInstance()->getI18N()->__('más antiguas');
   				break;
   		}
   		$this->pageTitle .= ", $orderTxt";
