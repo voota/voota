@@ -184,7 +184,7 @@ class EntityManager {
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(propuesta.sumu) as total_u, sum(propuesta.sumd) as total_d 
   				FROM `propuesta` ".
-  				"";
+  				"WHERE propuesta.is_active = 1";
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 			$statement->execute();
@@ -282,7 +282,7 @@ class EntityManager {
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = ?) ":" ").
   				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
-  				"";
+  				"WHERE partido.is_active = 1";
 	
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
@@ -387,27 +387,7 @@ class EntityManager {
 		    	$idxPolitico++;
 			}
 		}
-		/*
-		foreach ($politicosMasVotadosUltimamente as $politico) {
-				$isPartido = false;
-				foreach ($partidosMasVotadosUltimamente as $partido) {
-					if (! in_array($partido->getId(), $partidosUsed) && $partido->getTotalt() > $politico->getTotalt() && count($entities) < $limit) {
-		    			$entities[] = new $entityClass( $partido );
-		    			$partidosUsed[] = $partido->getId();
-		    			$isPartido = true;
-					}
-				}
-				if(count($entities) < $limit) {
-	    			$entities[] = new $entityClass( $politico );
-					$exclude .= ($exclude == ''?'':', ').  $politico->getId();
-				}
-		}
-		foreach ($partidosMasVotadosUltimamente as $partido) {
-			if (! in_array($partido->getId(), $partidosUsed) && count($entities) < $limit) {
-    			$entities[] = new $entityClass( $partido );
-			}
-		}
-		*/
+		
 		return $entities;
   	} 
 }
