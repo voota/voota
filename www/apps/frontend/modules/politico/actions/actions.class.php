@@ -171,6 +171,8 @@ class politicoActions extends sfActions
   		$aPartidoCriteria = new Criteria();
   		$aPartidoCriteria->add(PartidoPeer::ABREVIATURA, $this->partido);
   		$aaPartido = PartidoPeer::doSelectOne($aPartidoCriteria);
+  		
+  		$this->forward404Unless( $aaPartido );
   	}
   	else {
   		$this->partido = ALL_URL_STRING; 
@@ -182,6 +184,8 @@ class politicoActions extends sfActions
 		$aInstitucionCriteria->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
   		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
+  		
+  		$this->forward404Unless( $aInstitucion );
   	}  	
   	
   	$filter = array(
