@@ -28,7 +28,7 @@ class PropuestaForm extends BasePropuestaForm
 		$id = isset($taintedValues['id'])?$taintedValues['id']:false;
 		
 		if ($titulo){
-			$taintedValues['titulo'] = SfVoUtil::cutToLength($taintedValues['titulo'], 150);
+			$taintedValues['titulo'] = SfVoUtil::cutToLength($taintedValues['titulo'], 100);
 		}		
 		if ($descripcion){
 			$taintedValues['descripcion'] = SfVoUtil::cutToLength($taintedValues['descripcion'], 600);
