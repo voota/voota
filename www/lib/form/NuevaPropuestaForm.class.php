@@ -65,13 +65,13 @@ class NuevaPropuestaForm extends PropuestaForm
 				   'mime_types' => 'web_images',
 				   'path' => sfConfig::get('sf_upload_dir').'/propuestas',
 				   'validated_file_class' => 'sfResizedFile',
-	  ), sfVoForm::getImageMessages()),
+	  ), sfVoForm::getImageMessages("500K")),
       'doc'   => new sfValidatorFile(array(
 				   'required'   => false,
     			   'max_size' => '2048000',
 				   'path' => sfConfig::get('sf_upload_dir').'/docs',
 				   'validated_file_class' => 'sfResizedFile',
-	  ), sfVoForm::getImageMessages()),
+	  ), sfVoForm::getImageMessages("2M")),
     ));
     
     $this->validatorSchema->setPostValidator(

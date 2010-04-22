@@ -92,6 +92,9 @@
         <source>El enlace no es válido (Ejemplo: Voota.es).</source>
         <target>L'enllaç no és vàlid (exemple: voota.es).</target>
       <note/></trans-unit>      
+      <trans-unit id="23" approved="yes">
+        <source>Fichero demasiado grande. No más de %max_size%b.</source>
+      <note/></trans-unit>
     </body>
   </file>
 </xliff>
