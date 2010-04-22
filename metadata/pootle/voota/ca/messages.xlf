@@ -2511,6 +2511,22 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>(propuesta)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="516">
+        <source>más recientes</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="517">
+        <source>más antiguas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="518">
+        <source>PDF, Office, OpenOffice... (Máx 2Mb)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="519">
+        <source>¿Seguimos?</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

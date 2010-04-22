@@ -59,7 +59,7 @@
         <tr>
           <th><label for="propuesta_documento"><?php echo __('Documento') ?></label></th>
           <td>
-              <p>PDF, Office, OpenOffice... (Máx 2Mb)</p>
+              <p><?php echo __('PDF, Office, OpenOffice... (Máx 2Mb)')?></p>
             <?php echo $form['doc']->render() ?>
             <?php echo $form['doc']->renderError() ?>
           </td>
@@ -101,7 +101,7 @@
         <tr>
           <th></th>
           <td class="submit">
-            <span>¿Seguimos?</span>
+            <span><?php echo __('¿Seguimos?')?></span>
             <input name="button" type="submit" class="button" value="<?php echo __('Ver cómo quedará')?>" />
           </td>
         </tr>
