@@ -107,8 +107,8 @@
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
         <?php foreach($propuestasMasVotadas as $p): ?>
-  	  	<?php include_partial('propuesta_top', array('p' => $p)) ?>
-      <?php endforeach?>
+  	  		<?php include_partial('propuesta_top', array('p' => $p)) ?>
+      	<?php endforeach?>
       </ol>
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
     </div>

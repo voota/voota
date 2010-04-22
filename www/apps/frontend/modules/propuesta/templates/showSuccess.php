@@ -29,6 +29,11 @@
   <span class="rank">
     <?php echo format_number_choice('[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $propuesta->getSumu()), $propuesta->getSumu()) ?>
   </span>
+	<span class="rank">
+	<br />
+		<?php echo __('Sugerida por')?> <?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/cc_s_'.$propuesta->getSfGuardUser()->getProfile()->getImagen(), 'height="20" alt="'. __('Autor') .'"') ?> 
+		<a href="<?php echo url_for('perfil/show?username='.$propuesta->getSfGuardUser()->getProfile()->getVanity())?>"><?php echo $propuesta->getSfGuardUser()?></a>
+	</span>
 </h2>
 
 <div id="content">

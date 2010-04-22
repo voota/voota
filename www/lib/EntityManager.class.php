@@ -21,7 +21,7 @@ class EntityManager {
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = sfcontext::getInstance()->getViewCacheManager();
+	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
 	  	if ($cacheManager != null) {
   			//$cacheManager=new sfMemcacheCache();
   			//$cacheManager->initialize();
@@ -91,11 +91,21 @@ class EntityManager {
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
   				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
   				WHERE politico.VANITY IS NOT NULL ".
-  				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA='$partido' ":" ") .
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY='$institucion' ":" ") .
+  				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA= ? ":" ") .
+  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
   				"";
+  			
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
+
+  			$idx = 1;
+  			if ($partido && $partido != ALL_URL_STRING) {
+				$statement->bindValue($idx++, $partido);  				
+  			}
+  			if ($institucion && $institucion != ALL_URL_STRING) {
+				$statement->bindValue($idx++, $institucion);  				
+  			}
+  			
 			$statement->execute();
 			$results = $statement->fetchAll();
 			foreach($results as $result){
@@ -270,11 +280,16 @@ class EntityManager {
   				(($institucion && $institucion != ALL_URL_STRING)?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
   				INNER JOIN `politico_institucion` ON politico_institucion.Politico_ID = politico.ID
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
-  				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ":" ").
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY='$institucion' ":" ") .
+  				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = ?) ":" ").
+  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
   				"";
+	
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
+				$statement->bindValue(1, $culture);
+  			if ($institucion && $institucion != ALL_URL_STRING){
+				$statement->bindValue(2, $institucion);
+  			}
 			$statement->execute();
 			$results = $statement->fetchAll();
 			foreach($results as $result){
@@ -318,6 +333,7 @@ class EntityManager {
 	  			FROM partido p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1
+				AND p.is_active = 1
 				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 				AND r.sf_review_type_id = ". Partido::NUM_ENTITY ."
 				GROUP BY p.id
@@ -333,6 +349,7 @@ class EntityManager {
 	  			FROM propuesta p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1
+				AND p.is_active = 1
 				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 				AND r.sf_review_type_id = ". Propuesta::NUM_ENTITY ."
 				GROUP BY p.id
