@@ -388,6 +388,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show h2#name .rank,
 #partido-show h2#name .rank,
 #propuesta-show h2#name .rank { font-size: 11px;}
+#propuesta-show h2#name { margin-bottom: 5px;}
+#propuesta-show #author img { width: 20px; height: 20px; padding: 0 3px;}
 #politico-show #photo,
 #partido-show #photo,
 #propuesta-show #photo { width: 220px; float: left; }
