@@ -1,11 +1,8 @@
-<?php // TODO: Sustituir variables que hacen referencia a partido por propuesta ?>
 <li>
 	<div class="avatar">
-	  <?php // TODO: Sustituir por imagen reducida de la propuesta ?>
   	<?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.($p->getImagen()!=''?$p->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $p)) .'"') ?>
   </div>
 	<h4 class="name">
-	  <?php // TODO: Sustituir por título de la propuesta ?>
 	  <?php echo link_to($p->getTitulo(), 'propuesta/show?id='.$p->getVanity())?>
 	</h4>
   <div class="votes">

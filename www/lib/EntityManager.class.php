@@ -333,6 +333,7 @@ class EntityManager {
 	  			FROM partido p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1
+				AND p.is_active = 1
 				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 				AND r.sf_review_type_id = ". Partido::NUM_ENTITY ."
 				GROUP BY p.id
@@ -348,6 +349,7 @@ class EntityManager {
 	  			FROM propuesta p
 				INNER JOIN sf_review r ON r.entity_id = p.id
 				WHERE r.is_active = 1
+				AND p.is_active = 1
 				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 				AND r.sf_review_type_id = ". Propuesta::NUM_ENTITY ."
 				GROUP BY p.id
