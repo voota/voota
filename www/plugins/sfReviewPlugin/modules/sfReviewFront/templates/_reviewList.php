@@ -62,7 +62,7 @@
       <input type="hidden" id="value" name="value" value="<?php echo $value ?>" />
       <input type="hidden" id="value" name="sfReviewType" value="<?php echo $sfReviewType ?>" />
       <input type="hidden" id="page" name="page" value="<?php echo $reviewsPager->getPage()+1 ?>" />      
-      <input type="hidden" id="f" name="f" value="<?php echo $f ?>" />      
+      <input type="hidden" id="f" name="filter" value="<?php echo $filter ?>" />      
 	  <center><input type="submit" value="<?php echo __('más') ?>" /></center>
 	</form>
   <?php endif ?>
