@@ -510,7 +510,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new form td { width: 290px;}
 #propuesta-new .counter { padding-bottom: 0; text-align: right;}
 #propuesta-new .submit span { padding-right: 20px;}
-#propuesta-new #propuesta_titulo { height: 70px;}
+#propuesta-new #propuesta_titulo { height: 50px;}
 #propuesta-new #propuesta_descripcion { height: 220px;}
 #propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
 #propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px; width: 220px;}
