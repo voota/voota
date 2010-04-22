@@ -23,10 +23,6 @@
   <?php echo showNotices( $sf_user ) ?>
 
   <div id="content">
-    <div id="sidebar">
-      <?php include_partial('ultimasPropuestas') ?>
-    </div>
-
     <form method="post" action="<?php echo url_for('propuesta/new')?>" enctype="multipart/form-data">
       <div><input type="hidden" name="op" value="r" /></div>
       <table>
@@ -37,7 +33,7 @@
             <?php echo $form['titulo']->renderError() ?>
             <p id="propuesta_titulo_counter" class="counter"></p>
           </td>
-          <td class="hints"><?php echo __('Necesario. Indica brevemende de qué va la propuesta política.') ?></td>
+          <td class="hints"><?php echo __('Necesario. Indica brevemente de qué va la propuesta política.') ?></td>
         </tr>
         <tr>
           <th><label for="propuesta_descripcion"><?php echo __('Descripción') ?></label></th>
@@ -46,7 +42,7 @@
             <?php echo $form['descripcion']->renderError() ?>
             <p id="propuesta_descripcion_counter" class="counter"></p>
           </td>
-          <td class="hints"><?php echo __('Necesario. Ofrece al resto de la comunidad una descripción de la propuesta. Recuerda que dispones de 600 caracteres.') ?></td>
+          <td class="hints"><?php echo __('Necesario. Ofrece al resto de la comunidad una descripción de la propuesta.') ?></td>
         </tr>
         <tr>
           <th><label for="propuesta_imagen"><?php echo __('Imagen') ?></label></th>

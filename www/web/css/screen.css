@@ -510,16 +510,15 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new form td { width: 290px;}
 #propuesta-new .counter { padding-bottom: 0; text-align: right;}
 #propuesta-new .submit span { padding-right: 20px;}
-#propuesta-new #ultimas-propuestas { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
-#propuesta-new #ultimas-propuestas ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
-#propuesta-new #ultimas-propuestas ul li { margin: 0 0 10px 0;}
+#propuesta-new #propuesta_titulo { height: 70px;}
+#propuesta-new #propuesta_descripcion { height: 220px;}
 #propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
-#propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px;}
+#propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px; width: 220px;}
 #propuesta-new .propuesta-preview .picture a { font-weight: bold; font-size: 16px;}
-#propuesta-new .propuesta-preview .description { float: left; margin-left: 45px;}
+#propuesta-new .propuesta-preview .description { float: left; margin-left: 45px; width: 425px;}
 #propuesta-new .propuesta-preview .inner { margin: 0 auto; width: 960px; }
 #propuesta-new .vooto { margin: 0 auto; width: 960px; }
-#propuesta-new .vooto .inner { margin-left: 240px; width: 280px; padding: 20px 0;}
+#propuesta-new .vooto .inner { margin-left: 265px; width: 280px; padding: 20px 0;}
 #propuesta-new .vooto strong { font-weight: normal; color: #ff0000;}
 
 /* Popups de ayuda */
