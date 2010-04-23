@@ -454,9 +454,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 680px;}
-#politico-show .ui-helper-clearfix { width: 680px; }
-#partido-show .ui-helper-clearfix { width: 680px; }
-#propuesta-show .ui-helper-clearfix { width: 680px; }
+#politico-show .ui-tabs-nav { width: 680px; }
+#partido-show .ui-tabs-nav { width: 680px; }
+#propuesta-show .ui-tabs-nav { width: 680px; }
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
 #propuesta-show #ed_box a { padding-right: 5px;}
 #propuesta-show #ed_box a.confirm_delete { color: red;}
