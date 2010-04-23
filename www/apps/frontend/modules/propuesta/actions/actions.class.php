@@ -234,6 +234,10 @@ class propuestaActions extends sfActions
   	$c->add(PropuestaPeer::VANITY, $vanity);
   	$this->propuesta = PropuestaPeer::doSelectOne( $c );
   	$this->forward404Unless( $this->propuesta );
+  	
+  	if ($this->propuesta->getCulture() != $culture){
+  		$this->redirect("@homepage");
+  	}
 	
   	$exclude = array();
   	

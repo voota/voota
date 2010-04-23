@@ -25,6 +25,8 @@ class homeActions extends sfActions{
   }
   
   public function executeIndex(sfWebRequest $request) {
+  	$culture = $this->getUser()->getCulture();
+  	
   	$cpos = new Criteria();
   	$cpos->add(SfReviewPeer::VALUE, 1);
   	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
@@ -75,6 +77,7 @@ class homeActions extends sfActions{
   	$c->addAscendingOrderByColumn(PropuestaPeer::SUMD);
   	$c->setLimit(5);
   	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$c->add(PropuestaPeer::CULTURE, $culture);
   	$this->propuestasMasVotadas = PropuestaPeer::doSelect($c);
   	
   	//Totales  	

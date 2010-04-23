@@ -6,9 +6,9 @@
   <!--//
   $(document).ready(function() {
     $('#propuesta_titulo').keyup(function() {
-		  setCounter('#propuesta_titulo_counter', this, 100);
+		  setCounter('#propuesta_titulo_counter', this, 80);
 	  });
-	  setCounter('#propuesta_titulo_counter', '#propuesta_titulo', 100);
+	  setCounter('#propuesta_titulo_counter', '#propuesta_titulo', 80);
 	  $('#propuesta_descripcion').keyup(function() {
 		  setCounter('#propuesta_descripcion_counter', this, 600);
 	  });
