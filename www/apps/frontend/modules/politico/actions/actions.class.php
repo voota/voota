@@ -21,7 +21,15 @@ define("ALL_FORM_VALUE", '0');
 
 class politicoActions extends sfActions
 {
-	
+
+  public function executeAcPartido(sfWebRequest $request){
+  	echo '[{"id": "PdI", "value": "pdi, partido de internet"}]';die;
+  }
+
+  public function executeAcInstitucion(sfWebRequest $request){
+  	echo '["gobierno", "senado", "parlamento vasco", "asamblea ceuta"]';die;
+  }
+  
   public function executeTake(sfWebRequest $request)
   {
   	$id = $request->getParameter('id');
