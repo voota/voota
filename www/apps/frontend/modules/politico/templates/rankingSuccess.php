@@ -9,11 +9,16 @@
 	$("input#ac_partido").autocomplete({
 		source: '<?php echo url_for('politico/acPartido')?>',
 		select: function(event, ui) {
+			$("input#partido").val(ui.item.id);
 			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
 		}
 	});
 	$("input#ac_institucion").autocomplete({
-		    source: '<?php echo url_for('politico/acInstitucion')?>'
+		    source: '<?php echo url_for('politico/acInstitucion')?>',
+			select: function(event, ui) {
+				$("input#institucion").val(ui.item.id);
+				//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
+			}
 	});
   });
   //-->
@@ -39,18 +44,22 @@
   <?php */ ?>
 </h2>
 
+<form action="<?php echo url_for('politico/ranking')?>">
+<input type="hidden" name="p" id="partido" value="all" />
+<input type="hidden" name="institucion" id="institucion" />
 <p>
-	Buscar políticos de <input type="text" id="ac_partido" title="<?php echo __('abreviatura o nombre partido')?>" />
-	en <input type="text" id="ac_institucion" title="<?php echo __('nombre institucion')?>" />
-	<input type="button" value="Filtrar" />
+	<?php echo __('Buscar políticos')?> <input type="text" id="ac_partido" title="<?php echo __('abreviatura o nombre del partido')?>" />
+	<?php echo __('en')?> <input type="text" id="ac_institucion" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
+	<input type="submit" value="<?php echo __('Filtrar') ?>" />
 </p>
+</form>
 
 <?php include_partial('sfReviewFront/dialog') ?>
 
 
 <?php // include_partial('selectorPartido', array('pageTitle' => $pageTitle, 'partidos_arr' => $partidos_arr, 'favoritos' => $partidos_arr, 'partido' => $partido)) ?>
 
-<?php //include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
+<?php // include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
