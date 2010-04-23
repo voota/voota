@@ -147,6 +147,7 @@ class EntityManager {
   		else {
 		  	$c = new Criteria();
 		  	$c->add(PropuestaPeer::IS_ACTIVE, true);
+		  	$c->add(PropuestaPeer::CULTURE, $culture);
 		  	
 		  	$c->setDistinct();
 		  	$pager = new sfPropelPager('Propuesta', $limit);
@@ -313,6 +314,8 @@ class EntityManager {
   	
   	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity', $showPropuestas = false)
   	{
+  		$culture = sfContext::getInstance()->getUser()->getCulture();
+  		
 	   	$query = "SELECT p.*, sum(value = 1) sumut, sum(value = -1) sumdt, count(*) c
 	  			FROM politico p
 				INNER JOIN sf_review r ON r.entity_id = p.id
@@ -352,6 +355,7 @@ class EntityManager {
 				AND p.is_active = 1
 				AND IFNULL(r.modified_at, r.created_at) > (NOW() - INTERVAL 7 DAY)
 				AND r.sf_review_type_id = ". Propuesta::NUM_ENTITY ."
+				AND p.culture = '$culture'
 				GROUP BY p.id
 				ORDER BY c desc
 				LIMIT $limit";

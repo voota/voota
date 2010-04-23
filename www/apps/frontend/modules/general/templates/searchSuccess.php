@@ -15,9 +15,6 @@
   <table border="0" cellpadding="0" cellspacing="0">
     <tbody>
       <?php foreach($results->getResults() as $idx => $obj): ?>
-        <?php if ($obj instanceof Propuesta): ?>
-			<?php include_component_slot('propuestaResult', array('obj' => $obj, 'q' => $q)) ?>
-        <?php endif ?>
         <?php if ($obj instanceof Partido): ?>
 			<?php include_component_slot('partidoResult', array('obj' => $obj, 'q' => $q)) ?>
         <?php endif ?>
@@ -27,6 +24,10 @@
         
         <?php if ($obj instanceof Politico): ?>
 			<?php include_component_slot('politicoResult', array('obj' => $obj, 'q' => $q)) ?>
+        <?php endif ?>
+        
+        <?php if ($obj instanceof Propuesta): ?>
+			<?php include_component_slot('propuestaResult', array('obj' => $obj, 'q' => $q)) ?>
         <?php endif ?>
         
         <?php if ($obj instanceof sfGuardUser): ?>

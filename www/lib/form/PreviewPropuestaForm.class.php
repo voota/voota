@@ -46,7 +46,8 @@ class PreviewPropuestaForm extends PropuestaForm
       'titulo'   => new sfWidgetFormInputHidden(array()),
       'descripcion'   => new sfWidgetFormInputHidden(array()),
       'imagen'   => new sfWidgetFormInputHidden(array()),
-      'doc'   => new sfWidgetFormInputHidden(array())
+      'doc'   => new sfWidgetFormInputHidden(array()),
+      'culture'   => new sfWidgetFormInputHidden(array())
 	)); 
     $this->widgetSchema->setNameFormat('propuesta[%s]');
 	$this->setValidators(array(
@@ -56,7 +57,7 @@ class PreviewPropuestaForm extends PropuestaForm
       'sf_guard_user_id'   => new sfValidatorInteger(array('required' => true)),
       'imagen'   => new sfValidatorString(array('required' => false)),
       'doc'   => new sfValidatorString(array('required' => false)),
-      'culture'   => new sfValidatorFile(array('required' => false))
+      'culture'   => new sfValidatorString(array('required' => false))
     ));
     	
   		// Vacíos
