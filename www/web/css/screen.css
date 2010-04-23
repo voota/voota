@@ -371,10 +371,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-ranking table .ranking { text-align: right; width: 120px; }
 #propuesta-ranking table .position { text-align: right; width: 30px; }
 #propuesta-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
-#propuesta-ranking table .name { text-align: left; width: 200px; padding-right: 40px;}
+#propuesta-ranking table .name { text-align: left; width: 300px; padding-right: 40px;}
 #propuesta-ranking table .voto { text-align: left; width: 110px; }
 #propuesta-ranking table .positive-votes { text-align: right; width: 140px; }
-#propuesta-ranking table .negative-votes { text-align:right; width: 140px; }
+#propuesta-ranking table .negative-votes { text-align:right; width: 140px; padding-right: 45px;}
 #propuesta-ranking table .date { text-align: right; width: 100px; padding-right: 45px;}
 #propuesta-ranking .search { float: right;}
 
@@ -510,7 +510,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new form td { width: 290px;}
 #propuesta-new .counter { padding-bottom: 0; text-align: right;}
 #propuesta-new .submit span { padding-right: 20px;}
-#propuesta-new #propuesta_titulo { height: 70px;}
+#propuesta-new #propuesta_titulo { height: 50px;}
 #propuesta-new #propuesta_descripcion { height: 220px;}
 #propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
 #propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px; width: 220px;}
