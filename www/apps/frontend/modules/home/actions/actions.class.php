@@ -88,6 +88,7 @@ class homeActions extends sfActions{
   	$this->totalPartidos = PartidoPeer::doCount($c);
   	$c = new Criteria();
   	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$c->add(PropuestaPeer::CULTURE, $culture);
   	$this->totalPropuestas = PropuestaPeer::doCount($c);
   	/*
    	$query = "SELECT i.*, ii.*, count( * ) c

@@ -185,7 +185,8 @@ class EntityManager {
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(propuesta.sumu) as total_u, sum(propuesta.sumd) as total_d 
   				FROM `propuesta` ".
-  				"WHERE propuesta.is_active = 1";
+  				"WHERE propuesta.is_active = 1
+  				AND culture = '$culture'";
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 			$statement->execute();
