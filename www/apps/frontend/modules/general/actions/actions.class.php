@@ -123,30 +123,6 @@ class generalActions extends sfActions{
    	
    	$cl = $this->resetSphinxClient();
 	
-   	# Propuestas 
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "propuesta_$culture" );
-	if ( $this->res!==false ) {
-		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-        	$c = new Criteria();
-        	/*
-			$c->addJoin(
-				array(PropuestaPeer::ID, PartidoI18nPeer::CULTURE),
-				array(PartidoI18nPeer::ID, "'$culture'")
-			);
-			*/
-        	$list = array();
-        	foreach ($this->res["matches"] as $idx => $match) {
-        		$list[] = $match['id'];
-        	}
-  			$c->add(PropuestaPeer::ID, $list, Criteria::IN);
-  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  			$c->addDescendingOrderByColumn("(sumu + sumd)");
-  			
-  			$propuestas = PropuestaPeer::doSelect($c);
-  			$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
-        }	
-	}
-	
    	# Partidos
 	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "partido_$culture" );
 	if ( $this->res!==false ) {
@@ -210,6 +186,30 @@ class generalActions extends sfActions{
   			$politicos = PoliticoPeer::doSelect($c);
   			
   			$resultsArray = array_merge  ( $resultsArray, $politicos );
+        }	
+	}
+		
+   	# Propuestas 
+	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "propuesta_$culture" );
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+        	$c = new Criteria();
+        	/*
+			$c->addJoin(
+				array(PropuestaPeer::ID, PartidoI18nPeer::CULTURE),
+				array(PartidoI18nPeer::ID, "'$culture'")
+			);
+			*/
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(PropuestaPeer::ID, $list, Criteria::IN);
+  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
+  			$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			
+  			$propuestas = PropuestaPeer::doSelect($c);
+  			$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
         }	
 	}
 	
