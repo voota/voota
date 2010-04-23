@@ -488,9 +488,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 /* Página de opinión */
 #sfReviewFront-show .review-body { padding-bottom: 0; margin-bottom: 0;}
 #sfReviewFront-show .review-about { margin-top: 0; padding-bottom: 10px; font-size: 11px;}
-#sfReviewFront-show .review-name { font-size: 16px;}
-#sfReviewFront-show .subreviews .review-name { font-size: 13px;}
-#sfReviewFront-show .review-date { margin-top: 0;}
+#sfReviewFront-show .review-name { font-size: 16px; width: 900px;}
+#sfReviewFront-show .review-date { margin-top: 0; width: 900px;}
+#sfReviewFront-show .subreviews .review-name { font-size: 13px; width: 860px;}
+#sfReviewFront-show .subreviews .review-date { width: 860px;}
 
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
