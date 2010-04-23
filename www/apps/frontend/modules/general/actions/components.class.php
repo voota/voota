@@ -16,7 +16,8 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
-  		$c->add(SfReviewPeer::SF_REVIEW_ID, Propuesta::NUM_ENTITY);
+  		$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Propuesta::NUM_ENTITY);
+  		$c->add(SfReviewPeer::IS_ACTIVE, true);
   		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){
@@ -60,7 +61,8 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
-  		$c->add(SfReviewPeer::SF_REVIEW_ID, Politico::NUM_ENTITY);
+  		$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Politico::NUM_ENTITY);
+  		$c->add(SfReviewPeer::IS_ACTIVE, true);
   		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){
@@ -93,7 +95,8 @@ class generalComponents extends sfComponents
   	else {
   		$c = new Criteria();
   		$c->add(SfReviewPeer::ENTITY_ID, $this->obj->getId());
-  		$c->add(SfReviewPeer::SF_REVIEW_ID, Partido::NUM_ENTITY);
+  		$c->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
+  		$c->add(SfReviewPeer::IS_ACTIVE, true);
   		$c->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture());
   		$reviews = SfReviewPeer::doSelect( $c );
   		foreach($reviews as $review){

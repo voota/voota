@@ -66,14 +66,6 @@
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>
       </th>
-      <th class="date">
-        <a href="<?php echo url_for("$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='fd'?'fa':'fd'))?>"
-        	title="<?php echo __('Ordenar por fecha: Las más antiguas primero / las mas recientes primero') ?>" 
-        	rel="nofollow"><?php echo __('Fecha')?></a>
-      	<?php if (strpos($order, 'f') === 0):?>
-      		<?php echo image_tag($order=='fd'?'flechaDown.gif':'flechaUp.gif', $order=='fd'?'alt="descendente"':'alt="ascendente"') ?>
-      	<?php endif?>
-      </th>
     </tr>
   </thead>
 
@@ -93,7 +85,6 @@
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php echo format_number($totalDown, 'es_ES')?>
       </td>
-      <td class="date"></td>
     </tr>
   </tfoot>
 
@@ -106,16 +97,13 @@
           <?php echo image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"') ?>
   	    </td>
         <td class="name">
-          <?php echo link_to(	cutToLength("".$propuesta->getTitulo(), 30), 'propuesta/show?id='.$propuesta->getVanity(), 'class="tooltip_propuesta" title="'.__('Sobre esta propuesta').'|'.$propuesta->getTitulo().'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true).'"') ?>
+          <?php echo link_to( $propuesta->getTitulo(), 'propuesta/show?id='.$propuesta->getVanity(), 'class="tooltip_propuesta" title="'.__('Sobre esta propuesta').'|'.__('Creada el %1%', array('%1%' => format_date($propuesta->getCreatedAt()))) .'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true).'"') ?>
         </td>
         <td class="voto">
             <?php include_component_slot('quickvote', array('entity' => $propuesta)) ?>
         </td>
         <td class="positive-votes"><?php echo sumu($propuesta)?></td>
         <td class="negative-votes"><?php echo sumd($propuesta)?></td>
-        <td class="date">
-          <?php echo format_date($propuesta->getCreatedAt(), 'd') ?>
-        </td>
       </tr>
     <?php endforeach ?>
   </tbody>  
