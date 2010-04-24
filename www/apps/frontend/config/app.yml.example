@@ -1,23 +1,61 @@
 # default values
 dev:
   facebook: 
-    api_key: 27dcc84bab81c8b30adb36a814af9a54
-    api_secret:  
+    api_key: f532df1b4d894569787bdda3a28d5b6d
+    api_secret: 
+    api_id: 316706476264
+    
+    api_key_es: f532df1b4d894569787bdda3a28d5b6d
+    api_secret_es: 
+    api_id_es: 316706476264
+
+    api_key_ca: e062773ea07dbdc1717e308ca335e314
+    api_secret_ca: 
+    api_id_ca: 110742152288170
 test:
   facebook: 
     api_key: 8141274f85edb08381f7a9eedd96495b
-    api_secret:  
+    api_secret: 
+    api_id: 273819802709
+    
+    api_key_es: 8141274f85edb08381f7a9eedd96495b
+    api_secret_es: 
+    api_id_es: 273819802709
+    
+    api_key_ca: 59ca37a91f5098a3163c54e93a0439dc
+    api_secret_ca: 
+    api_id_ca: 106262996081254
 prod:
   facebook: 
-    api_key: 401234585a2ddbd0a97c9c56e8008299
-    api_secret:  
+    api_key: d7af183c718e28382607ed0604d9e0f7
+    api_secret: 
+    api_id: 277177374641
+    
+    api_key_es: d7af183c718e28382607ed0604d9e0f7
+    api_secret_es: 
+    api_id_es: 277177374641
+    
+    api_key_ca: 8eab52acf82d0bda5681bf79c75cd88b
+    api_secret_ca: 
+    api_id_ca: 114702875213134
 
 all:
+  s3:
+    AccessKey: AKIAJVRUU7UE2RN6DGMQ
+    SecretKey: 
+  mail:
+    enabled: true
+    server: ssl://smtp.gmail.com
+    port: 465
+    user: no-reply@voota.es
+    spool_dir: /var/spool/swift    
+    smtp_pass: 
   facebook: 
-    api_id: 807083420
     redirect_after_connect: false 
-    redirect_after_connect_url: '' 
-    connect_signin_url: 'sfFacebookConnectAuth/signin' 
+    redirect_after_connect_url: '@homepage'
+    app_facebook_redirect_after_connect_url: '@homepage'
+    #connect_signin_url: 'sfFacebookConnectAuth/signin'
+    connect_signin_url: 'sfGuardAuth/signin?op=fb' 
     app_url: '/my-app' # the facebook application canvas url 
     guard_adapter: ~ # to customise a guard adapter 
     js_framework: jQuery
@@ -40,5 +78,7 @@ all:
     mime_type:
       auto_detect: true
       library: gd_mime_type # Fileinfo (PECL), MIME_Type (PEAR)
+      GD:
+        auto_detect: true
     
   enable_vobase_me: true

@@ -73,11 +73,14 @@ class BaseSfOauthServerActions extends sfActions
 		  	'nombre' => $this->getUser()->getProfile()->getNombre(), 
 		  	"consumer" => $consumer
 		));
+		
+		$mailUser = sfConfig::get('app_mail_user');
+		
 		VoMail::send(
 			sfContext::getInstance()->getI18N()->__('Datos del registro de tu aplicación'), 
 			$mailBody, 
 			$this->getUser()->getGuardUser()->getUsername(), 
-			array('no-reply@voota.es' => 'no-reply Voota'),
+			array($mailUser => 'no-reply'),
 			true
 		);
 		

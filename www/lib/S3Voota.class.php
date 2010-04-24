@@ -32,7 +32,9 @@ class S3Voota extends S3 {
 	}
 	
 	public function __construct() {
-		require(sfConfig::get('sf_lib_dir').'/pass.php');
+		$s3AccessKey = sfConfig::get('app_s3_AccessKey');
+		$s3SecretKey = sfConfig::get('app_s3_SecretKey');
+		
 		parent::__construct($s3AccessKey, $s3SecretKey, false);
 	}
 

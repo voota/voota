@@ -8,27 +8,20 @@
  */
 
 /**
- * politico actions.
+ * VoMail
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage oauth plugin
  * @author     Sergio Viteri
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 class VoMail {
-	const MAIL_SERVER = 'ssl://smtp.gmail.com';
-	const MAIL_PORT = 465;
-	const MAIL_USER = 'no-reply@voota.es';	
-	const SPOOL_DIR = '/var/spool/swift';
-	
 	private static function doSend ($subject, $mailBody, $to, $from, $ret = false , $spoolMe = false) {
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		
-		$mailEnabled = sfConfig::get('sf_mail_enabled');
-		$mailServer = sfConfig::get('sf_mail_server');
-		$mailPort = sfConfig::get('sf_mail_port');
-		$mailUser = sfConfig::get('sf_mail_user');
-		$mailSpoolDir = sfConfig::get('sf_mail_spool_dir');
+		$mailEnabled = sfConfig::get('app_mail_enabled');
+		$mailServer = sfConfig::get('app_mail_server');
+		$mailPort = sfConfig::get('app_mail_port');
+		$mailUser = sfConfig::get('app_mail_user');
+		$mailSpoolDir = sfConfig::get('app_mail_spool_dir');
+		$smtp_pass = sfConfig::get('app_mail_smtp_pass');
 
 		if ($mailEnabled == 'on') {		
 			if ($spoolMe){
@@ -64,12 +57,11 @@ class VoMail {
 	}
 	
 	public static function flush(){
-  		$mailServer = sfConfig::get('sf_mail_server');
-		$mailPort = sfConfig::get('sf_mail_port');
-		$mailUser = sfConfig::get('sf_mail_user');
-		$mailSpoolDir = sfConfig::get('sf_mail_spool_dir');
-		require_once(sfConfig::get('sf_lib_dir').'/pass.php');
-		
+  		$mailServer = sfConfig::get('app_mail_server');
+		$mailPort = sfConfig::get('app_mail_port');
+		$mailUser = sfConfig::get('app_mail_user');
+		$mailSpoolDir = sfConfig::get('app_mail_spool_dir');
+		$smtp_pass = sfConfig::get('app_mail_smtp_pass');		
 		
 		$transport = Swift_SmtpTransport::newInstance($mailServer, $mailPort)
                     ->setUsername( $mailUser )
