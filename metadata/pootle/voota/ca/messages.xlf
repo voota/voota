@@ -2353,17 +2353,17 @@ actual)</target>
         <source>¿Seguimos?</source>
         <target>Seguim?</target>
       </trans-unit>
-      <trans-unit id="520">
+      <trans-unit id="520" approved="yes">
         <source>Necesario. Indica brevemente de qué va la propuesta política.</source>
-        <target/>
+        <target>Necessari. Indica breument de què va la proposta política.</target>
       </trans-unit>
-      <trans-unit id="521">
+      <trans-unit id="521" approved="yes">
         <source>Necesario. Ofrece al resto de la comunidad una descripción de la propuesta.</source>
-        <target/>
+        <target>Necessari. Ofereix a la resta de la comunitat una descripció de la proposta.</target>
       </trans-unit>
-      <trans-unit id="522">
+      <trans-unit id="522" approved="yes">
         <source>Creada el %1%</source>
-        <target/>
+        <target>Creada el %1%</target>
       </trans-unit>
     </body>
   </file>
