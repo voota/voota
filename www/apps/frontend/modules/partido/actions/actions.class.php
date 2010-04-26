@@ -22,7 +22,6 @@ define("ALL_FORM_VALUE", '0');
 
 class partidoActions extends sfActions
 {
-	
   public function executeFilter(sfWebRequest $request){
     $culture = $this->getUser()->getCulture();
    	$q = $request->getParameter("q");

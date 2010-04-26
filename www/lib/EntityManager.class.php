@@ -372,7 +372,7 @@ class EntityManager {
 		$idx = 0;
 		$idxPolitico = 0;$idxPartido = 0;$idxPropuesta = 0;
 		
-		while($idx < $limit){
+  			while($idx < $limit){
 			$idx++;
 			
 			$politico = isset($politicosMasVotadosUltimamente[$idxPolitico])?$politicosMasVotadosUltimamente[$idxPolitico]:false;
@@ -383,7 +383,7 @@ class EntityManager {
 		    	$entities[] = new $entityClass( $propuesta );
 		    	$idxPropuesta++;
 			}
-			elseif ($partido && (!$propuesta || $partido->getTotalt() >= $propuesta->getTotalt())){
+			elseif ($partido && (!$politico || $partido->getTotalt() >= $politico->getTotalt())){
 		    	$entities[] = new $entityClass( $partido );
 		    	$idxPartido++;
 			}
