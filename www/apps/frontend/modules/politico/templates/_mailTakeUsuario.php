@@ -14,7 +14,7 @@
 
 <p>Esta es tu página de político en Voota:  %urlPolitico%</p>
 
-<p>Si quieres volver al pasado, escríbenos y todo volverá a su situación inicial:  http://www.voota.es/contactar</p>
+<p>Si quieres volver al pasado, escríbenos y todo volverá a su situación inicial: http://voota.es/contact</p>
 
 <p>Esperamos serte útiles.</p>
 
@@ -22,7 +22,7 @@
 
 <p>--</p>
 <p>Voota es una web que sirve para compartir opiniones sobre los políticos de España,</p>
-<p>Nuestra web:  http://voota.es/es</p>
+<p>Nuestra web:  http://voota.es/</p>
 <p>Blog de Voota:  http://blog.voota.es</p>
 <p>Voota en Twitter:  http://twitter.com/voota</p>
 <p>Voota en Facebook:  http://facebook.com/voota</p>

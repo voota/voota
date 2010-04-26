@@ -7,13 +7,13 @@
 
 <p>Esta es tu nueva página en Voota: %urlPolitico%</p>
 
-<p>Si crees que este usuario está intentando usurpar tu identidad ponte en contacto con nosotros. Estaremos encantados de darte a ti el control sobre tu perfil:  http://www.voota.es/contactar</p>
+<p>Si crees que este usuario está intentando usurpar tu identidad ponte en contacto con nosotros. Estaremos encantados de darte a ti el control sobre tu perfil: http://voota.es/contact</p>
 
 <p>Un saludo, Comunidad Voota</p>
 
 <p>--</p>
 <p>Voota es una web que sirve para compartir opiniones sobre los políticos de España.</p>
-<p>Nuestra web:  http://voota.es/es</p>
+<p>Nuestra web:  http://voota.es</p>
 <p>Blog de Voota:  http://blog.voota.es</p>
 <p>Voota en Twitter:  http://twitter.com/voota</p>
 <p>Voota en Facebook:  http://facebook.com/voota</p>
