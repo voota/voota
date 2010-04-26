@@ -2527,6 +2527,18 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
         <source>¿Seguimos?</source>
         <target>Seguim?</target>
       </trans-unit>
+      <trans-unit id="520">
+        <source>Necesario. Indica brevemente de qué va la propuesta política.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="521">
+        <source>Necesario. Ofrece al resto de la comunidad una descripción de la propuesta.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="522">
+        <source>Creada el %1%</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
