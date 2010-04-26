@@ -9,12 +9,11 @@
  */
 
 /**
- * politico actions.
+ * perfil actions.
  *
  * @package    Voota
- * @subpackage politico
+ * @subpackage perfil
  * @author     Sergio Viteri
- * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
 
 class perfilActions extends SfVoActions
@@ -74,6 +73,7 @@ class perfilActions extends SfVoActions
   {
   	$op = $request->getParameter('o');
   	$this->f = $request->getParameter('f');
+  	$culture = $this->getUser()->getCulture();
   		
   	if ($op == 'v' || $op == 'e'){
   		$t = $request->getParameter('t');
@@ -131,6 +131,8 @@ class perfilActions extends SfVoActions
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$criteria = new Criteria();
+  	// TODO:
+	$criteria->add(SfReviewPeer::CULTURE, $culture);
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->getUser()->getGuardUser()->getId());
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
@@ -154,6 +156,7 @@ class perfilActions extends SfVoActions
   {
   	$vanity = $request->getParameter('username');
   	$this->f = $request->getParameter('f');
+  	$culture = $this->getUser()->getCulture();
     
   	$c = new Criteria();
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
@@ -169,6 +172,7 @@ class perfilActions extends SfVoActions
   	
   	$criteria = new Criteria();
 	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	  $criteria->add(SfReviewPeer::CULTURE, $culture);
 	  $criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
 	  $criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	if( $this->f ){
@@ -191,8 +195,8 @@ class perfilActions extends SfVoActions
   }
   public function executeMore(sfWebRequest $request)
   {
-    
   	$vanity = $request->getParameter('username');
+  	$culture = $this->getUser()->getCulture();
     
   	$c = new Criteria();
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
@@ -203,6 +207,7 @@ class perfilActions extends SfVoActions
   	
   	$criteria = new Criteria();
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	$criteria->add(SfReviewPeer::CULTURE, $culture);
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
