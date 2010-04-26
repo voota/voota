@@ -14,7 +14,9 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        title:   Propuestas
+        display: [id,titulo,is_active,created_at]
       filter:  ~
       form:    ~
       edit:    ~
