@@ -21,7 +21,55 @@ define("ALL_FORM_VALUE", '0');
 
 class politicoActions extends sfActions
 {
+
+  public function executeAcPartido(sfWebRequest $request){
+  	$culture = $this->getUser()->getCulture();
+  	
+  	$term = $request->getParameter('term');
+  	$c = new Criteria();
+	$c->addJoin(
+		array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
+		array(PartidoI18nPeer::ID, "'$culture'")
+		, Criteria::INNER_JOIN
+	);
+  	$rCriterion = $c->getNewCriterion(PartidoPeer::ABREVIATURA, "%$term%", Criteria::LIKE);
+	$rCriterion->addOr($c->getNewCriterion(PartidoI18nPeer::NOMBRE, "%$term%", Criteria::LIKE));
+	$c->add( $rCriterion );
+	$partidos = PartidoPeer::doSelect( $c );
+
+	$res = '[';	
+	foreach ($partidos as $partido){
+		$res .= '{"id": "'. $partido->getAbreviatura() .'", "value": "'. $partido->getAbreviatura(). ', ' .$partido->getNombre() .'"},';
+	}
+	$res .= ']';
 	
+	echo $res;die;
+  }
+
+  public function executeAcInstitucion(sfWebRequest $request){
+  	$culture = $this->getUser()->getCulture();
+  	
+  	$term = $request->getParameter('term');
+  	$c = new Criteria();
+	$c->addJoin(
+		array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
+		array(InstitucionI18nPeer::ID, "'$culture'")
+		, Criteria::INNER_JOIN
+	);
+  	$rCriterion = $c->getNewCriterion(InstitucionI18nPeer::NOMBRE_CORTO, "%$term%", Criteria::LIKE);
+	$rCriterion->addOr($c->getNewCriterion(InstitucionI18nPeer::NOMBRE, "%$term%", Criteria::LIKE));
+	$c->add( $rCriterion );
+	$instituciones = InstitucionPeer::doSelect( $c );
+
+	$res = '[';	
+	foreach ($instituciones as $institucion){
+		$res .= '{"id": "'. $institucion->getVanity() .'", "value": "'. $institucion->getNombre() .'"},';
+	}
+	$res .= ']';
+	
+	echo $res;die;
+  }
+  
   public function executeTake(sfWebRequest $request)
   {
   	$id = $request->getParameter('id');

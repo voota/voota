@@ -13,6 +13,7 @@ homepage:
   param: { module: home, action: index }
 
 ### PROPUESTAS ###
+
 propuesta_edit_links:
   url: /propuesta/el/:id
   param: { module: propuesta, action: editEnlaces }
@@ -75,7 +76,16 @@ propuesta_show_ca:
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
+    
 ### POLITICOS ###
+    
+partido_ac_partido:
+  url: /politico/ac_partido
+  param: { module: politico, action: acPartido }
+    
+partido_ac_institucion:
+  url: /politico/ac_institucion
+  param: { module: politico, action: acInstitucion }
     
 politico_more_comments:
   url: /politics/more
@@ -140,7 +150,7 @@ ranking_all_ca:
 politico_take:
   url:   /take
   param: { module: politico, action: take }
-    
+  
 ### PARTIDOS ###
     
 partido_es:
