@@ -31,7 +31,11 @@ class sfResizedFile extends sfValidatedFile
 	{
 		if (is_null($file))
 		{
-			$file = $this->generateFilename();
+			$file = $this->getOriginalName();
+			$parts = explode(".", $this->fileName);
+			$ext = $parts[count($parts)-1]; 
+			
+			$file = preg_replace("/\.$ext/i", sprintf("%04d", "-".rand(0, 999)).".$ext", $file);
 		}
 
 		if ($file[0] != '/' && $file[0] != '\\' && !(strlen($file) > 3 && ctype_alpha($file[0]) && $file[1] == ':' && ($file[2] == '\\' || $file[2] == '/')))

@@ -18,6 +18,14 @@ generator:
         title:   Propuestas
         display: [id,titulo,is_active,created_at]
       filter:  ~
-      form:    ~
+      form:
+        display: [titulo,descripcion,culture,imagen,doc,sf_guard_user_id,is_active,vanity]
+        fields:
+          titulo:
+            attributes: { style: "width: 500px;" }
+          culture:
+            attributes: { style: "width: 32px;" }
+          vanity:
+            attributes: { style: "width: 500px;" }
       edit:    ~
       new:     ~

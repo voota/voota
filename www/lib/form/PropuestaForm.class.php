@@ -18,7 +18,37 @@ class PropuestaForm extends BasePropuestaForm
   		, $this['modified_at']
   	);
     $this->widgetSchema['descripcion'] = new sfWidgetFormTextarea(array(), array('style' => "width: 500px; height:200px"));
-    
+    $this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
+	   'label'     => 'Imagen Principal',
+	   'file_src'  => S3Voota::getImagesUrl().'/propuestas/cc_'.$this->getObject()->getImagen(),
+	   'is_image'  => true,
+	   'edit_mode' => !$this->isNew(),
+	   'template'  => '<div>%file% <br /> %input%<br />%delete% Eliminar imagen actual</div>',
+	));
+	
+	$this->widgetSchema['doc'] = new sfWidgetFormInputFileEditable(array(
+	   'label'     => sfContext::getInstance()->getI18N()->__('Doc', array(), 'notices'),
+   	   'file_src'  => $this->getObject()?''.S3Voota::getImagesUrl().'/docs/'.$this->getObject()->getDoc():'',
+	   'is_image'  => false,
+	   'edit_mode' => !$this->isNew(),
+	   'template'  => '<div>%file% <br /> %input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)'). '<br />'.($this->getObject()->getDoc()?'%delete% Eliminar documento actual':'') . '</div>'
+	));
+	
+    $this->validatorSchema['imagen'] = new sfValidatorFile(array(
+				   'required'   => false,
+    			   'max_size' => '512000',
+				   'mime_types' => 'web_images',
+				   'path' => sfConfig::get('sf_upload_dir').'/propuestas',
+				   'validated_file_class' => 'sfResizedFile',
+	), sfVoForm::getImageMessages("500K"));
+	  
+    $this->validatorSchema['doc'] = new sfValidatorFile(array(
+				   'required'   => false,
+    			   'max_size' => '2048000',
+				   'path' => sfConfig::get('sf_upload_dir').'/docs',
+				   'validated_file_class' => 'sfResizedFile',
+	  ), sfVoForm::getImageMessages("2M"));
+	
   }
   
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {
