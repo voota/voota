@@ -1,21 +1,21 @@
 <?php echo "<?xml version='1.0' encoding='utf-8' ?>\n" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<?php if ($sf_user->getCulture()): ?>
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_user->getCulture() ?>" lang="<?php echo $sf_user->getCulture() ?>">
+<?php else: ?>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<?php endif ?>
 
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('sfFacebookConnect'); ?>
 <?php use_helper('VoUser'); ?>
 
-<?php if ($sf_user->getCulture()): ?>
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang="<?php echo $sf_user->getCulture() ?>" lang="<?php echo $sf_user->getCulture() ?>">
-<?php else: ?>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-<?php endif ?>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <?php include_title() ?>
   <?php include_http_metas() ?>
   <?php include_metas() ?>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
   <style type="text/css">
@@ -170,7 +170,7 @@
   </div><!-- FIN FOOTER -->
 
   <script type="text/javascript" charset="utf-8">
-    $(function(){ 
+    $(document).ready(function(){ 
 			$('input[title!=""], textarea[title!=""]').hint();
 		});
   </script>
@@ -192,29 +192,29 @@
   </script><!-- FIN GOOGLE ANALYTICS -->
   
   <script type="text/javascript">
-var uservoiceOptions = {
-  /* required */
-  key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
-  host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
-  forum: '42379',
-  showTab: true,  
-  /* optional */
-  alignment: 'left',
-  background_color:'#3366FF', 
-  text_color: 'white',
-  hover_color: '#06C',
-  lang: 'es'
-};
+    var uservoiceOptions = {
+      /* required */
+      key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
+      host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
+      forum: '42379',
+      showTab: true,  
+      /* optional */
+      alignment: 'left',
+      background_color:'#3366FF', 
+      text_color: 'white',
+      hover_color: '#06C',
+      lang: 'es'
+    };
 
-function _loadUserVoice() {
-  var s = document.createElement('script');
-  s.setAttribute('type', 'text/javascript');
-  s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
-  document.getElementsByTagName('head')[0].appendChild(s);
-}
-_loadSuper = window.onload;
-window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
-</script>
+    function _loadUserVoice() {
+      var s = document.createElement('script');
+      s.setAttribute('type', 'text/javascript');
+      s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
+      document.getElementsByTagName('head')[0].appendChild(s);
+    }
+    _loadSuper = window.onload;
+    window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+  </script>
 
 </body>
 </html>

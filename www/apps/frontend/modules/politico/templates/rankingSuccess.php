@@ -14,11 +14,11 @@
 		}
 	});
 	$("input#ac_institucion").autocomplete({
-		    source: '<?php echo url_for('politico/acInstitucion')?>',
-			select: function(event, ui) {
-				$("input#institucion").val(ui.item.id);
-				//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
-			}
+		source: '<?php echo url_for('politico/acInstitucion')?>',
+		select: function(event, ui) {
+			$("input#institucion").val(ui.item.id);
+			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
+		}
 	});
   });
   //-->

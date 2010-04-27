@@ -9,9 +9,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [jquery.autocomplete.css, ui-voota/jquery-ui-1.7.2.custom.css, /sfReviewPlugin/css/sf_review.css?'. sfConfig::get('sf_ml') .', screen.css?'. sfConfig::get('sf_ml') .']
+  stylesheets:    [ui-voota/jquery-ui-1.8.custom.css, /sfReviewPlugin/css/sf_review.css?'. sfConfig::get('sf_ml') .', screen.css?'. sfConfig::get('sf_ml') .']
 
-  javascripts: [bluff/js-class.js, bluff/excanvas.js, bluff/bluff.js, http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js, ajaxupload.js, /sfReviewPlugin/js/sf_review.js?'. sfConfig::get('sf_ml') .', /sfReviewPlugin/js/jquery.hint.js, voota.js?'. sfConfig::get('sf_ml') .', jquery.qtip-1.0.0-rc3.min.js]
+  javascripts: [bluff/js-class.js, bluff/excanvas.js, bluff/bluff.js, http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js, http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js, ajaxupload.js, /sfReviewPlugin/js/sf_review.js?'. sfConfig::get('sf_ml') .', /sfReviewPlugin/js/jquery.hint.js, voota.js?'. sfConfig::get('sf_ml') .', jquery.qtip-1.0.0-rc3.min.js]
 
   has_layout:     true
   layout:         layout

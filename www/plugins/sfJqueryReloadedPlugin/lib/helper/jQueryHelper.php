@@ -14,7 +14,8 @@ require_once(sfConfig::get('sf_symfony_lib_dir') . '/helper/JavascriptBaseHelper
 
 $jq_path = sfConfig::get('sf_jquery_web_dir', '/sfJqueryReloadedPlugin') .
   '/js/' . sfConfig::get('sf_jquery_core', 'jquery-1.3.2.min.js');
-sfContext::getInstance()->getResponse()->addJavascript($jq_path, 'first');
+// FIXME: Comentado para evitar carga de jQuery desde el plugin
+// sfContext::getInstance()->getResponse()->addJavascript($jq_path, 'first');
 
 /**
  * Add jQuery plugins by name rather than by filename so that you don't have
