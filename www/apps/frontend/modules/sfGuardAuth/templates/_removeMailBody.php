@@ -2,7 +2,7 @@
 
 <?php echo __("<p>Hola $nombre,</p>
 
-<p>Alguien, seguramente tú, ha solicitado darse de baja en la web <a href='http://www.voota.es/'>Voota.es</a>.</p>
+<p>Alguien, seguramente tú, ha solicitado darse de baja en la web <a href='http://voota.es/'>Voota.es</a>.</p>
 
 <p>Antes de borrarte nos gustaría que nos lo confirmases para asegurarnos de que eres tú el que ha solicitado dicha baja. Para ello tan sólo tienes que pinchar sobre el siguiente link:</p>") ?>
 

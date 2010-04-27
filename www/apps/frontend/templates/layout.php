@@ -143,7 +143,8 @@
     </p>
     <p class="nav-links">
       <?php echo link_to(__('Quiénes somos'), '@about', array('class' => "enlacesPie")) ?>
-      <?php echo link_to(__('Blog'), 'http://blog.voota.es/'. $sf_user->getCulture('es'), array('class' => "enlacesPie")) ?>
+      <?php echo link_to(__('Blog'), __('http://blog.voota.es/'), array('class' => "enlacesPie")) ?>
+      <?php echo link_to(__('API desarrolladores'), 'http://trac.voota.org/wiki/API', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Socios'), 'http://blog.voota.es/es/socios/', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
@@ -152,7 +153,11 @@
       <?php echo link_to(__('Contactar'), '@contact', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
     </p>
-
+    <p class="nav-links">
+      <?php echo link_to(__('Ranking políticos'), 'politico/ranking', array('class' => "enlacesPie")) ?>
+      <?php echo link_to(__('Ranking partidos'), 'partido/ranking', array('class' => "enlacesPie")) ?>
+      <?php echo link_to(__('Ranking propuestas'), 'propuesta/ranking', array('class' => "enlacesPie")) ?>
+    </p>
     <p class="lang-links">
       <?php slot('langLink_ca') ?>
       	Català
