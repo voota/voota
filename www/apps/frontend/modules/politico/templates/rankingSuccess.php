@@ -3,33 +3,27 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoFormat') ?>
  
-<script type="text/javascript">
-  <!--
+<script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
-	$("input#ac_partido").autocomplete({
-		source: '<?php echo url_for('politico/acPartido')?>',
-		select: function(event, ui) {
-			$("input#partido").val(ui.item.id);
-			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
-		}
-	});
-	$("input#ac_institucion").autocomplete({
-		source: '<?php echo url_for('politico/acInstitucion')?>',
-		select: function(event, ui) {
-			$("input#institucion").val(ui.item.id);
-			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
-		}
-	});
-  });
-  //-->
-</script>
-
-<script type="text/javascript">  
-  window.onload = function() {
-    <?php foreach($politicosPager->getResults() as $politico): ?>
+  	$("input#ac_partido").autocomplete({
+  		source: '<?php echo url_for('politico/acPartido')?>',
+  		select: function(event, ui) {
+  			$("input#partido").val(ui.item.id);
+  			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
+  		}
+  	});
+  	$("input#ac_institucion").autocomplete({
+  		source: '<?php echo url_for('politico/acInstitucion')?>',
+  		select: function(event, ui) {
+  			$("input#institucion").val(ui.item.id);
+  			//alert(ui.item ? ("Selected: " + ui.item.value + " aka " + ui.item.id) : "Nothing selected, input was " + this.value);
+  		}
+  	});
+  	
+  	<?php foreach($politicosPager->getResults() as $politico): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?>
     <?php endforeach ?>
-  };
+  });
 </script>
 
 <h2>
