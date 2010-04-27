@@ -52,13 +52,7 @@ class BaseSfOauthServerActions extends sfActions
 		);
 		
 		// Register the consumer
-		$store = OAuthStore::instance('MySQL', array(
-								'server' => sfConfig::get('app_oauth_server')
-								, 'username' => sfConfig::get('app_oauth_username')
-								, 'password' => sfConfig::get('app_oauth_password')
-								, 'database' => sfConfig::get('app_oauth_database')
-								)
-							); 
+		$store = oauthSecurityManager::storeInstance();
 		$key   = $store->updateConsumer($consumer, $user_id);
 		// Get the complete consumer from the store
 		$consumer = $store->getConsumer($key, $user_id);

@@ -3,7 +3,8 @@ rendering: ~
 facebook_connect:
   class: sfFacebookConnectFilter
   enabled: false	
-
+remember_me:
+  class: sfGuardRememberMeFilter
 security:
   class: voSecurityFilter
   

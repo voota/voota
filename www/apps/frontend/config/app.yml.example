@@ -1,5 +1,9 @@
 # default values
 dev:
+  apidemo:
+    server_url: http://localhost/frontend_dev.php
+    consumer_key: 
+    consumer_secret: 
   facebook: 
     api_key: f532df1b4d894569787bdda3a28d5b6d
     api_secret: 
@@ -13,6 +17,10 @@ dev:
     api_secret_ca: 
     api_id_ca: 110742152288170
 test:
+  apidemo:
+    server_url: http://voota.es
+    consumer_key: 
+    consumer_secret: 
   facebook: 
     api_key: 8141274f85edb08381f7a9eedd96495b
     api_secret: 
@@ -26,6 +34,10 @@ test:
     api_secret_ca: 
     api_id_ca: 106262996081254
 prod:
+  apidemo:
+    server_url: http://voota.es
+    consumer_key: 
+    consumer_secret: 
   facebook: 
     api_key: d7af183c718e28382607ed0604d9e0f7
     api_secret: 

@@ -18,14 +18,14 @@
 
 class BadRequestException extends Exception { }
 class VootaApi{
-  const SERVER_URL = "http://localhost";
   
   /**
    * Class constructor.
    *
    * @see initialize()
    */
-  public function __construct() {
+  public function __construct($url = 'http://voota.es') {
+  	$this->serverUrl = $url;
   	
   	$dbConf = Propel::getConfiguration();
   	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
@@ -64,11 +64,11 @@ class VootaApi{
 		$server = array(
 		    'consumer_key' => $consumerKey,
 		    'consumer_secret' => $consumerSecret,
-		    'server_uri' => self::SERVER_URL . '/a1/',
+		    'server_uri' => $this->serverUrl . '/a1/',
 		    'signature_methods' => array('HMAC-SHA1', 'PLAINTEXT'),
-		    'request_token_uri' => self::SERVER_URL . '/oauth/request_token',
-		    'authorize_uri' => self::SERVER_URL . '/oauth/authorize',
-		    'access_token_uri' => self::SERVER_URL . '/oauth/access_token'
+		    'request_token_uri' => $this->serverUrl . '/oauth/request_token',
+		    'authorize_uri' => $this->serverUrl . '/oauth/authorize',
+		    'access_token_uri' => $this->serverUrl . '/oauth/access_token'
 		);
 		$consumer_key = $store->updateServer($server, $userId);
 	}
@@ -136,7 +136,7 @@ class VootaApi{
 	           'page' => $page,
 	           'sort' => $sort,
 	     );
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
   
@@ -166,7 +166,7 @@ class VootaApi{
 	           'type' => $type,
 	           'id' => $id,
 	     );
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
   
@@ -202,7 +202,7 @@ class VootaApi{
 	           'culture' => $culture,
 	           'type' => $type,
 	     );
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
 	
@@ -230,7 +230,7 @@ class VootaApi{
 	           'limit' => $limit
 		     );
 	
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	
 	$result = $req->doRequest( $userId );
   
@@ -266,7 +266,7 @@ class VootaApi{
 	           'limit' => $limit
 	     );
 	
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'GET', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	$result = $req->doRequest( $userId );	
 
 	switch( $result['code'] ){
@@ -299,7 +299,7 @@ class VootaApi{
 	           'text' => $text
 	     );
 	
-	$req = new OAuthRequester(self::SERVER_URL."/a1", 'POST', $params);
+	$req = new OAuthRequester($this->serverUrl."/a1", 'POST', $params);
 	$result = $req->doRequest( $userId );
 
 	switch( $result['code'] ){
