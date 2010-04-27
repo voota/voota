@@ -34,6 +34,8 @@ class EditEnlacesPropuestaForm extends BasePropuestaForm
   		, $this['descripcion']
   		, $this['imagen']
   		, $this['doc']
+  		, $this['is_active']
+  		, $this['culture']
   	);
   	
     $this->setWidgets(array(
