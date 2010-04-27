@@ -54,7 +54,6 @@ class homeActions extends sfActions{
   	$this->totalUsers = sfGuardUserPeer::doCount($cuser);
   	$this->totalPoliticos = PoliticoPeer::doCount($cpol);
   	$this->totalPartidos = PartidoPeer::doCount($cpar);
-  	$culture = $this->getUser()->getCulture();
 	
   	$exclude = "";
 	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity", true);
