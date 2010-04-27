@@ -58,10 +58,6 @@ tr.even { background-color: #fbfbfb; }
 .ac_results ul li { height: 16px; overflow: hidden;}
 .ac_results strong { text-decoration: underline;}
 
-/* Tabs */
-
-
-
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
@@ -450,11 +446,11 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #google-ads { width: 220px; margin-left: 50px; clear: right; float: right; }
 #politico-show .reviews,
 #partido-show .reviews,
-#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px;}
+#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px; border: none;}
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 680px;}
-#politico-show .ui-tabs-nav { width: 680px; }
+#politico-show .ui-tabs-nav { width: 680px; border: none; border-bottom: 1px solid #dddddd;}
 #partido-show .ui-tabs-nav { width: 680px; }
 #propuesta-show .ui-tabs-nav { width: 680px; }
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
@@ -522,8 +518,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-new .vooto .inner { margin-left: 265px; width: 280px; padding: 20px 0;}
 #propuesta-new .vooto strong { font-weight: normal; color: #ff0000;}
 
-/* Popups de ayuda */
+/* Popups */
 #help-dialog { display:none; }
+.ui-dialog-titlebar { border: none;}
 
 /* Opiniones */
 .positive-reviews, .negative-reviews { width: 45%; float: left;}

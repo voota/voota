@@ -5,7 +5,7 @@
 function removeHint(f, blurClass){
 	var $input = $(f),
     title = $input.attr('title'),
-    $form = $(f+":form"),
+    $form = $(f).closest('form'),
     $win = $(window);
 	
     if ($input.val() === title && $input.hasClass(blurClass)) {
@@ -21,7 +21,7 @@ function subscribeHint(f, blurClass){
     
     // capture the rest of the variable to allow for reuse
       title = $input.attr('title'),
-      $form = $(f+":form"),
+      $form = $(f).closest('form'),
       $win = $(window);
 
     function remove() {

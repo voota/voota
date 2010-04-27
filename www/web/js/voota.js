@@ -215,33 +215,31 @@ function close_sync_tip(url) {
 }
 
 Bluff.Tooltip.show = function(name, color, data) {
-    data = Number(String(data).substr(0, this.DATA_LENGTH));
-    this._tip.innerHTML = '<span class="color" style="background: ' + color + ';">&nbsp;</span> ' +
-                          '<span class="data">' + data + '</span>' +
-                          ' <span class="label">' + name + '</span> ';
-    this._tip.style.display = '';
+  data = Number(String(data).substr(0, this.DATA_LENGTH));
+  this._tip.innerHTML = '<span class="color" style="background: ' + color + ';">&nbsp;</span> ' +
+                        '<span class="data">' + data + '</span>' +
+                        ' <span class="label">' + name + '</span> ';
+  this._tip.style.display = '';
 }
 
 function sparkline(id, label, data) {
-  var g = new Bluff.Line(id, '100x15');
-  g.set_theme({
-      colors: ['blue'],
-      font_color: 'black',
-      background_colors: ['white', 'white']
-  });
-  g.line_width = 1;
-  g.tooltips = true;
-  g.dot_radius = 15;
-  g.hide_mini_legend = true;
-  g.hide_legend = true;
-  g.hide_line_markers = true;
-  g.hide_line_numbers = true;
-  g.hide_title = true;
-  g.set_font('Georgia');
-  g.data(label, data);
-  g.draw();
-}
-
-function sparkline2(id, label, data) {
-
+  try {
+    var g = new Bluff.Line(id, '100x15');
+    g.set_theme({
+        colors: ['blue'],
+        font_color: 'black',
+        background_colors: ['white', 'white']
+    });
+    g.line_width = 1;
+    g.tooltips = true;
+    g.dot_radius = 15;
+    g.hide_mini_legend = true;
+    g.hide_legend = true;
+    g.hide_line_markers = true;
+    g.hide_line_numbers = true;
+    g.hide_title = true;
+    g.set_font('Georgia');
+    g.data(label, data);
+    g.draw();
+  } catch(err) { console.log("canvas " + id); console.log(err); }
 }

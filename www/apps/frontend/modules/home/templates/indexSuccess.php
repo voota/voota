@@ -4,8 +4,7 @@
 <?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
-  <!--
-  window.onload = function() {
+  $(document).ready(function(){
 	  <?php foreach($reviewables as $reviewable): ?>
 	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sparkline_t6_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
@@ -23,8 +22,7 @@
     <?php foreach($propuestasMasVotadas as $p): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_tpr_".$p->getId(), 'reviewable' => $p)) ?>
 	  <?php endforeach?>
-  };
-  //-->
+  });
 </script>
 
 <?php slot('header-extra') ?>
