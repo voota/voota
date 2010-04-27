@@ -108,16 +108,19 @@ class SfVoUtil
 	
 	public static function cutToLength($str, $length = 35, $ext = '.', $fullWords = false) {
 		$ret = '';
-		$strLength = strlen(utf8_decode($str));
+		$aStr = preg_replace("/\n/is", " ", $str);
+		
+		$strLength = strlen(utf8_decode($aStr));
 		
 		if ($strLength > $length){
 			$exp = "/.{".$length."}".($fullWords?("[a-z0-9".self::ACCENTS."]*"):'')."/is";
-			if (preg_match($exp, $str, $matches, PREG_OFFSET_CAPTURE)) {
-				$ret = $matches[0][0];
+			if (preg_match($exp, $aStr, $matches, PREG_OFFSET_CAPTURE)) {
+				$newStr = $matches[0][0]; 
+				$ret = "$newStr";
 			};
 		}
 		else {
-			$ret = $str;
+			$ret = $aStr;
 		}
 		
 		return $ret. ($strLength > strlen(utf8_decode($ret))?$ext:'');
