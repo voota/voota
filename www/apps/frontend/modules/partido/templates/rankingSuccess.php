@@ -5,7 +5,7 @@
  
 <script type="text/javascript">  
   window.onload = function() {
-    <?php foreach($partidosPager->getResults() as $partido): ?>
+    <?php foreach(($results = $partidosPager->getResults()) as $partido): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
       <?php endforeach ?>
   };
@@ -64,7 +64,7 @@
   </tfoot>
 
   <tbody>
-    <?php foreach($partidosPager->getResults() as $idx => $partido): ?>
+    <?php foreach($results as $idx => $partido): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?></td>
   	    <td class="position"><?php echo format_number($partidosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
