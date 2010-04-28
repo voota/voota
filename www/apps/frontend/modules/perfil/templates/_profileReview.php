@@ -2,7 +2,8 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
 
-<tr>
+<?php if($entity->getType() != Propuesta::NUM_ENTITY || $sf_user->getCulture() == $entity->getCulture()): ?>
+  <tr>
 	<td class="photo">    
 		<?php echo image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_'.$entity->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $entity)) .'"') ?>
     </td>
@@ -34,4 +35,5 @@
 	        <?php echo link_to(__('Ir a su comentario'), "sfReviewFront/show?id=".($review->getId())); ?>
         <?php endif ?>
 	</td>
-</tr>
+  </tr>
+<?php endif ?>  

@@ -131,8 +131,7 @@ class perfilActions extends SfVoActions
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$criteria = new Criteria();
-  	// TODO:
-	$criteria->add(SfReviewPeer::CULTURE, $culture);
+	//$criteria->add(SfReviewPeer::CULTURE, $culture);
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->getUser()->getGuardUser()->getId());
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
@@ -172,7 +171,7 @@ class perfilActions extends SfVoActions
   	
   	$criteria = new Criteria();
 	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	  $criteria->add(SfReviewPeer::CULTURE, $culture);
+	  //$criteria->add(SfReviewPeer::CULTURE, $culture);
 	  $criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
 	  $criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	if( $this->f ){
