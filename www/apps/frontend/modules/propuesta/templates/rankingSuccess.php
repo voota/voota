@@ -8,7 +8,7 @@
 
 <script type="text/javascript">  
   window.onload = function() {
-    <?php foreach($propuestasPager->getResults() as $propuesta): ?>
+    <?php foreach(($results = $propuestasPager->getResults()) as $propuesta): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?>
     <?php endforeach ?>
   };
@@ -89,7 +89,7 @@
   </tfoot>
 
   <tbody>
-    <?php foreach($propuestasPager->getResults() as $idx => $propuesta): ?>
+    <?php foreach($results as $idx => $propuesta): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?></td>
   	    <td class="position"><?php echo format_number($propuestasPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>

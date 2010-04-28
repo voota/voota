@@ -3,20 +3,13 @@
 <?php endforeach ?>
 
 <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
-	<?php if($reviews->getPage() > 2):?>
-	  <script type="text/javascript" charset="utf-8">
-	    //$('#<?php echo "more_reviews". ($reviews->getPage() -1 ) ?>').hide();
-	  </script>
-	<?php endif ?>
-  
-	 (<?php echo "more_reviews_". $reviews->getPage() ?>)
 	<div id="<?php echo "more_reviews_". $reviews->getPage() ?>">
     		  <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
   		      <?php echo jq_form_remote_tag(
   		        array('update'   => "more_reviews_". $reviews->getPage(),
   		    	        'url'      => "@profile_more_comments",
-    	  			      'before'   => "re_loading('more_reviews_". $reviews->getPage() ."')"),
-  		        array('id' => "frm_more_reviews"))
+    	  			      'before'   => "$('#frm_more_reviews". $reviews->getPage()."').hide();re_loading('more_reviews_". $reviews->getPage() ."');"),
+  		        array('id' => "frm_more_reviews". $reviews->getPage()))
   		      ?>
         		  <div><input type="hidden" name="username" value="<?php echo $user->getProfile()->getVanity()?>" /></div>
             	<div><input type="hidden" name="page" value="<?php echo isset($page)?$page:'1' ?>" /></div>
