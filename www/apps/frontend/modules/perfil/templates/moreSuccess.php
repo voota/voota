@@ -3,12 +3,13 @@
 <?php endforeach ?>
 
 <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
-	<?php if($reviews->getPage() > 1):?>
+	<?php if($reviews->getPage() > 2):?>
 	  <script type="text/javascript" charset="utf-8">
-	    $('#<?php echo "more_reviews_". ($reviews->getPage() ) ?>').hide();
+	    //$('#<?php echo "more_reviews". ($reviews->getPage() -1 ) ?>').hide();
 	  </script>
 	<?php endif ?>
   
+	 (<?php echo "more_reviews_". $reviews->getPage() ?>)
 	<div id="<?php echo "more_reviews_". $reviews->getPage() ?>">
     		  <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
   		      <?php echo jq_form_remote_tag(

@@ -20,7 +20,7 @@
   		}
   	});
   	
-  	<?php foreach($politicosPager->getResults() as $politico): ?>
+  	<?php foreach(($results = $politicosPager->getResults()) as $idx => $politico): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?>
     <?php endforeach ?>
   });
@@ -100,7 +100,7 @@
   </tfoot>
 
   <tbody>
-    <?php foreach($politicosPager->getResults() as $idx => $politico): ?>
+    <?php foreach($results as $idx => $politico): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $politico, 'id' => 'sparkline_'. $politico->getId())) ?></td>
   	    <td class="position"><?php echo format_number($politicosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
