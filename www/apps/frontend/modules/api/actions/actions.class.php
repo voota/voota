@@ -77,7 +77,7 @@ class apiActions extends sfActions{
     $entities = array();
   	$cl->SetArrayResult(true);
   
-  	if ($type && $type != 'party' && $type != 'politician'){
+  	if ($type && $type != 'party' && $type != 'politician' && $type != 'proposal'){
   			throw new BadRequestException('Invalid type.');
    	}
   	if(!$type || $type == 'party'){
@@ -126,6 +126,30 @@ class apiActions extends sfActions{
 			}	
 		}
   	}
+  	
+  	if(!$type || $type == 'proposal'){
+		$this->res = $cl->Query ( SfVoUtil::stripAccents( $q ), "propuesta_$culture" );
+		if ( $this->res!==false ) {
+			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+				$c = new Criteria;
+	        	$list = array();
+	        	foreach ($this->res["matches"] as $idx => $match) {
+	        		$list[] = $match['id'];
+	        	}
+	        	
+				$c = new Criteria;
+	        	$c->add(PropuestaPeer::ID, $list, Criteria::IN);
+	  			//$c->addDescendingOrderByColumn(PropuestaPeer::SUMU);  					  			
+			  	$pager = new sfPropelPager('Propuesta', $limit);
+			    $pager->setCriteria($c);
+			    $pager->setPage($this->getRequestParameter('page', $page));
+			    $pager->init();
+			    foreach ($pager->getResults() as $propuesta){
+			    	$entities[] = new Entity( $propuesta ); 	
+			    }
+			}	
+		}
+  	}
   		
   	return $entities;
   }
@@ -135,7 +159,10 @@ class apiActions extends sfActions{
   
   private function top( $data ){
   	$limit = $this->getRequestParameter("limit", '6');
-  	return EntityManager::getTopEntities( $limit );
+  	$includeProposals = $this->getRequestParameter("proposals", false);
+  	
+  	$exclude = "";
+  	return EntityManager::getTopEntities( $limit, $exclude, 'Entity', $includeProposals );
   }
   
   private function entities($data) {
@@ -159,6 +186,17 @@ class apiActions extends sfActions{
   	$this->forward404Unless( $politico );  	
 	
   	return new Entity( $politico );
+  }
+  
+  private function entity_proposal($data) {
+  	$id = $this->getRequestParameter("id");
+  	if (!$id)
+  		throw new BadRequestException('The entity id must be provided.');
+  		
+  	$proposal = PropuestaPeer::retrieveByPK( $id );
+  	$this->forward404Unless( $proposal );  	
+	
+  	return new Entity( $proposal );
   }
   
   private function entities_politician($data) {
@@ -208,6 +246,25 @@ class apiActions extends sfActions{
 	
   	return $entities;
   }
+  
+  private function entities_proposal($data) {
+  	$sort = $this->getRequestParameter("sort", 'positive');	
+  	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  
+  	if ($sort != 'positive' && $sort != 'negative'){
+  			throw new BadRequestException('Invalid sort value.');
+   	}
+   	  	
+   	$pager = EntityManager::getPropuestas($this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"nd", $limit);
+    
+    $entities = array();
+    foreach ($pager->getResults() as $proposal){
+    	$entities[] = new Entity( $proposal ); 	
+    }
+	
+  	return $entities;
+  }
     
   /* Reviews methods */
   
@@ -225,6 +282,9 @@ class apiActions extends sfActions{
 			break;
 		case 'party':
 			$typeId = Partido::NUM_ENTITY;
+			break;
+		case 'proposal':
+			$typeId = Propuesta::NUM_ENTITY;
 			break;
 		default:
   			throw new BadRequestException('Invalid type.');
@@ -268,6 +328,10 @@ class apiActions extends sfActions{
 		case 'party':
 			$typeId = Partido::NUM_ENTITY;
 			$entity = PartidoPeer::retrieveByPK($entityId);
+			break;
+		case 'proposal':
+			$typeId = Propuesta::NUM_ENTITY;
+			$entity = PropuestaPeer::retrieveByPK($entityId);
 			break;
 		default:
   			throw new BadRequestException('Invalid type.');

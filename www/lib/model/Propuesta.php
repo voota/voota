@@ -88,4 +88,9 @@ class Propuesta extends BasePropuesta implements reviewable {
   	$this->setSumu($this->getPositives());
   	$this->setSumd($this->getNegatives());
   }
+
+  public function getDescription()
+  {
+    return $this->getDescripcion();
+  }
 } // Propuesta

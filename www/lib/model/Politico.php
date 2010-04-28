@@ -97,4 +97,9 @@ class Politico extends BasePolitico implements reviewable
   	$this->setSumu($this->getPositives());
   	$this->setSumd($this->getNegatives());
   }
+
+  public function getDescription()
+  {
+    return $this->getBio();
+  }
 }

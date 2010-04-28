@@ -40,7 +40,7 @@ class api_demoActions extends sfActions
   }
 
   public function executeMostRecentlyVoted(sfWebRequest $request){
-	$this->entities = $this->vootaApi->getTopEntities(self::USER_ID, 25);	
+	$this->entities = $this->vootaApi->getTopEntities(self::USER_ID, 25, true);	
   }
 
   public function executePoliticos(sfWebRequest $request){
@@ -77,5 +77,11 @@ class api_demoActions extends sfActions
 	$q = $this->getRequestParameter("q");
 	
 	$this->entities = $this->vootaApi->search(self::USER_ID, $q);
+  }
+
+  public function executeProposal(sfWebRequest $request){
+	$id = $this->getRequestParameter("id", false);
+
+	$this->entity = $this->vootaApi->getEntity(self::USER_ID, 'proposal', $id);
   }
 }

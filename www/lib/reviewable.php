@@ -15,4 +15,5 @@ interface reviewable{
 	public function getModule();
 	public function getType();
 	public function updateCalcs();
+	public function getDescription();
 } 

@@ -313,7 +313,7 @@ class EntityManager {
   		}
   	}
   	
-  	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity')
+  	public static function getTopEntities($limit = 6, &$exclude = "", $entityClass = 'Entity', $showPropuestas = false)
   	{
   		$culture = sfContext::getInstance()->getUser()->getCulture();
   		
@@ -379,7 +379,7 @@ class EntityManager {
 			$partido = isset($partidosMasVotadosUltimamente[$idxPartido])?$partidosMasVotadosUltimamente[$idxPartido]:false;
 			$propuesta = isset($propuestasMasVotadasUltimamente[$idxPropuesta])?$propuestasMasVotadasUltimamente[$idxPropuesta]:false;
 			
-			if ($propuesta && (!$partido || $propuesta->getTotalt() >= $partido->getTotalt()) && (!$politico || $propuesta->getTotalt() >= $politico->getTotalt())){
+			if ($showPropuestas && $propuesta && (!$partido || $propuesta->getTotalt() >= $partido->getTotalt()) && (!$politico || $propuesta->getTotalt() >= $politico->getTotalt())){
 		    	$entities[] = new $entityClass( $propuesta );
 		    	$idxPropuesta++;
 			}

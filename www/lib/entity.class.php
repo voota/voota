@@ -49,6 +49,7 @@ class Entity {
   	  	$this->recentPositives = $entity->getSumut();
   	  	$this->recentNegatives = $entity->getSumdt();
   	  	$this->vanity = $entity->getVanity();
+  	  	$this->description = $entity->getDescription();
   	} 
 
   	public function __toString(){

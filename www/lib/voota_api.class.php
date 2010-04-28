@@ -224,10 +224,11 @@ class VootaApi{
 	* @param integer $limit Max number of results
 	* @return array a list of entities
 	*/  
-  public function getTopEntities($userId, $limit = 6){
+  public function getTopEntities($userId, $limit = 6, $includeProposals = false){
 	$params = array(
 	           'method' => 'top',
-	           'limit' => $limit
+	           'limit' => $limit,
+	           'proposals' => $includeProposals
 		     );
 	
 	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
