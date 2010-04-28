@@ -102,4 +102,8 @@
     <h3><?php echo __('Voota sobre %1%', array('%1%' => $partido->getNombre()))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
+  
+<?php if ($partidosPager): ?>
+	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
+<?php endif ?>
 </div>

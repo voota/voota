@@ -90,7 +90,17 @@ class propuestaActions extends sfActions
   	$page = $request->getParameter("page", 1);
 	$this->order = $request->getParameter("o", "pd");
 	
-  	$this->propuestasPager = EntityManager::getPropuestas($culture, $page, $this->order, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);    
+  	$filter = array(
+  		'type' => 'propuesta',
+  		'partido' => false,
+  		'institucion' => false,
+  		'culture' => $culture,
+  		'page' => $page,
+  		'order' => $this->order,
+  	);
+  	$this->getUser()->setAttribute("filter_".Propuesta::NUM_ENTITY, $filter);
+  	$this->propuestasPager = EntityManager::getPropuestas($culture, $page, $this->order, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
+  	
     $this->totalUp = $totalUp;
     $this->totalDown = $totalDown;    
   	
@@ -278,18 +288,10 @@ class propuestaActions extends sfActions
     }
     
     
-    /* Si paginador 
-    $this->politicosPager = false;
-  	$filter = $this->getUser()->getAttribute('filter', false);
-  	if ($filter){
-  		if ($s != 0){
-  			$filter['page'] += $s;
-  			$this->getUser()->setAttribute('filter', $filter);
-  			$this->redirect('politico/show?id='.$politico->getVanity());
-  		}
-	  	$this->politicosPager = EntityManager::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
-  	}
-     paginador */
+    
+    /* paginador */
+    $this->propuestasPager = EntityManager::getPager($this->propuesta);
+    /* / paginador */
     
   }
   

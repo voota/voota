@@ -115,11 +115,11 @@ function rankingParams( $type ) {
 	$ret = '';
 	$filter = sfcontext::getInstance()->getUser()->getAttribute("filter_$type", false);
 	
-	if ($filter['partido'] != '0' && $filter['partido'] != 'all'){
+	if ($filter['partido'] && $filter['partido'] != '0' && $filter['partido'] != 'all'){
 		$ret .= '?partido='.$filter['partido'];
 	}
-	if ($filter['institucion'] != '0' && $filter['institucion'] != 'all'){
-		if (!$ret)
+	if ($filter['institucion'] && $filter['institucion'] != '0' && $filter['institucion'] != 'all'){
+		if (!$ret && $type == Politico::NUM_ENTITY)
 			$ret = '?partido=all';
 		$ret .= ($ret?'&':'?').'institucion='.$filter['institucion'];
 	}

@@ -397,13 +397,17 @@ class EntityManager {
  	}
  	
  	
-  	public static function getPager($entity){
+  	public static function getDefaultPager($entity){
+  		
+  	}
+  	
+ 	public static function getPager($entity, $reset = false){
 	 	$pager = false;
 	 	$user = sfContext::getInstance()->getUser();
 	 	$culture = $user->getCulture();
 	 	
 	  	$filter = $user->getAttribute("filter_".$entity->getType(), false);
-	  	if (!$filter){
+	  	if ($reset || !$filter){
 		  	$filter = array(
 		  		'type' => $entity->getType(),
 		  		'partido' => 'all',
@@ -439,16 +443,20 @@ class EntityManager {
 	  	$morePages = true;
 	  	do {
 	  		$idx ++;
+	  				if ($idx == 50)die;
 		  	foreach ($pager->getResults() as $aEntity){
 				if ($aEntity->getId() == $entity->getId()){
 					$found = true;
 				}
 			}
-			if (!$found) {
+			if ($pager->getLastPage() <= 1){
+				$morePages = false;
+			}
+			elseif (!$found) {
 				if ($idx==1 && $page != 1){
 					$page = 0;
 				}
-				if($page == 0 || $pager->getNextPage() <= $pager->getLastPage()) {
+				if($page == 0 || $pager->getPage() < $pager->getLastPage()) {
 					$pager->setPage($page + 1);
 					$pager->init();
 	  				$filter['page'] = $page + 1;
@@ -460,6 +468,10 @@ class EntityManager {
 				$page ++;
 			}
 	  	} while (!$found && $morePages);
+	  	
+	  	if (!$found){
+	  		$pager = self::getPager($entity, true);
+	  	}
 	  	
 	  	return $pager; 
   	}

@@ -89,25 +89,6 @@ class homeActions extends sfActions{
   	$c->add(PropuestaPeer::IS_ACTIVE, true);
   	$c->add(PropuestaPeer::CULTURE, $culture);
   	$this->totalPropuestas = PropuestaPeer::doCount($c);
-  	/*
-   	$query = "SELECT i.*, ii.*, count( * ) c
-			FROM institucion i
-			INNER JOIN institucion_i18n ii on (i.id = ii.id AND ii.culture = ?)
-			INNER JOIN politico_institucion pi on pi.institucion_id = i.id
-			INNER JOIN politico p ON pi.politico_id = p.id
-			INNER JOIN sf_review r ON r.entity_id = p.id
-			WHERE r.is_active =1
-			AND r.value =1
-			GROUP BY i.id
-			ORDER BY c DESC
-			LIMIT 5";
-			//AND IFNULL(r.modified_at, r.created_at) > DATE_SUB(CURDATE(),INTERVAL 7 DAY)
-   	$connection = Propel::getConnection();
-	$statement = $connection->prepare($query);
-
-	$statement->execute( array($this->getUser()->getCulture()) );
-	$this->institucionesMasVotadas = $statement->fetchAll();
-	*/
 	
   	$this->response->addMeta('Description', sfContext::getInstance()->getI18N()->__('Comparte opiniones sobre políticos y partidos de España. Ranking de los políticos y partidos más votados.'));
 	

@@ -25,6 +25,10 @@
   //-->
 </script>
 
+<?php if ($propuestasPager): ?>
+	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
+<?php endif ?>
+
 <h2 id="name">
   <?php echo $propuesta->getTitulo(); ?>
   <?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_pt_'.$propuesta->getId())) ?>    
@@ -83,4 +87,10 @@
     <h3><?php echo __('Voota sobre %1%', array('%1%' => $propuesta->getTitulo()))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
+  
+  
+<?php if ($propuestasPager): ?>
+	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
+<?php endif ?>
+
 </div>

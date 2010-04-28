@@ -61,8 +61,17 @@ class partidoActions extends sfActions
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
     $page = $this->getRequestParameter('page', 1);
-  	$this->order = $request->getParameter("o", "pd");  	
-  	
+  	$this->order = $request->getParameter("o", "pd");
+  		
+  	$filter = array(
+  		'type' => 'partido',
+  		'partido' => false,
+  		'institucion' => $institucion,
+  		'culture' => $culture,
+  		'page' => $page,
+  		'order' => $this->order,
+  	);
+  	$this->getUser()->setAttribute("filter_".Partido::NUM_ENTITY, $filter);
   	$this->partidosPager = EntityManager::getPartidos($institucion, $culture, $page, $this->order, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
   	 
     $this->totalUp = $totalUp;

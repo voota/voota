@@ -254,7 +254,7 @@ class politicoActions extends sfActions
   		'page' => $page,
   		'order' => $this->order,
   	);
-  	$this->getUser()->setAttribute('filter', $filter);
+  	$this->getUser()->setAttribute("filter_".Politico::NUM_ENTITY, $filter);
   	$this->politicosPager = EntityManager::getPoliticos($partido, $institucion, $culture, $page, $this->order, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
     
     $this->totalUp = $totalUp;
