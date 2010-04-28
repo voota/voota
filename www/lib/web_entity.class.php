@@ -27,6 +27,7 @@ class WebEntity extends Entity implements reviewable {
 	var $sumd;
 	var $totalt;
 	var $path;
+	var $descripcion;
 	
   	public function __construct(reviewable $entity)
   	{
@@ -38,6 +39,7 @@ class WebEntity extends Entity implements reviewable {
   	  	$this->sumdt = $entity->getSumdt();
   	  	$this->imagen = $entity->getImagen();
   	  	$this->type = $entity->getType();
+  	  	$this->descripcion = $entity->getDescription();
   	} 
 
 
@@ -81,5 +83,8 @@ class WebEntity extends Entity implements reviewable {
   		return $this->path;
   	}
   	public function updateCalcs(){
+  	}
+  	public function getDescription(){
+  		return $this->getDescription();
   	}
 }
