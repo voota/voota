@@ -2443,7 +2443,7 @@ actual)</target>
       </trans-unit>
       <trans-unit id="542">
         <source>http://blog.voota.es</source>
-        <target/>
+        <target>http://blog.voota.cat</target>
       </trans-unit>
       <trans-unit id="543">
         <source>Buscar políticos</source>
