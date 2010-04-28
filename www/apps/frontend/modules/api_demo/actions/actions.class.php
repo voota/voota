@@ -44,7 +44,7 @@ class api_demoActions extends sfActions
   }
 
   public function executePoliticos(sfWebRequest $request){
-	$limit = $this->getRequestParameter("limit", 20);
+	$limit = $this->getRequestParameter("limit", 100);
 	$page = $this->getRequestParameter("page", 1);
 	$sort = $this->getRequestParameter("sort", 'positive');
 	

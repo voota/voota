@@ -23,7 +23,7 @@
   <!-- HEADER -->
   <div id="header">
     <div id="header-inner">
-      <h1 id="logo"><a href="/es"><?php echo __('Voota') ?></a></h1>
+      <h1 id="logo"><a href="<?php echo url_for('@homepage')?>"><?php echo __('Voota') ?></a></h1>
       <h2 id="slogan"><?php echo __('Tú tienes la última palabra') ?></h2>
     </div>
   </div><!-- FIN HEADER -->

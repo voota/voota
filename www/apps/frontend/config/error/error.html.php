@@ -21,7 +21,7 @@
   <!-- HEADER -->
   <div id="header">
     <div id="header-inner">
-      <h1 id="logo"><a href="/es">Voota</a></h1>
+      <h1 id="logo"><a href="/">Voota</a></h1>
       <h2 id="slogan">Tú tienes la última palabra</h2>
     </div>
   </div><!-- FIN HEADER -->
