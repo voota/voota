@@ -195,8 +195,7 @@
     } catch(err) {}
   </script><!-- FIN GOOGLE ANALYTICS -->
   
-  <script type="text/javascript" charset="utf-8">
-    var uservoiceOptions = {
+  <script type="text/javascript" charset="utf-8">    var uservoiceOptions = {
       /* required */
       key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
       host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
@@ -216,8 +215,11 @@
       s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
       document.getElementsByTagName('head')[0].appendChild(s);
     }
-    _loadSuper = window.onload;
-    window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+    
+    $(window).load(function(){
+      _loadUserVoice();
+    });
+
   </script>
 
 </body>
