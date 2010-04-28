@@ -147,7 +147,7 @@ function facebookConnect_disconnect_logout(url, logout_url) {
 	  success  : function(data, textStatus) {
 	    jQuery('#facebook-connect').html(data);
 	    FB.Connect.logoutAndRedirect(logout_url);
-	  },
+	  }
 	});
 }
 function facebookConnect_disconnect(url) {
@@ -158,7 +158,7 @@ function facebookConnect_disconnect(url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    jQuery('#facebook-connect').html(data);
-	  },
+	  }
 	});
 }
 
