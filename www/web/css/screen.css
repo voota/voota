@@ -111,15 +111,15 @@ tr.even { background-color: #fbfbfb; }
 #footer .copyright { border-top: 1px dotted #343434; padding: 20px 0; }
 
 /* Mensajes */
-.success-msg, .notice { border: 1px solid #9398ae; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
-.warning { border: 1px solid #9398ae; width: 97%; padding: 20px; margin: 20px 0; font-weight: bold; }
-.error { border: 1px solid #9398ae; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
+.success-msg, .notice { border: 1px solid #809DB9; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.warning { border: 1px solid #809DB9; width: 97%; padding: 20px; margin: 20px 0; font-weight: bold; }
+.error { border: 1px solid #809DB9; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
 .next-step-msg { padding-bottom: 10px; font-weight: bold;}
 
 /* Cajas */
 .box { background: transparent url(/images/shadow.png); position: relative;}
 .box h2 { font-size: 16px; padding-bottom: 20px; }
-.box-inner { background-color: #fff; border: 1px solid #9398ae; padding: 20px; position: relative; top: -5px; left: -5px; }
+.box-inner { background-color: #fff; border: 1px solid #809DB9; padding: 20px; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
 .box-contact ul li { margin-bottom: 10px; padding-left: 20px; height: 16px;}
 .box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
@@ -139,10 +139,10 @@ form th, form td { vertical-align: top;}
 form th { text-align: left; padding: 5px 20px 5px 0;}
 form td { padding: 0 0 20px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px; }
-input[type=text], input[type=password] { font-size: 13px; line-height: 13px; padding: 2px; width:270px; border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif;}
-input[type=submit], input[type=button], button { font-size: 13px; overflow: visible; width: 90px; color: #323232; border: 1px solid #809db9; background: #ededed url(/images/button_bg.png) left center repeat-x; font-family: Georgia, "Times New Roman", Times, serif;}
+input[type=text], input[type=password] { font-size: 13px; line-height: 13px; padding: 2px; width:270px; border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", Times, serif;}
+input[type=submit], input[type=button], button { font-size: 13px; overflow: visible; width: 90px; color: #323232; border: 1px solid #809DB9; background: #ededed url(/images/button_bg.png) left center repeat-x; font-family: Georgia, "Times New Roman", Times, serif;}
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
-textarea { border: 1px solid #9398ae; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
+textarea { border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
 .submit { text-align: right; clear: both;}
 /*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
@@ -427,14 +427,14 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #external-links ul li,
 #propuesta-new #external-links ul li { margin: 0 0 10px 0;}
 #propuesta-show #external-links ol { padding-left: 0; list-style: none;}
-#propuesta-show #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809db9;}
+#propuesta-show #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
 #politico-show #twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error,
 #politico-show #report-error,
 #propuesta-show #report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
 #partido-show #report-error select,
 #politico-show #report-error select,
-#propuesta-show #report-error select { width: 220px; border: 1px solid #809db9; font-size: 13px; overflow:hidden; color: #323232;}
+#propuesta-show #report-error select { width: 220px; border: 1px solid #809DB9; font-size: 13px; overflow:hidden; color: #323232;}
 #partido-show #report-error .submit,
 #politico-show #report-error .submit,
 #propuesta-show #report-error .submit { padding-top: 10px; width: 220px;}
@@ -450,10 +450,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 680px;}
-#politico-show .ui-tabs-nav { width: 680px; border: none; border-bottom: 1px solid #dddddd;}
-#partido-show .ui-tabs-nav { width: 680px; }
-#propuesta-show .ui-tabs-nav { width: 680px; }
-#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809db9; padding: 10px; position: relative;}
+#politico-show .ui-tabs-nav,
+#partido-show .ui-tabs-nav,
+#propuesta-show .ui-tabs-nav { width: 680px; border: none; border-bottom: 1px solid #809DB9;}
+#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
 #propuesta-show #ed_box a { padding-right: 5px;}
 #propuesta-show #ed_box a.confirm_delete { color: red;}
 #propuesta-show #edit_doc { font-size: 9px;}
