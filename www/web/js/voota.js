@@ -4,12 +4,14 @@ function thumb_up() {
 	
 	return false;
 }
+
 function thumb_down() {
 	document.theForm.v[1].checked = true;
 	document.theForm.submit();
 	
 	return false;
 }
+
 function changeParam(param, value){
 	var separator = "?";
 	var dest = "" + document.location; 
@@ -140,30 +142,31 @@ function facebookConnect_loadUserName() {
 
 function facebookConnect_disconnect_logout(url, logout_url) {
   re_loading('facebook-connect');
-	jQuery.ajax({
+	$.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    jQuery('#facebook-connect').html(data);
+	    $('#facebook-connect').html(data);
 	    FB.Connect.logoutAndRedirect(logout_url);
-	  },
+	  }
 	});
 }
+
 function facebookConnect_disconnect(url) {
   re_loading('facebook-connect');
-	jQuery.ajax({
+	$.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    jQuery('#facebook-connect').html(data);
-	  },
+	    $('#facebook-connect').html(data);
+	  }
 	});
 }
 
 function facebookConnect_loadPreferences(url, box){
-  	re_loading( box );
+  re_loading( box );
 	jQuery.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
@@ -183,7 +186,6 @@ function facebookConnect_associate(url, box) {
 	}) });
 	return false;
 }
-
 
 function loadAjax(url, box){
   re_loading( box );
@@ -212,14 +214,6 @@ function close_sync_tip(url) {
 		});
 	
   //$('#lo_fb_conn').remove();
-}
-
-Bluff.Tooltip.show = function(name, color, data) {
-  data = Number(String(data).substr(0, this.DATA_LENGTH));
-  this._tip.innerHTML = '<span class="color" style="background: ' + color + ';">&nbsp;</span> ' +
-                        '<span class="data">' + data + '</span>' +
-                        ' <span class="label">' + name + '</span> ';
-  this._tip.style.display = '';
 }
 
 function sparkline(id, label, data) {
