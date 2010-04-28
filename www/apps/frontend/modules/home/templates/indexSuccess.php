@@ -4,16 +4,16 @@
 <?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-	  <?php foreach($reviewables as $reviewable): ?>
-	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
-	  <?php endforeach ?>
+  $(window).load(function(){
     <?php /*if(count($politicosMasVotadosUltimamente) < 6):?>
     	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
 	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
     	<?php endforeach?>
 	  <?php endif */?>
-    <?php foreach($topPoliticos as $politico): ?>
+    <?php foreach($reviewables as $reviewable): ?>
+	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
+	  <?php endforeach ?>
+	  <?php foreach($topPoliticos as $politico): ?>
   		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'reviewable' => $politico)) ?>
 	  <?php endforeach?>
     <?php foreach($partidosMasVotados as $partido): ?>

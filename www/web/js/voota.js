@@ -241,5 +241,5 @@ function sparkline(id, label, data) {
     g.set_font('Georgia');
     g.data(label, data);
     g.draw();
-  } catch(err) { console.log("canvas " + id); console.log(err); }
+  } catch(err) { }
 }

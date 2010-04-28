@@ -7,11 +7,11 @@
 <?php include_partial('sfReviewFront/dialog') ?>
 
 <script type="text/javascript">  
-  window.onload = function() {
+  $(window).load(function(){
     <?php foreach(($results = $propuestasPager->getResults()) as $propuesta): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?>
     <?php endforeach ?>
-  };
+  });
   
   $(document).ready(function(){
     $('.login-required').click(function(){
