@@ -38,11 +38,16 @@ class politicoActions extends sfActions
 	$partidos = PartidoPeer::doSelect( $c );
 
 	$res = '[';	
+	$idx = 0;
 	foreach ($partidos as $partido){
-		$res .= '{"id": "'. $partido->getAbreviatura() .'", "value": "'. $partido->getAbreviatura(). ', ' .$partido->getNombre() .'"},';
+		$idx++;
+		$res .= ($idx > 1?',':'').'{"id": "'. $partido->getAbreviatura() .'", "value": "'. $partido->getAbreviatura(). ', ' .$partido->getNombre() .'"}';
 	}
 	$res .= ']';
 	
+	$response = $this->getResponse();
+    $response->setContentType('application/json');
+    
 	echo $res;die;
   }
 
@@ -62,10 +67,15 @@ class politicoActions extends sfActions
 	$instituciones = InstitucionPeer::doSelect( $c );
 
 	$res = '[';	
+	$idx = 0;
 	foreach ($instituciones as $institucion){
-		$res .= '{"id": "'. $institucion->getVanity() .'", "value": "'. $institucion->getNombre() .'"},';
+		$idx++;
+		$res .= ($idx > 1?',':'').'{"id": "'. $institucion->getVanity() .'", "value": "'. $institucion->getNombre() .'"}';
 	}
 	$res .= ']';
+	
+	$response = $this->getResponse();
+    $response->setContentType('application/json');
 	
 	echo $res;die;
   }
@@ -391,14 +401,6 @@ class politicoActions extends sfActions
   			$this->review_v = $v;
   		}	
   	}
-    
-  	/*
-	$imageFileName = sfConfig::get('sf_upload_dir').'/politicos/'.$this->politico->getImagen();
-	if (!file_exists($imageFileName)){
-		// Sin imagen: Imagen genérica Voota
-		$imageFileName = sfConfig::get('sf_web_dir').'/images/p_unknown.png';
-	}
-	*/
 	
   	if ($this->politico->getImagen() != ''){
   		$imageFileName = $this->politico->getImagen();
@@ -495,25 +497,8 @@ class politicoActions extends sfActions
     	}
     }
     
-    /* Si paginador */
-    $this->politicosPager = false;
-  	$filter = $this->getUser()->getAttribute('filter', false);
-  	if ($filter){
-  		if ($s != 0){
-  			$filter['page'] += $s;
-  			$this->getUser()->setAttribute('filter', $filter);
-  			$this->redirect('politico/show?id='.$politico->getVanity());
-  		}
-  		/*
-  		if (isset($filter['page_upd'])) {
-  			$filter['page'] += $filter['page_upd'];
-  			echo '1'.'='.$filter['page_upd'];
-  			$filter['page_upd'] = 0;
-  			$this->getUser()->setAttribute('filter', $filter);
-  		}
-  		*/
-	  	$this->politicosPager = EntityManager::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
-  	}
+    /* paginador */
+    $this->politicosPager = EntityManager::getPager($this->politico);
     /* / paginador */
     
   }

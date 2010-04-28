@@ -277,5 +277,10 @@ class partidoActions extends sfActions
   		 . SfVoUtil::cutToLength($this->partido->getPresentacion(), 140, '...', true);
   		 
   	$this->response->addMeta('Descripcion', $descripcion);
+  	
+  	/* paginador */
+    $this->partidosPager = EntityManager::getPager($this->partido);
+    /* / paginador */
+  	
   }
 }

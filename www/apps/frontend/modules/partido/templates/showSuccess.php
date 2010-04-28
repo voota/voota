@@ -25,6 +25,10 @@
   //-->
 </script>
 
+<?php if ($partidosPager): ?>
+	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
+<?php endif ?>
+
 <h2 id="name">
   <?php echo $partido->getNombre(); ?>
   (<?php echo $partido->getAbreviatura() ?>)

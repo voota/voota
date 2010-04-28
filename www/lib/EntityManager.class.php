@@ -394,5 +394,73 @@ class EntityManager {
 		}
 		
 		return $entities;
-  	} 
+ 	}
+ 	
+ 	
+  	public static function getPager($entity){
+	 	$pager = false;
+	 	$user = sfContext::getInstance()->getUser();
+	 	$culture = $user->getCulture();
+	 	
+	  	$filter = $user->getAttribute("filter_".$entity->getType(), false);
+	  	if (!$filter){
+		  	$filter = array(
+		  		'type' => $entity->getType(),
+		  		'partido' => 'all',
+		  		'institucion' => '0',
+		  		'culture' => $culture,
+		  		'page' => '1',
+		  		'order' => 'pd',
+		  	);
+		  	$user->setAttribute("filter_".$entity->getType(), $filter);  		
+	  	}  
+		/*
+	  	if ($s != 0){
+	  		$filter['page'] += $s;
+	  		$user->setAttribute('filter', $filter);
+	  		$this->redirect('politico/show?id='.$entity->getVanity());
+	  	}
+	  	*/
+	  	switch($entity->getType()){
+	  		case Politico::NUM_ENTITY:
+	  			$pager = self::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
+	  			break;
+	  		case Partido::NUM_ENTITY:
+	  			$pager = self::getPartidos($filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
+	  			break;
+	  		case Propuesta::NUM_ENTITY:
+	  			$pager = self::getPropuestas($filter['culture'], $filter['page'], $filter['order']);
+	  			break;
+	  	}
+	
+	   	$found = false;
+	  	$idx=0;
+	  	$page = $filter['page'];
+	  	$morePages = true;
+	  	do {
+	  		$idx ++;
+		  	foreach ($pager->getResults() as $aEntity){
+				if ($aEntity->getId() == $entity->getId()){
+					$found = true;
+				}
+			}
+			if (!$found) {
+				if ($idx==1 && $page != 1){
+					$page = 0;
+				}
+				if($page == 0 || $pager->getNextPage() <= $pager->getLastPage()) {
+					$pager->setPage($page + 1);
+					$pager->init();
+	  				$filter['page'] = $page + 1;
+	  				$user->setAttribute("filter_".$entity->getType(), $filter);
+				}
+				else{
+					$morePages = false;
+				}
+				$page ++;
+			}
+	  	} while (!$found && $morePages);
+	  	
+	  	return $pager; 
+  	}
 }

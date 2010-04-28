@@ -77,9 +77,9 @@ function nextEntity( $pager, $id, &$page = 0 ) {
 	}
   	return $ret;
 }
-function filteredBy( ) {
+function filteredBy( $type ) {
 	$ret = '';
-	$filter = sfcontext::getInstance()->getUser()->getAttribute('filter', false);
+	$filter = sfcontext::getInstance()->getUser()->getAttribute("filter_$type", false);
 	if ($filter){
 		$ret .= $filter['partido']=='0'||$filter['partido']=='all'?'':$filter['partido'];
 		$ret .= ($ret && $filter['institucion']!='0')?', ':'';
@@ -89,9 +89,9 @@ function filteredBy( ) {
 	}
 	return $ret;
 }
-function orderedBy( ) {
+function orderedBy( $type ) {
 	$ret = '';
-	$filter = sfcontext::getInstance()->getUser()->getAttribute('filter', false);
+	$filter = sfcontext::getInstance()->getUser()->getAttribute("filter_$type", false);
 	if ($filter){
 		switch($filter['order']){
 			case 'pa':
@@ -111,9 +111,9 @@ function orderedBy( ) {
 	
 	return $ret;
 }
-function rankingParams( ) {
+function rankingParams( $type ) {
 	$ret = '';
-	$filter = sfcontext::getInstance()->getUser()->getAttribute('filter', false);
+	$filter = sfcontext::getInstance()->getUser()->getAttribute("filter_$type", false);
 	
 	if ($filter['partido'] != '0' && $filter['partido'] != 'all'){
 		$ret .= '?partido='.$filter['partido'];
@@ -123,7 +123,7 @@ function rankingParams( ) {
 			$ret = '?partido=all';
 		$ret .= ($ret?'&':'?').'institucion='.$filter['institucion'];
 	}
-	if ($filter['order'] != ''){
+	if ($filter['order'] != '' && $filter['order'] != 'pd'){
 		$ret .= ($ret?'&':'?').'o='.$filter['order'];
 	}
 	return $ret;
