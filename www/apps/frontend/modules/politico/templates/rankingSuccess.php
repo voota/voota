@@ -7,15 +7,11 @@
   $(document).ready(function(){
   	$("input#ac_partido").autocomplete({
   		source: '<?php echo url_for('politico/acPartido')?>',
-  		select: function(event, ui) {
-  			$("input#partido").val(ui.item.id);
-  		}
+  		select: function(event, ui) { $("input#partido").val(ui.item.id); }
   	});
   	$("input#ac_institucion").autocomplete({
   		source: '<?php echo url_for('politico/acInstitucion')?>',
-  		select: function(event, ui) {
-  			$("input#institucion").val(ui.item.id);
-  		}
+  		select: function(event, ui) { $("input#institucion").val(ui.item.id); }
   	});
   });
   
