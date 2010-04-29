@@ -70,6 +70,9 @@
     <h3><?php echo __('Algunos Hitos de Voota')?></h3>
 
     <dl>
+      <dt><?php echo __('Febrero 2010')?></dt>
+      <dd><?php echo __('Voota alcanza la friolera de 20 socios. Al mismo tiempo, ya se empieza a notar en la web la realidad que hay en la calle.')?></dd>
+      
       <dt><?php echo __('Abril 2009')?></dt>
       <dd><?php echo __('François comenta la idea con su amigo Sergio Viteri, que lo ve con buenos ojos.')?></dd>
 
