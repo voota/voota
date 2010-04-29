@@ -397,7 +397,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left; }
 #politico-show .vote h3,
 #partido-show .vote h3,
-#propuesta-show .vote h3 { font-size: 16px; padding-bottom: 20px;}
+#propuesta-show .vote h3 { font-size: 16px; padding-bottom: 0;}
 #politico-show .note h3,
 #partido-show .note h3,
 #propuesta-show .note h3 { padding-bottom: 0; font-size: 13px; }

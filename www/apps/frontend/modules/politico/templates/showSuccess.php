@@ -106,16 +106,16 @@
 
   </div><!-- end of description -->
 
-  <div id="external-links">
-    <?php if(count($activeEnlaces) > 0): ?>
+  <?php if(count($activeEnlaces) > 0): ?>
+    <div id="external-links">  
       <h3><?php echo __('Enlaces externos')?></h3>
       <ul>
         <?php foreach($activeEnlaces as $enlace): ?>
 		      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
         <?php endforeach ?>
       </ul>
-    <?php endif ?>
-  </div>
+    </div>
+  <?php endif ?>
 
   <div id="report-error">
     <?php include_partial('global/report_error', array('entity' => $politico)) ?>
