@@ -92,9 +92,15 @@ class partidoActions extends sfActions
   	$this->institucion = $institucion;
   	if ($institucion){ 
   		$aInstitucionCriteria = new Criteria();
-		$aInstitucionCriteria->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
+		$aInstitucionCriteria->addJoin(
+			array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
+			array(InstitucionI18nPeer::ID, "'$culture'")
+			, Criteria::INNER_JOIN
+		);
   		$aInstitucionCriteria->add(InstitucionI18nPeer::VANITY, $this->institucion);
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
+				
+  		$this->forward404Unless( $aInstitucion );
   	}
     
     /* Lista de instituciones */ 

@@ -105,14 +105,29 @@ function changeCulture( $culture ){
 	
 	$sf_context = sfContext::getInstance();
 	$request = $sf_context->getRequest();
-	$parameterNames = $request->getParameterHolder()->getNames();
+	$parameters = $request->getParameterHolder()->getAll();
 	$curCulture = $sf_context->getUser()->getCulture('es');
 	$routeName = $sf_context->getRouting()->getCurrentRouteName();
 	$routeName = preg_replace("/_$curCulture$/", "_$culture", $routeName);
 	$params = "";
-	foreach($parameterNames as $name){
-		if ($name != 'module' && $name != 'action')
-			$params .= ($params == ""?'?':'&'). "$name=".$request->getParameter($name);
+	foreach($parameters as $name => $value){
+		if ($name != 'module' && $name != 'action') {
+			if ($name == 'institucion'){
+				$c = new Criteria();
+				$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
+				$c->addJoin(
+					array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
+					array(InstitucionI18nPeer::ID, "'$curCulture'")
+					, Criteria::INNER_JOIN
+				);
+				$c->add(InstitucionI18nPeer::VANITY, $value);
+				$aInstitucion = InstitucionPeer::doSelectOne( $c );
+				if ($aInstitucion){
+					$value = $aInstitucion->getVanity( $culture );
+				}
+			}
+			$params .= ($params == ""?'?':'&'). "$name=$value";
+		}
 	}
 	$route = sfContext::getInstance()->getController()->genUrl("@$routeName$params");
 	
