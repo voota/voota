@@ -187,6 +187,7 @@ class partidoActions extends sfActions
   	$this->partido = PartidoPeer::doSelectOne( $c );
   	
   	$this->forward404Unless( $this->partido );
+  	$this->forward404Unless( $this->partido->getIsActive() );
   	
   	// Estabamos vootando antes del login ?
   	$v = $this->getUser()->getAttribute('review_v');
