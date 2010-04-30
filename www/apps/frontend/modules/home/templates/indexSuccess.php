@@ -39,15 +39,29 @@
   <div class="block-inner">
 
       <ul>
-        <li><h2><?php echo __('Comparte opiniones sobre políticos y partidos de España.') ?></h2></li>
-        <li><h2><?php echo __('%1% opiniones, de %4% personas, sobre %5% políticos y %6% partidos.', array(
+        <li><h2><?php echo __('Opiniones sobre políticos, partidos y propuestas políticas en España.') ?></h2></li>
+        <li><h2>
+        	<?php echo __('%1% opiniones, de %4% personas, sobre ', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
         					//'%2%' => format_number($totalUpReviews, 'es_ES'),
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
-                			'%4%' => format_number($topTotalUsers, 'es_ES'),
-                			'%5%' => format_number($topTotalPoliticos, 'es_ES'),
-        					'%6%' => format_number($topTotalPartidos, 'es_ES')
-        				)) ?></h2></li>
+                			'%4%' => format_number($topTotalUsers, 'es_ES')
+        	)) ?>
+        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos')?>">
+        	<?php echo __('%5% políticos', array(
+                			'%5%' => format_number($topTotalPoliticos, 'es_ES')
+        	)) ?></a>,
+        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos')?>">
+        	<?php echo __('%5% partidos', array(
+                			'%5%' => format_number($topTotalPartidos, 'es_ES')
+        	)) ?></a>
+        	<?php echo __('y')?>
+        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas')?>">
+        	<?php echo __('%5% propuestas', array(
+                			'%5%' => format_number($topTotalPropuestas, 'es_ES')
+        	)) ?></a>.
+        				
+        </h2></li>
         <li>
           <h2><?php echo __('Los más votados de esta semana:') ?></h2>
           <ol class="entities">
