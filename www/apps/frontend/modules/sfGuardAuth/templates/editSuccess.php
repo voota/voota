@@ -83,23 +83,20 @@
           </td>
         <?php else: ?>
           <td>
-            <?php echo $profileEditForm['apellidos']->render() ?>
+            <?php echo $profileEditForm['apellidos']->render(array('title' => __("(Opcional, pero ayuda)"))) ?>
             <?php echo $profileEditForm['apellidos']->renderError() ?>
           </td>
-        <td class="hints"><?php echo __('(Opcional, pero ayuda)') ?></td>
+        <td class="hints"></td>
         <?php endif ?>
       </tr>
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
         <td>
-          <?php //echo $profileEditForm['presentacion']->render(array('rows' => 8)) ?>
-          <textarea rows="8" cols="30" name="profile[presentacion]" id="profile_presentacion" title="<?php echo __("¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres!") ?>"><?php echo $presentacionValue ?></textarea>
+          <?php echo $profileEditForm['presentacion']->render(array('rows' => 8, 'cols' => 30, 'title' => __("¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)"))) ?>
           <?php echo $profileEditForm['presentacion']->renderError() ?>
           <p id="presen_counter" class="counter"></p>
         </td>
-        <td class="hints">
-          <p><?php echo __('(Opcional, pero ayuda)') ?></p>
-        </td>
+        <td class="hints"></td>
       </tr>
       <tr>
         <th><label for="profile_fecha_nacimiento_day"><?php echo __('Fecha de nacimiento') ?></label></th>
