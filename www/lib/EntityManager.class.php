@@ -231,6 +231,7 @@ class EntityManager {
 		  	$c = new Criteria();
 		  	
 		  	$c->setDistinct();
+		  	$c->add(PartidoPeer::IS_ACTIVE, true);
 			$c->addJoin(
 				array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
 				array(PartidoI18nPeer::ID, "'$culture'")
