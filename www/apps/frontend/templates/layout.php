@@ -17,6 +17,20 @@
   <?php include_metas() ?>
   <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
+  <script type="text/javascript" src="/js/ajaxupload.js"></script>
+  <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
+  <script type="text/javascript" src="/sfReviewPlugin/js/jquery.hint.js"></script>
+  <script type="text/javascript" src="/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+  <script type="text/javascript" src="/js/bluff/js-class.js"></script>
+  <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
+  <script type="text/javascript" src="/js/bluff/bluff.js"></script>
+  <script type="text/javascript" src="/js/bluff/custom.js"></script>
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/sfReviewPlugin/css/sf_review.css?<?php echo sfConfig::get('sf_ml') ?>" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
   <style type="text/css">
     <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
@@ -25,6 +39,7 @@
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
       .search button { margin-top: 1px; }
+      #propuesta-show .reviews #nueva_propuesta { left: 480px;}
     <?php endif ?>
   </style>
 </head>

@@ -446,7 +446,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #google-ads { width: 220px; margin-left: 50px; clear: right; float: right; }
 #politico-show .reviews,
 #partido-show .reviews,
-#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px; border: none;}
+#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px; border: none; position: relative;}
+#propuesta-show .reviews #nueva_propuesta { position: absolute; top: 44px; left: 450px;}
 #politico-show .reviews .review-body ,
 #partido-show .reviews .review-body ,
 #propuesta-show .reviews .review-body { width: 660px;}

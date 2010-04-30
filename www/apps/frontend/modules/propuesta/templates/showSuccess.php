@@ -22,6 +22,16 @@
   $(window).load(function(){
     <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_pt_'.$propuesta->getId())) ?>
   });
+  
+  $(document).ready(function(){
+    $('.login-required_np').click(function(){
+      <?php if (!$sf_user->isAuthenticated()): ?>
+        $("#sfr_dialog_form_ub").val("propuesta/new");
+        $("#sfr_dialog").dialog('open');
+        return false;
+      <?php endif ?>
+    });
+  });
   //-->
 </script>
 
@@ -80,7 +90,8 @@
     <div id="tab-all-reviews">
       <?php include_component_slot('review_list', array('entityId' => $propuesta->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Propuesta::NUM_ENTITY, 'entity' => $propuesta)) ?>
     </div>
-    
+
+    <p><a id="nueva_propuesta" class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
   </div>
 
   <div class="vote">

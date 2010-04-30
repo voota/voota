@@ -16,7 +16,7 @@
   $(document).ready(function(){
     $('.login-required_np').click(function(){
       <?php if (!$sf_user->isAuthenticated()): ?>
-        $("#sfr_dialog_form_ub").val( "propuesta/new" );
+        $("#sfr_dialog_form_ub").val("propuesta/new");
         $("#sfr_dialog").dialog('open');
         return false;
       <?php endif ?>
