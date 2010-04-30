@@ -47,13 +47,22 @@ class homeActions extends sfActions{
   	$cpar->addJoin(PartidoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
   	$cpar->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
   	$cpar->add(SfReviewPeer::IS_ACTIVE, TRUE);
+  	$cpar->add(PartidoPeer::IS_ACTIVE, TRUE);
   	$cpar->setDistinct();
+  	
+  	$cpro = new Criteria();
+  	$cpro->addJoin(PropuestaPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
+  	$cpro->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
+  	$cpro->add(SfReviewPeer::IS_ACTIVE, TRUE);
+  	$cpro->add(PropuestaPeer::IS_ACTIVE, TRUE);
+  	$cpro->setDistinct();
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
   	$this->topTotalUsers = sfGuardUserPeer::doCount($cuser);
   	$this->topTotalPoliticos = PoliticoPeer::doCount($cpol);
-  	$this->topTotalPartidos = PartidoPeer::doCount($cpar);
+  	$this->topTotalPartidos = PartidoPeer::doCount($cpar);;
+  	$this->topTotalPropuestas = PropuestaPeer::doCount($cpro);
 	
   	$exclude = "";
 	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity", true);
