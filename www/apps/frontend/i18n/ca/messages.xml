@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-04-26T10:22:47Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-04-30T12:13:20Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5665,6 +5665,82 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="550">
+        <source>API</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="551">
+        <source>Ranking políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="552">
+        <source>Ranking partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="553">
+        <source>Ranking propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="554">
+        <source>el %fecha%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="555">
+        <source>Opiniones sobre políticos, partidos y propuestas políticas en España.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="556">
+        <source>%1% opiniones, de %4% personas, sobre </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="557">
+        <source>%5% políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="558">
+        <source>%5% partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="559">
+        <source>%5% propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="560">
+        <source>&amp;laquo; Propuesta anterior</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="561">
+        <source>&amp;laquo; Partido anterior</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="562">
+        <source>Propuesta siguiente &amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="563">
+        <source>Partido siguiente &amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="564">
+        <source>Listado de propuestas %filtro% %orden%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="565">
+        <source>Listado de partidos %filtro% %orden%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="566">
+        <source>Febrero 2010</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="567">
+        <source>Voota alcanza la friolera de 20 socios. Al mismo tiempo, ya se empieza a notar en la web la realidad que hay en la calle.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="568">
+        <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)</source>
         <target/>
       </trans-unit>
     </body>
