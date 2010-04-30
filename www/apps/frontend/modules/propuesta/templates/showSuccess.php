@@ -91,7 +91,7 @@
       <?php include_component_slot('review_list', array('entityId' => $propuesta->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Propuesta::NUM_ENTITY, 'entity' => $propuesta)) ?>
     </div>
 
-    <p><a id="nueva_propuesta" class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+    <p><a id="nueva-propuesta" class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta') ?></a></p>
   </div>
 
   <div class="vote">
