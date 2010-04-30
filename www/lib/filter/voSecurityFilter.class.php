@@ -20,6 +20,7 @@ class voSecurityFilter extends sfGuardBasicSecurityFilter
 {
   public function execute ($filterChain)
   {
+  	/*
     if ($this->isFirstCall() and !$this->getContext()->getUser()->isAuthenticated())
     {
       if ($cookie = $this->getContext()->getRequest()->getCookie(sfConfig::get('app_sf_guard_plugin_remember_cookie_name', 'sfRemember')))
@@ -33,7 +34,8 @@ class voSecurityFilter extends sfGuardBasicSecurityFilter
         }
       }
     }
-    
+    */
+  	
     if (
     	$this->getContext()->getUser()->isAuthenticated() 
     	&& !sfFacebook::getFacebookClient()->get_loggedin_user() 
@@ -41,6 +43,7 @@ class voSecurityFilter extends sfGuardBasicSecurityFilter
     	) {
     		$this->getContext()->getUser()->signOut();
     }
+    
     
     $filterChain->execute($filterChain);
   }

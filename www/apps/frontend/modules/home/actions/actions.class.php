@@ -51,9 +51,9 @@ class homeActions extends sfActions{
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
-  	$this->totalUsers = sfGuardUserPeer::doCount($cuser);
-  	$this->totalPoliticos = PoliticoPeer::doCount($cpol);
-  	$this->totalPartidos = PartidoPeer::doCount($cpar);
+  	$this->topTotalUsers = sfGuardUserPeer::doCount($cuser);
+  	$this->topTotalPoliticos = PoliticoPeer::doCount($cpol);
+  	$this->topTotalPartidos = PartidoPeer::doCount($cpar);
 	
   	$exclude = "";
 	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity", true);

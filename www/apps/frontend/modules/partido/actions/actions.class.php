@@ -60,8 +60,20 @@ class partidoActions extends sfActions
   {
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
-    $page = $this->getRequestParameter('page', 1);
-  	$this->order = $request->getParameter("o", "pd");
+  	
+  	$page = $request->getParameter("page", "");
+	$order = $request->getParameter("o", "");	
+	if ($order == 'pd' || $page == '1'){
+		$qs = ''; 
+		foreach($request->getParameterHolder()->getAll() as $key => $value){
+			if ($key != 'module' && $key != 'action' && !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page'))){
+				$qs .= ($qs?'&':'?') . "$key=$value";
+			}
+		}
+		$this->redirect( "politico/ranking$qs", 301 );
+	}	
+	$this->order = $order?$order:'pd';
+	$page = $page?$page:1;
   		
   	$filter = array(
   		'type' => 'partido',

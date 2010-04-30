@@ -6,7 +6,8 @@
       <?php echo __('¿Vamos a ello?')?>
     </p>
 	  
-    <form action="<?php echo url_for('sfGuardAuth/signin');?>" id="sfr_dialog_form" method="get">
+    <form action="<?php echo url_for('sfGuardAuth/signin');?>" id="sfr_dialog_form" method="post">
+      <input id="sfr_dialog_form_ub" type="hidden" name="url_back" value="" />
   	  <div class="submit"><input type="submit" value="<?php echo __('Hacer login o crear una cuenta')?>" class="login_or_register" /></div>
     </form>
   </div>

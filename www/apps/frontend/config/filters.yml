@@ -7,16 +7,16 @@ remember_me:
 security:
   class: voSecurityFilter
 
-culture:
-  class: voCultureFilter
 redirect:
   class: voRedirectFilter
+culture:
+  class: voCultureFilter
 vobase:
   class: voBaseFilter
 browser:
   class: voBrowserFilter
 
-# insert your own filters here
+
 
 cache:     ~
 common:
