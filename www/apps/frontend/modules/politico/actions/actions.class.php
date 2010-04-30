@@ -354,10 +354,10 @@ class politicoActions extends sfActions
   		if ($this->partido != '0' && $aaPartido) {
 	  		$description .= ", " . $aaPartido->getNombre();
    		}
-	  	if ($this->institucion != '0') {
-	  		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
-   		}
   	}
+  	if ($this->institucion != '0') {
+  		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
+   	}
   	if ($this->order != 'pd') {
   		switch($this->order){
   			case 'pa':
