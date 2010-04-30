@@ -214,8 +214,21 @@ class politicoActions extends sfActions
   	$culture = $this->getUser()->getCulture("es");
   	$partido = $request->getParameter("partido", ALL_FORM_VALUE);
   	$institucion = $request->getParameter("institucion", ALL_FORM_VALUE);
-  	$page = $request->getParameter("page", 1);
-	$this->order = $request->getParameter("o", "pd");
+  	
+  	$page = $request->getParameter("page", "");
+	$order = $request->getParameter("o", "");	
+	if ($order == 'pd' || $page == '1'){
+		$qs = ''; 
+		foreach($request->getParameterHolder()->getAll() as $key => $value){
+			if ($key != 'module' && $key != 'action' && !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page'))){
+				$qs .= ($qs?'&':'?') . "$key=$value";
+			}
+		}
+		$this->redirect( "politico/ranking$qs", 301 );
+	}	
+	$this->order = $order?$order:'pd';
+	$page = $page?$page:1;
+	
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	

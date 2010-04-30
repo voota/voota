@@ -14,8 +14,9 @@
   });
   
   $(document).ready(function(){
-    $('.login-required').click(function(){
+    $('.login-required_np').click(function(){
       <?php if (!$sf_user->isAuthenticated()): ?>
+        $("#sfr_dialog_form_ub").val( "propuesta/new" );
         $("#sfr_dialog").dialog('open');
         return false;
       <?php endif ?>
@@ -38,7 +39,7 @@
 
 <h2><?php echo __('Ranking de propuestas: de momento %count%', array('%count%' => $propuestasPager->getNbResults())) ?></h2>
 
-<p><a class="login-required" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <table border="0" cellpadding="0" cellspacing="0">
   <thead>
@@ -109,7 +110,7 @@
   </tbody>  
 </table>
 
-<p><a class="login-required" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
+<p><a class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
 <p class="pagination">
   <?php include_partial('global/pagination_full', array('pager' => $propuestasPager, 'url' => "$route", 'page_var' => "page", 'order' => $order)) ?>

@@ -19,22 +19,33 @@ class voRedirectFilter extends sfFilter
 {
   public function execute ($filterChain)
   {
-  	if (!sfContext::getInstance()->getRequest()->isXmlHttpRequest()){  
+  	$request =  sfContext::getInstance()->getRequest();
+  	
+  	if (!$request->isXmlHttpRequest()){  
 		$lastUrl = sfContext::getInstance()->getRouting()->getCurrentInternalUri();	
 	  	$user = sfContext::getInstance()->getUser();
-	  	$urlBack = $user->getAttribute('url_back');
+	  	$urlBack = $user->getAttribute('url_back', '', 'vo/redir');
 	  	if ($urlBack) {
 	  		if ($user->isAuthenticated() && !preg_match("/sfGuardAuth\/signin/is", $urlBack)) {
-				$user->setAttribute('url_back', '');
+				$user->setAttribute('url_back', '', 'vo/redir');
 	  			sfContext::getInstance()->getController()->redirect( $urlBack );
 				die;
 		  	}
 		}
-	
-		if (preg_match("/sfGuardAuth\/signin/is", $lastUrl) && !$urlBack){
-			$user->setAttribute('url_back', $user->getAttribute('last_url'));
+
+		// Si forzado por formulario
+		$postUrlBack = $request->isMethod('post')?$request->getParameter('url_back', false):false;
+		if($postUrlBack && preg_match("/sfGuardAuth\/signin/is", $lastUrl)){
+			$user->setAttribute('url_back', $postUrlBack, 'vo/redir');
 		}
-		$user->setAttribute('last_url', $lastUrl);
+		elseif (preg_match("/sfGuardAuth\/signin/is", $lastUrl) && (!$urlBack || preg_match("/sfGuardAuth\/signin/is", $urlBack))){
+			//echo "GOT".$user->getAttribute('last_url');die;
+			$user->setAttribute('url_back', $user->getAttribute('last_url', '', 'vo/redir'), 'vo/redir');
+		}
+		
+		if ($lastUrl && !preg_match("/sfGuardAuth\/signin/is", $lastUrl)){
+			$user->setAttribute('last_url', $lastUrl, 'vo/redir');
+		}
   	}
 	
 	

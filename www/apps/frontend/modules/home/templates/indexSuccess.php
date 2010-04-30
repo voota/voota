@@ -44,9 +44,9 @@
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
         					//'%2%' => format_number($totalUpReviews, 'es_ES'),
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
-                			'%4%' => format_number($totalUsers, 'es_ES'),
-                			'%5%' => format_number($totalPoliticos, 'es_ES'),
-        					'%6%' => format_number($totalPartidos, 'es_ES')
+                			'%4%' => format_number($topTotalUsers, 'es_ES'),
+                			'%5%' => format_number($topTotalPoliticos, 'es_ES'),
+        					'%6%' => format_number($topTotalPartidos, 'es_ES')
         				)) ?></h2></li>
         <li>
           <h2><?php echo __('Los más votados de esta semana:') ?></h2>
