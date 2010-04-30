@@ -39,7 +39,6 @@
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
       .search button { margin-top: 1px; }
-      #propuesta-show .reviews #nueva_propuesta { left: 480px;}
     <?php endif ?>
   </style>
 </head>

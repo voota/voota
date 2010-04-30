@@ -82,8 +82,6 @@
         <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
         <p>
           <input type="text" name="q" id="q_1" value="<?php echo $sf_params->get('q') ?>" />
-          <br />
-          <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
         </p>
         <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>
@@ -138,8 +136,6 @@
         <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
         <p>
           <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
-          <br />
-          <span class="hints"><?php echo __('Político, partido, institución o usuario') ?></span>
         </p>
         <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>
