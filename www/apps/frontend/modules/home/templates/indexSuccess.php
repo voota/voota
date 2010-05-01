@@ -63,7 +63,7 @@
         				
         </h2></li>
         <li>
-          <h2><?php echo __('Los más votados de esta semana:') ?></h2>
+          <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
             <?php foreach($reviewables as $reviewable): ?>
   	  			  <?php include_partial('reviewable_li', array('id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
