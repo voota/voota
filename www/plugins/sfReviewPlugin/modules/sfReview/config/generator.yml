@@ -39,7 +39,7 @@ generator:
             label: v
         sort: [created_at, desc]
         title:   Last reviews
-        display: [=sf_guard_user, =sf_review_status, value, text, culture, created_at, modified_at, is_active, to_fb]
+        display: [=sf_guard_user, =sf_review_status, value, text, culture, created_at, modified_at, is_active, to_fb, source]
       filter:
         display: [sf_review_status_id, value, text, culture, created_at, modified_at, cookie, ip_address, sf_review_type_id, value, is_active, to_fb]
       form:

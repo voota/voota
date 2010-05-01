@@ -311,6 +311,8 @@ class apiActions extends sfActions{
   	$value = $this->getRequestParameter("value");
   	$text = $this->getRequestParameter("text", false);
   	$type = $this->getRequestParameter("type");
+  	
+  	$key = oauthSecurityManager::getConsummerKey();
   		
   	if (!$entityId || !$value || !$type){
   		throw new BadRequestException("Not enough parameters.");
@@ -338,10 +340,10 @@ class apiActions extends sfActions{
   	} 
   	
   	try {
-  		$this->review = SfReviewManager::postReview($userId, $typeId, $entityId, $value, $text, $entity);
+  		$this->review = SfReviewManager::postReview($userId, $typeId, $entityId, $value, $text, $entity, false, 0, $key);
   	}
   	catch(Exception $e){
-  		echo "fail:". $e->getMessage();
+  		throw new Exception($e->getMessage());
   	}
 
   	return "saved.";

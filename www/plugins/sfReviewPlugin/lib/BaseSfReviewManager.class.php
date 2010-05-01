@@ -24,6 +24,7 @@ class BaseSfReviewManager
    */
 	//const NUM_LAST_REVIEWS = 2;
 	const NUM_REVIEWS = 20;
+	const MAX_LENGTH = 280;
 	
 	/*
   static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_LAST_REVIEWS)
@@ -205,7 +206,7 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0 ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0, $source = '' ){
   	$prevValue = false;
   		
   	if (!$entityId || !$value){  		
@@ -239,6 +240,7 @@ class BaseSfReviewManager
   		$review->setSfReviewTypeId($typeId?$typeId:null);
   		$review->setSfGuardUserId($userId);
   		$review->setCreatedAt(new DateTime());
+  		$review->setSource( $source );
 	}
   	else {
   		if ($rm && $value == $review->getValue() && $review->getIsActive()) {
@@ -251,9 +253,9 @@ class BaseSfReviewManager
    	}   	
   	$review->setValue($value);
   	if ($text) {
-	  	$aText = utf8_decode( $text );
-	  	$aText = strip_tags( substr($aText, 0, BasesfReviewFrontActions::MAX_LENGTH) );
-	  	$review->setText( utf8_encode( $aText ) );
+  		$aText = SfVoUtil::cutToLength($text, self::MAX_LENGTH, '');
+	  	$aText = strip_tags( $aText );
+	  	$review->setText( $aText );
   	}
   	$review->setSfReviewStatusId(1);
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);

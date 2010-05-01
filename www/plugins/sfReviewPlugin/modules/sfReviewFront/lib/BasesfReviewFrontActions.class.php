@@ -201,6 +201,7 @@ class BasesfReviewFrontActions extends sfActions
   		, false
   		, false
   		, $fb_publish==1?1:0
+  		, 'form'
   	);
   	
   	if (!$t ){
@@ -238,7 +239,7 @@ class BasesfReviewFrontActions extends sfActions
   	}
   	
   	try {  	
-  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $typeId, $entityId, $value, false, $this->entity, $rm);
+  		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $typeId, $entityId, $value, false, $this->entity, $rm, 0, 'quick');
   	}
   	catch(Exception $e){
   		echo "fail:". $e->getMessage();

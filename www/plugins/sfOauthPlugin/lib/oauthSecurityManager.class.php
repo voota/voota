@@ -52,7 +52,7 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 	
 	return $store;
   }
-  
+
   public static function checkAuthorized ()
   {
   	self::storeInstance();
@@ -80,5 +80,28 @@ class oauthSecurityManager extends sfBasicSecurityFilter
 	}
   	    
 	return $userId;
+  }
+  
+  public static function getConsummerKey ()
+  {
+  	self::storeInstance();
+ 	
+  	if (OAuthRequestVerifier::requestIsSigned()){
+		try {
+	        $req = new OAuthRequestVerifier();
+	        $key = $req->getParam('oauth_consumer_key');
+		}
+	    catch (OAuthException $e) {
+			sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::checkAuthorized exception" );
+			sfContext::getInstance()->getLogger()->err( "Message: "+ $e->getMessage() );
+		    $this->sendNotAuthorized();
+	    }
+	}
+	else {
+		sfContext::getInstance()->getLogger()->err( "oauthSecurityManager::checkAuthorized request not signed" );
+		$this->sendNotAuthorized();
+	}
+  	    
+	return $key;
   }
 }
