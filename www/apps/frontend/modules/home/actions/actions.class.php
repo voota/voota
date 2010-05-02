@@ -30,9 +30,11 @@ class homeActions extends sfActions{
   	$cpos = new Criteria();
   	$cpos->add(SfReviewPeer::VALUE, 1);
   	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
+  	$cpos->add(SfReviewPeer::CULTURE, $culture);
   	$cneg = new Criteria();
   	$cneg->add(SfReviewPeer::VALUE, -1);
   	$cneg->add(SfReviewPeer::IS_ACTIVE, 1);
+  	$cneg->add(SfReviewPeer::CULTURE, $culture);
   	
   	$cuser = new Criteria();
   	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
@@ -41,6 +43,7 @@ class homeActions extends sfActions{
   	$cpol->addJoin(PoliticoPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
   	$cpol->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Politico::NUM_ENTITY);
   	$cpol->add(SfReviewPeer::IS_ACTIVE, TRUE);
+  	$cpol->add(SfReviewPeer::CULTURE, $culture);
   	$cpol->setDistinct();
   	
   	$cpar = new Criteria();
@@ -48,13 +51,15 @@ class homeActions extends sfActions{
   	$cpar->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
   	$cpar->add(SfReviewPeer::IS_ACTIVE, TRUE);
   	$cpar->add(PartidoPeer::IS_ACTIVE, TRUE);
+  	$cpar->add(SfReviewPeer::CULTURE, $culture);
   	$cpar->setDistinct();
   	
   	$cpro = new Criteria();
   	$cpro->addJoin(PropuestaPeer::ID, SfReviewPeer::ENTITY_ID, Criteria::INNER_JOIN);
-  	$cpro->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Partido::NUM_ENTITY);
+  	$cpro->add(SfReviewPeer::SF_REVIEW_TYPE_ID, Propuesta::NUM_ENTITY);
   	$cpro->add(SfReviewPeer::IS_ACTIVE, TRUE);
   	$cpro->add(PropuestaPeer::IS_ACTIVE, TRUE);
+  	$cpro->add(SfReviewPeer::CULTURE, $culture);
   	$cpro->setDistinct();
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
