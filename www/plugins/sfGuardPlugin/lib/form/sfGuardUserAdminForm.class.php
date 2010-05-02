@@ -43,6 +43,8 @@ class sfGuardUserAdminForm extends BasesfGuardUserForm
 
       $this->mergeForm($profileForm);
     }
+    
+    $this->getObject()->getProfile()->setOri(true);
   }
 
   public function updateObject($values = null)

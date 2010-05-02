@@ -2,6 +2,12 @@
 
 class SfGuardUserProfile extends BaseSfGuardUserProfile
 {
+	var $ori = false;
+	
+	public function setOri( $ori ){
+		$this->ori = $ori;
+	}
+	
   public function __toString()
   {
     return $this->getSfGuardUser()->getUsername();
@@ -22,13 +28,13 @@ class SfGuardUserProfile extends BaseSfGuardUserProfile
   public function getNombre() {
   	$politico = $this->getPolitico();
   
-  	return $politico?$politico->getNombre():parent::getNombre();
+  	return ($politico && !$this->ori)?$politico->getNombre():parent::getNombre();
   }
   
   public function getApellidos() {
   	$politico = $this->getPolitico();
   
-  	return $politico?$politico->getApellidos():parent::getApellidos();
+  	return ($politico && !$this->ori)?$politico->getApellidos():parent::getApellidos();
   }
   
   public function getNombreOri() {
