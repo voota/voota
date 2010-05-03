@@ -292,7 +292,12 @@ class propuestaActions extends sfActions
     /* paginador */
     $this->propuestasPager = EntityManager::getPager($this->propuesta);
     /* / paginador */
+
     
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$c->add(PropuestaPeer::CULTURE, $culture);
+  	$this->propuestasCount = PropuestaPeer::doCount($c);
   }
   
   private function getEnlaces( $propuesta ){
