@@ -75,13 +75,11 @@
   <div id="report-error">
     <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
   </div>
-
+  
+  <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
+  
   <div id="google-ads">
     <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div>
-  
-  <div id="sidebar">
-    <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   </div>
 
   <div class="reviews">
