@@ -60,6 +60,7 @@ class homeActions extends sfActions{
   	$cpro->add(SfReviewPeer::IS_ACTIVE, TRUE);
   	$cpro->add(PropuestaPeer::IS_ACTIVE, TRUE);
   	$cpro->add(SfReviewPeer::CULTURE, $culture);
+  	$cpro->add(PropuestaPeer::CULTURE, $culture);
   	$cpro->setDistinct();
   	
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
