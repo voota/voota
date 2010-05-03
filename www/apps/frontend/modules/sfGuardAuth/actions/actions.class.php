@@ -171,7 +171,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
   	$this->op = $request->getParameter('op');
-  	$urlBack = $request->getParameter('url_back', false);
+  	$dialog = $request->getParameter('dialog', false);
   	
   	if ($this->op == 'fb' && !$this->getUser()->isAuthenticated()){
   		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
@@ -183,7 +183,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
 
-    if ($request->isMethod('post') && !$urlBack){
+    if ($request->isMethod('post') && !$dialog){
     	// Register
     	if ($this->op == 'r') {
 	      $this->registrationform = new RegistrationForm();    
