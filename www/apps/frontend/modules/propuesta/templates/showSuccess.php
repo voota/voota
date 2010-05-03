@@ -66,7 +66,6 @@
   <div id="description">
     <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
     
-    <?php //TODO: Partial de doc?>
   <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
   </div><!-- end of description -->
 
