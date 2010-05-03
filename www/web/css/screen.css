@@ -418,7 +418,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #external-links,
 #propuesta-new #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
 #propuesta-show #external-links p { padding-bottom: 5px;}
-#propuesta-show .box-propuestas { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; margin-top: 0;}
+#propuesta-show .box-propuestas { width: 215px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; margin-top: 0;}
+#propuesta-show .box-propuestas button { width: 175px;}
 #politico-show #external-links ul,
 #partido-show #external-links ul,
 #propuesta-show #external-links ul,
