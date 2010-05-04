@@ -41,6 +41,15 @@
       .search button { margin-top: 1px; }
     <?php endif ?>
   </style>
+  <?php if ($sf_context->getModuleName() == 'home' && $sf_context->getActionName() == 'index'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-home-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
+  <?php if ($sf_context->getModuleName() == 'politico' && $sf_context->getActionName() == 'ranking'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-ranking-polit-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
+  <?php if ($sf_context->getModuleName() == 'partido' && $sf_context->getActionName() == 'ranking'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-ranking-part-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
