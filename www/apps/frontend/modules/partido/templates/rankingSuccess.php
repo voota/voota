@@ -28,14 +28,14 @@
       <th class="name"><?php echo __('Nombre')?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
-      	<?php echo link_to(__('Votos +'), "$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''), array('rel'  => 'nofollow'));?>
+      	<?php echo link_to(__('Votos +'), "$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''), array('rel'  => 'nofollow', 'title' => __('Ordenar por votos positivos: Los más votados primero / los menos votados primero')));?>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
       		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
-      	<?php echo link_to(__('Votos -'), "$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='nd'?'na':'nd'), array('rel'  => 'nofollow'));?>
+      	<?php echo link_to(__('Votos -'), "$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='nd'?'na':'nd'), array('rel'  => 'nofollow', 'title' => __('Ordenar por votos negativos: Los más votados primero / los menos votados primero')));?>
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php if (strpos($order, 'n') === 0):?>
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>

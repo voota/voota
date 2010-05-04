@@ -51,7 +51,7 @@
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
         <a href="<?php echo url_for("$route".($order=='pd'?(!preg_match("/\?/",$route)?'?':'&')."o=pa":''))?>"
-        	title="<?php echo __('Ordenar por votos positivos: Las más votadas primero / los menos votadas primero') ?>" 
+        	title="<?php echo __('Ordenar por votos positivos: Las más votadas primero / las menos votadas primero') ?>" 
         	rel="nofollow"><?php echo __('Votos +')?></a>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
