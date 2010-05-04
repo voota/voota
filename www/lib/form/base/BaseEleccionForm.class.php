@@ -15,16 +15,14 @@ abstract class BaseEleccionForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'nombre'                    => new sfWidgetFormInputText(),
-      'fecha'                     => new sfWidgetFormDate(),
+      'nombre_corto'              => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'column' => 'id', 'required' => false)),
-      'nombre'                    => new sfValidatorString(array('max_length' => 150)),
-      'fecha'                     => new sfValidatorDate(array('required' => false)),
+      'nombre_corto'              => new sfValidatorString(array('max_length' => 45)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
@@ -41,6 +39,15 @@ abstract class BaseEleccionForm extends BaseFormPropel
     return 'Eleccion';
   }
 
+  public function getI18nModelName()
+  {
+    return 'EleccionI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'EleccionI18nForm';
+  }
 
   public function updateDefaultsFromObject()
   {

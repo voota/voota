@@ -20,11 +20,10 @@ Administraci&oacute;n
 	<?php echo link_to('politicos', 'politico/index') ?>
 	<?php echo link_to('partidos', 'partido/index') ?> 
 	<?php echo link_to('propuestas', 'propuesta/index') ?> 
-	<?php echo link_to('elecciones', 'eleccion/index') ?> 
 	<?php echo link_to('instituciones', 'institucion/index') ?> 
-	<?php /* ?> 
+	<?php echo link_to('elecciones', 'eleccion/index') ?> 
+	<?php echo link_to('convocatorias', 'convocatoria/index') ?> 
 	<?php echo link_to('listas', 'lista/index') ?> 
-	<? */ ?> 
 	<?php echo link_to('geos', 'geo/index') ?> 
 <?php } ?>
 <?php echo link_to('salir', '@sf_guard_signout') ?>

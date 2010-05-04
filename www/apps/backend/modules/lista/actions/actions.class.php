@@ -20,4 +20,25 @@ require_once dirname(__FILE__).'/../lib/listaGeneratorHelper.class.php';
  */
 class listaActions extends autoListaActions
 {
+	public function executeAutoComplete($request)
+	{
+	  $this->getResponse()->setContentType('application/json');
+	  $politicos = PoliticoPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
+	  return $this->renderText(json_encode($politicos));
+	}
+	
+	public function executeEdit(sfWebRequest $request) {
+		//$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+		$this->configuration->setPoliticos($this->getRoute()->getObject()->getPoliticoListas());		
+		
+		parent::executeEdit( $request );
+		$this->form->setOption('url', $this->getController()->genUrl('lista/autoComplete'));	
+		$this->form->configure();
+	}
+	
+	public function executeDeleteInstitucion(sfWebRequest $request) {
+	  $politico = PoliticoListaPeer::retrieveByPK($request->getParameter('idi'), $request->getParameter('idm'));
+	  $politico->delete();
+	  $this->redirect('@lista_edit?id='.$politico->getListaId());
+	}
 }

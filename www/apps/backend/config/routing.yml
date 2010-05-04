@@ -1,3 +1,12 @@
+convocatoria:
+  class: sfPropelRouteCollection
+  options:
+    model:                Convocatoria
+    module:               convocatoria
+    prefix_path:          /convocatoria
+    column:               id
+    with_wildcard_routes: true
+
 propuesta:
   class: sfPropelRouteCollection
   options:

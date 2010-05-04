@@ -1,4 +1,4 @@
 <?php 
-if ($lista->getEleccion()){
+if ($lista->getPartido()){
 	echo $lista->getPartido()->getNombre();
 }

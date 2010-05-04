@@ -3,10 +3,22 @@ propel:
     package: lib.model
     defaultIdMethod: native
   eleccion:
-    _attributes: { phpName: Eleccion }
+    _attributes: { phpName: Eleccion, isI18N: true, i18nTable: eleccion_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre_corto: { type: VARCHAR, size: '45', required: true }    
+    created_at: { type: TIMESTAMP, required: false }
+  eleccion_i18n:
+    _attributes: { phpName: EleccionI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
-    fecha: { type: DATE, required: false }
+    descripcion: { type: VARCHAR, size: '600', required: false }
+  convocatoria:
+    _attributes: { phpName: Convocatoria }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '45', required: true }
+    eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fecha: { type: DATE, required: true }
     created_at: { type: TIMESTAMP, required: false }
   eleccion_institucion:
     _attributes: { phpName: EleccionInstitucion }
@@ -68,9 +80,11 @@ propel:
     _attributes: { phpName: Lista }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    convocatoria_id: { type: INTEGER, size: '11', required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    geo_id: { type: INTEGER, size: '11', required: true, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_l_partido: [partido_id], fk_l_eleccion: [eleccion_id] }
+    _uniques: { uniq_lista: [partido_id,convocatoria_id,geo_id] }
   media:
     _attributes: { phpName: Media }
     idmedia: { type: INTEGER, size: '11', primaryKey: true, required: true }
@@ -167,7 +181,7 @@ propel:
     _attributes: { phpName: PoliticoLista }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    orden: { type: INTEGER, size: '11', required: false }
+    orden: { type: INTEGER, size: '11', required: true }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_politico: [politico_id], fk_politico_lista_lista: [lista_id] }
   politico_temp:

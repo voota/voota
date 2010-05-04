@@ -21,4 +21,31 @@ require_once dirname(__FILE__).'/../lib/eleccionGeneratorHelper.class.php';
  */
 class eleccionActions extends autoEleccionActions
 {
+	public function executeAutoComplete($request)
+	{
+	  $this->getResponse()->setContentType('application/json');
+	  $instituciones = InstitucionI18nPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
+	  return $this->renderText(json_encode($instituciones));
+	}
+	
+	public function executeEdit(sfWebRequest $request) {
+		//$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+		$this->configuration->setInstituciones($this->getRoute()->getObject()->getEleccionInstitucions());		
+		
+		parent::executeEdit( $request );
+		$this->form->setOption('url', $this->getController()->genUrl('eleccion/autoComplete'));	
+		$this->form->configure();
+	}
+	
+	public function executeDeleteEnlace(sfWebRequest $request) {
+	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
+	  $enlace->delete();
+	  $this->redirect('@politico_edit?id='.$enlace->getPolitico()->getId());
+	}
+	
+	public function executeDeleteInstitucion(sfWebRequest $request) {
+	  $institucion = EleccionInstitucionPeer::retrieveByPK($request->getParameter('idm'), $request->getParameter('idi'));
+	  $institucion->delete();
+	  $this->redirect('@eleccion_edit?id='.$institucion->getEleccionId());
+	}
 }
