@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-05-03T11:18:38Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-05-04T10:12:02Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5745,6 +5745,22 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
       </trans-unit>
       <trans-unit id="569">
         <source>Lo más votado de esta semana:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="570">
+        <source>Ordenar por votos positivos: Las más votadas primero / las menos votadas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="571">
+        <source>Ordenar por votos positivos: Los más votados primero / los menos votados primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="572">
+        <source>Ordenar por votos negativos: Los más votados primero / los menos votados primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="573">
+        <source>Ranking por partido</source>
         <target/>
       </trans-unit>
     </body>

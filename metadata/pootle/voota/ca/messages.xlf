@@ -2596,6 +2596,22 @@ actual)</target>
         <source>Lo más votado de esta semana:</source>
         <target/>
       </trans-unit>
+      <trans-unit id="570">
+        <source>Ordenar por votos positivos: Las más votadas primero / las menos votadas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="571">
+        <source>Ordenar por votos positivos: Los más votados primero / los menos votados primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="572">
+        <source>Ordenar por votos negativos: Los más votados primero / los menos votados primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="573">
+        <source>Ranking por partido</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
