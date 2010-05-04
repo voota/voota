@@ -54,6 +54,7 @@ propel:
     model: { type: VARCHAR, size: '45', required: false }
     module: { type: VARCHAR, size: '45', required: false }
     max_value: { type: INTEGER, size: '11', required: false }
+    culturized: { type: boolean, required: true, default: 0 }
   sf_review_type_entity:
     _attributes: { phpName: SfReviewTypeEntity }
     sf_review_type_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_review_type, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }

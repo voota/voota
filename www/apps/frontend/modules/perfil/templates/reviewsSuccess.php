@@ -41,6 +41,7 @@
       <?php endforeach ?>
     </table>
 
+<?php /* ?>
     <p>
       <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
         <button type="button" id="more_reviews"><?php echo __('más') ?></button>
@@ -59,5 +60,21 @@
         </script>
       <?php endif ?>
     </p>
+<?php */ ?>
+        <div id="more_reviews">
+    		  <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
+  		      <?php echo jq_form_remote_tag(
+  		        array('update'   => "more_reviews",
+  		    	        'url'      => "@profile_more_comments",
+    	  			      'before'   => "re_loading('more_reviews')"),
+  		        array('id' => "frm_more_reviews"))
+  		      ?>
+        		  <div><input type="hidden" name="username" value="<?php echo $user->getProfile()->getVanity()?>" /></div>
+            	<div><input type="hidden" name="page" value="<?php echo isset($page)?$page:'1' ?>" /></div>
+            	<div><input type="submit" value="<?php echo __('más') ?>" /></div>
+    			  </form>
+    		  <?php endif ?>
+        </div>
+
   </div>
 </div>

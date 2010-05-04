@@ -5,14 +5,26 @@
  
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
-  	$("input#ac_partido").autocomplete({
-  		source: '<?php echo url_for('politico/acPartido')?>',
-  		select: function(event, ui) { $("input#partido").val(ui.item.id); }
-  	});
+	  	$("input#ac_partido").autocomplete({
+	  		source: '<?php echo url_for('politico/acPartido')?>',
+	  		select: function(event, ui) { $("input#partido").val(ui.item.id); }
+	  	});
   	$("input#ac_institucion").autocomplete({
   		source: '<?php echo url_for('politico/acInstitucion')?>',
   		select: function(event, ui) { $("input#institucion").val(ui.item.id); }
   	});
+  	
+  	$("#ac_filter_frm").submit(function(){
+	  	var ac_institucion = $('input#ac_institucion').val();
+	  	if (ac_institucion == '')
+	  		$('input#institucion').val('all');
+	  	var ac_partido = $('input#ac_partido').val();
+	  	if (ac_partido == '')
+	  		$('input#partido').val('');
+
+  		return true;
+  	});
+  	
   });
   
   $(window).load(function(){
@@ -34,12 +46,12 @@
   <?php */ ?>
 </h2>
 
-<form action="<?php echo url_for('politico/ranking')?>">
-<input type="hidden" name="p" id="partido" value="all" />
-<input type="hidden" name="institucion" id="institucion" />
+<form id="ac_filter_frm" action="<?php echo url_for('politico/ranking')?>">
+<input type="hidden" name="p" id="partido" value="<?php echo $partido ?>" />
+<input type="hidden" name="i" id="institucion" value="<?php echo $institucion ?>" />
 <p>
-	<?php echo __('Buscar políticos')?> <input type="text" id="ac_partido" title="<?php echo __('abreviatura o nombre del partido')?>" />
-	<?php echo __('en')?> <input type="text" id="ac_institucion" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
+	<?php echo __('Ranking por partido')?> <input type="text" id="ac_partido" value="<?php echo $partidoAC ?>" title="<?php echo __('abreviatura o nombre del partido')?>" />
+	<?php echo __('en')?> <input type="text" id="ac_institucion" value="<?php echo $institucionAC ?>" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
 	<input type="submit" value="<?php echo __('Filtrar') ?>" />
 </p>
 </form>

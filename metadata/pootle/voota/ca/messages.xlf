@@ -2592,6 +2592,10 @@ actual)</target>
         <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)</source>
         <target/>
       </trans-unit>
+      <trans-unit id="569">
+        <source>Lo más votado de esta semana:</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

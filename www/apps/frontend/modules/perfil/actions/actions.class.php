@@ -129,25 +129,8 @@ class perfilActions extends SfVoActions
   		$this->getUser()->setAttribute('url_back', '@usuario_votos');
   	}
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
-  	
-  	$criteria = new Criteria();
-	//$criteria->add(SfReviewPeer::CULTURE, $culture);
-	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->getUser()->getGuardUser()->getId());
-	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
-	if( $this->f ){
-		if (preg_match('/\.0/', $this->f)){
-			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
-		}
-		else if (preg_match('/[0-9]/', $this->f)){
-			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->f);
-		}
-		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	}
-	
-  	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
-    $this->reviews->setCriteria($criteria);
-    $this->reviews->init();
+
+    $this->reviews = SfReviewManager::getReviewsByUser($this->getUser()->getGuardUser()->getId(), $this->f);
     
     $this->user = $this->getUser()->getGuardUser();
   }
@@ -168,7 +151,7 @@ class perfilActions extends SfVoActions
   		$this->redirect('perfil/show?username='. $user->getProfile()->getVanity(), 301);
   	}
   	$this->forward404Unless($this->user->getIsActive());
-  	
+  	/*
   	$criteria = new Criteria();
 	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	  //$criteria->add(SfReviewPeer::CULTURE, $culture);
@@ -187,6 +170,8 @@ class perfilActions extends SfVoActions
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
     $this->reviews->init();
+    */
+    $this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
     
     $this->response->setTitle( sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
     $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
@@ -196,6 +181,13 @@ class perfilActions extends SfVoActions
   {
   	$vanity = $request->getParameter('username');
   	$culture = $this->getUser()->getCulture();
+    $this->page = $request->getParameter("page");  
+    if ($this->page) {
+    	$this->page += 1;
+    }
+    else {
+    	$this->page = 1;
+    }
     
   	$c = new Criteria();
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
@@ -203,16 +195,15 @@ class perfilActions extends SfVoActions
   	$this->forward404Unless($userProfile);
   	
   	$this->user = $userProfile->getsfGuardUser();
-  	
+  	/*
   	$criteria = new Criteria();
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	$criteria->add(SfReviewPeer::CULTURE, $culture);
+	//$criteria->add(SfReviewPeer::CULTURE, $culture);
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
   	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
     $this->reviews->setCriteria($criteria);
-    $this->page = $request->getParameter("page");
     if ($this->page) {
     	$this->page += 1;
     	$this->reviews->setPage( $this->page );
@@ -221,5 +212,7 @@ class perfilActions extends SfVoActions
     	$this->page = 1;
     }
     $this->reviews->init();
+    */
+    $this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f, $this->page?$this->page:1);
   }
 }

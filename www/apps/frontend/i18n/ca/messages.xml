@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-04-30T12:13:20Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-05-03T11:18:38Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5741,6 +5741,10 @@ Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/14769561918
       </trans-unit>
       <trans-unit id="568">
         <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="569">
+        <source>Lo más votado de esta semana:</source>
         <target/>
       </trans-unit>
     </body>

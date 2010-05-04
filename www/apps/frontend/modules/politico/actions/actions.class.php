@@ -172,7 +172,7 @@ class politicoActions extends sfActions
     $this->politico_list = PoliticoPeer::doSelect(new Criteria());
   }
   
-  private function generateRankingUrl ($partido, $institucion, $p = ''){
+  private function generateRankingUrl ($partido, $institucion, $p = '', $i = ''){
   	$p_url = "";
   	$i_url = "";
   	$culture = $this->getUser()->getCulture();
@@ -184,7 +184,10 @@ class politicoActions extends sfActions
   		$p_url .= "$partido";
   	}
   	
-  	if ($institucion) {
+  	if($i != '' && $i != ALL_URL_STRING){
+  		$i_url = "$i";
+  	}
+  	elseif ($institucion) {
   		$i_url = "$institucion";
   	}
   	
@@ -211,6 +214,7 @@ class politicoActions extends sfActions
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
+  	$i = $request->getParameter("i");
   	$culture = $this->getUser()->getCulture("es");
   	$partido = $request->getParameter("partido", ALL_FORM_VALUE);
   	$institucion = $request->getParameter("institucion", ALL_FORM_VALUE);
@@ -232,10 +236,11 @@ class politicoActions extends sfActions
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	
-  	if ($p != ''){
-	  	$url = $this->generateRankingUrl ($partido, $institucion, $p);
+  	if ($p != '' || $i){
+	  	$url = $this->generateRankingUrl ($partido, $institucion, $p, $i);
 	   	$this->redirect( $url );
   	}
+  	$this->partidoAC = '';
     if ($partido && $partido != ALL_URL_STRING){
   		$this->partido = $partido; 
   		
@@ -244,10 +249,12 @@ class politicoActions extends sfActions
   		$aaPartido = PartidoPeer::doSelectOne($aPartidoCriteria);
   		
   		$this->forward404Unless( $aaPartido );
+  		$this->partidoAC = $aaPartido->getAbreviatura(). ', ' .$aaPartido->getNombre();
   	}
   	else {
   		$this->partido = ALL_URL_STRING; 
    	}
+  	$this->institucionAC = '';
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
   		
@@ -261,7 +268,9 @@ class politicoActions extends sfActions
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);  		
 				
   		$this->forward404Unless( $aInstitucion );
-  	}  	
+  		
+  		$this->institucionAC = $aInstitucion->getNombre();
+  	} 
   	
   	$filter = array(
   		'type' => 'politico',

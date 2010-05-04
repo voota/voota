@@ -53,6 +53,38 @@ class BaseSfReviewManager
   }
   */
   
+  static public function getReviewsByUser($userId, $f = false, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS){
+	$culture = sfContext::getInstance()->getUser()->getCulture();
+	
+  	$criteria = new Criteria();
+	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	
+	// Filter entities by culture. Must have 'culture' column and 'culturized' column in sf_review_type must be checked
+    $criteria->addJoin(SfReviewPeer::SF_REVIEW_TYPE_ID, SfReviewTypePeer::ID);
+  	$cultureCriterion = $criteria->getNewCriterion(SfReviewTypePeer::CULTURIZED, false);
+	$cultureCriterion->addOr($criteria->getNewCriterion(SfReviewPeer::CULTURE, $culture));
+	$criteria->add( $cultureCriterion );	
+	
+	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $userId);
+	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
+	if( $f ){
+		if (preg_match('/\.0/', $f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
+		}
+		else if (preg_match('/[0-9]/', $f)){
+			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $f);
+		}
+		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+	}
+	  
+  	$pager = new sfPropelPager('SfReview', $numberOfResults);
+    $pager->setCriteria($criteria);
+    $pager->setPage( $page );
+    $pager->init();
+
+    return $pager;
+  }
+  
   static public function getReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS, $exclude = false, $page = false, $offset = 1, $filter = false)
   {
     $criteria = new Criteria();

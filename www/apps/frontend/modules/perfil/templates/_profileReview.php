@@ -2,7 +2,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
 
-<?php if($entity->getType() != Propuesta::NUM_ENTITY || $sf_user->getCulture() == $entity->getCulture()): ?>
+<?php //if($entity->getType() != Propuesta::NUM_ENTITY || $sf_user->getCulture() == $entity->getCulture()): ?>
   <tr>
 	<td class="photo">    
 		<?php echo image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_'.$entity->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $entity)) .'"') ?>
@@ -25,7 +25,7 @@
 	</td>
               
 	<td class="body">
-    	<?php echo review_text( $review, array(), true ) ?>
+    	<?php echo review_text( $review, array(), false ) ?>
     </td>
     
 	<td class="actions">
@@ -36,4 +36,4 @@
         <?php endif ?>
 	</td>
   </tr>
-<?php endif ?>  
+<?php //endif ?>  
