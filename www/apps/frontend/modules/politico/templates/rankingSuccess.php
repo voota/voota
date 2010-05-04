@@ -16,10 +16,10 @@
   	
   	$("#ac_filter_frm").submit(function(){
 	  	var ac_institucion = $('input#ac_institucion').val();
-	  	if (ac_institucion == '')
+	  	if (ac_institucion == '' || ac_institucion == $('input#ac_institucion').attr('title'))
 	  		$('input#institucion').val('all');
 	  	var ac_partido = $('input#ac_partido').val();
-	  	if (ac_partido == '')
+	  	if (ac_partido == '' || ac_partido == $('input#ac_partido').attr('title'))
 	  		$('input#partido').val('');
 
   		return true;

@@ -177,14 +177,14 @@ class politicoActions extends sfActions
   	$i_url = "";
   	$culture = $this->getUser()->getCulture();
   	
-  	if ($p != '' && $p != ALL_FORM_VALUE){
+  	if ($p != '' && $p != ALL_URL_STRING && $p != ALL_FORM_VALUE){
   		$p_url .= "$p";
   	}
   	else if ($p != ALL_FORM_VALUE && $partido && $partido != ALL_URL_STRING) {
   		$p_url .= "$partido";
   	}
   	
-  	if($i != '' && $i != ALL_URL_STRING){
+  	if($i != '' && $i != ALL_URL_STRING && $i != ALL_FORM_VALUE){
   		$i_url = "$i";
   	}
   	elseif ($institucion) {
@@ -236,7 +236,7 @@ class politicoActions extends sfActions
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	
-  	if ($p != '' || $i){
+  	if ($p != '' || $i != ''){
 	  	$url = $this->generateRankingUrl ($partido, $institucion, $p, $i);
 	   	$this->redirect( $url );
   	}
