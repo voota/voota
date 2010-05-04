@@ -366,3 +366,19 @@ api_demo_search:
 api_demo_search:
   url:   /api_demo/proposal/:id
   param: { module: api_demo, action: proposal }
+        
+### ELECCIONES ###
+        
+eleccion_show_es:
+  url: /eleccion/:id
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+eleccion_show_ca:
+  url: /eleccion/:id
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
