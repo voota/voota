@@ -23,6 +23,7 @@ class sfWidgetFormChoiceDelete extends sfWidgetFormChoice
 		
 		$this->addOption('parent_id', null);
 		$this->addOption('name', null);
+		$this->addOption('module', 'politico');
 		
 		parent::configure($options, $attributes);
 	}
@@ -31,8 +32,9 @@ class sfWidgetFormChoiceDelete extends sfWidgetFormChoice
   {
     $field = parent::render($name, $value, $attributes, $errors);
     $name = " ".$this->getOption('name')." ";
+    $module = $this->getOption('module');
  
-    $link = '<a href="'.sfContext::getInstance()->getController()->genUrl('politico/deleteInstitucion').'?idm='.$this->getOption('parent_id').'&idi='.$this->getOption('model_id').'" onclick="if (confirm(\'sure?\')) { return true; };return false;"><img src="/sfPropelPlugin/images/delete.png" alt="borrar" /></a>';
+    $link = '<a href="'.sfContext::getInstance()->getController()->genUrl("$module/deleteInstitucion").'?idm='.$this->getOption('parent_id').'&idi='.$this->getOption('model_id').'" onclick="if (confirm(\'sure?\')) { return true; };return false;"><img src="/sfPropelPlugin/images/delete.png" alt="borrar" /></a>';
     
     return  (!$this->getOption('name')?$field:'') . $name . ($this->getOption('name')?$link:'');
   }

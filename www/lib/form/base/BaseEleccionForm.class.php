@@ -15,19 +15,21 @@ abstract class BaseEleccionForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'nombre'                    => new sfWidgetFormInputText(),
-      'fecha'                     => new sfWidgetFormDate(),
+      'vanity'                    => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'column' => 'id', 'required' => false)),
-      'nombre'                    => new sfValidatorString(array('max_length' => 150)),
-      'fecha'                     => new sfValidatorDate(array('required' => false)),
+      'vanity'                    => new sfValidatorString(array('max_length' => 150)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Eleccion', 'column' => array('vanity')))
+    );
 
     $this->widgetSchema->setNameFormat('eleccion[%s]');
 
@@ -41,6 +43,15 @@ abstract class BaseEleccionForm extends BaseFormPropel
     return 'Eleccion';
   }
 
+  public function getI18nModelName()
+  {
+    return 'EleccionI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'EleccionI18nForm';
+  }
 
   public function updateDefaultsFromObject()
   {

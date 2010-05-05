@@ -12,18 +12,17 @@ generator:
 
     config:
       actions: ~
-      fields:
-        fecha: { date_format: dd/MM/yyyy }
       list:
         title:   Elecciones
-        display: [id,nombre,fecha]
+        display: [id,vanity]
 
       filter:  ~
       form:    ~
       form:
         display:
-          #"Datos de las elecciones": [nombre,fecha,eleccion_institucion_list]
-          "Datos de las elecciones": [nombre,fecha,eleccion_institucion_list]
+          "Datos de las elecciones": [vanity]
+          "Instituciones": []
+          "Traducibles": [es,ca]
 
       edit:
         title:   Elecci&oacute;n

@@ -23,7 +23,7 @@ abstract class BasePoliticoListaForm extends BaseFormPropel
     $this->setValidators(array(
       'politico_id' => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
       'lista_id'    => new sfValidatorPropelChoice(array('model' => 'Lista', 'column' => 'id', 'required' => false)),
-      'orden'       => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
+      'orden'       => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 

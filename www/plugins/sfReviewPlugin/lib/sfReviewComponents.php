@@ -21,39 +21,17 @@ class sfReviewComponents extends sfComponents
 {
 	public function executeReviewList(){
 		$this->page = $this->page?$this->page:1;
-		$this->value = $this->value?$this->value:'';
-
 		
-  		$exclude = array();
-  		/*
-  		$lastReviewsPager = SfReviewManager::getLastReviewsByEntityAndValue(
-    							null
-    							, $this->sfReviewType
-    							, $this->entityId
-    							, $this->value?$this->value:null
-    							, SfReviewManager::NUM_LAST_REVIEWS
-    						);
-	    foreach ($lastReviewsPager->getResults() as $result){
-	  		$exclude[] = $result->getId();
-	  	}	  		
-  		if ($this->page == 1){
-  			$this->lastReviewsPager = $lastReviewsPager ;
-  		}
-  		*/
-  		$this->reviewsPager = SfReviewManager::getReviewsByEntityAndValue(
-    							null
-    							, $this->sfReviewType
-    							, $this->entityId
-    							, $this->value?$this->value:null
-    							, BaseSfReviewManager::NUM_REVIEWS
-    							, $exclude
-    							, $this->page
-    							, 1
-    							, $this->filter
-    						);
-  		//$this->pageU = $request->getParameter("pageU")+1;
-  		//$this->getUser()->setAttribute('pageU', $this->pageU);
-  		
+		if (isset($this->sfReviewType))
+			$filter['type_id'] = $this->sfReviewType;
+		if (isset($this->entityId))
+			$filter['entity_id'] = $this->entityId;
+		if (isset($this->value))
+			$filter['value'] = $this->value;
+		if (isset($this->filter))
+			$filter['textFilter'] = $this->filter;
+			
+  		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);		
 	}
 	
   public function executeSubreviews()

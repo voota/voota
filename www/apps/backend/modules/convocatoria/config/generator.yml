@@ -1,0 +1,23 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Convocatoria
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Convocatoria
+    plural:                Convocatorias
+    route_prefix:          convocatoria
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:   convocatorias
+        display: [id,eleccion,nombre,fecha]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
