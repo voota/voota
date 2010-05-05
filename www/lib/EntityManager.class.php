@@ -18,7 +18,7 @@
 
 class EntityManager {	
 	const PAGE_SIZE = 20;
-	const MAX_PAGES = 500;
+	const MAX_PAGES = 10;
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
@@ -420,13 +420,7 @@ class EntityManager {
 		  	);
 		  	$user->setAttribute("filter_".$entity->getType(), $filter);  		
 	  	}  
-		/*
-	  	if ($s != 0){
-	  		$filter['page'] += $s;
-	  		$user->setAttribute('filter', $filter);
-	  		$this->redirect('politico/show?id='.$entity->getVanity());
-	  	}
-	  	*/
+	  	
 	  	switch($entity->getType()){
 	  		case Politico::NUM_ENTITY:
 	  			$pager = self::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
@@ -443,36 +437,44 @@ class EntityManager {
 	  	$idx=0;
 	  	$page = $filter['page'];
 	  	$morePages = true;
+	  	$lastPage = $pager->getLastPage();
 	  	do {
 	  		$idx ++;
 	  		
-	  		if ($idx >= self::MAX_PAGES){
-	  			$morePages = false;
-	  		}
 		  	foreach ($pager->getResults() as $aEntity){
-				if ($aEntity->getId() == $entity->getId()){
+				if ($aEntity->getId() == $entity->getId()){	
 					$found = true;
+		  			$filter['page'] = $page;
 				}
 			}
-			if ($pager->getLastPage() <= 1){
-				$morePages = false;
-			}
-			elseif (!$found) {
-				if ($idx==1 && $page != 1){
+
+			if (!$found && $pager->getLastPage() > 1) {
+				if ($idx==1 && $page != $filter['page']){
 					$page = 0;
 				}
-				if($page == 0 || $pager->getPage() < $pager->getLastPage()) {
-					$pager->setPage($page + 1);
+				
+				switch($idx){
+					case 2:
+						if ($page > 2){
+							$page -= 2;
+							break;
+						}
+					case 3:
+						if ($page > 3)
+							$page += 2;
+						$page += 1;
+						break;
+					default:
+						$page++;
+				}
+				if ($lastPage > $page) {
+					//echo $page;			
+					$pager->setPage($page);
 					$pager->init();
-	  				$filter['page'] = $page + 1;
 	  				$user->setAttribute("filter_".$entity->getType(), $filter);
 				}
-				else{
-					$morePages = false;
-				}
-				$page ++;
 			}
-	  	} while (!$found && $morePages);
+	  	} while (!$found && $idx < self::MAX_PAGES);
 
 	  	if (!$found && $idx < self::MAX_PAGES){
 	  		$pager = self::getPager($entity, true);
