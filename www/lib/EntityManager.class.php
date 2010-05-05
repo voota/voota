@@ -18,6 +18,7 @@
 
 class EntityManager {	
 	const PAGE_SIZE = 20;
+	const MAX_PAGES = 500;
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
@@ -444,7 +445,10 @@ class EntityManager {
 	  	$morePages = true;
 	  	do {
 	  		$idx ++;
-	  				if ($idx == 50)die;
+	  		
+	  		if ($idx >= self::MAX_PAGES){
+	  			$morePages = false;
+	  		}
 		  	foreach ($pager->getResults() as $aEntity){
 				if ($aEntity->getId() == $entity->getId()){
 					$found = true;
@@ -469,8 +473,8 @@ class EntityManager {
 				$page ++;
 			}
 	  	} while (!$found && $morePages);
-	  	
-	  	if (!$found){
+
+	  	if (!$found && $idx < self::MAX_PAGES){
 	  		$pager = self::getPager($entity, true);
 	  	}
 	  	
