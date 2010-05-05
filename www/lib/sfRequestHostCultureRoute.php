@@ -13,6 +13,12 @@ class sfRequestHostCultureRoute extends sfRoute
     	}
     }
     
+    if (isset($this->requirements['reviewFilter'])) {
+    	$reviewFilter = $this->requirements['reviewFilter'];
+    	
+    	return parent::matchesUrl(urldecode($url), $context);
+    }
+    
     return parent::matchesUrl($url, $context);    
   }
   
@@ -26,7 +32,7 @@ class sfRequestHostCultureRoute extends sfRoute
     		}
     	}
     }
-    
+  	
     return parent::matchesParameters($params, $context);
   }
   

@@ -18,7 +18,7 @@ generator:
       form:
         display:
           "Datos de la lista": [partido_id,convocatoria_id,geo_id]
-          "Politicos": []
+          "Politicos": [_lista]
 
       edit:
         title:   Lista

@@ -15,17 +15,21 @@ abstract class BaseEleccionForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'                        => new sfWidgetFormInputHidden(),
-      'nombre_corto'              => new sfWidgetFormInputText(),
+      'vanity'                    => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
     $this->setValidators(array(
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'column' => 'id', 'required' => false)),
-      'nombre_corto'              => new sfValidatorString(array('max_length' => 45)),
+      'vanity'                    => new sfValidatorString(array('max_length' => 150)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Eleccion', 'column' => array('vanity')))
+    );
 
     $this->widgetSchema->setNameFormat('eleccion[%s]');
 

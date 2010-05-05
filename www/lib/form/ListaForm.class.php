@@ -16,8 +16,7 @@ class ListaForm extends BaseListaForm
   		$this['politico_lista_list'],
   		$this['partido_lista_list']
   	);
-  	
-  	
+  	  	
 	$this->widgetSchema['sf_lista_id'] = new sfWidgetFormChoice(array(
 	    'choices'          => array(),
 	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
@@ -27,7 +26,7 @@ class ListaForm extends BaseListaForm
 	    )
 	));
 	
-  	if (!$this->isNew()) {
+  	if (!$this->isNew()) {  	
 		// embed all forms
 		foreach ($this->getObject()->getPoliticoListas() as $politico) {
 			$politicoForm = new PoliticoListaForm( $politico );
@@ -50,6 +49,12 @@ class ListaForm extends BaseListaForm
 
 		// set a custom label for the embedded form
 		$this->widgetSchema['politico']->setLabel('Nuevo político');
+		
+		$c = new Criteria();
+	  	$c->add(PoliticoListaPeer::LISTA_ID, $this->getObject()->getId());
+	  	$c->addAscendingOrderByColumn(PoliticoListaPeer::ORDEN);
+	  	$this->listaPoliticos = PoliticoListaPeer::doSelect( $c );
+		
 	}
   }
 	public function bind(array $taintedValues = null, array $taintedFiles = null) {

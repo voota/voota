@@ -16,9 +16,9 @@ class listaGeneratorConfiguration extends BaseListaGeneratorConfiguration
   {
   	$ret = parent::getFormDisplay();
   	if (isset($this->politicos)){
-	  	$politicosDisplay = array();
+	  	$politicosDisplay = array('_lista');
 	  	foreach ($this->politicos as $politico){
-	  		$politicosDisplay[] = 'politico'. $politico->getPolitico()->getId();
+	  		//$politicosDisplay[] = 'politico'. $politico->getPolitico()->getId();
 	  	}
 	  	$politicosDisplay[] = 'politico';
 	  	$ret['Politicos'] = $politicosDisplay;

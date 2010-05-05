@@ -14,15 +14,15 @@ generator:
       actions: ~
       list:
         title:   Elecciones
-        display: [id,nombre_corto]
+        display: [id,vanity]
 
       filter:  ~
       form:    ~
       form:
         display:
-          #"Datos de las elecciones": [nombre_corto,eleccion_institucion_list]
-          "Datos de las elecciones": [nombre_corto]
+          "Datos de las elecciones": [vanity]
           "Instituciones": []
+          "Traducibles": [es,ca]
 
       edit:
         title:   Elecci&oacute;n

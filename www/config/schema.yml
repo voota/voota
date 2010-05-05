@@ -5,12 +5,14 @@ propel:
   eleccion:
     _attributes: { phpName: Eleccion, isI18N: true, i18nTable: eleccion_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre_corto: { type: VARCHAR, size: '45', required: true }    
+    vanity: { type: VARCHAR, size: '150', required: true }
     created_at: { type: TIMESTAMP, required: false }
+    _uniques: { uniq_vanity: [vanity] }
   eleccion_i18n:
     _attributes: { phpName: EleccionI18n }
     id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    nombre_corto: { type: VARCHAR, size: '45', required: true }    
     nombre: { type: VARCHAR, size: '150', required: true }
     descripcion: { type: VARCHAR, size: '600', required: false }
   convocatoria:

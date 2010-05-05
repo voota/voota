@@ -16,6 +16,7 @@ class EleccionForm extends BaseEleccionForm
   		$this['eleccion_institucion_list']
   	);
   	
+    $this->embedI18n(array('es', 'ca'));
   	
 	$this->widgetSchema['sf_eleccion_id'] = new sfWidgetFormChoice(array(
 	    'choices'          => array(),
