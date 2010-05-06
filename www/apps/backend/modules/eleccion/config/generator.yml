@@ -20,9 +20,10 @@ generator:
       form:    ~
       form:
         display:
-          "Datos de las elecciones": [vanity]
+          "Datos de las elecciones": [vanity,imagen]
           "Instituciones": []
           "Traducibles": [es,ca]
+          "Enlaces": []
 
       edit:
         title:   Elecci&oacute;n

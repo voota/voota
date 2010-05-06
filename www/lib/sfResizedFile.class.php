@@ -32,7 +32,7 @@ class sfResizedFile extends sfValidatedFile
 		if (is_null($file))
 		{
 			$file = $this->getOriginalName();
-			$parts = explode(".", $this->fileName);
+			$parts = explode(".", $file);
 			$ext = $parts[count($parts)-1]; 
 			
 			$file = preg_replace("/\.$ext/i", sprintf("%04d", "-".rand(0, 999)).".$ext", $file);
@@ -97,6 +97,9 @@ class sfResizedFile extends sfValidatedFile
 			}
 			else if (strpos  ( $file , "docs" )){
 				$s3->createDocFromFile("docs", $file);
+			}
+			else if (strpos  ( $file , "elecciones" )){
+				$s3->createFromFile("elecciones", $file);
 			}
 		}		
 		return $ret;

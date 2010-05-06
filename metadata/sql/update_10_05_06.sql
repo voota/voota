@@ -1,0 +1,25 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
+
+ALTER TABLE `voota`.`convocatoria` 
+DROP INDEX `nombre_UNIQUE` 
+, ADD UNIQUE INDEX `nombre_UNIQUE` (`eleccion_id` ASC, `nombre` ASC) ;
+
+ALTER TABLE `voota`.`eleccion` DROP COLUMN `vanity` , ADD COLUMN `imagen` VARCHAR(50) NULL DEFAULT NULL  AFTER `created_at` , ADD COLUMN `vanity` VARCHAR(45) NOT NULL  AFTER `id` 
+, DROP INDEX `uniq_eleccion` 
+, ADD UNIQUE INDEX `uniq_eleccion` (`vanity` ASC) ;
+
+ALTER TABLE `voota`.`enlace` ADD COLUMN `eleccion_id` INT(11) NULL DEFAULT NULL  AFTER `propuesta_id` , 
+  ADD CONSTRAINT `fk_enlace_3`
+  FOREIGN KEY (`eleccion_id` )
+  REFERENCES `voota`.`eleccion` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_enlace_3` (`eleccion_id` ASC) ;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+

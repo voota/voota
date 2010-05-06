@@ -17,6 +17,7 @@ abstract class BaseEleccionForm extends BaseFormPropel
       'id'                        => new sfWidgetFormInputHidden(),
       'vanity'                    => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
+      'imagen'                    => new sfWidgetFormInputText(),
       'eleccion_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
@@ -24,6 +25,7 @@ abstract class BaseEleccionForm extends BaseFormPropel
       'id'                        => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'column' => 'id', 'required' => false)),
       'vanity'                    => new sfValidatorString(array('max_length' => 150)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
+      'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'eleccion_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
 

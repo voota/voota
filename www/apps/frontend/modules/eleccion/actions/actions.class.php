@@ -17,11 +17,29 @@ class eleccionActions extends sfActions
   */
   public function executeShow(sfWebRequest $request)
   {
-  	$id = $request->getParameter('id');
+  	$vanity = $request->getParameter('vanity');
+  	$convocatoria = $request->getParameter('convocatoria');
   	
   	$c = new Criteria();
-  	$c->add(EleccionPeer::ID, $id);
-  	$this->eleccion = EleccionPeer::doSelectOne($c);
-  	$this->forward404Unless( $this->eleccion );
+  	$c->addJoin(ConvocatoriaPeer::ELECCION_ID, EleccionPeer::ID);
+  	$c->add(ConvocatoriaPeer::NOMBRE, $convocatoria);
+  	$c->add(EleccionPeer::VANITY, $vanity);
+  	
+  	$this->convocatoria = ConvocatoriaPeer::doSelectOne($c);
+  	$this->forward404Unless( $this->convocatoria );
+  	
+  	$c = new Criteria();
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+  	$this->listas = ListaPeer::doSelect( $c );
+  	
+    // Enlaces
+    $c = new Criteria();
+	$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+	$c->add( $rCriterion );
+	$c->add(EnlacePeer::ELECCION_ID, $this->convocatoria->getEleccion()->getId());
+    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+    $this->activeEnlaces = EnlacePeer::doSelect( $c );
   }
 }

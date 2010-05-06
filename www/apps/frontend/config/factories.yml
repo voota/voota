@@ -38,7 +38,7 @@ test:
           post: 11211
 dev:
   view_cache:
-    class: sfNocache
+    class: sfMemcacheCache
     param:
       lifetime:                  86400 #24h
       prefix:                    vo
@@ -46,6 +46,11 @@ dev:
         server_01:
           host: localhost
           post: 11211
+  view_cache_manager:
+    class: sfViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    true
 
 all:
   routing:

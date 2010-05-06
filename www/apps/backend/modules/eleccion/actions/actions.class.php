@@ -21,6 +21,16 @@ require_once dirname(__FILE__).'/../lib/eleccionGeneratorHelper.class.php';
  */
 class eleccionActions extends autoEleccionActions
 {
+		
+	public function executeUpdate(sfWebRequest $request)
+  	{
+  		parent::executeUpdate( $request );
+  		if($this->form->getValue('imagen_delete') == "on"){
+			$this->form->getObject()->setImagen( null );
+		}
+		$this->form->getObject()->save();
+  	}
+	
 	public function executeAutoComplete($request)
 	{
 	  $this->getResponse()->setContentType('application/json');
@@ -29,7 +39,7 @@ class eleccionActions extends autoEleccionActions
 	}
 	
 	public function executeEdit(sfWebRequest $request) {
-		//$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
+		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		$this->configuration->setInstituciones($this->getRoute()->getObject()->getEleccionInstitucions());		
 		
 		parent::executeEdit( $request );
@@ -40,7 +50,7 @@ class eleccionActions extends autoEleccionActions
 	public function executeDeleteEnlace(sfWebRequest $request) {
 	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
 	  $enlace->delete();
-	  $this->redirect('@politico_edit?id='.$enlace->getPolitico()->getId());
+	  $this->redirect('@eleccion_edit?id='.$enlace->getEleccion()->getId());
 	}
 	
 	public function executeDeleteInstitucion(sfWebRequest $request) {

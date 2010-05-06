@@ -18,24 +18,22 @@
 
 class EntityManager {	
 	const PAGE_SIZE = 20;
-	const MAX_PAGES = 10;
+	const MAX_PAGES = 500;
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
-  			//$cacheManager=new sfMemcacheCache();
-  			//$cacheManager->initialize();
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
   			$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
-  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
-  			return unserialize($cacheManager->get("$key"));  		
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
   		}
   		else {  		
 		  	$c = new Criteria();
@@ -119,10 +117,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);
-	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager), 3600);
+	  			$cache->set("$key-totalUp",serialize($totalUp), 3600);
+	  			$cache->set("$key-totalDown",serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -130,20 +128,20 @@ class EntityManager {
   	
   	public static function getPropuestas($culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{ 
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cache != null) {
   			$key= "propuesta/ranking?key=". md5("propuestas-$culture-$page-$order");
   			$key_totalUp= "propuesta/ranking?key-totalUp=". md5("propuestas-$culture-$page-$order");
   			$key_totalDown= "propuesta/ranking?key-totalDown=". md5("propuestas-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-			$totalUp = unserialize( $cacheManager->get($key_totalUp) );
-			$totalDown = unserialize( $cacheManager->get($key_totalDown) );
-  			return unserialize( $cacheManager->get("$key") );  		
+			$totalUp = unserialize( $cache->get($key_totalUp) );
+			$totalDown = unserialize( $cache->get($key_totalDown) );
+  			return unserialize( $cache->get("$key") );  		
   		}
   		else {
 		  	$c = new Criteria();
@@ -202,10 +200,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);		  	
-	  			$cacheManager->set($key_totalUp,serialize($totalUp), 3600);
-	  			$cacheManager->set($key_totalDown,serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager), 3600);		  	
+	  			$cache->set($key_totalUp,serialize($totalUp), 3600);
+	  			$cache->set($key_totalDown,serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -213,20 +211,20 @@ class EntityManager {
   	
   	public static function getPartidos($institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
-  			//$cacheManager=new sfMemcacheCache();
-  			//$cacheManager->initialize();
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cache != null) {
+  			//$cache=new sfMemcacheCache();
+  			//$cache->initialize();
   			$key=md5("partidos_$partido-$institucion-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
-  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
-  			return unserialize($cacheManager->get("$key"));  		
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
   		}
   		else {  		
 		  	$c = new Criteria();
@@ -306,10 +304,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);
-	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager), 3600);
+	  			$cache->set("$key-totalUp",serialize($totalUp), 3600);
+	  			$cache->set("$key-totalDown",serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -402,7 +400,28 @@ class EntityManager {
   	public static function getDefaultPager($entity){
   		
   	}
-  	
+  	  	
+ 	private static function getPagerFromCache($filter, $id){
+ 		$pager = false;
+ 		
+  		$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("pager_".$id."_".$filter['type']."-".$filter['partido']."-".$filter['institucion']."-".$filter['culture']."-".$filter['order']."");
+  			
+  			$pager = unserialize($cache->get($key));
+	  	}
+		return $pager;
+ 	}
+  	  	
+ 	private static function setPagerToCache($filter, $id, $pager){
+  		$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("pager_".$id."_".$filter['type']."-".$filter['partido']."-".$filter['institucion']."-".$filter['culture']."-".$filter['order']."");
+  			
+  			$cache->set($key, serialize($pager));
+	  	}
+ 	}
+ 	
  	public static function getPager($entity, $reset = false){
 	 	$pager = false;
 	 	$user = sfContext::getInstance()->getUser();
@@ -418,8 +437,11 @@ class EntityManager {
 		  		'page' => '1',
 		  		'order' => 'pd',
 		  	);
-		  	$user->setAttribute("filter_".$entity->getType(), $filter);  		
-	  	}  
+		  	$user->setAttribute("filter_".$entity->getType(), $filter);
+	  	}
+  		if ($pager = self::getPagerFromCache($filter, $entity->getId())){
+  			return $pager;
+  		}		  
 	  	
 	  	switch($entity->getType()){
 	  		case Politico::NUM_ENTITY:
@@ -442,9 +464,11 @@ class EntityManager {
 	  		$idx ++;
 	  		
 		  	foreach ($pager->getResults() as $aEntity){
-				if ($aEntity->getId() == $entity->getId()){	
+				if ($aEntity->getId() == $entity->getId()){
+		  			$filter['page'] = $pager->getPage();
+	  				$user->setAttribute("filter_".$entity->getType(), $filter);
+	  				self::setPagerToCache($filter, $entity->getId(), $pager);
 					$found = true;
-		  			$filter['page'] = $page;
 				}
 			}
 
@@ -467,11 +491,9 @@ class EntityManager {
 					default:
 						$page++;
 				}
-				if ($lastPage > $page) {
-					//echo $page;			
+				if ($lastPage >= $page) {
 					$pager->setPage($page);
 					$pager->init();
-	  				$user->setAttribute("filter_".$entity->getType(), $filter);
 				}
 			}
 	  	} while (!$found && $idx < self::MAX_PAGES);

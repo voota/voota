@@ -5,22 +5,21 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
 
-<h2 id="name"><?php echo $eleccion->getNombre(); ?>. <?php echo "24 de mayo" // TODO: Fecha de las elecciones ?>.</h2>
+<h2 id="name"><?php echo $convocatoria->getEleccion()->getNombre(); ?>. 
+<?php echo __("%dia% de %mes%", array('%dia%' => format_date($convocatoria->getFecha(), ' d'), '%mes%' => format_date($convocatoria->getFecha(), 'MMMM')))?>.</h2>
 
 <div id="content">
-  <div title="<?php echo $eleccion->getNombre() ?>" id="photo">
-	  <img src="/images/proto/eleccion.png" alt="<?php echo __('Imagen de %nombre%', array('%nombre%' => $eleccion->getNombre())) ?>" />
+  <div title="<?php echo $convocatoria->getEleccion()->getNombre() ?>" id="photo">
+  	<?php echo image_tag(S3Voota::getImagesUrl().'/elecciones/cc_'. $convocatoria->getEleccion()->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
   </div>
     
   <div title="info" id="description">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <?php echo formatPresentacion( $convocatoria->getEleccion()->getDescripcion() ) ?>
   </div><!-- end of description -->
 
   <div id="selector_convocatoria">
     <ul>
-      <li>Parlament</li>
+      <li>Parlament ?!!!!!!!!"???</li>
       <li><a href="#">Barcelona</a></li>
       <li><a href="#">Tarragona</a></li>
       <li><a href="#">Lleida</a></li>
@@ -36,21 +35,21 @@
       </tr>
     </thead>
     <tbody>
-      <?php for ($i = 1; $i <= 10; $i++): // TODO: Iterar por partidos ?>
+      <?php foreach ($listas as $lista): ?>
         <tr>
-          <td class="partido"><a href="#">PdI</a></td>
+          <td class="partido"><a href="#"><?php echo $lista->getPartido()->getAbreviatura();?></a></td>
           <td class="escanos">35</td>
           <td class="politicos">
-            <?php for ($j = 1; $j <= rand(3, 20); $j++): // TODO: Iterar por políticos ?>
-              <img class="politico" id="politico_<?php echo "{$i}_{$j}" // TODO: Usar id de político ?>" src="/images/proto/politico.png" alt="<?php echo 'Nombre del político' // TODO: Sustituir por nombre del político ?>" />
+            <?php foreach($lista->getPoliticoListas() as $politicoLista): $politico = $politicoLista->getPolitico(); ?>
+              <img class="politico" id="<?php echo "politico_". $politico->getId()?>" src="<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>" alt="<?php echo $politicoLista->getPolitico() ?>" />
               <script type="text/javascript" charset="utf-8">
-                $("#<?php echo "politico_{$i}_{$j}" // TODO: Usar id de político ?>").data('positive_votes', <?php echo rand(3, 1000) // TODO: Votos positivos ?>);
-                $("#<?php echo "politico_{$i}_{$j}" // TODO: Usar id de político ?>").data('negative_votes', <?php echo rand(3, 1000) // TODO: Votos positivos ?>);
+                $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', <?php echo $politico->getSumu() ?>);
+                $("#<?php echo "politico_". $politico->getId()?>").data('negative_votes', <?php echo $politico->getSumd() ?>);
               </script>
-            <?php endfor ?>
+            <?php endforeach ?>
           </td>
         </tr>
-      <?php endfor ?>
+      <?php endforeach ?>
     </tbody>
     <tfoot>
       <tr>
@@ -62,17 +61,17 @@
 
 </div><!-- end of content -->
 
-<?php // TODO: Sustituir enlaces ?>
-<?php //if(count($activeEnlaces) > 0): ?>
-  <div id="external-links">  
-    <h3><?php echo __('Enlaces externos')?></h3>
-    <ul>
-      <?php for ($i = 1; $i <= 5; $i++): // TODO: Iterar por enlaces ?>
-	      <li><a href="#">seisdeagosto.com/indica</a></li>
-      <?php endfor ?>
-    </ul>
-  </div>
-<?php //endif ?>
+
+  <?php if(count($activeEnlaces) > 0): ?>
+    <div id="external-links">  
+      <h3><?php echo __('Enlaces externos')?></h3>
+      <ul>
+        <?php foreach($activeEnlaces as $enlace): ?>
+		      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+        <?php endforeach ?>
+      </ul>
+    </div>
+  <?php endif ?>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){

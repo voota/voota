@@ -15,11 +15,6 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class RelatedEnlaceForm extends EnlaceForm
+class EleccionEnlaceForm extends RelatedEnlaceForm
 {
-  public function configure()
-  {
-  	parent::configure();
-	unset($this['created_at'], $this['politico_id'], $this['partido_id'], $this['sf_guard_user_id'], $this['mostrar'], $this['propuesta_id'], $this['eleccion_id']);
-  }
 }

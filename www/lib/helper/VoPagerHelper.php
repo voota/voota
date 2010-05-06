@@ -32,7 +32,7 @@ function currentIndex( $pager, $id ) {
 	}
   	return $ret;
 }
-function prevEntity( $pager, $id, &$page = 0 ) {
+function prevEntity( $pager, $id ) {
 	$ret = false;
 	$prev = false;
 	$idx = 0;
@@ -43,17 +43,17 @@ function prevEntity( $pager, $id, &$page = 0 ) {
 		$prev = $entity;
 	}
 	if (!$ret && $entity && $pager->getPage() > 1){
-		$page = -1;
 		$pager->setPage($pager->getPage()-1);
-		$pager->init();
-		$pager->setCursor( $pager->getLastIndice() );
-		$ret = $pager->getCurrent();
+		$pager->init();	
+		foreach ($pager->getResults() as $entity){
+			$ret = $entity;
+		}
 		$pager->setPage($pager->getPage()+1);
 		$pager->init();
 	}
   	return $ret;
 }
-function nextEntity( $pager, $id, &$page = 0 ) {
+function nextEntity( $pager, $id ) {
 	$ret = false;
 	$next = false;
 	$flag = false;
@@ -67,7 +67,6 @@ function nextEntity( $pager, $id, &$page = 0 ) {
 		}
 	}
 	if (!$ret && $flag && $pager->getPage() < $pager->getLastPage()){
-		$page = 1;
 		$pager->setPage($pager->getPage()+1);
 		$pager->init();
 		$ret = $pager->getResults();

@@ -29,6 +29,10 @@ abstract class BaseConvocatoriaForm extends BaseFormPropel
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Convocatoria', 'column' => array('eleccion_id', 'nombre')))
+    );
+
     $this->widgetSchema->setNameFormat('convocatoria[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
