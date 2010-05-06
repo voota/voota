@@ -237,3 +237,23 @@ function sparkline(id, label, data) {
     g.draw();
   } catch(err) { }
 }
+
+jQuery.fn.tooltip_politico_elecciones = function() {
+  $(this).each(function(){
+    img = $('<div>').append($(this).clone()).remove().html();
+    positive_votes = $(this).data('positive_votes') + ' <img src="/images/icoMiniUp.png" />';
+    negative_votes = $(this).data('negative_votes') + ' <img src="/images/icoMiniDown.png" />';
+    $(this).qtip({
+      content: '<div class="tooltip-politico"><div class="photo">' + img + '</div><div class="positive_votes">' + positive_votes + '</div><div class="negative_votes">' + negative_votes + '</div></div>',
+      position: {
+        corner: { tooltip: 'bottomMiddle', target: 'topMiddle' }
+      },
+      hide: { fixed: true, delay: 100, effect: { type: 'fade' } },
+      style: {
+        border: { width: 1, color: '#809DB9' },
+        padding: 10,
+        tip: true
+      }
+    });
+  });
+}

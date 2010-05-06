@@ -5,31 +5,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
 
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function(){
-    $('img.politico').each(function(){
-      $(this).qtip({
-        content: $(this),
-        position: {
-          corner: {
-            tooltip: 'bottomMiddle',
-            target: 'topMiddle'
-          }
-        },
-        hide: { fixed: true, delay: 100, effect: { type: 'fade' } },
-        style: {
-          border: {
-            width: 1
-          },
-          padding: 10,
-          tip: true
-        }
-      })
-    });
-  });
-</script>
-
-<h2 id="name"><?php echo $eleccion->getNombre(); ?></h2>
+<h2 id="name"><?php echo $eleccion->getNombre(); ?>. <?php echo "24 de mayo" // TODO: Fecha de las elecciones ?>.</h2>
 
 <div id="content">
   <div title="<?php echo $eleccion->getNombre() ?>" id="photo">
@@ -67,6 +43,10 @@
           <td class="politicos">
             <?php for ($j = 1; $j <= rand(3, 20); $j++): // TODO: Iterar por políticos ?>
               <img class="politico" id="politico_<?php echo "{$i}_{$j}" // TODO: Usar id de político ?>" src="/images/proto/politico.png" alt="<?php echo 'Nombre del político' // TODO: Sustituir por nombre del político ?>" />
+              <script type="text/javascript" charset="utf-8">
+                $("#<?php echo "politico_{$i}_{$j}" // TODO: Usar id de político ?>").data('positive_votes', <?php echo rand(3, 1000) // TODO: Votos positivos ?>);
+                $("#<?php echo "politico_{$i}_{$j}" // TODO: Usar id de político ?>").data('negative_votes', <?php echo rand(3, 1000) // TODO: Votos positivos ?>);
+              </script>
             <?php endfor ?>
           </td>
         </tr>
@@ -93,3 +73,9 @@
     </ul>
   </div>
 <?php //endif ?>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('img.politico').tooltip_politico_elecciones();
+  });
+</script>
