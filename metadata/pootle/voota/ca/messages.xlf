@@ -2365,107 +2365,107 @@ actual)</target>
         <source>Creada el %1%</source>
         <target>Creada el %1%</target>
       </trans-unit>
-      <trans-unit id="523">
+      <trans-unit id="523" approved="yes">
         <source>segundo</source>
-        <target/>
+        <target>segon</target>
       </trans-unit>
-      <trans-unit id="524">
+      <trans-unit id="524" approved="yes">
         <source>minuto</source>
-        <target/>
+        <target>minut</target>
       </trans-unit>
-      <trans-unit id="525">
+      <trans-unit id="525" approved="yes">
         <source>hora</source>
-        <target/>
+        <target>hora</target>
       </trans-unit>
-      <trans-unit id="526">
+      <trans-unit id="526" approved="yes">
         <source>día</source>
-        <target/>
+        <target>dia</target>
       </trans-unit>
-      <trans-unit id="527">
+      <trans-unit id="527" approved="yes">
         <source>semana</source>
-        <target/>
+        <target>setmana</target>
       </trans-unit>
-      <trans-unit id="528">
+      <trans-unit id="528" approved="yes">
         <source>mes</source>
-        <target/>
+        <target>mes</target>
       </trans-unit>
-      <trans-unit id="529">
+      <trans-unit id="529" approved="yes">
         <source>año</source>
-        <target/>
+        <target>any</target>
       </trans-unit>
-      <trans-unit id="530">
+      <trans-unit id="530" approved="yes">
         <source>década</source>
-        <target/>
+        <target>dècada</target>
       </trans-unit>
-      <trans-unit id="531">
+      <trans-unit id="531" approved="yes">
         <source>segundos</source>
-        <target/>
+        <target>segons</target>
       </trans-unit>
-      <trans-unit id="532">
+      <trans-unit id="532" approved="yes">
         <source>minutos</source>
-        <target/>
+        <target>minuts</target>
       </trans-unit>
-      <trans-unit id="533">
+      <trans-unit id="533" approved="yes">
         <source>horas</source>
-        <target/>
+        <target>hores</target>
       </trans-unit>
-      <trans-unit id="534">
+      <trans-unit id="534" approved="yes">
         <source>días</source>
-        <target/>
+        <target>dies</target>
       </trans-unit>
-      <trans-unit id="535">
+      <trans-unit id="535" approved="yes">
         <source>semanas</source>
-        <target/>
+        <target>setmanes</target>
       </trans-unit>
-      <trans-unit id="536">
+      <trans-unit id="536" approved="yes">
         <source>meses</source>
-        <target/>
+        <target>mesos</target>
       </trans-unit>
-      <trans-unit id="537">
+      <trans-unit id="537" approved="yes">
         <source>años</source>
-        <target/>
+        <target>anys</target>
       </trans-unit>
-      <trans-unit id="538">
+      <trans-unit id="538" approved="yes">
         <source>décadas</source>
-        <target/>
+        <target>dècades</target>
       </trans-unit>
-      <trans-unit id="539">
+      <trans-unit id="539" approved="yes">
         <source>un</source>
-        <target/>
+        <target>una</target>
       </trans-unit>
-      <trans-unit id="540">
+      <trans-unit id="540" approved="yes">
         <source>ratito</source>
-        <target/>
+        <target>estoneta</target>
       </trans-unit>
-      <trans-unit id="541">
+      <trans-unit id="541" approved="yes">
         <source>Hace %1% %2%</source>
-        <target/>
+        <target>Fa %1% %2%</target>
       </trans-unit>
-      <trans-unit id="542">
+      <trans-unit id="542" approved="yes">
         <source>http://blog.voota.es</source>
         <target>http://blog.voota.cat</target>
       </trans-unit>
-      <trans-unit id="543">
+      <trans-unit id="543" approved="yes">
         <source>Buscar políticos</source>
-        <target/>
+        <target>Buscar polítics</target>
       </trans-unit>
-      <trans-unit id="544">
+      <trans-unit id="544" approved="yes">
         <source>abreviatura o nombre del partido</source>
-        <target/>
+        <target>abreviatura o nom del partit</target>
       </trans-unit>
-      <trans-unit id="545">
+      <trans-unit id="545" approved="yes">
         <source>en</source>
-        <target/>
+        <target>en</target>
       </trans-unit>
-      <trans-unit id="546">
+      <trans-unit id="546" approved="yes">
         <source>Parlamento europeo, Gobierno, Congreso...</source>
-        <target/>
+        <target>Parlament europeu, Govern, Congrés...</target>
       </trans-unit>
-      <trans-unit id="547">
+      <trans-unit id="547" approved="yes">
         <source>Filtrar</source>
-        <target/>
+        <target>Filtrar</target>
       </trans-unit>
-      <trans-unit id="548">
+      <trans-unit id="548" approved="yes">
         <source>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
 &lt;p&gt;En primer lugar, queremos darte las gracias por animarte a participar como político en Voota. Nos hace mucha ilusión tenerte entre nosotros, de verdad.&lt;/p&gt;
 
@@ -2493,9 +2493,9 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target/>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc, volen donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (fotografia, bio, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre a les opinions que altres usuaris facin sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la seva situació inicial: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Esperem ser-te útils.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya,&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat/&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="549">
+      <trans-unit id="549" approved="yes">
         <source>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
 &lt;p&gt;Queremos avisarte que a partir de ahora %nombreUsuario% podrá hacer cambios sobre tu perfil (biografía, fotografía, enlaces externos, etc.) y responder a las opiniones de otros usuarios sobre tu actividad política.&lt;/p&gt;
 
@@ -2514,103 +2514,103 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target/>
+        <target>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis sobre el teu perfil (biografia, foto, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil.: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya,&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat/&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       </trans-unit>      
-      <trans-unit id="550">
+      <trans-unit id="550" approved="yes">
         <source>API</source>
-        <target/>
+        <target>API</target>
       </trans-unit>
-      <trans-unit id="551">
+      <trans-unit id="551" approved="yes">
         <source>Ranking políticos</source>
-        <target/>
+        <target>Rànquing polítics</target>
       </trans-unit>
-      <trans-unit id="552">
+      <trans-unit id="552" approved="yes">
         <source>Ranking partidos</source>
-        <target/>
+        <target>Rànquing partits</target>
       </trans-unit>
-      <trans-unit id="553">
+      <trans-unit id="553" approved="yes">
         <source>Ranking propuestas</source>
-        <target/>
+        <target>Rànquing propostes</target>
       </trans-unit>
-      <trans-unit id="554">
+      <trans-unit id="554" approved="yes">
         <source>el %fecha%</source>
-        <target/>
+        <target>el %fecha%</target>
       </trans-unit>
-      <trans-unit id="555">
+      <trans-unit id="555" approved="yes">
         <source>Opiniones sobre políticos, partidos y propuestas políticas en España.</source>
-        <target/>
+        <target>Opinions sobre polítics, partits i propostes polítiques de Catalunya i Espanya.</target>
       </trans-unit>
-      <trans-unit id="556">
+      <trans-unit id="556" approved="yes">
         <source>%1% opiniones, de %4% personas, sobre </source>
-        <target/>
+        <target>%1% opinions, de %4% persones, sobre</target>
       </trans-unit>
-      <trans-unit id="557">
+      <trans-unit id="557" approved="yes">
         <source>%5% políticos</source>
-        <target/>
+        <target>%5% polítics</target>
       </trans-unit>
-      <trans-unit id="558">
+      <trans-unit id="558" approved="yes">
         <source>%5% partidos</source>
-        <target/>
+        <target>%5% partits</target>
       </trans-unit>
-      <trans-unit id="559">
+      <trans-unit id="559" approved="yes">
         <source>%5% propuestas</source>
-        <target/>
+        <target>%5% propostes</target>
       </trans-unit>
-      <trans-unit id="560">
+      <trans-unit id="560" approved="yes">
         <source>&amp;laquo; Propuesta anterior</source>
-        <target/>
+        <target>&amp;laquo; Proposta anterior</target>
       </trans-unit>
-      <trans-unit id="561">
+      <trans-unit id="561" approved="yes">
         <source>&amp;laquo; Partido anterior</source>
-        <target/>
+        <target>&amp;laquo; Partit anterior</target>
       </trans-unit>
-      <trans-unit id="562">
+      <trans-unit id="562" approved="yes">
         <source>Propuesta siguiente &amp;raquo;</source>
-        <target/>
+        <target>Proposta següent &amp;raquo;</target>
       </trans-unit>
-      <trans-unit id="563">
+      <trans-unit id="563" approved="yes">
         <source>Partido siguiente &amp;raquo;</source>
-        <target/>
+        <target>Partit següent &amp;raquo;</target>
       </trans-unit>
-      <trans-unit id="564">
+      <trans-unit id="564" approved="yes">
         <source>Listado de propuestas %filtro% %orden%</source>
-        <target/>
+        <target>Llistat de propostes %filtro% %orden%</target>
       </trans-unit>
-      <trans-unit id="565">
+      <trans-unit id="565" approved="yes">
         <source>Listado de partidos %filtro% %orden%</source>
-        <target/>
+        <target>Llistat de partits %filtro% %orden%</target>
       </trans-unit>
-      <trans-unit id="566">
+      <trans-unit id="566" approved="yes">
         <source>Febrero 2010</source>
-        <target/>
+        <target>Febrer 2010</target>
       </trans-unit>
-      <trans-unit id="567">
+      <trans-unit id="567" approved="yes">
         <source>Voota alcanza la friolera de 20 socios. Al mismo tiempo, ya se empieza a notar en la web la realidad que hay en la calle.</source>
-        <target/>
+        <target>Voota arriba a 20 socis. Al mateix temps, ja es comença a nota a la web la realitat que hi ha al carrer.</target>
       </trans-unit>
-      <trans-unit id="568">
+      <trans-unit id="568" approved="yes">
         <source>¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)</source>
-        <target/>
+        <target>Qui ets? A què et dediques? Defineix-te en 280 caràcters! (opcional, però ajuda)</target>
       </trans-unit>
-      <trans-unit id="569">
+      <trans-unit id="569" approved="yes">
         <source>Lo más votado de esta semana:</source>
-        <target/>
+        <target>El més votat d'aquesta setmana:</target>
       </trans-unit>
-      <trans-unit id="570">
+      <trans-unit id="570" approved="yes">
         <source>Ordenar por votos positivos: Las más votadas primero / las menos votadas primero</source>
-        <target/>
+        <target>Ordenar per vots positius: Les més votades primer / les menys votades primer</target>
       </trans-unit>
-      <trans-unit id="571">
+      <trans-unit id="571" approved="yes">
         <source>Ordenar por votos positivos: Los más votados primero / los menos votados primero</source>
-        <target/>
+        <target>Ordenar per vots positius: Els més votats primer / els menys votats primer</target>
       </trans-unit>
-      <trans-unit id="572">
+      <trans-unit id="572" approved="yes">
         <source>Ordenar por votos negativos: Los más votados primero / los menos votados primero</source>
-        <target/>
+        <target>Ordenar per vots negatius: Els més votats primer / els menys votats primer</target>
       </trans-unit>
-      <trans-unit id="573">
+      <trans-unit id="573" approved="yes">
         <source>Ranking por partido</source>
-        <target/>
+        <target>Rànquing per partit</target>
       </trans-unit>
     </body>
   </file>
