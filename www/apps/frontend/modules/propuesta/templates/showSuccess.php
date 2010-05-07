@@ -58,7 +58,7 @@
   <div title="<?php echo $propuesta->getTitulo() ?>" id="photo">
     <?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_'.$propuesta->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $propuesta->getTitulo())) .'"') ?>
     <div class="vote">
-      <h3><?php echo __('Voota sobre')?> <?php echo $propuesta->getTitulo(); ?></h3>
+      <h3><?php echo __('Voota sobre')?> "<?php echo $propuesta->getTitulo(); ?>"</h3>
       <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
     </div>
   </div>
@@ -94,7 +94,7 @@
   </div>
 
   <div class="vote">
-    <h3><?php echo __('Voota sobre %1%', array('%1%' => $propuesta->getTitulo()))?></h3>
+    <h3><?php echo __('Voota sobre %1%', array('%1%' => '"'.$propuesta->getTitulo().'"'))?></h3>
     <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
   </div>
   
