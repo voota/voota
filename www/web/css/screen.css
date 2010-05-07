@@ -74,7 +74,9 @@ tr.even { background-color: #fbfbfb; }
 #sfGuardAuth-unsubscribe #main,
 #sfGuardAuth-passwordChanged #main,
 #sfGuardAuth-remove #main,
-#perfil-reviews #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#sfReviewFront-list #main,
+#perfil-reviews #main,
+#eleccion-show #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 20px 0; }
 #content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
@@ -511,6 +513,19 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #eleccion-show .tooltip-politico .photo { float: left; overflow: hidden;}
 #eleccion-show .tooltip-politico .positive_votes { float: right; overflow: hidden; margin-left: 5px; width: 45px; margin-bottom: 5px; text-align: right;}
 #eleccion-show .tooltip-politico .negative_votes { float: right; overflow: hidden; margin-left: 5px; width: 45px; clear: right; text-align: right;}
+
+/* Página de últimos vootos */
+#sfReviewFront-list h2.title { margin-bottom: 0;}
+#sfReviewFront-list h3.title { margin-bottom: 20px; font-weight: normal;}
+#sfReviewFront-list #content { width: 600px;}
+#sfReviewFront-list #sidebar { width: 220px;}
+#sfReviewFront-list ol.reviews  { margin: 0; padding: 0;}
+#sfReviewFront-list ol.reviews li { list-style: none; margin-bottom: 20px;}
+#sfReviewFront-list ol.reviews .review-author { padding-bottom: 0;}
+#sfReviewFront-list ol.reviews .review-author img,
+#sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
+#sfReviewFront-list #ultimos-usuarios ol { margin: 0; padding: 0;}
+#sfReviewFront-list #ultimos-usuarios li { list-style: none; margin-bottom: 5px;}
 
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
