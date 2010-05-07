@@ -515,6 +515,18 @@ class politicoActions extends sfActions
 	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    if ($politico->getsfGuardUser() && count($this->activeEnlaces) == 0){
+	    $c = new Criteria();
+		$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+		$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+		$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+		$c->add( $rCriterion );
+		$c->add(EnlacePeer::POLITICO_ID, $id);
+		$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
+	    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+	    $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    }
+    
     $this->twitterUser = FALSE;
     foreach ($this->activeEnlaces as $enlace){
     	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){

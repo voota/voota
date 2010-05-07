@@ -87,7 +87,7 @@
 	  <h3><?php echo __('Su biografía')?></h3>
 
     <div title="biografia" class="bio">
-      <?php echo formatBio( $politico->getsfGuardUser()?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
+      <?php echo formatBio( ($politico->getsfGuardUser() && $politico->getsfGuardUser()->getProfile()->getPresentacion())?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
       
       <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
         <p>
