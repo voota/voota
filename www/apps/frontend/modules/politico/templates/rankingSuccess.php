@@ -34,17 +34,7 @@
   });
 </script>
 
-<h2>
-  <?php echo $pageTitle ?>
-  
-  <?php /* ?>
-  <select name="partido" id="partido_selector" class="input">
-  <?php foreach ($partidos_arr as $value => $desc): ?>
-    <option value="<?php echo $value?>" <?php echo $partido==$value?'selected="selected"':''?>><?php echo $desc?></option>    
-  <?php endforeach ?>
-  </select>
-  <?php */ ?>
-</h2>
+<h2><?php echo $pageTitle ?></h2>
 
 <form id="ac_filter_frm" action="<?php echo url_for('politico/ranking')?>">
 <input type="hidden" name="p" id="partido" value="<?php echo $partido ?>" />

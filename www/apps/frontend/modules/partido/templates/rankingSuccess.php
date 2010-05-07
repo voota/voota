@@ -4,6 +4,20 @@
 <?php use_helper('VoFormat') ?>
  
 <script type="text/javascript">  
+  $(document).ready(function(){
+	$("input#ac_institucion").autocomplete({
+		source: '<?php echo url_for('politico/acInstitucion')?>',
+		select: function(event, ui) { $("input#institucion").val(ui.item.id); }
+	});
+	
+	$("#ac_filter_frm").submit(function(){
+  	var ac_institucion = $('input#ac_institucion').val();
+  	if (ac_institucion == '' || ac_institucion == $('input#ac_institucion').attr('title'))
+  		$('input#institucion').val('all');
+
+		return true;
+	});	
+  });
   $(window).load(function(){
     <?php foreach(($results = $partidosPager->getResults()) as $partido): ?>
       <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
@@ -11,11 +25,17 @@
   });
 </script>
 
-<h2>
-  <?php echo $pageTitle ?>
-</h2>
+<h2><?php echo $pageTitle ?></h2>
 
-<?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'linkType' => 'partido')) ?>
+<form id="ac_filter_frm" action="<?php echo url_for('partido/ranking')?>">
+<input type="hidden" name="i" id="institucion" value="<?php echo $institucion ?>" />
+<p>
+	<?php echo __('Ranking en')?> <input type="text" id="ac_institucion" value="<?php echo $institucionAC ?>" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
+	<input type="submit" value="<?php echo __('Filtrar') ?>" />
+</p>
+</form>
+
+<?php //include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'linkType' => 'partido')) ?>
 <?php include_partial('sfReviewFront/dialog') ?>
 
 

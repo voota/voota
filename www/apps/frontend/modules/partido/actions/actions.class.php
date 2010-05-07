@@ -56,10 +56,34 @@ class partidoActions extends sfActions
   	$this->partido = PartidoPeer::retrieveByPK( $id );
   }
   
+  private function generateRankingUrl ($institucion, $i = ''){
+  	$i_url = "";
+  	$culture = $this->getUser()->getCulture();
+  	
+  	if($i != '' && $i != ALL_URL_STRING && $i != ALL_FORM_VALUE){
+  		$i_url = "$i";
+  	}
+  	elseif ($institucion) {
+  		$i_url = "$institucion";
+  	}
+  	
+  	if ($i_url == ""){
+  		// Todos. Sin filtro
+  		$url = "partido/ranking";
+  	}
+  	else {
+  		// Filtro por institucion
+  		$url = "partido/ranking?institucion=$i_url";
+  	}
+  	
+  	return $url;
+  }
+  
   public function executeRanking(sfWebRequest $request)
   {
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
+  	$i = $request->getParameter("i");
   	
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
@@ -72,6 +96,10 @@ class partidoActions extends sfActions
 		}
 		$this->redirect( "politico/ranking$qs", 301 );
 	}	
+    if ($i != ''){
+	  	$url = $this->generateRankingUrl ($institucion, $i);
+	   	$this->redirect( $url );
+  	}
 	$this->order = $order?$order:'pd';
 	$page = $page?$page:1;
   		
@@ -90,6 +118,7 @@ class partidoActions extends sfActions
     $this->totalDown = $totalDown;
     	
   	$this->institucion = $institucion;
+  		$this->institucionAC = '';
   	if ($institucion){ 
   		$aInstitucionCriteria = new Criteria();
 		$aInstitucionCriteria->addJoin(
@@ -101,14 +130,15 @@ class partidoActions extends sfActions
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
 				
   		$this->forward404Unless( $aInstitucion );
+  		$this->institucionAC = $aInstitucion->getNombre();
   	}
     
-    /* Lista de instituciones */ 
+    /* Lista de instituciones 
   	$c = new Criteria();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$c->add(InstitucionPeer::IS_MAIN, true);
   	$this->instituciones = InstitucionPeer::doSelect($c);
-  	/*  Fin Lista de instituciones */
+  	  Fin Lista de instituciones */
   	
   	//$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
