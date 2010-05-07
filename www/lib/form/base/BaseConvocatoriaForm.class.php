@@ -15,18 +15,20 @@ abstract class BaseConvocatoriaForm extends BaseFormPropel
   {
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
-      'nombre'      => new sfWidgetFormInputText(),
       'eleccion_id' => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => false)),
+      'nombre'      => new sfWidgetFormInputText(),
       'fecha'       => new sfWidgetFormDate(),
       'created_at'  => new sfWidgetFormDateTime(),
+      'imagen'      => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'          => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'column' => 'id', 'required' => false)),
-      'nombre'      => new sfValidatorString(array('max_length' => 45)),
       'eleccion_id' => new sfValidatorPropelChoice(array('model' => 'Eleccion', 'column' => 'id')),
+      'nombre'      => new sfValidatorString(array('max_length' => 45)),
       'fecha'       => new sfValidatorDate(),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
+      'imagen'      => new sfValidatorString(array('max_length' => 50, 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -45,5 +47,14 @@ abstract class BaseConvocatoriaForm extends BaseFormPropel
     return 'Convocatoria';
   }
 
+  public function getI18nModelName()
+  {
+    return 'ConvocatoriaI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'ConvocatoriaI18nForm';
+  }
 
 }

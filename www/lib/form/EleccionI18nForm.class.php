@@ -11,6 +11,5 @@ class EleccionI18nForm extends BaseEleccionI18nForm
 {
   public function configure()
   {
-    $this->widgetSchema['descripcion'] = new sfWidgetFormTextarea(array(), array('style' => "width: 500px; height:200px"));
   }
 }

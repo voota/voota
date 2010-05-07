@@ -1,0 +1,3 @@
+default:
+  components:
+    partido_lista:  [eleccion, partidoLista]

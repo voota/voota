@@ -18,7 +18,6 @@ abstract class BaseEleccionI18nForm extends BaseFormPropel
       'culture'      => new sfWidgetFormInputHidden(),
       'nombre_corto' => new sfWidgetFormInputText(),
       'nombre'       => new sfWidgetFormInputText(),
-      'descripcion'  => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -26,7 +25,6 @@ abstract class BaseEleccionI18nForm extends BaseFormPropel
       'culture'      => new sfValidatorPropelChoice(array('model' => 'EleccionI18n', 'column' => 'culture', 'required' => false)),
       'nombre_corto' => new sfValidatorString(array('max_length' => 45)),
       'nombre'       => new sfValidatorString(array('max_length' => 150)),
-      'descripcion'  => new sfValidatorString(array('max_length' => 600, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('eleccion_i18n[%s]');

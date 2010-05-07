@@ -12,7 +12,7 @@ abstract class BasePoliticoListaFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'orden'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'orden'       => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 

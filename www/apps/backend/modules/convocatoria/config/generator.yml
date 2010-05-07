@@ -18,6 +18,10 @@ generator:
         title:   convocatorias
         display: [id,eleccion,nombre,fecha]
       filter:  ~
-      form:    ~
+      form:    
+        display:
+          "Datos generales": [id,nombre,eleccion_id,fecha,imagen]
+          "Traducibles": [es,ca]
+          "Enlaces": []
       edit:    ~
       new:     ~

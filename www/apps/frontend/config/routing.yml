@@ -416,14 +416,14 @@ eleccion_show_ca:
     sf_host_culture: cat
         
 lista_show_es:
-  url: /lista/:partido/:vanity/:convocatoria/:geo
+  url: /lista/:vanity/:convocatoria/:geo/:partido
   param: { module: lista, action: show }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: es
     
 lista_show_ca:
-  url: /lista/:partido/:vanity/:convocatoria/:geo
+  url: /llista/:vanity/:convocatoria/:geo/:partido
   param: { module: lista, action: show }
   class:  sfRequestHostCultureRoute
   requirements:

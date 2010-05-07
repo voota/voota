@@ -18,7 +18,7 @@
 
 class EntityManager {	
 	const PAGE_SIZE = 20;
-	const MAX_PAGES = 500;
+	const MAX_PAGES = 10;
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
@@ -439,9 +439,9 @@ class EntityManager {
 		  	);
 		  	$user->setAttribute("filter_".$entity->getType(), $filter);
 	  	}
-  		if ($pager = self::getPagerFromCache($filter, $entity->getId())){
+  		/*if ($pager = self::getPagerFromCache($filter, $entity->getId())){
   			return $pager;
-  		}		  
+  		}*/		  
 	  	
 	  	switch($entity->getType()){
 	  		case Politico::NUM_ENTITY:
@@ -467,7 +467,7 @@ class EntityManager {
 				if ($aEntity->getId() == $entity->getId()){
 		  			$filter['page'] = $pager->getPage();
 	  				$user->setAttribute("filter_".$entity->getType(), $filter);
-	  				self::setPagerToCache($filter, $entity->getId(), $pager);
+	  				//self::setPagerToCache($filter, $entity->getId(), $pager);
 					$found = true;
 				}
 			}

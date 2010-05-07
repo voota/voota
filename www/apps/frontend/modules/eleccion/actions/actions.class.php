@@ -30,12 +30,10 @@ class eleccionActions extends sfActions
   	$this->forward404Unless( $this->convocatoria );
   	
   	$c = new Criteria();
+  	$c->addJoin(ListaPeer::PARTIDO_ID, PartidoPeer::ID);
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
-  	if($this->geoName){
-  		$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
-  		$c->add(GeoPeer::NOMBRE, $this->geoName);
-  	}
-  	$this->listas = ListaPeer::doSelect( $c );
+  	$c->setDistinct();
+  	$this->partidos = PartidoPeer::doSelect( $c );
   	
     // Enlaces
     $c = new Criteria();
@@ -43,7 +41,7 @@ class eleccionActions extends sfActions
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
 	$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
 	$c->add( $rCriterion );
-	$c->add(EnlacePeer::ELECCION_ID, $this->convocatoria->getEleccion()->getId());
+	$c->add(EnlacePeer::CONVOCATORIA_ID, $this->convocatoria->getId());
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
     
@@ -53,5 +51,8 @@ class eleccionActions extends sfActions
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
   	$c->setDistinct();
   	$this->geos = GeoPeer::doSelect( $c );
+  	
+  	$instituciones = $this->convocatoria->getEleccion()->getEleccionInstitucions();
+  	$this->institucionName = $instituciones[0]->getInstitucion();
   }
 }

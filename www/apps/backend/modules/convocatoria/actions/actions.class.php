@@ -13,4 +13,25 @@ require_once dirname(__FILE__).'/../lib/convocatoriaGeneratorHelper.class.php';
  */
 class convocatoriaActions extends autoConvocatoriaActions
 {
+	public function executeUpdate(sfWebRequest $request)
+  	{
+  		parent::executeUpdate( $request );
+  		if($this->form->getValue('imagen_delete') == "on"){
+			$this->form->getObject()->setImagen( null );
+		}
+		$this->form->getObject()->save();
+  	}
+	
+	public function executeEdit(sfWebRequest $request) {
+		$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());			
+		
+		parent::executeEdit( $request );
+		$this->form->configure();
+	}
+	
+	public function executeDeleteEnlace(sfWebRequest $request) {
+	  $enlace = EnlacePeer::retrieveByPk($request->getParameter('id'));
+	  $enlace->delete();
+	  $this->redirect('@convocatoria_edit?id='.$enlace->getConvocatoria()->getId());
+	}
 }

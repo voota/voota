@@ -22,6 +22,6 @@ class Convocatoria extends BaseConvocatoria {
 
   public function __toString()
   {
-    return $this->getEleccion(). " " .$this->getNombre();  // getTitle() se hereda de BaseArticle
+    return $this->getEleccion(). " " ;//.$this->getNombre();    
   }
 } // Convocatoria

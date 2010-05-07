@@ -7,7 +7,6 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     vanity: { type: VARCHAR, size: '150', required: true }
     created_at: { type: TIMESTAMP, required: false }
-    imagen: { type: VARCHAR, size: '50', required: false }
     _uniques: { uniq_vanity: [vanity] }
   eleccion_i18n:
     _attributes: { phpName: EleccionI18n }
@@ -15,15 +14,20 @@ propel:
     culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
     nombre_corto: { type: VARCHAR, size: '45', required: true }    
     nombre: { type: VARCHAR, size: '150', required: true }
-    descripcion: { type: VARCHAR, size: '600', required: false }
   convocatoria:
-    _attributes: { phpName: Convocatoria }
+    _attributes: { phpName: Convocatoria, isI18N: true, i18nTable: convocatoria_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre: { type: VARCHAR, size: '45', required: true }
     eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    nombre: { type: VARCHAR, size: '45', required: true }    
     fecha: { type: DATE, required: true }
     created_at: { type: TIMESTAMP, required: false }
+    imagen: { type: VARCHAR, size: '50', required: false }
     _uniques: { nombre_unique: [eleccion_id,nombre] }
+  convocatoria_i18n:
+    _attributes: { phpName: ConvocatoriaI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    descripcion: { type: VARCHAR, size: '600', required: false }
   eleccion_institucion:
     _attributes: { phpName: EleccionInstitucion }
     eleccion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -38,7 +42,7 @@ propel:
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     propuesta_id: { type: INTEGER, size: '11', required: false, foreignTable: propuesta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    eleccion_id: { type: INTEGER, size: '11', required: false, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    convocatoria_id: { type: INTEGER, size: '11', required: false, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     orden: { type: INTEGER, size: '11', required: false }
     mostrar: { type: CHAR, size: '1', required: false }
@@ -186,7 +190,7 @@ propel:
     _attributes: { phpName: PoliticoLista }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     lista_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: lista, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    orden: { type: INTEGER, size: '11', required: true }
+    orden: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_politico: [politico_id], fk_politico_lista_lista: [lista_id] }
   politico_temp:
