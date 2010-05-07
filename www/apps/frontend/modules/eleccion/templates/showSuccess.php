@@ -44,7 +44,7 @@
     <tbody>
       <?php foreach ($listas as $lista): ?>
         <tr>
-          <td class="partido"><a href="#"><?php echo $lista->getPartido()->getAbreviatura();?></a></td>
+          <td class="partido"><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geoName) ?>"><?php echo $lista->getPartido()->getAbreviatura();?></a></td>
           <td class="escanos">35</td>
           <td class="politicos">
             <?php foreach($lista->getPoliticoListas() as $politicoLista): $politico = $politicoLista->getPolitico(); ?>
