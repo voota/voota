@@ -38,9 +38,9 @@ array(
 	'%1%' => $nombre
 	, '%2%' => $usuario
 	, '%3%' => $comentario
-	, '%4%' => $politico
+	, '%4%' => $entity
 	, '%5%' => $texto_ori
-	, '%6%' => url_for('politico/show?id='.$vanity, true)
+	, '%6%' => url_for("$module/show?id=".$vanity, true)
 	, '%7%' => url_for('@usuario_unsubscribe?codigo='.$codigo.'&n=1', true)
 	, '%saludo%' => ($comentario != "" ?
     __('<p>Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:<br />"%3%"</p>',
