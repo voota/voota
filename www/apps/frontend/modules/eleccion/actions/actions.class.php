@@ -19,6 +19,7 @@ class eleccionActions extends sfActions
   {
   	$vanity = $request->getParameter('vanity');
   	$convocatoria = $request->getParameter('convocatoria');
+  	$this->geoName = $request->getParameter('geo', false);
   	
   	$c = new Criteria();
   	$c->addJoin(ConvocatoriaPeer::ELECCION_ID, EleccionPeer::ID);
@@ -30,6 +31,10 @@ class eleccionActions extends sfActions
   	
   	$c = new Criteria();
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+  	if($this->geoName){
+  		$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  		$c->add(GeoPeer::NOMBRE, $this->geoName);
+  	}
   	$this->listas = ListaPeer::doSelect( $c );
   	
     // Enlaces
@@ -41,5 +46,12 @@ class eleccionActions extends sfActions
 	$c->add(EnlacePeer::ELECCION_ID, $this->convocatoria->getEleccion()->getId());
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    
+    // Geos
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+  	$c->setDistinct();
+  	$this->geos = GeoPeer::doSelect( $c );
   }
 }

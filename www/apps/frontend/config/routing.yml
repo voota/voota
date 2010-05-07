@@ -386,6 +386,20 @@ api_demo_search:
   param: { module: api_demo, action: proposal }
         
 ### ELECCIONES ###
+    
+eleccion_geo_show_es:
+  url: /elecciones/:vanity/:convocatoria/:geo
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+eleccion_geo_show_ca:
+  url: /eleccions/:vanity/:convocatoria/:geo
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
         
 eleccion_show_es:
   url: /elecciones/:vanity/:convocatoria
@@ -397,6 +411,20 @@ eleccion_show_es:
 eleccion_show_ca:
   url: /eleccions/:vanity/:convocatoria
   param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+        
+lista_show_es:
+  url: /lista/:partido/:vanity/:convocatoria/:geo
+  param: { module: lista, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+lista_show_ca:
+  url: /lista/:partido/:vanity/:convocatoria/:geo
+  param: { module: lista, action: show }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat

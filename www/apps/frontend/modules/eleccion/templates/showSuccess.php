@@ -19,11 +19,18 @@
 
   <div id="selector_convocatoria">
     <ul>
-      <li>Parlament ?!!!!!!!!"???</li>
-      <li><a href="#">Barcelona</a></li>
-      <li><a href="#">Tarragona</a></li>
-      <li><a href="#">Lleida</a></li>
-      <li><a href="#">Girona</a></li>
+      <?php if($geoName):?>
+      	<li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity())?>">Parlament ????????</a></li>
+      <?php else:?>
+      	<li>Parlament ????????</li>
+      <?php endif ?>
+      <?php foreach ($geos as $geo):?>
+        <?php if($geoName && $geo->getNombre() == $geoName):?>
+	      <li><?php echo $geo->getNombre()?></li>
+        <?php else:?>
+	      <li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
+        <?php endif ?>
+      <?php endforeach ?>
     </ul>
   </div>
 
