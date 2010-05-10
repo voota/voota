@@ -336,6 +336,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfGuardAuth-signin #accounts-join-login { float: left; width: 350px; padding-right: 130px; background: transparent url(/images/login_separator.png) right center no-repeat;}
 #sfGuardAuth-signin #accounts-join-skip { float: left; width: 380px; padding-left: 100px; padding-top: 122px;}
 #sfGuardAuth-signin #accounts-join-skip p { padding-bottom: 0;}
+#sfGuardAuth-signin .facebook-login th { padding-top: 18px;}
+#sfGuardAuth-signin .facebook-login td { padding-top: 15px; text-align: right;}
 
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
@@ -569,10 +571,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 .negative-reviews { margin-left: 10%; }
 .review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
 
-
-/*
-  Reglas nuevas
-*/
+/* Reglas nuevas */
 
 table.sparkline {border-collapse: collapse;}
 table.sparkline td {padding:0px;}
