@@ -108,48 +108,52 @@ class BaseSfReviewManager
   
   static public function getReviews($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
-    $criteria = new Criteria();
-    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
-	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	if (isset($filter['offset']))
-		$criteria->setOffset( $filter['offset'] );
-    
-	if (isset($filter['entity_id'])){
-		$entity_id = $filter['entity_id'];
-		$type_id = $filter['type_id'];
+  	if (class_exists('Doctrine')){
+  		return Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
+  	}
+  	else {
+	    $criteria = new Criteria();
+	    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
+		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
+		if (isset($filter['offset']))
+			$criteria->setOffset( $filter['offset'] );
+	    
+		if (isset($filter['entity_id'])){
+			$entity_id = $filter['entity_id'];
+			$type_id = $filter['type_id'];
+			
+		  	if ($type_id != '') {
+		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+		  	}
+		  	else {
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
+		  	}
+		}
+	  	if (isset($filter['value']) && $filter['value']){  	  	
+	  		$criteria->add(SfReviewPeer::VALUE, $filter['value']);
+	  	}
+	  	if (isset($filter['exclude']) && $filter['exclude']){
+	  		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
+	  	}
+	  	
+	  	if(isset($filter['textFilter']) && $filter['textFilter'] == 'text'){
+			$criteria->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
+			$criteria->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture(''));
+		}
 		
-	  	if ($type_id != '') {
-	  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
-	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
-	  	}
-	  	else {
-	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
-	  	}
-	}
-  	if (isset($filter['value']) && $filter['value']){  	  	
-  		$criteria->add(SfReviewPeer::VALUE, $filter['value']);
-  	}
-  	if (isset($filter['exclude']) && $filter['exclude']){
-  		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
-  	}
-  	
-  	if(isset($filter['textFilter']) && $filter['textFilter'] == 'text'){
-		$criteria->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
-		$criteria->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture(''));
-	}
+	  	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
+	  	//$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
+		$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
-  	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
-  	//$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
-	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
-
-  	$pager = new sfPropelPager('SfReview', $numberOfResults);
-    $pager->setCriteria($criteria);
-    
-    $pager->setPage( $page );
-
-    $pager->init();
-    return $pager;
-  	  	
+	  	$pager = new sfPropelPager('SfReview', $numberOfResults);
+	    $pager->setCriteria($criteria);
+	    
+	    $pager->setPage( $page );
+	
+	    $pager->init();
+	    return $pager;
+  	}
   }
   
   static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){
