@@ -126,6 +126,8 @@
       <?php //foreach($topReviews as $review): ?>
         <?php //include_partial('sfReviewFront/reviewForList', array('review' => $review)) ?>
       <?php //endforeach ?>
+      <?php // TODO: enlazar a página correcta, poner contador correcto ?>
+      <p class="ver-mas-vootos"><a href="#"><?php echo __('¡Tachán! Todos los vootos sobre partidos, políticos y propuestas') ?></a> <strong>(<?php echo 12345 ?>)</strong></p>
     </ol>
   </div>
 </div>
