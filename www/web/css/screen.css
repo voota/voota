@@ -87,7 +87,7 @@ tr.even { background-color: #fbfbfb; }
 #user-links { position: absolute; top: 10px; right: 0; text-align: right;}
 #user-links img { padding-right: 10px;}
 #user-links p { padding-bottom: 10px;}
-#user-links #fbc_button img { padding-right: 0;}
+#user-links .fbconnect_login_button img { padding-right: 0;}
 #user-links #lo_fb_conn { padding-right: 10px;}
 #user-links #lo_fb_conn .close { font-size: 9px;}
 #header .search { position: absolute; bottom: 15px; right: 0; text-align: right; }

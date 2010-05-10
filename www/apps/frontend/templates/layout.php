@@ -61,7 +61,7 @@
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
-	    $('#fbc_button').click(function(){
+	    $('.fbconnect_login_button').click(function(){
 	    	return facebookConnect();
 	    });
 	      <?php if ($sf_user->getFlash('logToFB')):  ?>  
@@ -87,13 +87,6 @@
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
   	      <p><?php echo vo_facebook_connect_button(); ?></p>
-  	      <?php /* ?>
-  	      <script type="text/javascript" charset="utf-8">
-  	        $(document).ready(function(){
-  	          facebookConnect_autoLogin();
-  	        })
-  	      </script>
-  	      <?php */ ?>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
