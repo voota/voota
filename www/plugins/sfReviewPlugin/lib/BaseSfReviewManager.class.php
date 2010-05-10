@@ -108,7 +108,6 @@ class BaseSfReviewManager
   
   static public function getReviews($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
-  	//return Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
     $criteria = new Criteria();
     $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
@@ -150,6 +149,7 @@ class BaseSfReviewManager
 
     $pager->init();
     return $pager;
+  	  	
   }
   
   static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){

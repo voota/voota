@@ -31,8 +31,7 @@ class sfReviewComponents extends sfComponents
 		if (isset($this->filter))
 			$filter['textFilter'] = $this->filter;
 			
-		$this->reviewsPager = Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
-  		// $this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);		
+  		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);		
 	}
 	
   public function executeSubreviews()
