@@ -142,8 +142,6 @@ class BaseSfReviewManager
 			$criteria->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture(''));
 		}
 		
-	  	//$criteria->addDescendingOrderByColumn("((text <> '') and (culture IS NULL OR culture = '".sfContext::getInstance()->getUser()->getCulture('es')."'))");
-	  	//$criteria->addDescendingOrderByColumn( SfReviewPeer::BALANCE );
 		$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
 	  	$pager = new sfPropelPager('SfReview', $numberOfResults);

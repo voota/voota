@@ -34,6 +34,19 @@ class sfReviewComponents extends sfComponents
   		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);		
 	}
 	
+	public function executeReviewForList(){
+		if($this->review->getSfReviewType()){
+			$this->aReview = false;
+			$peer = $this->review->getSfReviewType()->getModel(). 'Peer';
+			$this->entity = $peer::retrieveByPk( $this->review->getEntityId() );
+		}
+		else{
+			$this->aReview = $this->review->getSfReviewRelatedBySfReviewId();
+			$peer = $this->aReview->getSfReviewType()->getModel(). 'Peer';
+			$this->entity = $peer::retrieveByPk( $this->aReview->getEntityId() );
+		}
+	}
+	
   public function executeSubreviews()
   {
   	if (!isset($this->showCount)){

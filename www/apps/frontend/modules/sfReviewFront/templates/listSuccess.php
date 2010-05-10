@@ -32,15 +32,16 @@
   	<?php if(isset($lastReviewsPager)): ?>
   		<ol class="reviews-list">
   		  <?php foreach($lastReviewsPager->getResults() as $review): ?>
-  		    <?php include_partial('reviewForList', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
+  		  
+      		<?php include_component_slot('review_for_list', array('review' => $review)) ?>
   		  <?php endforeach ?>
   		</ol>
   	<?php endif ?>
   	<?php if ($reviewsPager->getNbResults() > 0): ?>
   	  <ol class="reviews-list">
     	  <?php foreach($reviewsPager->getResults() as $review): ?>
-    		  <?php include_partial('reviewForList', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
-    		<?php endforeach ?>
+      		<?php include_component_slot('review_for_list', array('review' => $review)) ?>
+		  <?php endforeach ?>
   	  </ol>
   	<?php endif ?>
   <?php else: ?>

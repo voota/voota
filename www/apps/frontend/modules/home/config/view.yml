@@ -1,6 +1,7 @@
 default:
   components:
     sparkline:  [general, sparkline]
+    review_for_list:  [sfReviewFront, reviewForList]
 
 all:
   javascripts: 

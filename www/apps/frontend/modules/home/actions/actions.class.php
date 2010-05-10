@@ -107,5 +107,8 @@ class homeActions extends sfActions{
 	
   	$this->response->addMeta('Description', sfContext::getInstance()->getI18N()->__('Comparte opiniones sobre políticos y partidos de España. Ranking de los políticos y partidos más votados.'));
 	
+  	// Ultimos comentarios
+	$filter = array();		
+  	$this->topReviews = SfReviewManager::getReviews($filter, 1, 5);
   }
 }
