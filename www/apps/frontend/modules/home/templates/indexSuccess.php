@@ -62,7 +62,7 @@
         	)) ?></a>.
         				
         </h2></li>
-        <li>
+        <li class="lo-mas-votado">
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
             <?php foreach($reviewables as $reviewable): ?>
@@ -76,20 +76,59 @@
           </ol>
         </li>
       </ul>
-
-    <div class="search">
-      <form method="get" action="<?php echo url_for('@search')?>">
-        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
-        <p>
-          <input type="text" name="q" id="q_1" value="<?php echo $sf_params->get('q') ?>" />
-        </p>
-        <p><button type="submit"><?php echo __('Buscar') ?></button></p>
-      </form>
-    </div>
   </div>
 </div>
 
+<div class="block" id="ultimos-vootos">
+  <div class="block-inner">
+    <h3><?php echo __('Últimos 5 vootos')?></h3>
+    <ol class="reviews-list"> 
+      <?php // TODO: Eliminar reviews de ejemplo y cargarlas usando el foreach y partial comentado más abajo ?>
+      <li class="review" id="sf_review_c_m9"> 
+        <p class="review-body"> 
+            </p> 
+        <p class="review-author"> 
+          <img alt="Herick Manuel Campos Arteseros" width="36" height="36" src="http://images.voota.es/usuarios/v.png" />    <a href="/frontend_dev.php/Carlos-Paramio">Herick Manuel Campos Arteseros</a>    ,
+          sobre        <a href="#">Partido Socialista (PSOE)</a> 
+          ,
+          <a href="/frontend_dev.php/r/9">Hace 6 días</a>      	  		<img alt="yeah" src="/images/icoMiniUp.png" />  	  </p> 
+      </li>    		    		  
 
+      <li class="review" id="sf_review_c_m11"> 
+        <p class="review-body"> 
+          Opino lo mismo  </p> 
+        <p class="review-author"> 
+          <img alt="Carlos Test1" width="36" height="36" src="http://images.voota.es/usuarios/v.png" />    <a href="/frontend_dev.php/Carlos-Test01">Carlos Test1</a>    ,
+          sobre        <a href="#">Partido Socialista (PSOE)</a> 
+          ,
+          <a href="/frontend_dev.php/r/11">Hace 2 semanas</a>      	  		<img alt="yeah" src="/images/icoMiniUp.png" />  	  </p> 
+      </li>    		    		  
+
+      <li class="review" id="sf_review_c_m10"> 
+        <p class="review-body"> 
+          Test  </p> 
+        <p class="review-author"> 
+          <img alt="Carlos Test1" width="36" height="36" src="http://images.voota.es/usuarios/v.png" />    <a href="/frontend_dev.php/Carlos-Test01">Carlos Test1</a>    ,
+          sobre        <a href="#">Partido Socialista (PSOE)</a> 
+          ,
+          <a href="/frontend_dev.php/r/10">Hace 3 semanas</a>      		<img alt="buu" src="/images/icoMiniDown.png" />  	  	  </p> 
+      </li>    		    		  
+
+      <li class="review" id="sf_review_c_m8"> 
+        <p class="review-body"> 
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </p> 
+        <p class="review-author"> 
+          <img alt="Herick Manuel Campos Arteseros" width="36" height="36" src="http://images.voota.es/usuarios/v.png" />    <a href="/frontend_dev.php/Carlos-Paramio">Herick Manuel Campos Arteseros</a>    ,
+          sobre        <a href="#">Partido Socialista (PSOE)</a> 
+          ,
+          <a href="/frontend_dev.php/r/8">Hace 3 semanas</a>      	  		<img alt="yeah" src="/images/icoMiniUp.png" />  	  </p> 
+      </li>
+      <?php //foreach($topReviews as $review): ?>
+        <?php //include_partial('sfReviewFront/reviewForList', array('review' => $review)) ?>
+      <?php //endforeach ?>
+    </ol>
+  </div>
+</div>
 
 <div class="block" id="rankings">
   <div class="block-inner">

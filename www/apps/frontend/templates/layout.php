@@ -125,16 +125,14 @@
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
       </div>
 
-      <?php if ($sf_context->getModuleName() != "home"): ?>
-        <div class="search">
-          <form method="get" action="<?php echo url_for('@search')?>">
-            <fieldset>
-              <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
-      	      <button type="submit"><?php echo __('Buscar') ?></button>
-            </fieldset>
-          </form>
-        </div>
-      <?php endif ?>
+      <div class="search">
+        <form method="get" action="<?php echo url_for('@search')?>">
+          <fieldset>
+            <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
+    	      <button type="submit"><?php echo __('Buscar') ?></button>
+          </fieldset>
+        </form>
+      </div>
       
       <?php if( $sf_request->getAttribute("ie6") ):?>
         <div id="ie6">
