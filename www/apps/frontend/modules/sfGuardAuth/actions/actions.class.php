@@ -455,13 +455,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
-			if ($this->politico){
+			/*if ($this->politico){
 			  	$cacheManager = $this->getContext()->getViewCacheManager();
 			  	if ($cacheManager != null) {
 			  		$politico = $this->getRoute()->getObject();
 			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."");
 			  	}				
-			}
+			}*/
 	      	$profile = $request->getParameter('profile');
 	    	$this->hasDeepUpdates = ($profile['presentacion'] != $formData->getProfile()->getPresentacion()); 
       		
