@@ -1,6 +1,14 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('#filterForm_f, #filterForm_text').change(function(){
+      $(this).closest('form').submit();
+    });
+  });
+</script>
+
 <h2 class="title"><?php echo __('Todos los vootos sobre partidos, políticos y propuestas') ?></h2>
 <h3 class="title"><?php echo __('Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas', array('%politicos_count%' => 1230, '%partidos_count%' => 2345, '%propuestas_count%' => 1223)) ?></h3>
 
@@ -22,14 +30,14 @@
 
   <?php if(!isset($lastReviewsPager) || $lastReviewsPager->getNbResults() > 0): ?>
   	<?php if(isset($lastReviewsPager)): ?>
-  		<ol>
+  		<ol class="reviews-list">
   		  <?php foreach($lastReviewsPager->getResults() as $review): ?>
   		    <?php include_partial('reviewForList', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
   		  <?php endforeach ?>
   		</ol>
   	<?php endif ?>
   	<?php if ($reviewsPager->getNbResults() > 0): ?>
-  	  <ol class="reviews">
+  	  <ol class="reviews-list">
     	  <?php foreach($reviewsPager->getResults() as $review): ?>
     		  <?php include_partial('reviewForList', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', $value ))) ?>
     		<?php endforeach ?>
