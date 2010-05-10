@@ -1,0 +1,66 @@
+SfReview:
+  actAs: { Timestampable: ~ }
+  columns:
+    nombre: { type: string(255), notnull: true, unique: true }
+    entity_id: { type: INTEGER, size: '11', notnull: false }
+    value: { type: INTEGER, size: '11', notnull: true, default: '0' }
+    sf_guard_user_id: { type: INTEGER, size: '11', notnull: true }
+    sf_review_type_id: { type: INTEGER, size: '11', notnull: false }
+    sf_review_status_id: { type: INTEGER, size: '11', notnull: true }
+    created_at: { type: TIMESTAMP, notnull: false }
+    cookie: { type: VARCHAR, size: '45', notnull: false }
+    ip_address: { type: VARCHAR, size: '45', notnull: false }
+    text: { type: VARCHAR, size: '420', notnull: false }
+    modified_at: { type: TIMESTAMP, notnull: false }
+    culture: { type: VARCHAR, size: '5', notnull: false }
+    sf_review_id: { type: INTEGER, size: '11', notnull: false }
+    balance: { type: INTEGER, size: '11', notnull: false, default: '0' }
+    is_active: { type: boolean, notnull: true, default: 1 }
+    to_fb: { type: boolean, notnull: true, default: 0 }
+    source: { type: VARCHAR, size: '64', notnull: false }
+  relations:
+    SfGuardUser:
+      class: SfGuardUser
+      local: sf_guard_user_id
+      foreign: id
+      foreignAlias: fk_sf_review_1
+      foreignType: one
+      type: one
+    SfReview:
+      class: SfReview
+      local: sf_review_id
+      foreign: id
+      foreignAlias: fk_sf_review_4
+      foreignType: one
+      type: one
+    SfReviewStatus:
+      class: SfReviewStatus
+      local: sf_review_status_id
+      foreign: id
+      foreignAlias: fk_sf_review_3
+      foreignType: one
+      type: one
+    SfReviewType:
+      class: SfReviewType
+      local: sf_review_type_id
+      foreign: id
+      foreignAlias: fk_sf_review_2
+      foreignType: one
+      type: one
+      
+SfReviewStatus:
+  actAs: { Timestampable: ~ }
+  columns:
+    name: { type: VARCHAR, size: '45', notnull: false }
+    published: { type: boolean, notnull: true, default: 1 }
+    offensive: { type: TINYINT, size: '4', notnull: true, default: '0' }
+    offensive: { type: boolean, notnull: true, default: 0 }
+    
+SfReviewType:
+  actAs: { Timestampable: ~ }
+  columns:
+    name: { type: VARCHAR, size: '45', default: false }
+    model: { type: VARCHAR, size: '45', default: false }
+    module: { type: VARCHAR, size: '45', default: false }
+    max_value: { type: INTEGER, size: '11', default: false }
+    culturized: { type: boolean, default: true, default: 0 }
