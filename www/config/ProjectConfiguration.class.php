@@ -14,7 +14,7 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     // for compatibility / remove and enable only the plugins you want
-    $this->enableAllPluginsExcept(array('sfDoctrinePlugin'));
+    $this->enableAllPluginsExcept();
     sfConfig::set('sf_upload_dir', '/var/local/voota/uploads');
     $this->enablePlugins('sfFormExtraPlugin');
     $this->enablePlugins('sfJqueryReloadedPlugin');
