@@ -1,25 +1,17 @@
 # default rules
 
 ### OPINIONES ###
-
-#ultimas_opiniones_es:
-#  url: /:reviewFilter
-#  param: { module: sfReviewFront, action: list }
-#  class:  sfRequestHostCultureRoute
-#  requirements:
-#    sf_host_culture: es
-#    reviewFilter: últimas-opiniones|últimas-opiniones-sobre-políticos|últimas-opiniones-sobre-partidos|últimas-opiniones-sobre-propuestas|últimas-opiniones-sobre-otra-opinión
     
 ultimas_opiniones_es:
   url: /últimas-opiniones
-  param: { module: sfReviewFront, action: list }
+  param: { module: sfReviewFront, action: list, type_id: false }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: es
     
 ultimas_opiniones_ca:
   url: /últimas-opiniones
-  param: { module: sfReviewFront, action: list }
+  param: { module: sfReviewFront, action: list, type_id: false }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: ca
@@ -65,22 +57,6 @@ ultimas_opiniones_propuestas_ca:
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: ca
-    
-ultimas_opiniones_es:
-  url: /:reviewFilter
-  param: { module: sfReviewFront, action: list }
-  class:  sfRequestHostCultureRoute
-  requirements:
-    sf_host_culture: es
-    reviewFilter: últimas-opiniones
-
-ultimas_opiniones_ca:
-  url: /ultimas-opiniones-sobre-politicos
-  param: { module: sfReviewFront, action: list }
-  class:  sfRequestHostCultureRoute
-  requirements:
-    sf_host_culture: cat
-    reviewFilter: últimas-opiniones-sobre-políticos|últimas-opiniones-sobre-partidos|últimas-opiniones-sobre-propuestas|últimas-opiniones-sobre-otra-opinión
     
 ### API ###
 

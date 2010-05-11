@@ -71,6 +71,9 @@ class BasesfReviewFrontActions extends sfActions
 	if ($this->sfReviewType){
 		$filter['type_id'] = $this->sfReviewType;
 	}
+	if ($this->text){
+		$filter['textFilter'] = 'text';
+	}
   	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
   }
   

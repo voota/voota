@@ -18,6 +18,8 @@
 		case "3":
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
 			break;
+		default:
+			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
 		} 
 
 		theForm.submit();

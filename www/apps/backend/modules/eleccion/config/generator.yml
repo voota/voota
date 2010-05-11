@@ -16,7 +16,8 @@ generator:
         title:   Elecciones
         display: [id,vanity]
 
-      filter:  ~
+      filter:
+        display: [vanity,created_at]
       form:    ~
       form:
         display:

@@ -118,6 +118,7 @@ class BaseSfReviewManager
 		$type_id = false;
 		$entity_id = false;
 		$offset = false;
+		$textFilter = false;
 		if ( isset($filter['type_id']) ){
 			$type_id = $filter['type_id'];
 		}
@@ -129,7 +130,10 @@ class BaseSfReviewManager
 		}
 		if ( isset($filter['offset']) ){
 			$ffset = $filter['offset'];
-		}
+		}		
+	  	if(isset($filter['textFilter'])){
+	  		$textFilter = $filter['textFilter'];
+	  	}
 		
 		if ( $offset )
 			$criteria->setOffset( $offset );		
@@ -150,9 +154,8 @@ class BaseSfReviewManager
 	  	}
 	  	if (isset($filter['exclude']) && $filter['exclude']){
 	  		$criteria->add(SfReviewPeer::ID, $exclude, Criteria::NOT_IN);
-	  	}
-	  	
-	  	if(isset($filter['textFilter']) && $filter['textFilter'] == 'text'){
+	  	}	  	
+	  	if($textFilter == 'text'){
 			$criteria->add(SfReviewPeer::TEXT, '', Criteria::NOT_EQUAL);
 			$criteria->add(SfReviewPeer::CULTURE, sfContext::getInstance()->getUser()->getCulture(''));
 		}
