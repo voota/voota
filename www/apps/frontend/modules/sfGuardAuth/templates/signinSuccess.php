@@ -82,6 +82,14 @@
         <th></th>
         <td class="submit"><input name="button" type="submit" class="button" value="<?php echo __('Entrar')?>" /></td>
       </tr>
+      <tr class="facebook-login">
+        <th><label><?php echo __('Otra opción...') ?></label></th>
+        <td>
+          <a href="#" onclick="FB.Connect.requireSession(); return false;" class="fbconnect_login_button FBConnectButton FBConnectButton_Medium">
+            <span id="RES_ID_fb_login_text" class="FBConnectButton_Text"><?php echo __('Entrar con Facebook') ?></span>
+          </a>
+        </td>
+      </tr>
     </table>
   </form>
 </div>

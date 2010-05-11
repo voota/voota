@@ -19,7 +19,7 @@ class sfRequestHostCultureRoute extends sfRoute
     	return parent::matchesUrl(urldecode($url), $context);
     }
     
-    return parent::matchesUrl($url, $context);    
+    return parent::matchesUrl(urldecode($url), $context);    
   }
   
   public function matchesParameters($params, $context = array())

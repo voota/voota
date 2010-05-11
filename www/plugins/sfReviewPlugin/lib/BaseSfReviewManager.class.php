@@ -115,21 +115,36 @@ class BaseSfReviewManager
 	    $criteria = new Criteria();
 	    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
 		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-		if (isset($filter['offset']))
-			$criteria->setOffset( $filter['offset'] );
-	    
-		if (isset($filter['entity_id'])){
-			$entity_id = $filter['entity_id'];
+		$type_id = false;
+		$entity_id = false;
+		$offset = false;
+		if ( isset($filter['type_id']) ){
 			$type_id = $filter['type_id'];
-			
-		  	if ($type_id != '') {
-		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  	
-		  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+		}
+		if ( isset($filter['entity_id']) ){
+			$entity_id = $filter['entity_id'];
+		}
+		if ( isset($filter['offset']) ){
+			$criteria->setOffset( $filter['offset'] );
+		}
+		if ( isset($filter['offset']) ){
+			$ffset = $filter['offset'];
+		}
+		
+		if ( $offset )
+			$criteria->setOffset( $offset );		
+		if ($entity_id){
+		  	if ($type_id) {
+		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  		
 		  	}
 		  	else {
 		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
 		  	}
+		}		
+		if ($type_id) {	
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
 		}
+		
 	  	if (isset($filter['value']) && $filter['value']){  	  	
 	  		$criteria->add(SfReviewPeer::VALUE, $filter['value']);
 	  	}

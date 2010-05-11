@@ -87,7 +87,7 @@ tr.even { background-color: #fbfbfb; }
 #user-links { position: absolute; top: 10px; right: 0; text-align: right;}
 #user-links img { padding-right: 10px;}
 #user-links p { padding-bottom: 10px;}
-#user-links #fbc_button img { padding-right: 0;}
+#user-links .fbconnect_login_button img { padding-right: 0;}
 #user-links #lo_fb_conn { padding-right: 10px;}
 #user-links #lo_fb_conn .close { font-size: 9px;}
 #header .search { position: absolute; bottom: 15px; right: 0; text-align: right; }
@@ -206,6 +206,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index .signup { margin-left: 170px; font-weight: bold;}
 #home-index #ultimos-vootos h3 { padding-right: 30px; background: transparent url(/images/vootos.png) right top no-repeat; float: left;}
 #home-index #ultimos-vootos .reviews-list { clear: left; width: 680px;}
+#home-index #ultimos-vootos .ver-mas-vootos { padding: 10px 0 20px 0; font-weight: bold;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
@@ -336,6 +337,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfGuardAuth-signin #accounts-join-login { float: left; width: 350px; padding-right: 130px; background: transparent url(/images/login_separator.png) right center no-repeat;}
 #sfGuardAuth-signin #accounts-join-skip { float: left; width: 380px; padding-left: 100px; padding-top: 122px;}
 #sfGuardAuth-signin #accounts-join-skip p { padding-bottom: 0;}
+#sfGuardAuth-signin .facebook-login th { padding-top: 18px;}
+#sfGuardAuth-signin .facebook-login td { padding-top: 15px; text-align: right;}
 
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold; }
@@ -569,10 +572,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 .negative-reviews { margin-left: 10%; }
 .review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
 
-
-/*
-  Reglas nuevas
-*/
+/* Reglas nuevas */
 
 table.sparkline {border-collapse: collapse;}
 table.sparkline td {padding:0px;}

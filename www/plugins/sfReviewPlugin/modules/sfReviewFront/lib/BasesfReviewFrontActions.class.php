@@ -63,10 +63,14 @@ class BasesfReviewFrontActions extends sfActions
 	$this->entityId = $request->getParameter("entityId", false);
 	$this->value = $request->getParameter("value", false);
 	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
 	$this->entity = false;
 	$this->filter = false;
 	
-	$filter = array();		
+	$filter = array();
+	if ($this->sfReviewType){
+		$filter['type_id'] = $this->sfReviewType;
+	}
   	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
   }
   
