@@ -20,6 +20,9 @@
 		case "3":
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
 			break;
+		case "r":
+			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=r');?>'); 
+			break;
 		default:
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
 		} 
@@ -47,6 +50,7 @@
   	      <option value="1" <?php echo $sfReviewType==1?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre políticos") ?></option>
   	      <option value="2" <?php echo $sfReviewType==2?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre partidos") ?></option>
   	      <option value="3" <?php echo $sfReviewType==3?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre propuestas") ?></option>
+  	      <option value="r" <?php echo $sfReviewType=="r"?'selected="selected"':'' ?>><?php echo __("Por respuestas a otros comentarios") ?></option>
   	    </select>
   	    <input id="filterForm_text" type="checkbox" name="t" value="1" <?php echo $text=="1"?'checked="checked"':'' ?> /><label for="filterForm_text"><?php echo __('Sólo vootos con texto') ?></label>
   	  </p>

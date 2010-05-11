@@ -87,7 +87,7 @@
       <?php include_component_slot('review_for_list', array('review' => $review)) ?>
       <?php endforeach ?>
     </ol>
-    <p class="ver-mas-vootos"><a href="<?php echo url_for('sfReviewFront/list?reviewFilter=últimas-opiniones')?>"><?php echo __('¡Tachán! Todos los vootos sobre partidos, políticos y propuestas') ?></a> <strong>(<?php echo format_number($totalUpReviews+$totalDownReviews, 'es_ES') ?>)</strong></p>
+    <p class="ver-mas-vootos"><a href="<?php echo url_for('sfReviewFront/list')?>"><?php echo __('¡Tachán! Todos los vootos sobre partidos, políticos y propuestas') ?></a> <strong>(<?php echo format_number($totalUpReviews+$totalDownReviews, 'es_ES') ?>)</strong></p>
   </div>
 </div>
 

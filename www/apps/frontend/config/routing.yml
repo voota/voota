@@ -14,7 +14,7 @@ ultimas_opiniones_ca:
   param: { module: sfReviewFront, action: list, type_id: false }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: ca
+    sf_host_culture: cat
     
 ultimas_opiniones_politicos_es:
   url: /últimas-opiniones-sobre-políticos
@@ -28,7 +28,7 @@ ultimas_opiniones_politicos_ca:
   param: { module: sfReviewFront, action: list, type_id: 1 }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: ca
+    sf_host_culture: cat
     
 ultimas_opiniones_partidos_es:
   url: /últimas-opiniones-sobre-partidos
@@ -42,7 +42,7 @@ ultimas_opiniones_partidos_ca:
   param: { module: sfReviewFront, action: list, type_id: 2 }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: ca
+    sf_host_culture: cat
     
 ultimas_opiniones_propuestas_es:
   url: /últimas-opiniones-sobre-propuestas
@@ -56,7 +56,21 @@ ultimas_opiniones_propuestas_ca:
   param: { module: sfReviewFront, action: list, type_id: 3 }
   class:  sfRequestHostCultureRoute
   requirements:
-    sf_host_culture: ca
+    sf_host_culture: cat
+    
+ultimas_opiniones_otras_es:
+  url: /últimas-opiniones-sobre-otra-opinión
+  param: { module: sfReviewFront, action: list, type_id: "r" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_otras_ca:
+  url: /últimas-opiniones-sobre-otra-opinión
+  param: { module: sfReviewFront, action: list, type_id: "r" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
     
 ### API ###
 

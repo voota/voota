@@ -27,15 +27,6 @@ class homeActions extends sfActions{
   public function executeIndex(sfWebRequest $request) {
   	$culture = $this->getUser()->getCulture();
   	
-  	$cpos = new Criteria();
-  	$cpos->add(SfReviewPeer::VALUE, 1);
-  	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
-  	$cpos->add(SfReviewPeer::CULTURE, $culture);
-  	$cneg = new Criteria();
-  	$cneg->add(SfReviewPeer::VALUE, -1);
-  	$cneg->add(SfReviewPeer::IS_ACTIVE, 1);
-  	$cneg->add(SfReviewPeer::CULTURE, $culture);
-  	
   	$cuser = new Criteria();
   	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
   	
@@ -63,8 +54,18 @@ class homeActions extends sfActions{
   	$cpro->add(PropuestaPeer::CULTURE, $culture);
   	$cpro->setDistinct();
   	
+  	$cpos = new Criteria();
+  	$cpos->add(SfReviewPeer::VALUE, 1);
+  	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
+  	$cpos->add(SfReviewPeer::CULTURE, $culture);
   	$this->totalUpReviews = SfReviewPeer::doCount($cpos);
+  	
+  	$cneg = new Criteria();
+  	$cneg->add(SfReviewPeer::VALUE, -1);
+  	$cneg->add(SfReviewPeer::IS_ACTIVE, 1);
+  	$cneg->add(SfReviewPeer::CULTURE, $culture);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
+  	
   	$this->topTotalUsers = sfGuardUserPeer::doCount($cuser);
   	$this->topTotalPoliticos = PoliticoPeer::doCount($cpol);
   	$this->topTotalPartidos = PartidoPeer::doCount($cpar);;

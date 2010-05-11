@@ -120,6 +120,7 @@ class BaseSfReviewManager
 		$entity_id = false;
 		$offset = false;
 		$textFilter = false;
+		$culture = false;
 		if ( isset($filter['type_id']) ){
 			$type_id = $filter['type_id'];
 		}
@@ -135,19 +136,30 @@ class BaseSfReviewManager
 	  	if(isset($filter['textFilter'])){
 	  		$textFilter = $filter['textFilter'];
 	  	}
+	  	if(isset($filter['culture'])){
+	  		$culture = $filter['culture'];
+	  	}
 		
+	  	if ($culture){
+	  		$criteria->add(SfReviewPeer::CULTURE, $culture);
+	  	}
 		if ( $offset )
 			$criteria->setOffset( $offset );		
 		if ($entity_id){
 		  	if ($type_id) {
-		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  		
+		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);
 		  	}
 		  	else {
-		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id);
 		  	}
 		}		
 		if ($type_id) {	
-	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+		  	if ($type_id == "null"){
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
+		  	}
+		  	else {
+	  			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
+		  	}  	
 		}
 		
 	  	if (isset($filter['value']) && $filter['value']){  	  	
