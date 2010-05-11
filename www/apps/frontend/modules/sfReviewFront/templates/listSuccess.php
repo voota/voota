@@ -1,5 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('Number') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
@@ -29,7 +31,11 @@
 </script>
 
 <h2 class="title"><?php echo __('Todos los vootos sobre partidos, políticos y propuestas') ?></h2>
-<h3 class="title"><?php echo __('Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas', array('%politicos_count%' => 1230, '%partidos_count%' => 2345, '%propuestas_count%' => 1223)) ?></h3>
+<h3 class="title"><?php echo __('Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas', array(
+	'%politicos_count%' => format_number($politicoReviewCount, 'es_ES'), 
+	'%partidos_count%' => format_number($partidoReviewCount, 'es_ES'), 
+	'%propuestas_count%' => format_number($propuestaReviewCount, 'es_ES'))) 
+?></h3>
 
 <div id="content">
   <?php if ($reviewsPager->getPage() == 1):?>		
@@ -92,46 +98,12 @@
   <div id="ultimos-usuarios">
     <h3><?php echo __('Últimos en llegar a Voota') ?></h3>
     <ol>
+    <?php foreach ($lastUsers as $user):?>
       <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
+        <?php echo getAvatar( $user ) ?>
+        <?php echo link_to(fullName( $user ), '@usuario?username='.$user->getProfile()->getVanity())?>
       </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
+    <?php endforeach?>
     </ol>
   </div>
 </div>
