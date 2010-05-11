@@ -467,7 +467,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px; border: none; position: relative;}
 #politico-show .reviews .review-body ,
 #partido-show .reviews .review-body ,
-#propuesta-show .reviews .review-body { width: 660px;}
+#propuesta-show .reviews .review-body { width: 640px;}
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 680px;}
