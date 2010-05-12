@@ -140,6 +140,11 @@ tr.even { background-color: #fbfbfb; }
 .reviews-list .review-author { padding-bottom: 0;}
 .reviews-list .review-author img,
 
+/* Selector de convocatoria */
+.selector-convocatoria { overflow: hidden; float: left; clear: left; background: transparent url(/images/balloonYellowBottom.png) left bottom no-repeat; padding-bottom: 11px; margin-left: 25px;}
+.selector-convocatoria ul { height: 25px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; padding: 15px 15px 4px 15px; margin: 0; }
+.selector-convocatoria li { list-style: none; float: left; margin-right: 20px;}
+
 /* Formularios */
 form { margin: 0; padding: 0;}
 form dl dt { margin-bottom: 10px;}

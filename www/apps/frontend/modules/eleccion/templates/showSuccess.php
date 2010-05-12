@@ -17,7 +17,7 @@
     <?php echo formatPresentacion( $convocatoria->getDescripcion() ) ?>
   </div><!-- end of description -->
 
-  <div id="selector_convocatoria">
+  <div class="selector-convocatoria">
     <ul>
       <?php if($geoName):?>
       	<li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity())?>"><?php echo $institucionName ?></a></li>
