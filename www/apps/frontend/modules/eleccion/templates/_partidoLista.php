@@ -1,6 +1,12 @@
 <?php if (count($politicos) > 0):?>
 <tr>
-	<td class="partido"><a href="<?php echo url_for('lista/show?partido='.$partido->getAbreviatura().'&convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geoName) ?>"><?php echo $partido->getAbreviatura();?></a></td>
+	<td class="partido">
+	  <?php if($geoName): ?>
+		<a href="<?php echo url_for('lista/show?partido='.$partido->getAbreviatura().'&convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geoName) ?>"><?php echo $partido->getAbreviatura();?></a>
+	  <?php else:?>
+		<?php echo $partido->getAbreviatura();?>
+	  <?php endif ?>
+	</td>
     <td class="escanos">35</td>
     <td class="politicos">
     	<?php foreach($politicos as $politico): ?>

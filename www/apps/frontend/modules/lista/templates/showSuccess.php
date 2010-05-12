@@ -66,7 +66,7 @@
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
         <td class="position">
         	<?php if (isset($politicosListaOficial[$idx])):?>
-        		<?php echo $idx ?>.
+        		<?php echo $idx+1 ?>.
         	<?php endif?>
         </td>
         <td class="photo">
@@ -78,14 +78,14 @@
         	<?php if (isset($politicosListaOficial[$idx])):?>
         		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
         	<?php endif?>
-        <td class="position"><?php echo $idx ?>.</td>
+        <td class="position"><?php echo $idx+1 ?>.</td>
         <td class="photo"><?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?></td>
         <td class="name"><a href="<?php echo url_for('politico/show?id='.$politico->getVanity())?>"><? echo $politico ?></a></td>
         <td class="voto">
           <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
-        <td class="positive-votes">89</td>
-        <td class="negative-votes">33</td>
+        <td class="positive-votes"><?php echo $politico->getSumu() ?></td>
+        <td class="negative-votes"><?php echo $politico->getSumd() ?></td>
       </tr>
     <?php $idx++;endforeach ?>
   </tbody>
