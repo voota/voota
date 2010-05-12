@@ -61,6 +61,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$c->addDescendingOrderByColumn(SfGuardUserPeer::ID);
   	$c->setLimit( 10 );
   	$this->lastUsers = SfGuardUserPeer::doSelect( $c );
+  	
+  	// Metas
+  	$this->title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
+  		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
+  	));  	
+  	$this->response->setTitle( $this->title );  	
+  	$description = "[autor última opinión] (hace 38 minutos), [autor2] (hace 45 minutos), [autor3] (hace 2 horas), ...";
+    $this->response->addMeta('Description', $description);  	
   }
 
 	public function executeShow(sfWebRequest $request){

@@ -109,10 +109,6 @@ class BaseSfReviewManager
 
   static private function getReviewsCriteria($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
-  	if (class_exists('Doctrine')){
-  		return Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
-  	}
-  	else {
 	    $criteria = new Criteria();
 	    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
 		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
@@ -176,17 +172,21 @@ class BaseSfReviewManager
 		$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
 	    return $criteria;
-  	}
   }
   static public function getReviews($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
-	  	$pager = new sfPropelPager('SfReview', $numberOfResults);
+  	if (class_exists('Doctrine')){
+  		return Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
+  	}
+  	else {
+  		$pager = new sfPropelPager('SfReview', $numberOfResults);
 	    $pager->setCriteria( self::getReviewsCriteria($filter, $page, $numberOfResults) );
 	    
 	    $pager->setPage( $page );
 	
 	    $pager->init();
 	    return $pager;
+  	}
   }
   
   static public function getReviewsCount($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)

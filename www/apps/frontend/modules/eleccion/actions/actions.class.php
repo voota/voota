@@ -3,11 +3,13 @@
 /**
  * eleccion actions.
  *
- * @package    sf_sandbox
+ * @package    Voota
  * @subpackage eleccion
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Sergio Viteri
  */
+
+require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.php');
+
 class eleccionActions extends sfActions
 {
  /**
@@ -54,5 +56,15 @@ class eleccionActions extends sfActions
   	
   	$instituciones = $this->convocatoria->getEleccion()->getEleccionInstitucions();
   	$this->institucionName = $instituciones[0]->getInstitucion();
+  	
+  	// Metas
+  	$this->title = ($this->geoName?$this->geoName.': ':'') . $this->convocatoria->getEleccion()->getNombre() ." ". $this->convocatoria->getNombre();  	
+  	$this->response->setTitle( $this->title );  	
+  	$description = sfContext::getInstance()->getI18N()->__("%1%.%2%: listas%3%, partidos, candidatos, previsión de escaños, votos de los usuarios, ...", array(
+  		'%1%' => $this->convocatoria->getEleccion()->getNombre(),
+  		'%2%' => sfContext::getInstance()->getI18N()->__("%dia% de %mes%", array('%dia%' => format_date($this->convocatoria->getFecha(), ' d'), '%mes%' => format_date($this->convocatoria->getFecha(), 'MMMM'))),
+  		'%3%' => $this->geoName?' '.$this->geoName:''
+  	));  	
+    $this->response->addMeta('Description', $description);
   }
 }

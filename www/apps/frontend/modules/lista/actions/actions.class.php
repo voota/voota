@@ -35,5 +35,31 @@ class listaActions extends sfActions
   	$this->lista = ListaPeer::doSelectOne( $c );
   	
   	$this->forward404Unless( $this->lista );
+  	  	
+    // Geos
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->lista->getConvocatoria()->getId());
+  	$c->setDistinct();
+  	$this->geos = GeoPeer::doSelect( $c );
+  	
+  	$instituciones = $this->lista->getConvocatoria()->getEleccion()->getEleccionInstitucions();
+  	$this->institucionName = $instituciones[0]->getInstitucion();
+  	
+  	// Lista Voota
+  	$c = new Criteria();
+  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$this->politicosListaVoota = PoliticoPeer::doSelect( $c );
+  	
+  	// Lista oficial
+  	$c = new Criteria();
+  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
+  	$c->add(PoliticoListaPeer::ORDEN, null, Criteria::ISNOTNULL);
+  	$c->addAscendingOrderByColumn(PoliticoListaPeer::ORDEN);
+  	$this->politicosListaOficial = PoliticoPeer::doSelect( $c );
+  	
   }
 }

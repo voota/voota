@@ -8,23 +8,38 @@
   <?php echo __('Lo que dice la calle') ?>
 </h2>
 
-<p class="summary"><?php echo __('Lista electoral %nombre%', array('%nombre%' => 'CiU elecciones Parlament de Catalunya 2010')) // TODO: Sustituir nombre ?></p>
+<p class="summary"><?php echo __('Lista electoral %1% %2% %3%', array(
+	'%1%' => $lista->getPartido(),
+	'%2%' => $lista->getConvocatoria()->getEleccion()->getNombre(),
+	'%3%' => $lista->getConvocatoria()->getNombre()
+)) ?></p>
 
 <div class="selector-convocatoria">
-  <ul>
-    <?php // TODO: Eliminar datos de ejemplo e integrar; ver eleccion/showSuccess a modo de ejemplo ?>
-  	<li><span>Parlament</span></li>
-  	<li><a href="#">Barcelona</a></li>
-  	<li><a href="#">Tarragona</a></li>
-  	<li><a href="#">Lleida</a></li>
-  	<li><a href="#">Girona</a></li>
-  </ul>
+    <ul>
+      <?php if($geoName):?>
+      	<li><a href="<?php echo url_for('lista/show?convocatoria='.
+      		$lista->getConvocatoria()->getNombre().
+      		'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().
+      		'&geo='.$geoName.
+      		'&partido='.$lista->getPartido()->getAbreviatura()
+      		) ?>"><?php echo $institucionName ?></a></li>
+      <?php else:?>
+      	<li><span><?php echo $institucionName ?></span></li>
+      <?php endif ?>
+      <?php foreach ($geos as $geo):?>
+        <?php if($geoName && $geo->getNombre() == $geoName):?>
+	      <li><span><?php echo $geo->getNombre()?></span></li>
+        <?php else:?>
+	      <li><a href="<?php echo url_for('eleccion/show?convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
+        <?php endif ?>
+      <?php endforeach ?>
+    </ul>
 </div>
 
 <table>
   <thead>
     <tr>
-      <th class="politico" colspan="3"><?php echo __('Lista oficial del partido (%nombre%)', array('%nombre%' => 'CiU')) // TODO: Sustituir nombre ?></th>
+      <th class="politico" colspan="3"><?php echo __('Lista oficial del partido (%nombre%)', array('%nombre%' => $lista->getPartido()->getAbreviatura())) ?></th>
       <th class="politico" colspan="3"><?php echo __('Lo que dice la calle') ?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
@@ -47,22 +62,31 @@
   </thead>
   
   <tbody>
-    <?php // TODO: Sustituir por foreach político en lista ?>
-    <?php for ($i = 1; $i <= 20; $i++): ?>
-      <tr class="<?php echo fmod($i, 2) ? 'even' : 'odd' // TODO: Cambiar índice por el que corresponda ?>">
-        <td class="position"><?php echo $i // TODO: Sustituir contador por apropiado para foreach ?>.</td>
-        <td class="photo"><a href="#"><img src="/images/proto/politico.png" /><?php // TODO: Sustituir por imagen de político en b/n ?></a></td>
-        <td class="name"><a href="#">Esperanza Aguirre Gil de Biedma<?php // TODO: Sustituir por nombre político ?></a></td>
-        <td class="position"><?php echo $i // TODO: Sustituir contador por apropiado para foreach ?>.</td>
-        <td class="photo"><a href="#"><img src="/images/proto/politico.png" /><?php // TODO: Sustituir por imagen de político en color ?></a></td>
-        <td class="name"><a href="#">José Luis Rodríguez Zapatero<?php // TODO: Sustituir por nombre político ?></a></td>
+    <?php $idx = 0;foreach ($politicosListaVoota as $politico): ?>
+      <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
+        <td class="position">
+        	<?php if (isset($politicosListaOficial[$idx])):?>
+        		<?php echo $idx ?>.
+        	<?php endif?>
+        </td>
+        <td class="photo">
+        	<?php if (isset($politicosListaOficial[$idx])):?>
+        		<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politicosListaOficial[$idx]->getImagePath().'/bw_s_'.$politicosListaOficial[$idx]->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politicosListaOficial[$idx])) .'"') ?>
+        	<?php endif?>
+        </td>
+        <td class="name">
+        	<?php if (isset($politicosListaOficial[$idx])):?>
+        		<a href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
+        	<?php endif?>
+        <td class="position"><?php echo $idx ?>.</td>
+        <td class="photo"><?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?></td>
+        <td class="name"><a href="<?php echo url_for('politico/show?id='.$politico->getVanity())?>"><? echo $politico ?></a></td>
         <td class="voto">
-          <?php // TODO: Descomentar ?>
-          <?php // include_component_slot('quickvote', array('entity' => $politico)) ?>
+          <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
         <td class="positive-votes">89</td>
         <td class="negative-votes">33</td>
       </tr>
-    <?php endfor; ?>
+    <?php $idx++;endforeach ?>
   </tbody>
 </table>

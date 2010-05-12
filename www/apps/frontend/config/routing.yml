@@ -10,12 +10,12 @@ ultimas_opiniones_es:
     sf_host_culture: es
     
 ultimas_opiniones_ca:
-  url: /últimas-opiniones
+  url: /últimes-opinions
   param: { module: sfReviewFront, action: list, type_id: false }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
-    
+ 
 ultimas_opiniones_politicos_es:
   url: /últimas-opiniones-sobre-políticos
   param: { module: sfReviewFront, action: list, type_id: 1 }
@@ -24,7 +24,7 @@ ultimas_opiniones_politicos_es:
     sf_host_culture: es
     
 ultimas_opiniones_politicos_ca:
-  url: /últimas-opiniones-sobre-políticos
+  url: /últimes-opinions-sobre-polítics
   param: { module: sfReviewFront, action: list, type_id: 1 }
   class:  sfRequestHostCultureRoute
   requirements:
@@ -38,7 +38,7 @@ ultimas_opiniones_partidos_es:
     sf_host_culture: es
     
 ultimas_opiniones_partidos_ca:
-  url: /últimas-opiniones-sobre-partidos
+  url: /últimes-opinions-sobre-partits
   param: { module: sfReviewFront, action: list, type_id: 2 }
   class:  sfRequestHostCultureRoute
   requirements:
@@ -52,7 +52,7 @@ ultimas_opiniones_propuestas_es:
     sf_host_culture: es
     
 ultimas_opiniones_propuestas_ca:
-  url: /últimas-opiniones-sobre-propuestas
+  url: /últimes-opinions-sobre-propostes
   param: { module: sfReviewFront, action: list, type_id: 3 }
   class:  sfRequestHostCultureRoute
   requirements:
@@ -66,7 +66,7 @@ ultimas_opiniones_otras_es:
     sf_host_culture: es
     
 ultimas_opiniones_otras_ca:
-  url: /últimas-opiniones-sobre-otra-opinión
+  url: /últimes-opinions-sobre-altres-opinions
   param: { module: sfReviewFront, action: list, type_id: "r" }
   class:  sfRequestHostCultureRoute
   requirements:
