@@ -22,11 +22,11 @@
       <?php if($geoName):?>
       	<li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity())?>"><?php echo $institucionName ?></a></li>
       <?php else:?>
-      	<li><?php echo $institucionName ?></li>
+      	<li><span><?php echo $institucionName ?></span></li>
       <?php endif ?>
       <?php foreach ($geos as $geo):?>
         <?php if($geoName && $geo->getNombre() == $geoName):?>
-	      <li><?php echo $geo->getNombre()?></li>
+	      <li><span><?php echo $geo->getNombre()?></span></li>
         <?php else:?>
 	      <li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
         <?php endif ?>

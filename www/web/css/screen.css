@@ -76,7 +76,8 @@ tr.even { background-color: #fbfbfb; }
 #sfGuardAuth-remove #main,
 #sfReviewFront-list #main,
 #perfil-reviews #main,
-#eleccion-show #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
+#eleccion-show #main,
+#lista-show #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
 #main-inner { padding: 20px 0; }
 #content { float: left; width: 100%; }
 #sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
@@ -141,9 +142,13 @@ tr.even { background-color: #fbfbfb; }
 .reviews-list .review-author img,
 
 /* Selector de convocatoria */
-.selector-convocatoria { overflow: hidden; float: left; clear: left; background: transparent url(/images/balloonYellowBottom.png) left bottom no-repeat; padding-bottom: 11px; margin-left: 25px;}
-.selector-convocatoria ul { height: 25px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; padding: 15px 15px 4px 15px; margin: 0; }
-.selector-convocatoria li { list-style: none; float: left; margin-right: 20px;}
+.selector-convocatoria { overflow: hidden; float: left; clear: left; margin-left: 25px;}
+.selector-convocatoria ul { height: 45px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; margin: 0; padding: 0;}
+.selector-convocatoria li { list-style: none; float: left; }
+.selector-convocatoria li a,
+.selector-convocatoria li span { display: block; float: left; padding: 15px;}
+.selector-convocatoria li a { height: 14px; border-bottom: 1px solid #9a9a9a; }
+.selector-convocatoria li span { height: 25px; background: transparent url(/images/balloonYellowBottomCenter.png) center bottom no-repeat; }
 
 /* Formularios */
 form { margin: 0; padding: 0;}
@@ -391,6 +396,22 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-ranking table .negative-votes { text-align:right; width: 140px; padding-right: 45px;}
 #propuesta-ranking table .date { text-align: right; width: 100px; padding-right: 45px;}
 #propuesta-ranking .search { float: right;}
+
+/* Lista electoral */
+#lista-show h2 { margin-bottom: 5px;}
+#lista-show h2 .versus { color: red; padding: 0 20px; font-size: 28px;}
+#lista-show h2 img { vertical-align: -12px;}
+#lista-show table { margin: 20px auto; width: 100%; clear: left; float: left;}
+#lista-show table th { background-color: #f6f6f6; padding: 10px 0; }
+#lista-show table tbody td,
+#lista-show table tfoot td { padding: 10px 0; }
+#lista-show table .politico { text-align: left; width: 290px; padding-left: 10px; }
+#lista-show table .position { text-align: right; width: 20px; padding-left: 10px; }
+#lista-show table .photo { text-align: right; width: 40px; padding-left: 10px; }
+#lista-show table .name { text-align: left; width: 210px; padding-left: 10px; }
+#lista-show table .voto { text-align: left; width: 120px; padding-left: 20px }
+#lista-show table .positive-votes { text-align: right; width: 100px; }
+#lista-show table .negative-votes { text-align:right; width: 100px; padding-right: 20px;}
 
 /* Resultados de búsqueda */
 #general-search table { margin: 0 auto; width: 90%; }
