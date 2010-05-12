@@ -1,5 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
+<?php use_helper('Number') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function(){
@@ -18,6 +20,9 @@
 		case "3":
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
 			break;
+		case "r":
+			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=r');?>'); 
+			break;
 		default:
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
 		} 
@@ -29,7 +34,11 @@
 </script>
 
 <h2 class="title"><?php echo __('Todos los vootos sobre partidos, políticos y propuestas') ?></h2>
-<h3 class="title"><?php echo __('Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas', array('%politicos_count%' => 1230, '%partidos_count%' => 2345, '%propuestas_count%' => 1223)) ?></h3>
+<h3 class="title"><?php echo __('Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas', array(
+	'%politicos_count%' => format_number($politicoReviewCount, 'es_ES'), 
+	'%partidos_count%' => format_number($partidoReviewCount, 'es_ES'), 
+	'%propuestas_count%' => format_number($propuestaReviewCount, 'es_ES'))) 
+?></h3>
 
 <div id="content">
   <?php if ($reviewsPager->getPage() == 1):?>		
@@ -41,6 +50,7 @@
   	      <option value="1" <?php echo $sfReviewType==1?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre políticos") ?></option>
   	      <option value="2" <?php echo $sfReviewType==2?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre partidos") ?></option>
   	      <option value="3" <?php echo $sfReviewType==3?'selected="selected"':'' ?>><?php echo __("Sólo vootos sobre propuestas") ?></option>
+  	      <option value="r" <?php echo $sfReviewType=="r"?'selected="selected"':'' ?>><?php echo __("Por respuestas a otros comentarios") ?></option>
   	    </select>
   	    <input id="filterForm_text" type="checkbox" name="t" value="1" <?php echo $text=="1"?'checked="checked"':'' ?> /><label for="filterForm_text"><?php echo __('Sólo vootos con texto') ?></label>
   	  </p>
@@ -92,46 +102,12 @@
   <div id="ultimos-usuarios">
     <h3><?php echo __('Últimos en llegar a Voota') ?></h3>
     <ol>
+    <?php foreach ($lastUsers as $user):?>
       <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
+        <?php echo getAvatar( $user ) ?>
+        <?php echo link_to(fullName( $user ), '@usuario?username='.$user->getProfile()->getVanity())?>
       </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
-      <li>
-        <img src="/images/proto/usuario.jpg" alt="nombre usuario" />
-        <a href="#">John Doe</a>
-      </li>
+    <?php endforeach?>
     </ol>
   </div>
 </div>

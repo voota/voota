@@ -57,26 +57,6 @@ class BasesfReviewFrontActions extends sfActions
   	$this->entity = $peer::doSelectOne( $c ); 
   }
   
-  public function executeList(sfWebRequest $request)
-  {
-	$this->page = $request->getParameter("page", "1");
-	$this->entityId = $request->getParameter("entityId", false);
-	$this->value = $request->getParameter("value", false);
-	$this->sfReviewType = $request->getParameter("type_id", false);	
-	$this->text = $request->getParameter("t", false);	
-	$this->entity = false;
-	$this->filter = false;
-	
-	$filter = array();
-	if ($this->sfReviewType){
-		$filter['type_id'] = $this->sfReviewType;
-	}
-	if ($this->text){
-		$filter['textFilter'] = 'text';
-	}
-  	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
-  }
-  
   public function executeInit(sfWebRequest $request)
   {
   	$this->reviewEntityId = $request->getParameter("e");

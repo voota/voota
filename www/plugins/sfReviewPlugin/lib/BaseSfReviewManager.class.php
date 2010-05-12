@@ -26,6 +26,7 @@ class BaseSfReviewManager
 	const NUM_REVIEWS = 20;
 	const MAX_LENGTH = 280;
 	
+	
 	/*
   static public function getLastReviewsByEntityAndValue($request, $type_id, $entity_id, $value = NULL, $numberOfResults = BaseSfReviewManager::NUM_LAST_REVIEWS)
   {
@@ -105,8 +106,8 @@ class BaseSfReviewManager
     
   	return self::getReviews($filter, $page, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS);
   }
-  
-  static public function getReviews($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
+
+  static private function getReviewsCriteria($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
   	if (class_exists('Doctrine')){
   		return Doctrine::getTable('SfReview')->getReviews($filter, $page, $numberOfResults);
@@ -119,6 +120,7 @@ class BaseSfReviewManager
 		$entity_id = false;
 		$offset = false;
 		$textFilter = false;
+		$culture = false;
 		if ( isset($filter['type_id']) ){
 			$type_id = $filter['type_id'];
 		}
@@ -134,19 +136,30 @@ class BaseSfReviewManager
 	  	if(isset($filter['textFilter'])){
 	  		$textFilter = $filter['textFilter'];
 	  	}
+	  	if(isset($filter['culture'])){
+	  		$culture = $filter['culture'];
+	  	}
 		
+	  	if ($culture){
+	  		$criteria->add(SfReviewPeer::CULTURE, $culture);
+	  	}
 		if ( $offset )
 			$criteria->setOffset( $offset );		
 		if ($entity_id){
 		  	if ($type_id) {
-		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);  		
+		  		$criteria->add(SfReviewPeer::ENTITY_ID, $entity_id);
 		  	}
 		  	else {
-		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id); 
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $entity_id);
 		  	}
 		}		
 		if ($type_id) {	
-	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);  	
+		  	if ($type_id == "null"){
+		  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
+		  	}
+		  	else {
+	  			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $type_id);
+		  	}  	
 		}
 		
 	  	if (isset($filter['value']) && $filter['value']){  	  	
@@ -162,14 +175,23 @@ class BaseSfReviewManager
 		
 		$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	
+	    return $criteria;
+  	}
+  }
+  static public function getReviews($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
+  {
 	  	$pager = new sfPropelPager('SfReview', $numberOfResults);
-	    $pager->setCriteria($criteria);
+	    $pager->setCriteria( self::getReviewsCriteria($filter, $page, $numberOfResults) );
 	    
 	    $pager->setPage( $page );
 	
 	    $pager->init();
 	    return $pager;
-  	}
+  }
+  
+  static public function getReviewsCount($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
+  {
+		return SfReviewPeer::doCount( self::getReviewsCriteria($filter, $page, $numberOfResults) );
   }
   
   static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){

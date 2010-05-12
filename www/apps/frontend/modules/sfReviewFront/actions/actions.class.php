@@ -22,6 +22,46 @@ require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+  
+  public function executeList(sfWebRequest $request)
+  {
+	$this->page = $request->getParameter("page", "1");
+	$this->entityId = $request->getParameter("entityId", false);
+	$this->value = $request->getParameter("value", false);
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+	$this->entity = false;
+	$this->filter = false;
+  	$culture = $this->getUser()->getCulture();
+	
+	$filter = array();
+	$filter['culture'] = $culture;
+	if ($this->sfReviewType){
+		$filter['type_id'] = ($this->sfReviewType == 'r')?'null':$this->sfReviewType;
+	}
+	if ($this->text){
+		$filter['textFilter'] = 'text';
+	}
+  	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
+  	
+  	$filter = array();
+	$filter['culture'] = $culture;
+  	$filter['type_id'] = Politico::NUM_ENTITY;
+  	$this->politicoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	$filter = array();
+	$filter['culture'] = $culture;
+  	$filter['type_id'] = Partido::NUM_ENTITY;
+  	$this->partidoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	$filter = array();
+	$filter['culture'] = $culture;
+  	$filter['type_id'] = Propuesta::NUM_ENTITY;
+  	$this->propuestaReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	
+  	$c = new Criteria();
+  	$c->addDescendingOrderByColumn(SfGuardUserPeer::ID);
+  	$c->setLimit( 10 );
+  	$this->lastUsers = SfGuardUserPeer::doSelect( $c );
+  }
 
 	public function executeShow(sfWebRequest $request){
 		parent::executeShow( $request );
