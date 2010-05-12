@@ -620,3 +620,6 @@ table.sparkline td {padding:0px;}
 #sfr_dialog {
 	display:none;
 }
+a.gris, a.gris:visited {
+	color:grey;
+}

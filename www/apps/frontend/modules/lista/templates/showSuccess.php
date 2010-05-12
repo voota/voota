@@ -76,7 +76,7 @@
         </td>
         <td class="name">
         	<?php if (isset($politicosListaOficial[$idx])):?>
-        		<a href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
+        		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
         	<?php endif?>
         <td class="position"><?php echo $idx ?>.</td>
         <td class="photo"><?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?></td>
