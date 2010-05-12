@@ -10,19 +10,19 @@
   <p class="review-body">
     <?php echo review_text( $review ) ?>
   </p>
-  <p class="review-author">
+  <div class="review-avatar">
     <?php echo getAvatar( $review->getsfGuardUser() ) ?>
-    <?php echo link_to(fullName( $review->getsfGuardUser() ), '@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>
-    ,
+  </div>
+  <div class="review-name">
+    <?php echo link_to(fullName( $review->getsfGuardUser() ), '@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>,
     <?php echo __('sobre') ?>
-    <?php echo $aReview?__('otro comentario sobre ') ." ":'' ?><a href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo $entity?></a>
-    ,
-    <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>
+    <?php echo $aReview?__('otro comentario sobre ') ." ":'' ?><a href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo $entity?></a>,
+    <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>.
     <?php if ($review->getValue() == -1): ?>
   		<?php echo image_tag('icoMiniDown.png', 'alt="buu"') ?>
   	<?php endif ?>
   	<?php if ($review->getValue() == 1): ?>
   		<?php echo image_tag('icoMiniUp.png', 'alt="yeah"') ?>
   	<?php endif ?>
-  </p>
+  </div>
 </li>

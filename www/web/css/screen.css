@@ -137,9 +137,11 @@ tr.even { background-color: #fbfbfb; }
 
 /* Reviews en modo lista */
 .reviews-list  { margin: 0; padding: 0;}
-.reviews-list li { list-style: none; margin-bottom: 20px;}
+.reviews-list li { list-style: none; margin-bottom: 20px; overflow: hidden;}
 .reviews-list .review-author { padding-bottom: 0;}
-.reviews-list .review-author img,
+.reviews-list .review-avatar { width: 20px; height: 20px; margin-right: 10px;}
+.reviews-list .review-avatar img { width: 20px; height: 20px;}
+
 
 /* Selector de convocatoria */
 .selector-convocatoria { overflow: hidden; float: left; clear: left; margin-left: 25px;}
@@ -554,7 +556,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 /* Página de últimos vootos */
 #sfReviewFront-list h2.title { margin-bottom: 0;}
 #sfReviewFront-list h3.title { margin-bottom: 20px; font-weight: normal;}
-#sfReviewFront-list #content { width: 600px;}
+#sfReviewFront-list #filterForm { font-size: 16px;}
+#sfReviewFront-list #content { width: 640px;}
 #sfReviewFront-list #sidebar { width: 220px;}
 #sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
 #sfReviewFront-list #ultimos-usuarios ol { margin: 0; padding: 0;}
