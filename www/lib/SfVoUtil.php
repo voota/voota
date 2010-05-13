@@ -106,7 +106,7 @@ class SfVoUtil
 		return $ret;
 	}
 	
-	public static function cutToLength($str, $length = 35, $ext = '.', $fullWords = false) {
+	public static function cutToLength($str, $length = 35, $ext = '...', $fullWords = false) {
 		$ret = '';
 		$aStr = preg_replace("/\n/is", " ", $str);
 		

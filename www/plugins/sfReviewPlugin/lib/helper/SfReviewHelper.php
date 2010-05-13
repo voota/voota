@@ -92,18 +92,22 @@ function _autolink_find_URLS( $text )
 }
 
 function toUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') !== 0 ){
-		$ret = "http://$str";	
+	$aStr = trim( $str );
+	
+	$ret = $aStr; 
+	if (strpos($aStr, 'http://') !== 0 ){
+		$ret = "http://$aStr";	
 	}
 	
 	return $ret;
 }
 
 function toShownUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') === 0 ){
-		$ret = substr($str,7);	
+	$aStr = trim( $str );
+	
+	$ret = $aStr; 
+	if (strpos($aStr, 'http://') === 0 ){
+		$ret = substr($aStr,7);	
 	}
 	
 	if (strlen($ret) > 30){

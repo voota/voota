@@ -1,6 +1,6 @@
 <?php use_helper('VoPager') ?>
 
-<?php if($current = currentIndex($pager, $id)): ?>
+<?php if($current = currentIndex($pager, $id) && count($pager) > 1): ?>
   <p class="politico-pagination politico-pagination-<?php echo $position ?>">
     <?php if($p_entity = prevEntity($pager, $id)): ?>
     	<a href="<?php echo url_for($p_entity->getModule().'/show?id='.$p_entity->getVanity()) ?>"><?php 

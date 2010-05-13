@@ -104,7 +104,7 @@
     <ol>
     <?php foreach ($lastUsers as $user):?>
       <li>
-        <?php echo getAvatar( $user ) ?>
+        <?php echo getAvatar( $user, 19, 19 ) ?>
         <?php echo link_to(fullName( $user ), '@usuario?username='.$user->getProfile()->getVanity())?>
       </li>
     <?php endforeach?>
