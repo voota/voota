@@ -449,7 +449,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show #description,
 #partido-show #description,
 #propuesta-show #description,
-#eleccion-show #description { margin-left: 50px; width: 420px; float: left;}
+#eleccion-show #description,
+#partido-show #elecciones { margin-left: 50px; width: 420px; float: left;}
 #politico-show #description h3,
 #partido-show #description h3,
 #propuesta-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
@@ -510,6 +511,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de partido */
+#partido-show #elecciones h3 { font-size: 13px; margin: 20px 0 10px 0;}
+#partido-show #elecciones ul { margin: 0; padding: 0;}
+#partido-show #elecciones ul li { list-style: none; margin-bottom: 5px;}
+#partido-show #elecciones p { margin: 20px 0;}
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
 #partido-show #politicians-most-voted ul li { margin: 0 30px 25px 0; float: left; height: 80px; width: 280px }
 #partido-show .list-mini ul { list-style: none; margin: 20px 0; padding: 0;}

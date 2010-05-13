@@ -8,10 +8,7 @@
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
-    $('.reviews').tabs({
-      load: function() { FB.XFBML.Host.parseDomTree(); }
-	});
-
+    $('.reviews').tabs({ load: function() { FB.XFBML.Host.parseDomTree(); } });
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
   });
@@ -50,6 +47,17 @@
   <div id="description">
       <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
   </div><!-- end of description -->
+  
+  <div id="elecciones">
+    <h3><?php echo __('Elecciones al %nombre%', array('%nombre%' => 'Parlament de Catalunya 2010')) // TODO: Sustituir por nombre de elección y año ?></h3>
+    <ul>
+      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Barcelona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
+      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Tarragona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
+      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Lleida')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
+      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Girona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
+    </ul>
+    <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a>(245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
+  </div>
 
   <?php if(count($activeEnlaces) > 0): ?>
     <div id="external-links">
