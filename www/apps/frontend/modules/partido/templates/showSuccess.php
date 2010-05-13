@@ -56,7 +56,7 @@
       <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Lleida')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
       <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Girona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
     </ul>
-    <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a>(245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
+    <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a> (245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
   </div>
 
   <?php if(count($activeEnlaces) > 0): ?>
