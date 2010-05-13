@@ -14,9 +14,9 @@
     <?php echo getAvatar( $review->getsfGuardUser() ) ?>
   </div>
   <div class="review-name">
-    <?php echo link_to(fullName( $review->getsfGuardUser() ), '@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>,
+  	<a title="<?php echo fullName( $review->getsfGuardUser() )?>" href="<?php echo url_for('@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo sfVoUtil::cutToLength( fullName( $review->getsfGuardUser() ), 15, '...' ) ?></a>
     <?php echo __('sobre') ?>
-    <?php echo $aReview?__('otro comentario sobre ') ." ":'' ?><a href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo $entity?></a>,
+    <a title='<?php echo $entity ?>' href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo sfVoUtil::cutToLength($entity, 32, '...')?></a>,
     <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>.
     <?php if ($review->getValue() == -1): ?>
   		<?php echo image_tag('icoMiniDown.png', 'alt="buu"') ?>

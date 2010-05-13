@@ -41,7 +41,7 @@ function fullNameForAttr( $user ) {
 	}
 }
 
-function getAvatar( $user ) {
+function getAvatar( $user, $width = 36, $height = 36) {
   	$ret = "";
 
     if( $user && $user->getProfile()->getImagen() ){
@@ -51,7 +51,7 @@ function getAvatar( $user ) {
   		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"square\" facebook-logo=\"true\" width=\"36\" height=\"36\"></fb:profile-pic>";
   	}
   	else {
-  		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
+  		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => $width, 'height' => $height));
   	}
     
   	

@@ -2,7 +2,7 @@
 <tr>
 	<td class="partido">
 	  <?php if($geoName): ?>
-		<a href="<?php echo url_for('lista/show?partido='.$partido->getAbreviatura().'&convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geoName) ?>"><?php echo $partido->getAbreviatura();?></a>
+		<a href="<?php echo url_for('lista/show?partido='.$partido->getAbreviatura().'&convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geoName) ?>"><?php echo __('Lista de %1%', array('%1%' => $partido->getAbreviatura())) ?></a>
 	  <?php else:?>
 		<?php echo $partido->getAbreviatura();?>
 	  <?php endif ?>

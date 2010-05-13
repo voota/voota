@@ -30,7 +30,7 @@
 <form id="ac_filter_frm" action="<?php echo url_for('partido/ranking')?>">
 <input type="hidden" name="i" id="institucion" value="<?php echo $institucion ?>" />
 <p>
-	<?php echo __('Ranking en')?> <input type="text" id="ac_institucion" value="<?php echo $institucionAC ?>" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
+	<?php echo __('Institución')?> <input type="text" id="ac_institucion" value="<?php echo $institucionAC ?>" title="<?php echo __('Parlamento europeo, Gobierno, Congreso...')?>" />
 	<input type="submit" value="<?php echo __('Filtrar') ?>" />
 </p>
 </form>
