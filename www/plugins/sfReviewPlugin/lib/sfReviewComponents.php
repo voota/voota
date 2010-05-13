@@ -18,10 +18,11 @@
  */
 
 class sfReviewComponents extends sfComponents
-{
+{	
 	public function executeReviewList(){
 		$this->page = $this->page?$this->page:1;
 		
+		$filter = array();
 		if (isset($this->sfReviewType))
 			$filter['type_id'] = $this->sfReviewType;
 		if (isset($this->entityId))

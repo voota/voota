@@ -11,7 +11,7 @@
 require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.php');
 
 class eleccionActions extends sfActions
-{
+{	  
  /**
   * Executes index action
   *

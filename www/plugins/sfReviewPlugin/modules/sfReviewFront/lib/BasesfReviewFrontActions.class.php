@@ -49,7 +49,9 @@ class BasesfReviewFrontActions extends sfActions
   	$this->filter = $request->getParameter("filter", false);
   	
   	$c = new Criteria;
-  	$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	if ($this->sfReviewType) {
+  		$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	}
   	$reviewType = SfReviewTypePeer::doSelectOne( $c );
   	$peer = $reviewType->getModel() .'Peer';
   	$c = new Criteria;

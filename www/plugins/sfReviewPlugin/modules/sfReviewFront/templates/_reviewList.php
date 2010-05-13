@@ -47,6 +47,27 @@
 	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => ($value?($value==1?__('positiva'):__('negativa')):''), '%2%' => $entity))?></p>
 <?php endif ?>
 
+<?php /* ?>
+<script type="text/javascript">
+<!--//
+  $(document).ready(function(){
+	  $('#frm_more').submit(function(){
+			jQuery.ajax({
+				type:'POST',
+				dataType:'html',
+				success:function(data, textStatus){jQuery('#frm_more').html(data);},
+				url: "sfReviewFront/filteredList",
+				update: '<?php echo "more_fr_".$reviewsPager->getPage() ?>',
+				before: re_loading( '<?php echo "more_fr_". $reviewsPager->getPage() ?>' ),
+				complete: FB.XFBML.Host.parseDomTree()
+			});
+			
+			return false;
+	  });
+  });
+//-->
+</script>
+<?php */ ?>
 	
 <div id="<?php echo "more_fr_${value}_".$reviewsPager->getPage()?>">
   <?php if ($reviewsPager->haveToPaginate() && $reviewsPager->getLastPage() > $reviewsPager->getPage()): ?>

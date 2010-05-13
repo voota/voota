@@ -2,6 +2,10 @@
 
 ### OPINIONES ###
     
+list_page:
+  url:   /review/list_page
+  param: { module: sfReviewFront, action: listPage }
+    
 ultimas_opiniones_es:
   url: /últimas-opiniones
   param: { module: sfReviewFront, action: list, type_id: false }

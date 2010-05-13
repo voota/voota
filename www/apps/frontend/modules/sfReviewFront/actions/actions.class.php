@@ -22,6 +22,21 @@ require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+
+  public function executeListPage(sfWebRequest $request)
+  {
+	$this->page = $request->getParameter("page", "1");
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+		
+	$filter = array();
+	if ($this->sfReviewType)
+		$filter['type_id'] = $this->sfReviewType;
+	if ($this->text)
+		$filter['textFilter'] = $this->text;
+			
+	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
+  }
   
   public function executeList(sfWebRequest $request)
   {

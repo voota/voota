@@ -11,10 +11,10 @@
     <?php echo review_text( $review ) ?>
   </p>
   <div class="review-avatar">
-    <?php echo getAvatar( $review->getsfGuardUser() ) ?>
+    <?php echo getAvatar( $review->getsfGuardUser(), 19, 19 ) ?>
   </div>
   <div class="review-name">
-  	<a title="<?php echo fullName( $review->getsfGuardUser() )?>" href="<?php echo url_for('@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo sfVoUtil::cutToLength( fullName( $review->getsfGuardUser() ), 15, '...' ) ?></a>
+  	<a title='<?php echo fullName( $review->getsfGuardUser() )?>' href="<?php echo url_for('@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo sfVoUtil::cutToLength( fullName( $review->getsfGuardUser() ), 15, '...' ) ?></a>
     <?php echo __('sobre') ?>
     <a title='<?php echo $entity ?>' href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo sfVoUtil::cutToLength($entity, 32, '...')?></a>,
     <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>.

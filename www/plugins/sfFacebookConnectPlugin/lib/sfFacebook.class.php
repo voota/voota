@@ -58,9 +58,8 @@ class sfFacebook
    */
   public static function getApiKey()
   {
-	$culture = sfcontext::getInstance()->getUser()->getCulture('es');
-	
-    return sfConfig::get("app_facebook_api_key_$culture");
+
+    return sfConfig::get('app_facebook_api_key');
   }
 
    /**
@@ -72,9 +71,8 @@ class sfFacebook
    */
   public static function getApiSecret()
   {
-	$culture = sfcontext::getInstance()->getUser()->getCulture('es');
-  	
-    return sfConfig::get("app_facebook_api_secret_$culture");
+
+    return sfConfig::get('app_facebook_api_secret');
   }
 
 

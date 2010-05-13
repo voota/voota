@@ -84,7 +84,8 @@ abstract class sfFacebookGuardAdapter
    * @since 2009-05-17
    */
   public function getUserFacebookUid($user)
-  {
+  {     
+
     return $this->getUserProfileProperty($user, 'facebook_uid');
   }
 
@@ -212,7 +213,7 @@ abstract class sfFacebookGuardAdapter
     $sfGuardUser = new sfGuardUser();
     $sfGuardUser->setUsername('Facebook_'.$facebook_uid);
     $this->setUserFacebookUid($sfGuardUser, $facebook_uid);
-    sfFacebookConnect::newSfGuardConnectionHook(&$sfGuardUser, $facebook_uid);
+    sfFacebookConnect::newSfGuardConnectionHook($sfGuardUser, $facebook_uid);
 
     // Save them into the database using a transaction to ensure a Facebook sfGuardUser cannot be stored without its facebook uid
     try
@@ -226,31 +227,7 @@ abstract class sfFacebookGuardAdapter
         $con->beginTransaction();
       }
       $sfGuardUser->save();
-      /* Modificado para Voota para que permita guardar el vanity
       $sfGuardUser->getProfile()->save();
-      */
-      $voProfile = $sfGuardUser->getProfile();
-      
-      
-	  $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
-    
-      $c2 = new Criteria();
-      $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
-      $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
-      $counter = 0;
-      foreach ($usuariosLikeMe as $usuarioLikeMe){
-    	$counter++;
-      }
-      $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
-      $voProfile->setMailsComentarios( 0 );
-      $voProfile->setMailsNoticias( 0 );
-      $voProfile->setMailsContacto( 0 );
-      $voProfile->setMailsSeguidor( 0 );
-      
-      sfContext::getInstance()->getUser()->setFlash('logToFB', true, true);
-				    
-      $voProfile->save();
-      /* Fin modificacion Voota */
       $con->commit();
     }
     catch (Exception $e)
