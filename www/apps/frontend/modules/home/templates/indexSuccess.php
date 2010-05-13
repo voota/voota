@@ -62,6 +62,7 @@
         	)) ?></a>.
         				
         </h2></li>
+        <li><h2><?php echo __('Lo que se cuece en las ') ?> <a href="<?php echo url_for('eleccion/show?vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre())?>"><?php echo $convocatoria->getEleccion()->getNombre()?> <?php echo $convocatoria->getNombre()?></a>.</h2></li>
         <li class="lo-mas-votado">
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
