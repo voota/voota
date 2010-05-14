@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<?php if ($sf_user->getCulture()): ?>
 <html lang="<?php echo $sf_user->getCulture() ?>">
-<?php else: ?>
-<html>
-<?php endif ?>
 
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
@@ -154,7 +150,7 @@
   <!-- FOOTER -->
   <div id="footer">
     <p class="license">
-      <a href="<?php echo __('http://creativecommons.org/licenses/by-sa/3.0/deed.es') ?>"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" /></a>
+      <a href="<?php echo __('http://creativecommons.org/licenses/by-sa/3.0/deed.es') ?>"><img src="/images/icoCc.png" alt="Creative Commons" width="34" height="34" /></a>
       <?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?>
     </p>
     <p class="nav-links">
@@ -199,18 +195,20 @@
   <?php if (has_slot('fb_connect')): ?>
     <?php include_slot('fb_connect') ?>
   <?php endif; ?>
-
+ 
   <!-- GOOGLE ANALYTICS -->
-  <script type="text/javascript" charset="utf-8">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '<?php echo $sf_user->getCulture() == 'ca'?'UA-10529881-3':'UA-10529881-1'?>']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
   </script>
-  <script type="text/javascript" charset="utf-8">
-    try {
-      var pageTracker = _gat._getTracker("<?php echo $sf_user->getCulture() == 'ca'?'UA-10529881-3':'UA-10529881-1'?>");
-      pageTracker._trackPageview();
-    } catch(err) {}
-  </script><!-- FIN GOOGLE ANALYTICS -->
+  <!-- FIN GOOGLE ANALYTICS -->
   
   <script type="text/javascript" charset="utf-8">    var uservoiceOptions = {
       /* required */
@@ -219,7 +217,7 @@
       forum: '42379',
       showTab: true,  
       /* optional */
-      alignment: 'left',
+      alignment: 'right',
       background_color:'#3366FF', 
       text_color: 'white',
       hover_color: '#06C',

@@ -95,7 +95,7 @@ tr.even { background-color: #fbfbfb; }
 #contact-links ul { list-style: none; margin: 0; padding: 0; position: absolute; bottom: 20px; left: 0;}
 #contact-links ul li { float: left; padding: 0 50px 0 0;}
 #contact-links ul li a { padding-right: 20px; }
-#contact-links ul li.blog a { background: transparent url(/images/icoBlog.gif) right center no-repeat; padding-right: 20px;}
+#contact-links ul li.blog a { background: transparent url(/images/icoBlog.png) right center no-repeat; padding-right: 20px;}
 #contact-links ul li.twitter a { background: transparent url(/images/icoTwitter.png) right center no-repeat;}
 #contact-links ul li.facebook a { background: transparent url(/images/icoFacebook.png) right center no-repeat;}
 
@@ -126,7 +126,7 @@ tr.even { background-color: #fbfbfb; }
 .box-inner { background-color: #fff; border: 1px solid #809DB9; padding: 20px; position: relative; top: -5px; left: -5px; }
 .box-contact ul { list-style: none; margin: 0; padding: 0;}
 .box-contact ul li { margin-bottom: 10px; padding-left: 20px; height: 16px;}
-.box-contact ul li.blog { background: transparent url(/images/icoBlog.gif) left center no-repeat; }
+.box-contact ul li.blog { background: transparent url(/images/icoBlog.png) left center no-repeat; }
 .box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat; }
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat; }
 .box-contact ul li.uservoice { background: transparent url(/images/uservoice.png) left center no-repeat; }
@@ -185,7 +185,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 
 /* Home */
 #home-index #main-inner { width: 100%; margin: 0;}
-#home-index .block { background: transparent url(/images/blockBottom.gif) bottom center no-repeat; padding: 20px 0; overflow: hidden;}
+#home-index .block { background: transparent url(/images/blockBottom.png) bottom center no-repeat; padding: 20px 0; overflow: hidden;}
 #home-index .block.last { background: none; padding-bottom: 0;}
 #home-index .block-inner { margin: 0 auto; width: 960px; }
 #home-index h3 { padding-bottom: 20px;}

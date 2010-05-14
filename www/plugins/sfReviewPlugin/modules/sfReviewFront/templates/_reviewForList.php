@@ -19,10 +19,10 @@
     <a title='<?php echo $entity ?>' href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo sfVoUtil::cutToLength($entity, 32, '...')?></a>.
     <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>.
     <?php if ($review->getValue() == -1): ?>
-  		<?php echo image_tag('icoMiniDown.png', 'alt="buu"') ?>
+  		<?php echo image_tag('icoMiniDown.png', 'width="16" height="18" alt="buu"') ?>
   	<?php endif ?>
   	<?php if ($review->getValue() == 1): ?>
-  		<?php echo image_tag('icoMiniUp.png', 'alt="yeah"') ?>
+  		<?php echo image_tag('icoMiniUp.png', 'width="16" height="18" alt="yeah"') ?>
   	<?php endif ?>
   </div>
 </li>
