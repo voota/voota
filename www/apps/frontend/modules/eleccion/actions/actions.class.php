@@ -59,7 +59,19 @@ class eleccionActions extends sfActions
   	
   	// Escaños
   	$listas = $this->convocatoria->getListas();
-  	$numEscanyos = count($listas[0]->getPoliticoListas());
+  	if($this->geoName){
+  		$numEscanyos = count($listas[0]->getPoliticoListas());
+  	}
+  	else {
+  		$numEscanyos = 0;
+  		$geoCounted = array();
+  		foreach($listas as $lista){
+  			if(!in_array($lista->getGeo()->getId(), $geoCounted)){
+  				$geoCounted[] = $lista->getGeo()->getId();
+  				$numEscanyos += count($lista->getPoliticoListas());
+  			}
+  		}
+  	}
   	$c = new Criteria();
   	$c->addJoin(ListaPeer::ID, PoliticoListaPeer::LISTA_ID);
   	$c->addJoin(PoliticoPeer::ID, PoliticoListaPeer::POLITICO_ID);
