@@ -19,6 +19,8 @@
 
 require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php');
 require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.php');
+require_once(sfConfig::get('sf_lib_dir').'/helper/VoUserHelper.php');
+require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/lib/helper/SfReviewHelper.php');
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
@@ -81,8 +83,18 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$this->title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
   		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
   	));  	
-  	$this->response->setTitle( $this->title );  	
-  	$description = "[autor última opinión] (hace 38 minutos), [autor2] (hace 45 minutos), [autor3] (hace 2 horas), ...";
+  	$this->response->setTitle( $this->title ); 
+  	$reviews = $this->reviewsPager->getResults();
+  	
+  	$description = 
+  		$reviews[0]->getSfGuardUser()->getProfile().
+  		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
+  		$reviews[1]->getSfGuardUser()->getProfile().
+  		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
+  		$reviews[2]->getSfGuardUser()->getProfile().
+  		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
+  		"...";
+  		
     $this->response->addMeta('Description', $description);  	
   }
 
