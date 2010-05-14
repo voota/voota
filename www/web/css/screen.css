@@ -511,6 +511,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de partido */
+#partido-show #content { float: left; width: 690px;}
+#partido-show #sidebar { width: 220px; margin-left: 50px;}
 #partido-show #elecciones h3 { font-size: 13px; margin: 20px 0 10px 0;}
 #partido-show #elecciones ul { margin: 0; padding: 0;}
 #partido-show #elecciones ul li { list-style: none; margin-bottom: 5px;}
