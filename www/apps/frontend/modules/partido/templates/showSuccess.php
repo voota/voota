@@ -48,16 +48,19 @@
       <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
   </div><!-- end of description -->
   
+<?php if($listas):?>
   <div id="elecciones">
-    <h3><?php echo __('Elecciones al %nombre%', array('%nombre%' => 'Parlament de Catalunya 2010')) // TODO: Sustituir por nombre de elección y año ?></h3>
+    <h3><?php echo $convocatoria->getEleccion()->getNombre() ?> <?php echo $convocatoria->getNombre() ?></h3>
     <ul>
-      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Barcelona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
-      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Tarragona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
-      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Lleida')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
-      <li><a href="#"><?php echo __('Lista en %nombre% &raquo;', array('%nombre%' => 'Girona')) // TODO: Sustituir por nombre de lista y enlace ?></a></li>
+      <?php foreach($listas as $lista):?>
+        <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
+      <?php endforeach ?>
     </ul>
+    <?php /* Esto que es? Los tenemos? ?>
     <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a> (245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
+    <?php */ ?>
   </div>
+<?php endif ?>
 
   <?php if(count($activeEnlaces) > 0): ?>
     <div id="external-links">

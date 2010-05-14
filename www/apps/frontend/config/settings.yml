@@ -60,6 +60,7 @@ all:
 #
   .settings:
     ml: 1.8
+    convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.
     i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.

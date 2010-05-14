@@ -336,6 +336,14 @@ class partidoActions extends sfActions
   		 
   	$this->response->addMeta('Descripcion', $descripcion);
   	
+ 	// Listas de electorales
+ 	$convocatoriaActiva = sfConfig::get('sf_convocatoria_activa');
+  	$this->convocatoria = ConvocatoriaPeer::retrieveByPk($convocatoriaActiva);
+ 	$c = new Criteria();
+ 	$c->add(ListaPeer::PARTIDO_ID, $this->partido->getId());
+ 	$c->add(ListaPeer::CONVOCATORIA_ID, $convocatoriaActiva);
+	$this->listas = ListaPeer::doSelect( $c );
+  	
   	/* paginador */
     $this->partidosPager = EntityManager::getPager($this->partido);
     /* / paginador */

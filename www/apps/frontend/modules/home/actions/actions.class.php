@@ -113,6 +113,7 @@ class homeActions extends sfActions{
   	$this->topReviews = SfReviewManager::getReviews($filter, 1, 5);
   	
   	// elecciones destacadas
-  	$this->convocatoria = ConvocatoriaPeer::retrieveByPk(1);
+ 	$convocatoriaActiva = sfConfig::get('sf_convocatoria_activa');
+  	$this->convocatoria = ConvocatoriaPeer::retrieveByPk($convocatoriaActiva);
   }
 }
