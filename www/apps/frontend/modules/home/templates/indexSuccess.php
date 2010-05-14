@@ -36,9 +36,9 @@
       <ul>
         <li><h2><?php echo __('Opiniones sobre políticos, partidos y propuestas políticas en España.') ?></h2></li>
         <li><h2>
-        	<?php echo __('%1% opiniones, de %4% personas, sobre ', array(
+        	<?php echo __('%1% %2%, de %4% personas, sobre ', array(
         					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
-        					//'%2%' => format_number($totalUpReviews, 'es_ES'),
+        					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('opiniones')."</a>",
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($topTotalUsers, 'es_ES')
         	)) ?>
