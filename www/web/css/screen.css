@@ -493,16 +493,16 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #propuesta-show #google-ads { width: 220px; margin-left: 50px; clear: right; float: right; }
 #politico-show .reviews,
 #partido-show .reviews,
-#propuesta-show .reviews { overflow: hidden; clear: left; padding-top: 35px; width: 680px; border: none; position: relative;}
+#propuesta-show .reviews { overflow: hidden; clear: left; padding: 35px 0 0 0; width: 680px; border: none; position: relative;}
 #politico-show .reviews .review-body ,
 #partido-show .reviews .review-body ,
 #propuesta-show .reviews .review-body { width: 640px;}
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
-#propuesta-show .reviews .ui-tabs-panel { width: 680px;}
+#propuesta-show .reviews .ui-tabs-panel { width: 680px; padding: 20px 0;}
 #politico-show .ui-tabs-nav,
 #partido-show .ui-tabs-nav,
-#propuesta-show .ui-tabs-nav { width: 680px; border: none; border-bottom: 1px solid #809DB9;}
+#propuesta-show .ui-tabs-nav { width: 680px; padding: 0; border: none; border-bottom: 1px solid #809DB9;}
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
 #propuesta-show #ed_box a { padding-right: 5px;}
 #propuesta-show #ed_box a.confirm_delete { color: red;}
