@@ -5,11 +5,6 @@
 
 <script type="text/javascript">
   $(window).load(function(){
-    <?php /*if(count($politicosMasVotadosUltimamente) < 6):?>
-    	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
-    	<?php endforeach?>
-	  <?php endif */?>
     <?php foreach($reviewables as $reviewable): ?>
 	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
