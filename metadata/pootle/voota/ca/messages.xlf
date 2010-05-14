@@ -2612,6 +2612,146 @@ actual)</target>
         <source>Ranking por partido</source>
         <target>Rànquing per partit</target>
       </trans-unit>
+      <trans-unit id="574">
+        <source>descendente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="575">
+        <source>ascendente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="576">
+        <source>%1% %2%, de %4% personas, sobre </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="577">
+        <source>opiniones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="578">
+        <source>Lo que se cuece en las </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="579">
+        <source>Últimos 5 vootos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="580">
+        <source>¡Tachán! Todos los vootos sobre partidos, políticos y propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="581">
+        <source>%1%.%2%: listas%3%, partidos, candidatos, previsión de escaños, votos de los usuarios, ...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="582">
+        <source>%dia% de %mes%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="583">
+        <source>Lista</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="584">
+        <source>Escaños según los votos positivos en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="585">
+        <source>Lista de %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="586">
+        <source>(y %1% más)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="587">
+        <source>Últimas opiniones%1% en Voota.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="588">
+        <source>sobre %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="589">
+        <source>Todos los vootos sobre partidos, políticos y propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="590">
+        <source>Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="591">
+        <source>Filtrar Vootos:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="592">
+        <source>Todos los vootos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="593">
+        <source>Sólo vootos sobre políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="594">
+        <source>Sólo vootos sobre partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="595">
+        <source>Sólo vootos sobre propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="596">
+        <source>Sólo vootos con texto</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="597">
+        <source>Últimos en llegar a Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="598">
+        <source>Lista electoral %1% %2% %3%, %4%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="599">
+        <source>Lista oficial del partido vs Lo que dice la calle: %1%, circunscripcón de %2%, %3% %4%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="600">
+        <source>Lista oficial del partido</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="601">
+        <source>Lo que dice la calle</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="602">
+        <source>Lista electoral %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="603">
+        <source>Lista oficial del partido (%nombre%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="604">
+        <source>No disponible</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="605">
+        <source>Lista en %1% &amp;raquo;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="606">
+        <source>Institución</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="607">
+        <source>Otra opción...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="608">
+        <source>Entrar con Facebook</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
