@@ -57,7 +57,7 @@ class eleccionActions extends sfActions
   	$instituciones = $this->convocatoria->getEleccion()->getEleccionInstitucions();
   	$this->institucionName = $instituciones[0]->getInstitucion();
   	
-  	// Escaños
+  	// Minimo de votos necesario para obtener escaño
   	$listas = $this->convocatoria->getListas();
   	if($this->geoName){
   		$numEscanyos = count($listas[0]->getPoliticoListas());
@@ -92,6 +92,21 @@ class eleccionActions extends sfActions
   			$this->minSumu = $politico->getSumu();
   			$this->minSumd = $politico->getSumd();
   		}
+  	}
+  	
+  	// Ordenar por escaños
+  	$idx = 0;
+  	foreach($this->partidos as $partido){
+  		$listaElectoral = new ListaElectoral($this->convocatoria->getId(), $partido->getId(), $this->geoName);
+  		for ($j=0;$j<$idx;$j++){
+  			$listaElectoral2 = new ListaElectoral($this->convocatoria->getId(), $this->partidos[$j]->getId(), $this->geoName);
+  			if ($listaElectoral2->getEscanyos($this->minSumu, $this->minSumd) < $listaElectoral->getEscanyos($this->minSumu, $this->minSumd)){
+  				$partidoTmp = clone $this->partidos[$idx];
+  				$this->partidos[$idx] = $this->partidos[$j];
+  				$this->partidos[$j] = $partidoTmp;
+  			}
+  		}
+  		$idx ++;
   	}
   	
   	// Metas
