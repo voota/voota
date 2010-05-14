@@ -57,6 +57,31 @@ class eleccionActions extends sfActions
   	$instituciones = $this->convocatoria->getEleccion()->getEleccionInstitucions();
   	$this->institucionName = $instituciones[0]->getInstitucion();
   	
+  	// Escaños
+  	$listas = $this->convocatoria->getListas();
+  	$numEscanyos = count($listas[0]->getPoliticoListas());
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::ID, PoliticoListaPeer::LISTA_ID);
+  	$c->addJoin(PoliticoPeer::ID, PoliticoListaPeer::POLITICO_ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+  	if($this->geoName){
+  		$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  		$c->add(GeoPeer::NOMBRE, $this->geoName);
+  	}
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);  	
+  	$politicos = PoliticoPeer::doSelect( $c );
+  	$idx = 0;
+  	$this->minSumu = 0;
+  	$this->minSumd = 0;
+  	foreach ($politicos as $politico){
+  		$idx++;
+  		if ($idx == ($numEscanyos + 1)){
+  			$this->minSumu = $politico->getSumu();
+  			$this->minSumd = $politico->getSumd();
+  		}
+  	}
+  	
   	// Metas
   	$this->title = ($this->geoName?$this->geoName.': ':'') . $this->convocatoria->getEleccion()->getNombre() ." ". $this->convocatoria->getNombre();  	
   	$this->response->setTitle( $this->title );  	

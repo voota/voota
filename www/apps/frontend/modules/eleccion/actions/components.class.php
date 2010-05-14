@@ -14,5 +14,12 @@ class eleccionComponents extends sfComponents
 		}
 		$c->setDistinct();
 		$this->politicos = PoliticoPeer::doSelect( $c );
+		
+		$this->numEscanyos = 0;
+		foreach($this->politicos as $politico){
+			if ($politico->getSumu() > $this->minSumu || ($politico->getSumu() == $this->minSumu && $politico->getSumd() < $this->minSumd)){
+				$this->numEscanyos++;
+			}
+		}
 	}
 }

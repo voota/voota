@@ -43,15 +43,9 @@
     </thead>
     <tbody>
       <?php foreach ($partidos as $partido): ?>
-          <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName)) ?>
+          <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd)) ?>
       <?php endforeach ?>
     </tbody>
-    <tfoot>
-      <tr>
-        <td class="partido"><?php echo __('Mayoría') ?></td>
-        <td class="escanos"><?php echo 72 // TODO: Total escaños ?></td>
-      </tr>
-    </tfoot>
   </table>
 
 </div><!-- end of content -->

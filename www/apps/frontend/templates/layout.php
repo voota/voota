@@ -28,6 +28,9 @@
   <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
   <script type="text/javascript" src="/js/bluff/bluff.js"></script>
   <script type="text/javascript" src="/js/bluff/custom.js"></script>
+  <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/es" type="text/javascript"></script>
+  <script src="/sfFacebookConnectPlugin/js/sfFacebookConnect.js" type="text/javascript"></script>
+
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/sfReviewPlugin/css/sf_review.css?<?php echo sfConfig::get('sf_ml') ?>" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />

@@ -1,11 +1,14 @@
 <?php
-function fullName( $user ) {
+function fullName( $user, $length = false ) {
   	$ret = "";
   	
   	if ($user && $user->getProfile()->getNombre()){
   		$ret .= $user->getProfile()->getNombre();
   		if ($user->getProfile()->getApellidos()){
   			$ret .= " " . $user->getProfile()->getApellidos();
+  		}
+  		if ($length){
+  			$ret = sfVoUtil::cutToLength( $ret, $length );
   		}
   	}
   	else if ($user && $user->getProfile()->getFacebookUid()){
