@@ -55,7 +55,7 @@
         	rel="nofollow"><?php echo __('Votos +')?></a>
       	<?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
       	<?php if (strpos($order, 'p') === 0):?>
-      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
+      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
       	<?php endif?>    	
       </th>
       <th class="negative-votes">
@@ -64,7 +64,7 @@
         	rel="nofollow"><?php echo __('Votos -')?></a>
       	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php if (strpos($order, 'n') === 0):?>
-      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
+      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
       	<?php endif?>
       </th>
     </tr>

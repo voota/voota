@@ -35,20 +35,24 @@
       <th class="politico" colspan="3"><?php echo __('Lo que dice la calle') ?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
-        <?php // TODO: Cambiar enlaces y añadir flechita; ver cualquier rankingSuccess.php ?>
-        <a href="#" title="<?php echo __('Ordenar por votos positivos: Los más votados primero / los menos votados primero') ?>"><?php echo __('Votos +') ?></a>
+        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo()->getNombre().
+        		($order=='pd'?"&o=pa":''))?>" 
+        	rel="nofollow" 
+        	title="<?php echo __('Ordenar por votos positivos: Los más votados primero / los menos votados primero') ?>"><?php echo __('Votos +') ?></a>
         <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
-        <?php // if (strpos($order, 'p') === 0): ?>
-      		<?php // echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="descendente"':'alt="ascendente"') ?>
-      	<?php // endif ?>
+        <?php if (strpos($order, 'p') === 0): ?>
+      		<?php echo image_tag($order=='pd'?'flechaDown.gif':'flechaUp.gif', $order=='pd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
+      	<?php endif ?>
       </th>
       <th class="negative-votes">
-        <?php // TODO: Cambiar enlaces y añadir flechita; ver cualquier rankingSuccess.php ?>
-        <a href="#" title="<?php echo __('Ordenar por votos negativos: Los más votados primero / los menos votados primero') ?>"><?php echo __('Votos -') ?></a>
+        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo()->getNombre().
+        		($order=='nd'?"&o=na":'&o=nd'))?>" 
+        	rel="nofollow" 
+        	title="<?php echo __('Ordenar por votos negativos: Los más votados primero / los menos votados primero') ?>"><?php echo __('Votos -') ?></a>
         <?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
-        <?php // if (strpos($order, 'n') === 0): ?>
-      		<?php // echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="descendente"':'alt="ascendente"') ?>
-      	<?php // endif ?>
+        <?php if (strpos($order, 'n') === 0): ?>
+      		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
+      	<?php endif ?>
       </th>
     </tr>
   </thead>
