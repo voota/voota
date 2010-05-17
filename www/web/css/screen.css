@@ -469,11 +469,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show #external-links ul,
 #partido-show #external-links ul,
 #propuesta-show #external-links ul,
-#propuesta-new #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
+#propuesta-new #external-links ul,
+#eleccion-show #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #politico-show #external-links ul li,
 #partido-show #external-links ul li,
 #propuesta-show #external-links ul li,
-#propuesta-new #external-links ul li { margin: 0 0 10px 0;}
+#propuesta-new #external-links ul li,
+#eleccion-show #external-links ul li { margin: 0 0 10px 0;}
 #propuesta-show #external-links ol { padding-left: 0; list-style: none;}
 #propuesta-show #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
 #politico-show #twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; }
@@ -548,13 +550,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 
 /* Página de elección */
 #eleccion-show #content { float: left; width: 690px;}
-#eleccion-show #selector_convocatoria { overflow: hidden; float: left; clear: left; background: transparent url(/images/balloonYellowBottom.png) left bottom no-repeat; padding-bottom: 11px; margin-left: 25px;}
-#eleccion-show #selector_convocatoria ul { height: 25px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; padding: 15px 15px 4px 15px; margin: 0; }
-#eleccion-show #selector_convocatoria li { list-style: none; float: left; margin-right: 20px;}
 #eleccion-show #resultados { width: 690px;}
 #eleccion-show #resultados td { padding: 5px 0;}
 #eleccion-show #resultados { overflow: hidden; float: left; clear: left; margin-top: 20px;}
-#eleccion-show #resultados .partido { width: 65px; text-align: right; padding-right: 20px;}
+#eleccion-show #resultados .partido { width: 100px; text-align: right; padding-right: 20px;}
 #eleccion-show #resultados .escanos { width: 20px; text-align: right; padding-right: 20px; font-weight: bold;}
 #eleccion-show #resultados .politicos img { width: 20px; height: 20px;}
 #eleccion-show .tooltip-politico .nombre { margin-bottom: 5px;}
