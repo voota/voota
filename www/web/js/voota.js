@@ -241,10 +241,17 @@ function sparkline(id, label, data) {
 jQuery.fn.tooltip_politico_elecciones = function() {
   $(this).each(function(){
     img = $('<div>').append($(this).clone()).remove().html();
+    nombre = $(this).data('nombre');
+    url = $(this).data('url');
     positive_votes = $(this).data('positive_votes') + ' <img src="/images/icoMiniUp.png" />';
     negative_votes = $(this).data('negative_votes') + ' <img src="/images/icoMiniDown.png" />';
     $(this).qtip({
-      content: '<div class="tooltip-politico"><div class="photo">' + img + '</div><div class="positive_votes">' + positive_votes + '</div><div class="negative_votes">' + negative_votes + '</div></div>',
+      content: '<div class="tooltip-politico">' + 
+                 '<div class="nombre"><a href="' + url + '">' + nombre + '</a></div>' +
+                 '<div class="photo">' + img + '</div>' +
+                 '<div class="positive_votes">' + positive_votes + '</div>' +
+                 '<div class="negative_votes">' + negative_votes + '</div>' +
+               '</div>',
       position: {
         corner: { tooltip: 'bottomMiddle', target: 'topMiddle' }
       },

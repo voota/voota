@@ -556,9 +556,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #eleccion-show #resultados .partido { width: 65px; text-align: right; padding-right: 20px;}
 #eleccion-show #resultados .escanos { width: 20px; text-align: right; padding-right: 20px; font-weight: bold;}
 #eleccion-show #resultados .politicos img { width: 20px; height: 20px;}
+#eleccion-show .tooltip-politico .nombre { margin-bottom: 5px;}
 #eleccion-show .tooltip-politico .photo { float: left; overflow: hidden;}
-#eleccion-show .tooltip-politico .positive_votes { float: right; overflow: hidden; margin-left: 5px; width: 45px; margin-bottom: 5px; text-align: right;}
-#eleccion-show .tooltip-politico .negative_votes { float: right; overflow: hidden; margin-left: 5px; width: 45px; clear: right; text-align: right;}
+#eleccion-show .tooltip-politico .positive_votes { float: right; overflow: hidden; margin-left: 5px; width: 100px; margin-bottom: 5px; text-align: right;}
+#eleccion-show .tooltip-politico .negative_votes { float: right; overflow: hidden; margin-left: 5px; width: 100px; clear: right; text-align: right;}
 
 /* Página de últimos vootos */
 #sfReviewFront-list h2.title { margin-bottom: 0;}
