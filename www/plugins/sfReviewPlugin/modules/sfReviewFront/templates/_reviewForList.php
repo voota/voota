@@ -7,15 +7,17 @@
 <?php $listValue = isset($listValue)?$listValue:''?>
 
 <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
-  <p class="review-body">
-    <?php echo review_text( $review ) ?>
-  </p>
   <div class="review-avatar">
     <?php echo getAvatar( $review->getsfGuardUser(), 19, 19 ) ?>
   </div>
   <div class="review-name">
   	<a title='<?php echo $review->getsfGuardUser() ?>' href="<?php echo url_for('@usuario?username='.$review->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo fullName( $review->getsfGuardUser(), 15 ) ?></a>
-    <?php echo __('sobre') ?>
+    <?php if ($review->getValue() == -1): ?>
+  		<?php echo __('voota en contra de') ?>
+  	<?php endif ?>
+  	<?php if ($review->getValue() == 1): ?>
+  		<?php echo __('voota a favor de') ?>
+  	<?php endif ?>
     <a title='<?php echo $entity ?>' href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo sfVoUtil::cutToLength($entity, 32, '...')?></a>.
     <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>.
     <?php if ($review->getValue() == -1): ?>
@@ -25,4 +27,7 @@
   		<?php echo image_tag('icoMiniUp.png', 'width="16" height="18" alt="yeah"') ?>
   	<?php endif ?>
   </div>
+  <p class="review-body">
+    <?php echo review_text( $review ) ?>
+  </p>
 </li>

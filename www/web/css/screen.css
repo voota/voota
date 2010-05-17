@@ -218,6 +218,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index .signup { margin-left: 170px; font-weight: bold;}
 #home-index #ultimos-vootos h3 { padding-right: 30px; background: transparent url(/images/vootos.png) right top no-repeat; float: left;}
 #home-index #ultimos-vootos .reviews-list { clear: left; width: 680px;}
+#home-index #ultimos-vootos li { padding-bottom: 15px; border-bottom: 1px dotted #ddd; }
+#home-index #ultimos-vootos .review-name { width: 650px;}
 #home-index #ultimos-vootos .ver-mas-vootos { padding: 10px 0 20px 0; font-weight: bold;}
 
 /* Contacto */
