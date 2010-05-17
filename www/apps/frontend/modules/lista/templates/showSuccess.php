@@ -31,8 +31,12 @@
 <table>
   <thead>
     <tr>
-      <th class="politico" colspan="3"><?php echo __('Lista oficial del partido (%nombre%)', array('%nombre%' => $lista->getPartido()->getAbreviatura())) ?></th>
-      <th class="politico" colspan="3"><?php echo __('Lo que dice la calle') ?></th>
+      <th class="position"></th>
+      <th class="photo"></th>
+      <th class="name"><?php echo __('Lista oficial del partido (%nombre%)', array('%nombre%' => $lista->getPartido()->getAbreviatura())) ?></th>
+      <th class="position"></th>
+      <th class="photo"></th>
+      <th class="name"><?php echo __('Lo que dice la calle') ?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
         <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo()->getNombre().
@@ -75,7 +79,7 @@
         <td class="name">
         	<?php if (isset($politicosListaOficial[$idx])):?>
         		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
-			<?php elseif(count($politicosListaOficial) == 0):?>
+			    <?php elseif(count($politicosListaOficial) == 0):?>
         		<?php echo __('No disponible') ?>
         	<?php endif?>
         <td class="position"><?php echo $idx+1 ?>.</td>
