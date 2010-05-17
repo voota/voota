@@ -58,11 +58,31 @@ EOF;
    	else if ($options['table'] == 'propuesta'){
     	$this->propuesta($arguments, $options);
    	}
+   	else if ($options['table'] == 'partido'){
+    	$this->partido($arguments, $options);
+   	}
    	else {
    		echo "No conozco esa tabla (".$options['table'].").\n";
    	}
   }
 
+  private function partido($arguments = array(), $options = array())
+  {
+    // initialize the database connection
+    $databaseManager = new sfDatabaseManager($this->configuration);
+    $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
+
+    $s3 = new S3Voota();
+    $c = new Criteria();
+    $c->add(PartidoPeer::ID, $options['minid'], Criteria::GREATER_EQUAL);
+    $partidos = PartidoPeer::doSelect( $c );
+    foreach ($partidos as $partido){
+    	if ($partido->getImagen() != ''){
+    		echo "Creating " . $partido->getImagen() ." ...\n";
+    		$s3->createPartidoFromOri( $partido->getImagen() );
+    	}
+    }
+  }
   private function propuesta($arguments = array(), $options = array())
   {
     // initialize the database connection
