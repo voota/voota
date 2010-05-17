@@ -55,11 +55,31 @@ EOF;
    	else if ($options['table'] == 'usuario'){
     	$this->usuario($arguments, $options);
    	}
+   	else if ($options['table'] == 'propuesta'){
+    	$this->propuesta($arguments, $options);
+   	}
    	else {
    		echo "No conozco esa tabla (".$options['table'].").\n";
    	}
   }
 
+  private function propuesta($arguments = array(), $options = array())
+  {
+    // initialize the database connection
+    $databaseManager = new sfDatabaseManager($this->configuration);
+    $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
+
+    $s3 = new S3Voota();
+    $c = new Criteria();
+    $c->add(PropuestaPeer::ID, $options['minid'], Criteria::GREATER_EQUAL);
+    $propuestas = PropuestaPeer::doSelect( $c );
+    foreach ($propuestas as $propuesta){
+    	if ($propuesta->getImagen() != ''){
+    		echo "Creating " . $propuesta->getImagen() ." ...\n";
+    		$s3->createFromOri( "propuestas", $propuesta->getImagen() );
+    	}
+    }
+  }
   private function politico($arguments = array(), $options = array())
   {
     // initialize the database connection
