@@ -19,7 +19,15 @@ class S3Voota extends S3 {
 	const _BUCKET_ORI = 'sf_s3_bucket_originals';
 	const _BUCKET_PUB = 'sf_s3_bucket_public';
 	const _IMAGES_URL = 'sf_images_url';
+	const _EXPIRES_IN_DAYS = 30;
 	
+	public function putObjectCached($inputFile, $bucket, $filePath, $acl){
+		$requestHeaders = array();
+		$expires = 60 * 60 * 24 * self::_EXPIRES_IN_DAYS;
+		$requestHeaders['Cache-Control'] = "max-age=$expires";
+		
+		return S3::putObject($inputFile, $bucket, $filePath, $acl, array(), $requestHeaders);
+	}
 	public static function getBucketOri(){
 		return sfConfig::get(S3Voota::_BUCKET_ORI); 
 	}
@@ -47,13 +55,13 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "politicos/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->politico(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "politicos/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "politicos/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "politicos/bw_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "politicos/bw_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "politicos/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "politicos/cc_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_s_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "politicos/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "politicos/bw_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_s_$fileName" );
 		}
 		
@@ -79,13 +87,13 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "partidos/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->voota(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "partidos/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "partidos/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "partidos/bw_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "partidos/bw_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "partidos/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "partidos/cc_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_s_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "partidos/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "partidos/bw_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_s_$fileName" );
 		}
 	}
@@ -110,13 +118,13 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "instituciones/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->voota(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "instituciones/cc_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_s_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "instituciones/bw_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_s_$fileName" );
 		}
 		
@@ -142,14 +150,14 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "usuarios/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->voota(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
 			//$uploaded = $this->upload("/tmp/cc_$fileName", S3Voota::getBucketPub(), "usuarios/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_$fileName" );
 			$uploaded = $this->upload("/tmp/cc_s_$fileName", S3Voota::getBucketPub(), "usuarios/cc_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_s_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "usuarios/bw_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_s_$fileName" );
 		}
 		
@@ -174,7 +182,7 @@ class S3Voota extends S3 {
 		while (!$uploaded && $retries > 0){
 			$retries--;
 			set_error_handler ( "S3Voota::error_handler" );
-			$uploaded = S3::putObject(S3::inputFile($filePath), $bucket, $fileName, $acl);
+			$uploaded = $this->putObjectCached(S3::inputFile($filePath), $bucket, $fileName, $acl);
 			restore_error_handler();
 		}
 		
@@ -194,7 +202,7 @@ class S3Voota extends S3 {
 		$uri = "$type/$fileName";		
 		
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "$type/$fileName", S3::ACL_PRIVATE)){
-			S3::putObject(S3::inputFile("$file"), S3Voota::getBucketPub(), "$type/$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("$file"), S3Voota::getBucketPub(), "$type/$fileName", S3::ACL_PUBLIC_READ);
 		}
 	}
 	public function createFromFile( $type, $file ) {
@@ -206,13 +214,13 @@ class S3Voota extends S3 {
 		if (S3::putObject(S3::inputFile("$file"), S3Voota::getBucketOri(), "$type/$fileName", S3::ACL_PRIVATE)){
 			$img = new sfImage( $file );
 			$img->voota(  );
-			S3::putObject(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "$type/cc_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_$fileName"), S3Voota::getBucketPub(), "$type/cc_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "$type/bw_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_$fileName"), S3Voota::getBucketPub(), "$type/bw_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "$type/cc_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/cc_s_$fileName"), S3Voota::getBucketPub(), "$type/cc_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/cc_s_$fileName" );
-			S3::putObject(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "$type/bw_s_$fileName", S3::ACL_PUBLIC_READ);
+			$this->putObjectCached(S3::inputFile("/tmp/bw_s_$fileName"), S3Voota::getBucketPub(), "$type/bw_s_$fileName", S3::ACL_PUBLIC_READ);
 			unlink ( "/tmp/bw_s_$fileName" );
 		}
 	}

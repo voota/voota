@@ -1,5 +1,4 @@
 <?php use_helper('I18N') ?>
-<?php use_helper('jQuery') ?>
 
 <?php if ($reviewsPager->getPage() == 1):?>
 	<script type="text/javascript">
@@ -46,39 +45,30 @@
 <?php else: ?>
 	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => ($value?($value==1?__('positiva'):__('negativa')):''), '%2%' => $entity))?></p>
 <?php endif ?>
-
-<?php /* ?>
-<script type="text/javascript">
-<!--//
-  $(document).ready(function(){
-	  $('#frm_more').submit(function(){
-			jQuery.ajax({
-				type:'POST',
-				dataType:'html',
-				success:function(data, textStatus){jQuery('#frm_more').html(data);},
-				url: "sfReviewFront/filteredList",
-				update: '<?php echo "more_fr_".$reviewsPager->getPage() ?>',
-				before: re_loading( '<?php echo "more_fr_". $reviewsPager->getPage() ?>' ),
-				complete: FB.XFBML.Host.parseDomTree()
-			});
-			
-			return false;
-	  });
-  });
-//-->
-</script>
-<?php */ ?>
 	
-<div id="<?php echo "more_fr_${value}_".$reviewsPager->getPage()?>">
+<div id="<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>">
   <?php if ($reviewsPager->haveToPaginate() && $reviewsPager->getLastPage() > $reviewsPager->getPage()): ?>
-      <?php echo jq_form_remote_tag(array(
-    	'update'   => "more_fr_${value}_".$reviewsPager->getPage(),
-    	'url'      => "sfReviewFront/filteredList",
-      	'before'   => "re_loading( 'more_fr_". $value ."_". $reviewsPager->getPage() ."' )",
-        'complete'	   => "FB.XFBML.Host.parseDomTree()"
-		),
-        array('id' => "frm_fr_${value}_"
-      )) ?>
+	<script type="text/javascript">
+	<!--//
+	  $(document).ready(function(){
+		  $('#<?php echo "frm_more_${value}_".$reviewsPager->getPage()?>').submit(function(){
+				jQuery.ajax({
+					type:'POST',
+					dataType:'html',
+					data:jQuery($('#<?php echo "frm_more_". $value ."_".$reviewsPager->getPage()?>')).serialize(),
+					success:function(data, textStatus){jQuery('#<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>').html(data);FB.XFBML.Host.parseDomTree()},
+					url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
+					update: '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>',
+					before: re_loading( '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>' ),
+				});
+				
+				return false;
+		  });
+	  });
+	//-->
+	</script>
+
+    <form id="<?php echo "frm_more_${value}_".$reviewsPager->getPage()?>">
       <input type="hidden" id="entityId" name="entityId" value="<?php echo $entityId ?>" />
       <input type="hidden" id="value" name="value" value="<?php echo $value ?>" />
       <input type="hidden" id="value" name="sfReviewType" value="<?php echo $sfReviewType ?>" />

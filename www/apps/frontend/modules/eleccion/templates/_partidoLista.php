@@ -13,8 +13,8 @@
     	  <?php if($idx < 21):?>
         	<img class="politico" id="<?php echo "politico_". $politico->getId()?>" src="<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>" alt="<?php echo $politico ?>" />
             <script type="text/javascript" charset="utf-8">
-                $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo 'Zapatero' // TODO: Nombre político ?>')
-                $("#<?php echo "politico_". $politico->getId()?>").data('url', '<?php echo '#' // TODO: URL página político ?>')
+                $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo $politico ?>')
+                $("#<?php echo "politico_". $politico->getId()?>").data('url', '<?php echo url_for('politico/show?id='.$politico->getVanity()) ?>')
                 $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', '<?php echo $politico->getSumu() ?> <?php echo __('a favor') ?>');
                 $("#<?php echo "politico_". $politico->getId()?>").data('negative_votes', '<?php echo $politico->getSumd() ?> <?php echo __('en contra') ?>');
             </script>
