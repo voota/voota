@@ -566,10 +566,12 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfReviewFront-list #filterForm select { font-size: 13px;}
 #sfReviewFront-list #content { width: 640px;}
 #sfReviewFront-list #sidebar { width: 220px;}
+#sfReviewFront-list #ultimos-usuarios h3 { padding-bottom: 10px;}
 #sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
 #sfReviewFront-list #ultimos-usuarios ol { margin: 0; padding: 0;}
 #sfReviewFront-list #ultimos-usuarios li { list-style: none; margin-bottom: 5px; }
 #sfReviewFront-list .reviews-list .review-name { width: 610px;}
+#sfReviewFront-list .pagination { margin-top: 0;}
 
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
