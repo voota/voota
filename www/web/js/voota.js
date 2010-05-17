@@ -243,8 +243,8 @@ jQuery.fn.tooltip_politico_elecciones = function() {
     img = $('<div>').append($(this).clone()).remove().html();
     nombre = $(this).data('nombre');
     url = $(this).data('url');
-    positive_votes = $(this).data('positive_votes') + ' <img src="/images/icoMiniUp.png" />';
-    negative_votes = $(this).data('negative_votes') + ' <img src="/images/icoMiniDown.png" />';
+    positive_votes = $(this).data('positive_votes');
+    negative_votes = $(this).data('negative_votes');
     $(this).qtip({
       content: '<div class="tooltip-politico">' + 
                  '<div class="nombre"><a href="' + url + '">' + nombre + '</a></div>' +
