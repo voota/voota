@@ -564,7 +564,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 /* Página de últimos vootos */
 #sfReviewFront-list h2.title { margin-bottom: 0;}
 #sfReviewFront-list h3.title { margin-bottom: 20px; font-weight: normal;}
-#sfReviewFront-list #filterForm { font-size: 16px;}
+#sfReviewFront-list #filterForm select { font-size: 13px;}
 #sfReviewFront-list #content { width: 640px;}
 #sfReviewFront-list #sidebar { width: 220px;}
 #sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
