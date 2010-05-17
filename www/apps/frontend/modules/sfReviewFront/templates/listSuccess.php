@@ -57,8 +57,15 @@
   	</form>
   <?php endif ?>
 
-  <?php include_partial('listPage', array('reviewsPager' => $reviewsPager, 'sfReviewType' => $sfReviewType, 'text' => $text)) ?>
-  
+  <?php if ($reviewsPager->getNbResults() > 0): ?>
+    <ol class="reviews-list">
+  	  <?php foreach($reviewsPager->getResults() as $review): ?>
+    		<?php include_component_slot('review_for_list', array('review' => $review)) ?>
+      <?php endforeach ?>
+    </ol>
+  <?php endif ?>
+
+  <?php include_partial('listPagination', array('reviewsPager' => $reviewsPager, 'sfReviewType' => $sfReviewType, 'text' => $text)) ?>  
 </div>
 
 <div id="sidebar">

@@ -571,7 +571,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #sfReviewFront-list #ultimos-usuarios ol { margin: 0; padding: 0;}
 #sfReviewFront-list #ultimos-usuarios li { list-style: none; margin-bottom: 5px; }
 #sfReviewFront-list .reviews-list .review-name { width: 610px;}
-#sfReviewFront-list .pagination { margin-top: 0;}
+#sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
