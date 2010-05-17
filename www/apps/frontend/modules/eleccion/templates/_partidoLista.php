@@ -10,7 +10,7 @@
     <td class="escanos"><?php echo $numEscanyos ?></td>
     <td class="politicos">
     	<?php $idx=0;foreach($politicos as $politico):$idx++; ?>
-    	  <?php if($idx < 21):?>
+    	  <?php if($idx < ($numEscanyos+1)):?>
         	<img class="politico" id="<?php echo "politico_". $politico->getId()?>" src="<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>" alt="<?php echo $politico ?>" />
             <script type="text/javascript" charset="utf-8">
                 $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo $politico ?>')
@@ -20,8 +20,8 @@
             </script>
           <?php endif ?>
 		<?php endforeach ?>
-          <?php if(count($politicos) > 20): ?>
-          		<?php echo __('(y %1% más)', array('%1%' => count($politicos) - 20))?>
+          <?php if($numEscanyos > 20): ?>
+          		<?php echo __('(y %1% más)', array('%1%' => $numEscanyos - 20))?>
           <?php endif ?>
 	</td>
 </tr>
