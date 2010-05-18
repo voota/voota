@@ -122,8 +122,8 @@
       <note/><note/><note/><note/><note/><note/><note/><note/><note/><note/></trans-unit>
       <trans-unit id="30" approved="yes">
         <source>http://www.facebook.com/pages/Voota/120100006457</source>
-        <target>http://www.facebook.com/pages/Voota_ca/147695619187</target>
-      <note/><note/><note/><note/><note/><note/><note/><note/><note/><note/><alt-trans xml:space="preserve" origin="versionmerge"><target>http://www.facebook.com/pages/Voota-CAT/117778274904311</target></alt-trans></trans-unit>
+        <target>http://www.facebook.com/pages/Voota-CAT/117778274904311</target>
+      <note/><note/><note/><note/><note/><note/><note/><note/><note/><note/></trans-unit>
       <trans-unit id="31" approved="yes">
         <source>twitter.com/voota</source>
         <target>twitter.com/Vootacat</target>
@@ -686,8 +686,8 @@
       <note/><note/><note/><note/><note/><note/><note/><note/><note/></trans-unit>
       <trans-unit id="164" approved="yes">
         <source>http://www.facebook.com/Voota</source>
-        <target>http://www.facebook.com/pages/Voota_ca/147695619187</target>
-      <note/><note/><note/><note/><note/><note/><note/><note/><note/><alt-trans xml:space="preserve" origin="versionmerge"><target>http://www.facebook.com/pages/Voota-CAT/117778274904311</target></alt-trans></trans-unit>
+        <target>http://www.facebook.com/pages/Voota-CAT/117778274904311</target>
+      <note/><note/><note/><note/><note/><note/><note/><note/><note/></trans-unit>
       <trans-unit id="165" approved="yes">
         <source>&amp;laquo;Anterior</source>
         <target>&amp;laquo; Anterior</target>
@@ -1408,7 +1408,7 @@ actual)</target>
   &lt;br /&gt;
   Voota en Facebook:  http://facebook.com/voota
 &lt;/p&gt;</source>
-        <target>&lt;p&gt;Hola %1%,&lt;/p&gt; %saludo% &lt;p&gt; Això és el que vas opinar sobre %4%: &lt;br /&gt;"%5%" &lt;/p&gt; &lt;p&gt; Veure el teu voot i els seus comentaris en estat natural: &lt;br /&gt;&lt;a href="%6%"&gt;%6%&lt;/a&gt; &lt;/p&gt; &lt;p&gt; Deixar de rebre aquests avisos (simplement fes click en aquest enllaç): &lt;br /&gt;&lt;a href="%7%"&gt;%7%&lt;/a&gt; &lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: http://voota.cat &lt;br /&gt; Blog de Voota: http://blog.voota.cat &lt;br /&gt; Voota en Twitter: http://twitter.com/Vootacat &lt;br /&gt; Voota en Facebook: http://www.facebook.com/pages/Voota_ca/147695619187 &lt;/p&gt;</target>
+        <target>&lt;p&gt;Hola %1%,&lt;/p&gt; %saludo% &lt;p&gt; Això és el que vas opinar sobre %4%: &lt;br /&gt;"%5%" &lt;/p&gt; &lt;p&gt; Veure el teu voot i els seus comentaris en estat natural: &lt;br /&gt;&lt;a href="%6%"&gt;%6%&lt;/a&gt; &lt;/p&gt; &lt;p&gt; Deixar de rebre aquests avisos (simplement fes click en aquest enllaç): &lt;br /&gt;&lt;a href="%7%"&gt;%7%&lt;/a&gt; &lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: http://voota.cat &lt;br /&gt; Blog de Voota: http://blog.voota.cat &lt;br /&gt; Voota a Twitter: http://twitter.com/Vootacat &lt;br /&gt; Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       <note/><note/><note/><note/><alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %1%,&lt;/p&gt; %saludo% &lt;p&gt; Això és el que vas opinar sobre %4%: &lt;br /&gt;"%5%" &lt;/p&gt; &lt;p&gt; Veure el teu voot i els seus comentaris en estat natural: &lt;br /&gt;&lt;a href="%6%"&gt;%6%&lt;/a&gt; &lt;/p&gt; &lt;p&gt; Deixar de rebre aquests avisos (simplement fes click en aquest enllaç): &lt;br /&gt;&lt;a href="%7%"&gt;%7%&lt;/a&gt; &lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: http://voota.es/ca &lt;br /&gt; Blog de Voota: http://blog.voota.cat &lt;br /&gt; Voota en Twitter: http://twitter.com/Vootacat &lt;br /&gt; Voota en Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target></alt-trans></trans-unit>
       <trans-unit id="309" approved="yes">
         <source>&lt;p&gt;Pues eso, que %2% ha puesto un nuevo comentario sobre tu vooto. Esto es lo que piensa él:&lt;br /&gt;"%3%"&lt;/p&gt;</source>
@@ -1507,8 +1507,8 @@ actual)</target>
   Voota en Twitter: &lt;a href="http://twitter.com/voota"&gt;http://twitter.com/voota&lt;/a&gt;&lt;br /&gt;
   Voota en Facebook: &lt;a href="http://facebook.com/voota"&gt;http://facebook.com/voota&lt;/a&gt;&lt;br /&gt;
 &lt;/p&gt;</source>
-        <target>&lt;p&gt;Hola %1%&lt;/p&gt; &lt;p&gt;%2% acaba de deixar-te un missatge després de passar pel teu perfil. Diu això: "%3%"&lt;/p&gt; &lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Deixar de rebre aquests avisos (simplement fes click a aquest enllaç): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: &lt;a href="http://voota.cat/"&gt;http://voota.cat&lt;/a&gt;&lt;br /&gt; Blog de Voota: &lt;a href="http://blog.voota.cat"&gt;http://blog.voota.es&lt;/a&gt;&lt;br /&gt; Voota a Twitter: &lt;a href="http://twitter.com/Vootacat"&gt;http://twitter.com/Vootacat&lt;/a&gt;&lt;br /&gt; Voota a Facebook: &lt;a href="http://www.facebook.com/pages/Voota_ca/147695619187"&gt;http://www.facebook.com/pages/Voota_ca/147695619187&lt;/a&gt;&lt;br /&gt; &lt;/p&gt;</target>
-      <note/><note/><note/><note/><alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %1%&lt;/p&gt; &lt;p&gt;%2% acaba de deixar-te un missatge després de passar pel teu perfil. Diu això: "%3%"&lt;/p&gt; &lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Deixar de rebre aquests avisos (simplement fes click a aquest enllaç): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: &lt;a href="http://voota.es/ca"&gt;http://voota.es/ca&lt;/a&gt;&lt;br /&gt; Blog de Voota: &lt;a href="http://blog.voota.cat"&gt;http://blog.voota.cat&lt;/a&gt;&lt;br /&gt; Voota a Twitter: &lt;a href="http://twitter.com/Vootacat"&gt;http://twitter.com/Vootacat&lt;/a&gt;&lt;br /&gt; Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311"&gt;http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/a&gt;&lt;br /&gt; &lt;/p&gt;</target></alt-trans></trans-unit>
+        <target>&lt;p&gt;Hola %1%&lt;/p&gt; &lt;p&gt;%2% acaba de deixar-te un missatge després de passar pel teu perfil. Diu això: "%3%"&lt;/p&gt; &lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Deixar de rebre aquests avisos (simplement fes click a aquest enllaç): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Una abraçada,&lt;/p&gt; &lt;p&gt;Comunitat Voota&lt;/p&gt; &lt;p&gt; La nostra web: &lt;a href="http://voota.es/ca"&gt;http://voota.es/ca&lt;/a&gt;&lt;br /&gt; Blog de Voota: &lt;a href="http://blog.voota.cat"&gt;http://blog.voota.cat&lt;/a&gt;&lt;br /&gt; Voota a Twitter: &lt;a href="http://twitter.com/Vootacat"&gt;http://twitter.com/Vootacat&lt;/a&gt;&lt;br /&gt; Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311"&gt;http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/a&gt;&lt;br /&gt; &lt;/p&gt;</target>
+      <note/><note/><note/><note/></trans-unit>
       <trans-unit id="331" approved="yes">
         <source>Hola %1%, nos alegra verte por aquí :)</source>
         <target>Hola %1%, ens agrada veure't per aquí :)</target>
@@ -1851,7 +1851,7 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (fotografia, bio, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a l'estat inicial: http://voota.cat/contactar&lt;/p&gt; &lt;p&gt;Esperem ser-te útils.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre polítics de Catalunya i Espanya,&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;</target>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (fotografia, bio, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a l'estat inicial: http://voota.cat/contactar&lt;/p&gt; &lt;p&gt;Esperem ser-te útils.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre polítics de Catalunya i Espanya,&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: &lt;/p&gt;http://www.facebook.com/pages/Voota-CAT/117778274904311</target>
       <alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (fotografia, bio, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a l'estat inicial: http://www.voota.es/contactar&lt;/p&gt; &lt;p&gt;Esperem ser-te útils.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre polítics de Catalunya i Espanya,&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target></alt-trans></trans-unit>
       <trans-unit id="410" approved="yes">
         <source>Importante: antes de seguir haciendo clicks se hace saber...</source>
@@ -1888,7 +1888,7 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis sobre el teu perfil (biografia, fotografia, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;</target>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis sobre el teu perfil (biografia, fotografia, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       <alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis sobre el teu perfil (biografia, fotografia, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://www.voota.es/contactar&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/1177782749043117&lt;/p&gt;</target></alt-trans></trans-unit>
       <trans-unit id="415" approved="yes">
         <source>Confirmar tu registro Voota</source>
@@ -1926,7 +1926,7 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc, volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (foto, biografia, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre a les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la situació inicial: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Esperem ser-te d'utilitat.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.ca&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;</target>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc, volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (foto, biografia, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre a les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la situació inicial: http://voota.cat/contact&lt;/p&gt; &lt;p&gt;Esperem ser-te d'utilitat.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.ca&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       <alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;En primer lloc, volem donar-te les gràcies per animar-te a participar com a polític a Voota. Ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (foto, biografia, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre a les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la situació inicial: http://voota.es/ca/contact&lt;/p&gt; &lt;p&gt;Esperem ser-te d'utilitat.&lt;/p&gt; &lt;p&gt;Una abraçada, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.es/ca&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target></alt-trans></trans-unit>
       <trans-unit id="418" approved="yes">
         <source>&lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
@@ -1947,7 +1947,7 @@ actual)</target>
 &lt;p&gt;Voota en Twitter:  http://twitter.com/voota&lt;/p&gt;
 &lt;p&gt;Voota en Facebook:  http://facebook.com/voota&lt;/p&gt;
 </source>
-        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis al teu perfil (biografia, foto, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.es/a/contact&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota_ca/147695619187&lt;/p&gt;</target>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis al teu perfil (biografia, foto, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.es/a/contact&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;</target>
       <alt-trans xml:space="preserve" origin="versionmerge"><target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt; &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis al teu perfil (biografia, foto, enllaços externs, etc.) i respondre a les opinions d'altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si creus que aquest usuari està intentant usurpar la teva identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.es/ca/contact&lt;/p&gt; &lt;p&gt;Una salutació, Comunitat Voota&lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt;Voota és una web que serveix per a compartir opinions sobre els polítics de Catalunya i Espanya.&lt;/p&gt; &lt;p&gt;La nostra web: http://voota.cat&lt;/p&gt; &lt;p&gt;Blog de Voota: http://blog.voota.cat&lt;/p&gt; &lt;p&gt;Voota a Twitter: http://twitter.com/vootacat&lt;/p&gt; &lt;p&gt;Voota a Facebook: http://www.facebook.com/pages/Voota-CAT/117778274904311&lt;/p&gt;t</target></alt-trans></trans-unit>
       <trans-unit id="419" approved="yes">
         <source>¿Ves algún error?</source>
@@ -2612,153 +2612,153 @@ actual)</target>
         <source>Ranking por partido</source>
         <target>Rànquing per partit</target>
       </trans-unit>
-      <trans-unit id="574">
+      <trans-unit id="574" approved="yes">
         <source>descendente</source>
-        <target/>
+        <target>descendent</target>
       </trans-unit>
-      <trans-unit id="575">
+      <trans-unit id="575" approved="yes">
         <source>ascendente</source>
-        <target/>
+        <target>ascendent</target>
       </trans-unit>
-      <trans-unit id="576">
+      <trans-unit id="576" approved="yes">
         <source>%1% %2%, de %4% personas, sobre </source>
-        <target/>
+        <target>%1% %2%, de %4% persones, sobre</target>
       </trans-unit>
-      <trans-unit id="577">
+      <trans-unit id="577" approved="yes">
         <source>opiniones</source>
-        <target/>
+        <target>opinions</target>
       </trans-unit>
-      <trans-unit id="578">
+      <trans-unit id="578" approved="yes">
         <source>Lo que se cuece en las </source>
-        <target/>
+        <target>El que es cou a les </target>
       </trans-unit>
-      <trans-unit id="579">
+      <trans-unit id="579" approved="yes">
         <source>Últimos 5 vootos</source>
-        <target/>
+        <target>Últims 5 voots</target>
       </trans-unit>
-      <trans-unit id="580">
+      <trans-unit id="580" approved="yes">
         <source>¡Tachán! Todos los vootos sobre partidos, políticos y propuestas</source>
-        <target/>
+        <target>Tots els voots sobre partits, polítics i propostes</target>
       </trans-unit>
-      <trans-unit id="581">
+      <trans-unit id="581" approved="yes">
         <source>%1%.%2%: listas%3%, partidos, candidatos, previsión de escaños, votos de los usuarios, ...</source>
-        <target/>
+        <target>%1%.%2%: llistes%3%, partits, candidats, previsió d'escons, vots dels usuaris, ...</target>
       </trans-unit>
-      <trans-unit id="582">
+      <trans-unit id="582" approved="yes">
         <source>%dia% de %mes%</source>
-        <target/>
+        <target>%dia% de %mes%</target>
       </trans-unit>
-      <trans-unit id="583">
+      <trans-unit id="583" approved="yes">
         <source>Lista</source>
-        <target/>
+        <target>Llista</target>
       </trans-unit>
-      <trans-unit id="584">
+      <trans-unit id="584" approved="yes">
         <source>Escaños según los votos positivos en Voota</source>
-        <target/>
+        <target>Escons segons els vots positius a Voota</target>
       </trans-unit>
-      <trans-unit id="585">
+      <trans-unit id="585" approved="yes">
         <source>Lista de %1%</source>
-        <target/>
+        <target>Llista de %1%</target>
       </trans-unit>
-      <trans-unit id="586">
+      <trans-unit id="586" approved="yes">
         <source>(y %1% más)</source>
-        <target/>
+        <target>(i %1% més)</target>
       </trans-unit>
-      <trans-unit id="587">
+      <trans-unit id="587" approved="yes">
         <source>Últimas opiniones%1% en Voota.</source>
-        <target/>
+        <target>Últimes opinions %1% a Voota.</target>
       </trans-unit>
-      <trans-unit id="588">
+      <trans-unit id="588" approved="yes">
         <source>sobre %1%</source>
-        <target/>
+        <target>sobre %1%</target>
       </trans-unit>
-      <trans-unit id="589">
+      <trans-unit id="589" approved="yes">
         <source>Todos los vootos sobre partidos, políticos y propuestas</source>
-        <target/>
+        <target>Tots els voots sobre partits, polítics i propostes</target>
       </trans-unit>
-      <trans-unit id="590">
+      <trans-unit id="590" approved="yes">
         <source>Ya hay %politicos_count% sobre políticos, %partidos_count% sobre partidos y %propuestas_count% sobre propuestas</source>
-        <target/>
+        <target>Ja hi ha %politicos_count% sobre polítics, %partidos_count% sobre partits i %propuestas_count% sobre propostes</target>
       </trans-unit>
-      <trans-unit id="591">
+      <trans-unit id="591" approved="yes">
         <source>Filtrar Vootos:</source>
-        <target/>
+        <target>Filtrar Voots:</target>
       </trans-unit>
-      <trans-unit id="592">
+      <trans-unit id="592" approved="yes">
         <source>Todos los vootos</source>
-        <target/>
+        <target>Tots els voots</target>
       </trans-unit>
-      <trans-unit id="593">
+      <trans-unit id="593" approved="yes">
         <source>Sólo vootos sobre políticos</source>
-        <target/>
+        <target>Nomes voots sobre polítics</target>
       </trans-unit>
-      <trans-unit id="594">
+      <trans-unit id="594" approved="yes">
         <source>Sólo vootos sobre partidos</source>
-        <target/>
+        <target>Només voots sobre partits</target>
       </trans-unit>
-      <trans-unit id="595">
+      <trans-unit id="595" approved="yes">
         <source>Sólo vootos sobre propuestas</source>
-        <target/>
+        <target>Només voots sobre propostes</target>
       </trans-unit>
-      <trans-unit id="596">
+      <trans-unit id="596" approved="yes">
         <source>Sólo vootos con texto</source>
-        <target/>
+        <target>Només voots amb text</target>
       </trans-unit>
-      <trans-unit id="597">
+      <trans-unit id="597" approved="yes">
         <source>Últimos en llegar a Voota</source>
-        <target/>
+        <target>Últims en arribar a Voota</target>
       </trans-unit>
-      <trans-unit id="598">
+      <trans-unit id="598" approved="yes">
         <source>Lista electoral %1% %2% %3%, %4%</source>
-        <target/>
+        <target>Llista electoral %1% %2% %3%, %4%</target>
       </trans-unit>
-      <trans-unit id="599">
+      <trans-unit id="599" approved="yes">
         <source>Lista oficial del partido vs Lo que dice la calle: %1%, circunscripcón de %2%, %3% %4%</source>
-        <target/>
+        <target>Llista oficial del partit vs El que es diu al carrer: %1%, circumscripció de %2%, %3% %4%</target>
       </trans-unit>
-      <trans-unit id="600">
+      <trans-unit id="600" approved="yes">
         <source>Lista oficial del partido</source>
-        <target/>
+        <target>Llista oficial del partit</target>
       </trans-unit>
-      <trans-unit id="601">
+      <trans-unit id="601" approved="yes">
         <source>Lo que dice la calle</source>
-        <target/>
+        <target>El que diu el carrer</target>
       </trans-unit>
-      <trans-unit id="602">
+      <trans-unit id="602" approved="yes">
         <source>Lista electoral %1%</source>
-        <target/>
+        <target>Llista electoral %1%</target>
       </trans-unit>
-      <trans-unit id="603">
+      <trans-unit id="603" approved="yes">
         <source>Lista oficial del partido (%nombre%)</source>
-        <target/>
+        <target>Llista oficial del partit (%nombre%)</target>
       </trans-unit>
-      <trans-unit id="604">
+      <trans-unit id="604" approved="yes">
         <source>No disponible</source>
-        <target/>
+        <target>No disponible</target>
       </trans-unit>
-      <trans-unit id="605">
+      <trans-unit id="605" approved="yes">
         <source>Lista en %1% &amp;raquo;</source>
-        <target/>
+        <target>Llista en %1% &amp;raquo;</target>
       </trans-unit>
-      <trans-unit id="606">
+      <trans-unit id="606" approved="yes">
         <source>Institución</source>
-        <target/>
+        <target>Institució</target>
       </trans-unit>
-      <trans-unit id="607">
+      <trans-unit id="607" approved="yes">
         <source>Otra opción...</source>
-        <target/>
+        <target>Una altra opció...</target>
       </trans-unit>
-      <trans-unit id="608">
+      <trans-unit id="608" approved="yes">
         <source>Entrar con Facebook</source>
-        <target/>
+        <target>Entrar amb el Facebook</target>
       </trans-unit>
-      <trans-unit id="609">
+      <trans-unit id="609" approved="yes">
         <source>%dia% de %mes% de %aaaa%</source>
-        <target/>
+        <target>%dia% de %mes% de %aaaa%</target>
       </trans-unit>
-      <trans-unit id="610">
+      <trans-unit id="610" approved="yes">
         <source>Lista electoral</source>
-        <target/>
+        <target>Llista electoral</target>
       </trans-unit>
     </body>
   </file>
