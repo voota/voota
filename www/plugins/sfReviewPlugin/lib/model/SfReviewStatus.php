@@ -31,4 +31,8 @@ class SfReviewStatus extends BaseSfReviewStatus {
 		parent::__construct();
 	}
 
+	public function __toString()
+  	{
+    	return $this->getName();
+  	}
 } // SfReviewStatus

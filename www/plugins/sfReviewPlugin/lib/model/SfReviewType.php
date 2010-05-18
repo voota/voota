@@ -31,4 +31,9 @@ class SfReviewType extends BaseSfReviewType {
 		parent::__construct();
 	}
 
+	public function __toString()
+  	{
+    	return $this->getName();
+  	}
+
 } // SfReviewType
