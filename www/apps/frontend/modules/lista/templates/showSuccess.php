@@ -8,10 +8,8 @@
   <?php echo __('Lo que dice la calle') ?>
 </h2>
 
-<p class="summary"><?php echo __('Lista electoral %1%', array(
-	'%1%' => $lista->getPartido(),
-)) ?>
-
+<p class="summary"><?php echo __('Lista electoral') ?> 
+<a href="<?php echo url_for('partido/show?id='.$lista->getPartido()->getVanity())?>"><?php echo $lista->getPartido()?></a>, 
 <a href="<?php echo url_for('eleccion/show?convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity())?>"><?php echo $lista->getConvocatoria()->getEleccion()->getNombre()?> <?php echo $lista->getConvocatoria()->getNombre() ?></a>
 </p>
 

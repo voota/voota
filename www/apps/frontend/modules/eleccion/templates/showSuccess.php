@@ -6,7 +6,7 @@
 <?php use_helper('VoUser') ?>
 
 <h2 id="name"><?php echo $convocatoria->getEleccion()->getNombre(); ?>. 
-<?php echo __("%dia% de %mes%", array('%dia%' => format_date($convocatoria->getFecha(), ' d'), '%mes%' => format_date($convocatoria->getFecha(), 'MMMM')))?>.</h2>
+<?php echo __("%dia% de %mes% de %aaaa%", array('%dia%' => format_date($convocatoria->getFecha(), ' d'), '%mes%' => format_date($convocatoria->getFecha(), 'MMMM'), '%aaaa%' => format_date($convocatoria->getFecha(), 'yyyy')))?>.</h2>
 
 <div id="content">
   <div title="<?php echo $convocatoria->getEleccion()->getNombre() ?>" id="photo">
