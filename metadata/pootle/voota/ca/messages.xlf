@@ -2752,6 +2752,14 @@ actual)</target>
         <source>Entrar con Facebook</source>
         <target/>
       </trans-unit>
+      <trans-unit id="609">
+        <source>%dia% de %mes% de %aaaa%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="610">
+        <source>Lista electoral</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

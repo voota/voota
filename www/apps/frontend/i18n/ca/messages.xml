@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-05-14T21:00:21Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-05-18T08:33:49Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5727,6 +5727,14 @@ actual)</target>
       </trans-unit>
       <trans-unit id="608">
         <source>Entrar con Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="609">
+        <source>%dia% de %mes% de %aaaa%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="610">
+        <source>Lista electoral</source>
         <target/>
       </trans-unit>
     </body>
