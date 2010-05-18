@@ -46,6 +46,12 @@
           <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd)) ?>
       <?php endforeach ?>
     </tbody>
+    <tfoot>
+      <tr>
+        <td class="partido"><?php echo __('Total') ?></td>
+        <td class="escanos"><?php echo $totalEscanyos // TODO: Total escaños ?></td>
+      </tr>
+    </tfoot>
   </table>
 
 </div><!-- end of content -->

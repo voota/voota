@@ -62,15 +62,12 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
   	
   	$filter = array();
-	$filter['culture'] = $culture;
   	$filter['type_id'] = Politico::NUM_ENTITY;
   	$this->politicoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
   	$filter = array();
-	$filter['culture'] = $culture;
   	$filter['type_id'] = Partido::NUM_ENTITY;
   	$this->partidoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
   	$filter = array();
-	$filter['culture'] = $culture;
   	$filter['type_id'] = Propuesta::NUM_ENTITY;
   	$this->propuestaReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
   	
