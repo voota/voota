@@ -96,11 +96,14 @@ class eleccionActions extends sfActions
   	
   	// Ordenar por escaños
   	$idx = 0;
+  	$this->totalEscanyos = 0;
   	foreach($this->partidos as $partido){
   		$listaElectoral = new ListaElectoral($this->convocatoria->getId(), $partido->getId(), $this->geoName);
+  		$escanyos = $listaElectoral->getEscanyos($this->minSumu, $this->minSumd);
+  		$this->totalEscanyos += $escanyos;
   		for ($j=0;$j<$idx;$j++){
   			$listaElectoral2 = new ListaElectoral($this->convocatoria->getId(), $this->partidos[$j]->getId(), $this->geoName);
-  			if ($listaElectoral2->getEscanyos($this->minSumu, $this->minSumd) < $listaElectoral->getEscanyos($this->minSumu, $this->minSumd)){
+  			if ($listaElectoral2->getEscanyos($this->minSumu, $this->minSumd) < $escanyos){
   				$partidoTmp = clone $this->partidos[$idx];
   				$this->partidos[$idx] = $this->partidos[$j];
   				$this->partidos[$j] = $partidoTmp;
