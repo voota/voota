@@ -41,6 +41,7 @@ class listaActions extends sfActions
   	$c = new Criteria();
   	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->lista->getConvocatoria()->getId());
+  	$c->add(ListaPeer::PARTIDO_ID, $this->lista->getPartido()->getId());
   	$c->setDistinct();
   	$this->geos = GeoPeer::doSelect( $c );
   	
