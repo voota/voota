@@ -84,13 +84,13 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$reviews = $this->reviewsPager->getResults();
   	
   	$description = 
-  		$reviews[0]->getSfGuardUser()->getProfile().
+  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
   		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
-  		$reviews[1]->getSfGuardUser()->getProfile().
+  		(trim($reviews[2]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
   		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
-  		$reviews[2]->getSfGuardUser()->getProfile().
+  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
   		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
-  		"...";
+  		"...";  	
   		
     $this->response->addMeta('Description', $description);  	
   }
