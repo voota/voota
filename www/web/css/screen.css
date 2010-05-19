@@ -496,9 +496,15 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #politico-show .reviews,
 #partido-show .reviews,
 #propuesta-show .reviews { overflow: hidden; clear: left; padding: 35px 0 0 0; width: 680px; border: none; position: relative;}
-#politico-show .reviews .review-body ,
-#partido-show .reviews .review-body ,
-#propuesta-show .reviews .review-body { width: 640px;}
+#politico-show .reviews .review-name,
+#partido-show .reviews .review-name,
+#propuesta-show .reviews .review-name { width: auto; float: none;}
+#politico-show .reviews .review-date,
+#partido-show .reviews .review-date,
+#propuesta-show .reviews .review-date { width: auto; float: none;}
+#politico-show .reviews .review-body,
+#partido-show .reviews .review-body,
+#propuesta-show .reviews .review-body { width: auto;}
 #politico-show .reviews .ui-tabs-panel,
 #partido-show .reviews .ui-tabs-panel,
 #propuesta-show .reviews .ui-tabs-panel { width: 680px; padding: 20px 0;}
