@@ -148,6 +148,7 @@ strong.email { color: #2b56ff;}
 .sf-review-counter { text-align: right; padding-bottom: 10px; width: 215px;}
 #sf-review-body { clear: both; padding-bottom: 0; overflow: hidden;}
 .sf-review-text { width: 210px; height: 90px;}
+#sfr_dialog {	display:none;}
 
 /* Subreviews */
 .subreviews { padding: 5px 0 0 40px !important; margin: 0 !important; overflow: hidden;}
@@ -429,6 +430,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #lista-show table .position { text-align: right; width: 20px; padding-left: 10px;}
 #lista-show table .photo { text-align: right; width: 40px; padding-left: 10px;}
 #lista-show table .name { text-align: left; width: 210px; padding-left: 10px;}
+#lista-show table .name-lista-oficial a,
+#lista-show table .name-lista-oficial a:visited { color: #808080; }
 #lista-show table .voto { text-align: left; width: 120px; padding-left: 20px}
 #lista-show table .positive-votes { text-align: right; width: 100px;}
 #lista-show table .negative-votes { text-align:right; width: 100px; padding-right: 20px;}
@@ -439,93 +442,37 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #general-search table tbody td { padding: 10px 0;}
 #general-search table .photo { text-align: right; width: 36px; padding-right: 10px;}
 
+/* Enlaces externos */
+#external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
+#external-links ul li { margin: 0 0 10px 0;}
+#external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
+
+/* Reportar error */
+#report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#report-error select { width: 220px; border: 1px solid #809DB9; font-size: 13px; overflow:hidden; color: #323232;}
+#report-error .submit { padding-top: 10px; width: 220px;}
+#report-error option { padding: 2px 5px;}
+
+/* Twitter */
+#twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+
 /* Página de político - partido - propuesta */
-#politico-show h2#name .rank,
-#partido-show h2#name .rank,
-#propuesta-show h2#name .rank { font-size: 11px;}
-#propuesta-show h2#name { margin-bottom: 5px;}
-#propuesta-show #author img { width: 20px; height: 20px; padding: 0 3px;}
-#politico-show #photo,
-#partido-show #photo,
-#propuesta-show #photo,
-#eleccion-show #photo { width: 220px; float: left;}
-#politico-show #photo .vote,
-#partido-show #photo .vote,
-#propuesta-show #photo .vote { padding-top: 40px;}
-#politico-show .vote,
-#partido-show .vote,
-#propuesta-show .vote { padding-top: 40px; padding-bottom: 20px; clear: left;}
-#politico-show .vote h3,
-#partido-show .vote h3,
-#propuesta-show .vote h3 { font-size: 16px; padding-bottom: 0;}
-#politico-show .note h3,
-#partido-show .note h3,
-#propuesta-show .note h3 { padding-bottom: 0; font-size: 13px;}
-#politico-show #sf_review2,
-#partido-show #sf_review2,
-#propuesta-show #sf_review2 { width: 35%;}
-#politico-show #description,
-#partido-show #description,
-#propuesta-show #description,
-#eleccion-show #description,
-#partido-show #elecciones { margin-left: 50px; width: 420px; float: left;}
-#politico-show #description h3,
-#partido-show #description h3,
-#propuesta-show #description h3 { padding-top: 20px; padding-bottom: 10px;}
-#politico-show #description p,
-#partido-show #description p,
-#propuesta-show #description p { padding-bottom: 10px;}
-#politico-show #external-links,
-#partido-show #external-links,
-#propuesta-show #external-links,
-#propuesta-new #external-links,
-#eleccion-show #external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
-#propuesta-show #external-links p { padding-bottom: 5px;}
-#propuesta-show .box-propuestas { width: 215px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; margin-top: 0;}
-#propuesta-show .box-propuestas button { width: 175px;}
-#politico-show #external-links ul,
-#partido-show #external-links ul,
-#propuesta-show #external-links ul,
-#propuesta-new #external-links ul,
-#eleccion-show #external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
-#politico-show #external-links ul li,
-#partido-show #external-links ul li,
-#propuesta-show #external-links ul li,
-#propuesta-new #external-links ul li,
-#eleccion-show #external-links ul li { margin: 0 0 10px 0;}
-#propuesta-show #external-links ol { padding-left: 0; list-style: none;}
-#propuesta-show #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
-#politico-show #twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
-#partido-show #report-error,
-#politico-show #report-error,
-#propuesta-show #report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
-#partido-show #report-error select,
-#politico-show #report-error select,
-#propuesta-show #report-error select { width: 220px; border: 1px solid #809DB9; font-size: 13px; overflow:hidden; color: #323232;}
-#partido-show #report-error .submit,
-#politico-show #report-error .submit,
-#propuesta-show #report-error .submit { padding-top: 10px; width: 220px;}
-#partido-show #report-error option,
-#politico-show #report-error option,
-#propuesta-show #report-error option { padding: 2px 5px;}
-#politico-show #google-ads,
-#partido-show #google-ads,
-#propuesta-show #google-ads { width: 220px; margin-left: 50px; clear: right; float: right;}
-#politico-show .reviews,
-#partido-show .reviews,
-#propuesta-show .reviews { overflow: hidden; clear: left; padding: 35px 0 0 0; width: 680px; border: none;}
-#politico-show .reviews .ui-tabs-panel,
-#partido-show .reviews .ui-tabs-panel,
-#propuesta-show .reviews .ui-tabs-panel { padding: 20px 0;}
-#politico-show .ui-tabs-nav,
-#partido-show .ui-tabs-nav,
-#propuesta-show .ui-tabs-nav { padding: 0; border: none; border-bottom: 1px solid #809DB9;}
-#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
-#propuesta-show #ed_box a { padding-right: 5px;}
-#propuesta-show #ed_box a.confirm_delete { color: red;}
-#propuesta-show #edit_doc { font-size: 9px;}
-#propuesta-show #close_ed_box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
-#propuesta-show #ee_box a { font-size: 9px;}
+.entity-page h2#name .rank { font-size: 11px;}
+.entity-page #photo { width: 220px; float: left;}
+.entity-page #photo .vote { padding-top: 40px;}
+.entity-page .vote { padding-top: 40px; padding-bottom: 20px; clear: left;}
+.entity-page .vote h3 { font-size: 16px; padding-bottom: 0;}
+.entity-page .note h3 { padding-bottom: 0; font-size: 13px;}
+.entity-page #sf_review2 { width: 35%;}
+.entity-page #elecciones { margin-left: 50px; width: 420px; float: left;}
+.entity-page #description { margin-left: 50px; width: 420px; float: left;}
+.entity-page #description h3 { padding-top: 20px; padding-bottom: 10px;}
+.entity-page #description p { padding-bottom: 10px;}
+.entity-page #google-ads { width: 220px; margin-left: 50px; clear: right; float: right;}
+.entity-page .reviews { overflow: hidden; clear: left; padding: 35px 0 0 0; width: 680px; border: none;}
+.entity-page .reviews .ui-tabs-panel { padding: 20px 0;}
+.entity-page .ui-tabs-nav { padding: 0; border: none; border-bottom: 1px solid #809DB9;}
 
 /* Página de partido */
 #partido-show #content { float: left; width: 690px;}
@@ -536,6 +483,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #partido-show #elecciones p { margin: 20px 0;}
 #partido-show #politicians-most-voted { clear: both; padding-top: 60px;}
 #partido-show .entities-list-mini ul li { width: 285px; margin-right: 30px; float: left; }
+#partido-show .active { text-decoration: none; color: #333333; font-weight: bold;}
 
 /* Página de asignación de usuario con político */
 #politico-take #main { height: 400px;}
@@ -565,6 +513,18 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #eleccion-show .tooltip-politico .photo { float: left; overflow: hidden;}
 #eleccion-show .tooltip-politico .positive_votes { margin-left: 45px; width: 100px; height: 18px; margin-bottom: 5px; text-align: left; background: transparent url(/images/icoMiniUp.png) right center no-repeat;}
 #eleccion-show .tooltip-politico .negative_votes { margin-left: 45px; width: 100px; height: 18px; text-align: left; background: transparent url(/images/icoMiniDown.png) right center no-repeat;}
+
+/* Página de propuesta */
+#propuesta-show h2#name { margin-bottom: 5px;}
+#propuesta-show #author img { width: 20px; height: 20px; padding: 0 3px;}
+#propuesta-show .box-propuestas { width: 215px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; margin-top: 0;}
+#propuesta-show .box-propuestas button { width: 175px;}
+#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
+#propuesta-show #ed_box a { padding-right: 5px;}
+#propuesta-show #ed_box a.confirm_delete { color: red;}
+#propuesta-show #edit_doc { font-size: 9px;}
+#propuesta-show #close_ed_box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
+#propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de últimos vootos */
 #sfReviewFront-list h2.title { margin-bottom: 0;}
@@ -619,19 +579,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 /* Reglas nuevas */
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff;}
-
-#partido-show .active { text-decoration:none; color:#333333; font-weight:bold;}
-.highlight_word {font-weight:bold;}
-
-.quickvote_hand {
-	text-align: right; width:2.2em; float:left;
-}
-.left_hand {
-	margin:0px 25px 0px -12px;
-}
-#sfr_dialog {
-	display:none;
-}
-a.gris, a.gris:visited {
-	color:grey;
-}
+.highlight_word { font-weight:bold;}
+.quickvote_hand { text-align: right; width:2.2em; float:left;}
+.left_hand { margin:0px 25px 0px -12px;}

@@ -22,11 +22,11 @@
   //-->
 </script>
 
-<?php if ($politicosPager): ?>
-	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
-<?php endif ?>
-
 <div class="entity-page">
+  <?php if ($politicosPager): ?>
+  	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
+  <?php endif ?>
+
   <h2 id="name">
     <?php echo $politico->getNombre(); ?> <?php echo $politico->getApellidos(); ?>
     <?php if ($politico->getPartido()):?> (<?php echo $politico->getPartido()  ?>)<?php endif ?>
