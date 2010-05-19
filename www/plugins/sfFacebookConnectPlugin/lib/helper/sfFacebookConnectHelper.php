@@ -90,7 +90,9 @@ function include_facebook_connect_script_src()
 
 function init_sf_fb()
 {
-  return "sf_fb = new sfFacebookConnect('".sfConfig::get('app_facebook_api_key')."', '".url_for(sfConfig::get('app_facebook_connect_signin_url','sfFacebookConnectAuth/signin'))."');";
+	$culture = sfcontext::getInstance()->getUser()->getCulture('es');
+	
+	return "sf_fb = new sfFacebookConnect('".sfConfig::get("app_facebook_api_key_$culture")."', '".url_for(sfConfig::get('app_facebook_connect_signin_url','sfFacebookConnectAuth/signin'))."');";
 }
 
 
