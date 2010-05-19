@@ -76,13 +76,13 @@
         </td>
         <td class="name">
         	<?php if (isset($politicosListaOficial[$idx])):?>
-        		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
+        		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><?php echo $politicosListaOficial[$idx] ?></a></td>
 			    <?php elseif(count($politicosListaOficial) == 0):?>
         		<?php echo __('No disponible') ?>
         	<?php endif?>
         <td class="position"><?php echo $idx+1 ?>.</td>
         <td class="photo"><?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?></td>
-        <td class="name"><a href="<?php echo url_for('politico/show?id='.$politico->getVanity())?>"><? echo $politico ?></a></td>
+        <td class="name"><a href="<?php echo url_for('politico/show?id='.$politico->getVanity())?>"><?php echo $politico ?></a></td>
         <td class="voto">
           <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
