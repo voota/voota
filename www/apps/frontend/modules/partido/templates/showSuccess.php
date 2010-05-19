@@ -84,7 +84,7 @@
   </div>
 </div>
 
-<div id="politicians-most-voted" class="list-mini">
+<div id="politicians-most-voted" class="entities-list-mini">
   <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
   <?php if ($politicos->getNbResults() > 0): ?>
   <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>

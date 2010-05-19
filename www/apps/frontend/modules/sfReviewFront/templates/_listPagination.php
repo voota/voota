@@ -10,7 +10,7 @@
   				  data:jQuery($('#frm_more')).serialize(),
   				  success:function(data, textStatus){
   				    $('.spinner').hide();
-  				    $('.reviews-list').append(data);
+  				    $('.sf-reviews-list-brief').append(data);
   				    $('#page').val(parseInt($('#page').val()) + 1)
   				    FB.XFBML.Host.parseDomTree();
   				  },

@@ -80,7 +80,7 @@
 <div class="block" id="ultimos-vootos">
   <div class="block-inner">
     <h3><?php echo __('Últimos 5 vootos')?></h3>
-    <ol class="reviews-list"> 
+    <ol class="sf-reviews-list-brief"> 
       <?php foreach($topReviews as $review): ?>
       <?php include_component_slot('review_for_list', array('review' => $review)) ?>
       <?php endforeach ?>
@@ -91,7 +91,7 @@
 
 <div class="block" id="rankings">
   <div class="block-inner">
-    <div id="top5-politicos" class="list-mini">
+    <div id="top5-politicos" class="entities-list-mini">
       <h3><?php echo __('Top 5 políticos')?></h3>
       <ol class="entities">
         <?php foreach($topPoliticos as $politico): ?>
@@ -101,7 +101,7 @@
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
     </div>
 
-    <div id="top5-partidos" class="list-mini">
+    <div id="top5-partidos" class="entities-list-mini">
       <h3><?php echo __('Top 5 partidos')?></h3>
       <ol class="entities">
         <?php foreach($partidosMasVotados as $partido): ?>
@@ -111,7 +111,7 @@
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
     </div>
 
-    <div id="top5-propuestas" class="list-mini">
+    <div id="top5-propuestas" class="entities-list-mini">
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
         <?php foreach($propuestasMasVotadas as $p): ?>
