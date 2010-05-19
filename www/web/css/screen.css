@@ -532,7 +532,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #partido-show .list-mini ul li .avatar { float: left; }
 #partido-show .list-mini ul li .name { margin-left: 45px; font-weight: normal;}
 #partido-show .list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
-#partido-show .reviews { clear: left; padding-top: 35px; width: 600px;}
 
 /* Página de asignación de usuario con político */
 #politico-take #main { height: 400px;}
