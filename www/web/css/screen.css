@@ -17,6 +17,29 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 /* Clases genéricas */
 .hidden { display:none; }
 .shown { display:block; }
+.add-subreview { padding: 5px 0 0 0; margin: 0;}
+.review-new { display: none;}
+.subreviews-wrapper { padding: 0; margin: 0;}
+.subreviews-summary { font-size: 11px; padding: 0;}
+.document { padding-left: 18px; padding-top: 2px; background: transparent url(/images/document.gif) left center no-repeat;}
+strong.email { color: #2b56ff;}
+.blur { color:#b6b6b6; }
+.even { background-color: #fbfbfb; }
+
+/* Buscador */
+.search form { float: left;}
+.search fieldset { margin: 0; padding: 0; border: none; }
+.search input { float: left;}
+.search button { margin-left: 10px; width: 90px; float: left;}
+
+/* Sparklines */
+.sparkline { display: inline-block; width: 100px; height: 15px; }
+.bluff-tooltip { background: #fff; border: 1px solid #d1edf5; padding: 5px; font-size: 13px;}
+.bluff-tooltip .color {display: none; }
+.bluff-tooltip .data { font-weight: bold; }
+.bluff-wrapper { display: inline-block;}
+
+/* Paginación */
 .pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold; }
 .politico-pagination { clear: both; }
 .politico-pagination a,
@@ -24,45 +47,16 @@ h4 { font-size: 13px; margin: 0; color: #323232 }
 .politico-pagination a.back { padding-left: 40px;}
 .politico-pagination-top { padding: 0 0 40px 0; }
 .politico-pagination-bottom { padding: 40px 0 0 0; }
-.add-subreview { padding: 5px 0 0 0; margin: 0;}
-.review-new { display: none;}
-.subreviews-wrapper { padding: 0; margin: 0;}
-.subreviews-summary { font-size: 11px; padding: 0;}
-.sparkline { display: inline-block; width: 100px; height: 15px; }
-.bluff-tooltip { background: #fff; border: 1px solid #d1edf5; padding: 5px; font-size: 13px;}
-.bluff-tooltip .color {display: none; }
-.bluff-tooltip .data { font-weight: bold; }
-.bluff-wrapper { display: inline-block;}
-.search form { float: left;}
-.search fieldset { margin: 0; padding: 0; border: none; }
-.search input { float: left;}
-.search button { margin-left: 10px; width: 90px; float: left;}
-.document { padding-left: 18px; padding-top: 2px; background: transparent url(/images/document.gif) left center no-repeat;}
-
-strong.email { color: #2b56ff;}
-.blur { color:#b6b6b6; }
-tr.even { background-color: #fbfbfb; }
-.note { background-color: #ffffcc; border: 1px solid #999999; padding: 10px;}
-.note h3 { font-size: 13px;}
-.note fieldset { margin: 0; padding: 0; border: none;}
-
-/* Selector partido */
-#politico-ranking #main h2 label { height: 27px; float: left;}
-#politico-ranking #institutions-list { clear: left; padding-top: 20px;}
-#selector_partido { display: inline-block; font-size: 13px; float: left; margin-left: 10px;}
-#selector_partido_actual { display: block; width: 155px; height: 13px; line-height: 13px; overflow: hidden; padding: 7px 20px 7px 7px; background: transparent url(/images/selector_bg.png) top left no-repeat; cursor: hand; color: #000; text-decoration: none;}
-#selector_partido_actual.selected { color: #fff; background-position: 0 -27px;}
-#selector_partido_area { z-index: 5000; background-color: #fff; border: 1px solid #999999; border-top: none; padding: 5px;}
-#selector_partido_buscador { width: 145px; padding-right: 20px; background: transparent url(/images/selector_buscador_bg.png) center right no-repeat;}
-.ac_results { border: none;}
-.ac_results ul li { height: 16px; overflow: hidden;}
-.ac_results strong { text-decoration: underline;}
-
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
 #header-inner, #main-inner { text-align: left; margin: 0 auto; width: 960px; position: relative; overflow: hidden; }
 #header-inner { height: 140px;}
+#main-inner { padding: 20px 0; }
+#content { float: left; width: 100%; }
+#sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
+
+/* Páginas con degradado en background */
 #home-index #main,
 #general-contact #main,
 #sfGuardAuth-signin #main,
@@ -78,9 +72,6 @@ tr.even { background-color: #fbfbfb; }
 #perfil-reviews #main,
 #eleccion-show #main,
 #lista-show #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x }
-#main-inner { padding: 20px 0; }
-#content { float: left; width: 100%; }
-#sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
 
 /* Cabecera */
 #logo a { color: #323232; text-decoration: none; font-weight: normal; }
@@ -103,7 +94,6 @@ tr.even { background-color: #fbfbfb; }
 #ie6 { position: relative; margin: 40px 0; padding: 20px; border: 1px solid red;}
 #ie6 h3 { font-size: 16px; padding-bottom: 20px;}
 #ie6 .close { position: absolute; top: 20px; right: 20px;}
-
 
 /* Footer */
 #footer { text-align: center; padding-top: 20px; }
@@ -142,7 +132,6 @@ tr.even { background-color: #fbfbfb; }
 .reviews-list .review-avatar { width: 20px; height: 20px; margin-right: 10px;}
 .reviews-list .review-avatar img { width: 20px; height: 20px;}
 
-
 /* Selector de convocatoria */
 .selector-convocatoria { overflow: hidden; float: left; clear: left; margin-left: 25px;}
 .selector-convocatoria ul { height: 45px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; margin: 0; padding: 0;}
@@ -165,7 +154,6 @@ input[type=submit], input[type=button], button { font-size: 13px; overflow: visi
 select, option { font-family: Georgia, "Times New Roman", Times, serif; }
 textarea { border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
 .submit { text-align: right; clear: both;}
-/*.facebook-only { display: none;}*/
 .facebook-only img { vertical-align: text-bottom; }
 .hints { padding: 5px 0; }
 input[type=submit].login_or_register { width: 200px; font-size: 12px; }
@@ -178,10 +166,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #error #footer { padding-top: 0;}
 
 /* Listado de instituciones */
-#institutions-list { margin-bottom: 40px;}
-#institutions-list ol { list-style: none; padding: 0; overflow: hidden;}
-#institutions-list li.column { float: left; margin-right: 40px;}
-#institutions-list li.first { margin-right: 10px;}
+.institutions-list { margin-bottom: 40px;}
+.institutions-list ol { list-style: none; padding: 0; overflow: hidden;}
+.institutions-list li.column { float: left; margin-right: 40px;}
+.institutions-list li.first { margin-right: 10px;}
 
 /* Home */
 #home-index #main-inner { width: 100%; margin: 0;}
@@ -205,21 +193,13 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 #home-index .search p { float: left; padding: 0; overflow: hidden;}
 #home-index .search .hints { color: #b1b1b1;}
 #home-index .search button { margin-left: 10px; width: 90px; }
-#home-index #latest-comments-votes h3 { padding-bottom: 10px;}
-#home-index #politicians-top5,
-#home-index #political-groups,
-#home-index #proposals-top5,
-#home-index #latest-profile-visitors .column { width: 285px; margin-right: 30px; float: left;}
-#home-index #latest-comments-votes .column,
-#home-index #latest-comments-on-comments .column,
-#home-index #latest-comments-on-visited .column { width: 45%; float: left; margin-right: 3%;}
-#home-index ol.reviews { padding: 0 0 0 20px;}
-#home-index .ranking-link { clear: both;}
-#home-index .signup { margin-left: 170px; font-weight: bold;}
 #home-index #ultimos-vootos h3 { padding-right: 30px; background: transparent url(/images/vootos.png) right top no-repeat; float: left;}
 #home-index #ultimos-vootos .reviews-list { clear: left; width: 680px;}
 #home-index #ultimos-vootos .review-name { width: 650px;}
-#home-index #ultimos-vootos .ver-mas-vootos { padding: 10px 0 20px 0; font-weight: bold;}
+#home-index #rankings .list-mini { width: 285px; margin-right: 30px; float: left;}
+#home-index ol.reviews { padding: 0 0 0 20px;}
+#home-index .ranking-link { clear: both;}
+#home-index .signup { margin-left: 170px; font-weight: bold;}
 
 /* Contacto */
 #general-contact textarea { width: 494px; }
@@ -612,9 +592,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px; }
 .review-new h5, .vote h5 { font-size: 13px; color: #2b56ff;}
 
 /* Reglas nuevas */
-
-table.sparkline {border-collapse: collapse;}
-table.sparkline td {padding:0px;}
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff; }
 
