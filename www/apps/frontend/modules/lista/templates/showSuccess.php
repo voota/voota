@@ -74,7 +74,7 @@
         		<?php echo image_tag(S3Voota::getImagesUrl().'/politicos/cc_s_p_unknown.png', 'alt="'. __('No disponible').'"') ?>
         	<?php endif?>
         </td>
-        <td class="name">
+        <td class="name name-lista-oficial">
         	<?php if (isset($politicosListaOficial[$idx])):?>
         		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><? echo $politicosListaOficial[$idx] ?></a></td>
 			    <?php elseif(count($politicosListaOficial) == 0):?>

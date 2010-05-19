@@ -2,7 +2,7 @@
 <?php $instituciones = array_map("map_to_name_and_vanity", $instituciones); ?>
 <?php array_unshift($instituciones, array(__('Todas las instituciones'), '0')); ?>
 <?php $instituciones_en_grupos = array_chunk($instituciones, 7); ?>
-<div id="institutions-list">
+<div class="institutions-list">
   <ol>
     <li class="column first">
       <?php if (isset($showPartido) && $showPartido):?>
