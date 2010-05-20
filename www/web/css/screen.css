@@ -37,7 +37,7 @@ strong.email { color: #2b56ff;}
 .bluff-tooltip { background: #fff; border: 1px solid #d1edf5; padding: 5px; font-size: 13px;}
 .bluff-tooltip .color {display: none;}
 .bluff-tooltip .data { font-weight: bold;}
-.bluff-wrapper { display: inline-block;}
+.bluff-wrapper { display: inline;}
 
 /* Paginación */
 .pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold;}
@@ -54,7 +54,12 @@ strong.email { color: #2b56ff;}
 #header-inner { height: 140px;}
 #main-inner { padding: 20px 0;}
 #content { float: left; width: 100%;}
-#sidebar { float: right; width: 25%; margin-left: 5%; text-align: left}
+#sidebar { float: right; width: 220px; margin-left: 50px; text-align: left}
+
+/* Sidebar */
+#sidebar ul,
+#sidebar ol { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
+#sidebar li { list-style: none; margin: 0 0 10px 0;}
 
 /* Páginas con degradado en background */
 #home-index #main,
@@ -284,8 +289,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-edit .notice { width: 503px;}
 
 /* Comentarios y vootos */
-
-/* FIXME: puede que la acción no acabe llamándose así */
 #perfil-reviews #content { margin-top: 20px;}
 #perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 20px 0; width: 100%;}
 #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc;}
@@ -372,51 +375,50 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-signin .facebook-login th { padding-top: 18px;}
 #sfGuardAuth-signin .facebook-login td { padding-top: 15px; text-align: left;}
 
+/* Tabla de rankings */
+table.rankings { margin: 0 auto; width: 100%; border: none;}
+table.rankings th { background-color: #f6f6f6; padding: 10px 0;}
+table.rankings tbody td,
+table.rankings tfoot td { padding: 10px 0;}
+table.rankings .ranking { text-align: right;}
+table.rankings .position { text-align: right;}
+table.rankings .photo { text-align: right;}
+table.rankings .positive-votes { text-align: right;}
+table.rankings .negative-votes { text-align:right;}
+
 /* Ranking de políticos */
 #politico-ranking .active { text-decoration: none; color:#333333; font-weight: bold;}
 #politico-ranking h2 select { font-size: 13px;}
-#politico-ranking table { margin: 0 auto; width: 100%;}
-#politico-ranking table th { background-color: #f6f6f6; padding: 10px 0;}
-#politico-ranking table tbody td,
-#politico-ranking table tfoot td { padding: 10px 0;}
-#politico-ranking table .ranking { text-align: right; width: 155px;}
-#politico-ranking table .position { text-align: right; width: 30px;}
-#politico-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
-#politico-ranking table .name { text-align: left; width: 320px;}
-#politico-ranking table .voto { text-align: left; width: 120px; padding-left: 20px}
-#politico-ranking table .positive-votes { text-align: right; width: 100px;}
-#politico-ranking table .negative-votes { text-align:right; width: 100px; padding-right: 60px;}
+#politico-ranking table .ranking { width: 155px;}
+#politico-ranking table .position { width: 30px;}
+#politico-ranking table .photo { width: 36px; padding-left: 10px; padding-right: 10px;}
+#politico-ranking table .name { width: 320px;}
+#politico-ranking table .voto { width: 120px; padding-left: 20px}
+#politico-ranking table .positive-votes { width: 100px;}
+#politico-ranking table .negative-votes { width: 100px; padding-right: 60px;}
 
 /* Ranking de partidos */
 #partido-ranking .active { text-decoration:none; color:#333333; font-weight:bold;}
 #partido-ranking h2 select { font-size: 13px;}
-#partido-ranking table { margin: 0 auto; width: 100%;}
-#partido-ranking table th { background-color: #f6f6f6; padding: 10px 0;}
-#partido-ranking table tbody td,
-#partido-ranking table tfoot td { padding: 10px 0;}
-#partido-ranking table .ranking { text-align: right; width: 155px;}
-#partido-ranking table .position { text-align: right; width: 30px;}
-#partido-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
-#partido-ranking table .name { text-align: left; width: 320px;}
-#partido-ranking table .voto { text-align: left; width: 130px; padding-left: 20px}
-#partido-ranking table .positive-votes { text-align: right; width: 100px;}
-#partido-ranking table .negative-votes { text-align:right; width: 100px; padding-right: 60px;}
+#partido-ranking table .ranking { width: 155px;}
+#partido-ranking table .position { width: 30px;}
+#partido-ranking table .photo { width: 36px; padding-left: 10px; padding-right: 10px;}
+#partido-ranking table .name { width: 320px;}
+#partido-ranking table .voto { width: 130px; padding-left: 20px}
+#partido-ranking table .positive-votes { width: 100px;}
+#partido-ranking table .negative-votes { width: 100px; padding-right: 60px;}
 
 /* Ranking de propuestas */
 #propuesta-ranking .active { text-decoration: none; color:#333333; font-weight: bold;}
 #propuesta-ranking h2 { margin-bottom: 5px;}
-#propuesta-ranking table { margin: 0 auto; width: 100%;}
-#propuesta-ranking table th { background-color: #f6f6f6; padding: 10px 0;}
-#propuesta-ranking table tbody td,
-#propuesta-ranking table tfoot td { padding: 10px 0;}
-#propuesta-ranking table .ranking { text-align: right; width: 120px;}
-#propuesta-ranking table .position { text-align: right; width: 30px;}
-#propuesta-ranking table .photo { text-align: right; width: 36px; padding-left: 10px; padding-right: 10px;}
-#propuesta-ranking table .name { text-align: left; width: 300px; padding-right: 40px;}
-#propuesta-ranking table .voto { text-align: left; width: 110px;}
-#propuesta-ranking table .positive-votes { text-align: right; width: 140px;}
-#propuesta-ranking table .negative-votes { text-align:right; width: 140px; padding-right: 45px;}
-#propuesta-ranking table .date { text-align: right; width: 100px; padding-right: 45px;}
+#propuesta-ranking table .ranking { width: 120px;}
+#propuesta-ranking table .position { width: 30px;}
+#propuesta-ranking table .photo { width: 36px; padding-left: 10px; padding-right: 10px;}
+#propuesta-ranking table .name { width: 300px; padding-right: 40px;}
+#propuesta-ranking table .voto { width: 110px;}
+#propuesta-ranking table .positive-votes { width: 140px;}
+#propuesta-ranking table .negative-votes { width: 140px; padding-right: 45px;}
+#propuesta-ranking table .date { width: 100px; padding-right: 45px;}
 #propuesta-ranking .search { float: right;}
 
 /* Lista electoral */
@@ -443,40 +445,38 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #general-search table .photo { text-align: right; width: 36px; padding-right: 10px;}
 
 /* Enlaces externos */
-#external-links { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
-#external-links ul { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
-#external-links ul li { margin: 0 0 10px 0;}
+#external-links { margin-bottom: 40px;}
 #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
 
 /* Reportar error */
-#report-error { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#report-error { margin-bottom: 40px;}
 #report-error select { width: 220px; border: 1px solid #809DB9; font-size: 13px; overflow:hidden; color: #323232;}
 #report-error .submit { padding-top: 10px; width: 220px;}
 #report-error option { padding: 2px 5px;}
 
 /* Twitter */
-#twitter { width: 220px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px;}
+#twitter { width: 220px; margin-bottom: 40px;}
 
 /* Página de político - partido - propuesta */
+.entity-page #content { width: 680px;}
+.entity-page #sidebar { width: 220px; margin-left: 50px;}
 .entity-page h2#name .rank { font-size: 11px;}
 .entity-page #photo { width: 220px; float: left;}
 .entity-page #photo .vote { padding-top: 40px;}
 .entity-page .vote { padding-top: 40px; padding-bottom: 20px; clear: left;}
 .entity-page .vote h3 { font-size: 16px; padding-bottom: 0;}
 .entity-page .note h3 { padding-bottom: 0; font-size: 13px;}
-.entity-page #sf_review2 { width: 35%;}
-.entity-page #elecciones { margin-left: 50px; width: 420px; float: left;}
-.entity-page #description { margin-left: 50px; width: 420px; float: left;}
+.entity-page #sf_review2 { width: 220px;}
+.entity-page #elecciones { margin-left: 50px; width: 410px; float: left;}
+.entity-page #description { margin-left: 50px; width: 410px; float: left;}
 .entity-page #description h3 { padding-top: 20px; padding-bottom: 10px;}
 .entity-page #description p { padding-bottom: 10px;}
 .entity-page #google-ads { width: 220px; margin-left: 50px; clear: right; float: right;}
-.entity-page .reviews { overflow: hidden; clear: left; padding: 35px 0 0 0; width: 680px; border: none;}
+.entity-page .reviews { clear: left; padding: 35px 0 0 0; border: none;}
 .entity-page .reviews .ui-tabs-panel { padding: 20px 0;}
 .entity-page .ui-tabs-nav { padding: 0; border: none; border-bottom: 1px solid #809DB9;}
 
 /* Página de partido */
-#partido-show #content { float: left; width: 690px;}
-#partido-show #sidebar { width: 220px; margin-left: 50px;}
 #partido-show #elecciones h3 { font-size: 13px; margin: 20px 0 10px 0;}
 #partido-show #elecciones ul { margin: 0; padding: 0;}
 #partido-show #elecciones ul li { list-style: none; margin-bottom: 5px;}
@@ -516,8 +516,8 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 
 /* Página de propuesta */
 #propuesta-show h2#name { margin-bottom: 5px;}
-#propuesta-show #author img { width: 20px; height: 20px; padding: 0 3px;}
-#propuesta-show .box-propuestas { width: 215px; margin-left: 50px; float: right; clear: right; margin-bottom: 40px; margin-top: 0;}
+#propuesta-show #author img { width: 20px; height: 20px; padding: 0 5px; width: 36px; height: 36px;}
+#propuesta-show .box-propuestas { margin-bottom: 40px; margin-top: 0;}
 #propuesta-show .box-propuestas button { width: 175px;}
 #propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
 #propuesta-show #ed_box a { padding-right: 5px;}
@@ -531,11 +531,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfReviewFront-list h3.title { margin-bottom: 20px; font-weight: normal;}
 #sfReviewFront-list #filterForm select { font-size: 13px;}
 #sfReviewFront-list #content { width: 640px;}
-#sfReviewFront-list #sidebar { width: 220px;}
 #sfReviewFront-list #ultimos-usuarios h3 { padding-bottom: 10px;}
 #sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
-#sfReviewFront-list #ultimos-usuarios ol { margin: 0; padding: 0;}
-#sfReviewFront-list #ultimos-usuarios li { list-style: none; margin-bottom: 5px;}
+#sfReviewFront-list #ultimos-usuarios li { margin-bottom: 5px;}
 #sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
 /* Nueva propuesta */

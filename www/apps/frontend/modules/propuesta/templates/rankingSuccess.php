@@ -41,7 +41,7 @@
 
 <p><a class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta política') ?></a></p>
 
-<table border="0" cellpadding="0" cellspacing="0">
+<table class="rankings" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
       <th class="ranking"></th>

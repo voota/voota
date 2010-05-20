@@ -107,6 +107,30 @@
 
     </div><!-- end of description -->
 
+    <div class="reviews">
+      <ul>
+        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+      </ul>
+
+      <div id="tab-all-reviews">
+        <?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Politico::NUM_ENTITY, 'entity' => $politico)) ?>
+      </div>
+
+    </div>
+
+    <div class="vote">
+      <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
+      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+    </div>
+
+    <?php if ($politicosPager): ?>
+    	<?php include_partial('general/entity_pagination', array('position' => 'bottom', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
+    <?php endif ?>
+  </div>
+  
+  <div id="sidebar">
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">  
         <h3><?php echo __('Enlaces externos')?></h3>
@@ -132,28 +156,5 @@
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
     </div><!-- end of google-ads -->
-
-    <div class="reviews">
-      <ul>
-        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
-        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
-        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$politico->getId().'&value=-1&sfReviewType='.Politico::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
-      </ul>
-
-      <div id="tab-all-reviews">
-        <?php include_component_slot('review_list', array('entityId' => $politico->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Politico::NUM_ENTITY, 'entity' => $politico)) ?>
-      </div>
-
-    </div>
-
-    <div class="vote">
-      <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
-      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
-    </div>
-
-  <?php if ($politicosPager): ?>
-  	<?php include_partial('general/entity_pagination', array('position' => 'bottom', 'pager' => $politicosPager, 'id' => $politico->getId())) ?>
-  <?php endif ?>
-
-  </div><!-- end of content -->
+  </div>
 </div>

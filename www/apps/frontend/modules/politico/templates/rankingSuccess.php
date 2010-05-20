@@ -53,7 +53,7 @@
 
 <?php // include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido, 'institucion' => $institucion, 'showPartido' => true)) ?>
 
-<table border="0" cellpadding="0" cellspacing="0">
+<table class="rankings" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
       <th class="ranking"></th>

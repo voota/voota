@@ -62,6 +62,43 @@
         <?php */ ?>
       </div>
     <?php endif ?>
+    
+    <div id="politicians-most-voted" class="entities-list-mini">
+      <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
+      <?php if ($politicos->getNbResults() > 0): ?>
+      <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
+
+        <ul>
+      	<?php foreach ($politicos->getResults() as $politico): ?>
+    		<?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+      	<?php endforeach ?>
+        </ul>
+      <?php else: ?>
+        <p><?php echo __('El partido %1% aun no tiene ningún político inscrito en Voota.', array('%1%' => $partido->getAbreviatura())) ?></p>
+      <?php endif ?>
+    </div>
+
+    <div class="reviews">
+      <ul>
+        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount)) // TODO: sustituir número de vootos ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=-1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+      </ul>
+
+      <div id="tab-all-reviews">
+        <?php include_component_slot('review_list', array('entityId' => $partido->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Partido::NUM_ENTITY, 'entity' => $partido)) ?>
+      </div>
+
+    </div>
+
+    <div class="vote">
+      <h3><?php echo __('Voota sobre %1%', array('%1%' => $partido->getNombre()))?></h3>
+      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+    </div>
+
+    <?php if ($partidosPager): ?>
+    	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
+    <?php endif ?>
   </div>
 
   <div id="sidebar">
@@ -84,41 +121,4 @@
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
     </div>
   </div>
-
-  <div id="politicians-most-voted" class="entities-list-mini">
-    <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
-    <?php if ($politicos->getNbResults() > 0): ?>
-    <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
-
-      <ul>
-    	<?php foreach ($politicos->getResults() as $politico): ?>
-  		<?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
-    	<?php endforeach ?>
-      </ul>
-    <?php else: ?>
-      <p><?php echo __('El partido %1% aun no tiene ningún político inscrito en Voota.', array('%1%' => $partido->getAbreviatura())) ?></p>
-    <?php endif ?>
-  </div>
-
-  <div class="reviews">
-    <ul>
-      <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount)) // TODO: sustituir número de vootos ?></a></li>
-      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
-      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$partido->getId().'&value=-1&sfReviewType='.Partido::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
-    </ul>
-  
-    <div id="tab-all-reviews">
-      <?php include_component_slot('review_list', array('entityId' => $partido->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Partido::NUM_ENTITY, 'entity' => $partido)) ?>
-    </div>
-  
-  </div>
-
-  <div class="vote">
-    <h3><?php echo __('Voota sobre %1%', array('%1%' => $partido->getNombre()))?></h3>
-    <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
-  </div>
-  
-  <?php if ($partidosPager): ?>
-  	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
-  <?php endif ?>
 </div>

@@ -69,18 +69,6 @@
       <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
     </div>
 
-    <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
-
-    <div id="report-error">
-      <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
-    </div>
-  
-    <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
-  
-    <div id="google-ads">
-      <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-    </div>
-
     <div class="reviews">
       <ul>
         <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
@@ -101,5 +89,19 @@
     <?php if ($propuestasPager): ?>
   	  <?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
     <?php endif ?>
+  </div>
+  
+  <div id="sidebar">
+    <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
+
+    <div id="report-error">
+      <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
+    </div>
+  
+    <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
+  
+    <div id="google-ads">
+      <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+    </div>
   </div>
 </div>

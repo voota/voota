@@ -4,6 +4,12 @@
 <?php use_helper('Date') ?>
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
+    
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('img.politico').tooltip_politico_elecciones();
+  });
+</script>
 
 <div class="entity-page">
   <h2 id="name"><?php echo $convocatoria->getEleccion()->getNombre(); ?>. 
@@ -54,10 +60,9 @@
         </tr>
       </tfoot>
     </table>
+  </div>
 
-  </div><!-- end of content -->
-
-
+  <div id="sidebar">
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">  
         <h3><?php echo __('Enlaces externos')?></h3>
@@ -68,10 +73,5 @@
         </ul>
       </div>
     <?php endif ?>
-
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function(){
-      $('img.politico').tooltip_politico_elecciones();
-    });
-  </script>
+  </div>
 </div>
