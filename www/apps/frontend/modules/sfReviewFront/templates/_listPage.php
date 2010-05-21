@@ -1,6 +1,6 @@
 	<?php // LISTA ?>
   	<?php if ($reviewsPager->getNbResults() > 0): ?>
-  	  <ol class="reviews-list">
+  	  <ol class="sf-reviews-list-brief">
     	  <?php foreach($reviewsPager->getResults() as $review): ?>
       		<?php include_component_slot('review_for_list', array('review' => $review)) ?>
 		  <?php endforeach ?>

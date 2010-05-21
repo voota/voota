@@ -39,7 +39,7 @@
 <?php include_partial('sfReviewFront/dialog') ?>
 
 
-<table border="0" cellpadding="0" cellspacing="0">
+<table class="rankings" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
       <th class="ranking"></th>

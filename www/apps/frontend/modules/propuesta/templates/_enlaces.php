@@ -15,20 +15,20 @@
   //-->
 </script>
 
-  <?php  if(count($activeEnlaces) > 0 || ($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId())): ?>
-    <div id="external-links">
-      <h3><?php echo __('Enlaces externos', array('%1%' => $propuesta->getTitulo()))?></h3>
-	  <?php  if(count($activeEnlaces) > 0): ?>
-	      <ul>
-	        <?php foreach($activeEnlaces as $enlace): ?>
-	  	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
-	        <?php endforeach ?>
-	      </ul>
-	  <?php else: ?>
-	  	<p><?php echo __('ninguno')?></p>
-	  <?php endif ?>
-      <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-  		<div id="ee_box"><a href="#" id="edit_enlaces"><?php echo __('Hacer cambios')?></a></div> 
-	  <?php endif ?>
-    </div>
-  <?php endif  ?>
+<?php if(count($activeEnlaces) > 0 || ($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId())): ?>
+  <div id="external-links">
+    <h3><?php echo __('Enlaces externos', array('%1%' => $propuesta->getTitulo()))?></h3>
+    <?php if(count($activeEnlaces) > 0): ?>
+      <ul>
+        <?php foreach($activeEnlaces as $enlace): ?>
+  	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
+        <?php endforeach ?>
+      </ul>
+    <?php else: ?>
+  	  <p><?php echo __('ninguno')?></p>
+    <?php endif ?>
+    <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
+		  <div id="ee_box"><a href="#" id="edit_enlaces"><?php echo __('Hacer cambios')?></a></div> 
+    <?php endif ?>
+  </div>
+<?php endif ?>
