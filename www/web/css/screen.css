@@ -196,7 +196,7 @@ form td { padding: 0 0 20px 0;}
 form ul.error_list { margin: 5px 0; padding: 0; list-style: none; color: #f80c1a; font-size: 11px;}
 input[type=text], input[type=password] { font-size: 13px; line-height: 13px; padding: 2px; width:270px; border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", Times, serif;}
 input[type=submit], input[type=button], button { font-size: 13px; overflow: visible; width: 90px; color: #323232; border: 1px solid #809DB9; background: #ededed url(/images/button_bg.png) left center repeat-x; font-family: Georgia, "Times New Roman", Times, serif;}
-select, option { font-family: Georgia, "Times New Roman", Times, serif;}
+select, option { font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px;}
 textarea { border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", Times, serif; font-size: 13px; resize: none; width:270px; padding: 2px;}
 .submit { text-align: right; clear: both;}
 .facebook-only img { vertical-align: text-bottom;}
