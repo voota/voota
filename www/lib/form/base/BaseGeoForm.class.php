@@ -17,6 +17,7 @@ abstract class BaseGeoForm extends BaseFormPropel
       'id'         => new sfWidgetFormInputHidden(),
       'nombre'     => new sfWidgetFormInputText(),
       'geo_id'     => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
+      'codigo'     => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
     ));
 
@@ -24,6 +25,7 @@ abstract class BaseGeoForm extends BaseFormPropel
       'id'         => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
       'nombre'     => new sfValidatorString(array('max_length' => 150)),
       'geo_id'     => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id', 'required' => false)),
+      'codigo'     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 

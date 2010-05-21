@@ -14,12 +14,14 @@ abstract class BaseGeoFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'nombre'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'geo_id'     => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
+      'codigo'     => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
       'nombre'     => new sfValidatorPass(array('required' => false)),
       'geo_id'     => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
+      'codigo'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
@@ -41,6 +43,7 @@ abstract class BaseGeoFormFilter extends BaseFormFilterPropel
       'id'         => 'Number',
       'nombre'     => 'Text',
       'geo_id'     => 'ForeignKey',
+      'codigo'     => 'Number',
       'created_at' => 'Date',
     );
   }

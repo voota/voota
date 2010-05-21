@@ -18,6 +18,7 @@ abstract class BasePoliticoInstitucionForm extends BaseFormPropel
       'institucion_id' => new sfWidgetFormInputHidden(),
       'fecha_inicio'   => new sfWidgetFormDate(),
       'fecha_fin'      => new sfWidgetFormDate(),
+      'cargo'          => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
@@ -25,6 +26,7 @@ abstract class BasePoliticoInstitucionForm extends BaseFormPropel
       'institucion_id' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'column' => 'id', 'required' => false)),
       'fecha_inicio'   => new sfValidatorDate(array('required' => false)),
       'fecha_fin'      => new sfValidatorDate(array('required' => false)),
+      'cargo'          => new sfValidatorString(array('max_length' => 2, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('politico_institucion[%s]');

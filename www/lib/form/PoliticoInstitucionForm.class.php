@@ -10,6 +10,13 @@
  */
 class PoliticoInstitucionForm extends BasePoliticoInstitucionForm
 {
+	
+  protected static $cargos = array(
+  									'' => '?',
+  									'CJ' => 'Concejal',
+								    'AL' => 'Alcalde'
+								 );
+								 
   public function configure()
   {   	
   	unset(
@@ -31,6 +38,7 @@ class PoliticoInstitucionForm extends BasePoliticoInstitucionForm
       'url'   => $this->getOption('url')
     )
   ));
+	$this->widgetSchema['cargo'] = new sfWidgetFormSelect(array('choices' => self::$cargos));
   	
   }
 }
