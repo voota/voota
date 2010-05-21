@@ -29,14 +29,14 @@
 <!--//
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-positive input").click(function(){
 	<?php if(!$sf_user->isAuthenticated()): ?>
-		$("#sfr_dialog").dialog('open');
+		ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
 	<?php else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>,  <?php echo $reviewEntityId ?>, 1,  '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
 	<?php endif ?>
 });
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-negative input").click(function(){
 	<?php if(!$sf_user->isAuthenticated()): ?>
-		$("#sfr_dialog").dialog('open');
+		ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
 	<?php else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>, <?php echo $reviewEntityId ?>, -1, '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
 	<?php endif ?>

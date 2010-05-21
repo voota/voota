@@ -17,7 +17,7 @@
   <?php if($sf_user->isAuthenticated()): ?>
   	<a href="#" onclick="<?php echo "$('#sf_review_sr_c${listValue}_".$review->getId()."').slideDown()" ?>;document.getElementById('<?php echo "subreviews_box${listValue}_".$review->getId() ?>').className = 'subreviews shown';return loadReviewBox('<?php echo url_for('@sf_review_form') ?>', null,  <?php echo $review->getId() ?>,  0, '<?php echo "sfrc${listValue}_".$review->getId() ?>' )"><?php echo $isUpdate?__('Hacer cambios en tu opinión'):__('Opinar sobre este comentario')?></a>
   <?php else: ?>
-  	<a href="#" onclick="$('#sfr_dialog').dialog('open');return false;"><?php echo __('Opinar sobre este comentario')?></a>
+  	<a href="#" onclick="ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');return false;"><?php echo __('Opinar sobre este comentario')?></a>
   <?php endif ?>
   </p>
 <?php endif ?>

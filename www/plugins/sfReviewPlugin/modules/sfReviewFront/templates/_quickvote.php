@@ -19,15 +19,14 @@
 <!--//
   $(document).ready(function(){
 	function vote(v){
-    	<?php if($sf_user->isAuthenticated()):?>
-        	jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#<?php echo "mv_up_".$entity->getId()?>').html(data);},url:'<?php echo url_for('sfReviewFront/quickvote?t='. $entity->getType() .'&e='. $entity->getId() .'&rm=1&v=') ?>'+v});
+  	<?php if($sf_user->isAuthenticated()):?>
+  	  jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#<?php echo "mv_up_".$entity->getId()?>').html(data);},url:'<?php echo url_for('sfReviewFront/quickvote?t='. $entity->getType() .'&e='. $entity->getId() .'&rm=1&v=') ?>'+v});
 		<?php else: ?>
- 	    	//$("#sfr_dialog").dialog('open');
- 	       	ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
-        <?php endif ?>
-        return false;
+     	ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
+    <?php endif ?>
+    return false;
 	}
-    $("#<?php echo "qv_up_".$entity->getId()?>").click(function(){ return vote(1);});          
+  $("#<?php echo "qv_up_".$entity->getId()?>").click(function(){ return vote(1);});          
 	$("#<?php echo "qv_down_".$entity->getId()?>").click(function(){ return vote(-1);});
   });
 //-->

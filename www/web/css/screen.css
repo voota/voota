@@ -110,8 +110,8 @@ strong.email { color: #2b56ff;}
 #footer .copyright { border-top: 1px dotted #343434; padding: 20px 0;}
 
 /* Mensajes */
-.success-msg, .notice { border: 1px solid #809DB9; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat;}
-.warning { border: 1px solid #809DB9; width: 97%; padding: 20px; margin: 20px 0; font-weight: bold;}
+.success-msg, .notice { border: 1px solid #809DB9; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background: transparent url(/images/icoOk.gif) right center no-repeat; }
+.warning { border: 1px solid #809DB9; width: 918px; padding: 20px; margin: 20px 0; font-weight: bold; }
 .error { border: 1px solid #809DB9; width: 300px; padding: 20px; margin: 20px 0; font-weight: bold; background-color: #ffffcd; color:#ff0012;}
 .next-step-msg { padding-bottom: 10px; font-weight: bold;}
 
