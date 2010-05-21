@@ -1,3 +1,24 @@
+function ejem( url, ub ) {
+    var form = document.createElement("form");
+    form.setAttribute("method", 'post');
+    form.setAttribute("action", url);
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "dialog");
+    hiddenField.setAttribute("value", "1");
+    form.appendChild(hiddenField);
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "url_back");
+    hiddenField.setAttribute("value", ub);
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function thumb_up() {
 	document.theForm.v[0].checked = true;
 	document.theForm.submit();
