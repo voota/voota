@@ -1,30 +1,6 @@
-<?php function map_to_name_and_vanity($i) { return array($i->getNombreCorto(), $i->getVanity()); } ?>
-<?php $instituciones = array_map("map_to_name_and_vanity", $instituciones); ?>
-<?php array_unshift($instituciones, array(__('Todas las instituciones'), '0')); ?>
-<?php $instituciones_en_grupos = array_chunk($instituciones, 7); ?>
-<div class="institutions-list">
-  <ol>
-    <li class="column first">
-      <?php if (isset($showPartido) && $showPartido):?>
-      	<?php echo ($partido == 'all' ? __('Todos los partidos') : $partido); ?> en:
-      <?php endif ?>
-    </li>
-    <?php foreach($instituciones_en_grupos as $grupo): ?>
-    <li class="column">
-      <ol>
-        <?php foreach($grupo as $i): ?>
-        <li>
-          <?php $active = ($i[1] == $institucion ? array('class' => 'active') : null) ?>
-          <?php if (isset($linkType) && $linkType == 'partido'):?>
-	          <?php $url = ("partido/ranking?institucion=$i[1]"); ?>
-          <?php else: ?>
-	          <?php $url = ($i[1] == '0' ? "politico/ranking?partido=$partido" : "politico/ranking?partido=$partido&institucion=$i[1]"); ?>
-          <?php endif ?>
-          <?php echo link_to($i[0], $url, $active) ?>
-        </li>
-        <?php endforeach ?>
-      </ol>
-    </li>
-    <?php endforeach ?>
-  </ol>
-</div>
+<?php // TODO: Unir con comas, menos la última que va unida con " y " ?>
+<?php foreach($instituciones as $i): ?>
+  <?php $active = ($i == $institucion ? array('class' => 'active') : null) ?>
+  <?php $url = ("partido/ranking?institucion=" . $i->getVanity()); ?>
+  <?php echo link_to($i->getNombreCorto(), $url, $active) ?>
+<?php endforeach ?>

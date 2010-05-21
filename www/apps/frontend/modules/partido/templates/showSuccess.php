@@ -47,36 +47,28 @@
 
     <div id="description">
         <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
-    </div><!-- end of description -->
-  
-    <?php if($listas):?>
-      <div id="elecciones">
-        <h3><?php echo $convocatoria->getEleccion()->getNombre() ?> <?php echo $convocatoria->getNombre() ?></h3>
-        <ul>
-          <?php foreach($listas as $lista):?>
-            <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
-          <?php endforeach ?>
-        </ul>
-        <?php /* Esto que es? Los tenemos? ?>
-        <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a> (245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
-        <?php */ ?>
-      </div>
-    <?php endif ?>
-    
-    <div id="politicians-most-voted" class="entities-list-mini">
-      <h3><?php echo __("Políticos más votados") ?> (<?php echo $partido->getAbreviatura() ?>)</h3>
-      <?php if ($politicos->getNbResults() > 0): ?>
-      <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
 
-        <ul>
-      	<?php foreach ($politicos->getResults() as $politico): ?>
-    		<?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
-      	<?php endforeach ?>
-        </ul>
-      <?php else: ?>
-        <p><?php echo __('El partido %1% aun no tiene ningún político inscrito en Voota.', array('%1%' => $partido->getAbreviatura())) ?></p>
-      <?php endif ?>
-    </div>
+        <?php if($listas):?>
+          <div id="elecciones">
+            <h3><?php echo $convocatoria->getEleccion()->getNombre() ?> <?php echo $convocatoria->getNombre() ?></h3>
+            <ul>
+              <?php foreach($listas as $lista):?>
+                <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
+              <?php endforeach ?>
+            </ul>
+            <?php /* Esto que es? Los tenemos? ?>
+            <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a> (245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
+            <?php */ ?>
+          </div>
+        <?php endif ?>
+        
+        <?php if ($politicos->getNbResults() > 0): ?>
+          <p id="instituciones">
+            <strong>Instituciones:</strong>
+            <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
+          </p>
+        <?php endif ?>
+    </div><!-- end of description -->
 
     <div class="reviews">
       <ul>
@@ -102,6 +94,20 @@
   </div>
 
   <div id="sidebar">
+    <div id="politicos-mas-votados" class="entities-list-mini">
+      <h3><?php echo __("Los más votados") ?></h3>
+      <?php if ($politicos->getNbResults() > 0): ?>
+        <ul>
+      	  <?php foreach ($politicos->getResults() as $politico): ?>
+            <?php // TODO: El político debe mostrarse sin el nombre del partido ?>
+    		    <?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+      	  <?php endforeach ?>
+        </ul>
+      <?php else: ?>
+        <p><?php echo __('El partido %1% aun no tiene ningún político inscrito en Voota.', array('%1%' => $partido->getAbreviatura())) ?></p>
+      <?php endif ?>
+    </div>
+    
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">
         <h3><?php echo __('Enlaces externos del ')?><?php echo $partido->getAbreviatura() ?></h3>
