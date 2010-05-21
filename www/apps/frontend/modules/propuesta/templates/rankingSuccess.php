@@ -16,9 +16,9 @@
   $(document).ready(function(){
     $('.login-required_np').click(function(){
       <?php if (!$sf_user->isAuthenticated()): ?>
-        //$("#sfr_dialog_form_ub").val("propuesta/new");
-        //$("#sfr_dialog").dialog('open');
-        ejem('<?php echo url_for('sfGuardAuth/signin');?>', 'propuesta/new');
+      //$("#sfr_dialog_form_ub").val("propuesta/new");
+      //$("#sfr_dialog").dialog('open');
+      ejem('<?php echo url_for('sfGuardAuth/signin');?>', 'propuesta/new');
         return false;
       <?php endif ?>
     });
