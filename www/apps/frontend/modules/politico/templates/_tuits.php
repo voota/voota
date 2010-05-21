@@ -5,7 +5,7 @@ new TWTR.Widget({
   type: 'profile',
   rpp: 4,
   interval: 6000,
-  width: 250,
+  width: 220,
   height: 300,
   theme: {
     shell: {
