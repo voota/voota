@@ -3,6 +3,10 @@
 <?php use_helper('VoNotice') ?>
 
 <?php echo showNotices( $sf_user ) ?>
+<?php if ($sf_request->getParameter("dialog") == 1): ?>
+	<p class='warning'><?php echo __('Quieto parao. Antes de votar, tienes que loguearte en Voota. Si no tienes cuenta aún, ¡éste es el momento para crearte una!') ?></p>
+<?php endif ?>
+
 <div id="signup">
   <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
   <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
