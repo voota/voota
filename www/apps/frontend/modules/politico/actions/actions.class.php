@@ -541,7 +541,7 @@ class politicoActions extends sfActions
     
     // Feed
     $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
-    $request->setAttribute('rssFeed',  'politico/show?id='.$this->politico->getVanity()."/feed");
+    $request->setAttribute('rssFeed',  'politico/feed?id='.$this->politico->getVanity());
   }
 
   public function executeFeed(sfWebRequest $request)
