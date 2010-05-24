@@ -32,6 +32,11 @@
 
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
+  
+  <?php if($sf_request->getAttribute('rssFeed')): ?>
+  <link rel="alternate" type="application/rss+xml" title="<?php echo $sf_request->getAttribute('rssTitle')?>" href="<?php echo url_for($sf_request->getAttribute('rssFeed')) ?>" />
+  <?php endif ?>
+  
   <style type="text/css">
     <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }

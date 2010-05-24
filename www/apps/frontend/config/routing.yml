@@ -180,6 +180,20 @@ politico_ca:
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
+  
+politico_feed_es:
+  url: /politico/:id/feed
+  param: { module: politico, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+politico_feed_ca:
+  url: /politic/:id/feed
+  param: { module: politico, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
     
 ranking_es:
   url: /politicos/:partido/:institucion

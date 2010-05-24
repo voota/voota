@@ -19,6 +19,7 @@ class sfGuardUser extends PluginsfGuardUser
 {
   public function __toString()
   {
-    return $this->getProfile()->getNombre() .' '. $this->getProfile()->getApellidos();
+  	$ret = trim($this->getProfile()->getNombre() .' '. $this->getProfile()->getApellidos());
+    return $ret?$ret:$this->getProfile()->getVanity();
   }
 }

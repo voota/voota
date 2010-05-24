@@ -539,6 +539,78 @@ class politicoActions extends sfActions
     $this->politicosPager = EntityManager::getPager($this->politico);
     /* / paginador */
     
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $request->setAttribute('rssFeed',  'politico/show?id='.$this->politico->getVanity()."/feed");
   }
 
+  public function executeFeed(sfWebRequest $request)
+  {
+  	$vanity = $request->getParameter('id');
+  	$culture = $this->getUser()->getCulture();  	
+  	  	
+  	$c = new Criteria();
+  	$c->add(PoliticoPeer::VANITY, $vanity, Criteria::EQUAL);
+  	$entity = PoliticoPeer::doSelectOne( $c );
+  	$this->forward404Unless( $entity );
+  	
+	$filter = array();
+	$filter['type_id'] = Politico::NUM_ENTITY;
+  	$filter['entity_id'] = $entity->getId();
+	$reviews = SfReviewManager::getReviews($filter);
+  	
+  	$title = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%'
+  					, array(
+  						'%1%' => $entity->getNombre() . ' '. $entity->getApellidos()
+  					)
+  	);
+  	$instis = "";
+  	foreach ($entity->getPoliticoInstitucions() as $idx => $politicoInstitucion){
+  		$instis .= ($instis?", ":"").$politicoInstitucion->getInstitucion();
+  	}
+  	$description = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%, %2% votos a favor y %3% votos en contra'
+  					, array(
+  						'%1%' => $entity->getNombre() . ' '. $entity->getApellidos() . ($instis?" ($instis)":"") . ($entity->getPartido()?", ".$entity->getPartido()."":""),
+  						'%2%' => $entity->getSumu(),
+  						'%3%' => $entity->getSumd()
+  					)
+  	);
+  	
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+  	$feed->setLink('politico/show?id='.$entity->getVanity());
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+  	
+  	$feedImage = new sfFeedImage();
+	$feedImage->setLink('politico/show?id='.$entity->getVanity());
+	$feedImage->setImage(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_'.$entity->getImagen());
+	$feedImage->setTitle( $entity );
+	$feed->setImage($feedImage);
+  	
+  	
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='. $review->getId());
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
+  	
+  }
 }
