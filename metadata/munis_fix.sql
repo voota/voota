@@ -28,6 +28,9 @@ and prov.codigo = concejal.provincia_id
 and i.geo_id = muni.id
 ;#and concejal.geo_id is null;
 
+######################
+#Asignar geo de municipio correcto
+######################
 UPDATE concejal, geo muni, geo prov
 SET concejal.geo_id = muni.id
 where concejal.municipio = muni.nombre
@@ -91,6 +94,9 @@ select institucion.id, 'ca'
 where institucion.geo_id = geo.id
 and geo.id >= 8198;
 
+###########################
+# Asignar institucion (ayuntamiento)
+###########################
 update concejal set institucion_id = null;
 update concejal, institucion
 	set concejal.institucion_id = institucion.id
@@ -106,12 +112,16 @@ where c.institucion_id = pi.institucion_id
 and c.posicion = 1
 and pi.cargo = 'AL';
 
-select count(*) from concejal c 
+select distinct count(*)
+from concejal c
 where posicion = 1;
 
-select count(*) from concejal c, institucion i
-where c.geo_id = i.geo_id
-
-# Copia tabla de concejales
-# Borrar alcaldes repetidos
+###########################
+# Eliminar alcaldes que ya tenemos
+###########################
+delete from c
+using concejal c, politico_institucion pi
+where c.institucion_id = pi.institucion_id
+and c.posicion = 1 
+and pi.cargo = 'AL';
 
