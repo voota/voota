@@ -326,7 +326,7 @@ class propuestaActions extends sfActions
   	$filter['entity_id'] = $entity->getId();
 	$reviews = SfReviewManager::getReviews($filter);
   	
-  	$title = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%'
+  	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
   					, array(
   						'%1%' => $entity
   					)

@@ -151,32 +151,100 @@ class perfilActions extends SfVoActions
   		$this->redirect('perfil/show?username='. $user->getProfile()->getVanity(), 301);
   	}
   	$this->forward404Unless($this->user->getIsActive());
-  	/*
-  	$criteria = new Criteria();
-	  $criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	  //$criteria->add(SfReviewPeer::CULTURE, $culture);
-	  $criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $this->user->getId());
-	  $criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
-	if( $this->f ){
-		if (preg_match('/\.0/', $this->f)){
-			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);
-		}
-		else if (preg_match('/[0-9]/', $this->f)){
-			$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->f);
-		}
-		$criteria->add(SfReviewPeer::IS_ACTIVE, true);
-	}
-	  
-  	$this->reviews = new sfPropelPager('SfReview', BaseSfReviewManager::NUM_REVIEWS);
-    $this->reviews->setCriteria($criteria);
-    $this->reviews->init();
-    */
+  	
     $this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
     
-    $this->response->setTitle( sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
+    $this->title = sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())); 
+    $this->response->setTitle( $this->title );
     $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
     $this->response->addMeta('Description', $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos y opiniones de %1% sobre políticos y partidos de España', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
+  	  	    
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $request->setAttribute('rssFeed',  'perfil/feed?username='.$this->user->getProfile()->getVanity());
   }
+
+  public function executeFeed(sfWebRequest $request)
+  {
+  	$vanity = $request->getParameter('username');
+  	$this->f = $request->getParameter('f');
+  	$culture = $this->getUser()->getCulture();
+    
+  	$c = new Criteria();
+  	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);
+  	$userProfile = SfGuardUserProfilePeer::doSelectOne( $c );
+  	$this->forward404Unless($userProfile);
+  	$this->user = $userProfile->getsfGuardUser();
+  	if (!$this->user->getIsActive() && is_numeric($userProfile->getFacebookUid()) ){
+  		$user = SfGuardUserPeer::retrieveByPK($userProfile->getFacebookUid());
+  		$this->forward404Unless( $user );
+  		$this->redirect('perfil/show?username='. $user->getProfile()->getVanity(), 301);
+  	}
+  	$this->forward404Unless($this->user->getIsActive());
+  	
+	$reviews = SfReviewManager::getReviewsByUser($this->user->getId());
+  	
+  	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
+  					, array(
+  						'%1%' => $this->user
+  					)
+  	);
+  	$descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
+    $description = $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos y opiniones de %1% sobre políticos y partidos de España', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity()));
+  	
+  	
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+  	$feed->setLink('perfil/show?username='.$this->user->getProfile()->getVanity());
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+  	
+  	$feedImage = new sfFeedImage();
+	$feedImage->setLink('perfil/show?username='.$this->user->getProfile()->getVanity());
+	$feedImage->setImage(S3Voota::getImagesUrl().'/usuarios/cc_'.$this->user->getProfile()->getImagen());
+	$feedImage->setTitle( $this->user );
+	$feed->setImage($feedImage);
+  	
+  	
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    
+	    $entityText = "";
+	    if (!$review->getSfReviewType()){
+	    	$tmpReview = $review->getSfReviewsRelatedBySfReviewId();
+	    	$entityText = sfContext::getInstance()->getI18N()->__('Otra opinión sobre');
+	    }
+	    else {
+	    	$tmpReview = $review;
+	    } 
+	    $sfReviewType = SfReviewTypePeer::retrieveByPk($tmpReview->getSfReviewTypeId());
+	    $peer = $sfReviewType->getModel() . 'Peer';
+	    $entity = $peer::retrieveByPk( $tmpReview->getEntityId() );
+	    $entityText .= $entity;
+	    
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $entityText, '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='. $review->getId());
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
+  	
+  }
+  
   public function executeMore(sfWebRequest $request)
   {
   	$vanity = $request->getParameter('username');

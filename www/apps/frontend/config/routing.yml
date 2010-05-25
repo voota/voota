@@ -450,6 +450,10 @@ usuario_contact:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
+  
+usuario_feed:
+  url:   /:username/feed
+  param: { module: perfil, action: feed }
 
 ### API DEMO ###  
 
