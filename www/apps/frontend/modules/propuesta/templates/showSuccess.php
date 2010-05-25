@@ -48,8 +48,8 @@
   </h2>
 
   <p id="author">
-    <?php echo __('Sugerida por')?>
-    <?php echo getAvatar( $propuesta->getSfGuardUser() )?>
+    <?php echo __('Propuesta por')?>
+    <?php echo getAvatar( $propuesta->getSfGuardUser(), 19, 19 )?>
   	<a href="<?php echo url_for('perfil/show?username='.$propuesta->getSfGuardUser()->getProfile()->getVanity())?>"><?php echo $propuesta->getSfGuardUser()?></a>,
     <?php echo __('el %fecha%', array('%fecha%' => format_date($propuesta->getCreatedAt())))?>
   </p>
