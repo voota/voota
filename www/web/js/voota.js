@@ -281,8 +281,8 @@ $.fn.reviews_pagination = function(options) {
     var button = $('<button id="reviews_more">' + opts.buttonText + '</button>')
     var buttonContainer = $('<p></p>').append(button).append(spinner);
     
-    $(this).parent().append(summary);
     $(this).parent().append(buttonContainer);
+    $(this).parent().append(summary);
 
     var updateSummaryCounters = function() {
       var count = area.find('li.review').size();

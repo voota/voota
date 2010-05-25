@@ -23,7 +23,7 @@ class BaseSfReviewManager
    * @param sfEvent An sfEvent instance
    */
 	//const NUM_LAST_REVIEWS = 2;
-	const NUM_REVIEWS = 2;
+	const NUM_REVIEWS = 20;
 	const MAX_LENGTH = 280;
 	
 	
