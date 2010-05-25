@@ -52,6 +52,7 @@ strong.email { color: #2b56ff;}
 #header, #main, #footer { text-align: center;}
 #header-inner, #main-inner { text-align: left; margin: 0 auto; width: 960px; position: relative; overflow: hidden;}
 #header-inner { height: 140px;}
+#main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x}
 #main-inner { padding: 20px 0;}
 #content { float: left; width: 100%;}
 #sidebar { float: right; width: 220px; margin-left: 50px; text-align: left}
@@ -60,23 +61,6 @@ strong.email { color: #2b56ff;}
 #sidebar ul,
 #sidebar ol { list-style: none; margin: 0 0 10px 0; padding-left: 0;}
 #sidebar li { list-style: none; margin: 0 0 10px 0;}
-
-/* Páginas con degradado en background */
-#home-index #main,
-#general-contact #main,
-#sfGuardAuth-signin #main,
-#sfGuardAuth-edit #main,
-#sfGuardAuth-reminder #main,
-#sfGuardAuth-changePassword #main,
-#sfGuardAuth-passwordChanged #main,
-#sfGuardAuth-confirm #main,
-#sfGuardAuth-unsubscribe #main,
-#sfGuardAuth-passwordChanged #main,
-#sfGuardAuth-remove #main,
-#sfReviewFront-list #main,
-#perfil-reviews #main,
-#eleccion-show #main,
-#lista-show #main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x}
 
 /* Cabecera */
 #logo a { color: #323232; text-decoration: none; font-weight: normal;}
