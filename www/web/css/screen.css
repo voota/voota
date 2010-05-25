@@ -246,9 +246,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-edit ol.links { margin: 0; padding: 0 0 0 20px; margin-left: -20px;}
 #sfGuardAuth-edit ol.links li { margin-bottom: 20px;}
 #sfGuardAuth-edit label { font-weight: normal;}
-#sfGuardAuth-edit input[type=text],
-#sfGuardAuth-edit input[type=password],
-#sfGuardAuth-edit textarea { width: 390px;}
+#sfGuardAuth-edit #content input[type=text],
+#sfGuardAuth-edit #content input[type=password],
+#sfGuardAuth-edit #content textarea { width: 390px;}
 #sfGuardAuth-edit .politico { padding-top: 5px;}
 #sfGuardAuth-edit .vanity input { display: inline; width: 130px;}
 #sfGuardAuth-edit .avatar p { padding-bottom: 10px;}
