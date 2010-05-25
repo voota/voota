@@ -28,16 +28,17 @@ and prov.codigo = concejal.provincia_id
 and i.geo_id = muni.id
 ;#and concejal.geo_id is null;
 
+#Asignar geos
 UPDATE concejal, geo muni, geo prov
 SET concejal.geo_id = muni.id
 where concejal.municipio = muni.nombre
 and prov.id = muni.geo_id
 and prov.codigo = concejal.provincia_id
-;#and concejal.geo_id is null;
+and concejal.geo_id is null;
 
 select distinct municipio_id, provincia_id, municipio from concejal where geo_id is null order by provincia_id, municipio;
 
-select muni.id, prov.codigo, muni.nombre
+select muni.id, prov.codigo, muni.nombre, prov.nombre
 from geo muni
 inner join geo prov on prov.id = muni.geo_id
 where prov.codigo is not null
@@ -64,11 +65,17 @@ and ii.nombre like 'Ayuntamiento %';
 
 select distinct municipio_id, provincia_id, municipio from concejal where geo_id is null;
 
+select * from geo order by id desc ;
+
 select id, nombre
 	, concat('Ayuntamiento-', replace(replace(replace(nombre, ' ', '-'),'(','-'),')','-')) 
 	, concat('Ayuntamiento ', replace(replace(replace(nombre, ' ', '-'),'(','-'),')','-')) 
 	, concat('Ayuntamiento de ', replace(replace(replace(nombre, ' ', '-'),'(','-'),')','-')) 
 	from geo where id >= 8198;
+
+# Cargar los que faltan de cuenca
+delete from institucion_i18n where id >= 8198;
+delete from institucion where id >= 8198;
 
 insert into institucion (geo_id)
 	select id from geo where id >= 8198;
@@ -91,7 +98,7 @@ select institucion.id, 'ca'
 where institucion.geo_id = geo.id
 and geo.id >= 8198;
 
-update concejal set institucion_id = null;
+update concejal set geo_id = null, institucion_id = null;
 update concejal, institucion
 	set concejal.institucion_id = institucion.id
 where concejal.geo_id = institucion.geo_id
@@ -140,15 +147,26 @@ insert into politico_i18n (id, culture, bio)
 	where c.nombre = p.nombre and c.apellidos = p.apellidos and c.partido = p.partido_txt and concat(c.geo_id, "_", c.posicion) = p.pais
 	and i.id = c.institucion_id and i.culture = 'ca';
 
+delete from politico_institucion where politico_id > 10550;
 insert into politico_institucion (politico_id, institucion_id, cargo)
 	select p.id, c.institucion_id, 'CJ'
 	from concejal c, politico p
 	where c.nombre = p.nombre and c.apellidos = p.apellidos and c.partido = p.partido_txt and concat(c.geo_id, "_", c.posicion) = p.pais
+	and institucion_id is not null
 	;
+
+select institucion_id from concejal where institucion_id is not null order by institucion_id desc;
+
 
 update politico, partido
 set politico.partido_id = partido.id
-where politico.partido_txt = partido.nombre
+where politico.partido_txt = partido.abreviatura
 and politico.partido_id is null
 and politico.id > 10550;
 
+select count(*) from  concejal where institucion_id is null;
+
+select * from politico_institucion pi
+inner join politico p on p.id = pi.politico_id where institucion_id = 4130
+
+# php symfony genVanity --env=dev --table=politico
