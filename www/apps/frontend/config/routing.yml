@@ -153,6 +153,20 @@ propuesta_show_ca:
   requirements:
     sf_host_culture: cat
     
+propuesta_feed_es:
+  url: /propuesta/:id/feed
+  param: { module: propuesta, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+propuesta_feed_ca:
+  url: /proposta/:id/feed
+  param: { module: propuesta, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
 ### POLITICOS ###
     
 partido_ac_partido:
@@ -253,6 +267,20 @@ partido_es:
 partido_ca:
   url: /partit/:id
   param: { module: partido, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+partido_feed_es:
+  url: /partido/:id/feed
+  param: { module: partido, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+partido_feed_ca:
+  url: /partit/:id/feed
+  param: { module: partido, action: feed }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
