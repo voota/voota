@@ -22,7 +22,7 @@ class EntityManager {
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
 	  	if ($cache != null) {
   			$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
   			$data = $cache->get($key);
@@ -43,7 +43,7 @@ class EntityManager {
 		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
+		  	#$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
 				array (PoliticoI18nPeer::ID, "'$culture'")
@@ -56,7 +56,7 @@ class EntityManager {
 		  	if ($institucion && $institucion != ALL_URL_STRING){
 		  		$c->add(InstitucionI18nPeer::VANITY, $institucion);
 		  	}
-		  	$pager = new sfPropelPager('Politico', $limit);
+		  	$pager = new sfPropelPager('PoliticoRanking', $limit);
 		  	
 		  	/* Orden de resultados
 		  	 * pa: positivos ascendente
@@ -118,9 +118,9 @@ class EntityManager {
 		    $pager->init();		    
 		    
 	  		if ($cache != null) {
-	  			$cache->set($key,serialize($pager), 3600);
-	  			$cache->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cache->set("$key-totalDown",serialize($totalDown), 3600);
+	  			$cache->set($key,serialize($pager));
+	  			$cache->set("$key-totalUp",serialize($totalUp));
+	  			$cache->set("$key-totalDown",serialize($totalDown));
 	  		}
 	    	return $pager;
   		}

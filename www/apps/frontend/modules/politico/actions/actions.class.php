@@ -286,7 +286,7 @@ class politicoActions extends sfActions
     $this->totalUp = $totalUp;
     $this->totalDown = $totalDown;    
   	
-  	/* Lista de partidos */ 
+  	/* Lista de partidos 
     $c = new Criteria();
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
@@ -305,9 +305,9 @@ class politicoActions extends sfActions
   	foreach($this->partidos as $aPartido){
   		$this->partidos_arr[$aPartido->getAbreviatura()] = $aPartido->getAbreviatura();
   	}
-  	/* Fin lista de partidos */ 
+  	 Fin lista de partidos */ 
       	
-  	/* Lista de instituciones */ 
+  	/* Lista de instituciones 
   	$c = new Criteria();
   	if ($partido && $partido != ALL_URL_STRING){
 	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
@@ -320,7 +320,7 @@ class politicoActions extends sfActions
   	$c->setDistinct();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);
-  	/*  Fin Lista de instituciones */ 
+  	  Fin Lista de instituciones */ 
   	
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
