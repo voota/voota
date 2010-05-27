@@ -22,7 +22,7 @@ class EntityManager {
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
 	  	if ($cache != null) {
   			$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
   			$data = $cache->get($key);
@@ -38,22 +38,23 @@ class EntityManager {
   		else {  		
 		  	$c = new Criteria();
 		  	
-		  	$c->setDistinct();
-		  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
-		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-		  	#$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
+		  	//$c->setDistinct();
+		  	#$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+		  	/*		  	
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
 				array (PoliticoI18nPeer::ID, "'$culture'")
 				, Criteria::LEFT_JOIN
 			);
-		  			  	
+		  	*/
 		  	if ($partido && $partido != ALL_URL_STRING){
+		  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
 		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
 		  	}
 		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  		$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);	
+		  		$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+		  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
 		  		$c->add(InstitucionI18nPeer::VANITY, $institucion);
 		  	}
 		  	$pager = new sfPropelPager('PoliticoRanking', $limit);
@@ -84,15 +85,19 @@ class EntityManager {
 		    
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(politico.sumu) as total_u, sum(politico.sumd) as total_d 
-  				FROM `politico`
-  				INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID
-  				INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID 
-  				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
-  				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
-  				WHERE politico.VANITY IS NOT NULL ".
-  				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA= ? ":" ") .
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
-  				"";
+  				FROM `politico`";
+  				if ($institucion && $institucion != ALL_URL_STRING){
+  					$query .= " INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID ";
+  					$query .= " INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID ";
+  					$query .= " INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ";
+  				}
+  				if ($partido && $partido != ALL_URL_STRING) {
+  					$query .= " INNER JOIN partido ON (politico.PARTIDO_ID=partido.ID) ";
+  				}
+  				//" WHERE politico.VANITY IS NOT NULL ".
+  				$query .= " WHERE 1=1 ";
+  				$query .= (($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA= ? ":" ") .
+  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ");
   			
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);

@@ -145,12 +145,13 @@ class generalComponents extends sfComponents
   }
   
   public function executeSparkline(){
-	$query = "SELECT f.year, f.month, IFNULL(MAX(r.sum), 0) AS sum
-				FROM (SELECT DISTINCT MONTH(date) AS month, YEAR(date) AS year FROM sf_review_type_entity ORDER BY year, month) f
-				LEFT JOIN sf_review_type_entity  r ON (f.year = YEAR(r.date) AND f.month = MONTH(r.date) AND r.value = 1 
-					AND r.entity_id = ? AND r.sf_review_type_id = ?)
-				group by f.year, f.month
-				order by f.year, f.month";
+	$query = "SELECT year(date) year, month(date) month, IFNULL(MAX(r.sum), 0) AS sum
+				FROM sf_review_type_entity  r
+				WHERE r.value = 1 
+				AND r.entity_id = ? AND r.sf_review_type_id = ?
+				GROUP BY year, month
+				ORDER BY year, month
+				";
    	$connection = Propel::getConnection();
 	$statement = $connection->prepare($query);
 	$statement->bindValue(1, $this->reviewable->getId());
@@ -159,11 +160,28 @@ class generalComponents extends sfComponents
 	$statement->execute();
 	$data = $statement->fetchAll(PDO::FETCH_OBJ);
 	
-  	$this->sparklineData = "0, 0";
+  	$this->sparklineData = "";
   	$last = 0;	
   	$idx = 0;
+  	$firstDate = getDate(mktime (0,0,0,date("m")-7,date("d"),date("Y")));
+  	$aMonth = $firstDate['mon'];
+  	$aYear = $firstDate['year'];
+  		
+  	if (count($data) == 0){
+  		$this->sparklineData = "0,0";
+  	}
 	foreach ($data as $element) {
 		$idx++;
+		if($idx == 1){
+  			while ($element->year > $aYear || ($element->year == $aYear && $element->month > $aMonth)){
+				$aMonth++;
+				if ($aMonth == 13){
+					$aMonth = 1;
+					$aYear++; 
+				}
+				$this->sparklineData .= ($this->sparklineData?", ":'')."0";
+  			}
+		}
 		$this->sparklineData .= ($this->sparklineData?", ":'')."" .($element->sum - $last)."";
 		$last = $element->sum;
 	}
