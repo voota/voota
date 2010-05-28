@@ -12,10 +12,10 @@ function loadReviewBox(url, t, e, v,  box) {
 }
 
 function sendReviewForm(form, url, box) {
-	re_loading( box );
-
 	var aUrl = url;
-	jQuery.ajax({type:'POST',dataType:'html',data:jQuery(form).serialize(),success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl});
+	var data = $(form).serialize();
+	re_loading(box);
+	jQuery.ajax({type:'POST',dataType:'html',data:data,success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl});
 
 	return false;
 }
