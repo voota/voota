@@ -146,11 +146,20 @@ class SfVoUtil
 	
 	public static function myUcfirst( $str) {
 		$ret = utf8_encode(
-			strtr(substr(utf8_decode($str), 0, 1), utf8_decode(self::LOWER_ACCENTS), utf8_decode(self::UPPER_ACCENTS))
-			. strtr(substr(utf8_decode($str),1), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS))
+			strtoupper(strtr(substr(utf8_decode($str), 0, 1), utf8_decode(self::LOWER_ACCENTS), utf8_decode(self::UPPER_ACCENTS)))
+			. strtolower(strtr(substr(utf8_decode($str),1), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
 			);
 			
 		return $ret;
+	}
+	
+	public static function changeD( $str) {
+		if (strtolower(substr(utf8_decode($str), 0, 2)) == "d'"){
+			return "d'" . self::myUcfirst(utf8_encode(substr(utf8_decode($str),2)));
+		}
+		else {
+			return $str;
+		}
 	}
 	
 	public static function fixCase( $str, $sep = " " ){
@@ -170,7 +179,7 @@ class SfVoUtil
 					$newWord = strtolower($word);
 				}
 			}
-			$ret .= ($ret?$sep:'') . $newWord;
+			$ret .= ($ret?$sep:'') . self::changeD($newWord);
 		}
 		
 		return $ret;
