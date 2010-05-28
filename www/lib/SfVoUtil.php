@@ -23,6 +23,8 @@ class SfVoUtil
 	const HIGHLIGHT_LENGTH = 50;
 	const ACCENTS = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
 	const ACCENT_REPLACEMENTS = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY';
+	const UPPER_ACCENTS = 'ÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
+	const LOWER_ACCENTS  = 'àáâãäçèéêëìíîïñòóôõöùúûüý';
 	
 	public static function encodeVanity( $str ) {
 		$ret = str_replace(" ", "-", $str);
@@ -140,6 +142,47 @@ class SfVoUtil
 	
 	public static function fixVanityChars( $v ) {
 		return strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '--------------------------');
+	}
+	
+	public static function myUcfirst( $str) {
+		$ret = utf8_encode(
+			strtoupper(strtr(substr(utf8_decode($str), 0, 1), utf8_decode(self::LOWER_ACCENTS), utf8_decode(self::UPPER_ACCENTS)))
+			. strtolower(strtr(substr(utf8_decode($str),1), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
+			);
+			
+		return $ret;
+	}
+	
+	public static function changeD( $str) {
+		if (strtolower(substr(utf8_decode($str), 0, 2)) == "d'"){
+			return "d'" . self::myUcfirst(utf8_encode(substr(utf8_decode($str),2)));
+		}
+		else {
+			return $str;
+		}
+	}
+	
+	public static function fixCase( $str, $sep = " " ){
+		$NAME_EXCLUDES = array("de", "del", "la", "las", "el", "los", "i", "y", "do");
+		$ret = "";
+		
+		$words = explode($sep, $str);
+		foreach ($words as $word){
+			if ($sep == " "){
+				$newWord = self::fixCase($word, "-");
+			}
+			else{
+				if (! in_array(strtolower($word), $NAME_EXCLUDES)){
+					$newWord = self::myUcfirst($word);
+				}
+				else {
+					$newWord = strtolower($word);
+				}
+			}
+			$ret .= ($ret?$sep:'') . self::changeD($newWord);
+		}
+		
+		return $ret;
 	}
 }
  

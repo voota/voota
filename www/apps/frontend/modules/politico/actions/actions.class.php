@@ -27,6 +27,7 @@ class politicoActions extends sfActions
   	
   	$term = $request->getParameter('term');
   	$c = new Criteria();
+	$c->setLimit( 20 );
 	$c->addJoin(
 		array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
 		array(PartidoI18nPeer::ID, "'$culture'")
@@ -56,6 +57,7 @@ class politicoActions extends sfActions
   	
   	$term = $request->getParameter('term');
   	$c = new Criteria();
+	$c->setLimit( 20 );
 	$c->addJoin(
 		array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
 		array(InstitucionI18nPeer::ID, "'$culture'")
@@ -269,6 +271,17 @@ class politicoActions extends sfActions
 				
   		$this->forward404Unless( $aInstitucion );
   		
+  		if($aInstitucion->getVanity() != $institucion){
+  			$url = $this->generateRankingUrl($partido, $aInstitucion->getVanity());
+  			$params = $request->getParameterHolder()->getAll();
+  			foreach ($params as $key => $value){
+  				if ($key != 'module' && $key != 'action' && $key != 'partido' && $key != 'institucion'){
+  					$url .= "&$key=$value";
+  				}
+  			}
+  			$this->redirect( $url, 301 );
+  		}
+  		
   		$this->institucionAC = $aInstitucion->getNombre();
   	} 
   	
@@ -415,6 +428,10 @@ class politicoActions extends sfActions
   	$id = $this->politico->getId();
   	
   	$this->forward404Unless($this->politico);
+  	
+  	if ($this->politico->getVanity() != $vanity){
+  		$this->redirect('politico/show?id='.$this->politico->getVanity(), 301);
+  	}
   	
   	// Estabamos vootando antes del login ?
   	$v = $this->getUser()->getAttribute('review_v');

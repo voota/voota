@@ -130,6 +130,16 @@ class partidoActions extends sfActions
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
 				
   		$this->forward404Unless( $aInstitucion );
+  		if($aInstitucion->getVanity() != $institucion){
+  			$url = $this->generateRankingUrl($aInstitucion->getVanity());
+  			$params = $request->getParameterHolder()->getAll();
+  			foreach ($params as $key => $value){
+  				if ($key != 'module' && $key != 'action' && $key != 'partido' && $key != 'institucion'){
+  					$url .= "&$key=$value";
+  				}
+  			}
+  			$this->redirect( $url, 301 );
+  		}
   		$this->institucionAC = $aInstitucion->getNombre();
   	}
     

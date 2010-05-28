@@ -135,6 +135,10 @@ order by num desc
 select max(id) from politico;
 insert into politico (nombre, apellidos, partido_txt, pais) select nombre, apellidos, partido, concat(geo_id, "_", posicion) as pais  from concejal;
 
+
+alter table politico add index p1 (nombre asc, apellidos asc);
+alter table concejal add index c1 (nombre asc, apellidos asc);
+
 insert into politico_i18n (id, culture, bio) 
 	select p.id, 'es', concat('Concejal de ', i.nombre,' 2007')
 	from concejal c, politico p, institucion_i18n i
@@ -157,6 +161,10 @@ insert into politico_institucion (politico_id, institucion_id, cargo)
 
 select institucion_id from concejal where institucion_id is not null order by institucion_id desc;
 
+alter table politico drop index p1;
+
+
+select institucion_id from concejal where institucion_id is not null order by institucion_id desc;
 
 update politico, partido
 set politico.partido_id = partido.id
