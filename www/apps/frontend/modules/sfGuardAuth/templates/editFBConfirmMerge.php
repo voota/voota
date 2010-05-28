@@ -16,7 +16,7 @@
 	<?php echo __('Ojo, ahora tienes otra cuenta asociada a tu perfil de Facebook. Unificando las dos todo será más sencillo. ¿Cómo lo ves?')?>
 	</p>
 	<form action="#">
-		<input onclick="return facebookConnect_loadPreferences('<?php echo url_for('@usuario_fb_confirm_merge') ?>', 'fb_confirm_box');" type="submit" value="Ok, unificar cuentas">
+		<input onclick="return facebookLoadPreferences('<?php echo url_for('@usuario_fb_confirm_merge') ?>', 'fb_confirm_box');" type="submit" value="Ok, unificar cuentas">
 	</form>
 	</div>
 <?php endif ?>

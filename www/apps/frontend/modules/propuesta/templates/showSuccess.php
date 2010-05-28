@@ -11,7 +11,7 @@
   $(document).ready(function(){
     $('.reviews').tabs({
       load: function() {
-	    FB.XFBML.Host.parseDomTree();
+	    facebookParseXFBML();
 		}
 	});
 

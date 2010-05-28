@@ -3,7 +3,6 @@
 
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
-<?php use_helper('sfFacebookConnect'); ?>
 <?php use_helper('VoUser'); ?>
 
 <head>
@@ -27,8 +26,6 @@
   <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
   <script type="text/javascript" src="/js/bluff/bluff.js"></script>
   <script type="text/javascript" src="/js/bluff/custom.js"></script>
-  <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/es" type="text/javascript"></script>
-  <script src="/sfFacebookConnectPlugin/js/sfFacebookConnect.js" type="text/javascript"></script>
 
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
@@ -59,17 +56,10 @@
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
-  <?php 
-    slot('fb_connect');
-    include_facebook_connect_script();
-    end_slot();
-  ?>
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
-	    $('.fbconnect_login_button').click(function(){
-	    	return facebookConnect();
-	    });
+	    $('.fbconnect_login_button').click(facebookLogin);
 	      <?php if ($sf_user->getFlash('logToFB')):  ?>  
 		    publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
 	    <?php endif ?>	
@@ -198,10 +188,20 @@
 			$('input[title!=""], textarea[title!=""]').hint();
 		});
   </script>
-
-  <?php if (has_slot('fb_connect')): ?>
-    <?php include_slot('fb_connect') ?>
-  <?php endif; ?>
+ 
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key') ?>', status: true, cookie: true,
+               xfbml: true});
+    };
+    (function() {
+      var e = document.createElement('script'); e.async = true;
+      e.src = document.location.protocol +
+        '//connect.facebook.net/en_US/all.js';
+      document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
  
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">

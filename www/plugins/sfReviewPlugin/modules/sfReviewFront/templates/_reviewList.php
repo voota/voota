@@ -10,7 +10,7 @@
 	
 			  $('.reviews').tabs( "url" , <?php echo $value?$value==1?1:2:0?>, aUrl );
 			  $('.reviews').tabs( "load" , <?php echo $value?$value==1?1:2:0?> );
-			  FB.XFBML.Host.parseDomTree();
+			  facebookParseXFBML();
 		  });
 	  });
 	  //-->
@@ -56,7 +56,7 @@
 					type:'POST',
 					dataType:'html',
 					data:jQuery($('#<?php echo "frm_more_". $value ."_".$reviewsPager->getPage()?>')).serialize(),
-					success:function(data, textStatus){jQuery('#<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>').html(data);FB.XFBML.Host.parseDomTree()},
+					success:function(data, textStatus){jQuery('#<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>').html(data);facebookParseXFBML()},
 					url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
 					update: '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>',
 					before: re_loading( '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>' ),

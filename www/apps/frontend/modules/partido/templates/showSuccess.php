@@ -8,7 +8,7 @@
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
-    $('.reviews').tabs({ load: function() { FB.XFBML.Host.parseDomTree(); } });
+    $('.reviews').tabs({ load: function() { facebookParseXFBML(); } });
  	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
   });

@@ -18,7 +18,7 @@
 					  type:'POST',
 					  dataType:'html',
 					  data:jQuery($('#frm_more')).serialize(),
-					  success:function(data, textStatus){jQuery('#<?php echo "more_fr_".$reviewsPager->getPage()?>').html(data);FB.XFBML.Host.parseDomTree()},
+					  success:function(data, textStatus){jQuery('#<?php echo "more_fr_".$reviewsPager->getPage()?>').html(data);facebookParseXFBML()},
 						url: "<?php echo url_for('sfReviewFront/listPage') ?>",
 						update: '<?php echo "more_fr_".$reviewsPager->getPage() ?>',
 						before: re_loading( '<?php echo "more_fr_". $reviewsPager->getPage() ?>' )
