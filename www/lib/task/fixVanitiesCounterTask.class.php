@@ -55,7 +55,6 @@ EOF;
     foreach ($politicos as $politico){
     	$vanity = $politico->getVanity();
     	# Los que acaban en -
-    	/*
     	if (preg_match("/(.*)([\-]+)$/is", $vanity, $matches, PREG_OFFSET_CAPTURE)) {
     	
    			if ($matches[2][0] != ''){
@@ -85,7 +84,6 @@ EOF;
    				//}
    			}
     	}
-    	*/
     	# Los que acaban en --n
     	if (preg_match("/(.*)--([0-9]*)$/is", $vanity, $matches, PREG_OFFSET_CAPTURE)) {
     	
