@@ -111,7 +111,7 @@ EOF;
    					
    					$idx = 0;
    					$done = false;
-   					while (!$done && $idx < 5){
+   					while (!$done && $idx < 15){
 	   					try {
    							$politico->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
 		   					$politico->save();
