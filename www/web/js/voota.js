@@ -124,11 +124,7 @@ function facebookRequirePermission(options) {
 function facebookRequireLogin(options) {
   FB.getLoginStatus(function(response) {
     if (response.session) {
-      facebookRequirePermission({
-        permission: 'publish_stream',
-        success: options.success,
-        error: options.missing_perms
-      })
+      options.success();
     } else {
       FB.login(function(response) {
         facebookRequireLogin(options);
@@ -147,10 +143,6 @@ function facebookLogin() {
     success: function() {
       facebookNotifyLoginToBackend();
       alert("Logueado y con permisos de publicación. TODO: Notificar al backend");
-    },
-    missing_perms: function() {
-      facebookNotifyLoginToBackend();
-      alert("Logueado pero sin permisos de publicación");
     }
   });
   return false;
@@ -219,45 +211,6 @@ function facebookAssociate(url, box) {
 	});
 	return false;
 }
-
-// function facebookConnect_PHCallback(){
-//  sf_fb.gotoLoginPage();
-// }
-
-// function facebookConnect_promptPermission(permission, callbackFuncName) {
-//   FB.ensureInit(function() {
-//     FB.Facebook.apiClient.users_hasAppPermission(permission,
-//      function(result) {
-//         if (result == 0) {
-//           FB.Connect.showPermissionDialog(permission, callbackFuncName);
-//         }
-//         else {
-//          callbackFuncName(1);
-//         }
-//     });
-//   });
-// }
-// 
-// function facebookConnect_callback(){
-//   facebookConnect_promptPermission("publish_stream", facebookConnect_PHCallback);
-// }
-
-// function facebookConnect(){
-//  jQuery(function(){sf_fb.requireSession(null, facebookConnect_callback)});
-//  return false;
-// }
-
-// function facebookConnect_linkLogout() {
-//   FB.logout(function(){
-//     $('#logout').click(function(){
-//       logout_url = $(this).attr('href');
-//       FB.Connect.logoutAndRedirect(logout_url);
-//       return false;
-//     })
-//   });
-// }
-
-
 
 function loadAjax(url, box){
   re_loading(box);

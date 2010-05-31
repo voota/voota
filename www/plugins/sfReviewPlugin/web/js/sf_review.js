@@ -46,33 +46,10 @@ function stream_callback (post_id, exception) {
 	sendReviewForm(gform, gurl, gbox);
 }
 
-function sendReviewFormFB(form, text, url, box, attachment, action_links, tip) {
-	gform = form; gurl = url; gbox = box;
-
-	if (form.fb_publish.checked){
-	    facebookConnect_promptPermission("publish_stream", function(perms) {
-	    	if (perms) {
-	    		publishFaceBook( text, attachment, action_links, tip );
-	    	}
-	    	else {
-	    		sendReviewForm(form, url, box);
-	    	}
-		});
-	}
-	else {
-		sendReviewForm(form, url, box);
-	}
-	
-	return false;
-}
-
-function publishFaceBook(msg, attachment, action_links, tip) {
-	  FB.ensureInit(function () {
-		  FB.Connect.streamPublish(
-				  msg, attachment, action_links, null
-				  , ''
-				  , stream_callback
-				  , true
-		  );
-	  });
+function facebookPublishStory(story_attrs) {
+  FB.api('/me/feed', 'post', story_attrs, function(response) {
+    if (!response || response.error) {
+      alert('Hubo un problema al intentar publicar en el muro.');
+    }
+  });
 }
