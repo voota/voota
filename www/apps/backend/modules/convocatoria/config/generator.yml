@@ -13,7 +13,6 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
       list:
         title:   convocatorias
         display: [id,eleccion,nombre,fecha]
@@ -23,5 +22,8 @@ generator:
           "Datos generales": [id,nombre,eleccion_id,fecha,imagen]
           "Traducibles": [es,ca]
           "Enlaces": []
+        fields:
+          fecha:
+            label: Fecha<br />(mm/dd/aaaa)
       edit:    ~
       new:     ~

@@ -133,6 +133,14 @@ group by nombre, apellidos, partido , pais
 order by num desc
 
 select max(id) from politico;
+
+#########################################################
+#####################OOOOOOOOOOOOOOO#####################
+#####################OOOOOOOOOOOOOOO#####################
+#####################OOOOOOOOOOOOOOO#####################
+#####################OOOOOOOOOOOOOOO#####################
+#########################################################
+
 insert into politico (nombre, apellidos, partido_txt, pais) select nombre, apellidos, partido, concat(geo_id, "_", posicion) as pais  from concejal;
 
 
@@ -140,16 +148,18 @@ alter table politico add index p1 (nombre asc, apellidos asc);
 alter table concejal add index c1 (nombre asc, apellidos asc);
 
 insert into politico_i18n (id, culture, bio) 
-	select p.id, 'es', concat('Concejal de ', i.nombre,' 2007')
-	from concejal c, politico p, institucion_i18n i
+	select p.id, 'es', concat('Concejal de ', g.nombre,' (2007 - presente)')
+	from concejal c, politico p, institucion i, geo g
 	where c.nombre = p.nombre and c.apellidos = p.apellidos and c.partido = p.partido_txt and concat(c.geo_id, "_", c.posicion) = p.pais
-	and i.id = c.institucion_id and i.culture = 'es';
+	and g.id = i.geo_id
+	and i.id = c.institucion_id ;
 
 insert into politico_i18n (id, culture, bio) 
-	select p.id, 'ca', concat('Regidor de ', i.nombre,' 2007')
-	from concejal c, politico p, institucion_i18n i
+	select p.id, 'ca', concat('Regidor de ', g.nombre,' (2007 - presente)')
+	from concejal c, politico p, institucion i, geo g
 	where c.nombre = p.nombre and c.apellidos = p.apellidos and c.partido = p.partido_txt and concat(c.geo_id, "_", c.posicion) = p.pais
-	and i.id = c.institucion_id and i.culture = 'ca';
+	and g.id = i.geo_id
+	and i.id = c.institucion_id ;
 
 delete from politico_institucion where politico_id > 10550;
 insert into politico_institucion (politico_id, institucion_id, cargo)

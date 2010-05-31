@@ -111,7 +111,7 @@ function toShownUrl($str) {
 	}
 	
 	if (strlen($ret) > 30){
-		$ret = sfVoUtil::cutToLength($ret, 30) . "...";
+		$ret = sfVoUtil::cutToLength($ret, 30);
 	}
 	
 	return $ret;
