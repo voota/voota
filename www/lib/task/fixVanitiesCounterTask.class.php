@@ -101,7 +101,11 @@ EOF;
 				$politicosLikeMe = PoliticoPeer::doSelect( $c2 );
 				$counter = 0;
 				foreach ($politicosLikeMe as $politicoLikeMe){
-					$counter++;
+					if (preg_match("/(.*)-([0-9]*)$/is", $politicoLikeMe->getVanity(), $m, PREG_OFFSET_CAPTURE)) {
+						if ($m[2][0] >= $counter){
+							$counter = intval($m[2][0]) + 1;
+						}
+					}
 				}
 				//$profile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
    				#echo "->". "$vanityUrl". ($counter==0?'':"-$counter") ."\n";
