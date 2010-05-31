@@ -79,7 +79,7 @@ EOF;
    					echo "politico:$vanity (".$matches[0][0].", ".$matches[1][0].", ".$matches[2][0].")";
    					#echo "politico:$vanity (".$matches[0][0].", ".$matches[1][0].", ".$matches[2][0].", ".$matches[3][0].")";
    					echo "->". "$vanityUrl". ($counter==0?'':"-$counter") ."\n";
-   					$politico->setVanity("$vanityUrl". ($counter==0?'':"-$counter") ."\n");
+   					$politico->setVanity("$vanityUrl". ($counter==0?'':"-$counter") );
    					$politico->save();
    				//}
    			}
@@ -113,7 +113,7 @@ EOF;
    					$done = false;
    					while (!$done && $idx < 5){
 	   					try {
-   							$politico->setVanity("$vanityUrl". ($counter==0?'':"-$counter") ."\n");
+   							$politico->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
 		   					$politico->save();
 		   					$done = true;
 						} catch (Exception $e) {
