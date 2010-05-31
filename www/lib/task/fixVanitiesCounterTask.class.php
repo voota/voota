@@ -118,6 +118,7 @@ EOF;
 		   					$done = true;
 						} catch (Exception $e) {
 							echo ".";
+		   					$done = false;
 						    $counter++;
 						    $idx++;
 						}
