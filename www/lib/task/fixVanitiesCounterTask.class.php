@@ -117,6 +117,7 @@ EOF;
 		   					$politico->save();
 		   					$done = true;
 						} catch (Exception $e) {
+							echo ".";
 						    $counter++;
 						    $idx++;
 						}
