@@ -106,6 +106,9 @@ EOF;
 							$counter = intval($m[2][0]) + 1;
 						}
 					}
+					elseif($counter == 0){
+						$counter = 1;
+					}
 				}
 				//$profile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
    				#echo "->". "$vanityUrl". ($counter==0?'':"-$counter") ."\n";

@@ -27,10 +27,10 @@ class SfVoUtil
 	const LOWER_ACCENTS  = 'àáâãäçèéêëìíîïñòóôõöùúûüý';
 	
 	public static function encodeVanity( $str ) {
-		$ret = str_replace(" ", "-", $str);
+		$ret = str_replace(" ", self::URL_FILLER, trim($str));
 		
 		while (strlen( $ret ) < SfVoUtil::VANITY_MIN_LENGTH){
-			$ret .= SfVoUtil::URL_FILLER;
+			$ret .= self::URL_FILLER;
 		}
     	return $ret;
 	}
