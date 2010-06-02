@@ -39,20 +39,7 @@
   	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
   <?php endif ?>
 
-  <h2 id="name">
-    <?php echo $propuesta->getTitulo(); ?>
-    <?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_pt_'.$propuesta->getId())) ?>    
-    <span class="rank">
-      <?php echo format_number_choice('[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $propuesta->getSumu()), $propuesta->getSumu()) ?>
-    </span>
-  </h2>
-
-  <p id="author">
-    <?php echo __('Propuesta por')?>
-    <?php echo getAvatar( $propuesta->getSfGuardUser(), 19, 19 )?>
-  	<a href="<?php echo url_for('perfil/show?username='.$propuesta->getSfGuardUser()->getProfile()->getVanity())?>"><?php echo $propuesta->getSfGuardUser()?></a>,
-    <?php echo __('el %fecha%', array('%fecha%' => format_date($propuesta->getCreatedAt())))?>
-  </p>
+  <?php include_partial('titulo', array('propuesta' => $propuesta)) ?>
 
   <div id="content">
     <div title="<?php echo $propuesta->getTitulo() ?>" id="photo">
@@ -64,7 +51,7 @@
     </div>
 
     <div id="description">
-      <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
+      <?php include_partial('descripcion', array('propuesta' => $propuesta)) ?>
       <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
     </div>
 

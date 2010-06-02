@@ -510,6 +510,7 @@ table.rankings .negative-votes { text-align:right;}
 #propuesta-show .edit-link { font-size: 9px;}
 #propuesta-show .close-edit-box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
 #propuesta-show #edit-photo-box { position: relative; width: 250px;}
+#propuesta-show #edit-titulo-box { width: 350px ;}
 #propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de últimos vootos */
