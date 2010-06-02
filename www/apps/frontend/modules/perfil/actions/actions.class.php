@@ -152,6 +152,11 @@ class perfilActions extends SfVoActions
   	}
   	$this->forward404Unless($this->user->getIsActive());
   	
+  
+  	if ($this->user->getProfile()->getVanity() != $vanity){
+  		$this->redirect('perfil/show?username='.$this->user->getProfile()->getVanity(), 301);
+  	}
+  	
     $this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
     
     $this->title = sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())); 

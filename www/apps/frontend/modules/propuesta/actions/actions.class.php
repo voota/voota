@@ -248,7 +248,11 @@ class propuestaActions extends sfActions
   	if ($this->propuesta->getCulture() != $culture){
   		$this->redirect("@homepage");
   	}
-	
+  
+  	if ($this->propuesta->getVanity() != $vanity){
+  		$this->redirect('propuesta/show?id='.$this->propuesta->getVanity(), 301);
+  	}
+  	
   	$exclude = array();
   	
 	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), 1);
