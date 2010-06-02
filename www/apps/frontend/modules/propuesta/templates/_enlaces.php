@@ -28,7 +28,7 @@
   	  <p><?php echo __('ninguno')?></p>
     <?php endif ?>
     <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-		  <div id="ee_box"><a href="#" id="edit_enlaces"><?php echo __('Hacer cambios')?></a></div> 
+		  <div id="ee_box"><a href="#" id="edit_enlaces" class="edit-link"><?php echo __('Hacer cambios')?></a></div> 
     <?php endif ?>
   </div>
 <?php endif ?>
