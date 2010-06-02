@@ -21,7 +21,7 @@
 	<?php /* Otra opinion sobre un partido */?>
 	<?php elseif($reviewType == null && isset($partido)): ?>
 	  var attachment = { 
-			'name': '<?php echo __('Opiniones a favor y en contra del partido %2% en Voota', array('%2%' => $partido))?>'
+			'name': '<?php echo sq( __('Opiniones a favor y en contra del partido %2% en Voota', array('%2%' => $partido)))?>'
 			, 'href': '<?php echo url_for('partido/show?id='.$partido->getAbreviatura(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'
@@ -33,7 +33,7 @@
 	  text = text_intro + (text != ''?(': '+text):'');
 	<?php elseif($reviewType == null): ?>
 	  var attachment = { 
-			'name': '<?php echo __('Opiniones a favor y en contra de \"%2%\" en Voota', array('%2%' => $entity))?>'
+			'name': '<?php echo sq( __('Opiniones a favor y en contra de \"%2%\" en Voota', array('%2%' => $entity)))?>'
 			, 'href': '<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity(), true) ?>'
 	  		, 'media': [{ 
 	  			'type': 'image'

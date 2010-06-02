@@ -22,7 +22,6 @@ dev:
 
 test:
   .settings:
-    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
     cache:                  true
     #web_debug:              false
     no_script_name:         true

@@ -235,6 +235,11 @@ class partidoActions extends sfActions
   	$this->forward404Unless( $this->partido );
   	$this->forward404Unless( $this->partido->getIsActive() );
   	
+  
+  	if ($this->partido->getAbreviatura() != $abreviatura){
+  		$this->redirect('partido/show?id='.$this->partido->getAbreviatura(), 301);
+  	}
+  	
   	// Estabamos vootando antes del login ?
   	$v = $this->getUser()->getAttribute('review_v');
   	if ($v && $v != ''){

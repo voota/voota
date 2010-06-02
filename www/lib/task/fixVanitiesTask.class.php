@@ -55,8 +55,35 @@ EOF;
     foreach ($politicos as $politico){
     		
     		$vanity = $politico->getVanity();
-    		if ($vanity != SfVoUtil::fixVanityChars($vanity)){
-    			echo "politico:$vanity ($politico)\n";
+    		if ($vanity != ($new = SfVoUtil::fixVanityChars($vanity))){
+				while (preg_match("/(.*)-$/is", $new, $m, PREG_OFFSET_CAPTURE)) {
+					$new = $m[1][0];
+				}
+    			$c2 = new Criteria();
+		    	$c2->add(PoliticoPeer::VANITY, "$new%", Criteria::LIKE);
+		    	$c2->add(PoliticoPeer::ID, $politico->getId(), Criteria::NOT_EQUAL);
+		    	$politicosLikeMe = PoliticoPeer::doSelect( $c2 );
+		    	$counter = 0;
+    			foreach ($politicosLikeMe as $politicoLikeMe){
+    				$aVanity = str_replace("-", "\-", $new);
+    			
+    				if (preg_match(SfVoUtil::voDecode("/^$new\-([0-9]*)$/is"), SfVoUtil::voDecode($politicoLikeMe->getVanity()), $matches)) {
+    					if ($counter < (1 + $matches[1])){
+    						$counter = 1 + $matches[1];	
+    					}
+    					else {
+    						$counter++;
+    					}
+    				}
+    				else {
+    					$counter++;
+    				}
+    			}
+    			$new = "$new". ($counter==0?'':"-$counter");
+    			echo "politico:$vanity ";    			
+    			echo "cambia a:$new\n";
+    			$politico->setVanity( $new );
+    			$politico->save();
     		}
     		
     }
