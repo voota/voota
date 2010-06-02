@@ -45,36 +45,17 @@
 <?php else: ?>
 	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => ($value?($value==1?__('positiva'):__('negativa')):''), '%2%' => $entity))?></p>
 <?php endif ?>
-	
-<div id="<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>">
-  <?php if ($reviewsPager->haveToPaginate() && $reviewsPager->getLastPage() > $reviewsPager->getPage()): ?>
-	<script type="text/javascript">
-	<!--//
-	  $(document).ready(function(){
-		  $('#<?php echo "frm_more_${value}_".$reviewsPager->getPage()?>').submit(function(){
-				jQuery.ajax({
-					type:'POST',
-					dataType:'html',
-					data:jQuery($('#<?php echo "frm_more_". $value ."_".$reviewsPager->getPage()?>')).serialize(),
-					success:function(data, textStatus){jQuery('#<?php echo "more_fr_" .$value ."_".$reviewsPager->getPage()?>').html(data);FB.XFBML.Host.parseDomTree()},
-					url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
-					update: '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>',
-					before: re_loading( '<?php echo "more_fr_". $value ."_". $reviewsPager->getPage() ?>' ),
-				});
-				
-				return false;
-		  });
-	  });
-	//-->
-	</script>
 
-    <form id="<?php echo "frm_more_${value}_".$reviewsPager->getPage()?>">
-      <input type="hidden" id="entityId" name="entityId" value="<?php echo $entityId ?>" />
-      <input type="hidden" id="value" name="value" value="<?php echo $value ?>" />
-      <input type="hidden" id="value" name="sfReviewType" value="<?php echo $sfReviewType ?>" />
-      <input type="hidden" id="page" name="page" value="<?php echo $reviewsPager->getPage()+1 ?>" />      
-      <input type="hidden" id="f" name="filter" value="<?php echo $filter ?>" />      
-	  <center><input type="submit" value="<?php echo __('más') ?>" /></center>
-	</form>
-  <?php endif ?>
-</div>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function(){
+    $('.reviews ol').reviews_pagination({
+      url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
+      total: 100,
+      data: { entityId: "<?php echo $entityId ?>",
+              value: "<?php echo $value ?>",
+              sfReviewType: "<?php echo $sfReviewType ?>",
+              filter: "<?php echo (isset($filter) && $filter) ?>"
+            }
+    });
+  });
+</script>

@@ -285,3 +285,49 @@ jQuery.fn.tooltip_politico_elecciones = function() {
     });
   });
 }
+
+$.fn.reviews_pagination = function(options) {
+  if(!options) options = {};
+  defaults = {
+    summaryTemplate: '<p>Mostrando <strong class="reviews_count"></strong> comentarios de <strong class="reviews_total"></strong></p>',
+    buttonText: 'más',
+    data: { page: 1 }
+  };
+  var opts = $.extend(true, {}, defaults, options);
+  
+  return $(this).each(function(){
+    var area = $(this);
+    var summary = $(opts.summaryTemplate);
+    var spinner = $('<img src="/images/spinner.gif" alt="cargando..." style="display:none" />');
+    var button = $('<button id="reviews_more">' + opts.buttonText + '</button>')
+    var buttonContainer = $('<p></p>').append(button).append(spinner);
+    
+    $(this).parent().append(buttonContainer);
+    $(this).parent().append(summary);
+
+    var updateSummaryCounters = function() {
+      var count = area.find('li.review').size();
+      summary.find('.reviews_count').html(count);
+      summary.find('.reviews_total').html(opts.total);
+      if (count >= opts.total) { button.remove(); }
+    }
+    updateSummaryCounters();
+
+    button.click(function(){
+      spinner.show();
+      $.ajax({
+			  type: 'POST',
+			  dataType: 'html',
+			  data: opts.data,
+			  success: function(result, textStatus) {
+			    spinner.hide();
+			    area.append(result);
+			    opts.data.page = opts.data.page + 1;
+			    updateSummaryCounters();
+			    FB.XFBML.Host.parseDomTree()
+			  },
+				url: opts.url
+			});
+    });
+  });
+}
