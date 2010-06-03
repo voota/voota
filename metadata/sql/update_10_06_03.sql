@@ -1,0 +1,1 @@
+ALTER TABLE `voota`.`politico` ADD INDEX `politico_ranking` (`sumu` ASC, `sumd` DESC);
