@@ -5,7 +5,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
     
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $(document).ready(function(){
     $('img.politico').tooltip_politico_elecciones();
   });

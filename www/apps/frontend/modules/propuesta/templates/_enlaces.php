@@ -3,7 +3,7 @@
 <?php use_helper('VoFormat') ?>
 <?php use_helper('SfReview') ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   <!--//
 	$(document).ready(function() {
 		  $('#edit_enlaces').click(function(){

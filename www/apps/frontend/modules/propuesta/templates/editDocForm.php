@@ -1,7 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   <!--//
   		$(document).ready(function() {
   		  $('#docbox .cancel_delete').click(function(){

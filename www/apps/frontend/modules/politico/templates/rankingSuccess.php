@@ -3,7 +3,7 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoFormat') ?>
  
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $(document).ready(function(){
 	  	$("input#ac_partido").autocomplete({
 	  		source: '<?php echo url_for('politico/acPartido')?>',

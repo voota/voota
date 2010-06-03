@@ -13,7 +13,7 @@
     </form>
   </div>
 
-  <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript">
     $(document).ready(function() {
       $("#sfr_dialog").dialog({ autoOpen: false, resizable: false, modal: true, closeText: '<?php echo __('cerrar')?>' });
     });

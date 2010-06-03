@@ -12,7 +12,7 @@
     	<?php $idx=0;foreach($politicos as $politico):$idx++; ?>
     	  <?php if($idx < ($numEscanyos+1)):?>
         	<img class="politico" id="<?php echo "politico_". $politico->getId()?>" src="<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>" alt="<?php echo $politico ?>" />
-            <script type="text/javascript" charset="utf-8">
+            <script type="text/javascript">
                 $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo $politico ?>')
                 $("#<?php echo "politico_". $politico->getId()?>").data('url', '<?php echo url_for('politico/show?id='.$politico->getVanity()) ?>')
                 $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', '<?php echo $politico->getSumu() ?> <?php echo __('a favor') ?>');

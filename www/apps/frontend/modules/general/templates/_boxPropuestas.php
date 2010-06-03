@@ -10,7 +10,7 @@
     </p>
     <p><?php echo __('¿Te animas?') ?></p>
     <p><button><?php echo __('Proponer propuesta') ?></button></p>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
       $(document).ready(function() {
         $('.box-propuestas button').click(function() {
           window.location = '<?php echo url_for('propuesta/new')?>';

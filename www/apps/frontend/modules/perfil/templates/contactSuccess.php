@@ -2,7 +2,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoUser') ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   <!--//
   $(document).ready(function() {
     //controls character input/counter
@@ -20,7 +20,7 @@
 </h2>
 
 <div id="content">
-  <form action="#" method="post" accept-charset="utf-8">
+  <form action="#" method="post">
     <p class="label"><label for="mensaje_cuerpo">¿Qué le decimos?</label></p>
     <p class="textarea">
       	<?php echo $form['mensaje']->renderError() ?>
