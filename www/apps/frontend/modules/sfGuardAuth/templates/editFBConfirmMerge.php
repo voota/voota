@@ -10,7 +10,7 @@
 	  <h3>
 	    <img src="/images/icoFacebook.png" alt="Facebook Connect" />
 	    <?php echo __('Conectado a Facebook como:') ?>
-	    <strong><fb:name uid="<?php echo $faceBookUid ?>" useyou="false" linked="false"></fb:name></strong>
+	    <strong><?php echo jsWrite('fb:name', array('uid' => $faceBookUid, 'useyou' => 'false', 'linked' => 'false')) ?></strong>
 	  </h3>
 	<p>
 	<?php echo __('Ojo, ahora tienes otra cuenta asociada a tu perfil de Facebook. Unificando las dos todo será más sencillo. ¿Cómo lo ves?')?>
