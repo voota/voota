@@ -139,6 +139,3 @@ function changeCulture( $culture ){
 	return "http://$host$route";
 }
 
-function jsWrite( $str ){
-	return "<script type=\"text/javascript\">document.write('$str');</script>";
-}
