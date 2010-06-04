@@ -17,7 +17,7 @@
 
 
 
-<script>
+<script type="text/javascript">
   FB.XFBML.Host.autoParseDomTree = false;
   var sf_fb = new sfFacebookConnect("<?php echo sfConfig::get('app_facebook_api_key') ?>");
 </script>
