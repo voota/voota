@@ -58,8 +58,8 @@
     <div class="reviews">
       <ul>
         <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
-        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$propuesta->getId().'&value=1&sfReviewType='.Propuesta::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
-        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$propuesta->getId().'&value=-1&sfReviewType='.Propuesta::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $propuesta->getId() ?>&amp;value=1&amp;sfReviewType=<?php echo Propuesta::NUM_ENTITY ?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $propuesta->getId() ?>&amp;value=-1&amp;sfReviewType=<?php echo Propuesta::NUM_ENTITY ?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
       </ul>
     
       <div id="tab-all-reviews">
