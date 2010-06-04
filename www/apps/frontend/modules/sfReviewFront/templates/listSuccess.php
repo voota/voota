@@ -20,8 +20,8 @@
 		case "3":
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
 			break;
-		case "r":
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=r');?>'); 
+		case "null":
+			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=null');?>'); 
 			break;
 		default:
 			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
@@ -40,6 +40,7 @@
 	'%propuestas_count%' => format_number($propuestaReviewCount, 'es_ES'))) 
 ?></h3>
 
+<?php /*?>
 <div id="content">
   <?php if ($reviewsPager->getPage() == 1):?>		
   	<form id="filterForm" method="post">
@@ -59,6 +60,16 @@
 
   <?php include_partial('listPage', array('reviewsPager' => $reviewsPager, 'sfReviewType' => $sfReviewType, 'text' => $text)) ?>
 </div>
+<?php */ ?>
+
+<div id="content">
+    <div class="reviews">
+      <div id="tab-all-reviews">
+        <?php include_component_slot('reviews', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text )) ?>
+      </div>
+    </div>
+</div>
+
 
 <div id="sidebar">
   <div id="ultimos-usuarios">

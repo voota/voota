@@ -54,12 +54,12 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	$filter = array();
 	$filter['culture'] = $culture;
 	if ($this->sfReviewType){
-		$filter['type_id'] = ($this->sfReviewType == 'r')?'null':$this->sfReviewType;
+		$filter['type_id'] = $this->sfReviewType;
 	}
 	if ($this->text){
 		$filter['textFilter'] = 'text';
 	}
-  	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
+  	$reviewsPager = SfReviewManager::getReviews($filter, $this->page);
   	
   	$filter = array();
   	$filter['type_id'] = Politico::NUM_ENTITY;
@@ -81,7 +81,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
   	));  	
   	$this->response->setTitle( $this->title ); 
-  	$reviews = $this->reviewsPager->getResults();
+  	$reviews = $reviewsPager->getResults();
   	
   	$description = 
   		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
