@@ -1,3 +1,4 @@
 default:
   components:
     review_for_list:  [sfReviewFront, reviewForList]
+    review_list:  [sfReviewFront, reviewList]

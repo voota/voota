@@ -315,6 +315,7 @@ $.fn.reviews_pagination = function(options) {
 
     button.click(function(){
       spinner.show();
+	    opts.data.page = opts.data.page + 1;
       $.ajax({
 			  type: 'POST',
 			  dataType: 'html',
@@ -322,7 +323,6 @@ $.fn.reviews_pagination = function(options) {
 			  success: function(result, textStatus) {
 			    spinner.hide();
 			    area.append(result);
-			    opts.data.page = opts.data.page + 1;
 			    updateSummaryCounters();
 			    FB.XFBML.Host.parseDomTree()
 			  },

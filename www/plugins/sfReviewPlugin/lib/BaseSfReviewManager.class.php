@@ -107,7 +107,7 @@ class BaseSfReviewManager
   	return self::getReviews($filter, $page, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS);
   }
 
-  static private function getReviewsCriteria($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
+  static private function getReviewsCriteria($filter)
   {
 	    $criteria = new Criteria();
 	    $criteria->addJoin(SfReviewPeer::SF_REVIEW_STATUS_ID, SfReviewStatusPeer::ID);
@@ -180,18 +180,18 @@ class BaseSfReviewManager
   	}
   	else {
   		$pager = new sfPropelPager('SfReview', $numberOfResults);
-	    $pager->setCriteria( self::getReviewsCriteria($filter, $page, $numberOfResults) );
+	    $pager->setCriteria( self::getReviewsCriteria($filter) );
 	    
 	    $pager->setPage( $page );
-	
 	    $pager->init();
+	    
 	    return $pager;
   	}
   }
   
   static public function getReviewsCount($filter, $page = 1, $numberOfResults = BaseSfReviewManager::NUM_REVIEWS)
   {
-		return SfReviewPeer::doCount( self::getReviewsCriteria($filter, $page, $numberOfResults) );
+		return SfReviewPeer::doCount( self::getReviewsCriteria($filter) );
   }
   
   static public function getTotalReviewsByEntityAndValue($type_id, $entity_id, $value){

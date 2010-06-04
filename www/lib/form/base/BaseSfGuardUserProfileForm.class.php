@@ -70,11 +70,11 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'fb_publish_cambios_perfil' => new sfValidatorBoolean(),
       'fb_tip'                    => new sfValidatorBoolean(),
     ));
-
+/*
     $this->validatorSchema->setPostValidator(
       new sfValidatorPropelUnique(array('model' => 'SfGuardUserProfile', 'column' => array('vanity')))
     );
-
+*/
     $this->widgetSchema->setNameFormat('sf_guard_user_profile[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

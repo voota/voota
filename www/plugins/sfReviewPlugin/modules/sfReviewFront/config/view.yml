@@ -3,5 +3,5 @@ default:
   components:
     subreviews:  [sfReviewFront, subreviews]
     sendStmt:   [sfReviewFront, sendStmt]
-    review_list:  [sfReviewFront, reviewList]
+    reviews:  [sfReviewFront, reviews]
   

@@ -64,14 +64,14 @@ ultimas_opiniones_propuestas_ca:
     
 ultimas_opiniones_otras_es:
   url: /últimas-opiniones-sobre-otra-opinión
-  param: { module: sfReviewFront, action: list, type_id: "r" }
+  param: { module: sfReviewFront, action: list, type_id: "null" }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: es
     
 ultimas_opiniones_otras_ca:
   url: /últimes-opinions-sobre-altres-opinions
-  param: { module: sfReviewFront, action: list, type_id: "r" }
+  param: { module: sfReviewFront, action: list, type_id: "null" }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
