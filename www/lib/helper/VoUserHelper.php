@@ -140,5 +140,5 @@ function changeCulture( $culture ){
 }
 
 function jsWrite( $str ){
-	return "<script type=\"text/javascript\"><![CDATA[ <!-- document.write('$str'); // -->]]></script>";
+	return "<script type=\"text/javascript\">document.write('$str');</script>";
 }
