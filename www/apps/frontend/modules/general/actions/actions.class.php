@@ -259,6 +259,18 @@ class generalActions extends sfActions{
       $this->results = new myTabPager($resultsArray, 15);
       $this->results->setPage($this->getRequestParameter('page', 1));
       $this->results->init();
+      
+      
+  	$this->title = sfContext::getInstance()->getI18N()->__('"%1%" en Voota', array('%1%' => $this->q));
+  	$descStr = "";
+  	foreach($resultsArray as $idx => $result){
+  		if ($idx < 3){
+  			$descStr .= ($descStr?', ':'').$result; 
+  		}
+  	}
+  	$this->response->addMeta('Description', sfContext::getInstance()->getI18N()->__('Resultados de la búsqueda "%1%" en Voota: %2%, ...', array('%1%' => $this->q, '%2%' => $descStr)));
+  	  	
+    $this->response->setTitle( $this->title );
   }
   
     private function sendMessage( $nombre, $email, $mensaje, $tipo ){

@@ -12,7 +12,7 @@ function fullName( $user, $length = false ) {
   		}
   	}
   	else if ($user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"Facebook_".$user->getProfile()->getFacebookUid()."\"></fb:name>";
+  		$ret .= jsWrite("<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"Facebook_".$user->getProfile()->getFacebookUid()."\"></fb:name>");
   	}
   	
   	return $ret;
@@ -51,7 +51,7 @@ function getAvatar( $user, $width = 36, $height = 36) {
     	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_s_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
     }
     else if ( $user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"square\" facebook-logo=\"true\" width=\"$width\" height=\"$height\"></fb:profile-pic>";
+  		$ret .= jsWrite( "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"square\" facebook-logo=\"true\" width=\"$width\" height=\"$height\"></fb:profile-pic>" );
   	}
   	else {
   		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => $width, 'height' => $height));
@@ -70,7 +70,7 @@ function getAvatarFull( $user ) {
   	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user )));
   }
   else if ( $user && $user->getProfile()->getFacebookUid()){
-		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"normal\" facebook-logo=\"true\"></fb:profile-pic>";
+		$ret .= jsWrite( "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"normal\" facebook-logo=\"true\"></fb:profile-pic>" );
 	}
 
 	return $ret;
@@ -137,4 +137,8 @@ function changeCulture( $culture ){
 	$host = preg_replace("/\.[a-zA-Z]*$/is", ".".$extensions[$culture], $_SERVER['HTTP_HOST']);
 	
 	return "http://$host$route";
+}
+
+function jsWrite( $str ){
+	return "<script type=\"text/javascript\">document.write('$str');</script>";
 }

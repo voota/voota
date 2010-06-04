@@ -218,15 +218,18 @@ class politicoActions extends sfActions
   	$p = $request->getParameter("p");
   	$i = $request->getParameter("i");
   	$culture = $this->getUser()->getCulture("es");
-  	$partido = $request->getParameter("partido", ALL_FORM_VALUE);
-  	$institucion = $request->getParameter("institucion", ALL_FORM_VALUE);
-  	
+  	$partido = $request->getParameter("partido", false);
+  	$institucion = $request->getParameter("institucion", false);
+
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
-	if ($order == 'pd' || $page == '1'){
+	if ($order == 'pd' || $page == '1' || (!$institucion && $partido == ALL_URL_STRING)){
 		$qs = ''; 
 		foreach($request->getParameterHolder()->getAll() as $key => $value){
-			if ($key != 'module' && $key != 'action' && !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page'))){
+			if ($key != 'module' && $key != 'action' 
+					&& !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page')) 
+					&& ($key != 'partido' || ($institucion || $partido != ALL_URL_STRING))
+					){
 				$qs .= ($qs?'&':'?') . "$key=$value";
 			}
 		}
@@ -234,6 +237,11 @@ class politicoActions extends sfActions
 	}	
 	$this->order = $order?$order:'pd';
 	$page = $page?$page:1;
+   	
+   	if (!$partido)
+   		$partido = ALL_FORM_VALUE;
+   	if (!$institucion)
+   		$institucion = ALL_FORM_VALUE;
 	
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
@@ -256,6 +264,7 @@ class politicoActions extends sfActions
   	else {
   		$this->partido = ALL_URL_STRING; 
    	}
+   	
   	$this->institucionAC = '';
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
