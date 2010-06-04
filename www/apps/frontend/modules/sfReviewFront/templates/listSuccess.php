@@ -2,6 +2,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
 <?php use_helper('VoUser') ?>
+<?php use_helper('VoSmartJS') ?>
 
 <script type="text/javascript">
   $(document).ready(function(){
