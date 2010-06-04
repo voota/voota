@@ -1,7 +1,7 @@
 <?php use_helper('I18N') ?>
 
 <?php if ($reviewsPager->getPage() == 1):?>
-  	<form id="filterForm" method="post">
+  	<form id="filterForm" method="post" action="#">
   	  <p>
   	    <label for="filterForm_f"><?php echo __("Filtrar Vootos:") ?></label>
   	    <select id="filterForm_f" name="type_id">

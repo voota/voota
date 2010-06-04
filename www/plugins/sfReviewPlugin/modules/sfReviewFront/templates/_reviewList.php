@@ -16,7 +16,7 @@
 	  //-->
 	</script>
 		
-	<form id="filterForm" method="get">
+	<form id="filterForm" method="get" action="#">
 	  <p>
 	    <label for="filterForm_f<?php echo (isset($value)?$value:'') ?>"><?php echo __("Filtrar Vootos:") ?></label>
 	    <select id="filterForm_f<?php echo (isset($value)?$value:'') ?>" name="f">
