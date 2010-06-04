@@ -56,7 +56,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  'presentacion'  => new sfWidgetFormTextarea(array()),
-	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password'), array('autocomplete' => 'off')),
+	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password')),
 	  'passwordBis'  => new sfWidgetFormInputText(array('type' => 'password')),
       'passwordOld' => new sfWidgetFormInputText(array('type' => 'password')),
     ));
