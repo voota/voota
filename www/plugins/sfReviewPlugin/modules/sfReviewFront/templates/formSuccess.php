@@ -3,7 +3,7 @@
 	
 <?php //include_component_slot('sendStmt', array('reviewBox' => $reviewBox, 'reviewType' => $reviewType, 'reviewEntityId' => $reviewEntityId)) ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   <!--//
   $(document).ready(function() {
 	  //controls character input/counter
@@ -22,7 +22,7 @@
 </script>
 
 <?php /* ?>
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $(document).ready(function() {
     // show permission dialog when publish to Facebook is checked
 	  $('#<?php echo "sf-review-fb-publish-$reviewBox" ?>').change(function() {

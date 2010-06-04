@@ -131,7 +131,7 @@
 
     <div class="search">
       <form method="get" action="<?php echo url_for('@search')?>">
-        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
+        <p><label for="q_2"><?php echo __('¡Buusca!')?></label></p>
         <p>
           <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
         </p>

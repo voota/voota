@@ -2,7 +2,7 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   <!--//
 	$(document).ready(function() {
 		$('#el_form').submit(function(){
@@ -49,7 +49,7 @@
   </p>
 </form>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $(function(){ 
 		$('input[title!=""]').hint();
 	});

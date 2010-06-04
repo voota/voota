@@ -3,7 +3,7 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoUser') ?>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript">
   $(document).ready(function(){
     $('#filterForm_f, #filterForm_text').change(function(){
         var n = $('#filterForm_f').val();

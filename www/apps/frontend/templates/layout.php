@@ -11,7 +11,6 @@
   <?php include_title() ?>
   <?php include_http_metas() ?>
   <?php include_metas() ?>
-  <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
   <!--[if lt IE 9]>
     <script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
@@ -193,7 +192,7 @@
 
   </div><!-- FIN FOOTER -->
 
-  <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript">
     $(document).ready(function(){ 
 			$('input[title!=""], textarea[title!=""]').hint();
 		});
@@ -217,7 +216,8 @@
   </script>
   <!-- FIN GOOGLE ANALYTICS -->
   
-  <script type="text/javascript" charset="utf-8">    var uservoiceOptions = {
+  <script type="text/javascript">
+    var uservoiceOptions = {
       /* required */
       key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
       host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 

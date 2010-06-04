@@ -19,7 +19,7 @@
     <h3><?php echo __('Donaciones') ?></h3>
     <p><?php echo __('Voota se mantiene gracias a <a href="http://blog.voota.es/es/socios/">las donaciones</a>') ?></p>
     <p><button><?php echo __('¿Hacer una donación?') ?></button></p>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
       $(document).ready(function() {
         $('.box-profile button').click(function() {
           window.location = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=10999422';

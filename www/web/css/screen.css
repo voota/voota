@@ -504,11 +504,13 @@ table.rankings .negative-votes { text-align:right;}
 #propuesta-show #author img { width: 20px; height: 20px; padding: 0 5px; width: 36px; height: 36px;}
 #propuesta-show .box-propuestas { margin-bottom: 40px; margin-top: 0;}
 #propuesta-show .box-propuestas button { width: 175px;}
-#propuesta-show #ed_box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
-#propuesta-show #ed_box a { padding-right: 5px;}
-#propuesta-show #ed_box a.confirm_delete { color: red;}
-#propuesta-show #edit_doc { font-size: 9px;}
-#propuesta-show #close_ed_box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
+#propuesta-show .edit-box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
+#propuesta-show .edit-box a { padding-right: 5px;}
+#propuesta-show .edit-box a.confirm_delete { color: red;}
+#propuesta-show .edit-link { font-size: 9px;}
+#propuesta-show .close-edit-box { font-size: 9px; position: absolute; top: 14px; right: 5px;}
+#propuesta-show #edit-photo-box { position: relative; width: 250px;}
+#propuesta-show #edit-titulo-box { width: 350px ;}
 #propuesta-show #ee_box a { font-size: 9px;}
 
 /* Página de últimos vootos */

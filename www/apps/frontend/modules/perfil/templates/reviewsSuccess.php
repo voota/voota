@@ -46,7 +46,7 @@
       <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
         <button type="button" id="more_reviews"><?php echo __('más') ?></button>
         <img class="spinner" style="display: none" src='/images/spinner.gif' alt='cargando' />
-        <script type="text/javascript" charset="utf-8">      
+        <script type="text/javascript">      
           var next_page = 1;
           $('#more_reviews').click(function(){
             $.ajax({
