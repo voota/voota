@@ -93,6 +93,90 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   		"...";  	
   		
     $this->response->addMeta('Description', $description);  	
+    
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $params = "";
+    if ($this->sfReviewType){
+    	$params .= ($params?'&':'?').'type_id='.$this->sfReviewType;
+    }
+    if ($this->text){
+    	$params .= ($params?'&':'?').'t='.$this->text;
+    }
+    $request->setAttribute('rssFeed',  "sfReviewFront/feed$params");
+  }
+  
+  public function executeFeed(sfWebRequest $request)
+  {
+
+	$this->page = $request->getParameter("page", "1");
+	$this->entityId = $request->getParameter("entityId", false);
+	$this->value = $request->getParameter("value", false);
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+	$this->entity = false;
+	$this->filter = false;
+  	$culture = $this->getUser()->getCulture();
+	
+	$filter = array();
+	//$filter['culture'] = $culture;
+	if ($this->sfReviewType){
+		$filter['type_id'] = $this->sfReviewType;
+	}
+	if ($this->text){
+		$filter['textFilter'] = 'text';
+	}
+  	$reviewsPager = SfReviewManager::getReviews($filter);
+
+  	$title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
+  		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
+  	));  	
+  	$reviews = $reviewsPager->getResults();
+  	
+  	$description = 
+  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
+  		(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
+  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
+  		"...";  
+  		
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+    $params = "";
+    if ($this->sfReviewType){
+    	$params .= ($params?'&':'?').'type_id='.$this->sfReviewType;
+    }
+    if ($this->text){
+    	$params .= ($params?'&':'?').'t='.$this->text;
+    }
+  	$feed->setLink("sfReviewFront/feed$params");
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='. $review->getId());
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
   }
 
 	public function executeShow(sfWebRequest $request){

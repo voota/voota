@@ -3,7 +3,7 @@
   	<?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.($p->getImagen()!=''?$p->getImagen():'p_unknown.png'), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $p)) .'"') ?>
   </div>
 	<h4 class="name">
-	  <?php echo link_to($p->getTitulo(), 'propuesta/show?id='.$p->getVanity())?>
+	  <?php echo link_to(sfVoUtil::secureString($p->getTitulo(), "&#39;"), 'propuesta/show?id='.$p->getVanity())?>
 	</h4>
   <div class="votes">
 		<?php include_partial('general/sparkline_box', array('reviewable' => $p, 'id' => 'sparkline_tpr_'.$p->getId())) ?>

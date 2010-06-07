@@ -27,14 +27,12 @@
 	</form>
 <?php endif ?>
 
-<?php if(!isset($lastReviewsPager) || $lastReviewsPager->getNbResults() > 0): ?>
-	<?php if ($reviewsPager->getNbResults() > 0): ?>
-	  <ol>
+<?php if ($reviewsPager->getNbResults() > 0): ?>
+	  <?php if($reviewsPager->getPage() == 1): ?><ol><?php endif ?>
   	  <?php foreach($reviewsPager->getResults() as $review): ?>
   		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', (isset($value)?$value:'') ))) ?>
   		<?php endforeach ?>
-	  </ol>
-	<?php endif ?>
+	  <?php if($reviewsPager->getPage() == 1): ?></ol><?php endif ?>
 <?php else: ?>
 	<p><?php echo __('Aún no hay ninguna opinión %1% sobre %2%', array('%1%' => ($value?($value==1?__('positiva'):__('negativa')):''), '%2%' => $entity))?></p>
 <?php endif ?>

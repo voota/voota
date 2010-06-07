@@ -1,4 +1,4 @@
-<?php
+<?php require_once('VoSmartJSHelper.php') ?><?php
 function fullName( $user, $length = false ) {
   	$ret = "";
   	

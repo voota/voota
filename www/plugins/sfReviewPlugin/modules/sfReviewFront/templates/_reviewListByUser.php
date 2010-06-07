@@ -31,11 +31,11 @@
 <?php endif ?>
 
 
-<ol class="sf-reviews-list-brief">
+<?php if($reviewsPager->getPage() == 1): ?><ol class="sf-reviews-list-brief"><?php endif ?>
   <?php foreach($reviewsPager->getResults() as $review): ?>
 	<?php include_component_slot('profileReview', array('review' => $review)) ?>
   <?php endforeach ?>
-</ol>
+<?php if($reviewsPager->getPage() == 1): ?></ol><?php endif ?>
 
 <?php if($reviewsPager->getPage() == 1): ?>
 	<script type="text/javascript" charset="utf-8">

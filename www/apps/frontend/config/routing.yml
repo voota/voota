@@ -76,6 +76,76 @@ ultimas_opiniones_otras_ca:
   requirements:
     sf_host_culture: cat
     
+ultimas_opiniones_feed_es:
+  url: /últimas-opiniones/feed
+  param: { module: sfReviewFront, action: feed, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_feed_ca:
+  url: /últimes-opinions/feed
+  param: { module: sfReviewFront, action: feed, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+ 
+ultimas_opiniones_politicos_feed_es:
+  url: /últimas-opiniones-sobre-políticos/feed
+  param: { module: sfReviewFront, action: feed, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_politicos_feed_ca:
+  url: /últimes-opinions-sobre-polítics/feed
+  param: { module: sfReviewFront, action: feed, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_partidos_feed_es:
+  url: /últimas-opiniones-sobre-partidos/feed
+  param: { module: sfReviewFront, action: feed, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_partidos_feed_ca:
+  url: /últimes-opinions-sobre-partits/feed
+  param: { module: sfReviewFront, action: feed, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_propuestas_feed_es:
+  url: /últimas-opiniones-sobre-propuestas/feed
+  param: { module: sfReviewFront, action: feed, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_propuestas_feed_ca:
+  url: /últimes-opinions-sobre-propostes/feed
+  param: { module: sfReviewFront, action: feed, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_otras_feed_es:
+  url: /últimas-opiniones-sobre-otra-opinión/feed
+  param: { module: sfReviewFront, action: feed, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_otras_feed_ca:
+  url: /últimes-opinions-sobre-altres-opinions/feed
+  param: { module: sfReviewFront, action: feed, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
 ### API ###
 
 api:

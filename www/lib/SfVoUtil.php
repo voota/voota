@@ -185,8 +185,8 @@ class SfVoUtil
 		return $ret;
 	}
 	
-	public static function secureString( $str ){
-		return str_replace( '\'', '\\\'',  $str);
+	public static function secureString( $str, $rep = '\\\'' ){
+		return str_replace( '\'', $rep,  $str);
 	}
 }
  
