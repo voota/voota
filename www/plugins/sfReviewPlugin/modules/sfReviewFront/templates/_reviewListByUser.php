@@ -15,7 +15,7 @@
   });
 </script>
 	
-	<form id="filterForm" method="post" action="<?php echo url_for('perfil/show?username='.$user->getProfile()->getVanity());?>">
+	<form id="filterForm" method="post" action="<?php echo url_for( '@'.sfContext::getInstance()->getRouting()->getCurrentRouteName(). (isset($user)?'?username='.$user->getProfile()->getVanity():'') )?>">
   	  <p>
   	    <label for="filterForm_f"><?php echo __("Filtrar Vootos:") ?></label>
   	    <select id="filterForm_f" name="type_id">
