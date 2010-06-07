@@ -28,7 +28,7 @@
 <?php endif ?>
 
 <?php if ($reviewsPager->getNbResults() > 0): ?>
-	  <?php if($reviewsPager->getPage() == 1): ?><ol><?php endif ?>
+	  <?php if($reviewsPager->getPage() == 1): ?><ol id="<?php echo $value?'v'.$value:''?>"><?php endif ?>
   	  <?php foreach($reviewsPager->getResults() as $review): ?>
   		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', (isset($value)?$value:'') ))) ?>
   		<?php endforeach ?>
@@ -40,7 +40,7 @@
 <?php if($reviewsPager->getPage() == 1): ?>
 	<script type="text/javascript" charset="utf-8">
 	  $(document).ready(function(){
-	    $('.reviews ol:first').reviews_pagination({
+	    $('.reviews ol<?php echo $value?'#v'.$value:''?>:first').reviews_pagination({
 	      url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
 	      total: <?php echo $reviewsPager->getNbResults() ?>,
 	      data: { <?php if(isset($entityId)):?>entityId: "<?php echo $entityId ?>",<?php endif?>

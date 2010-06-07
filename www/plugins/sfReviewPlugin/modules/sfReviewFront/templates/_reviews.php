@@ -25,7 +25,7 @@
 <?php if($reviewsPager->getPage() == 1): ?>
 	<script type="text/javascript" charset="utf-8">
 	  $(document).ready(function(){
-	    $('.reviews ol').reviews_pagination({
+	    $('.reviews ol:first').reviews_pagination({
 	      url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
 	      total: <?php echo $reviewsPager->getNbResults() ?>,
 	      data: { <?php if(isset($entityId)):?>entityId: "<?php echo $entityId ?>",<?php endif?>

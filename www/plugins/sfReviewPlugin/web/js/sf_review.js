@@ -23,8 +23,13 @@ function sendReviewForm(form, url, box) {
 
 function setCounter(counter, field, maxLength){
 	var str = $(field).val();
-  	str = str.replace(/\n/g,"oo");
-  	var charLength = str.length;
+	var charLength = 0
+  	//str = str.replace(/\n/g,"oo");
+	try {
+		charLength = str.length;
+	}
+	catch (e){
+	}
   	
   	if((maxLength - charLength) < 0) {
   		$(counter).attr('style', 'color:red;');
