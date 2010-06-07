@@ -72,7 +72,7 @@
 
     <div class="reviews">
       <ul>
-        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount)) // TODO: sustituir número de vootos ?></a></li>
+        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
         <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $partido->getId() ?>&amp;value=1&amp;sfReviewType=<?php echo Partido::NUM_ENTITY ?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
         <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $partido->getId() ?>&amp;value=-1&amp;sfReviewType=<?php echo Partido::NUM_ENTITY ?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
       </ul>
@@ -99,7 +99,6 @@
       <?php if ($politicos->getNbResults() > 0): ?>
         <ul>
       	  <?php foreach ($politicos->getResults() as $politico): ?>
-            <?php // TODO: El político debe mostrarse sin el nombre del partido ?>
     		    <?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
       	  <?php endforeach ?>
         </ul>

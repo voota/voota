@@ -1,6 +1,3 @@
-<?php // TODO: Unir con comas, menos la última que va unida con " y " ?>
-<?php foreach($instituciones as $i): ?>
-  <?php $active = ($i == $institucion ? array('class' => 'active') : null) ?>
-  <?php $url = ("partido/ranking?institucion=" . $i->getVanity()); ?>
-  <?php echo link_to($i->getNombreCorto(), $url, $active) ?>
-<?php endforeach ?>
+<?php foreach($instituciones as $idx => $i): 
+?><?php echo $idx!=0?', ':''?><?php echo link_to($i->getNombreCorto(), "partido/ranking?institucion=" . $i->getVanity(), $i == $institucion ? array('class' => 'active') : null) ?><?php 
+endforeach ?>
