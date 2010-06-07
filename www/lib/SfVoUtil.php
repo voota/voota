@@ -188,6 +188,10 @@ class SfVoUtil
 	public static function secureString( $str, $rep = '\\\'' ){
 		return str_replace( '\'', $rep,  $str);
 	}
+	
+	public static function reviewPermalink( $review ){
+		return ''.$review->getId().'-'.self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true));
+	}
 }
  
 

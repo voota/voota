@@ -10,7 +10,7 @@
   <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 
 	<p class="review-date">
-	  <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>
+	  <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?>
 	</p>
   <p class="review-body">
     <?php echo review_text( $review ) ?>

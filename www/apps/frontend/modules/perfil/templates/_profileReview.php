@@ -9,9 +9,9 @@
     
 	<div class="name">
 		<?php if( ! $review->getSfReviewType()): ?>
-            <?php echo __('Otro comentario sobre')?> <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?></span>
+            <?php echo __('Otro comentario sobre')?> <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?></span>
 		<?php else: ?>
-                <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?></span>
+                <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?></span>
 		<?php endif ?>
 	</div>
 	
@@ -31,7 +31,7 @@
 		<?php if($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getId() == $review->getSfGuardUser()->getId()):?>
 	        <?php echo link_to(__('Hacer cambios'), "@usuario_votos?o=e&t=".$review->getSfReviewTypeId()."&e=".($review->getSfReviewType()?$review->getEntityId():$review->getSfReviewRelatedBySfReviewId()->getId())."&r=". $review->getId()); ?>
         <?php else: ?>
-	        <?php echo link_to(__('Ir a su comentario'), "sfReviewFront/show?id=".($review->getId())); ?>
+	        <?php echo link_to(__('Ir a su comentario'), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review)); ?>
         <?php endif ?>
 	</div>
 </li>  

@@ -191,7 +191,7 @@ class perfilActions extends SfVoActions
   	}
   	$this->forward404Unless($this->user->getIsActive());
   	
-	$reviews = SfReviewManager::getReviewsByUser($this->user->getId());
+	$reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
   	
   	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
   					, array(
@@ -223,7 +223,7 @@ class perfilActions extends SfVoActions
 	    
 	    $entityText = "";
 	    if (!$review->getSfReviewType()){
-	    	$tmpReview = $review->getSfReviewsRelatedBySfReviewId();
+	    	$tmpReview = $review->getSfReviewRelatedBySfReviewId();
 	    	$entityText = sfContext::getInstance()->getI18N()->__('Otra opinión sobre');
 	    }
 	    else {
@@ -235,7 +235,7 @@ class perfilActions extends SfVoActions
 	    $entityText .= $entity;
 	    
 	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $entityText, '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
-	    $item->setLink('sfReviewFront/show?id='. $review->getId());
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
 	    $item->setAuthorName($review->getSfGuardUser());
 	    $item->setPubdate($review->getCreatedAt('U'));
 	    $item->setUniqueId($review->getId());

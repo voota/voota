@@ -395,7 +395,7 @@ class propuestaActions extends sfActions
   	foreach ($reviews as $review){
 	    $item = new sfFeedItem();
 	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
-	    $item->setLink('sfReviewFront/show?id='. $review->getId());
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
 	    $item->setAuthorName($review->getSfGuardUser());
 	    $item->setPubdate($review->getCreatedAt('U'));
 	    $item->setUniqueId($review->getId());

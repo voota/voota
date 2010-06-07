@@ -61,7 +61,7 @@ class BaseSfReviewManager
 	$criteria->add(SfReviewPeer::IS_ACTIVE, true);
 	
 	// Filter entities by culture. Must have 'culture' column and 'culturized' column in sf_review_type must be checked
-    $criteria->addJoin(SfReviewPeer::SF_REVIEW_TYPE_ID, SfReviewTypePeer::ID);
+    $criteria->addJoin(SfReviewPeer::SF_REVIEW_TYPE_ID, SfReviewTypePeer::ID, Criteria::LEFT_JOIN);
   	$cultureCriterion = $criteria->getNewCriterion(SfReviewTypePeer::CULTURIZED, false);
 	$cultureCriterion->addOr($criteria->getNewCriterion(SfReviewPeer::CULTURE, $culture));
 	$criteria->add( $cultureCriterion );	

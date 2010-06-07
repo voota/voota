@@ -12,14 +12,14 @@
 <?php if (isset($entity)):?>
   <?php echo __('Sobre %nombre%', array('%nombre%' => link_to($entity, $entity->getType().'/show?id='.$entity->getVanity())))?>
 <?php else: ?>
-  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to("otro comentario", 'sfReviewFront/show?id='.$review->getSfReviewId())))?>
+  <?php echo __('Sobre %nombre%', array('%nombre%' => link_to("otro comentario", 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review->getSfReviewRelatedBySfReviewId()))))?>
 <?php endif ?>
 </p>
 
 <?php include_partial('sfReviewFront/user_header', array('review' => $review)) ?>
 
 <p class="review-date">
-  <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), "sfReviewFront/show?id=".$review->getId())?>
+  <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?>
 </p>
 
 <?php if (!$review->getSfReviewId()): ?>
