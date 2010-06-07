@@ -19,6 +19,9 @@
 
 class sfReviewComponents extends sfComponents
 {	
+	public function executeReviewListByUser(){
+		$this->executeReviews();
+	}
 	public function executeReviewList(){
 		$this->executeReviews();
 	}
@@ -34,6 +37,8 @@ class sfReviewComponents extends sfComponents
 			$filter['value'] = $this->value;
 		if (isset($this->filter))
 			$filter['textFilter'] = $this->filter;
+		if (isset($this->userId))
+			$filter['userId'] = $this->userId;
 			
   		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page, 20);		
 	}

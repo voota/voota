@@ -117,6 +117,8 @@ class BaseSfReviewManager
 		$offset = false;
 		$textFilter = false;
 		$culture = false;
+		$userId = false;
+		
 		if ( isset($filter['type_id']) ){
 			$type_id = $filter['type_id'];
 		}
@@ -135,7 +137,13 @@ class BaseSfReviewManager
 	  	if(isset($filter['culture'])){
 	  		$culture = $filter['culture'];
 	  	}
+	  	if(isset($filter['userId'])){
+	  		$userId = $filter['userId'];
+	  	}
 		
+	  	if ($userId){
+			$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $userId);
+	  	}
 	  	if ($culture){
 	  		$criteria->add(SfReviewPeer::CULTURE, $culture);
 	  	}

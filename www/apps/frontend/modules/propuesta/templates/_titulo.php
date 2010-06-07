@@ -33,12 +33,13 @@
 </div>
 
 <?php // TODO: Separar en las vistas necesarias ?>
-
-<div id="edit-titulo-box" class="edit-box">
-  <?php // TODO: Action del form ?>
-  <form method="post" id="edit-titulo-form" enctype="multipart/form-data" action="">
-    <p><textarea name="titulo" rows="4" cols="30"><?php echo $propuesta->getTitulo() ?></textarea></p>
-    <p><input type="submit" value="Guardar" /></p>
-  </form>
-  <a href="#" class="cancel-delete close-edit-box" id="close-ed-titulo-box"><?php echo __('(Cerrar)') ?></a>
-</div>
+<?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
+	<div id="edit-titulo-box" class="edit-box" style="display:none">
+	  <?php // TODO: Action del form ?>
+	  <form method="post" id="edit-titulo-form" enctype="multipart/form-data" action="">
+	    <p><textarea name="titulo" rows="4" cols="30"><?php echo $propuesta->getTitulo() ?></textarea></p>
+	    <p><input type="submit" value="Guardar" /></p>
+	  </form>
+	  <a href="#" class="cancel-delete close-edit-box" id="close-ed-titulo-box"><?php echo __('(Cerrar)') ?></a>
+	</div>
+<?php endif ?>

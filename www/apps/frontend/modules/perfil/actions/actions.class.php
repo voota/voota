@@ -74,6 +74,8 @@ class perfilActions extends SfVoActions
   	$op = $request->getParameter('o');
   	$this->f = $request->getParameter('f');
   	$culture = $this->getUser()->getCulture();
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
   		
   	if ($op == 'v' || $op == 'e'){
   		$t = $request->getParameter('t');
@@ -139,6 +141,8 @@ class perfilActions extends SfVoActions
   	$vanity = $request->getParameter('username');
   	$this->f = $request->getParameter('f');
   	$culture = $this->getUser()->getCulture();
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
     
   	$c = new Criteria();
   	$c->add(SfGuardUserProfilePeer::VANITY, $vanity, Criteria::EQUAL);

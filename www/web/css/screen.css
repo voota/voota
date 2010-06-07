@@ -274,14 +274,14 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 
 /* Comentarios y vootos */
 #perfil-reviews #content { margin-top: 20px;}
-#perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 20px 0; width: 100%;}
-#perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc;}
-#perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0;}
-#perfil-reviews .comments .photo { width: 36px;}
-#perfil-reviews .comments .name { width: 290px; padding: 10px;}
-#perfil-reviews .comments .date { font-size: 11px;}
-#perfil-reviews .comments .vote { width: 35px;}
-#perfil-reviews .comments .body { width: 390px; padding: 10px;}
+/* #perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 20px 0; width: 100%;} */
+/* #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc;} */
+/* #perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0;} */
+.comments .photo { width: 36px; float:left;}
+.comments .name { width: 290px; padding: 10px; float:left;}
+.comments .date { font-size: 11px;}
+.comments .vote { width: 35px; float:left;}
+.comments .body { width: 390px; padding: 10px; float:left;}
 
 /* Perfil público */
 

@@ -4,4 +4,5 @@
 	, 'sfReviewType' => $sfReviewType
 	, 'entity' => isset($entity)?$entity:null
 	, 'filter' => $filter
+	, 'userId' => $userId
 )) ?>

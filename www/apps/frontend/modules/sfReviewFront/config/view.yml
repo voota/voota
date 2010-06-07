@@ -2,3 +2,6 @@ default:
   components:
     review_for_list:  [sfReviewFront, reviewForList]
     review_list:  [sfReviewFront, reviewList]
+    review_list_by_user:  [sfReviewFront, reviewListByUser]
+    review_list_by_user:  [sfReviewFront, reviewListByUser]
+    profileReview:  [perfil, profileReview]

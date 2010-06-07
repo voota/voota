@@ -2,6 +2,7 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
+<?php use_helper('VoSmartJS') ?>
 <?php use_helper('VoUser'); ?>
 <?php use_helper('Date') ?>
 
@@ -72,8 +73,14 @@
 	  <?php endif ?>
     </div>
   </div>
-  
+
+    
+    
   <div class="comments">
+	<div class="reviews">
+       	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
+	</div>
+<?php /* ?>
     <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
     <p class="filter">
       <label for="f"><?php echo __('Filtrar comentarios por:')?></label>
@@ -112,5 +119,7 @@
     <?php else: ?>
       <h2><?php echo __("%1% aún no se ha animado a comentar&hellip;", array('%1%' => fullName($user))) ?></h2>
     <?php endif ?>
+
+<?php */ ?>
   </div>
 </div>

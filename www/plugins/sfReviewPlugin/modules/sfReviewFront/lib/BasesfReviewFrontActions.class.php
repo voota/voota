@@ -48,6 +48,7 @@ class BasesfReviewFrontActions extends sfActions
   	$this->sfReviewType = $request->getParameter("sfReviewType");
   	$this->filter = $request->getParameter("filter", false);
   	$this->slot = $request->getParameter("slot", false);
+  	$this->userId = $request->getParameter("userId", false);
   	
   	$c = new Criteria;
   	if ($this->sfReviewType) {

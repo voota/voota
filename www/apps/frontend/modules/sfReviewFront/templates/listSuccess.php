@@ -1,8 +1,8 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('Number') ?>
-<?php use_helper('VoUser') ?>
 <?php use_helper('VoSmartJS') ?>
+<?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
   $(document).ready(function(){

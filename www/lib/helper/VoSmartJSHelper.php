@@ -1,7 +1,7 @@
 <?php
 function jsWrite( $name, $attrs = array() ){
 	if ( !isset($GLOBALS["jsw_id"]) ){
-		$GLOBALS["jsw_id"] = 1;
+		$GLOBALS["jsw_id"] = rand();
 	}
 	$id = $GLOBALS["jsw_id"]++;
 	
@@ -14,5 +14,5 @@ function jsWrite( $name, $attrs = array() ){
 	$ret .= "$('#jsw_$id').append(aTag);";
 	$ret .= "</script>";
 	
-	return $ret;
+	return "$ret";
 }
