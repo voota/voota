@@ -51,6 +51,7 @@ class eleccionActions extends sfActions
   	$c = new Criteria();
   	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+  	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
   	$c->setDistinct();
   	$this->geos = GeoPeer::doSelect( $c );
   	
