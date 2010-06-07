@@ -306,7 +306,7 @@ $.fn.reviews_pagination = function(options) {
     $(this).parent().append(summary);
 
     var updateSummaryCounters = function() {
-      var count = area.find('li.review').size();
+      var count = area.children('li.review').size();
       summary.find('.reviews_count').html(count);
       summary.find('.reviews_total').html(opts.total);
       if (count >= opts.total) { button.remove(); }
