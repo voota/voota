@@ -28,7 +28,10 @@
   		<?php echo image_tag('icoMiniUp.png', 'width="16" height="18" alt="yeah"') ?>
   	<?php endif ?>
   </div>
-  <p class="review-body">
-    <?php echo review_text( $review ) ?>
-  </p>
+  <?php if ($review->getText() && $review->getCulture() == $sf_user->getCulture()): ?>
+  	<p class="review-body">
+  		<?php echo "(".$review->getText().")"?>
+    	<?php echo review_text( $review ) ?>
+  	</p>
+  <?php endif ?>
 </li>
