@@ -190,7 +190,8 @@ class SfVoUtil
 	}
 	
 	public static function reviewPermalink( $review ){
-		return ''.$review->getId().'-'.self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true));
+		$textStart = self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true));
+		return ''.$review->getId(). ($textStart?'-':''). $textStart;
 	}
 }
  
