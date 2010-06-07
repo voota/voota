@@ -41,6 +41,6 @@
 
 <?php if ( $results->haveToPaginate() ):?>
   <p class="pagination">
-    <?php include_partial('global/pagination_full', array('pager' => $results, 'url' => "@search?q=$q&", 'page_var' => "page")) ?>
+    <?php include_partial('global/pagination_full', array('pager' => $results, 'url' => "@search?q=$q", 'page_var' => "page")) ?>
   </p>
 <?php endif ?>
