@@ -46,7 +46,7 @@
 	      data: { <?php if(isset($entityId)):?>entityId: "<?php echo $entityId ?>",<?php endif?>
 	              <?php if(isset($value)):?>value: "<?php echo $value ?>",<?php endif?>
 	              <?php if(isset($sfReviewType)):?>sfReviewType: "<?php echo $sfReviewType ?>",<?php endif?>
-	              filter: "<?php echo (isset($filter) && $filter) ?>",
+	              filter: "<?php echo (isset($filter) && $filter)?'text':'' ?>",
 			      slot: "review_list"
 	            }
 	    });
