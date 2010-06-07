@@ -2,13 +2,18 @@
   <script type="text/javascript">
     <!--
     $(document).ready(function(){
-  	  $('#edit-titulo').click(function(){
-  	    $('#edit-titulo-box').show();
-  			re_loading( 'edit-titulo-box' );
-  			// TODO: Añadir dirección de edición de descripción en url
-  			jQuery.ajax({type:'GET',dataType:'html',success:function(data, textStatus){jQuery('#edit-titulo-box').html(data);},url:''});
-  			return false;
-  	  });
+    	  $('#edit-titulo').click(function(){
+    	  	    $('#edit-titulo-box').show();
+    	  			return false;
+    	  	  });
+      	  $('#close-ed-titulo-box').click(function(){
+        	    $('#edit-titulo-box').hide();
+        			return false;
+        	  });
+          $('#propuesta_titulo').keyup(function() {
+    		  setCounter('#propuesta_titulo_counter', this, 80);
+    	  });
+    	  setCounter('#propuesta_titulo_counter', '#propuesta_titulo', 80);
     });
     //-->
   </script>
@@ -32,12 +37,12 @@
   </p>
 </div>
 
-<?php // TODO: Separar en las vistas necesarias ?>
 <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
 	<div id="edit-titulo-box" class="edit-box" style="display:none">
-	  <?php // TODO: Action del form ?>
-	  <form method="post" id="edit-titulo-form" enctype="multipart/form-data" action="">
-	    <p><textarea name="titulo" rows="4" cols="30"><?php echo $propuesta->getTitulo() ?></textarea></p>
+	  <form method="post" id="edit-titulo-form" action="<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId()) ?>">
+		<div><input type="hidden" name="op" value="et" /></div>
+	    <p><textarea name="titulo" id="propuesta_titulo" rows="4" cols="30"><?php echo $propuesta->getTitulo() ?></textarea></p>
+        <p id="propuesta_titulo_counter" class="counter"></p>
 	    <p><input type="submit" value="Guardar" /></p>
 	  </form>
 	  <a href="#" class="cancel-delete close-edit-box" id="close-ed-titulo-box"><?php echo __('(Cerrar)') ?></a>
