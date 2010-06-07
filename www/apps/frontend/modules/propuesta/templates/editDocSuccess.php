@@ -22,8 +22,7 @@
 	</a>
 <?php endif ?>
 
-<a href="#" class="confirm_delete">
-<?php echo $propuesta->getDoc()?__('Borrar para añadir uno nuevo'):__('Adjuntar documento a la propuesta')?></a>
+<a href="#" class="confirm_delete"><?php echo $propuesta->getDoc()?__('Borrar para añadir uno nuevo'):__('Adjuntar documento a la propuesta')?></a>
 <a href="#" class="confirm_delete"><?php echo __('Sí')?></a>
 <a href="#" class="cancel_delete"><?php echo __('No')?></a>
 <a href="#" class="cancel_delete close-edit-box" id="close-edit-doc-box"><?php echo __('(Cerrar)')?></a>

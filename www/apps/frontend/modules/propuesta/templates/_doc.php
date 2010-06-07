@@ -28,7 +28,7 @@
         <?php endif ?>
       </span>
       <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-      	<a href="#" id="edit_doc" class="edit-link"><?php echo __('Hacer cambios')?></a>
+      	<a href="#" id="edit_doc" class="edit-link"><?php echo $propuesta->getDoc()?__('Hacer cambios'):__('Adjuntar documento a la propuesta')?></a>
       <?php endif ?>
     </p>
   	<div id="edit-doc-box" class="edit-box" style="display: none"></div>
