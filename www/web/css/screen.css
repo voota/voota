@@ -278,10 +278,11 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 /* #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc;} */
 /* #perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0;} */
 .comments .photo { width: 36px; float:left;}
-.comments .name { width: 290px; padding: 10px; float:left;}
+.comments .name { width: 290px; padding: 5px 10px; float:left;}
 .comments .date { font-size: 11px;}
 .comments .vote { width: 35px; float:left;}
-.comments .body { width: 390px; padding: 10px; float:left;}
+.comments .body { width: 390px; padding: 5px 10px; float:left;}
+.comments .actions { padding: 5px 10px;}
 
 /* Perfil público */
 
@@ -504,7 +505,7 @@ table.rankings .negative-votes { text-align:right;}
 #propuesta-show #author img { width: 20px; height: 20px; padding: 0 5px; width: 36px; height: 36px;}
 #propuesta-show .box-propuestas { margin-bottom: 40px; margin-top: 0;}
 #propuesta-show .box-propuestas button { width: 175px;}
-#propuesta-show .edit-box { background-color: #ffffcc; border: 1px solid #809DB9; padding: 10px; position: relative;}
+#propuesta-show .edit-box { background-color: #ffffcc; border: 1px solid #809DB9; margin-bottom: 10px; padding: 10px; position: relative;}
 #propuesta-show .edit-box a { padding-right: 5px;}
 #propuesta-show .edit-box a.confirm_delete { color: red;}
 #propuesta-show .edit-link { font-size: 9px;}
