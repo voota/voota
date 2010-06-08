@@ -116,7 +116,7 @@ strong.email { color: #2b56ff;}
 
 /* Reviews */
 .reviews ol { list-style: none; margin: 0; padding: 0;}
-.reviews li { margin: 0 0 40px 0; padding: 0;}
+.reviews li { margin: 0 0 40px 0; padding: 0; overflow: auto;}
 .review-avatar { float:left; width: 36px; height: 36px; margin-right: 10px; overflow: hidden;}
 .review-name { font-weight: normal; margin: 0; padding: 0;}
 .review-date { margin-top: 0; padding-bottom: 0; font-size: 11px;}
@@ -461,7 +461,6 @@ table.rankings .negative-votes { text-align:right;}
 .entity-page .ui-tabs-nav { padding: 0; border: none; border-bottom: 1px solid #809DB9;}
 
 /* Página de partido */
-#partido-show #instituciones a { font-weight: bold;}
 #partido-show #elecciones { margin: 20px 0;}
 #partido-show #elecciones h3 { font-size: 13px; margin: 0; padding-top: 0;}
 #partido-show #elecciones ul { margin: 0; padding: 0;}
