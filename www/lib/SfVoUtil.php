@@ -189,8 +189,10 @@ class SfVoUtil
 		return str_replace( '\'', $rep,  $str);
 	}
 	
-	public static function reviewPermalink( $review ){
-		$textStart = self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true));
+	public static function reviewPermalink( $review, $culture = false ){
+		$userCulture = $culture?$culture:sfContext::getInstance()->getUser()->getCulture();		
+		
+		$textStart = (!$review->getCulture() || $review->getCulture() == $userCulture)?self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true)):'';
 		return ''.$review->getId(). ($textStart?'-':''). $textStart;
 	}
 }

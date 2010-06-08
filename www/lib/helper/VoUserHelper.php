@@ -108,6 +108,8 @@ function changeCulture( $culture ){
 	
 	$sf_context = sfContext::getInstance();
 	$request = $sf_context->getRequest();
+	$module = $request->getParameter('module');
+	$action = $request->getParameter('action');
 	$parameters = $request->getParameterHolder()->getAll();
 	$curCulture = $sf_context->getUser()->getCulture('es');
 	$routeName = $sf_context->getRouting()->getCurrentRouteName();
@@ -128,6 +130,10 @@ function changeCulture( $culture ){
 				if ($aInstitucion){
 					$value = $aInstitucion->getVanity( $culture );
 				}
+			}
+			if ($module == 'sfReviewFront' && $action == 'show' && $name == 'id'){
+				$review = SfReviewPeer::retrieveByPk($request->getParameter('id'));
+				$value = SfVoUtil::reviewPermalink( $review, $culture ); 
 			}
 			$params .= ($params == ""?'?':'&'). "$name=$value";
 		}
