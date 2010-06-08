@@ -224,7 +224,7 @@ class perfilActions extends SfVoActions
 	    $entityText = "";
 	    if (!$review->getSfReviewType()){
 	    	$tmpReview = $review->getSfReviewRelatedBySfReviewId();
-	    	$entityText = sfContext::getInstance()->getI18N()->__('Otra opinión sobre');
+	    	$entityText = sfContext::getInstance()->getI18N()->__('Otra opinión sobre'). ' ';
 	    }
 	    else {
 	    	$tmpReview = $review;
