@@ -2762,91 +2762,91 @@ actual)</target>
       </trans-unit>
       <trans-unit id="611">
         <source>%1% en Voota.es</source>
-        <target/>
+        <target>%1% a Voota.cat</target>
       </trans-unit>
       <trans-unit id="612">
         <source>Opiniones sobre %1%, %2% votos a favor y %3% votos en contra</source>
-        <target/>
+        <target>Opinions sobre %1%, %2% vots a favor i %3% vots en contra</target>
       </trans-unit>
       <trans-unit id="613">
         <source>%1%, voota %2%.</source>
-        <target/>
+        <target>%1%, voota %2%.</target>
       </trans-unit>
       <trans-unit id="614">
         <source>¿Sustituir?</source>
-        <target/>
+        <target>¿Substituir?</target>
       </trans-unit>
       <trans-unit id="615">
         <source>Añadir nueva imagen</source>
-        <target/>
+        <target>Afegir una nova imatge</target>
       </trans-unit>
       <trans-unit id="616">
-        <source>JPG, GIF, PNG... (Máx 2Mb)</source>
+        <target>JPG, GIF, PNG... (Màx 2Mb)</target>
         <target/>
       </trans-unit>
       <trans-unit id="617">
         <source>Adjuntar documento a la propuesta</source>
-        <target/>
+        <target>Adjuntar un document a la proposta</target>
       </trans-unit>
       <trans-unit id="618">
         <source>Propuesta por</source>
-        <target/>
+        <target>Proposada per</target>
       </trans-unit>
       <trans-unit id="619">
         <source>%2%, de %4% personas, sobre </source>
-        <target/>
+        <target>%2%, de %4% persones, sobre</target>
       </trans-unit>
       <trans-unit id="620">
         <source>%1% opiniones</source>
-        <target/>
+        <target>%1% opinions</target>
       </trans-unit>
       <trans-unit id="621">
         <source>Otra opinión sobre</source>
-        <target/>
+        <target>Una altra opinió sobre</target>
       </trans-unit>
       <trans-unit id="622">
         <source>políticos</source>
-        <target/>
+        <target>polítics</target>
       </trans-unit>
       <trans-unit id="623">
         <source>partidos</source>
-        <target/>
+        <target>partits</target>
       </trans-unit>
       <trans-unit id="624">
         <source>propuestas</source>
-        <target/>
+        <target>propostes</target>
       </trans-unit>
       <trans-unit id="625">
         <source>respuestas a otros comentarios</source>
-        <target/>
+        <target>respostes a altres comentaris</target>
       </trans-unit>
       <trans-unit id="626">
         <source>sobre</source>
-        <target/>
+        <target>sobre</target>
       </trans-unit>
       <trans-unit id="627">
         <source>otra opinión sobre</source>
-        <target/>
+        <target>una altra opinió sobre</target>
       </trans-unit>
       <trans-unit id="628">
         <source>%1%, voota %2% de %3%.</source>
-        <target/>
+        <target>%1%, voota %2% de %3%.</target>
       </trans-unit>
       <trans-unit id="629">
         <source>"%1%" en Voota</source>
-        <target/>
+        <target>"%1%" a Voota</target>
       </trans-unit>
       <trans-unit id="630">
         <source>Resultados de la búsqueda "%1%" en Voota: %2%, ...</source>
-        <target/>
+        <target>Resultats de la búsqueda "%1%" a Voota: %2%, ...</target>
       </trans-unit>
       <trans-unit id="631">
         <source>Los más votados</source>
-        <target/>
+        <target>Els més votats</target>
       </trans-unit>
       <trans-unit id="632">
         <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si no tienes cuenta aún, ¡este es el mejor momento para crearte una!</source>
-        <target/>
+        <target>Quiet! Per vootar necessites estar registrat a Voota o a Facebook. Si encara no ho estàs, aquest és el millor moment per crear-te'n una!</target>
       </trans-unit>
       <trans-unit id="633">
         <source>Mostrando %1% comentarios de %2%</source>
@@ -2855,3 +2855,5 @@ actual)</target>
     </body>
   </file>
 </xliff>
+
+        
