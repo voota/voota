@@ -2760,6 +2760,94 @@ actual)</target>
         <source>Lista electoral</source>
         <target>Llista electoral</target>
       </trans-unit>
+      <trans-unit id="611">
+        <source>%1% en Voota.es</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="612">
+        <source>Opiniones sobre %1%, %2% votos a favor y %3% votos en contra</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="613">
+        <source>%1%, voota %2%.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="614">
+        <source>¿Sustituir?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="615">
+        <source>Añadir nueva imagen</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="616">
+        <source>JPG, GIF, PNG... (Máx 2Mb)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="617">
+        <source>Adjuntar documento a la propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="618">
+        <source>Propuesta por</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="619">
+        <source>%2%, de %4% personas, sobre </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="620">
+        <source>%1% opiniones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="621">
+        <source>Otra opinión sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="622">
+        <source>políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="623">
+        <source>partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="624">
+        <source>propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="625">
+        <source>respuestas a otros comentarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="626">
+        <source>sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="627">
+        <source>otra opinión sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="628">
+        <source>%1%, voota %2% de %3%.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="629">
+        <source>"%1%" en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="630">
+        <source>Resultados de la búsqueda "%1%" en Voota: %2%, ...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="631">
+        <source>Los más votados</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="632">
+        <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si no tienes cuenta aún, ¡este es el mejor momento para crearte una!</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

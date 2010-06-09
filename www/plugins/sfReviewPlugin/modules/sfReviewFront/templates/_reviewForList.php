@@ -30,7 +30,6 @@
   </div>
   <?php if ($review->getText() && $review->getCulture() == $sf_user->getCulture()): ?>
   	<p class="review-body">
-  		<?php echo "(".$review->getText().")"?>
     	<?php echo review_text( $review ) ?>
   	</p>
   <?php endif ?>

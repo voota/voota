@@ -128,8 +128,23 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	}
   	$reviewsPager = SfReviewManager::getReviews($filter);
 
+  	$str = '';
+  	switch($this->sfReviewType){
+  		case 1:
+  			$str = sfContext::getInstance()->getI18N()->__("políticos");
+  			break;
+  		case 2:
+  			$str = sfContext::getInstance()->getI18N()->__("partidos");
+  			break;
+  		case 3:
+  			$str = sfContext::getInstance()->getI18N()->__("propuestas");
+  			break;
+  		case "null":
+  			$str = sfContext::getInstance()->getI18N()->__("respuestas a otros comentarios");
+  			break;
+  	}
   	$title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
-  		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
+  		'%1%' => $str?" ". sfContext::getInstance()->getI18N()->__("sobre")." $str":""
   	));  	
   	$reviews = $reviewsPager->getResults();
   	
@@ -160,7 +175,24 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 
   	foreach ($reviews as $review){
 	    $item = new sfFeedItem();
-	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    
+	    $entityText = "";
+	    if (!$review->getSfReviewType()){
+	    	$tmpReview = $review->getSfReviewRelatedBySfReviewId();
+	    	$entityText = sfContext::getInstance()->getI18N()->__('otra opinión sobre'). ' ';
+	    }
+	    else {
+	    	$tmpReview = $review;
+	    } 
+	    $sfReviewType = SfReviewTypePeer::retrieveByPk($tmpReview->getSfReviewTypeId());
+	    $peer = $sfReviewType->getModel() . 'Peer';
+	    $entity = $peer::retrieveByPk( $tmpReview->getEntityId() );
+	    $entityText .= $entity;
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2% de %3%.', array(
+	    	'%1%' => $review->getSfGuardUser(), 
+	    	'%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+	    	'%3%' => $entityText
+	    )));
 	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
 	    $item->setAuthorName($review->getSfGuardUser());
 	    $item->setPubdate($review->getCreatedAt('U'));
