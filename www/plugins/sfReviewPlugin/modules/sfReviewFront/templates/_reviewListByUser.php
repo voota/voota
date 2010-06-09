@@ -50,6 +50,8 @@
 	              filter: "<?php echo (isset($filter) && $filter)?$filter:'' ?>",
 		          slot: "review_list_by_user"
 	            }
+	      , summaryTemplate: '<?php echo '<p>'. __('Mostrando %1% comentarios de %2%', array('%1%' => '<strong class="reviews_count"></strong>', '%2%' => '<strong class="reviews_total"></strong>')) .'</p>' ?>'
+		  , buttonText: '<?php echo __('más') ?>'
 	    });
 	  });
 	</script>

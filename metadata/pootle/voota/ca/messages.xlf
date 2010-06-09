@@ -2848,6 +2848,10 @@ actual)</target>
         <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si no tienes cuenta aún, ¡este es el mejor momento para crearte una!</source>
         <target/>
       </trans-unit>
+      <trans-unit id="633">
+        <source>Mostrando %1% comentarios de %2%</source>
+        <target>Mostrant %1% comentaris de %2%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
