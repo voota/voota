@@ -6,9 +6,9 @@
   <!--//
 	$(document).ready(function() {
 		$('#el_form').submit(function(){
-			re_loading( 'external-links' );
-	
-			jQuery.ajax({type:'POST',dataType:'html',data:jQuery(this).serialize(),success:function(data, textStatus){jQuery('#external-links').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId())?>'});
+		  data = jQuery(this).serialize();
+			re_loading( 'external-links');
+			jQuery.ajax({type:'POST',dataType:'html',data:data,success:function(data, textStatus){jQuery('#external-links').html(data);},url:'<?php echo url_for('propuesta/editEnlaces?id='.$propuesta->getId())?>'});
 			
 			return false;
 	  	});
