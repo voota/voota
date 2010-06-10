@@ -132,5 +132,9 @@
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
     </div>
+    
+    <div id="etiquetas">
+      <?php include_partial('global/etiquetas', array('entity' => $partido)) ?>
+    </div>
   </div>
 </div>

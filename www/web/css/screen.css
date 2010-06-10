@@ -523,6 +523,11 @@ table.rankings .negative-votes { text-align:right;}
 #sfReviewFront-list #ultimos-usuarios li { margin-bottom: 5px;}
 #sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
+/* Caja de etiquetas */
+#etiquetas p { padding-bottom: 10px;}
+#etiquetas .remove { font-family: sans-serif; text-decoration: none; color: #323232; font-size: 11px; padding-left: 5px;}
+#etiquetas input { width: 214px;}
+
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
 #propuesta-new .new-success { margin: 0 auto; width: 960px;}
