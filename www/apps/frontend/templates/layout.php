@@ -205,7 +205,7 @@
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<?php echo $sf_user->getCulture() == 'ca'?'UA-10529881-3':'UA-10529881-1'?>']);
+  _gaq.push(['_setAccount', '<?php echo sfConfig::get("sf_ga_account_".$sf_user->getCulture()) ?>']);
   _gaq.push(['_trackPageview']);
 
   (function() {

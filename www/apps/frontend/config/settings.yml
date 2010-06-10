@@ -1,5 +1,8 @@
 prod:
   .settings:
+    ml: 1.9
+    ga_account_es: UA-10529881-1
+    ga_account_ca: UA-10529881-3
     no_script_name:         true
     cache:                  true
     logging_enabled:        false
@@ -10,6 +13,8 @@ prod:
 
 dev:
   .settings:
+    ga_account_es: UA-10529881-1
+    ga_account_ca: UA-10529881-3
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              false
     cache:                  true
@@ -22,6 +27,8 @@ dev:
 
 test:
   .settings:
+    ga_account_es: UA-10529881-4
+    ga_account_ca: UA-10529881-5
     cache:                  true
     #web_debug:              false
     no_script_name:         true
@@ -58,7 +65,7 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 1.8b
+    ml: 1.9
     convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.
