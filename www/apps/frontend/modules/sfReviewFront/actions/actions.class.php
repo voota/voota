@@ -76,10 +76,25 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$c->setLimit( 10 );
   	$this->lastUsers = SfGuardUserPeer::doSelect( $c );
   	
+  	$str = '';
+  	switch($this->sfReviewType){
+  		case 1:
+  			$str = sfContext::getInstance()->getI18N()->__("políticos");
+  			break;
+  		case 2:
+  			$str = sfContext::getInstance()->getI18N()->__("partidos");
+  			break;
+  		case 3:
+  			$str = sfContext::getInstance()->getI18N()->__("propuestas");
+  			break;
+  		case "null":
+  			$str = sfContext::getInstance()->getI18N()->__("respuestas a otros comentarios");
+  			break;
+  	} 	
   	// Metas
   	$this->title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
-  		'%1%' => $this->sfReviewType?(sfContext::getInstance()->getI18N()->__("sobre %1%", array('%1%' => ''))):''
-  	));  	
+  		'%1%' => $str?" ". sfContext::getInstance()->getI18N()->__("sobre")." $str":""
+  	));  
   	$this->response->setTitle( $this->title ); 
   	$reviews = $reviewsPager->getResults();
   	
