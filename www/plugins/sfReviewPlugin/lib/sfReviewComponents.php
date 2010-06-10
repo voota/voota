@@ -39,6 +39,8 @@ class sfReviewComponents extends sfComponents
 			$filter['textFilter'] = $this->filter;
 		if (isset($this->userId))
 			$filter['userId'] = $this->userId;
+		if (isset($this->culture))
+			$filter['culture'] = $this->culture;
 			
   		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page, 20);		
 	}

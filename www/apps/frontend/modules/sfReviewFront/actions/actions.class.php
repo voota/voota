@@ -50,6 +50,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	$this->entity = false;
 	$this->filter = false;
   	$culture = $this->getUser()->getCulture();
+	$this->culture = $culture;
 	
 	$filter = array();
 	$filter['culture'] = $culture;
