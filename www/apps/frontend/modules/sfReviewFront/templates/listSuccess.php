@@ -7,29 +7,29 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('#filterForm_f, #filterForm_text').change(function(){
-        var n = $('#filterForm_f').val();
-        var t = $('#filterForm_text').is(':checked');
-        var theForm = $(this).closest('form');
+      var n = $('#filterForm_f').val();
+      var t = $('#filterForm_text').is(':checked');
+      var theForm = $(this).closest('form');
 
-		switch( n ){
-		case "1":
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=1');?>'); 
-			break;
-		case "2":
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=2');?>'); 
-			break;
-		case "3":
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
-			break;
-		case "null":
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=null');?>'); 
-			break;
-		default:
-			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
-		} 
+  		switch( n ){
+  		case "1":
+  			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=1');?>'); 
+  			break;
+  		case "2":
+  			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=2');?>'); 
+  			break;
+  		case "3":
+  			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=3');?>'); 
+  			break;
+  		case "null":
+  			theForm.attr("action", '<?php echo url_for('sfReviewFront/list?type_id=null');?>'); 
+  			break;
+  		default:
+  			theForm.attr("action", '<?php echo url_for('sfReviewFront/list');?>');
+  		} 
 
-		theForm.submit();
-		return false;
+  		theForm.submit();
+  		return false;
     });
   });
 </script>
