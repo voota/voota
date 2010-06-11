@@ -239,6 +239,14 @@ propuesta_feed_ca:
     
 ### POLITICOS ###
     
+politico_tags:
+  url:   /politico/tags
+  param: { module: politico, action: tags }
+  
+politico_newtag:
+  url:   /politico/newtag
+  param: { module: politico, action: newtag }
+  
 partido_ac_partido:
   url: /politico/ac_partido
   param: { module: politico, action: acPartido }

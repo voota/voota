@@ -65,7 +65,7 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 1.9
+    ml: 2.0
     convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.

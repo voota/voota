@@ -639,4 +639,38 @@ class politicoActions extends sfActions
   	$this->feed = $feed;
   	
   }
+  
+  public function executeTags(sfWebRequest $request)
+  {
+  	$term = $request->getParameter('term');
+  	
+	  	$c = new Criteria();
+	  	$c->add(EtiquetaPeer::TEXTO, "%$term%", Criteria::LIKE);
+	  	$etiquetas = EtiquetaPeer::doSelect( $c );
+	  	
+	  	$res = '[';	
+		$idx = 0;
+		foreach ($etiquetas as $etiqueta){
+			$idx++;
+			$res .= ($idx > 1?',':'').'{"id": "'. $etiqueta->getId() .'", "value": "'. $etiqueta .'"}';
+		}
+		$res .= ']';
+		
+		$response = $this->getResponse();
+	    $response->setContentType('application/json');
+	    
+		echo $res;die;
+  }
+  
+  public function executeNewtag(sfWebRequest $request)
+  {
+  	$texto = $request->getParameter('texto', false);
+  	
+  	if ($texto){
+	  	$etiqueta = new Etiqueta();
+	  	$etiqueta->setTexto( $texto );
+	  	$etiqueta->save();
+  	}
+  }
+  
 }
