@@ -89,7 +89,7 @@
     </div>
 
     <?php if ($partidosPager): ?>
-    	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
+    	<?php include_partial('general/entity_pagination', array('position' => 'bottom', 'pager' => $partidosPager, 'id' => $partido->getId())) ?>
     <?php endif ?>
   </div>
 

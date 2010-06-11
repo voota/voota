@@ -1,7 +1,7 @@
 <?php use_helper('VoPager') ?>
 
 <?php if(($current = currentIndex($pager, $id)) && count($pager) > 1): ?>
-  <p class="politico-pagination politico-pagination-<?php echo $position ?>">
+  <p class="entity-pagination entity-pagination-<?php echo $position ?>">
     <?php if($p_entity = prevEntity($pager, $id)): ?>
     	<a href="<?php echo url_for($p_entity->getModule().'/show?id='.$p_entity->getVanity()) ?>"><?php 
     	echo $p_entity->getType() != Politico::NUM_ENTITY?$p_entity->getType() != Partido::NUM_ENTITY?__('&laquo; Propuesta anterior'):__('&laquo; Partido anterior'):__('&laquo; Político anterior') ?></a>

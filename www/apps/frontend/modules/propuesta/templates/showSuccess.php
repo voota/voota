@@ -73,7 +73,7 @@
     </div>
   
     <?php if ($propuestasPager): ?>
-  	  <?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
+  	  <?php include_partial('general/entity_pagination', array('position' => 'bottom', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
     <?php endif ?>
   </div>
   
