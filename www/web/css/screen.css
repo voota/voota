@@ -41,12 +41,12 @@ strong.email { color: #2b56ff;}
 
 /* Paginación */
 .pagination { font-size: 16px; margin-top: 40px; text-align: center; word-spacing: 20px; font-weight: bold;}
-.politico-pagination { clear: both;}
-.politico-pagination a,
-.politico-pagination span { padding-right: 20px;}
-.politico-pagination a.back { padding-left: 40px;}
-.politico-pagination-top { padding: 0 0 40px 0;}
-.politico-pagination-bottom { padding: 40px 0 0 0;}
+.entity-pagination { clear: both;}
+.entity-pagination a,
+.entity-pagination span { padding-right: 20px;}
+.entity-pagination a.back { padding-left: 40px;}
+.entity-pagination-top { padding: 0 0 40px 0;}
+.entity-pagination-bottom { padding: 40px 0 0 0;}
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
