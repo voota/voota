@@ -139,7 +139,8 @@ EOF;
     $connection = $databaseManager->getDatabase($options['connection'] ? $options['connection'] : null)->getConnection();
 
     $s3 = new S3Voota();
-    $usuarios = SfGuardUserProfilePeer::doSelect(new Criteria());
+    $c = new Criteria();
+    $usuarios = SfGuardUserProfilePeer::doSelect( $c );
     foreach ($usuarios as $usuario){
     	if ($usuario->getImagen() != ''){
     		echo "Creating " . $usuario->getImagen() ." ...\n";

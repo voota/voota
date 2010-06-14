@@ -242,3 +242,29 @@ propel:
     fb_tip: { type: boolean, required: true, defaultValue: '1' }   
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
+
+  etiqueta:
+    _attributes: { phpName: Etiqueta }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    texto: { type: VARCHAR, size: '45', required: false }    
+  etiqueta_sf_guard_user:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fecha: { type: TIMESTAMP, required: false }
+    _indexes: { fk_etiqueta_sf_guard_user_1: [etiqueta_id], fk_etiqueta_sf_guard_user_2: [sf_guard_user_id] }
+  etiqueta_politico:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_etiqueta_politico_1: [etiqueta_id], fk_etiqueta_politico_2: [politico_id] }
+  etiqueta_partido:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_etiqueta_partido_1: [etiqueta_id], fk_etiqueta_partido_2: [partido_id] }
+  etiqueta_propuesta:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    propuesta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: propuesta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_etiqueta_propuesta_1: [etiqueta_id], fk_etiqueta_propuesta_2: [propuesta_id] }
+    
+    
+    
+    

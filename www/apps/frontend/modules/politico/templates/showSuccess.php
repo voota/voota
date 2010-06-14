@@ -158,7 +158,7 @@
     </div><!-- end of google-ads -->
     
     <div id="etiquetas">
-      <?php include_partial('global/etiquetas', array('entity' => $politico)) ?>
+    	<?php include_partial('global/etiquetas', array('entity' => $politico)) ?>
     </div>
   </div>
 </div>

@@ -311,6 +311,14 @@ class partidoActions extends sfActions
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
     
+    $this->twitterUser = FALSE;
+    foreach ($this->activeEnlaces as $enlace){
+    	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){
+    		$this->twitterUser = $matches[1];
+    		break;
+    	}
+    }
+    
     // Politicos mas votados
     $c = new Criteria();
 	$c->addJoin(

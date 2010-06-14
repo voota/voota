@@ -121,6 +121,13 @@
     <div id="report-error">
       <?php include_partial('global/report_error', array('entity' => $partido)) ?>
     </div>
+    
+    <div id="twitter">
+      <?php if($twitterUser):?>
+        <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
+  	    <?php include_partial('politico/tuits', array('user' => $twitterUser)) ?>
+      <?php endif ?>
+    </div>
 
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>

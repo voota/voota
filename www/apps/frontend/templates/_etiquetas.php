@@ -5,11 +5,26 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+
+	$("#nueva-etiqueta").closest('form').submit(function(){
+		var data = $("#nueva-etiqueta").closest('form').serialize();
+  		$.ajax({
+    		  type     : 'POST',
+    		  dataType : 'html',
+    		  data:data,
+    		  url      : '<?php echo url_for('politico/newtag')?>',
+    		  success  : function(data, textStatus) {
+    			  $("#nueva-etiqueta-ac").val('');  
+    		  	$('#entity-tags').html(data);
+    		  }
+    		});
+		return false;
+	});
+	
   	$("#nueva-etiqueta-ac").autocomplete({
-  		source: '<?php echo url_for('politico/acPartido')?>', // TODO: Cambiar URL por la de consulta de etiquetas
+  		source: '<?php echo url_for('politico/tags')?>',
   		select: function(event, ui) {
-  		  $("#nueva-etiqueta").val(ui.item.id);
-  		  $("#nueva-etiqueta").closest('form').submit(); // TODO: Quizás interese cambiar por una llamada Ajax, y refrescar sólo esta caja
+  		  $("#nueva-etiqueta").val(ui.item.id);  
   		}
   	});
   })
@@ -17,15 +32,16 @@
 
 <h3><?php echo __('También conocido como...') ?></h3>
 
-<?php if (true): // TODO: Si está logueado ?>
-  <form id="ac-nueva-etiqueta-frm" action="#"><?php // TODO: Rellenar acción con URL de nueva etiqueta ?>
+<?php if ($sf_user->isAuthenticated()): ?>
+  <form id="ac-nueva-etiqueta-frm" action="#">
+    <input type="hidden" name="entity" value="<?php echo $entity->getId() ?>" />
     <input type="hidden" name="e" id="nueva-etiqueta" value="" />
     <p>
-    	<input type="text" id="nueva-etiqueta-ac" value="" title="<?php echo __('Tú dirás...')?>" />
+    	<input type="text" id="nueva-etiqueta-ac" name="texto" value="" title="<?php echo __('Tú dirás...')?>" />
     </p>
   </form>
 <?php else: ?>
-  <p><a href=""><?php echo __('(Entrar en Voota para etiquetar)') ?></a><?php // TODO: Enlazar a login ?></p>
+  <p><a href="<?php echo url_for('sfGuardAuth/signin')?>"><?php echo __('(Entrar en Voota para etiquetar)') ?></a></p>
 <?php endif ?>
 
 <?php if (true): // TODO: Si hay etiquetas ?>

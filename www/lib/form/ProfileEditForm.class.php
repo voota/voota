@@ -67,7 +67,6 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'vanity'   => new sfValidatorString(array("min_length" => SfVoUtil::VANITY_MIN_LENGTH, 'required' => true), sfVoForm::getStringMessages()), 
       'imagen'   => new sfValidatorFile(array(
 				   'required'   => false,
-    			   'max_size' => '512000',
 				   'mime_types' => 'web_images',
 				   'path' => sfConfig::get('sf_upload_dir').'/usuarios',
 				   'validated_file_class' => 'sfResizedFile',
