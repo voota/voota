@@ -88,11 +88,13 @@ EOF;
     		
     }
     $usuarios = SfGuardUserPeer::doSelect( $c );
-    foreach ($usuarios as $usuario){
-    		
+    foreach ($usuarios as $usuario){    		
     		$vanity = $usuario->getProfile()->getVanity();
     		if ($vanity != SfVoUtil::fixVanityChars($vanity)){
     			echo "usuario:$vanity ($usuario)\n";
+    			
+	    		$usuario->getProfile()->setVanity(SfVoUtil::fixVanityChars($vanity));
+	    		$usuario->getProfile()->save();
     		}
     }
     $partidos = PartidoPeer::doSelect( $c );
