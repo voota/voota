@@ -73,15 +73,9 @@
       <dt><?php echo __('Febrero 2010')?></dt>
       <dd><?php echo __('Voota alcanza la friolera de 20 socios. Al mismo tiempo, ya se empieza a notar en la web la realidad que hay en la calle.')?></dd>
       
-      <dt><?php echo __('Abril 2009')?></dt>
-      <dd><?php echo __('François comenta la idea con su amigo Sergio Viteri, que lo ve con buenos ojos.')?></dd>
-
-      <dt><?php echo __('Junio 2009')?></dt>
-      <dd><?php echo __('Dos meses más tarde se lo cuentan a Juan Leal. Y más de lo mismo: Idea genial. María Ayuso también se apunta para llevar la gestión.')?></dd>
-
-      <dt><?php echo __('Julio 2009')?></dt>
-      <dd><?php echo __('Voota se constituye como asociación sin ánimo de lucro.')?></dd>
-
+      <dt><?php echo __('Noviembre 2009')?> </dt>
+      <dd><?php echo __('Una primera versión de la web, muy reducida, ve la luz.')?></dd>
+      
       <dt><?php echo __('Septiembre 2009')?></dt>
       <dd>
         <?php echo __('El proyecto se presenta en sociedad. Varios Blogs y medios digitales se hacen eco de la noticia')?>
@@ -90,9 +84,15 @@
         <?php echo link_to('Ricard Espelt', __('http://www.theplateishot.com/en/voota-tu-tienes-la-ultima-palabra/'))?>  
         <?php echo __('y varios más')?>).
       </dd>
-
-      <dt><?php echo __('Noviembre 2009')?> </dt>
-      <dd><?php echo __('Una primera versión de la web, muy reducida, ve la luz.')?></dd>
+      
+      <dt><?php echo __('Julio 2009')?></dt>
+      <dd><?php echo __('Voota se constituye como asociación sin ánimo de lucro.')?></dd>
+      
+      <dt><?php echo __('Junio 2009')?></dt>
+      <dd><?php echo __('Dos meses más tarde se lo cuentan a Juan Leal. Y más de lo mismo: Idea genial. María Ayuso también se apunta para llevar la gestión.')?></dd>
+      
+      <dt><?php echo __('Abril 2009')?></dt>
+      <dd><?php echo __('François comenta la idea con su amigo Sergio Viteri, que lo ve con buenos ojos.')?></dd>
     </dl>
   </div>
 
