@@ -74,11 +74,17 @@
     </div>
   </div>
 
+  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => 2)) // TODO: Contar propuestas ?></h2>
+  <div class="propuestas">
+    <ol>
+      <?php include_partial('propuesta') // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
+      <?php include_partial('propuesta') // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
+    </ol>
+  </div>
     
-    
-  <div class="comments">
-	<div class="reviews">
-       	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
+  <h2><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviews->getNbResults()))?></h2>
+	<div class="comments reviews">
+   	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
 	</div>
 <?php /* ?>
     <form action="<?php echo url_for('@usuario?username='.$user->getProfile()->getVanity()) ?>" id="filterForm">
@@ -121,5 +127,4 @@
     <?php endif ?>
 
 <?php */ ?>
-  </div>
 </div>

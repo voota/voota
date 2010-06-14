@@ -273,15 +273,17 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-edit .notice { width: 503px;}
 
 /* Comentarios y vootos */
-#perfil-reviews #content { margin-top: 20px;}
-/* #perfil-reviews .comments table { border-top: 1px dotted #cccccc; margin: 20px 0; width: 100%;} */
-/* #perfil-reviews .comments tr { border-bottom: 1px dotted #cccccc;} */
-/* #perfil-reviews .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0;} */
+#perfil-reviews h2 { margin-top: 20px;}
+.propuestas ol { list-style: none; margin: 0; padding: 0;}
+.propuestas li { list-style: none; margin: 0 0 20px 0; overflow: hidden; padding: 0 0 15px 0; border-bottom: 1px dotted #ddd; }
+.propuestas .photo,
 .comments .photo { width: 36px; float:left;}
+.propuestas .name { width: 290px; padding: 5px 455px 5px 10px; float:left;}
 .comments .name { width: 290px; padding: 5px 10px; float:left;}
 .comments .date { font-size: 11px;}
 .comments .vote { width: 35px; float:left;}
 .comments .body { width: 390px; padding: 5px 10px; float:left;}
+.propuestas .actions,
 .comments .actions { padding: 5px 10px;}
 
 /* Perfil público */
@@ -290,6 +292,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #perfil-show .balloon-inner { border: 2px solid #93bcfc; border-bottom: none; padding: 20px 20px 0 20px;}
 #perfil-show .balloon-inner input { width: 170px;}
 #perfil-show #content { margin-top: 20px;}
+#perfil-show .profile { overflow: hidden; padding-bottom: 40px;}
 #perfil-show .profile h2 a { font-size: 13px;}
 #perfil-show .profile .photo { float: left;}
 #perfil-show .profile .description { width: 250px; margin-left: 20px; float: left;}
