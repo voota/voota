@@ -666,10 +666,19 @@ class politicoActions extends sfActions
   {
   	$texto = $request->getParameter('texto', false);
   	$id = $request->getParameter('entity', false);
-  	$entity = PoliticoPeer::retrieveByPK( $politicoId );
+  	$this->entity = PoliticoPeer::retrieveByPK( $id );
 
-  	if ($entity)
-  		TagManager::newTag($entity, $texto);  	
+  	if ($this->entity)
+  		TagManager::newTag($this->entity, $texto);  	
+  }
+  
+  public function executeRmtag(sfWebRequest $request)
+  {
+  	$e = $request->getParameter('e', false);
+  	$id = $request->getParameter('id', false);
+  	TagManager::removeTag($id);  	
+  	
+  	$this->entity = PoliticoPeer::retrieveByPK( $e );
   }
   
 }

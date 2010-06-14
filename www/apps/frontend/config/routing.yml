@@ -247,6 +247,10 @@ politico_newtag:
   url:   /politico/newtag
   param: { module: politico, action: newtag }
   
+politico_rmtag:
+  url:   /politico/rmtag
+  param: { module: politico, action: rmtag }
+  
 partido_ac_partido:
   url: /politico/ac_partido
   param: { module: politico, action: acPartido }

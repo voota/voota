@@ -6,15 +6,15 @@
 
 	$("#nueva-etiqueta").closest('form').submit(function(){
 		var data = $("#nueva-etiqueta").closest('form').serialize();
-		alert(0);
   		$.ajax({
     		  type     : 'POST',
     		  dataType : 'html',
     		  data:data,
     		  url      : '<?php echo url_for('politico/newtag')?>',
     		  success  : function(data, textStatus) {
-    			  $("#nueva-etiqueta-ac").val('');  
-    		  	$('#entity-tags').html(data);
+    			$("#nueva-etiqueta-ac").val('');  
+    			re_loading( 'taglist' );
+    		  	$('#taglist').html(data);
     		  }
     		});
 		return false;
@@ -27,6 +27,20 @@
   		}
   	});
   })
+  
+  function removeTag( id ){
+  	$.ajax({
+    	  type     : 'POST',
+    	  dataType : 'html',
+    	  data	   : 'e=<?php echo $entity->getId() ?>&id='+id,
+    	  url      : '<?php echo url_for('politico/rmtag')?>',
+    	  success  : function(data, textStatus) {
+    		re_loading( 'taglist' );
+    	  	$('#taglist').html(data);
+    	  }
+    	});
+	return false;
+  }
 </script>
 
 <h3><?php echo __('También conocido como...') ?></h3>
@@ -44,5 +58,6 @@
   <p><a href="<?php echo url_for('sfGuardAuth/signin')?>"><?php echo __('(Entrar en Voota para etiquetar)') ?></a></p>
 <?php endif ?>
 
-<?php include_component_slot('tags', array('entity' => $entity)) ?>
-
+<div id="taglist">
+	<?php include_component_slot('tags', array('entity' => $entity)) ?>
+</div>
