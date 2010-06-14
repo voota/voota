@@ -37,6 +37,7 @@
     <input type="hidden" name="e" id="nueva-etiqueta" value="" />
     <p>
     	<input type="text" id="nueva-etiqueta-ac" name="texto" value="" title="<?php echo __('Tú dirás...')?>" />
+    	<input type="submit" id="nueva-etiqueta-submit" value="+" />
     </p>
   </form>
 <?php else: ?>

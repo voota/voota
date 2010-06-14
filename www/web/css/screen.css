@@ -529,7 +529,8 @@ table.rankings .negative-votes { text-align:right;}
 /* Caja de etiquetas */
 #etiquetas p { padding-bottom: 10px;}
 #etiquetas .remove { font-family: sans-serif; text-decoration: none; color: #323232; font-size: 11px; padding-left: 5px;}
-#etiquetas input { width: 214px;}
+#etiquetas input[type=text] { width: 184px;}
+#etiquetas input[type=submit] { padding-left: 3px; padding-right: 3px; width: 20px; text-align: center;}
 
 /* Nueva propuesta */
 #propuesta-new #main-inner { width: 100%; margin: 0;}
