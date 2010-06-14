@@ -1,6 +1,14 @@
 # default rules
 
 ### OPINIONES ###
+
+tag_serp:
+  url:   /tag/:tag
+  param: { module: general, action: search }
+  
+tag_pager:
+  url:   /general/tagList
+  param: { module: general, action: tagList }
     
 list_page:
   url:   /review/list_page

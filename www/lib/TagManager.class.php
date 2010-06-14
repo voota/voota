@@ -99,7 +99,8 @@ class TagManager {
 		
 		return $statement->fetchAll(PDO::FETCH_CLASS, 'Etiqueta');
   	}
-  	public static function getTags($entity)
+  	
+  	public static function getTags($entity, $page = 1)
   	{
   		$user = sfContext::getInstance()->getUser();
   		
@@ -117,17 +118,18 @@ class TagManager {
    		}
   		$query .= " GROUP BY e.id";	
 	  	$query .= " ORDER BY count DESC, id DESC";
-	  	$query .= " LIMIT 10";
 	  			
-	   	$connection = Propel::getConnection();
-		$statement = $connection->prepare($query);		
-		//echo $query;die;
-		$statement->bindValue(1, $entity->getId());
+	  	$pager = new sfQueryPager('Etiqueta', 5);
+	  	$pager->setQuery($query);
+		$values = array();
+		$values[] = $entity->getId();
   		if ($user->isAuthenticated()){
-			$statement->bindValue(2, $user->getGuardUser()->getId());
+			$values[] = $user->getGuardUser()->getId();
   		}
-		$statement->execute();
-		
-		return $statement->fetchAll(PDO::FETCH_CLASS, 'Etiqueta');
+	  	$pager->setValues($values);
+		$pager->setPage( $page );
+		$pager->init();		    
+	  	
+		return $pager;
  	}  	
 }

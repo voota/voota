@@ -4,7 +4,10 @@ class generalComponents extends sfComponents
 {
 	public function executeTags(){
 		$this->myTags = TagManager::getTagsByLoggedUser($this->entity);
-		$this->allTags = TagManager::getTags($this->entity);
+	}
+	
+	public function executeTagList(){
+		$this->allTagsPager = TagManager::getTags($this->entity, $this->page);
 	}
 	
   public function executePropuestaResult(){

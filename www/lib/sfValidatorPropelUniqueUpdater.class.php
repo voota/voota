@@ -26,7 +26,7 @@ class sfValidatorPropelUniqueUpdater extends sfValidatorPropelUnique
   	'politico','politics','politic','politicos',
   	'politics','take','partit','partidos','partits','partido',
   	'user','logout','user','review','r','about','dos-and-donts','search','contact',
-  	'a1'
+  	'a1','tag'
   );
   
   /**

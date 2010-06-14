@@ -18,6 +18,15 @@
 require_once(sfConfig::get('sf_lib_dir').'/sphinxapi.php');
 
 class generalActions extends sfActions{
+  public function executeTagList(sfWebRequest $request) {
+   	$id = $request->getParameter("entityId", false);
+   	$type = $request->getParameter("type", false);
+   	$this->page = $request->getParameter("page", 1);
+   	
+   	if ($type == Politico::NUM_ENTITY){
+  		$this->entity = PoliticoPeer::retrieveByPK($id);
+   	} 
+  }
   public function executeRules(sfWebRequest $request) {
   }
   public function executeContact(sfWebRequest $request) {
