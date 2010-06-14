@@ -56,7 +56,7 @@ CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_propuesta` (
   PRIMARY KEY (`etiqueta_id`, `propuesta_id`) ,
   INDEX `fk_etiqueta_propuesta_2` (`propuesta_id` ASC) ,
   CONSTRAINT `fk_etiqueta_propuesta_1`
-    FOREIGN KEY ()
+    FOREIGN KEY (fk_etiqueta_propuesta_1)
     REFERENCES `voota`.`etiqueta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
