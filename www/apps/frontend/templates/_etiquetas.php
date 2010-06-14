@@ -5,18 +5,20 @@
   $(document).ready(function(){
 
 	$("#nueva-etiqueta").closest('form').submit(function(){
-		var data = $("#nueva-etiqueta").closest('form').serialize();
-  		$.ajax({
-    		  type     : 'POST',
-    		  dataType : 'html',
-    		  data:data,
-    		  url      : '<?php echo url_for('politico/newtag')?>',
-    		  success  : function(data, textStatus) {
-    			$("#nueva-etiqueta-ac").val('');  
-    			re_loading( 'taglist' );
-    		  	$('#taglist').html(data);
-    		  }
-    		});
+		if($("#nueva-etiqueta-ac").attr('value') != '' && $("#nueva-etiqueta-ac").attr('value') != $("#nueva-etiqueta-ac").attr('title')){
+			var data = $("#nueva-etiqueta").closest('form').serialize();
+	  		$.ajax({
+	    		  type     : 'POST',
+	    		  dataType : 'html',
+	    		  data:data,
+	    		  url      : '<?php echo url_for('politico/newtag')?>',
+	    		  success  : function(data, textStatus) {
+	    			$("#nueva-etiqueta-ac").val('');  
+	    			re_loading( 'taglist' );
+	    		  	$('#taglist').html(data);
+	    		  }
+	    		});
+		}
 		return false;
 	});
 	
