@@ -28,6 +28,7 @@ class SfVoUtil
 	
 	public static function encodeVanity( $str ) {
 		$ret = str_replace(" ", self::URL_FILLER, trim($str));
+		$ret = self::fixVanityChars( $ret );
 		
 		while (strlen( $ret ) < SfVoUtil::VANITY_MIN_LENGTH){
 			$ret .= self::URL_FILLER;
