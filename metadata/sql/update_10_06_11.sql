@@ -10,20 +10,20 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
 
-CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_partido` (
+CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_propuesta` (
   `etiqueta_id` INT(11) NOT NULL ,
-  `partido_id` INT(11) NOT NULL ,
-  PRIMARY KEY (`etiqueta_id`, `partido_id`) ,
-  INDEX `fk_etiqueta_partido_1` (`etiqueta_id` ASC) ,
-  INDEX `fk_etiqueta_partido_2` (`partido_id` ASC) ,
-  CONSTRAINT `fk_etiqueta_partido_1`
+  `propuesta_id` INT(11) NOT NULL ,
+  INDEX `fk_etiqueta_propuesta_1` (`etiqueta_id` ASC) ,
+  INDEX `fk_etiqueta_propuesta_2` (`propuesta_id` ASC) ,
+  PRIMARY KEY (`etiqueta_id`, `propuesta_id`) ,
+  CONSTRAINT `fk_etiqueta_propuesta_1`
     FOREIGN KEY (`etiqueta_id` )
     REFERENCES `voota`.`etiqueta` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_etiqueta_partido_2`
-    FOREIGN KEY (`partido_id` )
-    REFERENCES `voota`.`partido` (`id` )
+  CONSTRAINT `fk_etiqueta_propuesta_2`
+    FOREIGN KEY (`propuesta_id` )
+    REFERENCES `voota`.`propuesta` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -51,14 +51,15 @@ DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
 
 CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_propuesta` (
-  `etiqueta_id` INT(11) NOT NULL ,
-  `propuesta_id` INT(11) NOT NULL ,
-  PRIMARY KEY (`etiqueta_id`, `propuesta_id`) ,
+  `id` INT(11) NOT NULL ,
+  `etiqueta_id` INT(11) NULL DEFAULT NULL ,
+  `propuesta_id` INT(11) NULL DEFAULT NULL ,
+  PRIMARY KEY (`id`) ,
   INDEX `fk_etiqueta_propuesta_1` (`etiqueta_id` ASC) ,
   INDEX `fk_etiqueta_propuesta_2` (`propuesta_id` ASC) ,
   CONSTRAINT `fk_etiqueta_propuesta_1`
-    FOREIGN KEY (fk_etiqueta_propuesta_1)
-    REFERENCES `voota`.`etiqueta` (`id`)
+    FOREIGN KEY (`etiqueta_id` )
+    REFERENCES `voota`.`etiqueta` (`id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_etiqueta_propuesta_2`
