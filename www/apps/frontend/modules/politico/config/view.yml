@@ -4,6 +4,7 @@ default:
     subreviews:  [sfReviewFront, subreviews]
     review_list:  [sfReviewFront, reviewList]
     quickvote:  [sfReviewFront, quickvote]
+    tags:  [general, tags]
     
 all:
   javascripts: 

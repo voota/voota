@@ -1,9 +1,12 @@
 <?php
 
- 
- 
 class generalComponents extends sfComponents
 {
+	public function executeTags(){
+		$this->myTags = TagManager::getTagsByLoggedUser($this->entity);
+		$this->allTags = TagManager::getTags($this->entity);
+	}
+	
   public function executePropuestaResult(){
   	$this->quote = '';
   	

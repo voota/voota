@@ -19,8 +19,19 @@ require 'lib/model/om/BaseEtiqueta.php';
  * @package    lib.model
  */
 class Etiqueta extends BaseEtiqueta {
-  public function __toString()
-  {
-	return $this->getTexto();
-  }
+	protected $count = 0;
+	
+	public function __toString()
+	{
+		return $this->getTexto();
+	}
+  
+	public function getCount(){
+		return $this->count;
+	}
+	public function setCount($v){
+		$this->count = $v;
+		
+		return $this;
+	}
 } // Etiqueta

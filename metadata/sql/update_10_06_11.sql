@@ -57,7 +57,7 @@ CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_propuesta` (
   INDEX `fk_etiqueta_propuesta_2` (`propuesta_id` ASC) ,
   CONSTRAINT `fk_etiqueta_propuesta_1`
     FOREIGN KEY ()
-    REFERENCES `voota`.`etiqueta` ()
+    REFERENCES `voota`.`etiqueta` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_etiqueta_propuesta_2`
@@ -90,8 +90,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
 
-ALTER TABLE `voota`.`etiqueta` AUTO_INCREMENT =  
-, ADD UNIQUE INDEX `texto_UNIQUE` (`texto` ASC) ;
+ALTER TABLE `voota`.`etiqueta` ADD UNIQUE INDEX `texto_UNIQUE` (`texto` ASC) ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

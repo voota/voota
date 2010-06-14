@@ -665,42 +665,11 @@ class politicoActions extends sfActions
   public function executeNewtag(sfWebRequest $request)
   {
   	$texto = $request->getParameter('texto', false);
-  	$politicoId = $request->getParameter('politico', false);
-  	
-  	if ($this->getUser()->isAuthenticated() && $texto){
-  		$tags = preg_split ("/[\s,]+/", $texto);
-  		foreach ($tags as $tag){
-	  		$c = new Criteria();
-	  		$c->add(EtiquetaPeer::TEXTO, $tag);
-	  		$etiqueta = EtiquetaPeer::doSelectOne( $c );
-	  		if (!$etiqueta){
-			  	$etiqueta = new Etiqueta();
-			  	$etiqueta->setTexto( $tag );
-			  	$etiqueta->save();
-	  		}
-	  		$c = new Criteria();
-	  		$c->add(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $etiqueta->getId());
-	  		$c->add(EtiquetaSfGuardUserPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
-	  		$etiquetaUsuario = EtiquetaSfGuardUserPeer::doSelectOne( $c );
-	  		if (!$etiquetaUsuario){
-	  			$etiquetaUsuario = new EtiquetaSfGuardUser();
-	  			$etiquetaUsuario->setSfGuardUserId($this->getUser()->getGuardUser()->getId());
-	  			$etiquetaUsuario->setEtiquetaId($etiqueta->getId());
-	  			$etiquetaUsuario->setFecha( time() );
-	  			$etiquetaUsuario->save();
-	  		}
-	
-	  	  	$c->add(EtiquetaPoliticoPeer::ETIQUETA_ID, $etiqueta->getId());
-	  		$c->add(EtiquetaPoliticoPeer::POLITICO_ID, $politicoId);
-	  		$etiquetaPolitico = EtiquetaPoliticoPeer::doSelectOne( $c );
-	  		if (!$etiquetaPolitico){
-	  			$etiquetaPolitico = new EtiquetaPolitico();
-	  			$etiquetaPolitico->setPoliticoId($politicoId);
-	  			$etiquetaPolitico->setEtiquetaId($etiqueta->getId());
-	  			$etiquetaPolitico->save();
-	  		}
-  		}
-  	}
+  	$id = $request->getParameter('entity', false);
+  	$entity = PoliticoPeer::retrieveByPK( $politicoId );
+
+  	if ($entity)
+  		TagManager::newTag($entity, $texto);  	
   }
   
 }
