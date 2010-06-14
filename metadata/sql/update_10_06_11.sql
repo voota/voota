@@ -54,6 +54,7 @@ CREATE  TABLE IF NOT EXISTS `voota`.`etiqueta_propuesta` (
   `etiqueta_id` INT(11) NOT NULL ,
   `propuesta_id` INT(11) NOT NULL ,
   PRIMARY KEY (`etiqueta_id`, `propuesta_id`) ,
+  INDEX `fk_etiqueta_propuesta_1` (`etiqueta_id` ASC) ,
   INDEX `fk_etiqueta_propuesta_2` (`propuesta_id` ASC) ,
   CONSTRAINT `fk_etiqueta_propuesta_1`
     FOREIGN KEY (fk_etiqueta_propuesta_1)
