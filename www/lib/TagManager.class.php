@@ -17,6 +17,15 @@
  */
 
 class TagManager {	
+  	public static function removeTag($id){  	
+  		$user = sfContext::getInstance()->getUser();
+
+  		if($user->isAuthenticated() && $id){		  	
+		  	$etiqueta = EtiquetaSfGuardUserPeer::retrieveByPK($id, $user->getGuardUser()->getId());
+		  	$etiqueta->delete();
+  		}
+  	}
+  	
   	public static function newTag($entity, $texto){
   		$user = sfContext::getInstance()->getUser();
   		
@@ -74,8 +83,9 @@ class TagManager {
 	  		if ($entity->getType() == Politico::NUM_ENTITY){
 	  			$query .= " WHERE ep.politico_id = ?";  				
 	  		}
-	  		$query .= " AND eu.sf_guard_user_id = ?";  				
-	  		$query .= " GROUP BY e.id";
+	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";  				
+	  		$query .= " GROUP BY e.id";				
+	  		$query .= " ORDER BY count DESC, id DESC";
   		}
   		else {
   			return array();
@@ -94,20 +104,20 @@ class TagManager {
   		$user = sfContext::getInstance()->getUser();
   		
   		$query = "SELECT e.*, count(*) count FROM etiqueta e";  	
+  		$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
   		if ($entity->getType() == Politico::NUM_ENTITY){
   			$query .= " INNER JOIN etiqueta_politico ep ON (ep.etiqueta_id = e.id)";
   				
   		}
-  		if ($user->isAuthenticated()){
-  			$query .= " LEFT JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
-   		}
   		if ($entity->getType() == Politico::NUM_ENTITY){
   			$query .= " WHERE ep.politico_id = ?";
   		}  		
   		if ($user->isAuthenticated()){
-  			$query .= " AND eu.sf_guard_user_id != ?";
+  			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";
    		}
-  		$query .= " GROUP BY e.id";
+  		$query .= " GROUP BY e.id";	
+	  	$query .= " ORDER BY count DESC, id DESC";
+	  	$query .= " LIMIT 10";
 	  			
 	   	$connection = Propel::getConnection();
 		$statement = $connection->prepare($query);		
