@@ -1,20 +1,19 @@
+<?php use_helper('I18N') ?>
 
-<?php if ($myTags || $allTags): ?>
+<?php if (count($myTags) > 0 || $allTagsPager->getNbResults() > 0): ?>
   <ul>
     <?php foreach ($myTags as $etiqueta): ?>
-      <li>
-        <a href="#"><?php echo $etiqueta // TODO: Enlazar a página de etiqueta ?></a>
+      <li class="review">
+        <a href="<?php echo url_for('general/search?tag='.$etiqueta)?>"><?php echo $etiqueta ?></a>
         <?php echo "(".$etiqueta->getCount().")" ?>
         <a href="#" class="remove" onclick="return removeTag(<?php echo $etiqueta->getId()?>)">X</a>
       </li>
     <?php endforeach ?>
-    <?php foreach ($allTags as $etiqueta): ?>
-      <li>
-        <a href="#"><?php echo $etiqueta // TODO: Enlazar a página de etiqueta ?></a>
-        <?php echo "(".$etiqueta->getCount().")" ?>
-      </li>
-    <?php endforeach ?>
+    
+	<?php include_component_slot('tagList', array('entity' => $entity, 'myCount' => count($myTags))) ?>
+    
   </ul>
 <?php else: ?>
   <p><?php echo __('Aún no ha sido etiquetado') ?></p>
 <?php endif ?>
+

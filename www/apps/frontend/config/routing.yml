@@ -1,11 +1,31 @@
 # default rules
 
 ### OPINIONES ###
+
+tag_serp:
+  url:   /tag/:tag
+  param: { module: general, action: search }
+  
+tag_pager:
+  url:   /general/tagList
+  param: { module: general, action: tagList }
     
 list_page:
   url:   /review/list_page
   param: { module: sfReviewFront, action: listPage }
     
+politico_tags:
+  url:   /tags
+  param: { module: general, action: tags }
+  
+politico_newtag:
+  url:   /newtag
+  param: { module: general, action: newtag }
+  
+politico_rmtag:
+  url:   /rmtag
+  param: { module: general, action: rmtag }
+ 
 ultimas_opiniones_es:
   url: /últimas-opiniones
   param: { module: sfReviewFront, action: list, type_id: false }
@@ -238,19 +258,7 @@ propuesta_feed_ca:
     sf_host_culture: cat
     
 ### POLITICOS ###
-    
-politico_tags:
-  url:   /politico/tags
-  param: { module: politico, action: tags }
-  
-politico_newtag:
-  url:   /politico/newtag
-  param: { module: politico, action: newtag }
-  
-politico_rmtag:
-  url:   /politico/rmtag
-  param: { module: politico, action: rmtag }
-  
+ 
 partido_ac_partido:
   url: /politico/ac_partido
   param: { module: politico, action: acPartido }

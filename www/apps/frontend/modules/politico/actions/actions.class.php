@@ -640,45 +640,4 @@ class politicoActions extends sfActions
   	
   }
   
-  public function executeTags(sfWebRequest $request)
-  {
-  	$term = $request->getParameter('term');
-  	
-	  	$c = new Criteria();
-	  	$c->add(EtiquetaPeer::TEXTO, "%$term%", Criteria::LIKE);
-	  	$etiquetas = EtiquetaPeer::doSelect( $c );
-	  	
-	  	$res = '[';	
-		$idx = 0;
-		foreach ($etiquetas as $etiqueta){
-			$idx++;
-			$res .= ($idx > 1?',':'').'{"id": "'. $etiqueta->getId() .'", "value": "'. $etiqueta .'"}';
-		}
-		$res .= ']';
-		
-		$response = $this->getResponse();
-	    $response->setContentType('application/json');
-	    
-		echo $res;die;
-  }
-  
-  public function executeNewtag(sfWebRequest $request)
-  {
-  	$texto = $request->getParameter('texto', false);
-  	$id = $request->getParameter('entity', false);
-  	$this->entity = PoliticoPeer::retrieveByPK( $id );
-
-  	if ($this->entity)
-  		TagManager::newTag($this->entity, $texto);  	
-  }
-  
-  public function executeRmtag(sfWebRequest $request)
-  {
-  	$e = $request->getParameter('e', false);
-  	$id = $request->getParameter('id', false);
-  	TagManager::removeTag($id);  	
-  	
-  	$this->entity = PoliticoPeer::retrieveByPK( $e );
-  }
-  
 }
