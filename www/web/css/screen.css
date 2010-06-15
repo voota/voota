@@ -462,6 +462,7 @@ table.rankings .negative-votes { text-align:right;}
 .entity-page .reviews { clear: left; padding: 35px 0 0 0; border: none;}
 .entity-page .reviews .ui-tabs-panel { padding: 20px 0;}
 .entity-page .ui-tabs-nav { padding: 0; border: none; border-bottom: 1px solid #809DB9;}
+.entity-page .ui-tabs-nav li { overflow: hidden;}
 
 /* Página de partido */
 #partido-show #elecciones { margin: 20px 0;}
