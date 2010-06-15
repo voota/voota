@@ -42,7 +42,7 @@ Call it with:
 EOF;
   }
 
-  const DEST = "/var/www/voota/www";
+  const DEST = "/var/www/voota/www/web";
   const MAX_URLS = 50000;
   var $files = array();
   var $index = false;
@@ -53,7 +53,7 @@ EOF;
   	
     if (!$this->index){
   		$this->index = array();
-  		$this->index['handle']  = fopen(self::DEST . "/sitemapindex-$culture.xml.gz", "w");
+  		$this->index['handle']  = fopen(self::DEST . "/sitemapindex-$culture.xml", "w");
   		fwrite($this->index['handle'],  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>$lf");
   		fwrite($this->index['handle'],  "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">$lf");
   	}
@@ -76,7 +76,7 @@ EOF;
   			$aFile['count'] = 0;
   			fclose($aFile['handle']);
   			$this->writeToIndex($aFile['url'], $culture);
-  			$aFile['handle']  = fopen(self::DEST . "/$file-".$aFile['part'].".xml.gz", "w");
+  			$aFile['handle']  = fopen(self::DEST . "/$file-".$aFile['part'].".xml", "w");
   			$aFile['url']  = "http://voota.".$this->cultures[$culture]."/$file-".$aFile['part'].".xml.gz";
   			$this->files[$file] = $aFile;
   			fwrite($aFile['handle'],  "<?xml version=\"1.0\" encoding=\"UTF-8\"?>$lf");
@@ -85,7 +85,7 @@ EOF;
   	}
   	if (!isset($this->files[$file])){
   		$aFile = array();
-  		$aFile['handle']  = fopen(self::DEST . "/$file.xml.gz", "w");
+  		$aFile['handle']  = fopen(self::DEST . "/$file.xml", "w");
   		$aFile['url']  = "http://voota.".$this->cultures[$culture]."/$file.xml.gz";
   		$aFile['count'] = 0;
   		$aFile['part'] = 0;

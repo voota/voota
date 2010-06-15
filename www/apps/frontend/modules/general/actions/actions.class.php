@@ -134,14 +134,23 @@ class generalActions extends sfActions{
   public function executeSearch(sfWebRequest $request) {
   	$culture = $this->getUser()->getCulture();
   	
-   	$this->q = $request->getParameter("q");
+   	$tag = $request->getParameter("tag", false);
+   	if ($tag){
+	   	$this->q = "#$tag";
+   	}
+   	else {
+	   	$this->q = $request->getParameter("q");
+   	}
+   	$request->setAttribute("q", $this->q);
   	
    	$resultsArray = array();
    	
-   	$cl = $this->resetSphinxClient();
+   	$cl = $this->resetSphinxClient();   	
+   	
+   	$needle = (strpos($this->q, '#') === 0?'vootag':''). SfVoUtil::stripAccents( (strpos($this->q, '#') === 0?substr($this->q,1):$this->q) );
 	
    	# Partidos
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "partido_$culture" );
+	$this->res = $cl->Query ( $needle, "partido_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -163,7 +172,8 @@ class generalActions extends sfActions{
         }	
 	}
 	
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "institucion_$culture" );
+	#instituciones
+	$this->res = $cl->Query ( $needle, "institucion_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -180,8 +190,9 @@ class generalActions extends sfActions{
         }	
 	}
 	
+	# Politicos
 	$cl->SetArrayResult(true);
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "politico_$culture" );
+	$this->res = $cl->Query ( $needle, "politico_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
@@ -207,7 +218,7 @@ class generalActions extends sfActions{
 	}
 		
    	# Propuestas 
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "propuesta_$culture" );
+	$this->res = $cl->Query ( $needle, "propuesta_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -230,7 +241,7 @@ class generalActions extends sfActions{
         }	
 	}
 	
-	$this->res = $cl->Query ( SfVoUtil::stripAccents( $this->q ), "usuario" );
+	$this->res = $cl->Query ( $needle. SfVoUtil::stripAccents( $this->q ), "usuario" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
