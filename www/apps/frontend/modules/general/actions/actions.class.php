@@ -23,9 +23,17 @@ class generalActions extends sfActions{
    	$type = $request->getParameter("type", false);
    	$this->page = $request->getParameter("page", 1);
    	
-   	if ($type == Politico::NUM_ENTITY){
-  		$this->entity = PoliticoPeer::retrieveByPK($id);
-   	} 
+  	switch($type){
+  		case Politico::NUM_ENTITY:
+  			$this->entity = PoliticoPeer::retrieveByPK( $id );
+  			break;
+  		case Partido::NUM_ENTITY:
+  			$this->entity = PartidoPeer::retrieveByPK( $id );
+  			break;
+   		case Propuesta::NUM_ENTITY:
+  			$this->entity = PropuestaPeer::retrieveByPK( $id );
+	  		break;
+  	}
   }
   public function executeRules(sfWebRequest $request) {
   }
@@ -284,6 +292,70 @@ class generalActions extends sfActions{
   
     private function sendMessage( $nombre, $email, $mensaje, $tipo ){
 	  
+  }
+
+    
+  public function executeTags(sfWebRequest $request)
+  {
+  	$term = $request->getParameter('term');
+  	
+	  	$c = new Criteria();
+	  	$c->add(EtiquetaPeer::TEXTO, "%$term%", Criteria::LIKE);
+	  	$etiquetas = EtiquetaPeer::doSelect( $c );
+	  	
+	  	$res = '[';	
+		$idx = 0;
+		foreach ($etiquetas as $etiqueta){
+			$idx++;
+			$res .= ($idx > 1?',':'').'{"id": "'. $etiqueta->getId() .'", "value": "'. $etiqueta .'"}';
+		}
+		$res .= ']';
+		
+		$response = $this->getResponse();
+	    $response->setContentType('application/json');
+	    
+		echo $res;die;
+  }
+  
+  public function executeNewtag(sfWebRequest $request)
+  {
+  	$texto = $request->getParameter('texto', false);
+  	$id = $request->getParameter('entity', false);
+  	$type = $request->getParameter('type', false);
+  	switch($type){
+  		case Politico::NUM_ENTITY:
+  			$this->entity = PoliticoPeer::retrieveByPK( $id );
+  			break;
+  		case Partido::NUM_ENTITY:
+  			$this->entity = PartidoPeer::retrieveByPK( $id );
+  			break;
+   		case Propuesta::NUM_ENTITY:
+  			$this->entity = PropuestaPeer::retrieveByPK( $id );
+	  		break;
+  	}
+
+  	if ($this->entity)
+  		TagManager::newTag($this->entity, $texto);  	
+  }
+  
+  public function executeRmtag(sfWebRequest $request)
+  {
+  	$e = $request->getParameter('e', false);
+  	$id = $request->getParameter('id', false);
+  	$type = $request->getParameter('type', false);
+  	TagManager::removeTag($id);  	
+  
+  	switch($type){
+  		case Politico::NUM_ENTITY:
+  			$this->entity = PoliticoPeer::retrieveByPK( $e );
+  			break;
+  		case Partido::NUM_ENTITY:
+  			$this->entity = PartidoPeer::retrieveByPK( $e );
+  			break;
+   		case Propuesta::NUM_ENTITY:
+  			$this->entity = PropuestaPeer::retrieveByPK( $e );
+	  		break;
+  	}
   }
   
 }
