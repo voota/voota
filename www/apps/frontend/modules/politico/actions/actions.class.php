@@ -443,15 +443,19 @@ class politicoActions extends sfActions
   	}
   	
   	// Estabamos vootando antes del login ?
-  	$v = $this->getUser()->getAttribute('review_v');
-  	if ($v && $v != ''){
-  		$e = $this->getUser()->getAttribute('review_e');
-  		$this->getUser()->setAttribute('review_v', '');
-  		$this->getUser()->setAttribute('review_e', '');
-  		
-  		if ($e == $id && $this->getUser()->isAuthenticated()) {
-  			$this->review_v = $v;
-  		}	
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
   	}
 	
   	if ($this->politico->getImagen() != ''){

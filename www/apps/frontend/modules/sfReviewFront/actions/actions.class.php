@@ -384,46 +384,5 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	
 	$this->updateSums( $request );  	  	
   }
-  
-  protected function prepareRedirect($entityId, $type){
-  	$culture = $this->getRequest()->getParameter("sf_culture");
-  	$rule = "@politico_$culture";
-  	if ($type == ''){
-  		$review = SfReviewPeer::retrieveByPk($entityId);
-  		$this->getUser()->setAttribute('review_c', $entityId);
-  		if ($review->getSfReviewTypeId() == Politico::NUM_ENTITY){
-		  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
-  			$url = "politico/show?id=" . $politico->getVanity();
-  			$url .= "#subreviews_box$entityId";
-  		}
-  		else if ($review->getSfReviewTypeId() == Partido::NUM_ENTITY){
-		  	$partido = PartidoPeer::retrieveByPK( $review->getEntityId() );
-  			$url = "partido/show?id=" . $partido->getAbreviatura();
-  			$url .= "#subreviews_box$entityId";
-  		}
-  	}
-  	else if ($type == Politico::NUM_ENTITY){
-  		$politico = PoliticoPeer::retrieveByPK( $entityId );
-  		$url = "politico/show?id=" . $politico->getVanity();		
-  	}
-  	else if ($type == Partido::NUM_ENTITY){
-  		$partido = PartidoPeer::retrieveByPK( $entityId );
-  		$url = "partido/show?id=" . $partido->getAbreviatura();		
-  	}
-  	$this->getUser()->setAttribute('url_back', $url);
-  	
-  	$this->getUser()->setAttribute('review_v', $this->reviewValue);
-  	$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  	
-  	$this->getUser()->setFlash('notice_type', 'warning', true);
-  	/*
-    $this->getUser()->setFlash(
-    	'notice', 
-		sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
-		, true
-	);
-	*/
-	
-	$this->redirect('@sf_guard_signin');
-  }
+
 }

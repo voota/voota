@@ -15,8 +15,8 @@
 		}
 	});
 
- 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
-	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');
+ 	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');
   });
   
   $(window).load(function(){
@@ -46,7 +46,27 @@
       <?php include_partial('photo', array('propuesta' => $propuesta)) ?>
       <div class="vote">
         <h3><?php echo __('Voota sobre')?> "<?php echo $propuesta->getTitulo(); ?>"</h3>
-        <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+        <div id="sf_review1">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review1'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $propuesta->getId(),
+				'reviewType' => Propuesta::NUM_ENTITY,
+				'reviewBox' => 'sf_review1',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review1', 
+				'reviewType' => Propuesta::NUM_ENTITY, 
+				'reviewEntityId' => $propuesta->getId()
+			)); ?>
+      	<?php endif ?>
+        </div>
       </div>
     </div>
 
@@ -69,7 +89,27 @@
 
     <div class="vote">
       <h3><?php echo __('Voota sobre %1%', array('%1%' => '"'.$propuesta->getTitulo().'"'))?></h3>
-      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+      <div id="sf_review2">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review2'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $propuesta->getId(),
+				'reviewType' => Propuesta::NUM_ENTITY,
+				'reviewBox' => 'sf_review2',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review2', 
+				'reviewType' => Propuesta::NUM_ENTITY, 
+				'reviewEntityId' => $propuesta->getId()
+			)); ?>
+      	<?php endif ?>      
+      </div>
     </div>
   
     <?php if ($propuestasPager): ?>

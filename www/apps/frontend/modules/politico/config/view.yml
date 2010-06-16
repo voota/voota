@@ -6,6 +6,9 @@ default:
     quickvote:  [sfReviewFront, quickvote]
     tags:  [general, tags]
     tagList:  [general, tagList]
+    sendStmt:   [sfReviewFront, sendStmt]
+    sfrForm:  [sfReviewFront, sfrForm]
+    sfrPreview:  [sfReviewFront, sfrPreview]
     
 all:
   javascripts: 

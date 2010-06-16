@@ -5,7 +5,7 @@ function re_loading( box ){
 function loadReviewBox(url, t, e, v,  box) {
 	re_loading( box );
 
-	var aUrl = url +'?t='+(t?t:'')+'&e='+e+'&v='+v+'&b='+box+'';
+	var aUrl = url +'?nl=1&t='+(t?t:'')+'&e='+e+'&v='+v+'&b='+box+'';
   $('#sfrc_'+e).show();
 	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl});
 	return false;
@@ -80,4 +80,25 @@ function publishFaceBook(msg, attachment, action_links, tip) {
 				  , true
 		  );
 	  });
+}
+
+function ejem( url, ub ) {
+    var form = document.createElement("form");
+    form.setAttribute("method", 'post');
+    form.setAttribute("action", url);
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "dialog");
+    hiddenField.setAttribute("value", "1");
+    form.appendChild(hiddenField);
+
+    var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "url_back");
+    hiddenField.setAttribute("value", ub);
+    form.appendChild(hiddenField);
+
+    document.body.appendChild(form);
+    form.submit();
 }

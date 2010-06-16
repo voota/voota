@@ -90,9 +90,19 @@ class BasesfReviewFrontActions extends sfActions
 	if($t == ''){
   		return "SimpleSuccess";
    	}
-  }
+  }  
   
-  protected function prepareRedirect( $entityId, $type ){
+  protected function prepareRedirect( $request ){
+  	$sfr_status = array();
+  	$sfr_status['v'] = $request->getParameter("v");
+  	$sfr_status['t'] = $request->getParameter("t");
+  	$sfr_status['e'] = $request->getParameter("e");
+  	$sfr_status['b'] = $request->getParameter("b");
+  	$sfr_status['nl'] = $request->getParameter("nl");
+  	
+  	$this->getUser()->setAttribute('sfr_status', $sfr_status, 'sf_review'); 
+
+	//$this->redirect('@sf_guard_signin');
   }
   
   public function executeForm(sfWebRequest $request)
@@ -108,32 +118,35 @@ class BasesfReviewFrontActions extends sfActions
   		$this->cf = 1;	
   	}
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
+  	$this->redirect = false;
   	if (! $this->getUser()->isAuthenticated()) {
-		//$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
   		if( $nl == 1 ){
-  			$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
+  			$this->prepareRedirect( $request );
+  			$this->redirect = '@sf_guard_signin';
   		}
   		else {
 			return 'NotLogged';
   		}
   	}
   	
-  	$criteria = new Criteria();
-  	$t = $request->getParameter("t");
-  	if ($t != '') {
-  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
-  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
-  	}
-  	else {
-  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
-  	}
-  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-  	$review = SfReviewPeer::doSelect($criteria);
-  	if ($review) {
-  		$this->reviewValue = $review[0]->getValue();
-  		$this->reviewText = $review[0]->getText();
-  		$this->reviewId = $review[0]->getId();
-  		$this->reviewToFb = $review[0]->getToFb();
+  	if (!$this->redirect){
+	  	$criteria = new Criteria();
+	  	$t = $request->getParameter("t");
+	  	if ($t != '') {
+	  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+	  	}
+	  	else {
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
+	  	}
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+	  	$review = SfReviewPeer::doSelectOne($criteria);
+	  	if ($review) {
+	  		$this->reviewValue = $review->getValue();
+	  		$this->reviewText = $review->getText();
+	  		$this->reviewId = $review->getId();
+	  		$this->reviewToFb = $review->getToFb();
+	  	}
   	}
    }
   

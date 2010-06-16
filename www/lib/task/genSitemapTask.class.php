@@ -97,7 +97,7 @@ EOF;
  	fwrite($aFile['handle'],  "<url>$lf"); 		
  	fwrite($aFile['handle'],  "<loc>$url</loc>$lf");
  	fwrite($aFile['handle'],  "<lastmod>".date('c')."</lastmod>$lf");
- 	fwrite($aFile['handle'],  "<changefreq>dayly</changefreq>$lf");
+ 	fwrite($aFile['handle'],  "<changefreq>weekly</changefreq>$lf");
  	fwrite($aFile['handle'],  "<priority>0.5</priority>$lf");
  	fwrite($aFile['handle'],  "</url>$lf");
  	$aFile['count']++;
