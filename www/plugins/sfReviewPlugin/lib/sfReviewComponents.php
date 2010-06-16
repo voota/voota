@@ -27,6 +27,7 @@ class sfReviewComponents extends sfComponents
 	}
 	public function executeReviews(){
 		$this->page = $this->page?$this->page:1;
+		sfContext::getInstance()->getRequest()->setAttribute('page', $this->page);
 		
 		$filter = array();
 		if (isset($this->sfReviewType))
@@ -42,7 +43,9 @@ class sfReviewComponents extends sfComponents
 		if (isset($this->culture))
 			$filter['culture'] = $this->culture;
 			
-  		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page, 20);		
+		$sfr_status = sfContext::getInstance()->getRequest()->getAttribute('sfr_status', false);
+
+		$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page, 20 * ($sfr_status && !$sfr_status['t']?$sfr_status['pag']:1));		
 	}
 	
 	public function executeReviewForList(){

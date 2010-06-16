@@ -54,6 +54,22 @@ class BasesfReviewFrontActions extends sfActions
   	$this->slot = $request->getParameter("slot", false);
   	$this->userId = $request->getParameter("userId", false);
   	
+  	// Estabamos vootando antes del login ?
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
+  	}
+  	
   	$c = new Criteria;
   	if ($this->sfReviewType) {
   		$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
@@ -99,6 +115,8 @@ class BasesfReviewFrontActions extends sfActions
   	$sfr_status['e'] = $request->getParameter("e");
   	$sfr_status['b'] = $request->getParameter("b");
   	$sfr_status['nl'] = $request->getParameter("nl");
+  	$sfr_status['pag'] = $request->getParameter("page", 1);
+  	$sfr_status['tab'] = $request->getParameter("tab", false);
   	
   	$this->getUser()->setAttribute('sfr_status', $sfr_status, 'sf_review'); 
 

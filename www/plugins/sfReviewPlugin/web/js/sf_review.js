@@ -2,11 +2,17 @@ function re_loading( box ){
 	$("#"+box).html("<img src='/images/spinner.gif' alt='cargando' />");
 }
 
-function loadReviewBox(url, t, e, v,  box) {
+function loadReviewBox(url, t, e, v,  box, options) {	alert(1);
 	re_loading( box );
 
 	var aUrl = url +'?nl=1&t='+(t?t:'')+'&e='+e+'&v='+v+'&b='+box+'';
-  $('#sfrc_'+e).show();
+	if (options) {
+		for (var i in options) {
+			aUrl += '&' + i + '=' + options[i];
+		}
+	}
+
+  	$('#sfrc_'+e).show();
 	jQuery.ajax({type:'POST',dataType:'html',success:function(data, textStatus){jQuery('#'+box).html(data);},url:aUrl});
 	return false;
 }
@@ -101,4 +107,18 @@ function ejem( url, ub ) {
 
     document.body.appendChild(form);
     form.submit();
+}
+
+function subvote(boxId, id, page, url){
+	var options = new Array();
+	if (typeof $(".reviews" ).tabs !== 'undefined'){
+		options['tab'] = $( ".reviews" ).tabs( "option", "selected" );
+	}
+	if (page) {
+		options['page'] = page;
+	}
+	$('#sf_review_sr_c' + boxId).slideDown();
+  	document.getElementById('subreviews_box' + boxId).className = 'subreviews shown';
+
+	return loadReviewBox(url, null,  id,  0, 'sfrc' + boxId, options );
 }
