@@ -65,3 +65,7 @@ function ByteSize($bytes) {
     
     return $size;
 }
+
+function secureString( $str, $rep = '&quot;' ){
+	return SfVoUtil::secureString( $str, $rep);
+}

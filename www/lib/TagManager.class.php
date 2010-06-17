@@ -120,7 +120,7 @@ class TagManager {
 	  		}  		
 	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";  				
 	  		$query .= " GROUP BY e.id";				
-	  		$query .= " ORDER BY count DESC, id DESC";
+	  		$query .= " ORDER BY eu.fecha DESC, count DESC";
   		}
   		else {
   			return array();
@@ -163,7 +163,7 @@ class TagManager {
   			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";
    		}
   		$query .= " GROUP BY e.id";	
-	  	$query .= " ORDER BY count DESC, id DESC";
+	  	$query .= " ORDER BY count DESC, eu.fecha DESC";
 	  			
 	  	$pager = new sfQueryPager('Etiqueta', 5);
 	  	$pager->setQuery($query);

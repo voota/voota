@@ -168,7 +168,7 @@ class generalActions extends sfActions{
   			
   			$partidos = PartidoPeer::doSelect($c);
   			
-  			$resultsArray = array_merge  ( $resultsArray, $partidos );		    
+  			//$resultsArray = array_merge  ( $resultsArray, $partidos );		    
         }	
 	}
 	
@@ -186,12 +186,13 @@ class generalActions extends sfActions{
   			
   			$instituciones = InstitucionPeer::doSelect($c);
   			
-  			$resultsArray = array_merge  ( $resultsArray, $instituciones );	
+  			//$resultsArray = array_merge  ( $resultsArray, $instituciones );	
         }	
 	}
 	
 	# Politicos
 	$cl->SetArrayResult(true);
+	$cl->SetFieldWeights(array('nonre' => 100, 'apellidos' => 100));
 	$this->res = $cl->Query ( $needle, "politico_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
@@ -207,8 +208,10 @@ class generalActions extends sfActions{
         		$list[] = $match['id'];
         	}
   			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-  			//$c->addSelectColumn("(sumu + sumd) sumt");
-  			$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			
+  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			$c->addAscendingOrderByColumn("ORDER BY FIELD(id,3,4,2,6,8,1)");
+  			
   			$c->setLimit( 100 );
   			
   			$politicos = PoliticoPeer::doSelect($c);
@@ -237,7 +240,7 @@ class generalActions extends sfActions{
   			$c->addDescendingOrderByColumn("(sumu + sumd)");
   			
   			$propuestas = PropuestaPeer::doSelect($c);
-  			$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
+  			//$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
         }	
 	}
 	
@@ -274,7 +277,7 @@ class generalActions extends sfActions{
 			}
   			
   			
-  			$resultsArray = array_merge  ( $resultsArray, $usuarios );
+  			//$resultsArray = array_merge  ( $resultsArray, $usuarios );
         }	
 	}
 	
