@@ -14,6 +14,6 @@
     
   </ul>
 <?php else: ?>
-  <p><?php echo __('Aún no ha sido etiquetado') ?></p>
+  <p><?php echo __('De momento sin etiquetas') ?></p>
 <?php endif ?>
 
