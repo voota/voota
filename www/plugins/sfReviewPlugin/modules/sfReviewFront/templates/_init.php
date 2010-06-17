@@ -21,25 +21,25 @@
 </div>
 
 
-<?php if(!$sf_user->isAuthenticated()): ?>
+<?php /* if(!$sf_user->isAuthenticated()): ?>
 	<?php include_partial('sfReviewFront/dialog') ?>
-<?php endif ?>
+<?php endif */ ?>
 	
 <script type="text/javascript">
 <!--//
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-positive input").click(function(){
-	<?php if(!$sf_user->isAuthenticated()): ?>
-		ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
-	<?php else: ?>
+	<?php //if(!$sf_user->isAuthenticated()): ?>
+		//ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
+	<?php //else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>,  <?php echo $reviewEntityId ?>, 1,  '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
-	<?php endif ?>
+	<?php //endif ?>
 });
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-negative input").click(function(){
-	<?php if(!$sf_user->isAuthenticated()): ?>
-		ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
-	<?php else: ?>
+	<?php //if(!$sf_user->isAuthenticated()): ?>
+		//ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
+	<?php //else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>, <?php echo $reviewEntityId ?>, -1, '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
-	<?php endif ?>
+	<?php //endif ?>
 });
 //-->
 </script>

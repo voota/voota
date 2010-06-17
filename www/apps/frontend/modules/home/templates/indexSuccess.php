@@ -132,7 +132,7 @@
       <form method="get" action="<?php echo url_for('@search')?>">
         <p><label for="q_2"><?php echo __('¡Buusca!')?></label></p>
         <p>
-          <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
+          <input type="text" name="q" id="q_2" value="<?php echo $sf_request->getAttribute('q') ?>" />
         </p>
         <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>

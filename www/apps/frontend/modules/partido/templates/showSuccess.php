@@ -9,8 +9,8 @@
   <!--
   $(document).ready(function(){
     $('.reviews').tabs({ load: function() { FB.XFBML.Host.parseDomTree(); } });
- 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
-	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
+ 	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 2, <?php echo $partido->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
   });
   
   $(window).load(function(){
@@ -41,7 +41,27 @@
       <?php echo image_tag(S3Voota::getImagesUrl().'/partidos/'.$image, 'alt="'. __('Logo de %1%', array('%1%' => $partido->getAbreviatura())) .'"') ?>
       <div class="vote">
         <h3><?php echo __('Voota sobre')?> <?php echo $partido->getAbreviatura(); ?></h3>
-        <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+        <div id="sf_review1">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review1'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $partido->getId(),
+				'reviewType' => Partido::NUM_ENTITY,
+				'reviewBox' => 'sf_review1',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review1', 
+				'reviewType' => Partido::NUM_ENTITY, 
+				'reviewEntityId' => $partido->getId()
+			)); ?>
+      	<?php endif ?>
+        </div>
       </div>
     </div>
 
@@ -56,9 +76,6 @@
                 <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
               <?php endforeach ?>
             </ul>
-            <?php /* Esto que es? Los tenemos? ?>
-            <p><a href="#" class="document"><?php echo __('Programa del %partido% a las elecciones %eleccion%.pdf', array('%partido%' => 'PP', '%eleccion%' => 'Catalunya 2010')) // TODO: Sustituir nombres y enlace ?></a> (245MB)<?php // TODO: Sustituir por tamaño de fichero ?></p>
-            <?php */ ?>
           </div>
         <?php endif ?>
         
@@ -85,7 +102,27 @@
 
     <div class="vote">
       <h3><?php echo __('Voota sobre %1%', array('%1%' => $partido->getNombre()))?></h3>
-      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+      <div id="sf_review2">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review2'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $partido->getId(),
+				'reviewType' => Partido::NUM_ENTITY,
+				'reviewBox' => 'sf_review2',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review2', 
+				'reviewType' => Partido::NUM_ENTITY, 
+				'reviewEntityId' => $partido->getId()
+			)); ?>
+      	<?php endif ?>
+      </div>
     </div>
 
     <?php if ($partidosPager): ?>

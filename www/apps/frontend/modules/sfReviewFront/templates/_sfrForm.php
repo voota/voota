@@ -1,10 +1,11 @@
-<?php include_partial('sfr_form', array(
+<?php include_partial('sfReviewFront/sfr_form', array(
 	'reviewId' => $reviewId,
 	'reviewEntityId' => $reviewEntityId,
 	'reviewType' => $reviewType,
-	'reviewBox' => $reviewBox,
-	'redirect' => $redirect,
+	'reviewBox' => 'sf_review1',
+	'redirect' => false,
 	'reviewValue' => $reviewValue,
 	'reviewText' => $reviewText,
-	'reviewToFb' => $reviewId?$reviewToFb:false
+	'reviewToFb' => $reviewToFb
 )); ?>
+			

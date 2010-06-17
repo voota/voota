@@ -9,11 +9,9 @@
   <!--
   $(document).ready(function(){
     $('.reviews').tabs({
-      load: function() { FB.XFBML.Host.parseDomTree(); }
-		});
-
- 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
-	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', 1, <?php echo $politico->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');	
+    	<?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['tab']):?>selected: <?php echo $sfr_status['tab'] ?>,<?php $sf_user->setAttribute('sfr_status', $sfr_status, 'sf_review');?><?php endif ?>
+    	load: function() { FB.XFBML.Host.parseDomTree(); }
+	});
   });
   
   $(window).load(function(){
@@ -41,7 +39,28 @@
   	    <?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/bw_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
       <div class="vote">
         <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>
-        <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+        <div id="sf_review1">
+        
+      	<?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review1'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $politico->getId(),
+				'reviewType' => Politico::NUM_ENTITY,
+				'reviewBox' => 'sf_review1',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review1', 
+				'reviewType' => Politico::NUM_ENTITY, 
+				'reviewEntityId' => $politico->getId()
+			)); ?>
+      	<?php endif ?>
+        </div>
       </div>
     </div>
 
@@ -122,7 +141,27 @@
 
     <div class="vote">
       <h3><?php echo __('Voota sobre %1%', array('%1%' => $politico->getApellidos()))?></h3>
-      <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+      <div id="sf_review2">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review2'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $politico->getId(),
+				'reviewType' => Politico::NUM_ENTITY,
+				'reviewBox' => 'sf_review2',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review2', 
+				'reviewType' => Politico::NUM_ENTITY, 
+				'reviewEntityId' => $politico->getId()
+			)); ?>
+      	<?php endif ?>
+        </div>
     </div>
 
     <?php if ($politicosPager): ?>
