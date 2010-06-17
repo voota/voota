@@ -468,7 +468,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       		if ($this->profileEditForm->getValue('imagen_delete') != "" ){
       			// Si se elimina la imagen, hay que recargar el formulario para que se refresque
     			$formData->getProfile()->setImagen("");
-				$this->profileEditForm = new ProfileEditForm( $formData );
+    			//$formData->getProfile()->save();
+		      	$this->profileEditForm->setImageSrc( "" );
+		      	$this->profileEditForm->resetImageWidget();
+				//$this->profileEditForm = new ProfileEditForm( $formData );
       		}
       		else {
 				$imageOri = $this->profileEditForm->getObject()->getProfile()->getImagen();
@@ -489,6 +492,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
 		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
 		      		$this->profileEditForm->setImageSrc( $imageName );
+		      		$this->profileEditForm->resetImageWidget();
 		      		
 		      		$this->hasDeepUpdates = true;
 	      		}
