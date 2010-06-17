@@ -49,7 +49,7 @@
     </p>
   </form>
 <?php else: ?>
-  <p><a href="<?php echo url_for('sfGuardAuth/signin')?>"><?php echo __('(Entrar en Voota para etiquetar)') ?></a></p>
+  <p><a href="<?php echo url_for('sfGuardAuth/signin')?>"><?php echo __('(Pero primero haz login, ¿eh?)') ?></a></p>
 <?php endif ?>
 
 <div id="taglist">
