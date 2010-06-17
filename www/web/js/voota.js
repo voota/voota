@@ -259,6 +259,20 @@ function sparkline(id, label, data) {
   } catch(err) { }
 }
 
+jQuery.fn.tooltip_propuesta = function() {
+  $(this).each(function(){
+    var title = '<strong>' + $(this).attr('title').split('|')[0] + '</strong>';
+    var date = $(this).attr('title').split('|')[1];
+    var body = $(this).attr('title').split('|')[2];
+    $(this).qtip({
+      content: '<p>' + title + '</p><p>' + date + '</p><p>' + body + '</p>',
+      position: { corner: { tooltip: 'leftTop', target: 'center' } },
+      style: { name: 'light' }
+    });
+    $(this).attr('title', '');
+  });
+}
+
 jQuery.fn.tooltip_politico_elecciones = function() {
   $(this).each(function(){
     img = $('<div>').append($(this).clone()).remove().html();

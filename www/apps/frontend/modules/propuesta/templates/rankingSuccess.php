@@ -27,14 +27,7 @@
 
 <script type="text/javascript">
   $(document).ready(function (){
-    $('a.tooltip_propuesta').each(function(){
-      $(this).qtip({
-        content: '<p><strong>' + $(this).attr('title').split('|')[0] + '</strong></p><p>' + $(this).attr('title').split('|')[1] + '</p><p>' + $(this).attr('title').split('|')[2] + '</p>',
-        position: { corner: { target: 'rightBottom', tooltip_propuesta: 'topMiddle' } },
-        style: { name: 'light' }
-      });
-      $(this).attr('title', '');
-    });
+    $('a.tooltip_propuesta').tooltip_propuesta();
   });
 </script>
 
