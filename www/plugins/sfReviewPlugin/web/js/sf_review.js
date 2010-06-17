@@ -2,7 +2,7 @@ function re_loading( box ){
 	$("#"+box).html("<img src='/images/spinner.gif' alt='cargando' />");
 }
 
-function loadReviewBox(url, t, e, v,  box, options) {	alert(1);
+function loadReviewBox(url, t, e, v,  box, options) {
 	re_loading( box );
 
 	var aUrl = url +'?nl=1&t='+(t?t:'')+'&e='+e+'&v='+v+'&b='+box+'';

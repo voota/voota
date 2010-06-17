@@ -10,9 +10,8 @@
   <!--
   $(document).ready(function(){
     $('.reviews').tabs({
-      load: function() {
-	    FB.XFBML.Host.parseDomTree();
-		}
+    	<?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['tab']):?>selected: <?php echo $sfr_status['tab'] ?>,<?php $sf_user->setAttribute('sfr_status', $sfr_status, 'sf_review');?><?php endif ?>
+      	load: function() { FB.XFBML.Host.parseDomTree(); }
 	});
 
  	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
