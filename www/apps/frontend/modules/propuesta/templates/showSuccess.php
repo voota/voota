@@ -124,14 +124,14 @@
       <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
     </div>
   
+    <div id="etiquetas">
+      <?php include_partial('global/etiquetas', array('entity' => $propuesta)) ?>
+    </div>
+  
     <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-    </div>
-    
-    <div id="etiquetas">
-      <?php include_partial('global/etiquetas', array('entity' => $propuesta)) ?>
     </div>
   </div>
 </div>

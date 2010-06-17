@@ -528,6 +528,7 @@ table.rankings .negative-votes { text-align:right;}
 #sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
 /* Caja de etiquetas */
+#etiquetas { margin-bottom: 40px;}
 #etiquetas p { padding-bottom: 10px;}
 #etiquetas .remove { font-family: sans-serif; text-decoration: none; color: #323232; font-size: 11px; padding-left: 5px;}
 #etiquetas input[type=text] { width: 184px;}
