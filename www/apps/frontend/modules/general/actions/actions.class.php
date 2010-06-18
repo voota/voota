@@ -114,7 +114,7 @@ class generalActions extends sfActions{
 	/*
 	$cl->SetConnectTimeout ( 1 );
 	$cl->SetWeights ( array ( 100, 1 ) );
-	$cl->SetMatchMode ( SPH_MATCH_ALL );
+	$cl->SetMatchMode ( SPH_SORT_EXTENDED );
 	if ( count($filtervals) )       $cl->SetFilter ( $filter, $filtervals );
 	if ( $groupby )                         $cl->SetGroupBy ( $groupby, SPH_GROUPBY_ATTR, $groupsort );
 	if ( $sortby )                          $cl->SetSortMode ( SPH_SORT_EXTENDED, $sortby );
@@ -151,6 +151,8 @@ class generalActions extends sfActions{
 	
    	# Partidos
 	$this->res = $cl->Query ( $needle, "partido_$culture" );
+	$cl->SetFieldWeights(array('abreviatura' => 5, 'nombre' => 5));
+	$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -159,21 +161,27 @@ class generalActions extends sfActions{
 				array(PartidoI18nPeer::ID, "'$culture'")
 			);
         	$list = array();
+        	$listString = "";
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];
+        		$listString .= ($listString?',':'')."". $match['id'] ."";
         	}
   			$c->add(PartidoPeer::ID, $list, Criteria::IN);
   			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  			$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			$c->addAscendingOrderByColumn("FIELD(".PartidoPeer::ID.",$listString) ");
   			
   			$partidos = PartidoPeer::doSelect($c);
   			
-  			//$resultsArray = array_merge  ( $resultsArray, $partidos );		    
+  			$resultsArray = array_merge  ( $resultsArray, $partidos );		    
         }	
 	}
 	
+	$cl = $this->resetSphinxClient();   
 	#instituciones
 	$this->res = $cl->Query ( $needle, "institucion_$culture" );
+	$cl->SetFieldWeights(array('vanity' => 5));
+	$cl->SetSortMode ( SPH_SORT_RELEVANCE );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -186,13 +194,17 @@ class generalActions extends sfActions{
   			
   			$instituciones = InstitucionPeer::doSelect($c);
   			
-  			//$resultsArray = array_merge  ( $resultsArray, $instituciones );	
+  			$resultsArray = array_merge  ( $resultsArray, $instituciones );	
         }	
 	}
 	
+	$cl = $this->resetSphinxClient();   
 	# Politicos
 	$cl->SetArrayResult(true);
-	$cl->SetFieldWeights(array('nonre' => 100, 'apellidos' => 100));
+	$cl->SetFieldWeights(array('nombre' => 5, 'apellidos' => 5));
+	$cl->SetMatchMode ( SPH_MATCH_ALL );
+	//$cl->SetSortMode ( SPH_SORT_EXTENDED, "@weight DESC, votes DESC" );
+	$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
 	$this->res = $cl->Query ( $needle, "politico_$culture" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
@@ -204,13 +216,15 @@ class generalActions extends sfActions{
 			);
 			
         	$list = array();
+        	$listString = "";
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];
+        		$listString .= ($listString?',':'')."". $match['id'] ."";
         	}
   			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
   			
   			//$c->addDescendingOrderByColumn("(sumu + sumd)");
-  			$c->addAscendingOrderByColumn("ORDER BY FIELD(id,3,4,2,6,8,1)");
+  			$c->addAscendingOrderByColumn("FIELD(".PoliticoPeer::ID.",$listString) ");
   			
   			$c->setLimit( 100 );
   			
@@ -220,8 +234,12 @@ class generalActions extends sfActions{
         }	
 	}
 		
+	$cl = $this->resetSphinxClient();   
    	# Propuestas 
 	$this->res = $cl->Query ( $needle, "propuesta_$culture" );
+	$cl->SetFieldWeights(array('titulo' => 5));
+	$cl->SetMatchMode ( SPH_MATCH_ALL );
+	$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
         	$c = new Criteria();
@@ -232,19 +250,26 @@ class generalActions extends sfActions{
 			);
 			*/
         	$list = array();
+        	$listString = "";
         	foreach ($this->res["matches"] as $idx => $match) {
         		$list[] = $match['id'];
+        		$listString .= ($listString?',':'')."". $match['id'] ."";
         	}
   			$c->add(PropuestaPeer::ID, $list, Criteria::IN);
-  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  			$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
+  			$c->addAscendingOrderByColumn("FIELD(".PropuestaPeer::ID.",$listString) ");
   			
   			$propuestas = PropuestaPeer::doSelect($c);
-  			//$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
+  			$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
         }	
 	}
 	
-	$this->res = $cl->Query ( $needle. SfVoUtil::stripAccents( $this->q ), "usuario" );
+	$cl = $this->resetSphinxClient();   
+	// Usuarios
+	$this->res = $cl->Query (  SfVoUtil::stripAccents( $this->q ), "usuario" );
+	$cl->SetFieldWeights(array('nombre' => 5, 'apellidos' => 5));
+	$cl->SetSortMode ( SPH_SORT_RELEVANCE );
+	$cl->SetMatchMode ( SPH_MATCH_ALL );
 	if ( $this->res!==false ) {
 		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 			$c = new Criteria();
@@ -277,7 +302,7 @@ class generalActions extends sfActions{
 			}
   			
   			
-  			//$resultsArray = array_merge  ( $resultsArray, $usuarios );
+  			$resultsArray = array_merge  ( $resultsArray, $usuarios );
         }	
 	}
 	
