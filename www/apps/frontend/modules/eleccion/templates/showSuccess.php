@@ -16,7 +16,7 @@
   <?php echo __("%dia% de %mes% de %aaaa%", array('%dia%' => format_date($convocatoria->getFecha(), ' d'), '%mes%' => format_date($convocatoria->getFecha(), 'MMMM'), '%aaaa%' => format_date($convocatoria->getFecha(), 'yyyy')))?>.</h2>
 
   <div id="content">
-    <div title="<?php echo $convocatoria->getEleccion()->getNombre() ?>" id="photo">
+    <div title="<?php echo secureString($convocatoria->getEleccion()->getNombre()) ?>" id="photo">
     	<?php echo image_tag(S3Voota::getImagesUrl().'/elecciones/cc_'. $convocatoria->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
     </div>
     

@@ -41,7 +41,7 @@
   <?php include_partial('titulo', array('propuesta' => $propuesta)) ?>
 
   <div id="content">
-    <div title="<?php echo $propuesta->getTitulo() ?>" id="photo">
+    <div title="<?php echo secureString($propuesta->getTitulo()) ?>" id="photo">
       <?php include_partial('photo', array('propuesta' => $propuesta)) ?>
       <div class="vote">
         <h3><?php echo __('Voota sobre')?> "<?php echo $propuesta->getTitulo(); ?>"</h3>

@@ -35,7 +35,7 @@
   </h2>
 
   <div id="content">
-    <div title="<?php echo $politico->getNombre().' ' . $politico->getApellidos() ?>" id="photo">
+    <div title="<?php echo secureString($politico->getNombre().' ' . $politico->getApellidos()) ?>" id="photo">
   	    <?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/bw_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
       <div class="vote">
         <h3><?php echo __('Voota sobre')?> <?php echo $politico->getApellidos(); ?></h3>

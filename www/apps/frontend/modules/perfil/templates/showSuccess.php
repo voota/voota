@@ -44,7 +44,7 @@
         <?php echo link_to(__('Hacer cambios en tu perfil'), "@usuario_edit"); ?>
       <?php endif ?>
     </h2>
-    <div title="<?php echo fullNameForAttr($user) ?>" class="photo">
+    <div title="<?php echo secureString(fullNameForAttr($user)) ?>" class="photo">
       <?php echo getAvatarFull($user); ?>
     </div>
     <div title="info" class="description">

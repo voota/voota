@@ -41,16 +41,16 @@
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($topTotalUsers, 'es_ES')
         	)) ?>
-        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos')?>">
+        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo secureString(__('Ranking de políticos')) ?>">
         	<?php echo __('%5% políticos', array(
                 			'%5%' => format_number($topTotalPoliticos, 'es_ES')
         	)) ?></a>,
-        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos')?>">
+        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo secureString(__('Ranking de partidos')) ?>">
         	<?php echo __('%5% partidos', array(
                 			'%5%' => format_number($topTotalPartidos, 'es_ES')
         	)) ?></a>
         	<?php echo __('y')?>
-        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas')?>">
+        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo secureString(__('Ranking de propuestas')) ?>">
         	<?php echo __('%5% propuestas', array(
                 			'%5%' => format_number($topTotalPropuestas, 'es_ES')
         	)) ?></a>.
