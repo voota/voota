@@ -14,13 +14,15 @@ abstract class BaseEtiquetaPropuestaForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'etiqueta_id'  => new sfWidgetFormInputHidden(),
-      'propuesta_id' => new sfWidgetFormInputHidden(),
+      'etiqueta_id'      => new sfWidgetFormInputHidden(),
+      'propuesta_id'     => new sfWidgetFormInputHidden(),
+      'sf_guard_user_id' => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
-      'etiqueta_id'  => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'id', 'required' => false)),
-      'propuesta_id' => new sfValidatorPropelChoice(array('model' => 'Propuesta', 'column' => 'id', 'required' => false)),
+      'etiqueta_id'      => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'id', 'required' => false)),
+      'propuesta_id'     => new sfValidatorPropelChoice(array('model' => 'Propuesta', 'column' => 'id', 'required' => false)),
+      'sf_guard_user_id' => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('etiqueta_propuesta[%s]');

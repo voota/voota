@@ -32,8 +32,9 @@ abstract class BaseEtiquetaPoliticoFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'etiqueta_id' => 'ForeignKey',
-      'politico_id' => 'ForeignKey',
+      'etiqueta_id'      => 'ForeignKey',
+      'politico_id'      => 'ForeignKey',
+      'sf_guard_user_id' => 'ForeignKey',
     );
   }
 }

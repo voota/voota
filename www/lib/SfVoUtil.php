@@ -48,6 +48,8 @@ class SfVoUtil
 
 	public static function highlightWords($string, $q)
 	{
+		if (!$q) return;
+			
 		$words = explode(' ', trim($q));
 		
 	 	$expw = '';

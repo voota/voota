@@ -23,6 +23,9 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'sf_guard_user_permission_list' => new sfWidgetFormPropelChoice(array('model' => 'sfGuardPermission', 'add_empty' => true)),
       'sf_guard_user_group_list'      => new sfWidgetFormPropelChoice(array('model' => 'sfGuardGroup', 'add_empty' => true)),
       'etiqueta_sf_guard_user_list'   => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
+      'etiqueta_politico_list'        => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
+      'etiqueta_partido_list'         => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
+      'etiqueta_propuesta_list'       => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -37,6 +40,9 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'sf_guard_user_permission_list' => new sfValidatorPropelChoice(array('model' => 'sfGuardPermission', 'required' => false)),
       'sf_guard_user_group_list'      => new sfValidatorPropelChoice(array('model' => 'sfGuardGroup', 'required' => false)),
       'etiqueta_sf_guard_user_list'   => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_politico_list'        => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_partido_list'         => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_propuesta_list'       => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_filters[%s]');
@@ -121,6 +127,81 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addEtiquetaPoliticoListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(EtiquetaPoliticoPeer::SF_GUARD_USER_ID, sfGuardUserPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(EtiquetaPoliticoPeer::ETIQUETA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(EtiquetaPoliticoPeer::ETIQUETA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addEtiquetaPartidoListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(EtiquetaPartidoPeer::SF_GUARD_USER_ID, sfGuardUserPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(EtiquetaPartidoPeer::ETIQUETA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(EtiquetaPartidoPeer::ETIQUETA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addEtiquetaPropuestaListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(EtiquetaPropuestaPeer::SF_GUARD_USER_ID, sfGuardUserPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(EtiquetaPropuestaPeer::ETIQUETA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(EtiquetaPropuestaPeer::ETIQUETA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'sfGuardUser';
@@ -141,6 +222,9 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'sf_guard_user_permission_list' => 'ManyKey',
       'sf_guard_user_group_list'      => 'ManyKey',
       'etiqueta_sf_guard_user_list'   => 'ManyKey',
+      'etiqueta_politico_list'        => 'ManyKey',
+      'etiqueta_partido_list'         => 'ManyKey',
+      'etiqueta_propuesta_list'       => 'ManyKey',
     );
   }
 }

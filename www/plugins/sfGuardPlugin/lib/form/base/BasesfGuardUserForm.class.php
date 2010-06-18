@@ -26,6 +26,9 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       'sf_guard_user_permission_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'sf_guard_user_group_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
       'etiqueta_sf_guard_user_list'   => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
+      'etiqueta_politico_list'        => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
+      'etiqueta_partido_list'         => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
+      'etiqueta_propuesta_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
     ));
 
     $this->setValidators(array(
@@ -41,6 +44,9 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       'sf_guard_user_permission_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'sf_guard_user_group_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
       'etiqueta_sf_guard_user_list'   => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_politico_list'        => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_partido_list'         => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
+      'etiqueta_propuesta_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -97,6 +103,39 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       $this->setDefault('etiqueta_sf_guard_user_list', $values);
     }
 
+    if (isset($this->widgetSchema['etiqueta_politico_list']))
+    {
+      $values = array();
+      foreach ($this->object->getEtiquetaPoliticos() as $obj)
+      {
+        $values[] = $obj->getEtiquetaId();
+      }
+
+      $this->setDefault('etiqueta_politico_list', $values);
+    }
+
+    if (isset($this->widgetSchema['etiqueta_partido_list']))
+    {
+      $values = array();
+      foreach ($this->object->getEtiquetaPartidos() as $obj)
+      {
+        $values[] = $obj->getEtiquetaId();
+      }
+
+      $this->setDefault('etiqueta_partido_list', $values);
+    }
+
+    if (isset($this->widgetSchema['etiqueta_propuesta_list']))
+    {
+      $values = array();
+      foreach ($this->object->getEtiquetaPropuestas() as $obj)
+      {
+        $values[] = $obj->getEtiquetaId();
+      }
+
+      $this->setDefault('etiqueta_propuesta_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
@@ -106,6 +145,9 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
     $this->savesfGuardUserPermissionList($con);
     $this->savesfGuardUserGroupList($con);
     $this->saveEtiquetaSfGuardUserList($con);
+    $this->saveEtiquetaPoliticoList($con);
+    $this->saveEtiquetaPartidoList($con);
+    $this->saveEtiquetaPropuestaList($con);
   }
 
   public function savesfGuardUserPermissionList($con = null)
@@ -206,6 +248,111 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       foreach ($values as $value)
       {
         $obj = new EtiquetaSfGuardUser();
+        $obj->setSfGuardUserId($this->object->getPrimaryKey());
+        $obj->setEtiquetaId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveEtiquetaPoliticoList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['etiqueta_politico_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(EtiquetaPoliticoPeer::SF_GUARD_USER_ID, $this->object->getPrimaryKey());
+    EtiquetaPoliticoPeer::doDelete($c, $con);
+
+    $values = $this->getValue('etiqueta_politico_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new EtiquetaPolitico();
+        $obj->setSfGuardUserId($this->object->getPrimaryKey());
+        $obj->setEtiquetaId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveEtiquetaPartidoList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['etiqueta_partido_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(EtiquetaPartidoPeer::SF_GUARD_USER_ID, $this->object->getPrimaryKey());
+    EtiquetaPartidoPeer::doDelete($c, $con);
+
+    $values = $this->getValue('etiqueta_partido_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new EtiquetaPartido();
+        $obj->setSfGuardUserId($this->object->getPrimaryKey());
+        $obj->setEtiquetaId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveEtiquetaPropuestaList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['etiqueta_propuesta_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(EtiquetaPropuestaPeer::SF_GUARD_USER_ID, $this->object->getPrimaryKey());
+    EtiquetaPropuestaPeer::doDelete($c, $con);
+
+    $values = $this->getValue('etiqueta_propuesta_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new EtiquetaPropuesta();
         $obj->setSfGuardUserId($this->object->getPrimaryKey());
         $obj->setEtiquetaId($value);
         $obj->save();

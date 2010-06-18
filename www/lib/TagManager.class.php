@@ -21,7 +21,7 @@ class TagManager {
   		$user = sfContext::getInstance()->getUser();
 
   		if($user->isAuthenticated() && $id){		  	
-		  	$etiqueta = EtiquetaSfGuardUserPeer::retrieveByPK($id, $user->getGuardUser()->getId());
+		  	$etiqueta = EtiquetaPoliticoPeer::retrieveByPK($id, 238,$user->getGuardUser()->getId());
 		  	$etiqueta->delete();
   		}
   	}
@@ -40,6 +40,8 @@ class TagManager {
 				  	$etiqueta->setTexto( $tag );
 				  	$etiqueta->save();
 		  		}
+		  		
+		  		/*
 		  		$c = new Criteria();
 		  		$c->add(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $etiqueta->getId());
 		  		$c->add(EtiquetaSfGuardUserPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
@@ -51,37 +53,44 @@ class TagManager {
 		  			$etiquetaUsuario->setFecha( time() );
 		  			$etiquetaUsuario->save();
 		  		}
+		  		*/
 	  		
 	  			if ($entity->getType() == Politico::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPoliticoPeer::ETIQUETA_ID, $etiqueta->getId());
 			  		$c->add(EtiquetaPoliticoPeer::POLITICO_ID, $entity->getId());
+			  		$c->add(EtiquetaPoliticoPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPolitico = EtiquetaPoliticoPeer::doSelectOne( $c );
 			  		if (!$etiquetaPolitico){
 			  			$etiquetaPolitico = new EtiquetaPolitico();
 			  			$etiquetaPolitico->setPoliticoId($entity->getId());
 			  			$etiquetaPolitico->setEtiquetaId($etiqueta->getId());
+			  			$etiquetaPolitico->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPolitico->save();
 			  		}
 	  			}
 	  			elseif ($entity->getType() == Partido::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPartidoPeer::ETIQUETA_ID, $etiqueta->getId());
 			  		$c->add(EtiquetaPartidoPeer::PARTIDO_ID, $entity->getId());
+			  		$c->add(EtiquetaPartidoPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPartido = EtiquetaPartidoPeer::doSelectOne( $c );
 			  		if (!$etiquetaPartido){
 			  			$etiquetaPartido = new EtiquetaPartido();
 			  			$etiquetaPartido->setPartidoId($entity->getId());
 			  			$etiquetaPartido->setEtiquetaId($etiqueta->getId());
+			  			$etiquetaPartido->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPartido->save();
 			  		}
 	  			}
 	  			elseif ($entity->getType() == Propuesta::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPropuestaPeer::ETIQUETA_ID, $etiqueta->getId());
 			  		$c->add(EtiquetaPropuestaPeer::PROPUESTA_ID, $entity->getId());
+			  		$c->add(EtiquetaPropuestaPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPropuesta = EtiquetaPropuestaPeer::doSelectOne( $c );
 			  		if (!$etiquetaPropuesta){
 			  			$etiquetaPropuesta = new EtiquetaPropuesta();
 			  			$etiquetaPropuesta->setPropuestaId($entity->getId());
 			  			$etiquetaPropuesta->setEtiquetaId($etiqueta->getId());
+			  			$etiquetaPropuesta->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPropuesta->save();
 			  		}
 	  			}
@@ -97,17 +106,17 @@ class TagManager {
   		if ($user->isAuthenticated()){
 	  		$query = "SELECT e.*, count(*) count FROM etiqueta e";  	
 	  		if ($entity->getType() == Politico::NUM_ENTITY){
-	  			$query .= " INNER JOIN etiqueta_politico ep ON (ep.etiqueta_id = e.id)";
+	  			$query .= " LEFT JOIN etiqueta_politico ep ON (ep.etiqueta_id = e.id)";
 	  		}
 	  		else if ($entity->getType() == Partido::NUM_ENTITY){
-	  			$query .= " INNER JOIN etiqueta_partido ep ON (ep.etiqueta_id = e.id)";
+	  			$query .= " LEFT JOIN etiqueta_partido ep ON (ep.etiqueta_id = e.id)";
 	  				
 	  		}
 	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
-	  			$query .= " INNER JOIN etiqueta_propuesta ep ON (ep.etiqueta_id = e.id)";
+	  			$query .= " LEFT JOIN etiqueta_propuesta ep ON (ep.etiqueta_id = e.id)";
 	  				
 	  		}
-  			$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
+  			//$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
 	  		
 	  		if ($entity->getType() == Politico::NUM_ENTITY){
 	  			$query .= " WHERE ep.politico_id = ?";  				
@@ -118,9 +127,9 @@ class TagManager {
 	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
 	  			$query .= " WHERE ep.propuesta_id = ?";
 	  		}  		
-	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";  				
+	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  				
 	  		$query .= " GROUP BY e.id";				
-	  		$query .= " ORDER BY eu.fecha DESC, count DESC";
+	  		//$query .= " ORDER BY ep.fecha DESC, count DESC";
   		}
   		else {
   			return array();
@@ -130,6 +139,7 @@ class TagManager {
 		$statement = $connection->prepare($query);
 		$statement->bindValue(1, $entity->getId());
 		$statement->bindValue(2, $user->getGuardUser()->getId());
+		//$statement->bindValue(3, $entity->getId());
 		$statement->execute();
 		
 		return $statement->fetchAll(PDO::FETCH_CLASS, 'Etiqueta');
@@ -140,7 +150,7 @@ class TagManager {
   		$user = sfContext::getInstance()->getUser();
   		
   		$query = "SELECT e.*, count(*) count FROM etiqueta e";  	
-  		$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
+  		#$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
   		if ($entity->getType() == Politico::NUM_ENTITY){
   			$query .= " INNER JOIN etiqueta_politico ep ON (ep.etiqueta_id = e.id)";
   		}
@@ -160,10 +170,10 @@ class TagManager {
   			$query .= " WHERE ep.propuesta_id = ?";
   		}  		
   		if ($user->isAuthenticated()){
-  			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_sf_guard_user WHERE sf_guard_user_id = ?)";
+	  		$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  	
    		}
   		$query .= " GROUP BY e.id";	
-	  	$query .= " ORDER BY count DESC, eu.fecha DESC";
+	  	$query .= " ORDER BY count DESC, ep.fecha DESC";
 	  			
 	  	$pager = new sfQueryPager('Etiqueta', 5);
 	  	$pager->setQuery($query);

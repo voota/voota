@@ -32,8 +32,9 @@ abstract class BaseEtiquetaPropuestaFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'etiqueta_id'  => 'ForeignKey',
-      'propuesta_id' => 'ForeignKey',
+      'etiqueta_id'      => 'ForeignKey',
+      'propuesta_id'     => 'ForeignKey',
+      'sf_guard_user_id' => 'ForeignKey',
     );
   }
 }

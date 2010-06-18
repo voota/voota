@@ -5,6 +5,9 @@
     </td>
     <td class="name">
 		<?php echo link_to(highlightWords($obj, $q), 'propuesta/show?id='.$obj->getVanity()) ?> <?php echo __('(propuesta)')?>
+        <?php if($counts):?>
+	        <?php echo $q ?> (<?php echo $counts[$obj->getId()] ?>)
+        <?php endif ?>
       <br />
     	<?php echo $quote ?>
       
