@@ -174,10 +174,49 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$dialog = $request->getParameter('dialog', false);
   	
   	if ($this->op == 'fb' && !$this->getUser()->isAuthenticated()){
+  		
+  		require_once(sfConfig::get('sf_lib_dir').'/facebook.php');
+  		$facebook = new Facebook(array(
+  			//api_key_es: f532df1b4d894569787bdda3a28d5b6d
+		  'appId' => 'f532df1b4d894569787bdda3a28d5b6d',
+		  'secret' => '42b96ac6e0594994d90aba3d2266d853',
+		  'cookie' => true,
+		));
+ 	 	$session = $facebook->getSession();
+ 	 	
+		$me = null;
+		if ($session) {
+			try {
+				$uid = $facebook->getUser();
+    			$me = $facebook->api('/me');
+  			} catch (FacebookApiException $e) {
+    			error_log($e);
+  			}
+		}
+		//$facebook_uid = $me['id'];
+		
+		$c = new Criteria();
+		$c->addJoin(SfGuardUserProfilePeer::USER_ID, SfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $me['id']);
+		$sfGuardUser = SfGuardUserPeer::doSelectOne( $c );
+		
+		$this->getUser()->signin($sfGuardUser, false);
+		die;
+  	    //$sfGuardUser = self::getGuardAdapter()->getSfGuardUserByFacebookUid($facebook_uid, $isActive);
+/*
+    	if (!$sfGuardUser instanceof sfGuardUser) {
+      		if (sfConfig::get('sf_logging_enabled')) {
+        		sfContext::getInstance()->getLogger()->info('{sfFacebookConnect} No user exists with current email hash');
+      		}
+      		$sfGuardUser = self::getGuardAdapter()->createSfGuardUserWithFacebookUid($facebook_uid);
+    	}
+    	*/
+/*
   		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
   		if ($sfGuardUser){
   			$this->redirect('sfFacebookConnectAuth/signin');
   		}
+*/  		
   	}
   	
   	$this->registrationform = new RegistrationForm();

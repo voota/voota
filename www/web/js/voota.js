@@ -135,14 +135,13 @@ function facebookRequireLogin(options) {
 }
 
 function facebookNotifyLoginToBackend() {
-  // TODO: Notificar al backend
+	$.post('/user/login', { op: 'fb' });
 }
 
 function facebookLogin() {
   facebookRequireLogin({
     success: function() {
       facebookNotifyLoginToBackend();
-      alert("Logueado y con permisos de publicación. TODO: Notificar al backend");
     }
   });
   return false;
