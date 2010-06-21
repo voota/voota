@@ -403,6 +403,7 @@ class generalActions extends sfActions{
   	$texto = $request->getParameter('texto', false);
   	$id = $request->getParameter('entity', false);
   	$type = $request->getParameter('type', false);
+
   	switch($type){
   		case Politico::NUM_ENTITY:
   			$this->entity = PoliticoPeer::retrieveByPK( $id );
@@ -414,7 +415,7 @@ class generalActions extends sfActions{
   			$this->entity = PropuestaPeer::retrieveByPK( $id );
 	  		break;
   	}
-
+  	
   	if ($this->entity)
   		TagManager::newTag($this->entity, $texto);  	
   }

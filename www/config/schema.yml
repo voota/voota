@@ -252,12 +252,14 @@ propel:
     etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+    fecha: { type: TIMESTAMP, required: false }
     sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     _indexes: { fk_etiqueta_politico_1: [etiqueta_id, culture], fk_etiqueta_politico_2: [politico_id], fk_etiqueta_politico_3: [sf_guard_user_id] }
   etiqueta_partido:
     etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+    fecha: { type: TIMESTAMP, required: false }
     sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     _indexes: { fk_etiqueta_partido_1: [etiqueta_id, culture], fk_etiqueta_partido_2: [partido_id], fk_etiqueta_partido_3: [sf_guard_user_id] }
   etiqueta_propuesta:
@@ -265,6 +267,7 @@ propel:
     propuesta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: propuesta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
     sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fecha: { type: TIMESTAMP, required: false }
     _indexes: { fk_etiqueta_propuesta_1: [etiqueta_id, culture], fk_etiqueta_propuesta_2: [propuesta_id], fk_etiqueta_propuesta_3: [sf_guard_user_id] }
     
     

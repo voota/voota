@@ -12,9 +12,11 @@ abstract class BaseEtiquetaPoliticoFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'fecha'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
+      'fecha'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
     $this->widgetSchema->setNameFormat('etiqueta_politico_filters[%s]');
@@ -35,6 +37,7 @@ abstract class BaseEtiquetaPoliticoFormFilter extends BaseFormFilterPropel
       'etiqueta_id'      => 'ForeignKey',
       'politico_id'      => 'ForeignKey',
       'culture'          => 'Text',
+      'fecha'            => 'Date',
       'sf_guard_user_id' => 'ForeignKey',
     );
   }

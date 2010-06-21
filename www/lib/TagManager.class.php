@@ -64,7 +64,12 @@ class TagManager {
 			  			$etiquetaPolitico->setPoliticoId($entity->getId());
 			  			$etiquetaPolitico->setEtiquetaId($etiqueta->getId());
 				  		$etiquetaPolitico->setCulture( $user->getCulture() );
+				  		$etiquetaPolitico->setFecha( time() );
 			  			$etiquetaPolitico->setSfGuardUserId($user->getGuardUser()->getId());
+			  			$etiquetaPolitico->save();
+			  		}
+			  		else {			  			
+				  		$etiquetaPolitico->setFecha( time() );
 			  			$etiquetaPolitico->save();
 			  		}
 	  			}
@@ -79,7 +84,12 @@ class TagManager {
 			  			$etiquetaPartido->setPartidoId($entity->getId());
 			  			$etiquetaPartido->setEtiquetaId($etiqueta->getId());
 				  		$etiquetaPartido->setCulture( $user->getCulture() );
+				  		$etiquetaPartido->setFecha( time() );
 			  			$etiquetaPartido->setSfGuardUserId($user->getGuardUser()->getId());
+			  			$etiquetaPartido->save();
+			  		}
+			  		else {			  			
+				  		$etiquetaPartido->setFecha( time() );
 			  			$etiquetaPartido->save();
 			  		}
 	  			}
@@ -94,7 +104,12 @@ class TagManager {
 			  			$etiquetaPropuesta->setPropuestaId($entity->getId());
 			  			$etiquetaPropuesta->setEtiquetaId($etiqueta->getId());
 				  		$etiquetaPropuesta->setCulture( $user->getCulture() );
+				  		$etiquetaPropuesta->setFecha( time() );
 			  			$etiquetaPropuesta->setSfGuardUserId($user->getGuardUser()->getId());
+			  			$etiquetaPropuesta->save();
+			  		}
+			  		else {			  			
+				  		$etiquetaPropuesta->setFecha( time() );
 			  			$etiquetaPropuesta->save();
 			  		}
 	  			}

@@ -18,6 +18,7 @@ abstract class BaseEtiquetaPropuestaForm extends BaseFormPropel
       'propuesta_id'     => new sfWidgetFormInputHidden(),
       'culture'          => new sfWidgetFormInputHidden(),
       'sf_guard_user_id' => new sfWidgetFormInputHidden(),
+      'fecha'            => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
@@ -25,6 +26,7 @@ abstract class BaseEtiquetaPropuestaForm extends BaseFormPropel
       'propuesta_id'     => new sfValidatorPropelChoice(array('model' => 'Propuesta', 'column' => 'id', 'required' => false)),
       'culture'          => new sfValidatorPropelChoice(array('model' => 'EtiquetaPropuesta', 'column' => 'culture', 'required' => false)),
       'sf_guard_user_id' => new sfValidatorPropelChoice(array('model' => 'sfGuardUser', 'column' => 'id', 'required' => false)),
+      'fecha'            => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('etiqueta_propuesta[%s]');
