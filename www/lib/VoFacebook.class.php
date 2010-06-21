@@ -31,9 +31,9 @@ class VoFacebook {
 		if ($session) {
 			try {
 				$uid = $facebook->getUser();
-	    		$me = $facebook->api('/me');
+	    		//$me = $facebook->api('/me');
 	
-				$facebook_uid = $me['id'];
+				$facebook_uid = $uid;
 			
 	  		} catch (FacebookApiException $e) {
 	    		error_log($e);
