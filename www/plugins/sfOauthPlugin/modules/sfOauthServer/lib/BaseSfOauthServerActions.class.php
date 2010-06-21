@@ -88,7 +88,7 @@ class BaseSfOauthServerActions extends sfActions
   	$this->oauth_callback = $request->getParameter('oauth_callback', '');
   	
   	if (!$this->getUser()->isAuthenticated())
-  		$this->getUser()->setAttribute('url_back', 'sfOauthServer/authorize?oauth_callback='.$this->oauth_callback.'&oauth_token='. $this->oauth_token);
+  		$this->getUser()->setAttribute('url_back', 'sfOauthServer/authorize?oauth_callback='.$this->oauth_callback.'&oauth_token='. $this->oauth_token, 'vo/redir');
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
   	$authorized = $request->getParameter('authorized', '');

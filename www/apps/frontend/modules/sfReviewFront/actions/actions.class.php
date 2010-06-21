@@ -264,7 +264,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	
   	public function executeForm(sfWebRequest $request){
 		if( $this->getUser()->isAuthenticated() ){
-		  	$this->getUser()->setAttribute('url_back', '');
+		  	$this->getUser()->setAttribute('url_back', '', 'vo/redir');
 		  	
 		  	$this->getUser()->setAttribute('review_v', '');
 		  	$this->getUser()->setAttribute('review_e', '');

@@ -87,8 +87,10 @@ class politicoActions extends sfActions
   	$id = $request->getParameter('id');
   	$this->politico = PoliticoPeer::retrieveByPK( $id );
   	
-  	if (!$this->getUser()->isAuthenticated())
-  		$this->getUser()->setAttribute('url_back', 'politico/take?id='. $id);
+  	if (!$this->getUser()->isAuthenticated()){
+  		$url = 'politico/take?id='. $id;
+  		$this->getUser()->setAttribute('url_back', $url, 'vo/redir');
+  	}
   		
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
