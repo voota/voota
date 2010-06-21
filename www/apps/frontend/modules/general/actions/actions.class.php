@@ -234,7 +234,7 @@ class generalActions extends sfActions{
 			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
 		}
 		
-		$this->res = $cl->Query ( $needle, "politico".$this->ext."_es" );
+		$this->res = $cl->Query ( $needle, "politico".$this->ext."_$culture" );
 		if ( $this->res !== false ) {
 			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
 				$c = new Criteria();

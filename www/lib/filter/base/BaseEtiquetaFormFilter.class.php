@@ -144,6 +144,7 @@ abstract class BaseEtiquetaFormFilter extends BaseFormFilterPropel
     return array(
       'id'                          => 'Number',
       'texto'                       => 'Text',
+      'culture'                     => 'Text',
       'etiqueta_sf_guard_user_list' => 'ManyKey',
       'etiqueta_politico_list'      => 'ManyKey',
       'etiqueta_partido_list'       => 'ManyKey',

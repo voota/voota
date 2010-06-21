@@ -34,6 +34,7 @@ abstract class BaseEtiquetaPartidoFormFilter extends BaseFormFilterPropel
     return array(
       'etiqueta_id'      => 'ForeignKey',
       'partido_id'       => 'ForeignKey',
+      'culture'          => 'Text',
       'sf_guard_user_id' => 'ForeignKey',
     );
   }

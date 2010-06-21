@@ -34,10 +34,12 @@ class TagManager {
 	  		foreach ($tags as $tag){
 		  		$c = new Criteria();
 		  		$c->add(EtiquetaPeer::TEXTO, $tag);
+		  		$c->add(EtiquetaPeer::CULTURE, $user->getCulture());
 		  		$etiqueta = EtiquetaPeer::doSelectOne( $c );
 		  		if (!$etiqueta){
 				  	$etiqueta = new Etiqueta();
 				  	$etiqueta->setTexto( $tag );
+				  	$etiqueta->setCulture( $user->getCulture() );
 				  	$etiqueta->save();
 		  		}
 		  		
@@ -57,6 +59,7 @@ class TagManager {
 	  		
 	  			if ($entity->getType() == Politico::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPoliticoPeer::ETIQUETA_ID, $etiqueta->getId());
+		  			$c->add(EtiquetaPoliticoPeer::CULTURE, $user->getCulture());
 			  		$c->add(EtiquetaPoliticoPeer::POLITICO_ID, $entity->getId());
 			  		$c->add(EtiquetaPoliticoPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPolitico = EtiquetaPoliticoPeer::doSelectOne( $c );
@@ -64,12 +67,14 @@ class TagManager {
 			  			$etiquetaPolitico = new EtiquetaPolitico();
 			  			$etiquetaPolitico->setPoliticoId($entity->getId());
 			  			$etiquetaPolitico->setEtiquetaId($etiqueta->getId());
+				  		$etiquetaPolitico->setCulture( $user->getCulture() );
 			  			$etiquetaPolitico->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPolitico->save();
 			  		}
 	  			}
 	  			elseif ($entity->getType() == Partido::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPartidoPeer::ETIQUETA_ID, $etiqueta->getId());
+		  			$c->add(EtiquetaPartidoPeer::CULTURE, $user->getCulture());
 			  		$c->add(EtiquetaPartidoPeer::PARTIDO_ID, $entity->getId());
 			  		$c->add(EtiquetaPartidoPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPartido = EtiquetaPartidoPeer::doSelectOne( $c );
@@ -77,12 +82,14 @@ class TagManager {
 			  			$etiquetaPartido = new EtiquetaPartido();
 			  			$etiquetaPartido->setPartidoId($entity->getId());
 			  			$etiquetaPartido->setEtiquetaId($etiqueta->getId());
+				  		$etiquetaPartido->setCulture( $user->getCulture() );
 			  			$etiquetaPartido->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPartido->save();
 			  		}
 	  			}
 	  			elseif ($entity->getType() == Propuesta::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPropuestaPeer::ETIQUETA_ID, $etiqueta->getId());
+		  			$c->add(EtiquetaPropuestaPeer::CULTURE, $user->getCulture());
 			  		$c->add(EtiquetaPropuestaPeer::PROPUESTA_ID, $entity->getId());
 			  		$c->add(EtiquetaPropuestaPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
 			  		$etiquetaPropuesta = EtiquetaPropuestaPeer::doSelectOne( $c );
@@ -90,6 +97,7 @@ class TagManager {
 			  			$etiquetaPropuesta = new EtiquetaPropuesta();
 			  			$etiquetaPropuesta->setPropuestaId($entity->getId());
 			  			$etiquetaPropuesta->setEtiquetaId($etiqueta->getId());
+				  		$etiquetaPropuesta->setCulture( $user->getCulture() );
 			  			$etiquetaPropuesta->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPropuesta->save();
 			  		}
@@ -127,7 +135,8 @@ class TagManager {
 	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
 	  			$query .= " WHERE ep.propuesta_id = ?";
 	  		}  		
-	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  				
+	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  	
+	  		$query .= " AND e.culture = ?";			
 	  		$query .= " GROUP BY e.id";				
 	  		//$query .= " ORDER BY ep.fecha DESC, count DESC";
   		}
@@ -139,6 +148,7 @@ class TagManager {
 		$statement = $connection->prepare($query);
 		$statement->bindValue(1, $entity->getId());
 		$statement->bindValue(2, $user->getGuardUser()->getId());
+		$statement->bindValue(3, $user->getCulture());
 		//$statement->bindValue(3, $entity->getId());
 		$statement->execute();
 		
@@ -172,6 +182,7 @@ class TagManager {
   		if ($user->isAuthenticated()){
 	  		$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  	
    		}
+	  	$query .= " AND e.culture = ?";			
   		$query .= " GROUP BY e.id";	
 	  	$query .= " ORDER BY count DESC, ep.fecha DESC";
 	  			
@@ -182,6 +193,7 @@ class TagManager {
   		if ($user->isAuthenticated()){
 			$values[] = $user->getGuardUser()->getId();
   		}
+		$values[] =  $user->getCulture();
 	  	$pager->setValues($values);
 		$pager->setPage( $page );
 		$pager->init();		    

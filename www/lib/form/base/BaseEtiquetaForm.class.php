@@ -16,6 +16,7 @@ abstract class BaseEtiquetaForm extends BaseFormPropel
     $this->setWidgets(array(
       'id'                          => new sfWidgetFormInputHidden(),
       'texto'                       => new sfWidgetFormInputText(),
+      'culture'                     => new sfWidgetFormInputHidden(),
       'etiqueta_sf_guard_user_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
       'etiqueta_politico_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
       'etiqueta_partido_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
@@ -25,6 +26,7 @@ abstract class BaseEtiquetaForm extends BaseFormPropel
     $this->setValidators(array(
       'id'                          => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'id', 'required' => false)),
       'texto'                       => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'culture'                     => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'culture', 'required' => false)),
       'etiqueta_sf_guard_user_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
       'etiqueta_politico_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
       'etiqueta_partido_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Partido', 'required' => false)),
