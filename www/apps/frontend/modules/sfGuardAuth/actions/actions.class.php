@@ -1,12 +1,10 @@
 <?php
- 
 require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php');
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
   private function doSignin($request, $op = '')
   {
-  	
     $user = $this->getUser();
 
     if ($request->isXmlHttpRequest())
@@ -34,7 +32,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer('@homepage'));
         
         if ($op == 'fb'){
-        	$this->getUser()->getProfile()->setFacebookUid( sfFacebook::getAnyFacebookUid() );
+        	$this->getUser()->getProfile()->setFacebookUid( VoFacebook::getUid() );
         	$this->getUser()->getProfile()->save();
         }
         $this->redirect($signinUrl);
@@ -171,53 +169,50 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
   	$this->op = $request->getParameter('op');
-  	$dialog = $request->getParameter('dialog', false);
+  	//echo $this->op;
+  	//die;
   	
-  	if ($this->op == 'fb' && !$this->getUser()->isAuthenticated()){
-  		
-  		require_once(sfConfig::get('sf_lib_dir').'/facebook.php');
-  		$facebook = new Facebook(array(
-  			//api_key_es: f532df1b4d894569787bdda3a28d5b6d
-		  'appId' => 'f532df1b4d894569787bdda3a28d5b6d',
-		  'secret' => '42b96ac6e0594994d90aba3d2266d853',
-		  'cookie' => true,
-		));
- 	 	$session = $facebook->getSession();
- 	 	
-		$me = null;
-		if ($session) {
-			try {
-				$uid = $facebook->getUser();
-    			$me = $facebook->api('/me');
-  			} catch (FacebookApiException $e) {
-    			error_log($e);
-  			}
-		}
-		//$facebook_uid = $me['id'];
-		
+  	$dialog = $request->getParameter('dialog', false);
+  	/* IF FB CONNECT */
+	if ($this->op == 'fbc' && $facebook_uid = VoFacebook::getUid()){
 		$c = new Criteria();
 		$c->addJoin(SfGuardUserProfilePeer::USER_ID, SfGuardUserPeer::ID);
-		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $me['id']);
+		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $facebook_uid);
 		$sfGuardUser = SfGuardUserPeer::doSelectOne( $c );
-		
-		$this->getUser()->signin($sfGuardUser, false);
-		die;
-  	    //$sfGuardUser = self::getGuardAdapter()->getSfGuardUserByFacebookUid($facebook_uid, $isActive);
-/*
+
     	if (!$sfGuardUser instanceof sfGuardUser) {
-      		if (sfConfig::get('sf_logging_enabled')) {
-        		sfContext::getInstance()->getLogger()->info('{sfFacebookConnect} No user exists with current email hash');
-      		}
-      		$sfGuardUser = self::getGuardAdapter()->createSfGuardUserWithFacebookUid($facebook_uid);
+    		$sfGuardUser = new sfGuardUser();
+   			$sfGuardUser->setUsername('Facebook_'.$facebook_uid);
+    		
+      		$sfGuardUser->save();
+			$voProfile = $sfGuardUser->getProfile();
+		    $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
+		    $voProfile->setFacebookUid($facebook_uid);
+    
+		    $c2 = new Criteria();
+		    $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+		    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
+		    $counter = 0;
+		    foreach ($usuariosLikeMe as $usuarioLikeMe){
+		    	$counter++;
+		    }
+		    $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+		    $voProfile->setMailsComentarios( 0 );
+		    $voProfile->setMailsNoticias( 0 );
+		    $voProfile->setMailsContacto( 0 );
+		    $voProfile->setMailsSeguidor( 0 );
+      
+			$voProfile->save();
     	}
-    	*/
-/*
-  		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
-  		if ($sfGuardUser){
-  			$this->redirect('sfFacebookConnectAuth/signin');
-  		}
-*/  		
+    	
+		$this->getUser()->signin($sfGuardUser, false);
+		
+		
+        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $this->getUser()->getReferer('@homepage'));
+        
+        $this->redirect($signinUrl);
   	}
+  	/* FI FB CONNECT */
   	
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();

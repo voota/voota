@@ -135,9 +135,7 @@ function facebookRequireLogin(options) {
 }
 
 function facebookNotifyLoginToBackend() {
-	$.post('/user/login', { op: 'fb' }, function(data){
-	  document.location.reload();
-	});
+	document.location = '/frontend_dev.php/user/login?op=fbc';
 }
 
 function facebookLogin() {
