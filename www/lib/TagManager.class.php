@@ -141,7 +141,7 @@ class TagManager {
 	  		}
 	  		$query .= " AND e.culture = ?";			
 	  		$query .= " GROUP BY e.id";				
-	  		//$query .= " ORDER BY ep.fecha DESC, count DESC";
+	  		$query .= " ORDER BY ep.fecha DESC, count DESC";
   		}
   		else {
   			return array();
