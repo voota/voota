@@ -359,11 +359,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   }
 
   public function executeConfirmMerge(){
-	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
+	if ($this->getUser()->isAuthenticated() && ($uid = VoFacebook::getUid())){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
   		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
-  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $uid);
   		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
   		$users = SfGuardUserPeer::doSelect( $c );
   		if (count($users) > 0){
@@ -387,12 +387,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		// FIN: Buscar conflictos
   		
 		$sfGuardUser = $this->getUser()->getGuardUser();
-	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+		$sfGuardUser->getProfile()->setFacebookUid($uid);
+	    //sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
 	    $sfGuardUser->save();
 	    $sfGuardUser->getProfile()->save();
 	    
 	    //$this->getUser()->signin( $sfGuardUser );
-	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	    //$sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
 	}
 	
 	$this->forward('sfGuardAuth', 'editFB');
@@ -408,25 +409,26 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		$this->getUser()->getProfile()->setFacebookUid(null);
   		$this->getUser()->getProfile()->save();
   	}
-	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
+	if ($this->getUser()->isAuthenticated() && ($uid = VoFacebook::getUid()) && $op == 'con'){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
   		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
-  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $uid);
   		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
   		$users = SfGuardUserPeer::doSelect( $c );
   		if (count($users) > 0){
-  			$this->faceBookUid = sfFacebook::getFacebookClient()->get_loggedin_user();
+  			$this->faceBookUid = $uid;
   			return 'ConfirmMerge';
   		}
   		// FIN: Buscar conflictos
   		
-	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$sfGuardUser->getProfile()->setFacebookUid($uid);
+	    //sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, $uid);
 	    $sfGuardUser->save();
 	    $sfGuardUser->getProfile()->save();
 	    
 	    //$this->getUser()->signin( $sfGuardUser );
-	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	    $sfGuardUser->getProfile()->setFaceBookUID( $uid );
   	}
 	  	
    	if ($this->getUser()->isAuthenticated()) {

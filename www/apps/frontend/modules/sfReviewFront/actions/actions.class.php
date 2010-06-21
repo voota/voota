@@ -74,6 +74,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	
   	$c = new Criteria();
   	$c->addDescendingOrderByColumn(SfGuardUserPeer::ID);
+  	$c->add(SfGuardUserPeer::IS_ACTIVE, true);
   	$c->setLimit( 10 );
   	$this->lastUsers = SfGuardUserPeer::doSelect( $c );
   	

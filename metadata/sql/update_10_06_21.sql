@@ -105,6 +105,10 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
 
+ALTER TABLE `voota`.`etiqueta` 
+DROP INDEX `texto_UNIQUE` 
+, ADD UNIQUE INDEX `texto_UNIQUE` (`texto` ASC, `culture` ASC) ;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

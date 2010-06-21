@@ -102,7 +102,7 @@ $(document).ready(function(){
   	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
   </p>
   
-  <?php // if ($sf_user->getProfile()->getFacebookUid()): ?>
+  <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
 	  <p class="facebook-only sf-review-submit">
 	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
 	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
@@ -120,7 +120,9 @@ $(document).ready(function(){
 		<?php endif ?>
 	    />
 	  </p>
-  <?php // endif ?>
+  <?php else: ?>
+	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>"
+  <?php endif ?>
 </form>
 
 <?php endif //Si no redirect ?>
