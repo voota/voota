@@ -28,8 +28,11 @@ class voRedirectFilter extends sfFilter
 	  	if ($urlBack) {
 	  		if ($user->isAuthenticated() && !preg_match("/sfGuardAuth\/signin/is", $urlBack)) {
 				$user->setAttribute('url_back', '', 'vo/redir');
-	  			sfContext::getInstance()->getController()->redirect( $urlBack );
-				die;
+				$op = $request->getParameter('op', false);
+				if (!$op || $op != 'fb'){
+		  			sfContext::getInstance()->getController()->redirect( $urlBack );
+					die;
+				}
 		  	}
 		}
 

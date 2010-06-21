@@ -7,10 +7,10 @@
 		  $('#filterForm_f<?php echo (isset($value)?$value:'') ?>').change(function(){
 			  var f = this.value;
 			  var aUrl = '<?php echo url_for("sfReviewFront/filteredList?value=".(isset($value)?$value:''). (isset($entity)?"&entityId=".$entity->getId():''). (isset($entity)?"&sfReviewType=".$entity->getType():'') )?>' + (f!=''?("&filter="+f):'') ;
-$(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
+			  $(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
 			  $('.reviews').tabs( "url" , <?php echo (isset($value) && $value)?$value==1?1:2:0?>, aUrl );
 			  $('.reviews').tabs( "load" , <?php echo (isset($value) && $value)?$value==1?1:2:0?> );
-			  FB.XFBML.Host.parseDomTree();
+			  facebookParseXFBML();
 		  });
 	  });
 	  //-->

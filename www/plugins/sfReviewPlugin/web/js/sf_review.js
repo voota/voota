@@ -121,4 +121,12 @@ function subvote(boxId, id, page, url){
   	document.getElementById('subreviews_box' + boxId).className = 'subreviews shown';
 
 	return loadReviewBox(url, null,  id,  0, 'sfrc' + boxId, options );
+
+function facebookPublishStory(story_attrs) {
+  FB.api('/me/feed', 'post', story_attrs, function(response) {
+    if (!response || response.error) {
+      alert('Hubo un problema al intentar publicar en el muro.');
+    }
+  });
+
 }

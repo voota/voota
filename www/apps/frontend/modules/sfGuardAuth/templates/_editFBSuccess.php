@@ -10,12 +10,12 @@
     <script type="text/javascript">
       <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
   	    $('#facebook-disconnect').click(function() {
-  	      facebookConnect_disconnect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>');
+  	      facebookDisconnectAccount('<?php echo url_for('@usuario_fb_edit?op=dis') ?>');
   	      return false;
   	    });
       <?php else: ?>
         $('#facebook-disconnect').click(function() {
-  	      facebookConnect_disconnect_logout('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
+  	      facebookLogoutAndRedirect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
   	      return false;
   	    });
       <?php endif ?>

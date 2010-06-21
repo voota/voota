@@ -89,9 +89,7 @@
       <tr class="facebook-login">
         <th><label><?php echo __('Otra opción...') ?></label></th>
         <td>
-          <a href="#" onclick="FB.Connect.requireSession(); return false;" class="fbconnect_login_button FBConnectButton FBConnectButton_Medium">
-            <span id="RES_ID_fb_login_text" class="FBConnectButton_Text"><?php echo __('Entrar con Facebook') ?></span>
-          </a>
+          <fb:login-button v="2" size="medium" onlogin="facebookNotifyLoginToBackend()"><?php echo __('Entrar con Facebook') ?></fb:login-button>
         </td>
       </tr>
     </table>

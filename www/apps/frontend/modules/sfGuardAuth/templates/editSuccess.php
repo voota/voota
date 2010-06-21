@@ -24,17 +24,9 @@
 		  setCounter('#presen_counter', this, 280);
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
-	  facebookConnect_loadUserName();
+	  facebookLoadUserName();
 	  <?php if($hasDeepUpdates): ?>
-	  FB.ensureInit(function () {
-		  FB.Connect.streamPublish(
-				  '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>'
-				  , null, null, null
-				  , ''
-				  , null
-				  , true
-		  );
-	  });
+	    facebookPublishStory({ body: '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>' });
 	  <?php endif ?>
   });
   

@@ -1,12 +1,10 @@
 <?php
- 
 require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php');
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
   private function doSignin($request, $op = '')
   {
-  	
     $user = $this->getUser();
 
     if ($request->isXmlHttpRequest())
@@ -34,7 +32,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer('@homepage'));
         
         if ($op == 'fb'){
-        	$this->getUser()->getProfile()->setFacebookUid( sfFacebook::getAnyFacebookUid() );
+        	$this->getUser()->getProfile()->setFacebookUid( VoFacebook::getUid() );
         	$this->getUser()->getProfile()->save();
         }
         $this->redirect($signinUrl);
@@ -171,14 +169,50 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
   	$this->op = $request->getParameter('op');
-  	$dialog = $request->getParameter('dialog', false);
+  	//echo $this->op;
+  	//die;
   	
-  	if ($this->op == 'fb' && !$this->getUser()->isAuthenticated()){
-  		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
-  		if ($sfGuardUser){
-  			$this->redirect('sfFacebookConnectAuth/signin');
-  		}
+  	$dialog = $request->getParameter('dialog', false);
+  	/* IF FB CONNECT */
+	if ($this->op == 'fbc' && $facebook_uid = VoFacebook::getUid()){
+		$c = new Criteria();
+		$c->addJoin(SfGuardUserProfilePeer::USER_ID, SfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $facebook_uid);
+		$sfGuardUser = SfGuardUserPeer::doSelectOne( $c );
+
+    	if (!$sfGuardUser instanceof sfGuardUser) {
+    		$sfGuardUser = new sfGuardUser();
+   			$sfGuardUser->setUsername('Facebook_'.$facebook_uid);
+    		
+      		$sfGuardUser->save();
+			$voProfile = $sfGuardUser->getProfile();
+		    $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
+		    $voProfile->setFacebookUid($facebook_uid);
+    
+		    $c2 = new Criteria();
+		    $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+		    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
+		    $counter = 0;
+		    foreach ($usuariosLikeMe as $usuarioLikeMe){
+		    	$counter++;
+		    }
+		    $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+		    $voProfile->setMailsComentarios( 0 );
+		    $voProfile->setMailsNoticias( 0 );
+		    $voProfile->setMailsContacto( 0 );
+		    $voProfile->setMailsSeguidor( 0 );
+      
+			$voProfile->save();
+    	}
+    	
+		$this->getUser()->signin($sfGuardUser, false);
+		
+		
+        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $this->getUser()->getReferer('@homepage'));
+        
+        $this->redirect($signinUrl);
   	}
+  	/* FI FB CONNECT */
   	
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
