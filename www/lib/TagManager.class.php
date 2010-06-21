@@ -17,11 +17,21 @@
  */
 
 class TagManager {	
-  	public static function removeTag($id){  	
+  	public static function removeTag($id, $e, $type){  	
   		$user = sfContext::getInstance()->getUser();
 
-  		if($user->isAuthenticated() && $id){		  	
-		  	$etiqueta = EtiquetaPoliticoPeer::retrieveByPK($id, 238,$user->getGuardUser()->getId());
+  		if($user->isAuthenticated() && $id){			
+	  		if ($type == Politico::NUM_ENTITY){
+		  	$etiqueta = EtiquetaPoliticoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
+	  		}
+	  		else if ($type == Partido::NUM_ENTITY){
+		  	$etiqueta = EtiquetaPartidoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
+	  				
+	  		}
+	  		else if ($type == Propuesta::NUM_ENTITY){
+		  	$etiqueta = EtiquetaPropuestaPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
+	  				
+	  		}
 		  	$etiqueta->delete();
   		}
   	}
@@ -42,20 +52,6 @@ class TagManager {
 				  	$etiqueta->setCulture( $user->getCulture() );
 				  	$etiqueta->save();
 		  		}
-		  		
-		  		/*
-		  		$c = new Criteria();
-		  		$c->add(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $etiqueta->getId());
-		  		$c->add(EtiquetaSfGuardUserPeer::SF_GUARD_USER_ID, $user->getGuardUser()->getId());
-		  		$etiquetaUsuario = EtiquetaSfGuardUserPeer::doSelectOne( $c );
-		  		if (!$etiquetaUsuario){
-		  			$etiquetaUsuario = new EtiquetaSfGuardUser();
-		  			$etiquetaUsuario->setSfGuardUserId($user->getGuardUser()->getId());
-		  			$etiquetaUsuario->setEtiquetaId($etiqueta->getId());
-		  			$etiquetaUsuario->setFecha( time() );
-		  			$etiquetaUsuario->save();
-		  		}
-		  		*/
 	  		
 	  			if ($entity->getType() == Politico::NUM_ENTITY){
 			  	  	$c->add(EtiquetaPoliticoPeer::ETIQUETA_ID, $etiqueta->getId());
@@ -124,7 +120,6 @@ class TagManager {
 	  			$query .= " LEFT JOIN etiqueta_propuesta ep ON (ep.etiqueta_id = e.id)";
 	  				
 	  		}
-  			//$query .= " INNER JOIN etiqueta_sf_guard_user eu ON (eu.etiqueta_id = e.id)";
 	  		
 	  		if ($entity->getType() == Politico::NUM_ENTITY){
 	  			$query .= " WHERE ep.politico_id = ?";  				
@@ -134,8 +129,16 @@ class TagManager {
 	  		}  		
 	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
 	  			$query .= " WHERE ep.propuesta_id = ?";
-	  		}  		
-	  		$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  	
+	  		}  		 	
+	  		if ($entity->getType() == Politico::NUM_ENTITY){
+	  			$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)"; 
+	  		}
+	  		else if ($entity->getType() == Partido::NUM_ENTITY){
+	  			$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_partido WHERE sf_guard_user_id = ?)"; 	  				
+	  		}
+	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
+	  			$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_propuesta WHERE sf_guard_user_id = ?)"; 	  				
+	  		}
 	  		$query .= " AND e.culture = ?";			
 	  		$query .= " GROUP BY e.id";				
 	  		//$query .= " ORDER BY ep.fecha DESC, count DESC";
@@ -180,7 +183,15 @@ class TagManager {
   			$query .= " WHERE ep.propuesta_id = ?";
   		}  		
   		if ($user->isAuthenticated()){
-	  		$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)";  	
+	  		if ($entity->getType() == Politico::NUM_ENTITY){
+	  			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)"; 
+	  		}
+	  		else if ($entity->getType() == Partido::NUM_ENTITY){
+	  			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_partido WHERE sf_guard_user_id = ?)"; 				
+	  		}
+	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
+	  			$query .= " AND e.id NOT IN (SELECT etiqueta_id FROM etiqueta_propuesta WHERE sf_guard_user_id = ?)"; 				
+	  		}	  		
    		}
 	  	$query .= " AND e.culture = ?";			
   		$query .= " GROUP BY e.id";	

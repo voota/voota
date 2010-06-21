@@ -424,7 +424,7 @@ class generalActions extends sfActions{
   	$e = $request->getParameter('e', false);
   	$id = $request->getParameter('id', false);
   	$type = $request->getParameter('type', false);
-  	TagManager::removeTag($id);  	
+  	TagManager::removeTag($id, $e, $type);  	
   
   	switch($type){
   		case Politico::NUM_ENTITY:
