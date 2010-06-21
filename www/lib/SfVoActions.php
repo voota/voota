@@ -25,7 +25,7 @@ class SfVoActions extends sfActions
 			sfContext::getInstance()->getI18N()->__('Quieto parao. Para esto necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
 			, true
 		);
-  		$this->getUser()->setAttribute('url_back', sfContext::getInstance()->getRouting()->getCurrentInternalUri());
+  		$this->getUser()->setAttribute('url_back', sfContext::getInstance()->getRouting()->getCurrentInternalUri(), 'vo/redir');
   	  }
   	  $this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 	}

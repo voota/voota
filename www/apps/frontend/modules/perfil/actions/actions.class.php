@@ -128,7 +128,7 @@ class perfilActions extends SfVoActions
 			sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
 			, true
 		);
-  		$this->getUser()->setAttribute('url_back', '@usuario_votos');
+  		$this->getUser()->setAttribute('url_back', '@usuario_votos', 'vo/redir');
   	}
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
 
