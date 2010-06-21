@@ -114,7 +114,7 @@ function facebookRequireLogin(options) {
 }
 
 function facebookNotifyLoginToBackend() {
-	document.location = '/frontend_dev.php/user/login?op=fbc';
+	document.location = '/user/login?op=fbc';
 }
 
 function facebookLogin() {
