@@ -161,13 +161,82 @@ class perfilActions extends SfVoActions
   		$this->redirect('perfil/show?username='.$this->user->getProfile()->getVanity(), 301);
   	}
   	
-    $this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
+    //$this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
+    $filterText = '';
+    switch($this->sfReviewType){
+    	case '1':
+    		$filterText = sfContext::getInstance()->getI18N()->__('políticos');
+    		break;
+    	case '2':
+    		$filterText = sfContext::getInstance()->getI18N()->__('partidos');
+    		break;
+    	case '3':
+    		$filterText = sfContext::getInstance()->getI18N()->__('propuestas políticas');
+    		break;
+    	case 'null':
+    		$filterText = sfContext::getInstance()->getI18N()->__('otros comentarios');
+    		break;
+    }
     
-    $this->title = sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())); 
+    if (!$filterText){
+	    $this->title = sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array(
+	    	'%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity()
+	    )); 
+    }
+    else {
+	    $this->title = sfContext::getInstance()->getI18N()->__('Opiniones de %1% sobre %2% en Voota', array(
+	    	'%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity()
+	    	, '%2%' => $filterText
+	    )); 
+    }
     $this->response->setTitle( $this->title );
-    $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
-    $this->response->addMeta('Description', $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos y opiniones de %1% sobre políticos y partidos de España', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
-  	  	    
+    
+    $filter = array();
+	if (isset($this->sfReviewType)){
+		$filter['type_id'] = $this->sfReviewType;
+		$filter['textFilter'] = $this->text?'text':false;
+		$filter['userId'] = $userProfile->getUserId();
+		$filter['culture'] = $culture;
+	}
+
+	$this->reviewsPager = SfReviewManager::getReviews($filter, 1, 3);
+		
+    if (!$filterText){
+	    $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
+    }
+    else {
+			
+    	if ($this->reviewsPager->getNbResults() == 0){
+		    $descripcion = sfContext::getInstance()->getI18N()->__('%1% aún no se ha animado a comentar', trim($this->user)?$this->user:$this->user->getProfile()->getVanity());
+       	}   
+    	else { 	
+		    $descripcion = sfContext::getInstance()->getI18N()->__('%1% ha comentado sobre', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())). ': ';
+		    			    
+    		foreach ($this->reviewsPager->getResults() as $idx => $review){
+    			$type = $review->getSfReviewTypeId();
+	  			if (! $type){
+	  				$parentReview = $review->getSfReviewRelatedBySfReviewId();
+	  				$aEntityId = $parentReview->getEntityId();
+	  				$aTypeId = $parentReview->getSfReviewTypeId();
+	  				
+	  			}
+	  			else {
+	  				$aTypeId = $type;
+	  				$aEntityId = $review->getEntityId();
+	  			}
+	  			
+	  			$reviewType = SfReviewTypePeer::retrieveByPK ( $aTypeId );
+	  			$peer = $reviewType->getModel() .'Peer';
+	  			
+	  			//$entity = $peer::retrieveByPK($aEntityId);
+	  			$entity = call_user_func("$peer::retrieveByPK", $aEntityId);
+
+	  			$descripcion .= ($idx != 0?', ':'').(!$type?sfContext::getInstance()->getI18N()->__('otro comentario sobre'). ' ':'').($aTypeId==Propuesta::NUM_ENTITY?"\"$entity\"":$entity);
+	    	}
+    	}
+    }
+	$this->response->addMeta('Description', $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos y opiniones de %1% sobre políticos y partidos de España', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
+    
     // Feed
     $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
     $request->setAttribute('rssFeed',  'perfil/feed?username='.$this->user->getProfile()->getVanity());

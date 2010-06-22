@@ -181,13 +181,6 @@ notas de version
 				<max>5.0.0</max>
 				<exclude>5.0.0</exclude>
 			</package>
-			<package>
-				<name>sfJqueryReloadedPlugin</name>
-				<channel>pear.symfony-project.com</channel>
-				<min>1.2.0</min>
-				<max>2.0.0</max>
-				<exclude>2.0.0</exclude>
-			</package>
   </required>
  </dependencies>
  <phprelease />
