@@ -90,7 +90,7 @@
       <tr class="facebook-login">
         <th><label><?php echo __('Otra opción...') ?></label></th>
         <td>
-          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . '/frontend_dev.php/user/login?op=fbc' . '")'), __('Entrar con Facebook')) ?>
+          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . url_for('sfGuardAuth/signin?op=fbc') . '")'), __('Entrar con Facebook')) ?>
         </td>
       </tr>
     </table>
