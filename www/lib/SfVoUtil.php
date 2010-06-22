@@ -146,12 +146,20 @@ class SfVoUtil
 	public static function fixVanityChars( $v ) {
 		return strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '--------------------------');
 	}
-	
+
 	public static function myUcfirst( $str) {
 		$ret = utf8_encode(
 			strtoupper(strtr(substr(utf8_decode($str), 0, 1), utf8_decode(self::LOWER_ACCENTS), utf8_decode(self::UPPER_ACCENTS)))
 			. strtolower(strtr(substr(utf8_decode($str),1), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
 			);
+			
+		return $ret;
+	}
+	
+	public static function strtolowerEs( $str) {
+		$ret = utf8_encode(
+			strtolower(strtr(utf8_decode($str), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
+		);
 			
 		return $ret;
 	}

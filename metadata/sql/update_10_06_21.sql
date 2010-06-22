@@ -106,8 +106,7 @@ DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_swedish_ci;
 
 ALTER TABLE `voota`.`etiqueta` 
-DROP INDEX `texto_UNIQUE` 
-, ADD UNIQUE INDEX `texto_UNIQUE` (`texto` ASC, `culture` ASC) ;
+DROP INDEX `texto_UNIQUE`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

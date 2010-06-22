@@ -41,14 +41,18 @@ class TagManager {
   		
   	  	if ($user->isAuthenticated() && $texto){
 	  		$tags = preg_split ("/[\s,]+/", $texto);
+	  		
 	  		foreach ($tags as $tag){
 		  		$c = new Criteria();
-		  		$c->add(EtiquetaPeer::TEXTO, $tag);
+		  		$c1 = new VoCriterion($c, EtiquetaPeer::TEXTO, SfVoUtil::strtolowerEs($tag));
+		  		$c1->setIgnoreAccent( true );
+		  		//$c->add(EtiquetaPeer::TEXTO, strtolower($tag) . ' collate utf8_bin');
+		  		$c->add( $c1 );
 		  		$c->add(EtiquetaPeer::CULTURE, $user->getCulture());
 		  		$etiqueta = EtiquetaPeer::doSelectOne( $c );
 		  		if (!$etiqueta){
 				  	$etiqueta = new Etiqueta();
-				  	$etiqueta->setTexto( $tag );
+				  	$etiqueta->setTexto( SfVoUtil::strtolowerEs($tag) );
 				  	$etiqueta->setCulture( $user->getCulture() );
 				  	$etiqueta->save();
 		  		}
