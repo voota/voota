@@ -82,7 +82,7 @@
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
   	      <p>
-  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . '/frontend_dev.php/user/login?op=fbc' . '")'), __('Entrar con Facebook')) ?>
+  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . url_for('sfGuardAuth/signin?op=fbc') . '")'), __('Entrar con Facebook')) ?>
   	      </p>
         <?php end_slot('not_logged') ?>
 
@@ -193,7 +193,7 @@
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
-      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key') ?>', status: true, cookie: true,
+      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key_'.$sf_user->getCulture()) ?>', status: true, cookie: true,
                xfbml: true});
     };
     (function() {

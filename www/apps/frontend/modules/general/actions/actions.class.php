@@ -166,7 +166,7 @@ class generalActions extends sfActions{
 		}
 		else {
 			$cl->SetFieldWeights(array('abreviatura' => 5, 'nombre' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
+			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
 		}
 		$this->res = $cl->Query ( $needle, "partido".$this->ext."_$culture" );
 		if ( $this->res!==false ) {
@@ -231,7 +231,7 @@ class generalActions extends sfActions{
 		}
 		else {
 			$cl->SetFieldWeights(array('nombre' => 5, 'apellidos' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
+			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
 		}
 		
 		$this->res = $cl->Query ( $needle, "politico".$this->ext."_$culture" );
@@ -279,7 +279,7 @@ class generalActions extends sfActions{
 		else {			
 			$cl->SetMatchMode ( SPH_MATCH_ALL );
 			$cl->SetFieldWeights(array('titulo' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 50 * votes/max_votes )" );
+			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
 		}
 		if ( $this->res!==false ) {
 			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
