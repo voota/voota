@@ -161,6 +161,15 @@ class perfilActions extends SfVoActions
   		$this->redirect('perfil/show?username='.$this->user->getProfile()->getVanity(), 301);
   	}
   	
+  	$c = new Criteria();
+  	$c->add(EnlacePeer::SF_GUARD_USER_ID, $userProfile->getUserId());
+  	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
+  	$this->enlaces = EnlacePeer::doSelect( $c );
+  	
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::SF_GUARD_USER_ID, $userProfile->getUserId());
+  	$this->propuestas = PropuestaPeer::doSelect( $c );
+  	
     //$this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
     $filterText = '';
     switch($this->sfReviewType){
