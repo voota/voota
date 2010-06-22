@@ -161,7 +161,7 @@ function facebookDisconnectAccount(url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    $('#facebook-connect').html(data);
-	    facebookParseXFBML('#facebook-connect');
+	    facebookParseXFBML();
 	  }
 	});
 }
@@ -321,7 +321,7 @@ $.fn.reviews_pagination = function(options) {
 			    spinner.hide();
 			    area.append(result);
 			    updateSummaryCounters();
-			    FB.XFBML.Host.parseDomTree()
+			    facebookParseXFBML();
 			  },
 				url: opts.url
 			});
