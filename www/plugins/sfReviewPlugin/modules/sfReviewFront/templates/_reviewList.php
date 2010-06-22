@@ -47,10 +47,10 @@
 	              <?php if(isset($value)):?>value: "<?php echo $value ?>",<?php endif?>
 	              <?php if(isset($sfReviewType)):?>sfReviewType: "<?php echo $sfReviewType ?>",<?php endif?>
 	              filter: "<?php echo (isset($filter) && $filter)?'text':'' ?>",
-			      slot: "review_list"
-	            }
-	      , summaryTemplate: '<?php echo '<p>'. __('Mostrando %1% comentarios de %2%', array('%1%' => '<strong class="reviews_count"></strong>', '%2%' => '<strong class="reviews_total"></strong>')) .'</p>' ?>'
-		  , buttonText: '<?php echo __('más') ?>'
+			          slot: "review_list"
+	            },
+	      summaryTemplate: formatSummaryTemplate('<?php echo __('Mostrando {count} comentarios de {total}') ?>'),
+		    buttonText: '<?php echo __('más') ?>'
 	    });
 	  });
 	</script>
