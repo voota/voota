@@ -1,6 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
+<?php use_helper('VoUser'); ?>
 
 <?php echo showNotices( $sf_user ) ?>
 <?php if ($sf_request->getParameter("dialog") == 1): ?>
@@ -89,7 +90,7 @@
       <tr class="facebook-login">
         <th><label><?php echo __('Otra opción...') ?></label></th>
         <td>
-          <fb:login-button v="2" size="medium" onlogin="facebookNotifyLoginToBackend()"><?php echo __('Entrar con Facebook') ?></fb:login-button>
+          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . '/frontend_dev.php/user/login?op=fbc' . '")'), __('Entrar con Facebook')) ?>
         </td>
       </tr>
     </table>

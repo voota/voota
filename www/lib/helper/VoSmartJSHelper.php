@@ -1,5 +1,5 @@
 <?php
-function jsWrite( $name, $attrs = array() ){
+function jsWrite( $name, $attrs = array(), $content = NULL ){
 	if ( !isset($GLOBALS["jsw_id"]) ){
 		$GLOBALS["jsw_id"] = rand();
 	}
@@ -10,7 +10,10 @@ function jsWrite( $name, $attrs = array() ){
 	$ret .= "var aTag = document.createElement(\"$name\");";
 	foreach($attrs as $name => $value){
 		$ret .= " aTag.setAttribute('$name', '$value');";
-	}	  
+	}
+	if ($content) {
+	  $ret .= " aTag.innerHTML = '$content';";
+	}
 	$ret .= "$('#jsw_$id').append(aTag);";
 	$ret .= "</script>";
 	

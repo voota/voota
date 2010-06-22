@@ -81,7 +81,9 @@
       <div id="user-links">
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
-  	      <p><?php echo vo_facebook_connect_button(); ?></p>
+  	      <p>
+  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . '/frontend_dev.php/user/login?op=fbc' . '")'), __('Entrar con Facebook')) ?>
+  	      </p>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
