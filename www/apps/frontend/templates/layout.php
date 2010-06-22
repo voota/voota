@@ -191,7 +191,7 @@
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
-      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key') ?>', status: true, cookie: true,
+      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key_'.$sf_user->getCulture()) ?>', status: true, cookie: true,
                xfbml: true});
     };
     (function() {

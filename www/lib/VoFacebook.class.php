@@ -18,11 +18,12 @@ require_once(sfConfig::get('sf_lib_dir').'/facebook.php');
  */
 class VoFacebook {	
 	public static function getUid() {
+		$culture = sfContext::getInstance()->getUser()->getCulture();
 		$facebook_uid = false;
 		
 	  	$facebook = new Facebook(array(
-		  'appId' => sfConfig::get('app_facebook_api_key'),
-		  'secret' => sfConfig::get('app_facebook_api_secret'),
+		  'appId' => sfConfig::get("app_facebook_api_key_$culture"),
+		  'secret' => sfConfig::get("app_facebook_api_secret_$culture"),
 		  'cookie' => true,
 		));
 	  	$session = $facebook->getSession();

@@ -310,42 +310,6 @@ class politicoActions extends sfActions
     $this->totalUp = $totalUp;
     $this->totalDown = $totalDown;    
   	
-  	/* Lista de partidos 
-    $c = new Criteria();
-  	if ($institucion && $institucion != ALL_URL_STRING){
-  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
-	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-	  	$c->setDistinct();
-  		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
-  	}
-  	$c->add(PartidoPeer::IS_ACTIVE, true);
-  	$c->add(PartidoPeer::IS_MAIN, true);
-  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  	$this->partidos = PartidoPeer::doSelect( $c );
-  	$this->partidos_arr = array();
-  	$this->partidos_arr["0"] = sfContext::getInstance()->getI18N()->__('Todos los partidos');
-  	foreach($this->partidos as $aPartido){
-  		$this->partidos_arr[$aPartido->getAbreviatura()] = $aPartido->getAbreviatura();
-  	}
-  	 Fin lista de partidos */ 
-      	
-  	/* Lista de instituciones 
-  	$c = new Criteria();
-  	if ($partido && $partido != ALL_URL_STRING){
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-  		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
-  	}
-  	$c->add(InstitucionPeer::IS_MAIN, true);
-  	$c->setDistinct();
-  	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
-  	$this->instituciones = InstitucionPeer::doSelect($c);
-  	  Fin Lista de instituciones */ 
-  	
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
   	foreach ($request->getParameterHolder()->getAll() as $name => $value){
@@ -367,20 +331,22 @@ class politicoActions extends sfActions
   	if (isset($aInstitucion)){
   		$this->pageTitle .= $aInstitucion->getNombre();
   	}
-  	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
-  		$this->pageTitle .= ", $orderTxt";
+  	
+  	switch($this->order){
+  		case 'pa':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  			break;
+  		case 'nd':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  			break;
+  		case 'na':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  			break;
+  		default:
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('ordenado por votos positivos inverso');
    	}
+  	$this->pageTitle .= ", $orderTxt";
+  		
   	if ($page && $page != 1) {
   		$this->pageTitle .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
@@ -392,23 +358,14 @@ class politicoActions extends sfActions
 	  		$description .= ", " . $aaPartido->getNombre();
    		}
   	}
+  	else {
+  		$description .= ", " . sfContext::getInstance()->getI18N()->__('todos los partidos');
+  	}
   	if ($this->institucion != '0') {
   		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
    	}
-  	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
-  		$description .= ", $orderTxt";
-   	}
+   	
+  	$description .= ", $orderTxt";
   	if ($page && $page != 1) {
   		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}

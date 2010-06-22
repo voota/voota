@@ -199,22 +199,12 @@ class partidoActions extends sfActions
   		$description .= ', ...';
   	}
   	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
   		$description .= ", $orderTxt";
    	}
   	if ($page && $page != 1) {
   		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
+  	$description .= (!$this->institucion || $this->institucion=='0' || !isset($aInstitucion))?'':", " . $aInstitucion->getNombre();
   	$this->response->addMeta('Description', $description);
   }
 
