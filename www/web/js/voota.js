@@ -161,6 +161,7 @@ function facebookDisconnectAccount(url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    $('#facebook-connect').html(data);
+	    facebookParseXFBML();
 	  }
 	});
 }
@@ -282,10 +283,16 @@ jQuery.fn.tooltip_politico_elecciones = function() {
   });
 }
 
+function formatSummaryTemplate(string) {
+  string = string.replace('{count}', '<strong class="reviews_count"></strong>');
+  string = string.replace('{total}', '<strong class="reviews_total"></strong>');
+  return '<p>' + string + '</p>';
+}
+
 $.fn.reviews_pagination = function(options) {
   if(!options) options = {};
   defaults = {
-    summaryTemplate: '<p>Mostrando <strong class="reviews_count"></strong> comentarios de <strong class="reviews_total"></strong></p>',
+    summaryTemplate: formatSummaryTemplate('Mostrando {count} comentarios de {total}'),
     buttonText: 'más',
     data: { page: 1 }
   };
@@ -320,7 +327,7 @@ $.fn.reviews_pagination = function(options) {
 			    spinner.hide();
 			    area.append(result);
 			    updateSummaryCounters();
-			    FB.XFBML.Host.parseDomTree()
+			    facebookParseXFBML();
 			  },
 				url: opts.url
 			});

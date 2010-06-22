@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.7.2.custom.css" />
-
 <div class="sf-review-hands <?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>">
   <div class="sf-review-positive">
 		<input type="radio" name="v" value="1" id="v-<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>-positive" />

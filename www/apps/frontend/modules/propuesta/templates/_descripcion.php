@@ -34,7 +34,7 @@
 		<div><input type="hidden" name="op" value="ed" /></div>
 	    <p><textarea name="descripcion" id="propuesta_descripcion" rows="20" cols="30"><?php echo $propuesta->getDescripcion() ?></textarea></p>
         <p id="propuesta_descripcion_counter" class="counter"></p>
-	    <p><input type="submit" value="Guardar"></p>
+	    <p><input type="submit" value="Guardar" /></p>
 	  </form>
 	  <a href="#" class="cancel-delete close-edit-box" id="close-ed-descripcion-box"><?php echo __('(Cerrar)') ?></a>
 	</div>

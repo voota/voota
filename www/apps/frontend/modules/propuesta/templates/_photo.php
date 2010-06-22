@@ -46,8 +46,8 @@
 	  <p><?php echo __('JPG, GIF, PNG... (Máx 2Mb)') ?></p>
 	  <form method="post" id="edit-photo-form" enctype="multipart/form-data" action="<?php echo url_for('propuesta/editDoc?id='.$propuesta->getId()) ?>">
 		<div><input type="hidden" name="op" value="ep" /></div>
-	    <p><input type="file" name="img"></p>
-	    <p><input type="submit" value="Guardar"></p>
+	    <p><input type="file" name="img" /></p>
+	    <p><input type="submit" value="Guardar" /></p>
 	  </form>
 	  <a href="#" class="cancel-delete close-edit-box" id="close-ed-photo-box"><?php echo __('(Cerrar)') ?></a>
 	</div>
