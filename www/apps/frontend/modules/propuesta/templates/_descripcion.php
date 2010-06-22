@@ -21,10 +21,9 @@
 
 
 
-  <?php echo formatPresentacion($propuesta->getDescripcion()) ?>
-  <?php if($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): ?>
-	  <p><a href="#" id="edit-descripcion" class="edit-link"><?php echo __('Hacer cambios')?></a></p>
-  <?php endif ?>
+  <?php echo formatPresentacion($propuesta->getDescripcion(), ($sf_user->isAuthenticated() && $propuesta->getSfGuardUserId() == $sf_user->getGuardUser()->getId())?
+  	" <a href=\"#\" id=\"edit-descripcion\" class=\"edit-link\">". __('Hacer cambios') ."</a>":''
+  ) ?>
 </div>
 
 
