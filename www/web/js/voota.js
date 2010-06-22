@@ -161,6 +161,7 @@ function facebookDisconnectAccount(url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    $('#facebook-connect').html(data);
+	    facebookParseXFBML('#facebook-connect');
 	  }
 	});
 }
