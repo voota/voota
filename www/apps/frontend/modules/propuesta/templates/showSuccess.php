@@ -1,5 +1,4 @@
 <?php use_helper('I18N') ?>
-<?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
 <?php use_helper('VoUser'); ?>
 <?php use_helper('SfReview') ?>

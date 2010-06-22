@@ -2,6 +2,7 @@
 <?php use_helper('jQuery') ?>
 
 <script type="text/javascript">
+<!--
   $(document).ready(function(){
   	$("#nueva-etiqueta-frm").submit(function(){
   		if ($("#nueva-etiqueta").attr('value') != '' && $("#nueva-etiqueta").attr('value') != $("#nueva-etiqueta").attr('title')) {
@@ -35,6 +36,7 @@
     	});
 	return false;
   }
+-->
 </script>
 
 <h3><?php echo __('Etiquetas, por qué no...') ?></h3>

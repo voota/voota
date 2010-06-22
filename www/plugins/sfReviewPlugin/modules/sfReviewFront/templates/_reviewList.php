@@ -28,7 +28,7 @@
 <?php endif ?>
 
 <?php if ($reviewsPager->getNbResults() > 0): ?>
-	  <?php if($reviewsPager->getPage() == 1): ?><ol id="<?php echo $value?'v'.$value:''?>"><?php endif ?>
+	  <?php if($reviewsPager->getPage() == 1): ?><ol<?php echo $value ? " id=\"v$value\"" : ''?>><?php endif ?>
   	  <?php foreach($reviewsPager->getResults() as $review): ?>
   		  <?php include_partial('sfReviewFront/review', array('review' => $review, 'reviewable' =>  true, 'listValue' => str_replace  ('-', '_', (isset($value)?$value:'') ))) ?>
   		<?php endforeach ?>
