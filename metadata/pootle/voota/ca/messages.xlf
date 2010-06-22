@@ -2852,6 +2852,82 @@ actual)</target>
         <source>Mostrando %1% comentarios de %2%</source>
         <target>Mostrant %1% comentaris de %2%</target>
       </trans-unit>
+      <trans-unit id="634">
+        <source>Etiquetas, por qué no...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="635">
+        <source>Tú dirás...</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="636">
+        <source>(Pero primero haz login, ¿eh?)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="637">
+        <source>JPG, GIF, PNG... (Máx 2Mb)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="638">
+        <source>propuestas políticas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="639">
+        <source>otros comentarios</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="640">
+        <source>Opiniones de %1% sobre %2% en Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="641">
+        <source>%1% aún no se ha animado a comentar</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="642">
+        <source>%1% ha comentado sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="643">
+        <source>otro comentario sobre</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="644">
+        <source>Propuesta:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="645">
+        <source>Las propuestas de %nombre% (%1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="646">
+        <source>Los comentarios de %nombre% (%1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="647">
+        <source>Propuestas, comentarios y vootos que has hecho hasta ahora (%1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="648">
+        <source>Tus propuestas (%1%)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="649">
+        <source>De momento sin etiquetas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="650">
+        <source>[1]Mostrando %1% etiqueta de %2%|(1,+Inf]Mostrando %1% etiquetas de %2%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="651">
+        <source>ordenado por votos positivos inverso</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="652">
+        <source>todos los partidos</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
