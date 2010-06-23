@@ -17,5 +17,5 @@ function jsWrite( $name, $attrs = array(), $content = NULL ){
 	$ret .= "$('#jsw_$id').append(aTag);";
 	$ret .= "</script>";
 	
-	return "$ret";
+  return "$ret";
 }

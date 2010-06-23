@@ -1,6 +1,6 @@
 <?php echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="<?php echo $sf_user->getCulture() ?>">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="<?php echo $sf_user->getCulture() ?>" xmlns:fb="http://www.facebook.com/2008/fbml">
 
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
@@ -55,20 +55,39 @@
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
+  <div id="fb-root"></div>
+  <script type="text/javascript">
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>',
+        status : true,
+        cookie : true,
+        xfbml  : true
+      });
+    };
+    (function() {
+      var e = document.createElement('script');
+      e.src = document.location.protocol + '//connect.facebook.net/es_ES/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
+
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
 	    $('.fbconnect_login_button').click(facebookLogin);
-	      <?php if ($sf_user->getFlash('logToFB')):  ?>  
-		    publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
-	    <?php endif ?>	
-	  });
-    <?php if( $sf_request->getAttribute("ie6") ):?>
-	  	$("#ie6 .close a").click(function(){
-	  		$('#ie6').remove();
-	  		return false;
-	    });
-	<?php endif ?>
+      <?php if ($sf_user->getFlash('logToFB')):  ?>  
+	      publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
+      <?php endif ?>
+
+      <?php if( $sf_request->getAttribute("ie6") ):?>
+  	  	$("#ie6 .close a").click(function(){
+  	  		$('#ie6').remove();
+  	  		return false;
+  	    });
+  	  <?php endif ?>
+    });
     //]]>
   </script>
  
@@ -190,31 +209,17 @@
 		});
   </script>
  
-  <div id="fb-root"></div>
-  <script type="text/javascript">
-    window.fbAsyncInit = function() {
-      FB.init({appId: '<?php echo sfConfig::get('app_facebook_api_key_'.$sf_user->getCulture()) ?>', status: true, cookie: true,
-               xfbml: true});
-    };
-    (function() {
-      var e = document.createElement('script'); e.async = true;
-      e.src = document.location.protocol +
-        '//connect.facebook.net/en_US/all.js';
-      document.getElementById('fb-root').appendChild(e);
-    }());
-  </script>
- 
   <!-- GOOGLE ANALYTICS -->
   <script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<?php echo sfConfig::get("sf_ga_account_".$sf_user->getCulture()) ?>']);
-  _gaq.push(['_trackPageview']);
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<?php echo sfConfig::get("sf_ga_account_".$sf_user->getCulture()) ?>']);
+    _gaq.push(['_trackPageview']);
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
   </script>
   <!-- FIN GOOGLE ANALYTICS -->
   
@@ -243,7 +248,6 @@
     $(window).load(function(){
       _loadUserVoice();
     });
-
   </script>
 
 </body>
