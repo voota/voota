@@ -187,7 +187,9 @@ class partidoActions extends sfActions
   	$this->title = $this->pageTitle . ' - Voota';
   	$this->response->addMeta('Title', $this->title);
   	
-  	$description = sfContext::getInstance()->getI18N()->__('Los partidos más votados en Voota:', array()) . " ";
+  	$description = sfContext::getInstance()->getI18N()->__('Los partidos más votados en Voota');
+  	$description .= (!$this->institucion || $this->institucion=='0' || !isset($aInstitucion))?'':", " . $aInstitucion->getNombre();
+  	$description .= ': ';
   	if ($this->partidosPager->getNbResults() > 0){
   		foreach ($this->partidosPager->getResults() as $idx => $partido){
   			if ($idx < 5){

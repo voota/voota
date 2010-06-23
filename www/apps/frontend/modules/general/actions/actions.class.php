@@ -147,12 +147,14 @@ class generalActions extends sfActions{
    	
    	$cl = $this->resetSphinxClient();   	
    	
-   	$needle = SfVoUtil::stripAccents( $this->q );
-   	
+   	$needle = $this->q;   	
 	$this->ext = "";   		
    	if (strlen($needle) > 0 && strpos($needle, '#') === 0){
 		$this->ext = "_tag";   		
 		$needle = substr($needle, 1);
+   	}
+   	else {
+   		$needle = SfVoUtil::stripAccents( $this->q );
    	}
    	
    	if ($needle){

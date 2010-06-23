@@ -345,7 +345,9 @@ class politicoActions extends sfActions
   		default:
   			$orderTxt = sfContext::getInstance()->getI18N()->__('ordenado por votos positivos inverso');
    	}
-  	$this->pageTitle .= ", $orderTxt";
+   	if ($this->order != 'pd'){   		
+	  	$this->pageTitle .= ", $orderTxt";
+   	}
   		
   	if ($page && $page != 1) {
   		$this->pageTitle .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));

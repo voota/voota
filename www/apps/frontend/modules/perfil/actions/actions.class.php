@@ -157,7 +157,7 @@ class perfilActions extends SfVoActions
   	$this->forward404Unless($this->user->getIsActive());
   	
   
-  	if ($this->user->getProfile()->getVanity() != $vanity){
+  	if ($this->user->getProfile()->getVanity() != $vanity || $this->f){
   		$this->redirect('perfil/show?username='.$this->user->getProfile()->getVanity(), 301);
   	}
   	
@@ -187,17 +187,17 @@ class perfilActions extends SfVoActions
     		break;
     }
     
-    if (!$filterText){
+    //if (!$filterText){
 	    $this->title = sfContext::getInstance()->getI18N()->__('Página de usuario de %1% en Voota', array(
 	    	'%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity()
 	    )); 
-    }
+    /*}
     else {
 	    $this->title = sfContext::getInstance()->getI18N()->__('Opiniones de %1% sobre %2% en Voota', array(
 	    	'%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity()
 	    	, '%2%' => $filterText
 	    )); 
-    }
+    }*/
     $this->response->setTitle( $this->title );
     
     $filter = array();
@@ -210,9 +210,9 @@ class perfilActions extends SfVoActions
 
 	$this->reviewsPager = SfReviewManager::getReviews($filter, 1, 3);
 		
-    if (!$filterText){
+    //if (!$filterText){
 	    $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
-    }
+    /*}
     else {
 			
     	if ($this->reviewsPager->getNbResults() == 0){
@@ -243,7 +243,7 @@ class perfilActions extends SfVoActions
 	  			$descripcion .= ($idx != 0?', ':'').(!$type?sfContext::getInstance()->getI18N()->__('otro comentario sobre'). ' ':'').($aTypeId==Propuesta::NUM_ENTITY?"\"$entity\"":$entity);
 	    	}
     	}
-    }
+    }*/
 	$this->response->addMeta('Description', $descripcion?$descripcion:sfContext::getInstance()->getI18N()->__('Votos y opiniones de %1% sobre políticos y partidos de España', array('%1%' => trim($this->user)?$this->user:$this->user->getProfile()->getVanity())) );
     
     // Feed

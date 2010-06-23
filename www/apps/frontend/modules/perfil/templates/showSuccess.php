@@ -83,7 +83,7 @@
 	  </div>
   <?php endif ?>
     
-  <h2><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviewsPager->getNbResults()))?></h2>
+  <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviewsPager->getNbResults()))?></h2>
 	<div class="comments reviews">
    	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
 	</div>

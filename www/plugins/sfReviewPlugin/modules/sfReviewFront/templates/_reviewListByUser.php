@@ -15,7 +15,7 @@
   });
 </script>
 	
-	<form id="filterForm" method="post" action="<?php echo url_for( '@'.sfContext::getInstance()->getRouting()->getCurrentRouteName(). (isset($user) && $sf_request->getParameter('action') == 'show'?'?username='.$user->getProfile()->getVanity():'') )?>#filterForm">
+	<form id="filterForm" method="post" action="<?php echo url_for( '@'.sfContext::getInstance()->getRouting()->getCurrentRouteName(). (isset($user) && $sf_request->getParameter('action') == 'show'?'?username='.$user->getProfile()->getVanity():'') )?>#profile_comments_header">
   	  <p>
   	    <label for="filterForm_f"><?php echo __("Filtrar Vootos:") ?></label>
   	    <select id="filterForm_f" name="type_id">
