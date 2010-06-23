@@ -156,6 +156,9 @@ function format_plural($count, $singular, $plural, $args = array(), $langcode = 
 }
 
 function ago($timestamp, $aprox = true){
+	if (!$timestamp){
+		return '';
+	}
    $difference = time() - $timestamp;
    $periods = array(
    				sfContext::getInstance()->getI18N()->__("segundo"),

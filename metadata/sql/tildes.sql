@@ -137,3 +137,5 @@ UPDATE politico SET apellidos = replace(apellidos, 'Sanchis','Sanchís');
 UPDATE politico SET nombre = replace(nombre, 'Sanchis','Sanchís');
 UPDATE politico SET apellidos = replace(apellidos, 'Agueda','Águeda');
 UPDATE politico SET nombre = replace(nombre, 'Agueda','Águeda');
+
+UPDATE institucion_i18n SET nombre = replace(nombre, 'Maria','María'), nombre_corto = replace(nombre_corto, 'Maria','María');

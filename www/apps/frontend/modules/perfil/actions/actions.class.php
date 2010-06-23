@@ -209,7 +209,7 @@ class perfilActions extends SfVoActions
 	}
 
 	$this->reviewsPager = SfReviewManager::getReviews($filter, 1, 3);
-		
+	
     //if (!$filterText){
 	    $descripcion = SfVoUtil::cutToLength($userProfile->getPresentacion(), 155, '...', true);
     /*}
