@@ -72,19 +72,19 @@
     </div>
   </div>
 
-  <?php if(count($propuestas) > 0): ?> 
-	  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => count($propuestas))) ?></h2>
-	  <div class="propuestas">
+  <div class="propuestas">
+    <?php if(count($propuestas) > 0): ?> 
+  	  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => count($propuestas))) ?></h2>
 	    <ol>
 	    	<?php foreach ($propuestas as $propuesta):?>
 		      <?php include_partial('propuesta', array('propuesta' => $propuesta)) // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
 	    	<?php endforeach ?>
 	    </ol>
-	  </div>
-  <?php endif ?>
-    
-  <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviewsPager->getNbResults()))?></h2>
+    <?php endif ?>
+  </div>
+  
 	<div class="comments reviews">
+    <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviewsPager->getNbResults()))?></h2>
    	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
 	</div>
 </div>

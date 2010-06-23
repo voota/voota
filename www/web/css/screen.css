@@ -274,6 +274,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 
 /* Comentarios y vootos */
 #perfil-reviews h2 { margin-top: 20px;}
+#perfil-reviews .comments { clear: both; padding-top: 40px;}
 .propuestas ol { list-style: none; margin: 0; padding: 0;}
 .propuestas li { list-style: none; margin: 0 0 20px 0; overflow: hidden; padding: 0 0 15px 0; border-bottom: 1px dotted #ddd; }
 .propuestas .photo,
@@ -301,6 +302,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #perfil-show .profile .description .links p { padding-top: 20px; padding-bottom: 0;}
 #perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
 #perfil-show .profile .description .contact a { padding-right: 20px; background: transparent url(/images/email.png) right top no-repeat;}
+#perfil-show .propuestas { clear: both; padding-top: 40px;}
 #perfil-show .comments { clear: both; padding-top: 40px;}
 #perfil-show .comments table { border-top: 1px dotted #cccccc; width: 100%;}
 #perfil-show .comments tr { border-bottom: 1px dotted #cccccc;}
