@@ -206,7 +206,6 @@ class partidoActions extends sfActions
   	if ($page && $page != 1) {
   		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
-  	$description .= (!$this->institucion || $this->institucion=='0' || !isset($aInstitucion))?'':", " . $aInstitucion->getNombre();
   	$this->response->addMeta('Description', $description);
   }
 
