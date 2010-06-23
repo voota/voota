@@ -214,7 +214,7 @@ class TagManager {
    		}
 	  	$query .= " AND e.culture = ?";			
   		$query .= " GROUP BY e.id";	
-	  	$query .= " ORDER BY count DESC, ep.fecha DESC";
+	  	$query .= " ORDER BY count DESC, ep.fecha DESC, ep.etiqueta_id DESC";
 	  			
 	  	$pager = new sfQueryPager('Etiqueta', 5);
 	  	$pager->setQuery($query);
