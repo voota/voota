@@ -72,7 +72,7 @@ class TagManager {
 			  			$etiquetaPolitico->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPolitico->save();
 			  		}
-			  		else {			  			
+			  		else {			  	
 				  		$etiquetaPolitico->setFecha( time() );
 			  			$etiquetaPolitico->save();
 			  		}
@@ -92,7 +92,7 @@ class TagManager {
 			  			$etiquetaPartido->setSfGuardUserId($user->getGuardUser()->getId());
 			  			$etiquetaPartido->save();
 			  		}
-			  		else {			  			
+			  		else {			  				
 				  		$etiquetaPartido->setFecha( time() );
 			  			$etiquetaPartido->save();
 			  		}
@@ -160,7 +160,7 @@ class TagManager {
 	  		}
 	  		$query .= " AND e.culture = ?";			
 	  		$query .= " GROUP BY e.id";				
-	  		$query .= " ORDER BY ep.fecha DESC, count DESC";
+	  		$query .= " ORDER BY ep.fecha DESC, ep.etiqueta_id DESC, count DESC";
   		}
   		else {
   			return array();
