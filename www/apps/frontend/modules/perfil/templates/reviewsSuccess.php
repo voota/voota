@@ -20,11 +20,12 @@
     <p class="next-step-msg"><?php echo link_to(__('Tu página de político y lo que opinan sobre ti'), "politico/show?id=".$politico->getVanity()) ?></p>
   <?php endif ?>
 
-  <h2><?php echo __('Tus propuestas (%1%)', array('%1%' => 2)) // TODO: Contar propuestas ?></h2>
+  <h2><?php echo __('Tus propuestas (%1%)', array('%1%' => count($propuestas)))  ?></h2>
   <div class="propuestas">
     <ol>
-      <?php include_partial('propuesta') // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
-      <?php include_partial('propuesta') // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
+	    	<?php foreach ($propuestas as $propuesta):?>
+		      <?php include_partial('propuesta', array('propuesta' => $propuesta))  ?>
+	    	<?php endforeach ?>
     </ol>
   </div>
 
