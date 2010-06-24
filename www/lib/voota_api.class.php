@@ -128,13 +128,15 @@ class VootaApi{
 	* 											or 'negatives'(sorted desc by negatives votes)
 	* @return array a list of entities
 	*/  
-  public function getEntities($userId, $type = 'politician', $limit = 20, $page = 1, $sort = 'positive'){
+  public function getEntities($userId, $type = 'politician', $limit = 20, $page = 1, $sort = 'positive', $party = '', $institution = ''){
 	$params = array(
 	           'method' => 'entities',
 	           'type' => $type,
 	           'limit' => $limit,
 	           'page' => $page,
 	           'sort' => $sort,
+	           'party' => $party,
+	           'institution' => $institution,
 	     );
 	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	
@@ -201,6 +203,39 @@ class VootaApi{
 	           'page' => $page,
 	           'culture' => $culture,
 	           'type' => $type,
+	     );
+	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
+	
+	$result = $req->doRequest( $userId );
+	
+	switch( $result['code'] ){
+		case 200:
+			return json_decode( $result['body'] );
+		case 400:
+			throw new BadRequestException('Bad request');
+			break;
+		default:
+			throw new Exception('Error');
+	}	
+  }
+  
+	/**
+	* search - Searchs entities
+	*
+	* @param integer $userId A user identificator
+	* @param string $q The search string
+	* @param integer $limit Max number of results per page
+	* @param integer $page Page number
+	* @param string $culture Finds results in this language
+	* @return array a list of institutions
+	*/  
+  public function institutions($userId, $q, $limit = 20, $page = 1, $culture = 'es'){
+	$params = array(
+	           'method' => 'institutions',
+	           'q' => $q,
+	           'limit' => $limit,
+	           'page' => $page,
+	           'culture' => $culture,
 	     );
 	$req = new OAuthRequester($this->serverUrl."/a1", 'GET', $params);
 	

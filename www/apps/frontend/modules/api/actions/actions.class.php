@@ -53,7 +53,60 @@ class apiActions extends sfActions{
   }
 
   /* General methods */
-    
+  
+  private function institutions( $data ){
+  	$q = $this->getRequestParameter("q", '');
+  	if (!$q)
+  		throw new BadRequestException('A search string must be provided.');
+  		
+  	$page = $this->getRequestParameter("page", '1');
+  	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  	$culture = $this->getRequestParameter("culture", 'es');
+  	$type = $this->getRequestParameter("type", false);
+  	$this->getUser()->setCulture( $culture );
+  	
+  	$cl = new SphinxClient ();
+  	
+  	$dbConf = Propel::getConfiguration();
+  	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
+  	$sphinxServer = sfConfig::get('sf_sphinx_server');
+  	$cl->SetServer ( $sphinxServer, 3312 );
+	$this->limit = 1000;
+	$cl->SetLimits ( 0, $this->limit, $this->limit );
+	$cl->SetArrayResult ( true ); 
+	#instituciones
+	$this->res = $cl->Query ( $q, "institucion_$culture" );
+	$cl->SetFieldWeights(array('vanity' => 5));
+	$cl->SetSortMode ( SPH_SORT_RELEVANCE );
+	$institutions = array();
+	if ( $this->res!==false ) {
+		if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+        	$c = new Criteria();
+        	$list = array();
+        	foreach ($this->res["matches"] as $idx => $match) {
+        		$list[] = $match['id'];
+        	}
+  			$c->add(InstitucionPeer::ID, $list, Criteria::IN);
+  			$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
+  			
+  			//$instituciones = InstitucionPeer::doSelect($c); 					  			
+		  	$pager = new sfPropelPager('Institucion', $limit);
+		    $pager->setCriteria($c);
+		    $pager->setPage($this->getRequestParameter('page', $page));
+		    $pager->init();
+		    foreach ($pager->getResults() as $aInstitution){
+		    	$institution = new Institution();
+		    	$institution->setId( $aInstitution->getVanity() );
+		    	$institution->setName( $aInstitution->getNombreCorto() );
+		    	$institution->setLongName( $aInstitution->getNombre() );
+		    	$institutions[] = $institution; 	
+		    }	    
+        }	
+	}
+	
+	return $institutions;
+  }
+  
   private function search( $data ){
   	$q = $this->getRequestParameter("q", '');
   	if (!$q)
@@ -153,7 +206,7 @@ class apiActions extends sfActions{
   		
   	return $entities;
   }
-
+  
   /* Entities methods */
   
   
@@ -203,12 +256,14 @@ class apiActions extends sfActions{
   	$sort = $this->getRequestParameter("sort", 'positive');	
   	$page = $this->getRequestParameter("page", '1');
   	$limit = $this->getRequestParameter("limit", self::PAGE_SIZE);
+  	$institution = $this->getRequestParameter("institution", '');
+  	$party = $this->getRequestParameter("party", '');
   
   	if ($sort != 'positive' && $sort != 'negative'){
   			throw new BadRequestException('Invalid sort value.');
    	}
    	
-   	$pager = EntityManager::getPoliticos("", "", $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"nd", $limit);
+   	$pager = EntityManager::getPoliticos($party, $institution, $this->getUser()->getCulture("es"), $page, $sort == 'positive'?"pd":"nd", $limit);
     
    	$entities = array();
     foreach ($pager->getResults() as $politico){

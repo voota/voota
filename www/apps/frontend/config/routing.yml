@@ -575,9 +575,13 @@ api_demo_search:
   url:   /api_demo/search
   param: { module: api_demo, action: search }
   
-api_demo_search:
+api_demo_proposal:
   url:   /api_demo/proposal/:id
   param: { module: api_demo, action: proposal }
+  
+api_demo_institutions:
+  url:   /api_demo/institutions
+  param: { module: api_demo, action: institutions }
         
 ### ELECCIONES ###
     
