@@ -97,7 +97,7 @@
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
   	      <p>
-  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium'), __('Entrar con Facebook')) ?>
+  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'perms' => 'publish_stream'), __('Entrar con Facebook')) ?>
   	      </p>
         <?php end_slot('not_logged') ?>
 

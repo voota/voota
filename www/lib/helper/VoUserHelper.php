@@ -84,13 +84,13 @@ function vo_facebook_connect_ajax_button($box, $func_name) {
   // FIXME: ¿Nos hace falta para algo más que para asociar el usuario? Si no, eliminar
 	$func = $func_name.'("'. url_for('@usuario_fb_edit') .'", "'.$box.'")';
 	#return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
-	return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'onlogin' => $func), __('Connect'));
+	return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'perms' => 'publish_stream', 'onlogin' => $func), __('Connect'));
 }
 
 function vo_facebook_connect_associate_button($text = '', $box = 'facebook-connect') {
   $func = 'facebookAssociate("'. url_for('@usuario_fb_edit?op=con&box='.$box). '", "'.$box.'")';
   #return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  ($text?$text:image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"')) . "</a>";
-  return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'onlogin' => $func), __('Sincronizar Voota con Facebook'));
+  return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'perms' => 'publish_stream', 'onlogin' => $func), __('Sincronizar Voota con Facebook'));
 }
 
 function isPolitico($user){

@@ -90,7 +90,7 @@
       <tr class="facebook-login">
         <th><label><?php echo __('Otra opción...') ?></label></th>
         <td>
-          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium'), __('Entrar con Facebook')) ?>
+          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'perms' => 'publish_stream'), __('Entrar con Facebook')) ?>
         </td>
       </tr>
     </table>
