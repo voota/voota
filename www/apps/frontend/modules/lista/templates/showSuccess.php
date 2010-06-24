@@ -1,4 +1,5 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('VoFormat') ?>
 
 <h2>
   <img src="/images/lista-oficial.png" alt="<?php echo __('Lista oficial del partido')?>" />

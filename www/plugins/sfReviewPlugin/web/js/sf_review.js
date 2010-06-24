@@ -129,5 +129,4 @@ function facebookPublishStory(story_attrs) {
       alert('Hubo un problema al intentar publicar en el muro.');
     }
   });
-
 }
