@@ -73,7 +73,7 @@ $(document).ready(function(){
 
   <p class="sf-review-submit">
     <?php if ($reviewId != ''): ?>
-  	  <?php if (!isset($cf)): ?>
+  	  <?php if (!isset($cf) || !$cf): ?>
   	    <span class="sf-review-remove">
   				<?php echo jq_link_to_remote(__('Eliminar opinión'), array(
   			    'update'   => $reviewBox?$reviewBox:'sf_review',
@@ -121,7 +121,7 @@ $(document).ready(function(){
 	    />
 	  </p>
   <?php else: ?>
-	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>"
+	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
   <?php endif ?>
 </form>
 

@@ -6,5 +6,6 @@
 	'redirect' => $redirect,
 	'reviewValue' => $reviewValue,
 	'reviewText' => $reviewText,
-	'reviewToFb' => $reviewId?$reviewToFb:false
+	'reviewToFb' => $reviewId?$reviewToFb:false,
+	'cf' => isset($cf)?$cf:false
 )); ?>

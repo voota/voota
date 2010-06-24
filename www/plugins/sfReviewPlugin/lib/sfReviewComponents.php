@@ -132,6 +132,7 @@ class sfReviewComponents extends sfComponents
   
   public function executeSfrPreview(){
 	$criteria = new Criteria();
+  	$criteria->add(SfReviewPeer::IS_ACTIVE, true); 
 	
 	if ($this->reviewType) {
   		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
