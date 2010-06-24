@@ -16,6 +16,7 @@
   <![endif]-->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://connect.facebook.net/es_ES/all.js"></script>
   <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
   <script type="text/javascript" src="/js/ajaxupload.js"></script>
   <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
@@ -57,29 +58,24 @@
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
   <div id="fb-root"></div>
   <script type="text/javascript">
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>',
-        status : true,
-        cookie : true,
-        xfbml  : true
-      });
-    };
-    (function() {
-      var e = document.createElement('script');
-      e.src = document.location.protocol + '//connect.facebook.net/es_ES/all.js';
-      e.async = true;
-      document.getElementById('fb-root').appendChild(e);
-    }());
+    FB.init({appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>', status : true, cookie : true, xfbml  : true});
+    FB.Event.subscribe('auth.login', function(response){
+      window.location.reload();
+    });
   </script>
 
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
-	    $('.fbconnect_login_button').click(facebookLogin);
       <?php if ($sf_user->getFlash('logToFB')):  ?>  
 	      publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
       <?php endif ?>
+      
+      $('#logout').click(function(){
+        FB.getLoginStatus(function(response) {
+          if (response.session) { FB.logout(); window.location.reload(); return false; }
+        });
+      });
 
       <?php if( $sf_request->getAttribute("ie6") ):?>
   	  	$("#ie6 .close a").click(function(){
@@ -101,7 +97,7 @@
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
   	      <p>
-  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'onlogin' => 'facebookNotifyLoginToBackend("' . url_for('sfGuardAuth/signin?op=fbc') . '")'), __('Entrar con Facebook')) ?>
+  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium'), __('Entrar con Facebook')) ?>
   	      </p>
         <?php end_slot('not_logged') ?>
 
