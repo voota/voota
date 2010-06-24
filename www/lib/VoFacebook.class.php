@@ -22,7 +22,7 @@ class VoFacebook {
 		$facebook_uid = false;
 		
 	  	$facebook = new Facebook(array(
-		  'appId' => sfConfig::get("app_facebook_api_key_$culture"),
+		  'appId' => sfConfig::get("app_facebook_api_id_$culture"),
 		  'secret' => sfConfig::get("app_facebook_api_secret_$culture"),
 		  'cookie' => true,
 		));
