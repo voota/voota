@@ -250,10 +250,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-edit #content input[type=password],
 #sfGuardAuth-edit #content textarea { width: 390px;}
 #sfGuardAuth-edit .politico { padding-top: 5px;}
-#sfGuardAuth-edit .vanity input { display: inline; width: 130px;}
 #sfGuardAuth-edit .avatar p { padding-bottom: 10px;}
 #sfGuardAuth-edit input[type=submit] { width: 150px;}
 #sfGuardAuth-edit input[type=button] { width: 150px;}
+#sfGuardAuth-edit #content input#profile_vanity { display: inline; width: 130px;}
 #sfGuardAuth-edit form th { width: 130px;}
 #sfGuardAuth-edit form td { width: 390px;}
 #sfGuardAuth-edit form td.email p { padding-bottom: 10px;}
