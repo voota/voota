@@ -125,7 +125,6 @@ function subvote(boxId, id, page, url){
 
 function facebookPublishStory(story_attrs) {
   FB.api('/me/feed', 'post', story_attrs, function(response) {
-    alert("PUBLICACIÓN ENVIADA...");
     if (!response || response.error) {
       alert('Hubo un problema al intentar publicar en el muro.');
     }
