@@ -43,4 +43,27 @@ class VoFacebook {
 		
 		return $facebook_uid;
 	}
+	
+	public static function get_facebook_cookie() {
+	  $culture = sfContext::getInstance()->getUser()->getCulture();
+	  $app_id = sfConfig::get("app_facebook_api_id_$culture");
+	  $application_secret = sfConfig::get("app_facebook_api_secret_$culture");
+	  
+	  $args = array();
+	  if(isset($_COOKIE['fbs_' . $app_id]) && $cookie = $_COOKIE['fbs_' . $app_id]){
+		  parse_str(trim($cookie, '\\"'), $args);
+		  ksort($args);
+		  $payload = '';
+		  foreach ($args as $key => $value) {
+		    if ($key != 'sig') {
+		      $payload .= $key . '=' . $value;
+		    }
+		  }
+		  if (md5($payload . $application_secret) != $args['sig']) {
+		    return null;
+		  }
+	  }
+	  return $args;
+	}
+	
 }
