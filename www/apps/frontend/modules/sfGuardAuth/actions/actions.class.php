@@ -3,6 +3,13 @@ require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+	
+  public function executeSignout($request){
+  	VoFacebook::remove_cookie();
+  	
+  	return parent::executeSignout($request);
+  }
+  
   private function doSignin($request, $op = '')
   {
     $user = $this->getUser();

@@ -44,6 +44,16 @@ class VoFacebook {
 		return $facebook_uid;
 	}
 	
+	public static function remove_cookie() {
+	  $culture = sfContext::getInstance()->getUser()->getCulture();
+	  $app_id = sfConfig::get("app_facebook_api_id_$culture");
+	  $application_secret = sfConfig::get("app_facebook_api_secret_$culture");
+	  
+	  if(isset($_COOKIE['fbs_' . $app_id])){
+	  	setcookie('fbs_' . $app_id, 0);
+	  }
+	}
+	
 	public static function get_facebook_cookie() {
 	  $culture = sfContext::getInstance()->getUser()->getCulture();
 	  $app_id = sfConfig::get("app_facebook_api_id_$culture");
