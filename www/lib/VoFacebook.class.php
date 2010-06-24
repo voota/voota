@@ -50,7 +50,8 @@ class VoFacebook {
 	  $application_secret = sfConfig::get("app_facebook_api_secret_$culture");
 	  
 	  if(isset($_COOKIE['fbs_' . $app_id])){
-	  	setcookie('fbs_' . $app_id, 0);
+	  	sfContext::getInstance()->getUser()->setFlash('fb_rm', '1');
+	  	unset($_COOKIE['fbs_' . $app_id]);
 	  }
 	}
 	
@@ -58,9 +59,13 @@ class VoFacebook {
 	  $culture = sfContext::getInstance()->getUser()->getCulture();
 	  $app_id = sfConfig::get("app_facebook_api_id_$culture");
 	  $application_secret = sfConfig::get("app_facebook_api_secret_$culture");
+	  $fb_rm = sfContext::getInstance()->getUser()->getFlash('fb_rm', false);
 	  
 	  $args = array();
-	  if(isset($_COOKIE['fbs_' . $app_id]) && $cookie = $_COOKIE['fbs_' . $app_id]){
+	  if ($fb_rm){
+	  	unset($_COOKIE['fbs_' . $app_id]);
+	  }
+	  if(isset($_COOKIE['fbs_' . $app_id]) && ($cookie = $_COOKIE['fbs_' . $app_id]) && !$fb_rm){
 		  parse_str(trim($cookie, '\\"'), $args);
 		  ksort($args);
 		  $payload = '';
