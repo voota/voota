@@ -96,7 +96,8 @@ class apiActions extends sfActions{
 		    $pager->init();
 		    foreach ($pager->getResults() as $aInstitution){
 		    	$institution = new Institution();
-		    	$institution->setId( $aInstitution->getVanity() );
+		    	$institution->setId( $aInstitution->getId() );
+		    	$institution->setVanity( $aInstitution->getVanity() );
 		    	$institution->setName( $aInstitution->getNombreCorto() );
 		    	$institution->setLongName( $aInstitution->getNombre() );
 		    	$institutions[] = $institution; 	

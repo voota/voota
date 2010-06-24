@@ -17,6 +17,7 @@
  */
 class Institution {
 	var $id;
+	var $vanity;
 	var $name;
 	var $longName;
 	
@@ -30,6 +31,9 @@ class Institution {
   	public function getId(){
   		return $this->id;
   	}
+  	public function getVanity(){
+  		return $this->vanity;
+  	}
 	public function getName(){
   		return $this->name;
   	}
@@ -38,6 +42,9 @@ class Institution {
   	}
   	public function setId( $id ){
   		$this->id = $id;
+  	}
+  	public function setVanity( $vanity ){
+  		$this->vanity = $vanity;
   	}
   	public function setName( $name ){
   		$this->name = $name;
