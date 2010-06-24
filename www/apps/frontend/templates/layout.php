@@ -73,7 +73,7 @@
       
       $('#logout').click(function(){
         FB.getLoginStatus(function(response) {
-          if (response.session) { FB.logout(); window.location.reload(); return false; }
+          if (response.session) { FB.logout(); }
         });
       });
 
