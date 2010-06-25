@@ -5820,81 +5820,81 @@ actual)</target>
         <source>Mostrando %1% comentarios de %2%</source>
         <target>Mostrant %1% comentaris de %2%</target>
       </trans-unit>
-      <trans-unit id="634">
+      <trans-unit id="634" approved="yes">
         <source>Etiquetas, por qué no...</source>
-        <target/>
+        <target>Etiquetes, per què no...</target>
       </trans-unit>
-      <trans-unit id="635">
+      <trans-unit id="635" approved="yes">
         <source>Tú dirás...</source>
-        <target/>
+        <target>Tu diràs...</target>
       </trans-unit>
-      <trans-unit id="636">
+      <trans-unit id="636" approved="yes">
         <source>(Pero primero haz login, ¿eh?)</source>
-        <target/>
+        <target>(Però primer fes login, eh?)</target>
       </trans-unit>
-      <trans-unit id="637">
+      <trans-unit id="637" approved="yes">
         <source>JPG, GIF, PNG... (Máx 2Mb)</source>
-        <target/>
+        <target>JPG, GIF, PNG... (Màx 2Mb)</target>
       </trans-unit>
-      <trans-unit id="638">
+      <trans-unit id="638" approved="yes">
         <source>propuestas políticas</source>
-        <target/>
+        <target>propostes polítiques</target>
       </trans-unit>
-      <trans-unit id="639">
+      <trans-unit id="639" approved="yes">
         <source>otros comentarios</source>
-        <target/>
+        <target>altres comentaris</target>
       </trans-unit>
-      <trans-unit id="640">
+      <trans-unit id="640" approved="yes">
         <source>Opiniones de %1% sobre %2% en Voota</source>
-        <target/>
+        <target>Opinions de %1% sobre %2% a Voota</target>
       </trans-unit>
-      <trans-unit id="641">
+      <trans-unit id="641" approved="yes">
         <source>%1% aún no se ha animado a comentar</source>
-        <target/>
+        <target>%1% encara no s'ha animat a comentar</target>
       </trans-unit>
-      <trans-unit id="642">
+      <trans-unit id="642" approved="yes">
         <source>%1% ha comentado sobre</source>
-        <target/>
+        <target>%1% ha comentat sobre</target>
       </trans-unit>
-      <trans-unit id="643">
+      <trans-unit id="643" approved="yes">
         <source>otro comentario sobre</source>
-        <target/>
+        <target>un altre comentari sobre</target>
       </trans-unit>
-      <trans-unit id="644">
+      <trans-unit id="644" approved="yes">
         <source>Propuesta:</source>
-        <target/>
+        <target>Proposta:</target>
       </trans-unit>
-      <trans-unit id="645">
+      <trans-unit id="645" approved="yes">
         <source>Las propuestas de %nombre% (%1%)</source>
-        <target/>
+        <target>Les propostes de %nombre% (%1%)</target>
       </trans-unit>
-      <trans-unit id="646">
+      <trans-unit id="646" approved="yes">
         <source>Los comentarios de %nombre% (%1%)</source>
-        <target/>
+        <target>Els comentaris de %nombre% (%1%)</target>
       </trans-unit>
-      <trans-unit id="647">
+      <trans-unit id="647" approved="yes">
         <source>Propuestas, comentarios y vootos que has hecho hasta ahora (%1%)</source>
-        <target/>
+        <target>Propostes, comentaris i voots que has fet fins ara (%1%)</target>
       </trans-unit>
-      <trans-unit id="648">
+      <trans-unit id="648" approved="yes">
         <source>Tus propuestas (%1%)</source>
-        <target/>
+        <target>Les teves propostes (%1%)</target>
       </trans-unit>
-      <trans-unit id="649">
+      <trans-unit id="649" approved="yes">
         <source>De momento sin etiquetas</source>
-        <target/>
+        <target>De moment sense etiquetes</target>
       </trans-unit>
-      <trans-unit id="650">
+      <trans-unit id="650" approved="yes">
         <source>[1]Mostrando %1% etiqueta de %2%|(1,+Inf]Mostrando %1% etiquetas de %2%</source>
-        <target/>
+        <target>[1]Mostrant %1% etiqueta de %2%|(1,+Inf]Mostrant %1% etiquetes de %2%</target>
       </trans-unit>
-      <trans-unit id="651">
+      <trans-unit id="651" approved="yes">
         <source>ordenado por votos positivos inverso</source>
-        <target/>
+        <target>ordenant per vots positius invers</target>
       </trans-unit>
-      <trans-unit id="652">
+      <trans-unit id="652" approved="yes">
         <source>todos los partidos</source>
-        <target/>
+        <target>tots els partits</target>
       </trans-unit>
     </body>
   </file>
