@@ -46,7 +46,6 @@
 </p>
 </form>
 
-<?php include_partial('sfReviewFront/dialog') ?>
 
 
 <?php // include_partial('selectorPartido', array('pageTitle' => $pageTitle, 'partidos_arr' => $partidos_arr, 'favoritos' => $partidos_arr, 'partido' => $partido)) ?>

@@ -251,7 +251,6 @@ class BasesfReviewFrontActions extends sfActions
   		$peer = $type->getModel() . 'Peer';
   		$this->entity = $peer::retrieveByPK($entityId);
   	}
-  	
   	try {  	
   		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $typeId, $entityId, $value, false, $this->entity, $rm, 0, 'quick');
   	}
