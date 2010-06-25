@@ -60,7 +60,8 @@
   <script type="text/javascript">
     FB.init({appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>', status : true, cookie : true, xfbml  : true});
     FB.Event.subscribe('auth.login', function(response){
-      window.location.reload();
+      //window.location.reload();
+      window.location = '/frontend_dev.php';
     });
   </script>
 

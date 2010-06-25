@@ -29,6 +29,10 @@
       <?php //include_partial('socioabout', array('socio' => $users[7])) ?>
       <?php include_partial('socioabout', array('socio' => $users[31])) ?>
       <?php include_partial('socioabout', array('socio' => $users[180])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[9])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[738])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[27])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[447])) ?>
     </ul>
   </div>
 
