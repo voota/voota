@@ -2928,6 +2928,10 @@ actual)</target>
         <source>todos los partidos</source>
         <target>tots els partits</target>
       </trans-unit>
+      <trans-unit id="653">
+        <source>Los partidos más votados en Voota</source>
+        <target>Els partits més votats a Voota</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

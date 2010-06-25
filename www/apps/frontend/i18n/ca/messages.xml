@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-06-22T14:54:58Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-06-25T14:21:35Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -5895,6 +5895,10 @@ actual)</target>
       <trans-unit id="652" approved="yes">
         <source>todos los partidos</source>
         <target>tots els partits</target>
+      </trans-unit>
+      <trans-unit id="653">
+        <source>Los partidos más votados en Voota</source>
+        <target>Els partits més votats a Voota</target>
       </trans-unit>
     </body>
   </file>
