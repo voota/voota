@@ -301,7 +301,6 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #perfil-show .profile .description .links { padding-bottom: 10px;}
 #perfil-show .profile .description .links p { padding-top: 20px; padding-bottom: 0;}
 #perfil-show .profile .description .links ul { margin: 0; padding: 0; list-style: none;}
-#perfil-show .profile .description .contact a { padding-right: 20px; background: transparent url(/images/email.png) right top no-repeat;}
 #perfil-show .propuestas { clear: both; padding-top: 40px;}
 #perfil-show .propuestas .date { font-size: 11px;}
 #perfil-show .comments { clear: both; padding-top: 40px;}
