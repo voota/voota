@@ -19,15 +19,15 @@
 class voSecurityFilter extends sfGuardBasicSecurityFilter
 {
   public function execute ($filterChain)
-  {
-    if ($this->isFirstCall() and !$this->getContext()->getUser()->isAuthenticated() && ($cookie = VoFacebook::get_facebook_cookie())){
+  {/*
+    if (!$this->getContext()->getUser()->isAuthenticated() && ($cookie = VoFacebook::get_facebook_cookie())){
         $c = new Criteria();
         $c->add(sfGuardUserProfilePeer::FACEBOOK_UID, $cookie['uid']);
         $c->addJoin(sfGuardUserProfilePeer::USER_ID, sfGuardUserPeer::ID);
         if ($user = sfGuardUserPeer::doSelectOne($c)) {
           $this->getContext()->getUser()->signIn($user);
         }
-    }
+    }*/
   	/*
     if ($this->isFirstCall() and !$this->getContext()->getUser()->isAuthenticated())
     {
