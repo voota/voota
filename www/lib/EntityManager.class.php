@@ -47,11 +47,11 @@ class EntityManager {
 				, Criteria::LEFT_JOIN
 			);
 		  	*/
-		  	if ($partido && $partido != ALL_URL_STRING){
+		  	if ($partido && $partido != 'all'){
 		  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
 		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
 		  	}
-		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  	if ($institucion && $institucion != 'all'){
 		  		$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);	
 		  		$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
 		  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
@@ -86,27 +86,27 @@ class EntityManager {
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(politico.sumu) as total_u, sum(politico.sumd) as total_d 
   				FROM `politico`";
-  				if ($institucion && $institucion != ALL_URL_STRING){
+  				if ($institucion && $institucion != 'all'){
   					$query .= " INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID ";
   					$query .= " INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID ";
   					$query .= " INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ";
   				}
-  				if ($partido && $partido != ALL_URL_STRING) {
+  				if ($partido && $partido != 'all') {
   					$query .= " INNER JOIN partido ON (politico.PARTIDO_ID=partido.ID) ";
   				}
   				//" WHERE politico.VANITY IS NOT NULL ".
   				$query .= " WHERE 1=1 ";
-  				$query .= (($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA= ? ":" ") .
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ");
+  				$query .= (($partido && $partido != 'all')?" AND partido.ABREVIATURA= ? ":" ") .
+  				(($institucion && $institucion != 'all')?"AND institucion_i18n.VANITY= ? ":" ");
   			
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 
   			$idx = 1;
-  			if ($partido && $partido != ALL_URL_STRING) {
+  			if ($partido && $partido != 'all') {
 				$statement->bindValue($idx++, $partido);  				
   			}
-  			if ($institucion && $institucion != ALL_URL_STRING) {
+  			if ($institucion && $institucion != 'all') {
 				$statement->bindValue($idx++, $institucion);  				
   			}
   			
@@ -242,7 +242,7 @@ class EntityManager {
 				, Criteria::LEFT_JOIN
 			);
 		  			  	
-		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  	if ($institucion && $institucion != 'all'){
 		  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
 			  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 			  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
@@ -284,17 +284,17 @@ class EntityManager {
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(partido.sumu) as total_u, sum(partido.sumd) as total_d 
   				FROM `partido` ".
-  				(($institucion && $institucion != ALL_URL_STRING)?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
+  				(($institucion && $institucion != 'all')?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
   				INNER JOIN `politico_institucion` ON politico_institucion.Politico_ID = politico.ID
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = ?) ":" ").
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
+  				(($institucion && $institucion != 'all')?"AND institucion_i18n.VANITY= ? ":" ") .
   				"WHERE partido.is_active = 1";
 	
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 				$statement->bindValue(1, $culture);
-  			if ($institucion && $institucion != ALL_URL_STRING){
+  			if ($institucion && $institucion != 'all'){
 				$statement->bindValue(2, $institucion);
   			}
 			$statement->execute();
