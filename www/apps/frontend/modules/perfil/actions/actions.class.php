@@ -77,6 +77,8 @@ class perfilActions extends SfVoActions
 	$this->sfReviewType = $request->getParameter("type_id", false);	
 	$this->text = $request->getParameter("t", false);	
   		
+  	$this->forward404Unless($this->getUser()->getGuardUser());
+  	
   	$c = new Criteria();
   	$c->add(PropuestaPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
   	$this->propuestas = PropuestaPeer::doSelect( $c );
