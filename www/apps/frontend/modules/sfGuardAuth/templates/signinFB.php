@@ -43,6 +43,6 @@
   </p>
 
   <p>
-  	<a href="<?php echo url_for('sfGuardAuth/signin?op=fb') ?>"><?php echo __("Paa'lante, quizás en otro momento &raquo;") ?></a>
+  	<a href="<?php echo url_for('sfGuardAuth/signin?op=go') ?>"><?php echo __("Paa'lante, quizás en otro momento &raquo;") ?></a>
   </p>
 </div>
