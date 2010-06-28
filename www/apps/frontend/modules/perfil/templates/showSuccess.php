@@ -57,7 +57,7 @@
         <div class="links">
           <p><?php echo __('Más sobre %1%:', array('%1%' => $user))?></p>
           <ul>
-            <?php foreach ($user->getEnlaces() as $enlace): ?>
+            <?php foreach ($enlaces as $enlace): ?>
 	              <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl() ))?></li>
             <?php endforeach ?>
           </ul>
