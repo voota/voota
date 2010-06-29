@@ -15,7 +15,25 @@ $tests = array(
   'ábcd3' => array('length' => 2, 'ext' => '', 'fullWords' => false),
   'ábcd4' => array('length' => 3, 'ext' => '', 'fullWords' => false),
   'aácd5' => array('length' => 1, 'ext' => '', 'fullWords' => false),
-  'aácd5' => array('length' => 2, 'ext' => '', 'fullWords' => false),
+'La nueva reforma de la ley de tráfico pretende, en palabras de Rubalcaba (al menos eso dice la carta de mi buzón), conseguir que nuestras carreteras sean cada vez más seguras.
+  
+  Para ello basan su campaña en tres pilares básicos:
+  
+  - Más sencilla
+  - Más fácil
+  - Más justa
+  
+  Adjunto la la ley en pdf y enlace a la página correspondiente.
+  
+  La nueva reforma de la ley de tráfico pretende, en palabras de Rubalcaba (al menos eso dice la carta de mi buzón), conseguir que nuestras carreteras sean cada vez más seguras.
+  
+  Para ello basan su campaña en tres pilares básicos:
+  
+  - Más sencilla
+  - Más fácil
+  - Más justa
+  
+  Adjunto la la ley en pdf y enlace a la página correspondiente.' => array('length' => 182, 'ext' => '', 'fullWords' => false),
 );
 
 foreach ($tests as $string => $attributes)

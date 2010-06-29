@@ -51,7 +51,7 @@ class propuestaActions extends sfActions
   		$this->redirect( "propuesta/show?id=".$this->propuesta->getVanity() );
   	}
   	elseif ($op == 'ed'){
-  		$this->propuesta->setDescripcion( $descripcion );
+  		$this->propuesta->setDescripcion( SfVoUtil::cutToLength($descripcion, 600, '', false) );
   		$this->propuesta->save();
   		$this->redirect( "propuesta/show?id=".$this->propuesta->getVanity() );
   	}

@@ -113,7 +113,8 @@ class SfVoUtil
 	
 	public static function cutToLength($str, $length = 35, $ext = '...', $fullWords = false) {
 		$ret = '';
-		$aStr = utf8_decode(preg_replace("/\n/is", " ", $str));
+		$aStr = utf8_decode( $str );
+		$aStr = preg_replace("/\r/is", "", $aStr);
 		
 		$strLength = strlen(($aStr));
 		
