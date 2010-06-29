@@ -2,4 +2,5 @@
 
 class PartidoPeer extends BasePartidoPeer
 {
+
 }

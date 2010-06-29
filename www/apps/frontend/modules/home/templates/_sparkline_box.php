@@ -1,2 +1,1 @@
-<canvas id="<?php echo $id ?>" width="100" height="15"></canvas>
-
+<?php echo jsWrite('<canvas id="' . $id . '" width="100" height="15"></canvas>') ?>

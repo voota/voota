@@ -1,4 +1,4 @@
 <?php 
-if ($lista->getEleccion()){
-	echo $lista->getEleccion()->getNombre();
+if ($lista->getConvocatoria()){
+	echo $lista->getConvocatoria()->__toString();
 }

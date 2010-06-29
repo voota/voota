@@ -1,7 +1,7 @@
 rendering: ~
 
-facebook_connect:
-  class: sfFacebookConnectFilter
+#facebook_connect:
+#  class: sfFacebookConnectFilter
 remember_me:
   class: sfGuardRememberMeFilter
 security:

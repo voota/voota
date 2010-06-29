@@ -10,4 +10,23 @@
  */
 class eleccionGeneratorConfiguration extends BaseEleccionGeneratorConfiguration
 {
+	var $instituciones;
+	
+  public function getFormDisplay()
+  {
+  	$ret = parent::getFormDisplay();
+  	if (isset($this->instituciones)){
+	  	$institucionesDisplay = array();
+	  	foreach ($this->instituciones as $institucion){
+	  		$institucionesDisplay[] = 'institucion'. $institucion->getInstitucion()->getId();
+	  	}
+	  	$institucionesDisplay[] = 'institucion';
+	  	$ret['Instituciones'] = $institucionesDisplay;
+  	}
+    return $ret;
+  }
+  public function setInstituciones( $instituciones )
+  {
+  	$this->instituciones = $instituciones;
+  }
 }

@@ -56,10 +56,34 @@ class partidoActions extends sfActions
   	$this->partido = PartidoPeer::retrieveByPK( $id );
   }
   
+  private function generateRankingUrl ($institucion, $i = ''){
+  	$i_url = "";
+  	$culture = $this->getUser()->getCulture();
+  	
+  	if($i != '' && $i != ALL_URL_STRING && $i != ALL_FORM_VALUE){
+  		$i_url = "$i";
+  	}
+  	elseif ($institucion) {
+  		$i_url = "$institucion";
+  	}
+  	
+  	if ($i_url == ""){
+  		// Todos. Sin filtro
+  		$url = "partido/ranking";
+  	}
+  	else {
+  		// Filtro por institucion
+  		$url = "partido/ranking?institucion=$i_url";
+  	}
+  	
+  	return $url;
+  }
+  
   public function executeRanking(sfWebRequest $request)
   {
   	$culture = sfContext::getInstance()->getUser()->getCulture('es');
   	$institucion = $request->getParameter("institucion");
+  	$i = $request->getParameter("i");
   	
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
@@ -72,6 +96,10 @@ class partidoActions extends sfActions
 		}
 		$this->redirect( "politico/ranking$qs", 301 );
 	}	
+    if ($i != ''){
+	  	$url = $this->generateRankingUrl ($institucion, $i);
+	   	$this->redirect( $url );
+  	}
 	$this->order = $order?$order:'pd';
 	$page = $page?$page:1;
   		
@@ -90,6 +118,7 @@ class partidoActions extends sfActions
     $this->totalDown = $totalDown;
     	
   	$this->institucion = $institucion;
+  		$this->institucionAC = '';
   	if ($institucion){ 
   		$aInstitucionCriteria = new Criteria();
 		$aInstitucionCriteria->addJoin(
@@ -101,14 +130,25 @@ class partidoActions extends sfActions
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);
 				
   		$this->forward404Unless( $aInstitucion );
+  		if($aInstitucion->getVanity() != $institucion){
+  			$url = $this->generateRankingUrl($aInstitucion->getVanity());
+  			$params = $request->getParameterHolder()->getAll();
+  			foreach ($params as $key => $value){
+  				if ($key != 'module' && $key != 'action' && $key != 'partido' && $key != 'institucion'){
+  					$url .= "&$key=$value";
+  				}
+  			}
+  			$this->redirect( $url, 301 );
+  		}
+  		$this->institucionAC = $aInstitucion->getNombre();
   	}
     
-    /* Lista de instituciones */ 
+    /* Lista de instituciones 
   	$c = new Criteria();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$c->add(InstitucionPeer::IS_MAIN, true);
   	$this->instituciones = InstitucionPeer::doSelect($c);
-  	/*  Fin Lista de instituciones */
+  	  Fin Lista de instituciones */
   	
   	//$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
@@ -147,7 +187,9 @@ class partidoActions extends sfActions
   	$this->title = $this->pageTitle . ' - Voota';
   	$this->response->addMeta('Title', $this->title);
   	
-  	$description = sfContext::getInstance()->getI18N()->__('Los partidos más votados en Voota:', array()) . " ";
+  	$description = sfContext::getInstance()->getI18N()->__('Los partidos más votados en Voota');
+  	$description .= (!$this->institucion || $this->institucion=='0' || !isset($aInstitucion))?'':", " . $aInstitucion->getNombre();
+  	$description .= ': ';
   	if ($this->partidosPager->getNbResults() > 0){
   		foreach ($this->partidosPager->getResults() as $idx => $partido){
   			if ($idx < 5){
@@ -159,17 +201,6 @@ class partidoActions extends sfActions
   		$description .= ', ...';
   	}
   	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
   		$description .= ", $orderTxt";
    	}
   	if ($page && $page != 1) {
@@ -195,16 +226,25 @@ class partidoActions extends sfActions
   	$this->forward404Unless( $this->partido );
   	$this->forward404Unless( $this->partido->getIsActive() );
   	
-  	// Estabamos vootando antes del login ?
-  	$v = $this->getUser()->getAttribute('review_v');
-  	if ($v && $v != ''){
-  		$e = $this->getUser()->getAttribute('review_e');
-  		$this->getUser()->setAttribute('review_v', '');
-  		$this->getUser()->setAttribute('review_e', '');
-  		
-  		if ($e == $this->partido->getId() && $this->getUser()->isAuthenticated()) {
-  			$this->review_v = $v;
-  		}	
+  
+  	if ($this->partido->getAbreviatura() != $abreviatura){
+  		$this->redirect('partido/show?id='.$this->partido->getAbreviatura(), 301);
+  	}
+  	
+    // Estabamos vootando antes del login ?
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
   	}
   	
   	if ($this->partido->getImagen() != ''){
@@ -266,6 +306,14 @@ class partidoActions extends sfActions
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
     
+    $this->twitterUser = FALSE;
+    foreach ($this->activeEnlaces as $enlace){
+    	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){
+    		$this->twitterUser = $matches[1];
+    		break;
+    	}
+    }
+    
     // Politicos mas votados
     $c = new Criteria();
 	$c->addJoin(
@@ -306,9 +354,97 @@ class partidoActions extends sfActions
   		 
   	$this->response->addMeta('Descripcion', $descripcion);
   	
+ 	// Listas de electorales
+ 	$convocatoriaActiva = sfConfig::get('sf_convocatoria_activa');
+  	$this->convocatoria = ConvocatoriaPeer::retrieveByPk($convocatoriaActiva);
+ 	$c = new Criteria();
+ 	$c->add(ListaPeer::PARTIDO_ID, $this->partido->getId());
+ 	$c->add(ListaPeer::CONVOCATORIA_ID, $convocatoriaActiva);
+ 	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+ 	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
+	$this->listas = ListaPeer::doSelect( $c );
+  	
   	/* paginador */
     $this->partidosPager = EntityManager::getPager($this->partido);
     /* / paginador */
+  	    
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $request->setAttribute('rssFeed',  'partido/feed?id='.$this->partido->getVanity());
+    
+  }
+
+  public function executeFeed(sfWebRequest $request)
+  {
+  	$abreviatura = $request->getParameter('id');
+  	$culture = $this->getUser()->getCulture("es");
+  	
+  	$this->institucion = $request->getParameter("institucion");
+  	if ($this->institucion == ''){
+  		$this->institucion = "0";
+  	}
+    
+  	$c = new Criteria();
+  	$c->add(PartidoPeer::ABREVIATURA, $abreviatura , Criteria::EQUAL);
+  	$entity = PartidoPeer::doSelectOne( $c );
+  	
+  	$this->forward404Unless( $entity );
+  	$this->forward404Unless( $entity->getIsActive() );
+  	
+  	
+	$filter = array();
+	$filter['type_id'] = Partido::NUM_ENTITY;
+  	$filter['entity_id'] = $entity->getId();
+	$reviews = SfReviewManager::getReviews($filter);
+  	
+  	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
+  					, array(
+  						'%1%' => $entity
+  					)
+  	);
+  	$description = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%, %2% votos a favor y %3% votos en contra'
+  					, array(
+  						'%1%' => $entity->getNombre(),
+  						'%2%' => $entity->getSumu(),
+  						'%3%' => $entity->getSumd()
+  					)
+  	);
+  	
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+  	$feed->setLink('partido/show?id='.$entity->getVanity());
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+  	
+  	$feedImage = new sfFeedImage();
+	$feedImage->setLink('partido/show?id='.$entity->getVanity());
+	$feedImage->setImage(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_'.$entity->getImagen());
+	$feedImage->setTitle( $entity );
+	$feed->setImage($feedImage);
+  	
+  	
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
   	
   }
 }

@@ -24,14 +24,6 @@ function changeParam(param, value){
 	return false;
 }
 
-function cargarSelectorPartido(partidos, favoritos) {	
-  // $("#partido_selector").change(function(){
-  //  partidoSelector = document.getElementById('partido_selector');
-  //  changeParam("p", partidoSelector.value);
-  // });
-  
-}
-
 // mode: init/form
 function politicoReady( url, id, box ){
 	return loadReviewBox(url, 1, id, -1, box);
@@ -57,6 +49,7 @@ function showHidePass( fieldName ){
 	
 	return false;
 }
+
 function changeInputType(oldObject, oType) {
 	  var newObject = document.createElement('input');
 	  newObject.type = oType;
@@ -69,6 +62,7 @@ function changeInputType(oldObject, oType) {
 	  oldObject.parentNode.replaceChild(newObject,oldObject);
 	  return newObject;
 }
+
 function showScoreHelp(){
 	$("#help-dialog").dialog('open');
 }
@@ -85,62 +79,67 @@ function institutions_to_short() {
 	return false;
 }
 
-function facebookConnect_PHCallback(){
-	sf_fb.gotoLoginPage();
+// Facebook
+function facebookParseXFBML(selector) {
+  FB.XFBML.parse(selector);
 }
 
-function facebookConnect_promptPermission(permission, callbackFuncName) {
-  FB.ensureInit(function() {
-    FB.Facebook.apiClient.users_hasAppPermission(permission,
-     function(result) {
-        if (result == 0) {
-          FB.Connect.showPermissionDialog(permission, callbackFuncName);
-        }
-        else {
-        	callbackFuncName(1);
-        }
-    });
+function facebookRequirePermission(options) {
+  FB.api(
+    {
+      method: 'users.hasAppPermission',
+      ext_perm: options.permission
+    },
+    function(response) {
+      if (response == 1) {
+        options.success();
+      } else {
+        options.error();
+      }
+    }
+  );
+}
+
+function facebookRequireLogin(options) {
+  FB.getLoginStatus(function(response) {
+    if (response.session) {
+      options.success();
+    } else {
+      FB.login(function(response) {
+        facebookRequireLogin(options);
+      }, {perms:'publish_stream'});
+    }
   });
+  return false;
 }
 
-function facebookConnect_callback(){
-  facebookConnect_promptPermission("publish_stream", facebookConnect_PHCallback);
+function facebookNotifyLoginToBackend(url) {
+	document.location = url;
 }
 
-function facebookConnect(){
-	jQuery(function(){sf_fb.requireSession(null, facebookConnect_callback)});
-	return false;
-}
-
-function facebookConnect_autoLogin() {
-  FB.Connect.ifUserConnected(facebookConnect_callback);
-}
-
-function facebookConnect_linkLogout() {
-  FB.Connect.ifUserConnected(function(){
-    $('#logout').click(function(){
-      logout_url = $(this).attr('href');
-      FB.Connect.logoutAndRedirect(logout_url);
-      return false;
-    })
+function facebookLogin() {
+  facebookRequireLogin({
+    success: function() {
+      facebookNotifyLoginToBackend();
+    }
   });
+  return false;
 }
 
-function facebookConnect_loadUserName() {
-  FB.ensureInit(function() {
-    FB.Connect.ifUserConnected(function() {
-      if ($('#profile_nombre').attr('value') == "") {
-        uid = FB.Connect.get_loggedInUser()
-        FB.Facebook.apiClient.users_getInfo(uid, ['first_name', 'last_name'], function(result){
-          $('#profile_nombre').attr('value', result[0]['first_name']);
-          $('#profile_apellidos').attr('value', result[0]['last_name']);
+function facebookLoadUserName() {
+  if ($('#profile_nombre').attr('value') == "") {
+    FB.getLoginStatus(function(response) {
+      if (response.session) {
+        FB.api('/me', function(response) {
+          $('#profile_nombre').attr('value', response.first_name).removeClass('blur');
+          $('#profile_apellidos').attr('value', response.last_name).removeClass('blur');
         }); 
       }
     });
-  });
+  }
 }
 
-function facebookConnect_disconnect_logout(url, logout_url) {
+function facebookLogoutAndRedirect(url, logout_url) {
   re_loading('facebook-connect');
 	$.ajax({
 	  type     : 'POST',
@@ -148,12 +147,13 @@ function facebookConnect_disconnect_logout(url, logout_url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    $('#facebook-connect').html(data);
-	    FB.Connect.logoutAndRedirect(logout_url);
+	    FB.logout();
+	    window.location = logout_url;
 	  }
 	});
 }
 
-function facebookConnect_disconnect(url) {
+function facebookDisconnectAccount(url) {
   re_loading('facebook-connect');
 	$.ajax({
 	  type     : 'POST',
@@ -161,41 +161,45 @@ function facebookConnect_disconnect(url) {
 	  url      : url,
 	  success  : function(data, textStatus) {
 	    $('#facebook-connect').html(data);
+	    facebookParseXFBML();
 	  }
 	});
 }
 
-function facebookConnect_loadPreferences(url, box){
-  re_loading( box );
-	jQuery.ajax({
+function facebookLoadPreferences(url, box) {
+  re_loading(box);
+	$.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    jQuery('#'+box).html(data);
-	    FB.XFBML.Host.parseDomTree();
+	    $('#' + box).html(data);
+	    facebookParseXFBML('#' + box);
 	  }
 	});
-	
 	return false;
 }
 
-function facebookConnect_associate(url, box) {
-	jQuery(function(){ sf_fb.requireSession(null, function(){
-	  facebookConnect_loadPreferences(url, box);
-	}) });
+function facebookAssociate(url, box) {
+	$(function() {
+	  facebookRequireLogin({
+      success: function() {
+	      facebookLoadPreferences(url, box);
+      }
+	  })
+	});
 	return false;
 }
 
 function loadAjax(url, box){
-  re_loading( box );
-	jQuery.ajax({
+  re_loading(box);
+	$.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    jQuery('#'+box).html(data);
-	    FB.XFBML.Host.parseDomTree();
+	    $('#'+box).html(data);
+	    facebookParseXFBML();
 	  }
 	});
 	
@@ -203,15 +207,15 @@ function loadAjax(url, box){
 }
 
 function close_sync_tip(url) {
-	  re_loading( 'lo_fb_conn' );
-	jQuery.ajax({
-		  type     : 'POST',
-		  dataType : 'html',
-		  url      : url,
-		  success  : function(data, textStatus) {
-		    jQuery('#lo_fb_conn').html(data);
-		  }
-		});
+	re_loading('lo_fb_conn');
+	$.ajax({
+	  type     : 'POST',
+	  dataType : 'html',
+	  url      : url,
+	  success  : function(data, textStatus) {
+	    $('#lo_fb_conn').html(data);
+	  }
+	});
 	
   //$('#lo_fb_conn').remove();
 }
@@ -236,4 +240,97 @@ function sparkline(id, label, data) {
     g.data(label, data);
     g.draw();
   } catch(err) { }
+}
+
+jQuery.fn.tooltip_propuesta = function() {
+  $(this).each(function(){
+    var title = '<strong>' + $(this).attr('title').split('|')[0] + '</strong>';
+    var date = $(this).attr('title').split('|')[1];
+    var body = $(this).attr('title').split('|')[2];
+    $(this).qtip({
+      content: '<p>' + title + '</p><p>' + date + '</p><p>' + body + '</p>',
+      position: { corner: { tooltip: 'leftTop', target: 'center' } },
+      style: { name: 'light' }
+    });
+    $(this).attr('title', '');
+  });
+}
+
+jQuery.fn.tooltip_politico_elecciones = function() {
+  $(this).each(function(){
+    img = $('<div>').append($(this).clone()).remove().html();
+    nombre = $(this).data('nombre');
+    url = $(this).data('url');
+    positive_votes = $(this).data('positive_votes');
+    negative_votes = $(this).data('negative_votes');
+    $(this).qtip({
+      content: '<div class="tooltip-politico">' + 
+                 '<div class="nombre"><a href="' + url + '">' + nombre + '</a></div>' +
+                 '<div class="photo">' + img + '</div>' +
+                 '<div class="positive_votes">' + positive_votes + '</div>' +
+                 '<div class="negative_votes">' + negative_votes + '</div>' +
+               '</div>',
+      position: {
+        corner: { tooltip: 'bottomMiddle', target: 'topMiddle' }
+      },
+      hide: { fixed: true, delay: 100, effect: { type: 'fade' } },
+      style: {
+        border: { width: 1, color: '#809DB9' },
+        padding: 10,
+        tip: true
+      }
+    });
+  });
+}
+
+function formatSummaryTemplate(string) {
+  string = string.replace('{count}', '<strong class="reviews_count"></strong>');
+  string = string.replace('{total}', '<strong class="reviews_total"></strong>');
+  return '<p>' + string + '</p>';
+}
+
+$.fn.reviews_pagination = function(options) {
+  if(!options) options = {};
+  defaults = {
+    summaryTemplate: formatSummaryTemplate('Mostrando {count} comentarios de {total}'),
+    buttonText: 'más',
+    data: { page: 1 }
+  };
+  var opts = $.extend(true, {}, defaults, options);
+  
+  return $(this).each(function(){
+    var area = $(this);
+    var summary = $(opts.summaryTemplate);
+    var spinner = $('<img src="/images/spinner.gif" alt="..." style="display:none" />');
+    var button = $('<button id="reviews_more">' + opts.buttonText + '</button>')
+    var buttonContainer = $('<p></p>').append(button).append(spinner);
+    
+    $(this).parent().append(buttonContainer);
+    $(this).parent().append(summary);
+
+    var updateSummaryCounters = function() {
+      var count = area.children('li.review').size();
+      summary.find('.reviews_count').html(count + ' ');
+      summary.find('.reviews_total').html(opts.total);
+      if (count >= opts.total) { button.remove(); }
+    }
+    updateSummaryCounters();
+
+    button.click(function(){
+      spinner.show();
+	    opts.data.page = opts.data.page + 1;
+      $.ajax({
+			  type: 'POST',
+			  dataType: 'html',
+			  data: opts.data,
+			  success: function(result, textStatus) {
+			    spinner.hide();
+			    area.append(result);
+			    updateSummaryCounters();
+			    facebookParseXFBML();
+			  },
+				url: opts.url
+			});
+    });
+  });
 }

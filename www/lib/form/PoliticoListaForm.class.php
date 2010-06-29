@@ -11,6 +11,23 @@
 class PoliticoListaForm extends BasePoliticoListaForm
 {
   public function configure()
-  {
+  {   	
+	unset(
+		$this['created_at']
+	);
+  	
+	$this->widgetSchema['lista_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['politico_id'] = new sfWidgetFormChoiceDelete(array(
+      'model_id' => $this->getObject()->getPoliticoId(),
+      'parent_id' => $this->getObject()->getListaId(),
+      'name' => $this->getObject()->getPolitico()?$this->getObject()->getPolitico():'',
+      'choices'          => array(),
+      'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+      'renderer_options' => array(
+	      'model' => 'Politico',
+	      'url'   => $this->getOption('url')
+      ),
+	  'module' => 'lista'
+  	));  	
   }
 }

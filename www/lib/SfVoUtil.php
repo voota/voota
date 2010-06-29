@@ -23,12 +23,15 @@ class SfVoUtil
 	const HIGHLIGHT_LENGTH = 50;
 	const ACCENTS = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
 	const ACCENT_REPLACEMENTS = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY';
+	const UPPER_ACCENTS = 'ÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ';
+	const LOWER_ACCENTS  = 'àáâãäçèéêëìíîïñòóôõöùúûüý';
 	
 	public static function encodeVanity( $str ) {
-		$ret = str_replace(" ", "-", $str);
+		$ret = str_replace(" ", self::URL_FILLER, trim($str));
+		$ret = self::fixVanityChars( $ret );
 		
 		while (strlen( $ret ) < SfVoUtil::VANITY_MIN_LENGTH){
-			$ret .= SfVoUtil::URL_FILLER;
+			$ret .= self::URL_FILLER;
 		}
     	return $ret;
 	}
@@ -45,6 +48,8 @@ class SfVoUtil
 
 	public static function highlightWords($string, $q)
 	{
+		if (!$q) return;
+			
 		$words = explode(' ', trim($q));
 		
 	 	$expw = '';
@@ -106,21 +111,21 @@ class SfVoUtil
 		return $ret;
 	}
 	
-	public static function cutToLength($str, $length = 35, $ext = '.', $fullWords = false) {
+	public static function cutToLength($str, $length = 35, $ext = '...', $fullWords = false) {
 		$ret = '';
-		$aStr = preg_replace("/\n/is", " ", $str);
+		$aStr = utf8_decode(preg_replace("/\n/is", " ", $str));
 		
-		$strLength = strlen(utf8_decode($aStr));
+		$strLength = strlen(($aStr));
 		
 		if ($strLength > $length){
 			$exp = "/.{".$length."}".($fullWords?("[a-z0-9".self::ACCENTS."]*"):'')."/is";
 			if (preg_match($exp, $aStr, $matches, PREG_OFFSET_CAPTURE)) {
 				$newStr = $matches[0][0]; 
-				$ret = "$newStr";
+				$ret = utf8_encode("$newStr");
 			};
 		}
 		else {
-			$ret = $aStr;
+			$ret = $str;
 		}
 		
 		return $ret. ($strLength > strlen(utf8_decode($ret))?$ext:'');
@@ -140,6 +145,66 @@ class SfVoUtil
 	
 	public static function fixVanityChars( $v ) {
 		return strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '--------------------------');
+	}
+
+	public static function myUcfirst( $str) {
+		$ret = utf8_encode(
+			strtoupper(strtr(substr(utf8_decode($str), 0, 1), utf8_decode(self::LOWER_ACCENTS), utf8_decode(self::UPPER_ACCENTS)))
+			. strtolower(strtr(substr(utf8_decode($str),1), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
+			);
+			
+		return $ret;
+	}
+	
+	public static function strtolowerEs( $str) {
+		$ret = utf8_encode(
+			strtolower(strtr(utf8_decode($str), utf8_decode(self::UPPER_ACCENTS), utf8_decode(self::LOWER_ACCENTS)))
+		);
+			
+		return $ret;
+	}
+	
+	public static function changeD( $str) {
+		if (strtolower(substr(utf8_decode($str), 0, 2)) == "d'"){
+			return "d'" . self::myUcfirst(utf8_encode(substr(utf8_decode($str),2)));
+		}
+		else {
+			return $str;
+		}
+	}
+	
+	public static function fixCase( $str, $sep = " " ){
+		$NAME_EXCLUDES = array("de", "del", "la", "las", "el", "los", "i", "y", "do");
+		$ret = "";
+		
+		$words = explode($sep, $str);
+		foreach ($words as $word){
+			if ($sep == " "){
+				$newWord = self::fixCase($word, "-");
+			}
+			else{
+				if (! in_array(strtolower($word), $NAME_EXCLUDES)){
+					$newWord = self::myUcfirst($word);
+				}
+				else {
+					$newWord = strtolower($word);
+				}
+			}
+			$ret .= ($ret?$sep:'') . self::changeD($newWord);
+		}
+		
+		return $ret;
+	}
+	
+	public static function secureString( $str, $rep = '\\\'' ){
+		return str_replace( '\'', $rep,  $str);
+	}
+	
+	public static function reviewPermalink( $review, $culture = false ){
+		$userCulture = $culture?$culture:sfContext::getInstance()->getUser()->getCulture();		
+		
+		$textStart = (!$review->getCulture() || $review->getCulture() == $userCulture)?self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true)):'';
+		return ''.$review->getId(). ($textStart?'-':''). $textStart;
 	}
 }
  

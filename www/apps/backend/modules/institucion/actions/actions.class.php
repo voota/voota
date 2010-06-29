@@ -60,6 +60,7 @@ class institucionActions extends autoInstitucionActions
 	    $criteria = new Criteria();
 	  	$criteria->add(PoliticoInstitucionPeer::INSTITUCION_ID, $id);
 	  	PoliticoInstitucionPeer::doDelete( $criteria );
+	  	
 		/*
 	    $criteria = new Criteria();
 	  	$criteria->add(EnlacePeer::POLITICO_ID, $id);

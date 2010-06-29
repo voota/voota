@@ -1,5 +1,8 @@
 prod:
   .settings:
+    ml: 1.9
+    ga_account_es: UA-10529881-1
+    ga_account_ca: UA-10529881-3
     no_script_name:         true
     cache:                  true
     logging_enabled:        false
@@ -10,8 +13,10 @@ prod:
 
 dev:
   .settings:
+    ga_account_es: UA-10529881-1
+    ga_account_ca: UA-10529881-3
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              true
+    web_debug:              false
     cache:                  false
     no_script_name:         false
     etag:                   false
@@ -22,8 +27,9 @@ dev:
 
 test:
   .settings:
-    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
-    cache:                  false
+    ga_account_es: UA-10529881-4
+    ga_account_ca: UA-10529881-5
+    cache:                  true
     #web_debug:              false
     no_script_name:         true
     #etag:                   false
@@ -59,7 +65,8 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 1.7
+    ml: 2.0
+    convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.
     i18n:                   on       # Enable interface translation. Set to off if your application should not be translated.
@@ -95,7 +102,7 @@ all:
 #    standard_helpers:       [Partial, Cache, Form]
 #
 #    # Activated modules from plugins or from the symfony core
-    enabled_modules:        [default,sfGuardAuth,sfFacebookConnectAuth, sfFacebookConnectDemo,sfOauthServer]
+    enabled_modules:        [default,sfGuardAuth,sfFacebookConnectAuth, sfFacebookConnectDemo,sfOauthServer,sfFeed2Plugin]
 #    enabled_modules:        [default]
 #
 #    # Charset used for the response

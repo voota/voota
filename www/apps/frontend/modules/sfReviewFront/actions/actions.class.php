@@ -19,9 +19,214 @@
 
 require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/modules/sfReviewFront/lib/BasesfReviewFrontActions.class.php');
 require_once(sfConfig::get('sf_lib_dir').'/vendor/symfony/lib/helper/DateHelper.php');
+require_once(sfConfig::get('sf_lib_dir').'/helper/VoUserHelper.php');
+require_once(sfConfig::get('sf_plugins_dir').'/sfReviewPlugin/lib/helper/SfReviewHelper.php');
 
 class sfReviewFrontActions extends BasesfReviewFrontActions
 {
+
+  public function executeListPage(sfWebRequest $request)
+  {
+	$this->page = $request->getParameter("page", "1");
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+		
+	$filter = array();
+	if ($this->sfReviewType)
+		$filter['type_id'] = $this->sfReviewType;
+	if ($this->text)
+		$filter['textFilter'] = $this->text;
+			
+	$this->reviewsPager = SfReviewManager::getReviews($filter, $this->page);
+  }
+  
+  public function executeList(sfWebRequest $request)
+  {
+	$this->page = $request->getParameter("page", "1");
+	$this->entityId = $request->getParameter("entityId", false);
+	$this->value = $request->getParameter("value", false);
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+	$this->entity = false;
+	$this->filter = false;
+  	$culture = $this->getUser()->getCulture();
+	$this->culture = $culture;
+	
+	$filter = array();
+	$filter['culture'] = $culture;
+	if ($this->sfReviewType){
+		$filter['type_id'] = $this->sfReviewType;
+	}
+	if ($this->text){
+		$filter['textFilter'] = 'text';
+	}
+  	$reviewsPager = SfReviewManager::getReviews($filter, $this->page);
+  	
+  	$filter = array();
+  	$filter['type_id'] = Politico::NUM_ENTITY;
+  	$this->politicoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	$filter = array();
+  	$filter['type_id'] = Partido::NUM_ENTITY;
+  	$this->partidoReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	$filter = array();
+  	$filter['type_id'] = Propuesta::NUM_ENTITY;
+  	$this->propuestaReviewCount = SfReviewManager::getReviewsCount($filter, $this->page);
+  	
+  	$c = new Criteria();
+  	$c->addDescendingOrderByColumn(SfGuardUserPeer::ID);
+  	$c->add(SfGuardUserPeer::IS_ACTIVE, true);
+  	$c->setLimit( 10 );
+  	$this->lastUsers = SfGuardUserPeer::doSelect( $c );
+  	
+  	$str = '';
+  	switch($this->sfReviewType){
+  		case 1:
+  			$str = sfContext::getInstance()->getI18N()->__("políticos");
+  			break;
+  		case 2:
+  			$str = sfContext::getInstance()->getI18N()->__("partidos");
+  			break;
+  		case 3:
+  			$str = sfContext::getInstance()->getI18N()->__("propuestas");
+  			break;
+  		case "null":
+  			$str = sfContext::getInstance()->getI18N()->__("respuestas a otros comentarios");
+  			break;
+  	} 	
+  	// Metas
+  	$this->title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
+  		'%1%' => $str?" ". sfContext::getInstance()->getI18N()->__("sobre")." $str":""
+  	));  
+  	$this->response->setTitle( $this->title ); 
+  	$reviews = $reviewsPager->getResults();
+  	
+  	$description = 
+  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
+  		(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
+  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
+  		"...";  	
+  		
+    $this->response->addMeta('Description', $description);  	
+    
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $params = "";
+    if ($this->sfReviewType){
+    	$params .= ($params?'&':'?').'type_id='.$this->sfReviewType;
+    }
+    if ($this->text){
+    	$params .= ($params?'&':'?').'t='.$this->text;
+    }
+    $request->setAttribute('rssFeed',  "sfReviewFront/feed$params");
+  }
+  
+  public function executeFeed(sfWebRequest $request)
+  {
+
+	$this->page = $request->getParameter("page", "1");
+	$this->entityId = $request->getParameter("entityId", false);
+	$this->value = $request->getParameter("value", false);
+	$this->sfReviewType = $request->getParameter("type_id", false);	
+	$this->text = $request->getParameter("t", false);	
+	$this->entity = false;
+	$this->filter = false;
+  	$culture = $this->getUser()->getCulture();
+	
+	$filter = array();
+	//$filter['culture'] = $culture;
+	if ($this->sfReviewType){
+		$filter['type_id'] = $this->sfReviewType;
+	}
+	if ($this->text){
+		$filter['textFilter'] = 'text';
+	}
+  	$reviewsPager = SfReviewManager::getReviews($filter);
+
+  	$str = '';
+  	switch($this->sfReviewType){
+  		case 1:
+  			$str = sfContext::getInstance()->getI18N()->__("políticos");
+  			break;
+  		case 2:
+  			$str = sfContext::getInstance()->getI18N()->__("partidos");
+  			break;
+  		case 3:
+  			$str = sfContext::getInstance()->getI18N()->__("propuestas");
+  			break;
+  		case "null":
+  			$str = sfContext::getInstance()->getI18N()->__("respuestas a otros comentarios");
+  			break;
+  	}
+  	$title = sfContext::getInstance()->getI18N()->__("Últimas opiniones%1% en Voota.", array(
+  		'%1%' => $str?" ". sfContext::getInstance()->getI18N()->__("sobre")." $str":""
+  	));  	
+  	$reviews = $reviewsPager->getResults();
+  	
+  	$description = 
+  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
+  		(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
+  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
+  		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
+  		"...";  
+  		
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+    $params = "";
+    if ($this->sfReviewType){
+    	$params .= ($params?'&':'?').'type_id='.$this->sfReviewType;
+    }
+    if ($this->text){
+    	$params .= ($params?'&':'?').'t='.$this->text;
+    }
+  	$feed->setLink("sfReviewFront/feed$params");
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    
+	    $entityText = "";
+	    if (!$review->getSfReviewType()){
+	    	$tmpReview = $review->getSfReviewRelatedBySfReviewId();
+	    	$entityText = sfContext::getInstance()->getI18N()->__('otra opinión sobre'). ' ';
+	    }
+	    else {
+	    	$tmpReview = $review;
+	    } 
+	    $sfReviewType = SfReviewTypePeer::retrieveByPk($tmpReview->getSfReviewTypeId());
+	    $peer = $sfReviewType->getModel() . 'Peer';
+	    $entity = $peer::retrieveByPk( $tmpReview->getEntityId() );
+	    $entityText .= $entity;
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2% de %3%.', array(
+	    	'%1%' => $review->getSfGuardUser(), 
+	    	'%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+	    	'%3%' => $entityText
+	    )));
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
+  }
 
 	public function executeShow(sfWebRequest $request){
 		parent::executeShow( $request );
@@ -60,7 +265,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	
   	public function executeForm(sfWebRequest $request){
 		if( $this->getUser()->isAuthenticated() ){
-		  	$this->getUser()->setAttribute('url_back', '');
+		  	$this->getUser()->setAttribute('url_back', '', 'vo/redir');
 		  	
 		  	$this->getUser()->setAttribute('review_v', '');
 		  	$this->getUser()->setAttribute('review_e', '');
@@ -143,23 +348,26 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  	//echo $request->getParameter('i');
 	  	$user = $review->getsfGuardUser();
 	  	if ($user->getProfile()->getMailsComentarios()){
-		  	if ($review->getSfReviewTypeId() == Politico::NUM_ENTITY){
-			  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
+		  	if (($typeId = $review->getSfReviewTypeId())){
+		  		$type = SfReviewTypePeer::retrieveByPK( $typeId );
+		  		$peer = $type->getModule(). 'Peer';
+			  	$entity = $peer::retrieveByPK( $review->getEntityId() );
 		  		$user->getProfile()->setCodigo( util::generateUID() );
 		  		$user->getProfile()->save();
 				$mailBody = $this->getPartial('reviewLeftMailBody', array(
 				  'nombre' => $user->getProfile()->getNombre()
 				  , 'usuario' => $this->getUser()->getProfile()->getNombre() . ' ' . $this->getUser()->getProfile()->getApellidos()
-				  , 'politico' => $politico->getNombre() . ' ' . $politico->getApellidos()
+				  , 'entity' => $typeId == Propuesta::NUM_ENTITY?"\"$entity\"":$entity
 				  , 'texto_ori' => $review->getText()
 				  , 'comentario' => $request->getParameter('review_text')
-				  , 'vanity' => $politico->getVanity()
+				  , 'vanity' => $entity->getVanity()
 				  , 'codigo' => $user->getProfile()->getCodigo()
 				  , 'voto' => $request->getParameter('v')
+				  , 'module' => $entity->getModule()
 				));
 				
 		  		VoMail::send(
-		  			sfContext::getInstance()->getI18N()->__('Tu vooto sobre %1% tiene un comentario', array('%1%' => $politico->getNombre() . ' ' . $politico->getApellidos()))
+		  			sfContext::getInstance()->getI18N()->__('Tu vooto sobre %1% tiene un comentario', array('%1%' => $entity))
 		  			, $mailBody
 		  			, $user->getUsername()
 		  			, array('no-reply@voota.es' => 'no-reply Voota')
@@ -177,46 +385,5 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	
 	$this->updateSums( $request );  	  	
   }
-  
-  protected function prepareRedirect($entityId, $type){
-  	$culture = $this->getRequest()->getParameter("sf_culture");
-  	$rule = "@politico_$culture";
-  	if ($type == ''){
-  		$review = SfReviewPeer::retrieveByPk($entityId);
-  		$this->getUser()->setAttribute('review_c', $entityId);
-  		if ($review->getSfReviewTypeId() == Politico::NUM_ENTITY){
-		  	$politico = PoliticoPeer::retrieveByPK( $review->getEntityId() );
-  			$url = "politico/show?id=" . $politico->getVanity();
-  			$url .= "#subreviews_box$entityId";
-  		}
-  		else if ($review->getSfReviewTypeId() == Partido::NUM_ENTITY){
-		  	$partido = PartidoPeer::retrieveByPK( $review->getEntityId() );
-  			$url = "partido/show?id=" . $partido->getAbreviatura();
-  			$url .= "#subreviews_box$entityId";
-  		}
-  	}
-  	else if ($type == Politico::NUM_ENTITY){
-  		$politico = PoliticoPeer::retrieveByPK( $entityId );
-  		$url = "politico/show?id=" . $politico->getVanity();		
-  	}
-  	else if ($type == Partido::NUM_ENTITY){
-  		$partido = PartidoPeer::retrieveByPK( $entityId );
-  		$url = "partido/show?id=" . $partido->getAbreviatura();		
-  	}
-  	$this->getUser()->setAttribute('url_back', $url);
-  	
-  	$this->getUser()->setAttribute('review_v', $this->reviewValue);
-  	$this->getUser()->setAttribute('review_e', $this->reviewEntityId);
-  	
-  	$this->getUser()->setFlash('notice_type', 'warning', true);
-  	/*
-    $this->getUser()->setFlash(
-    	'notice', 
-		sfContext::getInstance()->getI18N()->__('Quieto parao. Para Vootar necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
-		, true
-	);
-	*/
-	
-	$this->redirect('@sf_guard_signin');
-  }
+
 }

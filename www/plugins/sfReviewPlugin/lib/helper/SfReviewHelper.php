@@ -92,22 +92,26 @@ function _autolink_find_URLS( $text )
 }
 
 function toUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') !== 0 ){
-		$ret = "http://$str";	
+	$aStr = trim( $str );
+	
+	$ret = $aStr; 
+	if (strpos($aStr, 'http://') !== 0 ){
+		$ret = "http://$aStr";	
 	}
 	
 	return $ret;
 }
 
 function toShownUrl($str) {
-	$ret = $str; 
-	if (strpos($str, 'http://') === 0 ){
-		$ret = substr($str,7);	
+	$aStr = trim( $str );
+	
+	$ret = $aStr; 
+	if (strpos($aStr, 'http://') === 0 ){
+		$ret = substr($aStr,7);	
 	}
 	
 	if (strlen($ret) > 30){
-		$ret = sfVoUtil::cutToLength($ret, 30) . "...";
+		$ret = sfVoUtil::cutToLength($ret, 30);
 	}
 	
 	return $ret;
@@ -152,6 +156,9 @@ function format_plural($count, $singular, $plural, $args = array(), $langcode = 
 }
 
 function ago($timestamp, $aprox = true){
+	if (!$timestamp){
+		return '';
+	}
    $difference = time() - $timestamp;
    $periods = array(
    				sfContext::getInstance()->getI18N()->__("segundo"),

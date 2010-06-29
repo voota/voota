@@ -37,6 +37,7 @@ abstract class BasePoliticoForm extends BaseFormPropel
       'hijos'                     => new sfWidgetFormInputText(),
       'hijas'                     => new sfWidgetFormInputText(),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Lista')),
+      'etiqueta_politico_list'    => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
     ));
 
@@ -64,6 +65,7 @@ abstract class BasePoliticoForm extends BaseFormPropel
       'hijos'                     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'hijas'                     => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647, 'required' => false)),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Lista', 'required' => false)),
+      'etiqueta_politico_list'    => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
     ));
 
@@ -108,6 +110,17 @@ abstract class BasePoliticoForm extends BaseFormPropel
       $this->setDefault('politico_lista_list', $values);
     }
 
+    if (isset($this->widgetSchema['etiqueta_politico_list']))
+    {
+      $values = array();
+      foreach ($this->object->getEtiquetaPoliticos() as $obj)
+      {
+        $values[] = $obj->getEtiquetaId();
+      }
+
+      $this->setDefault('etiqueta_politico_list', $values);
+    }
+
     if (isset($this->widgetSchema['politico_institucion_list']))
     {
       $values = array();
@@ -126,6 +139,7 @@ abstract class BasePoliticoForm extends BaseFormPropel
     parent::doSave($con);
 
     $this->savePoliticoListaList($con);
+    $this->saveEtiquetaPoliticoList($con);
     $this->savePoliticoInstitucionList($con);
   }
 
@@ -159,6 +173,41 @@ abstract class BasePoliticoForm extends BaseFormPropel
         $obj = new PoliticoLista();
         $obj->setPoliticoId($this->object->getPrimaryKey());
         $obj->setListaId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveEtiquetaPoliticoList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['etiqueta_politico_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(EtiquetaPoliticoPeer::POLITICO_ID, $this->object->getPrimaryKey());
+    EtiquetaPoliticoPeer::doDelete($c, $con);
+
+    $values = $this->getValue('etiqueta_politico_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new EtiquetaPolitico();
+        $obj->setPoliticoId($this->object->getPrimaryKey());
+        $obj->setEtiquetaId($value);
         $obj->save();
       }
     }

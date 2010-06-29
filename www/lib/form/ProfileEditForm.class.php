@@ -56,7 +56,7 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  'presentacion'  => new sfWidgetFormTextarea(array()),
-	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password'), array('autocomplete' => 'off')),
+	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password')),
 	  'passwordBis'  => new sfWidgetFormInputText(array('type' => 'password')),
       'passwordOld' => new sfWidgetFormInputText(array('type' => 'password')),
     ));
@@ -67,7 +67,6 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'vanity'   => new sfValidatorString(array("min_length" => SfVoUtil::VANITY_MIN_LENGTH, 'required' => true), sfVoForm::getStringMessages()), 
       'imagen'   => new sfValidatorFile(array(
 				   'required'   => false,
-    			   'max_size' => '512000',
 				   'mime_types' => 'web_images',
 				   'path' => sfConfig::get('sf_upload_dir').'/usuarios',
 				   'validated_file_class' => 'sfResizedFile',
@@ -148,7 +147,16 @@ class ProfileEditForm extends sfGuardUserAdminForm
 	
   }
   
-	public function bind(array $taintedValues = null, array $taintedFiles = null) {	
+  public function resetImageWidget(){
+	$this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
+		'label'     => sfContext::getInstance()->getI18N()->__('Imagen Principal', array(), 'notices'),
+		'file_src'  => $this->getObject()->getProfile()->getImagen()?''.S3Voota::getImagesUrl().'/usuarios/cc_s_'.$this->getObject()->getProfile()->getImagen():'',
+	   	'is_image'  => false,
+	   	'edit_mode' => !$this->isNew(),
+	   	'template'  => '<div>' . ($this->getObject()->getProfile()->getImagen()?'<p><img src="%file%" alt="'.$this->getObject()->getProfile()->getNombre().' '.$this->getObject()->getProfile()->getApellidos().'" /> %delete% <label for="profile_imagen_delete">'. sfContext::getInstance()->getI18N()->__('Eliminar imagen actual', array(), 'notices') .'</label></p>':'') . '%input% <span class="hints">' . sfContext::getInstance()->getI18N()->__('(opcional)') . '</span></div>'
+	));	  
+  }
+	public function bind(array $taintedValues = null, array $taintedFiles = null, $img = false) {		
 		// remove the embedded new form if the name field was not provided
 		$taintedValues['vanity'] = SfVoUtil::fixVanityChars($taintedValues['vanity']);
 		

@@ -24,17 +24,9 @@
 		  setCounter('#presen_counter', this, 280);
 	  });
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
-	  facebookConnect_loadUserName();
+	  facebookLoadUserName();
 	  <?php if($hasDeepUpdates): ?>
-	  FB.ensureInit(function () {
-		  FB.Connect.streamPublish(
-				  '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>'
-				  , null, null, null
-				  , ''
-				  , null
-				  , true
-		  );
-	  });
+	    facebookPublishStory({ body: '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>' });
 	  <?php endif ?>
   });
   
@@ -54,7 +46,7 @@
 
   <div id="sidebar">
     <?php include_partial('perfil/boxProfile', array('user' => $sf_user->getGuardUser())) ?>
-    <?php include_partial('perfil/boxPropuestas', array('user' => $sf_user->getGuardUser(), 'propuestasCount' => $propuestasCount)) ?>
+    <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   </div>
 
   <form action="<?php echo url_for('@usuario_edit') ?>" method="post" autocomplete="" method="post" enctype="multipart/form-data">

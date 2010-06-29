@@ -11,53 +11,26 @@
   });
   //-->
 </script>
-     
-<h2><?php echo __('Comentarios y vootos que has hecho hasta ahora (en total, %1%)', array('%1%' => $reviews->getNbResults()))?></h2>
-<p class="next-step-msg"><?php echo link_to(__('Tu perfil'), "@usuario_edit"); ?></p>
-<p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
-<?php if ($politico = isPolitico($sf_user->getGuardUser())):  ?>
-  <p class="next-step-msg"><?php echo link_to(__('Tu página de político y lo que opinan sobre ti'), "politico/show?id=".$politico->getVanity()) ?></p>
-<?php endif ?>
 
 <div id="content">
-<form action="<?php echo url_for('@usuario_votos') ?>" id="filterForm">
-  <p class="filter">
-    <label for="f"><?php echo __('Filtrar comentarios por:')?></label>
-    <br />
-    	<select id="f" name="f">
-    		<option value="all" <?php echo $f!="all"?'':'selected="selected"'?>><?php echo __('Todos los comentarios') ?></option>
-    		<option value="<?php echo Politico::NUM_ENTITY ?>" <?php echo $f!=Politico::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por políticos') ?></option>
-    		<option value="<?php echo Partido::NUM_ENTITY ?>" <?php echo $f!=Partido::NUM_ENTITY?'':'selected="selected"'?>><?php echo __('Por partidos') ?></option>
-    		<option value=".0" <?php echo $f!=".0"?'':'selected="selected"'?>><?php echo __('Por respuestas a otros comentarios') ?></option>
-    	</select>
-  </p>
-</form>
-<?php  ?>
-  
-  <div class="comments">
-    <table>        
-      <?php foreach ($reviews->getResults() as $review): ?>
-      	<?php include_component_slot('profileReview', array('review' => $review)) ?>
-      <?php endforeach ?>
-    </table>
+  <h2><?php echo __('Propuestas, comentarios y vootos que has hecho hasta ahora (%1%)', array('%1%' => $reviews->getNbResults())) // TODO: Contar propuestas + comentarios + vootos ?></h2>
+  <p class="next-step-msg"><?php echo link_to(__('Tu perfil'), "@usuario_edit"); ?></p>
+  <p class="next-step-msg"><?php echo link_to(__('Echa un vistazo a cómo otros usuarios ven tu perfil'), "@usuario?username=".$sf_user->getGuardUser()->getProfile()->getVanity()); ?></p>
+  <?php if ($politico = isPolitico($sf_user->getGuardUser())): ?>
+    <p class="next-step-msg"><?php echo link_to(__('Tu página de político y lo que opinan sobre ti'), "politico/show?id=".$politico->getVanity()) ?></p>
+  <?php endif ?>
 
-    <p>
-      <?php if ($reviews->haveToPaginate() && $reviews->getLastPage() > $reviews->getPage()): ?>
-        <button type="button" id="more_reviews"><?php echo __('más') ?></button>
-        <img class="spinner" style="display: none" src='/images/spinner.gif' alt='cargando' />
-        <script type="text/javascript" charset="utf-8">      
-          var next_page = 1;
-          $('#more_reviews').click(function(){
-            $.ajax({
-              url: '<?php echo url_for('profile_more_comments')?>',
-              data: { page : next_page, username : '<?php echo $user->getProfile()->getVanity() ?>' },
-              success: function(data) { next_page += 1; $('.comments table').append(data); },
-              beforeSend: function() { $('.spinner').show(); },
-              complete: function() { $('.spinner').hide(); }
-            });
-          });
-        </script>
-      <?php endif ?>
-    </p>
+  <div class="propuestas">
+    <h2><?php echo __('Tus propuestas (%1%)', array('%1%' => count($propuestas)))  ?></h2>
+    <ol>
+	    	<?php foreach ($propuestas as $propuesta):?>
+		      <?php include_partial('propuesta', array('propuesta' => $propuesta))  ?>
+	    	<?php endforeach ?>
+    </ol>
+  </div>
+
+  <div class="comments reviews">
+    <h2><?php echo __('Comentarios y vootos que has hecho hasta ahora (en total, %1%)', array('%1%' => $reviews->getNbResults()))?></h2>
+   	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
   </div>
 </div>

@@ -20,6 +20,6 @@ class RelatedEnlaceForm extends EnlaceForm
   public function configure()
   {
   	parent::configure();
-	unset($this['created_at'], $this['politico_id'], $this['partido_id'], $this['sf_guard_user_id'], $this['mostrar'], $this['propuesta_id']);
+	unset($this['created_at'], $this['politico_id'], $this['partido_id'], $this['sf_guard_user_id'], $this['mostrar'], $this['propuesta_id'], $this['convocatoria_id']);
   }
 }

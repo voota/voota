@@ -27,6 +27,7 @@ class politicoActions extends sfActions
   	
   	$term = $request->getParameter('term');
   	$c = new Criteria();
+	$c->setLimit( 20 );
 	$c->addJoin(
 		array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
 		array(PartidoI18nPeer::ID, "'$culture'")
@@ -56,6 +57,7 @@ class politicoActions extends sfActions
   	
   	$term = $request->getParameter('term');
   	$c = new Criteria();
+	$c->setLimit( 20 );
 	$c->addJoin(
 		array(InstitucionPeer::ID, InstitucionI18nPeer::CULTURE),
 		array(InstitucionI18nPeer::ID, "'$culture'")
@@ -85,8 +87,10 @@ class politicoActions extends sfActions
   	$id = $request->getParameter('id');
   	$this->politico = PoliticoPeer::retrieveByPK( $id );
   	
-  	if (!$this->getUser()->isAuthenticated())
-  		$this->getUser()->setAttribute('url_back', 'politico/take?id='. $id);
+  	if (!$this->getUser()->isAuthenticated()){
+  		$url = 'politico/take?id='. $id;
+  		$this->getUser()->setAttribute('url_back', $url, 'vo/redir');
+  	}
   		
   	$this->redirectUnless( $this->getUser()->isAuthenticated(), "@sf_guard_signin" );
   	
@@ -172,19 +176,22 @@ class politicoActions extends sfActions
     $this->politico_list = PoliticoPeer::doSelect(new Criteria());
   }
   
-  private function generateRankingUrl ($partido, $institucion, $p = ''){
+  private function generateRankingUrl ($partido, $institucion, $p = '', $i = ''){
   	$p_url = "";
   	$i_url = "";
   	$culture = $this->getUser()->getCulture();
   	
-  	if ($p != '' && $p != ALL_FORM_VALUE){
+  	if ($p != '' && $p != ALL_URL_STRING && $p != ALL_FORM_VALUE){
   		$p_url .= "$p";
   	}
   	else if ($p != ALL_FORM_VALUE && $partido && $partido != ALL_URL_STRING) {
   		$p_url .= "$partido";
   	}
   	
-  	if ($institucion) {
+  	if($i != '' && $i != ALL_URL_STRING && $i != ALL_FORM_VALUE){
+  		$i_url = "$i";
+  	}
+  	elseif ($institucion) {
   		$i_url = "$institucion";
   	}
   	
@@ -211,16 +218,20 @@ class politicoActions extends sfActions
   public function executeRanking(sfWebRequest $request)
   {
   	$p = $request->getParameter("p");
+  	$i = $request->getParameter("i");
   	$culture = $this->getUser()->getCulture("es");
-  	$partido = $request->getParameter("partido", ALL_FORM_VALUE);
-  	$institucion = $request->getParameter("institucion", ALL_FORM_VALUE);
-  	
+  	$partido = $request->getParameter("partido", false);
+  	$institucion = $request->getParameter("institucion", false);
+
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
-	if ($order == 'pd' || $page == '1'){
+	if ($order == 'pd' || $page == '1' || (!$institucion && $partido == ALL_URL_STRING)){
 		$qs = ''; 
 		foreach($request->getParameterHolder()->getAll() as $key => $value){
-			if ($key != 'module' && $key != 'action' && !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page'))){
+			if ($key != 'module' && $key != 'action' 
+					&& !(($order == 'pd' && $key == 'o') || ($page == '1' && $key == 'page')) 
+					&& ($key != 'partido' || ($institucion || $partido != ALL_URL_STRING))
+					){
 				$qs .= ($qs?'&':'?') . "$key=$value";
 			}
 		}
@@ -228,14 +239,20 @@ class politicoActions extends sfActions
 	}	
 	$this->order = $order?$order:'pd';
 	$page = $page?$page:1;
+   	
+   	if (!$partido)
+   		$partido = ALL_FORM_VALUE;
+   	if (!$institucion)
+   		$institucion = ALL_FORM_VALUE;
 	
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	
-  	if ($p != ''){
-	  	$url = $this->generateRankingUrl ($partido, $institucion, $p);
+  	if ($p != '' || $i != ''){
+	  	$url = $this->generateRankingUrl ($partido, $institucion, $p, $i);
 	   	$this->redirect( $url );
   	}
+  	$this->partidoAC = '';
     if ($partido && $partido != ALL_URL_STRING){
   		$this->partido = $partido; 
   		
@@ -244,10 +261,13 @@ class politicoActions extends sfActions
   		$aaPartido = PartidoPeer::doSelectOne($aPartidoCriteria);
   		
   		$this->forward404Unless( $aaPartido );
+  		$this->partidoAC = $aaPartido->getAbreviatura(). ', ' .$aaPartido->getNombre();
   	}
   	else {
   		$this->partido = ALL_URL_STRING; 
    	}
+   	
+  	$this->institucionAC = '';
   	if ($institucion && $institucion != ALL_URL_STRING){
   		$this->institucion = $institucion; 
   		
@@ -261,7 +281,20 @@ class politicoActions extends sfActions
   		$aInstitucion = InstitucionPeer::doSelectOne($aInstitucionCriteria);  		
 				
   		$this->forward404Unless( $aInstitucion );
-  	}  	
+  		
+  		if($aInstitucion->getVanity() != $institucion){
+  			$url = $this->generateRankingUrl($partido, $aInstitucion->getVanity());
+  			$params = $request->getParameterHolder()->getAll();
+  			foreach ($params as $key => $value){
+  				if ($key != 'module' && $key != 'action' && $key != 'partido' && $key != 'institucion'){
+  					$url .= "&$key=$value";
+  				}
+  			}
+  			$this->redirect( $url, 301 );
+  		}
+  		
+  		$this->institucionAC = $aInstitucion->getNombre();
+  	} 
   	
   	$filter = array(
   		'type' => 'politico',
@@ -276,42 +309,6 @@ class politicoActions extends sfActions
     
     $this->totalUp = $totalUp;
     $this->totalDown = $totalDown;    
-  	
-  	/* Lista de partidos */ 
-    $c = new Criteria();
-  	if ($institucion && $institucion != ALL_URL_STRING){
-  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
-	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-	  	$c->setDistinct();
-  		$c->add(InstitucionI18nPeer::VANITY, $this->institucion);
-  	}
-  	$c->add(PartidoPeer::IS_ACTIVE, true);
-  	$c->add(PartidoPeer::IS_MAIN, true);
-  	$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-  	$this->partidos = PartidoPeer::doSelect( $c );
-  	$this->partidos_arr = array();
-  	$this->partidos_arr["0"] = sfContext::getInstance()->getI18N()->__('Todos los partidos');
-  	foreach($this->partidos as $aPartido){
-  		$this->partidos_arr[$aPartido->getAbreviatura()] = $aPartido->getAbreviatura();
-  	}
-  	/* Fin lista de partidos */ 
-      	
-  	/* Lista de instituciones */ 
-  	$c = new Criteria();
-  	if ($partido && $partido != ALL_URL_STRING){
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-	  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
-	  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-  		$c->add(PartidoPeer::ABREVIATURA, $this->partido);
-  	}
-  	$c->add(InstitucionPeer::IS_MAIN, true);
-  	$c->setDistinct();
-  	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
-  	$this->instituciones = InstitucionPeer::doSelect($c);
-  	/*  Fin Lista de instituciones */ 
   	
 	$rule = sfContext::getInstance()->getRouting()->getCurrentRouteName();
   	$params = "";
@@ -334,20 +331,24 @@ class politicoActions extends sfActions
   	if (isset($aInstitucion)){
   		$this->pageTitle .= $aInstitucion->getNombre();
   	}
-  	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
-  		$this->pageTitle .= ", $orderTxt";
+  	
+  	switch($this->order){
+  		case 'pa':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
+  			break;
+  		case 'nd':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
+  			break;
+  		case 'na':
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
+  			break;
+  		default:
+  			$orderTxt = sfContext::getInstance()->getI18N()->__('ordenado por votos positivos inverso');
    	}
+   	if ($this->order != 'pd'){   		
+	  	$this->pageTitle .= ", $orderTxt";
+   	}
+  		
   	if ($page && $page != 1) {
   		$this->pageTitle .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
@@ -359,23 +360,14 @@ class politicoActions extends sfActions
 	  		$description .= ", " . $aaPartido->getNombre();
    		}
   	}
+  	else {
+  		$description .= ", " . sfContext::getInstance()->getI18N()->__('todos los partidos');
+  	}
   	if ($this->institucion != '0') {
   		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
    	}
-  	if ($this->order != 'pd') {
-  		switch($this->order){
-  			case 'pa':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos positivos inverso');
-  				break;
-  			case 'nd':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos');
-  				break;
-  			case 'na':
-  				$orderTxt = sfContext::getInstance()->getI18N()->__('votos negativos inverso');
-  				break;
-  		}
-  		$description .= ", $orderTxt";
-   	}
+   	
+  	$description .= ", $orderTxt";
   	if ($page && $page != 1) {
   		$description .= " ".sfContext::getInstance()->getI18N()->__('(Pág. %1%)', array('%1%' => $page));
   	}
@@ -407,16 +399,24 @@ class politicoActions extends sfActions
   	
   	$this->forward404Unless($this->politico);
   	
+  	if ($this->politico->getVanity() != $vanity){
+  		$this->redirect('politico/show?id='.$this->politico->getVanity(), 301);
+  	}
+  	
   	// Estabamos vootando antes del login ?
-  	$v = $this->getUser()->getAttribute('review_v');
-  	if ($v && $v != ''){
-  		$e = $this->getUser()->getAttribute('review_e');
-  		$this->getUser()->setAttribute('review_v', '');
-  		$this->getUser()->setAttribute('review_e', '');
-  		
-  		if ($e == $id && $this->getUser()->isAuthenticated()) {
-  			$this->review_v = $v;
-  		}	
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
   	}
 	
   	if ($this->politico->getImagen() != ''){
@@ -506,6 +506,18 @@ class politicoActions extends sfActions
 	$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
     $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
     $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    if ($politico->getsfGuardUser() && count($this->activeEnlaces) == 0){
+	    $c = new Criteria();
+		$rCriterion = $c->getNewCriterion(EnlacePeer::CULTURE, null, Criteria::ISNULL);
+		$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, $this->getUser()->getCulture()));
+		$rCriterion->addOr($c->getNewCriterion(EnlacePeer::CULTURE, ''));
+		$c->add( $rCriterion );
+		$c->add(EnlacePeer::POLITICO_ID, $id);
+		$c->add(EnlacePeer::URL, '', Criteria::NOT_EQUAL);
+	    $c->addAscendingOrderByColumn(EnlacePeer::ORDEN);
+	    $this->activeEnlaces = EnlacePeer::doSelect( $c );
+    }
+    
     $this->twitterUser = FALSE;
     foreach ($this->activeEnlaces as $enlace){
     	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){
@@ -518,6 +530,79 @@ class politicoActions extends sfActions
     $this->politicosPager = EntityManager::getPager($this->politico);
     /* / paginador */
     
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $request->setAttribute('rssFeed',  'politico/feed?id='.$this->politico->getVanity());
   }
 
+  public function executeFeed(sfWebRequest $request)
+  {
+  	$vanity = $request->getParameter('id');
+  	$culture = $this->getUser()->getCulture();  	
+  	  	
+  	$c = new Criteria();
+  	$c->add(PoliticoPeer::VANITY, $vanity, Criteria::EQUAL);
+  	$entity = PoliticoPeer::doSelectOne( $c );
+  	$this->forward404Unless( $entity );
+  	
+	$filter = array();
+	$filter['type_id'] = Politico::NUM_ENTITY;
+  	$filter['entity_id'] = $entity->getId();
+	$reviews = SfReviewManager::getReviews($filter);
+  	
+  	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
+  					, array(
+  						'%1%' => $entity->getNombre() . ' '. $entity->getApellidos()
+  					)
+  	);
+  	$instis = "";
+  	foreach ($entity->getPoliticoInstitucions() as $idx => $politicoInstitucion){
+  		$instis .= ($instis?", ":"").$politicoInstitucion->getInstitucion();
+  	}
+  	$description = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%, %2% votos a favor y %3% votos en contra'
+  					, array(
+  						'%1%' => $entity->getNombre() . ' '. $entity->getApellidos() . ($instis?" ($instis)":"") . ($entity->getPartido()?", ".$entity->getPartido()."":""),
+  						'%2%' => $entity->getSumu(),
+  						'%3%' => $entity->getSumd()
+  					)
+  	);
+  	
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+  	$feed->setLink('politico/show?id='.$entity->getVanity());
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+  	
+  	$feedImage = new sfFeedImage();
+	$feedImage->setLink('politico/show?id='.$entity->getVanity());
+	$feedImage->setImage(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_'.$entity->getImagen());
+	$feedImage->setTitle( $entity );
+	$feed->setImage($feedImage);
+  	
+  	
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
+  	
+  }
+  
 }

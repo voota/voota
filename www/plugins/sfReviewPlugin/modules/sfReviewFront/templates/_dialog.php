@@ -7,12 +7,13 @@
     </p>
 	  
     <form action="<?php echo url_for('sfGuardAuth/signin');?>" id="sfr_dialog_form" method="post">
+      <input id="sfr_dialog_form_src" type="hidden" name="dialog" value="1" />
       <input id="sfr_dialog_form_ub" type="hidden" name="url_back" value="" />
   	  <div class="submit"><input type="submit" value="<?php echo __('Hacer login o crear una cuenta')?>" class="login_or_register" /></div>
     </form>
   </div>
 
-  <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript">
     $(document).ready(function() {
       $("#sfr_dialog").dialog({ autoOpen: false, resizable: false, modal: true, closeText: '<?php echo __('cerrar')?>' });
     });

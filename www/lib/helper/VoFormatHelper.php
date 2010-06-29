@@ -1,18 +1,30 @@
 <?php use_helper('Text') ?>
 
 <?php
-function formatDesc( $str ) {
+function v_simple_format_text($text, $options = array(), $ender = "")
+{
+  $css = (isset($options['class'])) ? ' class="'.$options['class'].'"' : '';
+
+  $text = sfToolkit::pregtr($text, array("/(\r\n|\r)/"        => "\n",               // lets make them newlines crossplatform
+                                         "/\n{2,}/"           => "</p><p$css>"));    // turn two and more newlines into paragraph
+
+  // turn single newline into <br/>
+  $text = str_replace("\n", "\n<br />", $text);
+  return '<p'.$css.'>'.$text.$ender.'</p>'; // wrap the first and last line in paragraphs before we're done
+}
+
+function formatDesc( $str, $ender = "" ) {
 	//return preg_replace("/\\n/", "<br />", trim($str)==''?'-':$str);
 	$str = preg_replace("/\\n/", "\n\n", trim($str)==''?'-':$str);
-	return simple_format_text($str);
+	return v_simple_format_text($str, array(), $ender);
 }
 
 function formatBio( $str ){
 	return formatDesc( $str );
 }
 
-function formatPresentacion( $str ){
-	return formatDesc( $str );
+function formatPresentacion( $str, $ender = "" ){
+	return formatDesc( $str, $ender );
 }
 
 function getDateFromPlain( $str ) {
@@ -64,4 +76,11 @@ function ByteSize($bytes) {
     }
     
     return $size;
+}
+
+function secureString( $str ){
+	$ret = str_replace( '\'', '&#146;',  $str);
+	$ret = str_replace( '"', '&quot;',  $ret);
+	
+	return $ret;
 }

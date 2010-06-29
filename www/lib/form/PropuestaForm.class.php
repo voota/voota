@@ -48,6 +48,9 @@ class PropuestaForm extends BasePropuestaForm
 				   'path' => sfConfig::get('sf_upload_dir').'/docs',
 				   'validated_file_class' => 'sfResizedFile',
 	  ), sfVoForm::getImageMessages("2M"));
+	  
+	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
+	$this->validatorSchema['doc_delete'] = new sfValidatorBoolean();
 	
   }
   
@@ -74,25 +77,28 @@ class PropuestaForm extends BasePropuestaForm
 		}
 
 		if (!$this->isNew()) {
-			if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
-				unset($this->embeddedForms['enlace'], $taintedValues['enlace']);
-		
-				$this->validatorSchema['enlace'] = new sfValidatorPass();
-		
-			} else {
-				$this->embeddedForms['enlace']->getObject()->
-		                setPropuesta($this->getObject());
+			if (isset($taintedValues['enlace'])){
+				if (is_null($taintedValues['enlace']['url']) || strlen($taintedValues['enlace']['url']) === 0 ) {
+					unset($this->embeddedForms['enlace'], $taintedValues['enlace']);
+			
+					$this->validatorSchema['enlace'] = new sfValidatorPass();
+			
+				} else {
+					$this->embeddedForms['enlace']->getObject()->
+			                setPropuesta($this->getObject());
+				}
 			}
 			
-		
-			if (is_null($taintedValues['institucion']['institucion_id']) || strlen($taintedValues['institucion']['institucion_id']) === 0 ) {
-				unset($this->embeddedForms['institucion'], $taintedValues['institucion']);
-		
-				$this->validatorSchema['institucion'] = new sfValidatorPass();
-		
-			} else {
-				$this->embeddedForms['institucion']->getObject()->
-		                setPropuesta($this->getObject());
+			if (isset($taintedValues['institucion'])){
+				if (is_null($taintedValues['institucion']['institucion_id']) || strlen($taintedValues['institucion']['institucion_id']) === 0 ) {
+					unset($this->embeddedForms['institucion'], $taintedValues['institucion']);
+			
+					$this->validatorSchema['institucion'] = new sfValidatorPass();
+			
+				} else {
+					$this->embeddedForms['institucion']->getObject()->
+			                setPropuesta($this->getObject());
+				}
 			}
 		}	
 		

@@ -1,11 +1,11 @@
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
+<script type="text/javascript" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script type="text/javascript">
 new TWTR.Widget({
   version: 2,
   type: 'profile',
   rpp: 4,
   interval: 6000,
-  width: 250,
+  width: 220,
   height: 300,
   theme: {
     shell: {

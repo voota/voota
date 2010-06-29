@@ -12,8 +12,8 @@ if [ $ENV -eq $TEST ] ; then
   case "$1" in
     test)
 		cd $DEST
-		rm -rf $DEST/www/cache/*
-        phing update
+		ssh root@dummy.voota.es 'rm -rf /var/www/voota/www/cache/*'
+        ssh root@dummy.voota.es 'cd /var/www/voota; git pull --rebase origin'
         ;;
     prod)
 		cd $DEST

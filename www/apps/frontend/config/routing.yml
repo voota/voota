@@ -1,5 +1,171 @@
 # default rules
 
+### OPINIONES ###
+
+tag_serp:
+  url:   /tag/:tag
+  param: { module: general, action: search }
+  
+tag_pager:
+  url:   /general/tagList
+  param: { module: general, action: tagList }
+    
+list_page:
+  url:   /review/list_page
+  param: { module: sfReviewFront, action: listPage }
+    
+politico_tags:
+  url:   /tags
+  param: { module: general, action: tags }
+  
+politico_newtag:
+  url:   /newtag
+  param: { module: general, action: newtag }
+  
+politico_rmtag:
+  url:   /rmtag
+  param: { module: general, action: rmtag }
+ 
+ultimas_opiniones_es:
+  url: /últimas-opiniones
+  param: { module: sfReviewFront, action: list, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_ca:
+  url: /últimes-opinions
+  param: { module: sfReviewFront, action: list, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+ 
+ultimas_opiniones_politicos_es:
+  url: /últimas-opiniones-sobre-políticos
+  param: { module: sfReviewFront, action: list, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_politicos_ca:
+  url: /últimes-opinions-sobre-polítics
+  param: { module: sfReviewFront, action: list, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_partidos_es:
+  url: /últimas-opiniones-sobre-partidos
+  param: { module: sfReviewFront, action: list, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_partidos_ca:
+  url: /últimes-opinions-sobre-partits
+  param: { module: sfReviewFront, action: list, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_propuestas_es:
+  url: /últimas-opiniones-sobre-propuestas
+  param: { module: sfReviewFront, action: list, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_propuestas_ca:
+  url: /últimes-opinions-sobre-propostes
+  param: { module: sfReviewFront, action: list, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_otras_es:
+  url: /últimas-opiniones-sobre-otra-opinión
+  param: { module: sfReviewFront, action: list, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_otras_ca:
+  url: /últimes-opinions-sobre-altres-opinions
+  param: { module: sfReviewFront, action: list, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_feed_es:
+  url: /últimas-opiniones/feed
+  param: { module: sfReviewFront, action: feed, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_feed_ca:
+  url: /últimes-opinions/feed
+  param: { module: sfReviewFront, action: feed, type_id: false }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+ 
+ultimas_opiniones_politicos_feed_es:
+  url: /últimas-opiniones-sobre-políticos/feed
+  param: { module: sfReviewFront, action: feed, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_politicos_feed_ca:
+  url: /últimes-opinions-sobre-polítics/feed
+  param: { module: sfReviewFront, action: feed, type_id: 1 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_partidos_feed_es:
+  url: /últimas-opiniones-sobre-partidos/feed
+  param: { module: sfReviewFront, action: feed, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_partidos_feed_ca:
+  url: /últimes-opinions-sobre-partits/feed
+  param: { module: sfReviewFront, action: feed, type_id: 2 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_propuestas_feed_es:
+  url: /últimas-opiniones-sobre-propuestas/feed
+  param: { module: sfReviewFront, action: feed, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_propuestas_feed_ca:
+  url: /últimes-opinions-sobre-propostes/feed
+  param: { module: sfReviewFront, action: feed, type_id: 3 }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+ultimas_opiniones_otras_feed_es:
+  url: /últimas-opiniones-sobre-otra-opinión/feed
+  param: { module: sfReviewFront, action: feed, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+ultimas_opiniones_otras_feed_ca:
+  url: /últimes-opinions-sobre-altres-opinions/feed
+  param: { module: sfReviewFront, action: feed, type_id: "null" }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
 ### API ###
 
 api:
@@ -77,8 +243,22 @@ propuesta_show_ca:
   requirements:
     sf_host_culture: cat
     
-### POLITICOS ###
+propuesta_feed_es:
+  url: /propuesta/:id/feed
+  param: { module: propuesta, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
     
+propuesta_feed_ca:
+  url: /proposta/:id/feed
+  param: { module: propuesta, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+### POLITICOS ###
+ 
 partido_ac_partido:
   url: /politico/ac_partido
   param: { module: politico, action: acPartido }
@@ -101,6 +281,20 @@ politico_es:
 politico_ca:
   url: /politic/:id
   param: { module: politico, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+  
+politico_feed_es:
+  url: /politico/:id/feed
+  param: { module: politico, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+politico_feed_ca:
+  url: /politic/:id/feed
+  param: { module: politico, action: feed }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
@@ -163,6 +357,20 @@ partido_es:
 partido_ca:
   url: /partit/:id
   param: { module: partido, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    
+partido_feed_es:
+  url: /partido/:id/feed
+  param: { module: partido, action: feed }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+partido_feed_ca:
+  url: /partit/:id/feed
+  param: { module: partido, action: feed }
   class:  sfRequestHostCultureRoute
   requirements:
     sf_host_culture: cat
@@ -293,9 +501,9 @@ sf_review_delete:
   url:   /review/delete
   param: { module: sfReviewFront, action: delete } 
   
-sf_review_list:
-  url:   /review/list
-  param: { module: sfReviewFront, action: list } 
+# sf_review_list:
+#  url:   /review/list
+#  param: { module: sfReviewFront, action: list } 
   
 sf_review_filtered_list:
   url:   /review/filteredList
@@ -332,6 +540,10 @@ usuario_contact:
 usuario:
   url:   /:username
   param: { module: perfil, action: show }
+  
+usuario_feed:
+  url:   /:username/feed
+  param: { module: perfil, action: feed }
 
 ### API DEMO ###  
 
@@ -363,6 +575,55 @@ api_demo_search:
   url:   /api_demo/search
   param: { module: api_demo, action: search }
   
-api_demo_search:
+api_demo_proposal:
   url:   /api_demo/proposal/:id
   param: { module: api_demo, action: proposal }
+  
+api_demo_institutions:
+  url:   /api_demo/institutions
+  param: { module: api_demo, action: institutions }
+        
+### ELECCIONES ###
+    
+eleccion_geo_show_es:
+  url: /elecciones/:vanity/:convocatoria/:geo
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+eleccion_geo_show_ca:
+  url: /eleccions/:vanity/:convocatoria/:geo
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+        
+eleccion_show_es:
+  url: /elecciones/:vanity/:convocatoria
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+eleccion_show_ca:
+  url: /eleccions/:vanity/:convocatoria
+  param: { module: eleccion, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+        
+lista_show_es:
+  url: /lista/:vanity/:convocatoria/:geo/:partido
+  param: { module: lista, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+lista_show_ca:
+  url: /llista/:vanity/:convocatoria/:geo/:partido
+  param: { module: lista, action: show }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
+    

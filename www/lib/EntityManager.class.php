@@ -18,46 +18,46 @@
 
 class EntityManager {	
 	const PAGE_SIZE = 20;
+	const MAX_PAGES = 10;
   
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
-  			//$cacheManager=new sfMemcacheCache();
-  			//$cacheManager->initialize();
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
   			$key=md5("politicos_$partido-$institucion-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
-  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
-  			return unserialize($cacheManager->get("$key"));  		
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
   		}
   		else {  		
 		  	$c = new Criteria();
 		  	
-		  	$c->setDistinct();
-		  	$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
-		  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
-		  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
-		  	$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
-		  	$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);		  	
+		  	//$c->setDistinct();
+		  	#$c->add(PoliticoPeer::VANITY, null, Criteria::ISNOTNULL);
+		  	/*		  	
 			$c->addJoin(
 				array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
 				array (PoliticoI18nPeer::ID, "'$culture'")
 				, Criteria::LEFT_JOIN
 			);
-		  			  	
-		  	if ($partido && $partido != ALL_URL_STRING){
+		  	*/
+		  	if ($partido && $partido != 'all'){
+		  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID, Criteria::LEFT_JOIN);
 		  		$c->add(PartidoPeer::ABREVIATURA, $partido);
 		  	}
-		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  	if ($institucion && $institucion != 'all'){
+		  		$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);	
+		  		$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
+		  		$c->addJoin(InstitucionPeer::ID, InstitucionI18nPeer::ID);
 		  		$c->add(InstitucionI18nPeer::VANITY, $institucion);
 		  	}
-		  	$pager = new sfPropelPager('Politico', $limit);
+		  	$pager = new sfPropelPager('PoliticoRanking', $limit);
 		  	
 		  	/* Orden de resultados
 		  	 * pa: positivos ascendente
@@ -85,24 +85,28 @@ class EntityManager {
 		    
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(politico.sumu) as total_u, sum(politico.sumd) as total_d 
-  				FROM `politico`
-  				INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID
-  				INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID 
-  				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture')
-  				LEFT JOIN partido ON (politico.PARTIDO_ID=partido.ID) 
-  				WHERE politico.VANITY IS NOT NULL ".
-  				(($partido && $partido != ALL_URL_STRING)?" AND partido.ABREVIATURA= ? ":" ") .
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
-  				"";
+  				FROM `politico`";
+  				if ($institucion && $institucion != 'all'){
+  					$query .= " INNER JOIN `politico_institucion` ON politico_institucion.POLITICO_ID=politico.ID ";
+  					$query .= " INNER JOIN `institucion` ON institucion.ID=politico_institucion.INSTITUCION_ID ";
+  					$query .= " INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = '$culture') ";
+  				}
+  				if ($partido && $partido != 'all') {
+  					$query .= " INNER JOIN partido ON (politico.PARTIDO_ID=partido.ID) ";
+  				}
+  				//" WHERE politico.VANITY IS NOT NULL ".
+  				$query .= " WHERE 1=1 ";
+  				$query .= (($partido && $partido != 'all')?" AND partido.ABREVIATURA= ? ":" ") .
+  				(($institucion && $institucion != 'all')?"AND institucion_i18n.VANITY= ? ":" ");
   			
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 
   			$idx = 1;
-  			if ($partido && $partido != ALL_URL_STRING) {
+  			if ($partido && $partido != 'all') {
 				$statement->bindValue($idx++, $partido);  				
   			}
-  			if ($institucion && $institucion != ALL_URL_STRING) {
+  			if ($institucion && $institucion != 'all') {
 				$statement->bindValue($idx++, $institucion);  				
   			}
   			
@@ -118,10 +122,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);
-	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager));
+	  			$cache->set("$key-totalUp",serialize($totalUp));
+	  			$cache->set("$key-totalDown",serialize($totalDown));
 	  		}
 	    	return $pager;
   		}
@@ -129,20 +133,20 @@ class EntityManager {
   	
   	public static function getPropuestas($culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{ 
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cache != null) {
   			$key= "propuesta/ranking?key=". md5("propuestas-$culture-$page-$order");
   			$key_totalUp= "propuesta/ranking?key-totalUp=". md5("propuestas-$culture-$page-$order");
   			$key_totalDown= "propuesta/ranking?key-totalDown=". md5("propuestas-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-			$totalUp = unserialize( $cacheManager->get($key_totalUp) );
-			$totalDown = unserialize( $cacheManager->get($key_totalDown) );
-  			return unserialize( $cacheManager->get("$key") );  		
+			$totalUp = unserialize( $cache->get($key_totalUp) );
+			$totalDown = unserialize( $cache->get($key_totalDown) );
+  			return unserialize( $cache->get("$key") );  		
   		}
   		else {
 		  	$c = new Criteria();
@@ -201,10 +205,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);		  	
-	  			$cacheManager->set($key_totalUp,serialize($totalUp), 3600);
-	  			$cacheManager->set($key_totalDown,serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager), 3600);		  	
+	  			$cache->set($key_totalUp,serialize($totalUp), 3600);
+	  			$cache->set($key_totalDown,serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -212,20 +216,20 @@ class EntityManager {
   	
   	public static function getPartidos($institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
-	  	$cacheManager = null;//sfcontext::getInstance()->getViewCacheManager();
-	  	if ($cacheManager != null) {
-  			//$cacheManager=new sfMemcacheCache();
-  			//$cacheManager->initialize();
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager();
+	  	if ($cache != null) {
+  			//$cache=new sfMemcacheCache();
+  			//$cache->initialize();
   			$key=md5("partidos_$partido-$institucion-$culture-$page-$order");
-  			$data = $cacheManager->get($key);
+  			$data = $cache->get($key);
 	  	}
 	  	else {
 	  		$data = false;
 	  	}
   		if ($data){
-  			$totalUp = unserialize($cacheManager->get("$key-totalUp"));
-  			$totalDown = unserialize($cacheManager->get("$key-totalDown"));	
-  			return unserialize($cacheManager->get("$key"));  		
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
   		}
   		else {  		
 		  	$c = new Criteria();
@@ -238,7 +242,7 @@ class EntityManager {
 				, Criteria::LEFT_JOIN
 			);
 		  			  	
-		  	if ($institucion && $institucion != ALL_URL_STRING){
+		  	if ($institucion && $institucion != 'all'){
 		  		$c->addJoin(PoliticoPeer::PARTIDO_ID, PartidoPeer::ID);
 			  	$c->addJoin(PoliticoInstitucionPeer::POLITICO_ID, PoliticoPeer::ID);
 			  	$c->addJoin(InstitucionPeer::ID, PoliticoInstitucionPeer::INSTITUCION_ID);
@@ -280,17 +284,17 @@ class EntityManager {
 	    	/* Calcula totales. Ver impacto en rendimiento */
   			$query = "SELECT sum(partido.sumu) as total_u, sum(partido.sumd) as total_d 
   				FROM `partido` ".
-  				(($institucion && $institucion != ALL_URL_STRING)?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
+  				(($institucion && $institucion != 'all')?"INNER JOIN `politico` ON partido.ID=politico.Partido_ID
   				INNER JOIN `politico_institucion` ON politico_institucion.Politico_ID = politico.ID
   				INNER JOIN `institucion` ON institucion.ID = politico_institucion.institucion_id
   				INNER JOIN `institucion_i18n` ON (institucion.ID=institucion_i18n.ID AND institucion_i18n.culture = ?) ":" ").
-  				(($institucion && $institucion != ALL_URL_STRING)?"AND institucion_i18n.VANITY= ? ":" ") .
+  				(($institucion && $institucion != 'all')?"AND institucion_i18n.VANITY= ? ":" ") .
   				"WHERE partido.is_active = 1";
 	
 		   	$connection = Propel::getConnection();
 			$statement = $connection->prepare($query);
 				$statement->bindValue(1, $culture);
-  			if ($institucion && $institucion != ALL_URL_STRING){
+  			if ($institucion && $institucion != 'all'){
 				$statement->bindValue(2, $institucion);
   			}
 			$statement->execute();
@@ -305,10 +309,10 @@ class EntityManager {
 		    $pager->setPage( $page );
 		    $pager->init();		    
 		    
-	  		if ($cacheManager != null) {
-	  			$cacheManager->set($key,serialize($pager), 3600);
-	  			$cacheManager->set("$key-totalUp",serialize($totalUp), 3600);
-	  			$cacheManager->set("$key-totalDown",serialize($totalDown), 3600);
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager), 3600);
+	  			$cache->set("$key-totalUp",serialize($totalUp), 3600);
+	  			$cache->set("$key-totalDown",serialize($totalDown), 3600);
 	  		}
 	    	return $pager;
   		}
@@ -401,7 +405,28 @@ class EntityManager {
   	public static function getDefaultPager($entity){
   		
   	}
-  	
+  	  	
+ 	private static function getPagerFromCache($filter, $id){
+ 		$pager = false;
+ 		
+  		$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("pager_".$id."_".$filter['type']."-".$filter['partido']."-".$filter['institucion']."-".$filter['culture']."-".$filter['order']."");
+  			
+  			$pager = unserialize($cache->get($key));
+	  	}
+		return $pager;
+ 	}
+  	  	
+ 	private static function setPagerToCache($filter, $id, $pager){
+  		$cache = sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("pager_".$id."_".$filter['type']."-".$filter['partido']."-".$filter['institucion']."-".$filter['culture']."-".$filter['order']."");
+  			
+  			$cache->set($key, serialize($pager));
+	  	}
+ 	}
+ 	
  	public static function getPager($entity, $reset = false){
 	 	$pager = false;
 	 	$user = sfContext::getInstance()->getUser();
@@ -417,15 +442,12 @@ class EntityManager {
 		  		'page' => '1',
 		  		'order' => 'pd',
 		  	);
-		  	$user->setAttribute("filter_".$entity->getType(), $filter);  		
-	  	}  
-		/*
-	  	if ($s != 0){
-	  		$filter['page'] += $s;
-	  		$user->setAttribute('filter', $filter);
-	  		$this->redirect('politico/show?id='.$entity->getVanity());
+		  	$user->setAttribute("filter_".$entity->getType(), $filter);
 	  	}
-	  	*/
+  		/*if ($pager = self::getPagerFromCache($filter, $entity->getId())){
+  			return $pager;
+  		}*/		  
+	  	
 	  	switch($entity->getType()){
 	  		case Politico::NUM_ENTITY:
 	  			$pager = self::getPoliticos($filter['partido'], $filter['institucion'], $filter['culture'], $filter['page'], $filter['order']);
@@ -442,35 +464,46 @@ class EntityManager {
 	  	$idx=0;
 	  	$page = $filter['page'];
 	  	$morePages = true;
+	  	$lastPage = $pager->getLastPage();
 	  	do {
 	  		$idx ++;
-	  				if ($idx == 50)die;
+	  		
 		  	foreach ($pager->getResults() as $aEntity){
 				if ($aEntity->getId() == $entity->getId()){
+		  			$filter['page'] = $pager->getPage();
+	  				$user->setAttribute("filter_".$entity->getType(), $filter);
+	  				//self::setPagerToCache($filter, $entity->getId(), $pager);
 					$found = true;
 				}
 			}
-			if ($pager->getLastPage() <= 1){
-				$morePages = false;
-			}
-			elseif (!$found) {
-				if ($idx==1 && $page != 1){
+
+			if (!$found && $pager->getLastPage() > 1) {
+				if ($idx==1 && $page != $filter['page']){
 					$page = 0;
 				}
-				if($page == 0 || $pager->getPage() < $pager->getLastPage()) {
-					$pager->setPage($page + 1);
+				
+				switch($idx){
+					case 2:
+						if ($page > 2){
+							$page -= 2;
+							break;
+						}
+					case 3:
+						if ($page > 3)
+							$page += 2;
+						$page += 1;
+						break;
+					default:
+						$page++;
+				}
+				if ($lastPage >= $page) {
+					$pager->setPage($page);
 					$pager->init();
-	  				$filter['page'] = $page + 1;
-	  				$user->setAttribute("filter_".$entity->getType(), $filter);
 				}
-				else{
-					$morePages = false;
-				}
-				$page ++;
 			}
-	  	} while (!$found && $morePages);
-	  	
-	  	if (!$found){
+	  	} while (!$found && $idx < self::MAX_PAGES);
+
+	  	if (!$found && $idx < self::MAX_PAGES){
 	  		$pager = self::getPager($entity, true);
 	  	}
 	  	

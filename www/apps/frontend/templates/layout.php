@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<?php if ($sf_user->getCulture()): ?>
-<html lang="<?php echo $sf_user->getCulture() ?>">
-<?php else: ?>
-<html>
-<?php endif ?>
+<?php echo '<?xml version="1.0" encoding="UTF-8"?>' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="<?php echo $sf_user->getCulture() ?>" xmlns:fb="http://www.facebook.com/2008/fbml">
 
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
-<?php use_helper('sfFacebookConnect'); ?>
 <?php use_helper('VoUser'); ?>
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <?php include_title() ?>
   <?php include_http_metas() ?>
   <?php include_metas() ?>
-  <meta content='chrome=1' http-equiv='X-UA-Compatible' />
   <link rel="shortcut icon" href="/favicon.ico" />
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+  <![endif]-->
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://connect.facebook.net/es_ES/all.js"></script>
   <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
   <script type="text/javascript" src="/js/ajaxupload.js"></script>
   <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
@@ -28,43 +26,64 @@
   <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
   <script type="text/javascript" src="/js/bluff/bluff.js"></script>
   <script type="text/javascript" src="/js/bluff/custom.js"></script>
+
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/sfReviewPlugin/css/sf_review.css?<?php echo sfConfig::get('sf_ml') ?>" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
+  
+  <?php if($sf_request->getAttribute('rssFeed')): ?>
+  <link rel="alternate" type="application/rss+xml" title="<?php echo $sf_request->getAttribute('rssTitle')?>" href="<?php echo url_for($sf_request->getAttribute('rssFeed')) ?>" />
+  <?php endif ?>
+  
   <style type="text/css">
     <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
-      input[type=submit], input[type=button], button { padding: 0 10px 1px 10px; line-height: 13px; }
+      input[type=submit], input[type=button], button { padding: 1px 10px 1px 10px; line-height: 13px; }
     <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
       input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
       .search button { margin-top: 1px; }
     <?php endif ?>
   </style>
+  <?php if ($sf_context->getModuleName() == 'home' && $sf_context->getActionName() == 'index'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-home-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
+  <?php if ($sf_context->getModuleName() == 'politico' && $sf_context->getActionName() == 'ranking'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-ranking-polit-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
+  <?php if ($sf_context->getModuleName() == 'partido' && $sf_context->getActionName() == 'ranking'):?>
+  	<link rel="image_src" href="http://images.voota.es/shots/s-ranking-part-<?php echo $sf_user->getCulture('es')?>.jpg" />
+  <?php endif ?>
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
-  <?php 
-    slot('fb_connect');
-    include_facebook_connect_script();
-    end_slot();
-  ?>
+  <div id="fb-root"></div>
+  <script type="text/javascript">
+    FB.init({appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>', status : true, cookie : true, xfbml  : true});
+    FB.Event.subscribe('auth.login', function(response){
+      window.location = '<?php echo url_for('sfGuardAuth/signin?op=fbc') ?>';
+    });
+  </script>
+
   <script type="text/javascript">
     //<![CDATA[
     $(document).ready(function(){
-	    $('#fbc_button').click(function(){
-	    	return facebookConnect();
-	    });
-	      <?php if ($sf_user->getFlash('logToFB')):  ?>  
-		    publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
-	    <?php endif ?>	
-	  });
-    <?php if( $sf_request->getAttribute("ie6") ):?>
-	  	$("#ie6 .close a").click(function(){
-	  		$('#ie6').remove();
-	  		return false;
-	    });
-	<?php endif ?>
+      <?php if ($sf_user->getFlash('logToFB')):  ?>  
+	      publishFaceBook("<?php echo __('He comenzado a compartir mis opiniones sobre políticos de España en Voota')?>", null, [{'text':'<?php echo __('Ir a Voota') ?>', 'href':'http://voota.es'}], '<?php echo __('Vamos a publicar esto en Facebook, ¿que te parece?') ?>');
+      <?php endif ?>
+      
+      $('#logout').click(function(){
+        FB.getLoginStatus(function(response) {
+          if (response.session) { FB.logout(); }
+        });
+      });
+
+      <?php if( $sf_request->getAttribute("ie6") ):?>
+  	  	$("#ie6 .close a").click(function(){
+  	  		$('#ie6').remove();
+  	  		return false;
+  	    });
+  	  <?php endif ?>
+    });
     //]]>
   </script>
  
@@ -77,14 +96,9 @@
       <div id="user-links">
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
-  	      <p><?php echo vo_facebook_connect_button(); ?></p>
-  	      <?php /* ?>
-  	      <script type="text/javascript" charset="utf-8">
-  	        $(document).ready(function(){
-  	          facebookConnect_autoLogin();
-  	        })
-  	      </script>
-  	      <?php */ ?>
+  	      <p>
+  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'perms' => 'publish_stream'), __('Entrar con Facebook')) ?>
+  	      </p>
         <?php end_slot('not_logged') ?>
 
         <?php slot('logged') ?>
@@ -116,16 +130,14 @@
         <?php include_slot($sf_user->isAuthenticated()?'logged':'not_logged') ?>
       </div>
 
-      <?php if ($sf_context->getModuleName() != "home"): ?>
-        <div class="search">
-          <form method="get" action="<?php echo url_for('@search')?>">
-            <fieldset>
-              <input type="text" name="q" id="q" value="<?php echo $sf_params->get('q') ?>" />
-      	      <button type="submit"><?php echo __('Buscar') ?></button>
-            </fieldset>
-          </form>
-        </div>
-      <?php endif ?>
+      <div class="search">
+        <form method="get" action="<?php echo url_for('@search')?>">
+          <fieldset>
+            <input type="text" name="q" id="q" value="<?php echo $sf_request->getAttribute('q') ?>" />
+    	      <button type="submit"><?php echo __('Buscar') ?></button>
+          </fieldset>
+        </form>
+      </div>
       
       <?php if( $sf_request->getAttribute("ie6") ):?>
         <div id="ie6">
@@ -151,7 +163,7 @@
   <!-- FOOTER -->
   <div id="footer">
     <p class="license">
-      <a href="<?php echo __('http://creativecommons.org/licenses/by-sa/3.0/deed.es') ?>"><img src="/images/icoCc.gif" alt="Creative Commons" width="34" height="34" /></a>
+      <a href="<?php echo __('http://creativecommons.org/licenses/by-sa/3.0/deed.es') ?>"><img src="/images/icoCc.png" alt="Creative Commons" width="34" height="34" /></a>
       <?php echo __('Voota y <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.es">Creative Commons</a> son amigos de toda la vida')?>
     </p>
     <p class="nav-links">
@@ -187,36 +199,35 @@
 
   </div><!-- FIN FOOTER -->
 
-  <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript">
     $(document).ready(function(){ 
 			$('input[title!=""], textarea[title!=""]').hint();
 		});
   </script>
-
-  <?php if (has_slot('fb_connect')): ?>
-    <?php include_slot('fb_connect') ?>
-  <?php endif; ?>
-
+ 
   <!-- GOOGLE ANALYTICS -->
-  <script type="text/javascript" charset="utf-8">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '<?php echo sfConfig::get("sf_ga_account_".$sf_user->getCulture()) ?>']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
   </script>
-  <script type="text/javascript" charset="utf-8">
-    try {
-      var pageTracker = _gat._getTracker("<?php echo $sf_user->getCulture() == 'ca'?'UA-10529881-3':'UA-10529881-1'?>");
-      pageTracker._trackPageview();
-    } catch(err) {}
-  </script><!-- FIN GOOGLE ANALYTICS -->
+  <!-- FIN GOOGLE ANALYTICS -->
   
-  <script type="text/javascript" charset="utf-8">    var uservoiceOptions = {
+  <script type="text/javascript">
+    var uservoiceOptions = {
       /* required */
       key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
       host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
       forum: '42379',
       showTab: true,  
       /* optional */
-      alignment: 'left',
+      alignment: 'right',
       background_color:'#3366FF', 
       text_color: 'white',
       hover_color: '#06C',
@@ -233,7 +244,6 @@
     $(window).load(function(){
       _loadUserVoice();
     });
-
   </script>
 
 </body>

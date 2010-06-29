@@ -16,18 +16,18 @@
     <tbody>
       <?php foreach($results->getResults() as $idx => $obj): ?>
         <?php if ($obj instanceof Partido): ?>
-			<?php include_component_slot('partidoResult', array('obj' => $obj, 'q' => $q)) ?>
+			<?php include_component_slot('partidoResult', array('obj' => $obj, 'q' => $q, 'ext' => $ext, 'counts' => $partidoCounts)) ?>
         <?php endif ?>
         <?php if ($obj instanceof Institucion): ?>
 			<?php include_component_slot('institucionResult', array('obj' => $obj, 'q' => $q)) ?>
         <?php endif ?>
         
         <?php if ($obj instanceof Politico): ?>
-			<?php include_component_slot('politicoResult', array('obj' => $obj, 'q' => $q)) ?>
+			<?php include_component_slot('politicoResult', array('obj' => $obj, 'q' => $q, 'counts' => $politicoCounts)) ?>
         <?php endif ?>
         
         <?php if ($obj instanceof Propuesta): ?>
-			<?php include_component_slot('propuestaResult', array('obj' => $obj, 'q' => $q)) ?>
+			<?php include_component_slot('propuestaResult', array('obj' => $obj, 'q' => $q, 'ext' => $ext, 'counts' => $propuestaCounts)) ?>
         <?php endif ?>
         
         <?php if ($obj instanceof sfGuardUser): ?>
@@ -41,6 +41,6 @@
 
 <?php if ( $results->haveToPaginate() ):?>
   <p class="pagination">
-    <?php include_partial('global/pagination_full', array('pager' => $results, 'url' => "@search?q=$q&", 'page_var' => "page")) ?>
+    <?php include_partial('global/pagination_full', array('pager' => $results, 'url' => "@search?q=$q", 'page_var' => "page")) ?>
   </p>
 <?php endif ?>

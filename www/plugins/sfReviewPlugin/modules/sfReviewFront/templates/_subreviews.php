@@ -4,7 +4,7 @@
 
 <div id="<?php echo "subreviews_box${listValue}_$id" ?>" class="subreviews <?php if($total == 0):?>hidden<?php endif ?> ">
   <ol>
-    <li id="<?php echo "sfrc${listValue}_".$id ?>" class="review-new" ></li>
+    <li id="<?php echo "sfrc${listValue}_".$id ?>" class="nullreview-new" ></li>
 	    <?php foreach ($reviewList->getResults() as $review): ?>    
       <li class="review" id="<?php echo "sf_review_c_m".$review->getId() ?>">
         

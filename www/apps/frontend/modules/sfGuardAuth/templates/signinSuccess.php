@@ -1,8 +1,13 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
+<?php use_helper('VoUser'); ?>
 
 <?php echo showNotices( $sf_user ) ?>
+<?php if ($sf_request->getParameter("dialog") == 1): ?>
+	<p class='warning'><?php echo __('Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si no tienes cuenta aún, ¡este es el mejor momento para crearte una!') ?></p>
+<?php endif ?>
+
 <div id="signup">
   <h2><?php echo __('¿Nuevo en Voota? Empieza aquí')?></h2>
   <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
@@ -81,6 +86,12 @@
       <tr>
         <th></th>
         <td class="submit"><input name="button" type="submit" class="button" value="<?php echo __('Entrar')?>" /></td>
+      </tr>
+      <tr class="facebook-login">
+        <th><label><?php echo __('Otra opción...') ?></label></th>
+        <td>
+          <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'perms' => 'publish_stream'), __('Entrar con Facebook')) ?>
+        </td>
       </tr>
     </table>
   </form>

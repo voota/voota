@@ -26,6 +26,10 @@ class BasesfReviewFrontActions extends sfActions
   	$id = $request->getParameter("id");
   	
   	$this->review = SfReviewPeer::retrieveByPK( $id );
+  	if (($goodVanity = SfVoUtil::reviewPermalink($this->review)) != $id){
+  		//echo "$goodVanity == $id"; 
+  		$this->redirect('sfReviewFront/show?id='.$goodVanity, 301);
+  	}
   	  	
   	$this->forward404Unless( $this->review );
   	
@@ -44,44 +48,39 @@ class BasesfReviewFrontActions extends sfActions
   {
   	$this->entityId = $request->getParameter("entityId");  	
   	$this->value = $request->getParameter("value");  		
-  	$this->page = $request->getParameter("page");		
+  	$this->page = $request->getParameter("page");	
   	$this->sfReviewType = $request->getParameter("sfReviewType");
   	$this->filter = $request->getParameter("filter", false);
+  	$this->slot = $request->getParameter("slot", false);
+  	$this->userId = $request->getParameter("userId", false);
+  	
+  	// Estabamos vootando antes del login ?
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
+  	}
   	
   	$c = new Criteria;
-  	$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	if ($this->sfReviewType) {
+  		$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	}
   	$reviewType = SfReviewTypePeer::doSelectOne( $c );
-  	$peer = $reviewType->getModel() .'Peer';
-  	$c = new Criteria;
-  	$c->add($peer::ID, $this->entityId);
-  	$this->entity = $peer::doSelectOne( $c ); 
-  }
-  
-  public function executeList(sfWebRequest $request)
-  {
-  	$this->id = $request->getParameter("id");  	
-	$this->showCount = $request->getParameter("showCount");
-	
-  	if (!isset($this->showCount)){
-  		$this->showCount = SfReviewManager::NUM_LAST_REVIEWS;
-  	}
-  	$this->reviewLastList = SfReviewManager::getLastReviewsByEntityAndValue(false, '', $this->id, null, SfReviewManager::NUM_LAST_REVIEWS);
-  	$exclude = array();
-  	foreach ($this->reviewLastList->getResults() as $result){
-  		$exclude[] = $result->getId();
-  	}
-  	if ($this->showCount > SfReviewManager::NUM_LAST_REVIEWS){
-  		$this->reviewList = SfReviewManager::getReviewsByEntityAndValue(false, '', $this->id, null, ($this->showCount - SfReviewManager::NUM_LAST_REVIEWS), $exclude);
-  	}
-  	
-	$this->positiveCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, 1);
-	$this->negativeCount =  SfReviewManager::getTotalReviewsByEntityAndValue('', $this->id, -1);
-	$this->total = $this->reviewLastList->getNbResults();// + $this->reviewList->getNbResults();
-		
-	$this->seeMoreCount = 0;
-	if ($this->total > $this->showCount){
-		$this->seeMoreCount = ($this->total - $this->showCount)>10?($this->showCount+10):($this->total); 	
-	}
+  	if ($reviewType) {
+	  	$peer = $reviewType->getModel() .'Peer';
+	  	$c = new Criteria;
+	  	$c->add($peer::ID, $this->entityId);
+	  	$this->entity = $peer::doSelectOne( $c );
+  	} 
   }
   
   public function executeInit(sfWebRequest $request)
@@ -107,9 +106,21 @@ class BasesfReviewFrontActions extends sfActions
 	if($t == ''){
   		return "SimpleSuccess";
    	}
-  }
+  }  
   
-  protected function prepareRedirect( $entityId, $type ){
+  protected function prepareRedirect( $request ){
+  	$sfr_status = array();
+  	$sfr_status['v'] = $request->getParameter("v");
+  	$sfr_status['t'] = $request->getParameter("t");
+  	$sfr_status['e'] = $request->getParameter("e");
+  	$sfr_status['b'] = $request->getParameter("b");
+  	$sfr_status['nl'] = $request->getParameter("nl");
+  	$sfr_status['pag'] = $request->getParameter("page", 1);
+  	$sfr_status['tab'] = $request->getParameter("tab", false);
+  	
+  	$this->getUser()->setAttribute('sfr_status', $sfr_status, 'sf_review'); 
+
+	//$this->redirect('@sf_guard_signin');
   }
   
   public function executeForm(sfWebRequest $request)
@@ -125,32 +136,35 @@ class BasesfReviewFrontActions extends sfActions
   		$this->cf = 1;	
   	}
   	$this->maxLength = BasesfReviewFrontActions::MAX_LENGTH;
+  	$this->redirect = false;
   	if (! $this->getUser()->isAuthenticated()) {
-		//$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
   		if( $nl == 1 ){
-  			$this->prepareRedirect( $this->reviewEntityId, $this->reviewType );
+  			$this->prepareRedirect( $request );
+  			$this->redirect = '@sf_guard_signin';
   		}
   		else {
 			return 'NotLogged';
   		}
   	}
   	
-  	$criteria = new Criteria();
-  	$t = $request->getParameter("t");
-  	if ($t != '') {
-  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
-  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
-  	}
-  	else {
-  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
-  	}
-  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-  	$review = SfReviewPeer::doSelect($criteria);
-  	if ($review) {
-  		$this->reviewValue = $review[0]->getValue();
-  		$this->reviewText = $review[0]->getText();
-  		$this->reviewId = $review[0]->getId();
-  		$this->reviewToFb = $review[0]->getToFb();
+  	if (!$this->redirect){
+	  	$criteria = new Criteria();
+	  	$t = $request->getParameter("t");
+	  	if ($t != '') {
+	  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+	  	}
+	  	else {
+	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
+	  	}
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+	  	$review = SfReviewPeer::doSelectOne($criteria);
+	  	if ($review) {
+	  		$this->reviewValue = $review->getValue();
+	  		$this->reviewText = $review->getText();
+	  		$this->reviewId = $review->getId();
+	  		$this->reviewToFb = $review->getToFb();
+	  	}
   	}
    }
   
@@ -237,7 +251,6 @@ class BasesfReviewFrontActions extends sfActions
   		$peer = $type->getModel() . 'Peer';
   		$this->entity = $peer::retrieveByPK($entityId);
   	}
-  	
   	try {  	
   		$this->review = SfReviewManager::postReview($this->getUser()->getGuardUser()->getId(), $typeId, $entityId, $value, false, $this->entity, $rm, 0, 'quick');
   	}

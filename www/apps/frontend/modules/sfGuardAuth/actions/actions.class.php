@@ -1,12 +1,17 @@
 <?php
- 
 require_once(sfConfig::get('sf_plugins_dir').'/sfGuardPlugin/modules/sfGuardAuth/lib/BasesfGuardAuthActions.class.php');
  
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+	
+  public function executeSignout($request){
+  	VoFacebook::remove_cookie();
+  	
+  	return parent::executeSignout($request);
+  }
+  
   private function doSignin($request, $op = '')
   {
-  	
     $user = $this->getUser();
 
     if ($request->isXmlHttpRequest())
@@ -34,7 +39,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $user->getReferer('@homepage'));
         
         if ($op == 'fb'){
-        	$this->getUser()->getProfile()->setFacebookUid( sfFacebook::getAnyFacebookUid() );
+        	$this->getUser()->getProfile()->setFacebookUid( VoFacebook::getUid() );
         	$this->getUser()->getProfile()->save();
         }
         $this->redirect($signinUrl);
@@ -171,19 +176,55 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeSignin($request)
   {
   	$this->op = $request->getParameter('op');
-  	$urlBack = $request->getParameter('url_back', false);
+  	//echo $this->op;
+  	//die;
   	
-  	if ($this->op == 'fb' && !$this->getUser()->isAuthenticated()){
-  		$sfGuardUser = sfFacebook::getSfGuardUserByFacebookSession( FALSE );
-  		if ($sfGuardUser){
-  			$this->redirect('sfFacebookConnectAuth/signin');
-  		}
+  	$dialog = $request->getParameter('dialog', false);
+  	/* IF FB CONNECT */
+	if ($this->op == 'fbc' && $facebook_uid = VoFacebook::getUid()){
+		$c = new Criteria();
+		$c->addJoin(SfGuardUserProfilePeer::USER_ID, SfGuardUserPeer::ID);
+		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $facebook_uid);
+		$sfGuardUser = SfGuardUserPeer::doSelectOne( $c );
+
+    	if (!$sfGuardUser instanceof sfGuardUser) {
+    		$sfGuardUser = new sfGuardUser();
+   			$sfGuardUser->setUsername('Facebook_'.$facebook_uid);
+    		
+      		$sfGuardUser->save();
+			$voProfile = $sfGuardUser->getProfile();
+		    $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
+		    $voProfile->setFacebookUid($facebook_uid);
+    
+		    $c2 = new Criteria();
+		    $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
+		    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
+		    $counter = 0;
+		    foreach ($usuariosLikeMe as $usuarioLikeMe){
+		    	$counter++;
+		    }
+		    $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
+		    $voProfile->setMailsComentarios( 0 );
+		    $voProfile->setMailsNoticias( 0 );
+		    $voProfile->setMailsContacto( 0 );
+		    $voProfile->setMailsSeguidor( 0 );
+      
+			$voProfile->save();
+    	}
+    	
+		$this->getUser()->signin($sfGuardUser, false);
+		
+		
+        $signinUrl = sfConfig::get('app_sf_guard_plugin_success_signin_url', $this->getUser()->getReferer('@homepage'));
+        
+        $this->redirect($signinUrl);
   	}
+  	/* FI FB CONNECT */
   	
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
 
-    if ($request->isMethod('post') && !$urlBack){
+    if ($request->isMethod('post') && !$dialog){
     	// Register
     	if ($this->op == 'r') {
 	      $this->registrationform = new RegistrationForm();    
@@ -325,11 +366,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   }
 
   public function executeConfirmMerge(){
-	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user()){
+	if ($this->getUser()->isAuthenticated() && ($uid = VoFacebook::getUid())){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
   		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
-  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $uid);
   		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
   		$users = SfGuardUserPeer::doSelect( $c );
   		if (count($users) > 0){
@@ -353,12 +394,13 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		// FIN: Buscar conflictos
   		
 		$sfGuardUser = $this->getUser()->getGuardUser();
-	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+		$sfGuardUser->getProfile()->setFacebookUid($uid);
+	    //sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
 	    $sfGuardUser->save();
 	    $sfGuardUser->getProfile()->save();
 	    
 	    //$this->getUser()->signin( $sfGuardUser );
-	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	    //$sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
 	}
 	
 	$this->forward('sfGuardAuth', 'editFB');
@@ -374,25 +416,26 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		$this->getUser()->getProfile()->setFacebookUid(null);
   		$this->getUser()->getProfile()->save();
   	}
-	if ($this->getUser()->isAuthenticated() && sfFacebook::getFacebookClient()->get_loggedin_user() && $op == 'con'){
+	if ($this->getUser()->isAuthenticated() && ($uid = VoFacebook::getUid()) && $op == 'con'){
   		// Buscar conflictos: Primero buscar si existe otro usuario con este UID 
   		$c = new Criteria();
   		$c->addJoin(SfGuardUserPeer::ID, SfGuardUserProfilePeer::USER_ID);
-  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $uid);
   		$c->add(SfGuardUserProfilePeer::USER_ID, $this->getUser()->getGuardUser()->getId(), Criteria::NOT_EQUAL);
   		$users = SfGuardUserPeer::doSelect( $c );
   		if (count($users) > 0){
-  			$this->faceBookUid = sfFacebook::getFacebookClient()->get_loggedin_user();
+  			$this->faceBookUid = $uid;
   			return 'ConfirmMerge';
   		}
   		// FIN: Buscar conflictos
   		
-	    sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, sfFacebook::getFacebookClient()->get_loggedin_user());
+  		$sfGuardUser->getProfile()->setFacebookUid($uid);
+	    //sfFacebook::getGuardAdapter()->setUserFacebookUid($sfGuardUser, $uid);
 	    $sfGuardUser->save();
 	    $sfGuardUser->getProfile()->save();
 	    
 	    //$this->getUser()->signin( $sfGuardUser );
-	    $sfGuardUser->getProfile()->setFaceBookUID( sfFacebook::getFacebookClient()->get_loggedin_user() );
+	    $sfGuardUser->getProfile()->setFaceBookUID( $uid );
   	}
 	  	
    	if ($this->getUser()->isAuthenticated()) {
@@ -455,20 +498,23 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     	$this->profileEditForm->bind($request->getParameter('profile'), $request->getFiles('profile'));
       
 		if ($this->profileEditForm->isValid()){
-			if ($this->politico){
+			/*if ($this->politico){
 			  	$cacheManager = $this->getContext()->getViewCacheManager();
 			  	if ($cacheManager != null) {
 			  		$politico = $this->getRoute()->getObject();
 			    	$cacheManager->remove("politico/show?id=".$politico->getVanity()."");
 			  	}				
-			}
+			}*/
 	      	$profile = $request->getParameter('profile');
 	    	$this->hasDeepUpdates = ($profile['presentacion'] != $formData->getProfile()->getPresentacion()); 
       		
       		if ($this->profileEditForm->getValue('imagen_delete') != "" ){
       			// Si se elimina la imagen, hay que recargar el formulario para que se refresque
     			$formData->getProfile()->setImagen("");
-				$this->profileEditForm = new ProfileEditForm( $formData );
+    			//$formData->getProfile()->save();
+		      	$this->profileEditForm->setImageSrc( "" );
+		      	$this->profileEditForm->resetImageWidget();
+				//$this->profileEditForm = new ProfileEditForm( $formData );
       		}
       		else {
 				$imageOri = $this->profileEditForm->getObject()->getProfile()->getImagen();
@@ -489,6 +535,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		      		$imagen->save(sfConfig::get('sf_upload_dir').'/usuarios/'.$imageName);
 		      		$this->profileEditForm->getObject()->getProfile()->setImagen( $imageName );
 		      		$this->profileEditForm->setImageSrc( $imageName );
+		      		$this->profileEditForm->resetImageWidget();
 		      		
 		      		$this->hasDeepUpdates = true;
 	      		}

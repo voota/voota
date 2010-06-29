@@ -9,6 +9,9 @@
         <?php if (count($obj->getPoliticoInstitucions()) > 0): ?>, 
             <?php foreach ($obj->getPoliticoInstitucions() as $idx => $politicoInstitucion): ?><?php if($idx > 0):?>, <?php endif ?><?php echo highlightWords($politicoInstitucion->getInstitucion()->getNombre(), $q) ?><?php endforeach ?>
         <?php endif ?>
+        <?php if($counts):?>
+	        <?php echo $q ?> (<?php echo $counts[$obj->getId()] ?>)
+        <?php endif ?>
       <br />
     	<?php echo $quote ?>
       

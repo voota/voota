@@ -2,9 +2,9 @@
 
 <li>
 	<div class="avatar">
-  	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
+  	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
   </div>
-	<h4 class="name"><?php echo link_to(cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 35) . ($politico->getPartido()?" (" . $politico->getPartido() .")":''), 'politico/show?id='.$politico->getVanity())?></h4>
+	<h4 class="name"><?php echo link_to(cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 26), 'politico/show?id='.$politico->getVanity())?></h4>
   <div class="votes">
 		<?php include_partial('general/sparkline_box', array('id' => $id)) ?>
 		<span class="votes-count">

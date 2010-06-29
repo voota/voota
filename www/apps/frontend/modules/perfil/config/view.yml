@@ -1,5 +1,6 @@
 default:
   components:
     profileReview:  [perfil, profileReview]
+    review_list_by_user:  [sfReviewFront, reviewListByUser]
     
     

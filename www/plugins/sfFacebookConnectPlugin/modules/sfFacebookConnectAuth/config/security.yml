@@ -1,5 +1,0 @@
-ajaxSignin:
-  is_secure: off
-
-signin:
-  is_secure: off

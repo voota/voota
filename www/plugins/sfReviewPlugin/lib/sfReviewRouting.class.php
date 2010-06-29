@@ -36,7 +36,8 @@ class sfReviewRouting
   
   static public function addRouteForAdminType(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_review_type', new sfPropelRouteCollection(array(
+  	$class = (class_exists('Doctrine'))?'sfDoctrineRouteCollection':'sfPropelRouteCollection';
+    $event->getSubject()->prependRoute('sf_review_type', new $class(array(
       'name'                 => 'sf_review_type',
       'model'                => 'SfReviewType',
       'module'               => 'sfReviewType',
@@ -48,7 +49,8 @@ class sfReviewRouting
   
   static public function addRouteForAdminStatus(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_review_status', new sfPropelRouteCollection(array(
+  	$class = (class_exists('Doctrine'))?'sfDoctrineRouteCollection':'sfPropelRouteCollection';
+    $event->getSubject()->prependRoute('sf_review_status', new $class(array(
       'name'                 => 'sf_review_status',
       'model'                => 'SfReviewStatus',
       'module'               => 'sfReviewStatus',
@@ -60,7 +62,8 @@ class sfReviewRouting
   
   static public function addRouteForAdmin(sfEvent $event)
   {
-    $event->getSubject()->prependRoute('sf_review', new sfPropelRouteCollection(array(
+  	$class = (class_exists('Doctrine'))?'sfDoctrineRouteCollection':'sfPropelRouteCollection';
+    $event->getSubject()->prependRoute('sf_review', new $class(array(
       'name'                 => 'sf_review',
       'model'                => 'SfReview',
       'module'               => 'sfReview',

@@ -5,17 +5,17 @@
 <?php if ($sf_user->isAuthenticated() && $sf_user->getProfile()->getFacebookUid() && $sf_user->getProfile()->getFacebookUid() != ''): ?>
   <h3>
     <img src="/images/icoFacebookPref.png" alt="Facebook Connect" />
-    <?php echo __('Conectado a Facebook como:') ?> <strong><fb:name uid="<?php echo $sf_user->getProfile()->getFacebookUid() ?>" useyou="false" linked="false"></fb:name></strong>
+    <?php echo __('Conectado a Facebook como:') ?> <strong><?php echo jsWrite('fb:name', array('uid' => $sf_user->getProfile()->getFacebookUid(), 'useyou' => 'false', 'linked' => 'false')) ?></strong>
     (<a id="facebook-disconnect" href="#"><?php echo __('Desconectar') ?></a>)
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript">
       <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
   	    $('#facebook-disconnect').click(function() {
-  	      facebookConnect_disconnect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>');
+  	      facebookDisconnectAccount('<?php echo url_for('@usuario_fb_edit?op=dis') ?>');
   	      return false;
   	    });
       <?php else: ?>
         $('#facebook-disconnect').click(function() {
-  	      facebookConnect_disconnect_logout('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
+  	      facebookLogoutAndRedirect('<?php echo url_for('@usuario_fb_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
   	      return false;
   	    });
       <?php endif ?>

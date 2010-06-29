@@ -29,6 +29,9 @@ class genVanityTask extends sfBaseTask
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
       new sfCommandOption('table', null, sfCommandOption::PARAMETER_REQUIRED, 'Tipo de vanities a procesar', 'politico'),
       new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
+      new sfCommandOption('force', null, sfCommandOption::PARAMETER_REQUIRED, 'Generar aunque ya exista', '0'),
+      new sfCommandOption('min-id', null, sfCommandOption::PARAMETER_REQUIRED, 'Id a partir del cual regenerar', '0'),
+      new sfCommandOption('with-name', null, sfCommandOption::PARAMETER_REQUIRED, 'Id a partir del cual regenerar', '0'),
       // add your own options here
     ));
 
@@ -64,12 +67,21 @@ EOF;
 
     $c = new Criteria();
     //$c->add(PoliticoPeer::ID, 1, Criteria::EQUAL);
+    if( $options['min-id'] != "0" ){
+    	$c->add(PoliticoPeer::ID, $options['min-id'], Criteria::GREATER_EQUAL);
+    }
     $politicos = PoliticoPeer::doSelect( $c );
     foreach ($politicos as $politico){
-    	if ($politico->getVanity() == ''){
-    		echo "Setting vanity to  " . $politico->getId() ." ...\n";
+    	if ($politico->getVanity() == '' || $options['force'] == '1'){
     		
-    		$vanityUrl = SfVoUtil::encodeVanity($politico->getApellidos()) ;
+    		if($options['with-name'] == "1"){
+    			$newVanityString = 	$politico->getNombre() . '-' .$politico->getApellidos();
+    		}
+    		else{
+    			$newVanityString = 	$politico->getApellidos();
+      		}
+    		
+    		$vanityUrl = SfVoUtil::encodeVanity( $newVanityString ) ;
     		
 		    $c2 = new Criteria();
 		    $c2->add(PoliticoPeer::VANITY, "$vanityUrl%", Criteria::LIKE);
@@ -91,8 +103,12 @@ EOF;
     				$counter++;
     			}
     		}
-    		$politico->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
-    		PoliticoPeer::doUpdate( $politico );
+    		
+    		$newVanity = "$vanityUrl". ($counter==0?'':"-$counter");
+    		echo "Setting vanity from ". $politico->getVanity()." to  " . $newVanity ." ...\n";
+    		
+    		$politico->setVanity( $newVanity );
+    		$politico->save();    		
     	}
     }
   }

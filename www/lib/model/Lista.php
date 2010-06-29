@@ -4,6 +4,6 @@ class Lista extends BaseLista
 {
   public function __toString()
   {
-    return $this->getPartido()->getNombre() . " a " . $this->getInstitucion()->getNombre();  // getTitle() se hereda de BaseArticle
+    return $this->getPartido()->getAbreviatura() . ", " . $this->getConvocatoria()->getEleccion() . " ". $this->getConvocatoria();  // getTitle() se hereda de BaseArticle
   }
 }

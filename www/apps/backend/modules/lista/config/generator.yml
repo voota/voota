@@ -13,11 +13,13 @@ generator:
     config:
       actions: ~
       fields: ~
-      filter:  ~
       display: ~
       form:
         display:
-          "Datos de la lista": [partido_id,eleccion_id,politico_lista_list]
+          "Datos de la lista": [partido_id,convocatoria_id,geo_id]
+          "Politicos": [_lista]
+      filter:
+        display: [convocatoria_id]
 
       edit:
         title:   Lista
@@ -25,4 +27,4 @@ generator:
         title:   Nueva lista
       list:
         title:   Listas por partido y elecci&oacute;n
-        display: [id,_partido,_eleccion]
+        display: [id,_partido,_eleccion,geo]

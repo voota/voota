@@ -3,11 +3,31 @@ propel:
     package: lib.model
     defaultIdMethod: native
   eleccion:
-    _attributes: { phpName: Eleccion }
+    _attributes: { phpName: Eleccion, isI18N: true, i18nTable: eleccion_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
-    nombre: { type: VARCHAR, size: '150', required: true }
-    fecha: { type: DATE, required: false }
+    vanity: { type: VARCHAR, size: '150', required: true }
     created_at: { type: TIMESTAMP, required: false }
+    _uniques: { uniq_vanity: [vanity] }
+  eleccion_i18n:
+    _attributes: { phpName: EleccionI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    nombre_corto: { type: VARCHAR, size: '45', required: true }    
+    nombre: { type: VARCHAR, size: '150', required: true }
+  convocatoria:
+    _attributes: { phpName: Convocatoria, isI18N: true, i18nTable: convocatoria_i18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    nombre: { type: VARCHAR, size: '45', required: true }    
+    fecha: { type: DATE, required: true }
+    created_at: { type: TIMESTAMP, required: false }
+    imagen: { type: VARCHAR, size: '50', required: false }
+    _uniques: { nombre_unique: [eleccion_id,nombre] }
+  convocatoria_i18n:
+    _attributes: { phpName: ConvocatoriaI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    descripcion: { type: VARCHAR, size: '600', required: false }
   eleccion_institucion:
     _attributes: { phpName: EleccionInstitucion }
     eleccion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
@@ -22,6 +42,7 @@ propel:
     partido_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     politico_id: { type: INTEGER, size: '11', required: false, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     propuesta_id: { type: INTEGER, size: '11', required: false, foreignTable: propuesta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    convocatoria_id: { type: INTEGER, size: '11', required: false, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sf_guard_user_id: { type: INTEGER, size: '11', required: false, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     orden: { type: INTEGER, size: '11', required: false }
     mostrar: { type: CHAR, size: '1', required: false }
@@ -33,6 +54,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     nombre: { type: VARCHAR, size: '150', required: true }
     geo_id: { type: INTEGER, size: '11', required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    codigo: { type: INTEGER, size: '11', required: false }
     created_at: { type: TIMESTAMP, required: false }
   imagen:
     _attributes: { phpName: Imagen }
@@ -68,9 +90,11 @@ propel:
     _attributes: { phpName: Lista }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    eleccion_id: { type: INTEGER, size: '11', required: true, foreignTable: eleccion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    convocatoria_id: { type: INTEGER, size: '11', required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    geo_id: { type: INTEGER, size: '11', required: true, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_l_partido: [partido_id], fk_l_eleccion: [eleccion_id] }
+    _uniques: { uniq_lista: [partido_id,convocatoria_id,geo_id] }
   media:
     _attributes: { phpName: Media }
     idmedia: { type: INTEGER, size: '11', primaryKey: true, required: true }
@@ -162,6 +186,7 @@ propel:
     institucion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: institucion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fecha_inicio: { type: DATE, required: false }
     fecha_fin: { type: DATE, required: false }
+    cargo: { type: VARCHAR, size: '2', required: false }
     _indexes: { fk_institucion_politico_1: [institucion_id], fk_institucion_politico_2: [politico_id] }
   politico_lista:
     _attributes: { phpName: PoliticoLista }
@@ -217,3 +242,34 @@ propel:
     fb_tip: { type: boolean, required: true, defaultValue: '1' }   
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
+
+  etiqueta:
+    _attributes: { phpName: Etiqueta }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    texto: { type: VARCHAR, size: '45', required: false }  
+    culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+  etiqueta_politico:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+    fecha: { type: TIMESTAMP, required: false }
+    sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_etiqueta_politico_1: [etiqueta_id, culture], fk_etiqueta_politico_2: [politico_id], fk_etiqueta_politico_3: [sf_guard_user_id] }
+  etiqueta_partido:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+    fecha: { type: TIMESTAMP, required: false }
+    sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    _indexes: { fk_etiqueta_partido_1: [etiqueta_id, culture], fk_etiqueta_partido_2: [partido_id], fk_etiqueta_partido_3: [sf_guard_user_id] }
+  etiqueta_propuesta:
+    etiqueta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: etiqueta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    propuesta_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: propuesta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { type: VARCHAR, size: '5', primaryKey: true, required: false }  
+    sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    fecha: { type: TIMESTAMP, required: false }
+    _indexes: { fk_etiqueta_propuesta_1: [etiqueta_id, culture], fk_etiqueta_propuesta_2: [propuesta_id], fk_etiqueta_propuesta_3: [sf_guard_user_id] }
+    
+    
+    
+    

@@ -2,7 +2,7 @@
 
 <li>
 	<div class="avatar">
-    	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$reviewable->getImagePath().'/cc_s_'.$reviewable->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $reviewable)) .'"') ?>
+    	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$reviewable->getImagePath().'/cc_s_'.$reviewable->getImagen(), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $reviewable)) .'"') ?>
     </div>
 	<h4 class="name"><?php echo link_to(cutToLength($reviewable->getLongName()), $reviewable->getModule().'/show?id='.$reviewable->getVanity())?></h4>
   <div class="votes">

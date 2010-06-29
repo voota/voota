@@ -5,11 +5,6 @@
 
 <script type="text/javascript">
   $(window).load(function(){
-    <?php /*if(count($politicosMasVotadosUltimamente) < 6):?>
-    	<?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
-	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => "sparkline_".$politico->getId())) ?>
-    	<?php endforeach?>
-	  <?php endif */?>
     <?php foreach($reviewables as $reviewable): ?>
 	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
 	  <?php endforeach ?>
@@ -41,28 +36,30 @@
       <ul>
         <li><h2><?php echo __('Opiniones sobre políticos, partidos y propuestas políticas en España.') ?></h2></li>
         <li><h2>
-        	<?php echo __('%1% opiniones, de %4% personas, sobre ', array(
-        					'%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES'),
-        					//'%2%' => format_number($totalUpReviews, 'es_ES'),
+        	<?php echo __('%2%, de %4% personas, sobre ', array(
+        					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('%1% opiniones', array('%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES')))."</a>",
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($topTotalUsers, 'es_ES')
         	)) ?>
-        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos')?>">
+        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>">
         	<?php echo __('%5% políticos', array(
                 			'%5%' => format_number($topTotalPoliticos, 'es_ES')
         	)) ?></a>,
-        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos')?>">
+        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>">
         	<?php echo __('%5% partidos', array(
                 			'%5%' => format_number($topTotalPartidos, 'es_ES')
         	)) ?></a>
         	<?php echo __('y')?>
-        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas')?>">
+        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>">
         	<?php echo __('%5% propuestas', array(
                 			'%5%' => format_number($topTotalPropuestas, 'es_ES')
         	)) ?></a>.
         				
         </h2></li>
-        <li>
+        <?php if( $convocatoria ):?>
+          <li><h2><?php echo __('Lo que se cuece en las ') ?> <a href="<?php echo url_for('eleccion/show?vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre())?>"><?php echo $convocatoria->getEleccion()->getNombre()?> <?php echo $convocatoria->getNombre()?></a>.</h2></li>
+        <?php endif ?>
+        <li class="lo-mas-votado">
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
             <?php foreach($reviewables as $reviewable): ?>
@@ -76,24 +73,24 @@
           </ol>
         </li>
       </ul>
-
-    <div class="search">
-      <form method="get" action="<?php echo url_for('@search')?>">
-        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
-        <p>
-          <input type="text" name="q" id="q_1" value="<?php echo $sf_params->get('q') ?>" />
-        </p>
-        <p><button type="submit"><?php echo __('Buscar') ?></button></p>
-      </form>
-    </div>
   </div>
 </div>
 
-
+<div class="block" id="ultimos-vootos">
+  <div class="block-inner">
+    <h3><?php echo __('Últimos 5 vootos')?></h3>
+    <ol class="sf-reviews-list-brief"> 
+      <?php foreach($topReviews as $review): ?>
+      <?php include_component_slot('review_for_list', array('review' => $review)) ?>
+      <?php endforeach ?>
+    </ol>
+    <p class="ranking-link"><strong><a href="<?php echo url_for('sfReviewFront/list')?>"><?php echo __('¡Tachán! Todos los vootos sobre partidos, políticos y propuestas') ?></a> (<?php echo format_number($totalUpReviews+$totalDownReviews, 'es_ES') ?>)</strong></p>
+  </div>
+</div>
 
 <div class="block" id="rankings">
   <div class="block-inner">
-    <div id="politicians-top5" class="list-mini">
+    <div id="top5-politicos" class="entities-list-mini">
       <h3><?php echo __('Top 5 políticos')?></h3>
       <ol class="entities">
         <?php foreach($topPoliticos as $politico): ?>
@@ -103,7 +100,7 @@
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
     </div>
 
-    <div id="political-groups" class="list-mini">
+    <div id="top5-partidos" class="entities-list-mini">
       <h3><?php echo __('Top 5 partidos')?></h3>
       <ol class="entities">
         <?php foreach($partidosMasVotados as $partido): ?>
@@ -113,7 +110,7 @@
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
     </div>
 
-    <div id="proposals-top5" class="list-mini">
+    <div id="top5-propuestas" class="entities-list-mini">
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
         <?php foreach($propuestasMasVotadas as $p): ?>
@@ -133,9 +130,9 @@
 
     <div class="search">
       <form method="get" action="<?php echo url_for('@search')?>">
-        <p><label for="q_1"><?php echo __('¡Buusca!')?></label></p>
+        <p><label for="q_2"><?php echo __('¡Buusca!')?></label></p>
         <p>
-          <input type="text" name="q" id="q_2" value="<?php echo $sf_params->get('q') ?>" />
+          <input type="text" name="q" id="q_2" value="<?php echo $sf_request->getAttribute('q') ?>" />
         </p>
         <p><button type="submit"><?php echo __('Buscar') ?></button></p>
       </form>

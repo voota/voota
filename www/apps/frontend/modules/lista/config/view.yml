@@ -1,0 +1,3 @@
+default:
+  components:
+    quickvote:  [sfReviewFront, quickvote]

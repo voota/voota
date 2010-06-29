@@ -39,48 +39,81 @@ class propuestaActions extends sfActions
   public function executeEditDoc(sfWebRequest $request){
   	$op = $request->getParameter("op", "d");
   	$id = $request->getParameter("id", 0);
+  	$titulo = $request->getParameter("titulo");
+  	$descripcion = $request->getParameter("descripcion");
   	$this->propuesta = PropuestaPeer::retrieveByPk( $id );
   	$this->forward404Unless( $this->propuesta );
   	$files = $request->getFiles();
-  	
-  	switch( $op ){
-  		case 's':
-  			return 'Saved';
-  			break;
-  		case 'd':
-  			break;
-  		case 'f':
-			$this->propuesta->setDoc( null );
-			$this->propuesta->setDocSize( null );
-			$this->propuesta->save();
-			
-  			return 'Form';
-  		case 'u':
-	      			$doc = $files['doc'];
-					if ($doc){
-			      		$arr = array_reverse( explode  ( "."  , $doc['name'] ) );
-						$ext = strtolower($arr[0]);
-						if (!$ext || $ext == ""){
-							$ext = "png";
-						}      		
-			      		$docName = SfVoUtil::fixVanityChars( $arr[1] );
-			      		$docName .= "-".sprintf("%04d", rand(0, 999));
-			      		$docName .= ".$ext";
-			      		$fileName = sfConfig::get('sf_upload_dir').'/docs/'.$docName;
-			      		move_uploaded_file($doc['tmp_name'], $fileName);
-			      		$s = new S3Voota();
-			      		$s->createDocFromFile( 'docs', $fileName );
-			      		
-			      		$this->propuesta->setDoc( $docName );
-			      		$this->propuesta->setDocSize( $s->getSize( "docs/$docName" ) );
-			      		$this->propuesta->save();
-			      		echo "0";die;
-	      			}
-				  			
-  			return 'Form';
+  
+  	if ($op == 'et'){
+  		$this->propuesta->setTitulo( SfVoUtil::cutToLength($titulo, 80, '', false)  );
+  		$this->propuesta->save();
+  		$this->redirect( "propuesta/show?id=".$this->propuesta->getVanity() );
   	}
-  	
-  	
+  	elseif ($op == 'ed'){
+  		$this->propuesta->setDescripcion( $descripcion );
+  		$this->propuesta->save();
+  		$this->redirect( "propuesta/show?id=".$this->propuesta->getVanity() );
+  	}
+  	elseif ($op == 'ep'){
+      	$img = $files['img'];
+		if ($img){
+      		$arr = array_reverse( explode  ( "."  , $img['name'] ) );
+			$ext = strtolower($arr[0]);
+			if (!$ext || $ext == ""){
+				$ext = "png";
+			}      		
+      		$docName = SfVoUtil::fixVanityChars( $arr[1] );
+      		$docName .= "-".sprintf("%04d", rand(0, 999));
+      		$docName .= ".$ext";
+      		$fileName = sfConfig::get('sf_upload_dir').'/propuestas/'.$docName;
+      		move_uploaded_file($img['tmp_name'], $fileName);
+      		$s = new S3Voota();
+      		$s->createFromFile( 'propuestas', $fileName );
+      		
+      		$this->propuesta->setImagen( $docName );
+      		$this->propuesta->save();
+      	}
+  		$this->redirect( "propuesta/show?id=".$this->propuesta->getVanity() );
+  	}
+  	else{  	
+	  	switch( $op ){
+	  		case 's':
+	  			return 'Saved';
+	  			break;
+	  		case 'd':
+	  			break;
+	  		case 'f':
+				$this->propuesta->setDoc( null );
+				$this->propuesta->setDocSize( null );
+				$this->propuesta->save();
+				
+	  			return 'Form';
+	  		case 'u':
+		      			$doc = $files['doc'];
+						if ($doc){
+				      		$arr = array_reverse( explode  ( "."  , $doc['name'] ) );
+							$ext = strtolower($arr[0]);
+							if (!$ext || $ext == ""){
+								$ext = "png";
+							}      		
+				      		$docName = SfVoUtil::fixVanityChars( $arr[1] );
+				      		$docName .= "-".sprintf("%04d", rand(0, 999));
+				      		$docName .= ".$ext";
+				      		$fileName = sfConfig::get('sf_upload_dir').'/docs/'.$docName;
+				      		move_uploaded_file($doc['tmp_name'], $fileName);
+				      		$s = new S3Voota();
+				      		$s->createDocFromFile( 'docs', $fileName );
+				      		
+				      		$this->propuesta->setDoc( $docName );
+				      		$this->propuesta->setDocSize( $s->getSize( "docs/$docName" ) );
+				      		$this->propuesta->save();
+				      		echo "0";die;
+		      			}
+					  			
+	  			return 'Form';
+	  	}
+  	}  	
   }
   
   public function executeRanking(sfWebRequest $request)
@@ -248,7 +281,27 @@ class propuestaActions extends sfActions
   	if ($this->propuesta->getCulture() != $culture){
   		$this->redirect("@homepage");
   	}
-	
+  
+  	if ($this->propuesta->getVanity() != $vanity){
+  		$this->redirect('propuesta/show?id='.$this->propuesta->getVanity(), 301);
+  	}
+  	
+    // Estabamos vootando antes del login ?
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
+  	}
+  	
   	$exclude = array();
   	
 	$this->positives = SfReviewManager::getReviewsByEntityAndValue($request, Propuesta::NUM_ENTITY, $this->propuesta->getId(), 1);
@@ -292,8 +345,91 @@ class propuestaActions extends sfActions
     /* paginador */
     $this->propuestasPager = EntityManager::getPager($this->propuesta);
     /* / paginador */
+
     
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::IS_ACTIVE, true);
+  	$c->add(PropuestaPeer::CULTURE, $culture);
+  	$this->propuestasCount = PropuestaPeer::doCount($c);
+  	  	    
+    // Feed
+    $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
+    $request->setAttribute('rssFeed',  'propuesta/feed?id='.$this->propuesta->getVanity());
+  	
   }
+
+  public function executeFeed(sfWebRequest $request)
+  {
+  	$vanity = $request->getParameter('id');
+  	$s = $request->getParameter('s', 0);
+  	
+  	$culture = $this->getUser()->getCulture();
+  	  	
+  	$c = new Criteria();
+  	$c->add(PropuestaPeer::VANITY, $vanity);
+  	$entity = PropuestaPeer::doSelectOne( $c );
+  	$this->forward404Unless( $entity );
+  	
+  	if ($entity->getCulture() != $culture){
+  		$this->redirect("@homepage");
+  	}  	
+  	
+	$filter = array();
+	$filter['type_id'] = Propuesta::NUM_ENTITY;
+  	$filter['entity_id'] = $entity->getId();
+	$reviews = SfReviewManager::getReviews($filter);
+  	
+  	$title = sfContext::getInstance()->getI18N()->__('%1% en Voota.es'
+  					, array(
+  						'%1%' => $entity
+  					)
+  	);
+  	$description = sfContext::getInstance()->getI18N()->__('Opiniones sobre %1%, %2% votos a favor y %3% votos en contra'
+  					, array(
+  						'%1%' => $entity,
+  						'%2%' => $entity->getSumu(),
+  						'%3%' => $entity->getSumd()
+  					)
+  	);
+  	
+    $feed = new sfRssFeed();
+    $feed->setTitle( $title );
+    $feed->setLanguage( $culture );
+    $feed->setSubtitle( $description );
+    $feed->setDescription( $description );
+  	$feed->setLink('propuesta/show?id='.$entity->getVanity());
+  	$domainExt = $culture == 'ca'?"cat":$culture;
+  	$feed->setAuthorName("Voota.$domainExt");
+  	
+  	$feedImage = new sfFeedImage();
+	$feedImage->setLink('propuesta/show?id='.$entity->getVanity());
+	$feedImage->setImage(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_'.$entity->getImagen());
+	$feedImage->setTitle( $entity );
+	$feed->setImage($feedImage);
+  	
+  	
+  	foreach ($reviews as $review){
+	    $item = new sfFeedItem();
+	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2%.', array('%1%' => $review->getSfGuardUser(), '%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'))));
+	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
+	    $item->setAuthorName($review->getSfGuardUser());
+	    $item->setPubdate($review->getCreatedAt('U'));
+	    $item->setUniqueId($review->getId());
+	    
+	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
+	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    $content =  "$text"; 
+	    
+	    $item->setDescription( $content );
+	
+	    $feed->addItem($item);
+	}
+  	
+  	$this->feed = $feed;
+  	
+  }
+  
   
   private function getEnlaces( $propuesta ){
     $c = new Criteria();

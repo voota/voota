@@ -22,7 +22,7 @@
       <option value="<?php echo __('Hay algo ofensivo')?>"><?php echo __('Hay algo ofensivo')?></option>
       <option value="<?php echo __('El político está repetido')?>"><?php echo __('El político está repetido')?></option>
       <option value="<?php echo __('Todo falla. ¡Protesto!')?>"><?php echo __('Todo falla. ¡Protesto!')?></option>
-      <option value="donacion" selected="selected"><?php echo __('Todo perfecto. Invitar a cañas')?></option>
+      <option value="donacion"><?php echo __('Todo perfecto. Invitar a cañas')?></option>
     </select>
   </div>
   <div class="submit">

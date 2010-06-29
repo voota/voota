@@ -5,6 +5,9 @@
     </td>
     <td class="name">
       <?php echo link_to(highlightWords($obj, $q), 'partido/show?id='.$obj->getAbreviatura()) ?>, <?php echo highlightWords($obj->getNombre(), $q) ?>
+        <?php if($counts):?>
+	        <?php echo $q ?> (<?php echo $counts[$obj->getId()] ?>)
+        <?php endif ?>
       <br />
     	<?php echo $quote ?>
     </td>

@@ -90,7 +90,7 @@ class politicoActions extends autoPoliticoActions
 	}
 	public function executeDelete(sfWebRequest $request) {
 		$id = $request->getParameter('id');
-		SfReviewManager::deleteReview(1, $id);
+		//SfReviewManager::deleteReview(1, $id);
 		
 	    $criteria = new Criteria();
 	  	$criteria->add(PoliticoI18nPeer::ID, $id);

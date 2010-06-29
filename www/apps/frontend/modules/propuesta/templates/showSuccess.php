@@ -1,5 +1,4 @@
 <?php use_helper('I18N') ?>
-<?php use_helper('jQuery') ?>
 <?php use_helper('VoFormat') ?>
 <?php use_helper('VoUser'); ?>
 <?php use_helper('SfReview') ?>
@@ -10,13 +9,12 @@
   <!--
   $(document).ready(function(){
     $('.reviews').tabs({
-      load: function() {
-	    FB.XFBML.Host.parseDomTree();
-		}
+    	<?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['tab']):?>selected: <?php echo $sfr_status['tab'] ?>,<?php $sf_user->setAttribute('sfr_status', $sfr_status, 'sf_review');?><?php endif ?>
+      	load: function() { facebookParseXFBML(); }
 	});
 
- 	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
-	  loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');
+ 	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review1');
+	  //loadReviewBox('<?php echo (isset($review_v) && $review_v != '')?url_for('@sf_review_form'):url_for('@sf_review_init')  ?>', <?php echo Propuesta::NUM_ENTITY ?>, <?php echo $propuesta->getId(); ?>, <?php echo isset($review_v)?$review_v:'0' ?>, 'sf_review2');
   });
   
   $(window).load(function(){
@@ -26,8 +24,7 @@
   $(document).ready(function(){
     $('.login-required_np').click(function(){
       <?php if (!$sf_user->isAuthenticated()): ?>
-        $("#sfr_dialog_form_ub").val("propuesta/new");
-        $("#sfr_dialog").dialog('open');
+        ejem('<?php echo url_for('sfGuardAuth/signin');?>', 'propuesta/new');
         return false;
       <?php endif ?>
     });
@@ -35,73 +32,104 @@
   //-->
 </script>
 
-<?php if ($propuestasPager): ?>
-	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
-<?php endif ?>
+<div class="entity-page">
+  <?php if ($propuestasPager): ?>
+  	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
+  <?php endif ?>
 
-<h2 id="name">
-  <?php echo $propuesta->getTitulo(); ?>
-  <?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_pt_'.$propuesta->getId())) ?>    
-  <span class="rank">
-    <?php echo format_number_choice('[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $propuesta->getSumu()), $propuesta->getSumu()) ?>
-  </span>
-</h2>
+  <?php include_partial('titulo', array('propuesta' => $propuesta)) ?>
 
-<p id="author">
-  <?php echo __('Sugerida por')?>
-  <?php echo getAvatar( $propuesta->getSfGuardUser() )?>
-	<a href="<?php echo url_for('perfil/show?username='.$propuesta->getSfGuardUser()->getProfile()->getVanity())?>"><?php echo $propuesta->getSfGuardUser()?></a>,
-  <?php echo __('el %fecha%', array('%fecha%' => format_date($propuesta->getCreatedAt())))?>
-</p>
+  <div id="content">
+    <div title="<?php echo secureString($propuesta->getTitulo()) ?>" id="photo">
+      <?php include_partial('photo', array('propuesta' => $propuesta)) ?>
+      <div class="vote">
+        <h3><?php echo __('Voota sobre')?> "<?php echo $propuesta->getTitulo(); ?>"</h3>
+        <div id="sf_review1">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review1'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $propuesta->getId(),
+				'reviewType' => Propuesta::NUM_ENTITY,
+				'reviewBox' => 'sf_review1',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review1', 
+				'reviewType' => Propuesta::NUM_ENTITY, 
+				'reviewEntityId' => $propuesta->getId()
+			)); ?>
+      	<?php endif ?>
+        </div>
+      </div>
+    </div>
 
-<div id="content">
-  <div title="<?php echo $propuesta->getTitulo() ?>" id="photo">
-    <?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_'.$propuesta->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $propuesta->getTitulo())) .'"') ?>
+    <div id="description">
+      <?php include_partial('descripcion', array('propuesta' => $propuesta)) ?>
+      <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
+    </div>
+
+    <div class="reviews">
+      <ul>
+        <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $propuesta->getId() ?>&amp;value=1&amp;sfReviewType=<?php echo Propuesta::NUM_ENTITY ?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
+        <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList') ?>?entityId=<?php echo $propuesta->getId() ?>&amp;value=-1&amp;sfReviewType=<?php echo Propuesta::NUM_ENTITY ?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
+      </ul>
+    
+      <div id="tab-all-reviews">
+        <?php include_component_slot('review_list', array('entityId' => $propuesta->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Propuesta::NUM_ENTITY, 'entity' => $propuesta)) ?>
+      </div>
+    </div>
+
     <div class="vote">
-      <h3><?php echo __('Voota sobre')?> <?php echo $propuesta->getTitulo(); ?></h3>
-      <div id="sf_review1"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+      <h3><?php echo __('Voota sobre %1%', array('%1%' => '"'.$propuesta->getTitulo().'"'))?></h3>
+      <div id="sf_review2">
+        <?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['b'] == 'sf_review2'):?>
+	        <?php include_component_slot('sfrForm', array(
+				'reviewId' => false,
+				'reviewEntityId' => $propuesta->getId(),
+				'reviewType' => Propuesta::NUM_ENTITY,
+				'reviewBox' => 'sf_review2',
+				'redirect' => false,
+				'reviewValue' => $sfr_status['v'],
+				'reviewText' => '',
+				'reviewToFb' => false
+			)); ?>
+		<?php else: ?>
+	        <?php include_component_slot('sfrPreview', array(
+	        	'reviewId' => false,
+				'reviewBox' => 'sf_review2', 
+				'reviewType' => Propuesta::NUM_ENTITY, 
+				'reviewEntityId' => $propuesta->getId()
+			)); ?>
+      	<?php endif ?>      
+      </div>
     </div>
-  </div>
-
-  <div id="description">
-    <?php echo formatPresentacion( $propuesta->getDescripcion() ) ?>
-    
-    <?php //TODO: Partial de doc?>
-  <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
-  </div><!-- end of description -->
-
-  <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
-
-  <div id="report-error">
-    <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
-  </div>
-
-  <div id="google-ads">
-    <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
-  </div>
-
-  <div class="reviews">
-    <ul>
-      <li><a rel="nofollow" href="#tab-all-reviews"><?php echo __('Todos los vootos, %votes_count%', array('%votes_count%' => $totalCount))  ?></a></li>
-      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$propuesta->getId().'&value=1&sfReviewType='.Propuesta::NUM_ENTITY)?>"><?php echo __('Sólo positivos, %positive_votes_perc%%', array('%positive_votes_perc%' => $positivePerc)) ?></a></li>
-      <li><a rel="nofollow" href="<?php echo url_for('sfReviewFront/filteredList?entityId='.$propuesta->getId().'&value=-1&sfReviewType='.Propuesta::NUM_ENTITY)?>"><?php echo __('Sólo negativos, %negative_votes_perc%%', array('%negative_votes_perc%' => $negativePerc)) ?></a></li>
-    </ul>
-    
-    <div id="tab-all-reviews">
-      <?php include_component_slot('review_list', array('entityId' => $propuesta->getId(), 'value' => '', 'page' => 1, 'sfReviewType' => Propuesta::NUM_ENTITY, 'entity' => $propuesta)) ?>
-    </div>
-
-    <p><a id="nueva-propuesta" class="login-required_np" href="<?php echo url_for('propuesta/new')?>"><?php echo __('Dar de alta tu propuesta') ?></a></p>
-  </div>
-
-  <div class="vote">
-    <h3><?php echo __('Voota sobre %1%', array('%1%' => $propuesta->getTitulo()))?></h3>
-    <div id="sf_review2"><?php echo image_tag('spinner.gif', 'alt="' . __('cargando') . '"') ?></div>
+  
+    <?php if ($propuestasPager): ?>
+  	  <?php include_partial('general/entity_pagination', array('position' => 'bottom', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
+    <?php endif ?>
   </div>
   
-  
-<?php if ($propuestasPager): ?>
-	<?php include_partial('general/entity_pagination', array('position' => 'top', 'pager' => $propuestasPager, 'id' => $propuesta->getId())) ?>
-<?php endif ?>
+  <div id="sidebar">
+    <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
 
+    <div id="report-error">
+      <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
+    </div>
+  
+    <div id="etiquetas">
+      <?php include_partial('global/etiquetas', array('entity' => $propuesta)) ?>
+    </div>
+  
+    <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
+  
+    <div id="google-ads">
+      <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
+    </div>
+  </div>
 </div>

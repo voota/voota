@@ -15,6 +15,6 @@ generator:
       fields:  ~
       list:    ~
       filter:  ~
-      form:    ~
-      edit:    ~
+      form:  ~
+      edit:  ~
       new:     ~

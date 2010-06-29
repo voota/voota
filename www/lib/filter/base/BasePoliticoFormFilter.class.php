@@ -34,6 +34,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'hijos'                     => new sfWidgetFormFilterInput(),
       'hijas'                     => new sfWidgetFormFilterInput(),
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
+      'etiqueta_politico_list'    => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
     ));
 
@@ -60,6 +61,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'hijos'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'hijas'                     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
+      'etiqueta_politico_list'    => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
     ));
 
@@ -90,6 +92,31 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
     foreach ($values as $value)
     {
       $criterion->addOr($criteria->getNewCriterion(PoliticoListaPeer::LISTA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
+  public function addEtiquetaPoliticoListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(EtiquetaPoliticoPeer::POLITICO_ID, PoliticoPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(EtiquetaPoliticoPeer::ETIQUETA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(EtiquetaPoliticoPeer::ETIQUETA_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -151,6 +178,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'hijos'                     => 'Number',
       'hijas'                     => 'Number',
       'politico_lista_list'       => 'ManyKey',
+      'etiqueta_politico_list'    => 'ManyKey',
       'politico_institucion_list' => 'ManyKey',
     );
   }

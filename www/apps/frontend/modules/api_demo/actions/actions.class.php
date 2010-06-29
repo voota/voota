@@ -47,10 +47,12 @@ class api_demoActions extends sfActions
 	$limit = $this->getRequestParameter("limit", 100);
 	$page = $this->getRequestParameter("page", 1);
 	$sort = $this->getRequestParameter("sort", 'positive');
+	$party = $this->getRequestParameter("party", '');
+	$institution = $this->getRequestParameter("institution", '');
 	
 	$this->entities = array();
 
-	$this->entities = $this->vootaApi->getEntities(self::USER_ID, 'politician', $limit, $page, $sort);
+	$this->entities = $this->vootaApi->getEntities(self::USER_ID, 'politician', $limit, $page, $sort, $party, $institution);
 	//var_dump($this->entity);
   }
   
@@ -77,6 +79,12 @@ class api_demoActions extends sfActions
 	$q = $this->getRequestParameter("q");
 	
 	$this->entities = $this->vootaApi->search(self::USER_ID, $q);
+  }
+  
+  public function executeInstitutions(sfWebRequest $request){  	
+	$q = $this->getRequestParameter("q");
+	
+	$this->entities = $this->vootaApi->institutions(self::USER_ID, $q);
   }
 
   public function executeProposal(sfWebRequest $request){

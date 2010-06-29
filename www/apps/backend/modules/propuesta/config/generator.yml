@@ -19,7 +19,9 @@ generator:
         display: [id,titulo,is_active,created_at]
       filter:  ~
       form:
-        display: [titulo,descripcion,culture,imagen,doc,sf_guard_user_id,is_active,vanity]
+        display:
+          "páginas": [_propuesta_view]
+          "datos": [titulo,descripcion,culture,imagen,doc,sf_guard_user_id,is_active,vanity]
         fields:
           titulo:
             attributes: { style: "width: 500px;" }

@@ -1,5 +1,5 @@
-<?php
-function fullName( $user ) {
+<?php require_once('VoSmartJSHelper.php') ?><?php
+function fullName( $user, $length = false ) {
   	$ret = "";
   	
   	if ($user && $user->getProfile()->getNombre()){
@@ -7,9 +7,12 @@ function fullName( $user ) {
   		if ($user->getProfile()->getApellidos()){
   			$ret .= " " . $user->getProfile()->getApellidos();
   		}
+  		if ($length){
+  			$ret = sfVoUtil::cutToLength( $ret, $length );
+  		}
   	}
   	else if ($user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:name uid=\"". $user->getProfile()->getFacebookUid() ."\" useyou=\"false\" linked=\"false\" ifcantsee=\"Facebook_".$user->getProfile()->getFacebookUid()."\"></fb:name>";
+  		$ret .= jsWrite('fb:name', array('uid' => $user->getProfile()->getFacebookUid(), 'useyou' => 'false', 'linked' => 'false', 'ifcantsee' => "Facebook_".$user->getProfile()->getFacebookUid()));
   	}
   	
   	return $ret;
@@ -41,17 +44,17 @@ function fullNameForAttr( $user ) {
 	}
 }
 
-function getAvatar( $user ) {
+function getAvatar( $user, $width = 36, $height = 36) {
   	$ret = "";
 
     if( $user && $user->getProfile()->getImagen() ){
     	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_s_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
     }
     else if ( $user && $user->getProfile()->getFacebookUid()){
-  		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"square\" facebook-logo=\"true\" width=\"36\" height=\"36\"></fb:profile-pic>";
+  		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'size' => 'square', 'facebook-logo' => 'true', 'width' => $width, 'height' => $height ));
   	}
   	else {
-  		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
+  		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => $width, 'height' => $height));
   	}
     
   	
@@ -67,25 +70,27 @@ function getAvatarFull( $user ) {
   	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user )));
   }
   else if ( $user && $user->getProfile()->getFacebookUid()){
-		$ret .= "<fb:profile-pic uid=\"".$user->getProfile()->getFacebookUid() ."\" size=\"normal\" facebook-logo=\"true\"></fb:profile-pic>";
+		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'size' => 'normal', 'facebook-logo' => 'true' ));
 	}
 
 	return $ret;
 }
 
 function vo_facebook_connect_button() {
-	return "<a id=\"fbc_button\" href=\"#\">".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
+	return "<a class=\"fbconnect_login_button\" href=\"#\">".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
 }
 
 function vo_facebook_connect_ajax_button($box, $func_name) {
   // FIXME: ¿Nos hace falta para algo más que para asociar el usuario? Si no, eliminar
-	$func = $func_name."('". url_for('@usuario_fb_edit') ."', '$box')";
-	return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
+	$func = $func_name.'("'. url_for('@usuario_fb_edit') .'", "'.$box.'")';
+	#return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"') . "</a>";
+	return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'perms' => 'publish_stream', 'onlogin' => $func), __('Connect'));
 }
 
 function vo_facebook_connect_associate_button($text = '', $box = 'facebook-connect') {
-  $func = "facebookConnect_associate('". url_for('@usuario_fb_edit?op=con&box='.$box). "', '$box')";
-  return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  ($text?$text:image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"')) . "</a>";
+  $func = 'facebookAssociate("'. url_for('@usuario_fb_edit?op=con&box='.$box). '", "'.$box.'")';
+  #return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  ($text?$text:image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"')) . "</a>";
+  return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'perms' => 'publish_stream', 'onlogin' => $func), __('Sincronizar Voota con Facebook'));
 }
 
 function isPolitico($user){
@@ -105,6 +110,8 @@ function changeCulture( $culture ){
 	
 	$sf_context = sfContext::getInstance();
 	$request = $sf_context->getRequest();
+	$module = $request->getParameter('module');
+	$action = $request->getParameter('action');
 	$parameters = $request->getParameterHolder()->getAll();
 	$curCulture = $sf_context->getUser()->getCulture('es');
 	$routeName = $sf_context->getRouting()->getCurrentRouteName();
@@ -126,6 +133,10 @@ function changeCulture( $culture ){
 					$value = $aInstitucion->getVanity( $culture );
 				}
 			}
+			if ($module == 'sfReviewFront' && $action == 'show' && $name == 'id'){
+				$review = SfReviewPeer::retrieveByPk($request->getParameter('id'));
+				$value = SfVoUtil::reviewPermalink( $review, $culture ); 
+			}
 			$params .= ($params == ""?'?':'&'). "$name=$value";
 		}
 	}
@@ -135,3 +146,4 @@ function changeCulture( $culture ){
 	
 	return "http://$host$route";
 }
+
