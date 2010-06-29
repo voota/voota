@@ -1,4 +1,4 @@
-<?php if(trim(review_text( $review )) != ''):?>
+<?php //if(trim(review_text( $review )) != ''):?>
   <?php 
   $isUpdate = false;
   if ($sf_user->isAuthenticated()){
@@ -36,4 +36,4 @@
   	<a href="#" onclick="ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');return false;"><?php echo __('Opinar sobre este comentario')?></a>
   <?php endif*/ ?>
   </p>
-<?php endif ?>
+<?php //endif ?>

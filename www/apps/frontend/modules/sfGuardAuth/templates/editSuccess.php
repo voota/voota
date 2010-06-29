@@ -84,7 +84,8 @@
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
         <td>
-          <?php echo $profileEditForm['presentacion']->render(array('rows' => 8, 'cols' => 30, 'title' => __("¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)"))) ?>
+          <textarea id="profile_presentacion" name="profile[presentacion]" rows="8" cols"30" title="<?php echo __('¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)') ?>"
+          	><?php echo $presentacionValue?></textarea>
           <?php echo $profileEditForm['presentacion']->renderError() ?>
           <p id="presen_counter" class="counter"></p>
         </td>

@@ -91,6 +91,10 @@ class generalActions extends sfActions{
   	$c->addOr(sfGuardUserPeer::ID, 7);
   	$c->addOr(sfGuardUserPeer::ID, 31);
   	$c->addOr(sfGuardUserPeer::ID, 180);
+  	$c->addOr(sfGuardUserPeer::ID, 9);
+  	$c->addOr(sfGuardUserPeer::ID, 738);
+  	$c->addOr(sfGuardUserPeer::ID, 27);
+  	$c->addOr(sfGuardUserPeer::ID, 447);
   	$c->addAscendingOrderByColumn(sfGuardUserPeer::ID);
   	
   	$users = sfGuardUserPeer::doSelect($c);

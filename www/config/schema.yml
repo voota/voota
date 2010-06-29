@@ -213,7 +213,7 @@ propel:
     _indexes: { fk_pr_partido: [partido_id], fk_pr_politico: [politico_id] }
     
   sf_guard_user_profile:
-    _attributes: { phpName: SfGuardUserProfile }
+    _attributes: { phpName: SfGuardUserProfile, isI18N: true, i18nTable: sf_guard_user_profile_i18n }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     user_id: { type: INTEGER, size: '11', required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     nombre: { type: VARCHAR, size: '45', required: true }
@@ -222,7 +222,6 @@ propel:
     pais: { type: VARCHAR, size: '45', required: false }
     formacion: { type: VARCHAR, size: '255', required: false }
     residencia: { type: VARCHAR, size: '45', required: false }
-    presentacion: { type: VARCHAR, size: '600', required: false }
     created_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '45', required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
@@ -242,6 +241,12 @@ propel:
     fb_tip: { type: boolean, required: true, defaultValue: '1' }   
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
+    
+  sf_guard_user_profile_i18n:
+    _attributes: { phpName: SfGuardUserProfileI18n }
+    id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user_profile, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    culture: { isCulture: true, type: VARCHAR, size: '7', primaryKey: true, required: true }
+    presentacion: { type: VARCHAR, size: '600', required: false }
 
   etiqueta:
     _attributes: { phpName: Etiqueta }

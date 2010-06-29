@@ -567,9 +567,10 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   			$aText = strip_tags( substr($aText, 0, 280) );
   			$aText = utf8_encode($aText);
       		$profile->setPresentacion( $aText );
+      		$profile->save();
       		
 		
-	    	if ($profile->isColumnModified(SfGuardUserProfilePeer::PRESENTACION)){ 
+	    	if ($profile->isColumnModified(SfGuardUserProfileI18nPeer::PRESENTACION)){ 
 	    		$this->hasDeepUpdates = true;
 	    	}
        		
@@ -582,7 +583,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
     }
     
     if (!$this->presentacionValue){
-    	$this->presentacionValue = $this->profileEditForm['presentacion']->getValue(); 
+    	$this->presentacionValue = $politicos = $this->getUser()->getGuardUser()->getProfile()->getPresentacion(); 
     }
   }
   

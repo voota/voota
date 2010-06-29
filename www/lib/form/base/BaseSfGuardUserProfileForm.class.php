@@ -22,7 +22,6 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'pais'                      => new sfWidgetFormInputText(),
       'formacion'                 => new sfWidgetFormInputText(),
       'residencia'                => new sfWidgetFormInputText(),
-      'presentacion'              => new sfWidgetFormInputText(),
       'created_at'                => new sfWidgetFormDateTime(),
       'vanity'                    => new sfWidgetFormInputText(),
       'imagen'                    => new sfWidgetFormInputText(),
@@ -51,7 +50,6 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'pais'                      => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'formacion'                 => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'residencia'                => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'presentacion'              => new sfValidatorString(array('max_length' => 600, 'required' => false)),
       'created_at'                => new sfValidatorDateTime(array('required' => false)),
       'vanity'                    => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'imagen'                    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
@@ -87,5 +85,14 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
     return 'SfGuardUserProfile';
   }
 
+  public function getI18nModelName()
+  {
+    return 'SfGuardUserProfileI18n';
+  }
+
+  public function getI18nFormClass()
+  {
+    return 'SfGuardUserProfileI18nForm';
+  }
 
 }

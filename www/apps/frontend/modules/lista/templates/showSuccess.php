@@ -71,14 +71,14 @@
         <td class="photo">
         	<?php if (isset($politicosListaOficial[$idx])):?>
         		<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politicosListaOficial[$idx]->getImagePath().'/bw_s_'.$politicosListaOficial[$idx]->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politicosListaOficial[$idx])) .'"') ?>
-        	<?php elseif(count($politicosListaOficial) == 0):?>
+        	<?php else:?>
         		<?php echo image_tag(S3Voota::getImagesUrl().'/politicos/cc_s_p_unknown.png', 'alt="'. __('No disponible').'"') ?>
         	<?php endif?>
         </td>
         <td class="name name-lista-oficial">
         	<?php if (isset($politicosListaOficial[$idx])):?>
         		<a class="gris" href="<?php echo url_for('politico/show?id='.$politicosListaOficial[$idx]->getVanity())?>"><?php echo $politicosListaOficial[$idx] ?></a></td>
-			    <?php elseif(count($politicosListaOficial) == 0):?>
+			    <?php else:?>
         		<?php echo __('No disponible') ?>
         	<?php endif?>
         <td class="position"><?php echo $idx+1 ?>.</td>
