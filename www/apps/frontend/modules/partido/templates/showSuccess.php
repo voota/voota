@@ -149,7 +149,7 @@
     
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">
-        <h3><?php echo __('Enlaces externos del ')?><?php echo $partido->getAbreviatura() ?></h3>
+        <h3><?php echo __('Enlaces externos')?></h3>
         <ul>
           <?php foreach($activeEnlaces as $enlace): ?>
     	      <li><?php echo link_to(toShownUrl(urldecode( $enlace->getUrl() )), toUrl( $enlace->getUrl()) )?></li>
