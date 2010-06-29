@@ -28,7 +28,7 @@
   	<a href="#" onclick="return subvote(
 	  		  		'<?php echo "${listValue}_".$review->getId() ?>'
 	  		  		, <?php echo $review->getId() ?>
-	  		  		, <?php echo ($page = $sf_request->getAttribute('page', false))?$page:'FALSE' ?>
+	  		  		, <?php echo ($page = $sf_request->getAttribute('page', false))?$page:'false' ?>
 	  		  		, '<?php echo url_for('@sf_review_form') ?>'
 	  		 );	"><?php echo $isUpdate?__('Hacer cambios en tu opinión'):__('Opinar sobre este comentario')?></a>
   <?php endif ?>

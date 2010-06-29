@@ -157,14 +157,26 @@ class BasesfReviewFrontActions extends sfActions
 	  	else {
 	  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId); 
 	  	}
-	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
+	  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
+	  	
+	  	if ($this->reviewValue){
+		  	SfReviewManager::postReview(
+		  		$this->getUser()->getGuardUser()->getId()
+		  		, $this->reviewType, $this->reviewEntityId, $this->reviewValue, false
+		  		, false
+		  		, false
+		  		, 0
+		  		, 'form'
+		  	);
+	  	}
+	  	
 	  	$review = SfReviewPeer::doSelectOne($criteria);
 	  	if ($review) {
 	  		$this->reviewValue = $review->getValue();
 	  		$this->reviewText = $review->getText();
 	  		$this->reviewId = $review->getId();
 	  		$this->reviewToFb = $review->getToFb();
-	  	}
+	  	}  	
   	}
    }
   
