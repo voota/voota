@@ -507,7 +507,7 @@ table.rankings .negative-votes { text-align:right;}
 
 /* Página de propuesta */
 #propuesta-show h2#name { margin-bottom: 5px;}
-#propuesta-show #author img { width: 20px; height: 20px; padding: 0 5px; width: 36px; height: 36px;}
+#propuesta-show #author img { width: 19px; height: 19px; padding: 0 5px; }
 #propuesta-show .box-propuestas { margin-bottom: 40px; margin-top: 0;}
 #propuesta-show .box-propuestas button { width: 175px;}
 #propuesta-show .edit-box { background-color: #ffffcc; border: 1px solid #809DB9; margin-bottom: 10px; padding: 10px; position: relative;}
@@ -537,7 +537,7 @@ table.rankings .negative-votes { text-align:right;}
 #etiquetas input[type=submit] { padding-left: 3px; padding-right: 3px; width: 20px; text-align: center;}
 
 /* Nueva propuesta */
-#propuesta-new #main-inner { width: 100%; margin: 0;}
+#propuesta-new #main-inner { width: 100%; margin: 0; }
 #propuesta-new .new-success { margin: 0 auto; width: 960px;}
 #propuesta-new h2 { margin-bottom: 10px;}
 #propuesta-new .hints { padding: 5px 10px;}
@@ -556,7 +556,7 @@ table.rankings .negative-votes { text-align:right;}
 #propuesta-new .submit span { padding-right: 20px;}
 #propuesta-new #propuesta_titulo { height: 35px;}
 #propuesta-new #propuesta_descripcion { height: 220px;}
-#propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0;}
+#propuesta-new .propuesta-preview { background-color: #ffffcc; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc; overflow: hidden; padding: 20px 0; margin-top: -20px;}
 #propuesta-new .propuesta-preview .picture { float: left; padding-top: 2px; width: 220px;}
 #propuesta-new .propuesta-preview .picture a { font-weight: bold; font-size: 16px;}
 #propuesta-new .propuesta-preview .description { float: left; margin-left: 45px; width: 425px;}
