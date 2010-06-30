@@ -22,6 +22,16 @@
 	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId())) ?>
   	<?php endforeach?>
   });
+
+  function sfr_refresh( type ){
+	$('.reviews').tabs( "select" , 0 );
+	var aUrl = '<?php echo url_for("sfReviewFront/filteredList?value=&entityId=".$partido->getId(). "&sfReviewType=".$partido->getType() )?>';
+	$(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
+	$('.reviews').tabs( "url" , 0, aUrl );
+	$('.reviews').tabs( "load" , 0 );
+	facebookParseXFBML();
+  }
+
   //-->
 </script>
 
