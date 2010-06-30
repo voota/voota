@@ -21,12 +21,6 @@
   	<?php endif ?>
     <?php echo $aReview?__('otro comentario sobre ') ." ":'' ?><a title='<?php echo sfVoUtil::secureString($entity, "&#39;") ?>' href="<?php echo url_for($entity->getModule().'/show?id='.$entity->getVanity())?>"><?php echo sfVoUtil::cutToLength(sfVoUtil::secureString($entity, "&#39;"), 32, '...')?></a>.
     <?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?>.
-    <?php if ($review->getValue() == -1): ?>
-  		<?php echo image_tag('icoMiniDown.png', 'width="16" height="18" alt="buu"') ?>
-  	<?php endif ?>
-  	<?php if ($review->getValue() == 1): ?>
-  		<?php echo image_tag('icoMiniUp.png', 'width="16" height="18" alt="yeah"') ?>
-  	<?php endif ?>
   </div>
   <?php if ($review->getText() && $review->getCulture() == $sf_user->getCulture()): ?>
   	<p class="review-body">

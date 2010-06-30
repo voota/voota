@@ -61,7 +61,7 @@
     FB.init({appId  : '<?php echo sfConfig::get('app_facebook_api_id_'.$sf_user->getCulture()) ?>', status : true, cookie : true, xfbml  : true});
     FB.Event.subscribe('auth.login', function(response){
       window.location = '<?php echo url_for('sfGuardAuth/signin?op=fbc') ?>';
-    });
+    });    
   </script>
 
   <script type="text/javascript">

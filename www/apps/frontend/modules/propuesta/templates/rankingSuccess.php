@@ -73,11 +73,9 @@
       <td class="voto"></td>
       <td class="positive-votes">
         <?php echo __('Total:') ?>
-    	  <?php echo image_tag('icoUp20px.gif', 'alt="yeah"') ?>
     	  <?php echo format_number($totalUp, 'es_ES')?>
       </td>
       <td class="negative-votes">
-      	<?php echo image_tag('icoDown20px.gif', 'alt="buu"') ?>
       	<?php echo format_number($totalDown, 'es_ES')?>
       </td>
     </tr>

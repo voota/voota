@@ -8,19 +8,12 @@
     </div>
     
 	<div class="name">
+		<?php echo $review->getValue() == 1?__('A favor de'):__('En contra de')?> 
 		<?php if( ! $review->getSfReviewType()): ?>
-            <?php echo __('Otro comentario sobre')?> <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?></span>
+            <?php echo __('otro comentario sobre')?> <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?></span>
 		<?php else: ?>
                 <?php echo link_to($entity->getLongName(), $entity->getModule().'/show?id='.$entity->getVanity())?>, <span class="date"><?php echo link_to(ago(strtotime( $review->getModifiedAt()?$review->getModifiedAt():$review->getCreatedAt() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review))?></span>
 		<?php endif ?>
-	</div>
-	
-    <div class="vote">
-    	<?php if($review->getValue() == 1): ?>
-        	<?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
-		<?php else: ?>
-        	<?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
-        <?php endif ?>
 	</div>
               
 	<div class="body">

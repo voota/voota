@@ -280,7 +280,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 .propuestas .photo,
 .comments .photo { width: 36px; float:left;}
 .propuestas .name { width: 290px; padding: 5px 455px 5px 10px; float:left;}
-.comments .name { width: 290px; padding: 5px 10px; float:left;}
+.comments .name { width: 335px; padding: 5px 10px; float:left;}
 .comments .date { font-size: 11px;}
 .comments .vote { width: 35px; float:left;}
 .comments .body { width: 390px; padding: 5px 10px; float:left;}
@@ -308,7 +308,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #perfil-show .comments tr { border-bottom: 1px dotted #cccccc;}
 #perfil-show .comments td { border-bottom: 1px dotted #cccccc; padding: 10px 0;}
 #perfil-show .comments .photo { width: 36px;}
-#perfil-show .comments .name { width: 290px; padding: 10px;}
+#perfil-show .comments .name { width: 335px; padding: 10px;}
 #perfil-show .comments .date { font-size: 11px;}
 #perfil-show .comments .vote { width: 35px;}
 #perfil-show .comments .body { width: 390px; padding: 10px;}
