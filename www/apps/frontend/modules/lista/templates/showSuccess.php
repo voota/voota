@@ -10,21 +10,20 @@
 </h2>
 
 <p class="summary"><?php echo __('Lista electoral') ?> 
-<a href="<?php echo url_for('partido/show?id='.$lista->getPartido()->getVanity())?>"><?php echo $lista->getPartido()?></a>, 
-<a href="<?php echo url_for('eleccion/show?convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity())?>"><?php echo $lista->getConvocatoria()->getEleccion()->getNombre()?> <?php echo $lista->getConvocatoria()->getNombre() ?></a>
+  <a href="<?php echo url_for('partido/show?id='.$lista->getPartido()->getVanity())?>"><?php echo $lista->getPartido()?></a>, 
+  <a href="<?php echo url_for('eleccion/show?convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity())?>"><?php echo $lista->getConvocatoria()->getEleccion()->getNombre()?> <?php echo $lista->getConvocatoria()->getNombre() ?></a>
 </p>
 
 <div class="selector-convocatoria">
-    <ul>
-
-      <?php foreach ($geos as $geo):?>
-        <?php if($geoName && $geo->getNombre() == $geoName):?>
-	      <li><span><?php echo $geo->getNombre()?></span></li>
-        <?php else:?>
+  <ul>
+    <?php foreach ($geos as $geo):?>
+      <?php if($geoName && $geo->getNombre() == $geoName):?>
+        <li><span><?php echo $geo->getNombre()?></span></li>
+      <?php else:?>
 	      <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
-        <?php endif ?>
-      <?php endforeach ?>
-    </ul>
+      <?php endif ?>
+    <?php endforeach ?>
+  </ul>
 </div>
 
 <table>
