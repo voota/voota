@@ -195,10 +195,17 @@ class BasesfReviewFrontActions extends sfActions
   	$this->reviewEntityId = $request->getParameter("e");
   	$this->reviewText = strip_tags( $request->getParameter("review_text") );
   	$this->reviewBox = $request->getParameter("b");
-    	$criteria = new Criteria();
-  	$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);  	
-  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());  	
-  	$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+    
+  	$criteria = new Criteria();
+  	if($this->reviewType){ 	
+  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, $this->reviewType);  	
+  		$criteria->add(SfReviewPeer::ENTITY_ID, $this->reviewEntityId);
+  	}
+  	else{
+  		$criteria->add(SfReviewPeer::SF_REVIEW_TYPE_ID, null, Criteria::ISNULL);  	
+  		$criteria->add(SfReviewPeer::SF_REVIEW_ID, $this->reviewEntityId);
+  	}  	
+  	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId()); 
   	$review = SfReviewPeer::doSelectOne($criteria);
   	if ($review) {
   		$this->reviewValue = $review->getValue();
@@ -235,6 +242,8 @@ class BasesfReviewFrontActions extends sfActions
    	}
   	
   	$this->reviewText = strip_tags( $review_text );
+  	
+  	$this->forward('sfReviewFront', 'preview');  	
   }
   
   public function executeDelete(sfWebRequest $request){

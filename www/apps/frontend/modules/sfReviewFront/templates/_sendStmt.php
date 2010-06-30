@@ -69,3 +69,5 @@ var text = $("#sf-review-text_<?php echo $reviewBox?$reviewBox:'sf_review'?>").v
 
 if (this.fb_publish.checked) { facebookPublishStory(story_attrs); }
 sendReviewForm(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');
+
+sfr_refresh(<?php echo $reviewType?>);

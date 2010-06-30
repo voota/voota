@@ -130,3 +130,7 @@ function facebookPublishStory(story_attrs) {
     }
   });
 }
+
+function sfr_refresh(){
+	document.location.reload();
+}

@@ -31,6 +31,7 @@ $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-positive i
 	<?php //else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>,  <?php echo $reviewEntityId ?>, 1,  '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
 	<?php //endif ?>
+			sfr_refresh(<?php echo $reviewTypeId ?>);
 });
 $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-negative input").click(function(){
 	<?php //if(!$sf_user->isAuthenticated()): ?>
@@ -38,6 +39,7 @@ $(".<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?> .sf-review-negative i
 	<?php //else: ?>
 		loadReviewBox('<?php echo url_for('@sf_review_form') ?>', <?php echo $reviewTypeId ?>, <?php echo $reviewEntityId ?>, -1, '<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>');
 	<?php //endif ?>
+			sfr_refresh(<?php echo $reviewTypeId ?>);
 });
 //-->
 </script>

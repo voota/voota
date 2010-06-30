@@ -17,6 +17,15 @@
   $(window).load(function(){
     <?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId() )) ?>
   });
+
+  function sfr_refresh( type ){
+		  var aUrl = '<?php echo url_for("sfReviewFront/filteredList?value=&entityId=".$politico->getId(). "&sfReviewType=".$politico->getType() )?>';
+		  $(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
+		  $('.reviews').tabs( "url" , 0, aUrl );
+		  $('.reviews').tabs( "load" , 0 );
+		  $('.reviews').tabs( "select" , 0 )
+		  facebookParseXFBML();
+  }
   //-->
 </script>
 
