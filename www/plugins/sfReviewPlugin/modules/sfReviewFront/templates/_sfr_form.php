@@ -49,7 +49,7 @@ $(document).ready(function(){
     <div class="sf-review-positive">
 			<input type="radio" name="v" value="1" id="v-<?php echo $reviewId ?>-positive" <?php if ($reviewValue==1 || $reviewValue==0): echo 'checked="checked"'; endif ?> />
 		  <label for="v-<?php echo $reviewId ?>-positive">
-		    <?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
+		  	<img alt="yeah" src="/images/icoMiniUp.png" width="16" height="18" />
   		  <br />
 		    <?php echo __('A favor, yeah')?>
 		  </label>
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		<div class="sf-review-negative">
 			<input type="radio" name="v" value="-1" id="v-<?php echo $reviewId ?>-negative" <?php if ($reviewValue==-1): echo 'checked="checked"'; endif ?> />
 			<label for="v-<?php echo $reviewId ?>-negative">
-		    <?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
+		  	<img alt="buu" src="/images/icoMiniDown.png" width="16" height="18" />
 		    <br />
 		    <?php echo __('En contra, buu')?>
 		  </label>

@@ -81,6 +81,9 @@ class BasesfReviewFrontActions extends sfActions
 	  	$c->add($peer::ID, $this->entityId);
 	  	$this->entity = $peer::doSelectOne( $c );
   	} 
+  	
+	header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+	header('Pragma: no-cache');
   }
   
   public function executeInit(sfWebRequest $request)
