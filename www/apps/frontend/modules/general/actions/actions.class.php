@@ -115,21 +115,9 @@ class generalActions extends sfActions{
   	$dsn = $dbConf['datasources']['propel']['connection']['dsn'];
   	$sphinxServer = sfConfig::get('sf_sphinx_server');
   	$cl->SetServer ( $sphinxServer, 3312 );
-	/*
 	$cl->SetConnectTimeout ( 1 );
-	$cl->SetWeights ( array ( 100, 1 ) );
-	$cl->SetMatchMode ( SPH_SORT_EXTENDED );
-	if ( count($filtervals) )       $cl->SetFilter ( $filter, $filtervals );
-	if ( $groupby )                         $cl->SetGroupBy ( $groupby, SPH_GROUPBY_ATTR, $groupsort );
-	if ( $sortby )                          $cl->SetSortMode ( SPH_SORT_EXTENDED, $sortby );
-	if ( $sortexpr )                        $cl->SetSortMode ( SPH_SORT_EXPR, $sortexpr );
-	if ( $distinct )                        $cl->SetGroupDistinct ( $distinct );
-	if ( $limit )                           $cl->SetLimits ( 0, $limit, ( $limit>1000 ) ? $limit : 1000 );
-	$cl->SetRankingMode ( $ranker );
-	*/
-	//$cl->SetWeights ( array ( 'vanity' => 100, 'alias' => 100, 'nombre' => 100, 'apellidos' => 100, 'bio' => 1, 'presentacion' => 1, 'residencia' => 1, 'formacion' => 1  ) );
-	$this->limit = 1000;
-	$cl->SetLimits ( 0, $this->limit, $this->limit );
+	
+	$this->limit = 15;
 	$cl->SetArrayResult ( true );
 	
 	return $cl;
@@ -137,6 +125,7 @@ class generalActions extends sfActions{
   
   public function executeSearch(sfWebRequest $request) {
   	$culture = $this->getUser()->getCulture();
+   	$this->page = $this->getRequestParameter('page', 1);
   	
    	$tag = $request->getParameter("tag", false);
    	if ($tag){
@@ -149,7 +138,7 @@ class generalActions extends sfActions{
   	
    	$resultsArray = array();
    	
-   	$cl = $this->resetSphinxClient();   	
+   	$cl = $this->resetSphinxClient();
    	
    	$needle = $this->q;   	
 	$this->ext = "";   		
@@ -161,208 +150,81 @@ class generalActions extends sfActions{
    		$needle = SfVoUtil::stripAccents( $this->q );
    	}
    	
+	$this->politicoCounts = false;
+	$this->partidoCounts = false;
+	$this->propuestaCounts = false;
+   	
    	if ($needle){
-	   	# Partidos
-		$cl->SetArrayResult(true);
-	   	$this->partidoCounts = false;
-		if ($this->ext == "_tag"){
-			$cl->SetMatchMode ( SPH_MATCH_PHRASE );
-			$cl->SetSortMode ( SPH_SORT_EXTENDED, "cnt DESC" );
-			$this->partidoCounts = array();
-		}
-		else {
-			$cl->SetFieldWeights(array('abreviatura' => 5, 'nombre' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
-		}
-		$this->res = $cl->Query ( $needle, "partido".$this->ext."_$culture" );
-		if ( $this->res!==false ) {
-			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-	        	$c = new Criteria();
-				$c->addJoin(
-					array(PartidoPeer::ID, PartidoI18nPeer::CULTURE),
-					array(PartidoI18nPeer::ID, "'$culture'")
-				);
-	        	$list = array();
-	        	$listString = "";
-	        	foreach ($this->res["matches"] as $idx => $match) {
-						if ($this->ext == "_tag"){
-			        		$this->partidoCounts[$match['attrs']['partido_id']] = $match['attrs']['cnt'];
-						}
-						$id = $this->ext == "_tag"?$match['attrs']['partido_id']:$match['id'];
-		        		$list[] = $id;
-		        		$listString .= ($listString?',':'')."". $id ."";
-	        	}
-	  			$c->add(PartidoPeer::ID, $list, Criteria::IN);
-	  			//$c->addDescendingOrderByColumn(PartidoPeer::SUMU);
-	  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
-	  			$c->addAscendingOrderByColumn("FIELD(".PartidoPeer::ID.",$listString) ");
-	  			
-	  			$partidos = PartidoPeer::doSelect($c);
-	  			
-	  			$resultsArray = array_merge  ( $resultsArray, $partidos );		    
-	        }	
-		}
-		
-		if(!$this->ext){
-			$cl = $this->resetSphinxClient();   
-			#instituciones
-			$this->res = $cl->Query ( $needle, "institucion_$culture" );
-			$cl->SetFieldWeights(array('vanity' => 5));
-			$cl->SetSortMode ( SPH_SORT_RELEVANCE );
-			if ( $this->res!==false ) {
-				if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-		        	$c = new Criteria();
-		        	$list = array();
-		        	foreach ($this->res["matches"] as $idx => $match) {
-		        		$list[] = $match['id'];
-		        	}
-		  			$c->add(InstitucionPeer::ID, $list, Criteria::IN);
-		  			$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
-		  			
-		  			$instituciones = InstitucionPeer::doSelect($c);
-		  			
-		  			$resultsArray = array_merge  ( $resultsArray, $instituciones );	
-		        }	
-			}
-		}
-		
-		$cl = $this->resetSphinxClient();   
-		# Politicos
-		$cl->SetArrayResult(true);
-	   	$this->politicoCounts = false;
 		if ($this->ext == "_tag"){
 			$cl->SetMatchMode ( SPH_MATCH_PHRASE );
 			$cl->SetSortMode ( SPH_SORT_EXTENDED, "cnt DESC" );
 			$this->politicoCounts = array();
-		}
-		else {
-			$cl->SetFieldWeights(array('nombre' => 5, 'apellidos' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
-		}
-		
-		$this->res = $cl->Query ( $needle, "politico".$this->ext."_$culture" );
-		if ( $this->res !== false ) {
-			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-				$c = new Criteria();
-				$c->addJoin(
-					array(PoliticoPeer::ID, PoliticoI18nPeer::CULTURE),
-					array(PoliticoI18nPeer::ID, "'$culture'")
-					, Criteria::LEFT_JOIN
-				);
-				
-	        	$list = array();
-	        	$listString = "";
-	        	foreach ($this->res["matches"] as $idx => $match) {
-					if ($this->ext == "_tag"){
-		        		$this->politicoCounts[$match['attrs']['politico_id']] = $match['attrs']['cnt'];
-					}
-					$id = $this->ext == "_tag"?$match['attrs']['politico_id']:$match['id'];
-	        		$list[] = $id;
-	        		$listString .= ($listString?',':'')."". $id ."";
-	        	}
-	  			$c->add(PoliticoPeer::ID, $list, Criteria::IN);
-	  			
-	  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
-	  			$c->addAscendingOrderByColumn("FIELD(".PoliticoPeer::ID.",$listString) ");
-	  			
-	  			$c->setLimit( 100 );
-	  			
-	  			$politicos = PoliticoPeer::doSelect($c);
-	  			
-	  			$resultsArray = array_merge  ( $resultsArray, $politicos );
-	        }	
-		}
-			
-		$cl = $this->resetSphinxClient();   
-	   	# Propuestas 
-		$this->res = $cl->Query ( $needle, "propuesta". $this->ext ."_$culture" );
-	   	$this->propuestaCounts = false;
-		if ($this->ext == "_tag"){
-			$cl->SetMatchMode ( SPH_MATCH_PHRASE );
-			$cl->SetSortMode ( SPH_SORT_EXTENDED, "cnt DESC" );
+			$this->partidoCounts = array();
 			$this->propuestaCounts = array();
-		}
-		else {			
-			$cl->SetMatchMode ( SPH_MATCH_ALL );
-			$cl->SetFieldWeights(array('titulo' => 5));
-			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 5 * votes/max_votes )" );
-		}
-		if ( $this->res!==false ) {
-			if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-	        	$c = new Criteria();
-	        	$list = array();
-	        	$listString = "";
-	        	foreach ($this->res["matches"] as $idx => $match) {
-					if ($this->ext == "_tag"){
-		        		$this->propuestaCounts[$match['attrs']['propuesta_id']] = $match['attrs']['cnt'];
-					}
-	        		$id = $this->ext == "_tag"?$match['attrs']['propuesta_id']:$match['id'];
-	        		$list[] = $id;
-	        		$listString .= ($listString?',':'')."". $id ."";
-	        	}
-	  			$c->add(PropuestaPeer::ID, $list, Criteria::IN);
-	  			//$c->addDescendingOrderByColumn("(sumu + sumd)");
-	  			$c->addAscendingOrderByColumn("FIELD(".PropuestaPeer::ID.",$listString) ");
-	  			
-	  			$propuestas = PropuestaPeer::doSelect($c);
-	  			$resultsArray = array_merge  ( $resultsArray, $propuestas );		    
-	        }	
-		}
-		
-		if(!$this->ext){
-			$cl = $this->resetSphinxClient();   
-			// Usuarios
-			$this->res = $cl->Query ( $needle, "usuario" );
-			$cl->SetFieldWeights(array('nombre' => 5, 'apellidos' => 5));
-			$cl->SetSortMode ( SPH_SORT_RELEVANCE );
-			$cl->SetMatchMode ( SPH_MATCH_ALL );
-			if ( $this->res!==false ) {
-				if ( isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
-					$c = new Criteria();
-					$c->addJoin(sfGuardUserPeer::ID, SfReviewPeer::SF_GUARD_USER_ID, Criteria::LEFT_JOIN);
-					
-					$rCriterion = $c->getNewCriterion(SfReviewPeer::IS_ACTIVE, true);
-					$rCriterion->addOr($c->getNewCriterion(SfReviewPeer::IS_ACTIVE, null, Criteria::ISNULL));
-					$c->add( $rCriterion );
-					
-					$c->addAsColumn('numReviews', 'COUNT('.sfGuardUserPeer::ID.')');
-					$c->addSelectColumn('sf_guard_user.*');
-					
-					$c->addDescendingOrderByColumn('numReviews');
-					$c->addGroupByColumn(sfGuardUserPeer::ID);
-					
-					$c->setDistinct();
-		        	$list = array();
-		        	foreach ($this->res["matches"] as $idx => $match) {
-		        		$list[] = $match['id'];
-		        	}
-		  			$c->add(sfGuardUserPeer::ID, $list, Criteria::IN);
-		  			$c->setLimit( 100 );
-		  			
-		  			$usuariosRS = sfGuardUserPeer::doSelectStmt($c);
-		  			$usuarios = array();
-		  			foreach($usuariosRS as $usuarioRS) {
-					  $usuario = new SfGuardUser($usuarioRS);
-					  $usuario->hydrate($usuarioRS);
-					  $usuarios[] = $usuario;
-					}
-		  			
-		  			
-		  			$resultsArray = array_merge  ( $resultsArray, $usuarios );
-		        }	
+			$indexes = "partido_tag_$culture, politico_tag_$culture, propuesta_tag_$culture";
+			$this->res = $cl->Query ( $needle, $indexes );
+			if ( $this->res!==false ){
+				$this->total = $this->res['total']; 
+				$this->totalFound = $this->res['total_found']; 
+				$cl->SetLimits ( ($this->page-1) * $this->limit, $this->limit );
+				$this->res = $cl->Query ( $needle, $indexes );
 			}
 		}
+		else {
+			$cl->SetFieldWeights(array('abreviatura_partido' => 5, 'nombre' => 5, 'apellidos' => 5, 'alias' => 5, 'titulo' => 5, 'nombre_insti' => 8));
+			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 1 * votes/max_votes )" );
+			$indexes = "politico_$culture, partido_$culture,propuesta_$culture, institucion_$culture, usuario";
+			$this->res = $cl->Query ( $needle, $indexes );
+			if ( $this->res!==false ){
+				$this->total = $this->res['total']; 
+				$this->totalFound = $this->res['total_found']; 
+				$cl->SetLimits ( ($this->page-1) * $this->limit, $this->limit );
+				$this->res = $cl->Query ( $needle, $indexes );
+			}
+		}
+		if ( $this->res!==false && isset($this->res["matches"]) && is_array($this->res["matches"]) ) {
+			foreach ($this->res["matches"] as $match){				
+				//echo "<pre>";print_r( $match );echo "</pre>";
+				switch ($match['attrs']['type']){
+					case 1:
+						if ($this->ext == "_tag"){
+			        		$this->politicoCounts[$match['attrs']['politico_id']] = $match['attrs']['cnt'];
+							$resultsArray[] = PoliticoPeer::retrieveByPK($match['attrs']['politico_id']);
+						}
+						else {
+							$resultsArray[] = PoliticoPeer::retrieveByPK($match['id']);
+						}
+						break;
+					case 2:
+						if ($this->ext == "_tag"){
+			        		$this->partidoCounts[$match['attrs']['partido_id']] = $match['attrs']['cnt'];
+							$resultsArray[] = PartidoPeer::retrieveByPK($match['attrs']['partido_id']);
+						}
+						else {
+							$resultsArray[] = PartidoPeer::retrieveByPK($match['id']);							
+						}
+						break;
+					case 3:
+						if ($this->ext == "_tag"){
+			        		$this->propuestaCounts[$match['attrs']['propuesta_id']] = $match['attrs']['cnt'];
+							$resultsArray[] = PropuestaPeer::retrieveByPK($match['attrs']['propuesta_id']);
+						}
+						else {
+							$resultsArray[] = PropuestaPeer::retrieveByPK($match['id']);
+						}
+						break;
+					case 101:
+						$resultsArray[] = InstitucionPeer::retrieveByPK($match['id']);
+						break;
+					case 102:
+						$resultsArray[] = SfGuardUserPeer::retrieveByPK($match['id']);
+						break;
+				}
+			}	
+		}
    	}
-   	
-	/*
-	$this->results = (isset($this->institucionesPager)?$this->institucionesPager->getNbResults():0) 
-		+ ($this->partidosPager?$this->partidosPager->getNbResults():0)
-		+ (isset($this->politicosPager)?$this->politicosPager->getNbResults():0);
-		*/
-	
-      $this->results = new myTabPager($resultsArray, 15);
-      $this->results->setPage($this->getRequestParameter('page', 1));
-      $this->results->init();
+		
+    $this->results = $resultsArray;
       
       
   	$this->title = sfContext::getInstance()->getI18N()->__('"%1%" en Voota', array('%1%' => $this->q));
@@ -377,7 +239,7 @@ class generalActions extends sfActions{
     $this->response->setTitle( $this->title );
   }
   
-    private function sendMessage( $nombre, $email, $mensaje, $tipo ){
+  private function sendMessage( $nombre, $email, $mensaje, $tipo ){
 	  
   }
 

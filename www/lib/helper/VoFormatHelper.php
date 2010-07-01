@@ -84,3 +84,22 @@ function secureString( $str ){
 	
 	return $ret;
 }
+
+  function getLinks($lastPage, $page, $nb_links = 5)
+  {
+    $links = array();
+    $tmp   = $page - floor($nb_links / 2);
+    $check = $lastPage - $nb_links + 1;
+    $limit = ($check > 0) ? $check : 1;
+    $begin = ($tmp > 0) ? (($tmp > $limit) ? $limit : $tmp) : 1;
+ 
+    $i = $begin;
+    while (($i < $begin + $nb_links) && ($i <= $lastPage))
+    {
+      $links[] = $i++;
+    }
+ 
+    //$this->currentMaxLink = $links[count($links) - 1];
+ 
+    return $links;
+  } 
