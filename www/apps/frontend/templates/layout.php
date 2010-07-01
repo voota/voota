@@ -21,7 +21,7 @@
   <script type="text/javascript" src="/js/ajaxupload.js"></script>
   <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
   <script type="text/javascript" src="/sfReviewPlugin/js/jquery.hint.js"></script>
-  <script type="text/javascript" src="/js/jquery.qtip-1.0.0-rc3.min.js"></script>
+  <script type="text/javascript" src="/js/jquery.qtip-1.0.min.js"></script>
   <script type="text/javascript" src="/js/bluff/js-class.js"></script>
   <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
   <script type="text/javascript" src="/js/bluff/bluff.js"></script>
@@ -202,6 +202,9 @@
   <script type="text/javascript">
     $(document).ready(function(){ 
 			$('input[title!=""], textarea[title!=""]').hint();
+		});
+		$(document).bind('resize scroll', function(){
+		  $('.qtip').hide();
 		});
   </script>
  
