@@ -49,7 +49,7 @@
     <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   </div>
 
-  <form action="<?php echo url_for('@usuario_edit') ?>" method="post" autocomplete="" method="post" enctype="multipart/form-data">
+  <form id="f" action="<?php echo url_for('@usuario_edit') ?>" method="post" enctype="multipart/form-data">
     <table>
       <tr>
         <th><label for="profile_nombre"><?php echo __('Tu nombre') ?></label></th>
@@ -84,7 +84,7 @@
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>
         <td>
-          <textarea id="profile_presentacion" name="profile[presentacion]" rows="8" cols"30" title="<?php echo __('¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)') ?>"
+          <textarea id="profile_presentacion" name="profile[presentacion]" rows="8" cols=	"30" title="<?php echo __('¿Quién eres? ¿A qué te dedicas? ¡Expláyate en 280 caracteres! (Opcional, pero ayuda)') ?>"
           	><?php echo $presentacionValue?></textarea>
           <?php echo $profileEditForm['presentacion']->renderError() ?>
           <p id="presen_counter" class="counter"></p>
@@ -225,3 +225,9 @@
     </table>
   </form>
 </div>
+
+<script type="text/javascript">
+<!--//
+	$(':input').attr( "autocomplete", "off" );
+//-->
+</script>
