@@ -68,6 +68,7 @@ var text = $("#sf-review-text_<?php echo $reviewBox?$reviewBox:'sf_review'?>").v
 <?php endif ?>	
 
 if (this.fb_publish.checked) { facebookPublishStory(story_attrs); }
-sendReviewForm(this, '<?php echo url_for('sfReviewFront/send')?>', '<?php echo $reviewBox?$reviewBox:'sf_review'?>');
 
-sfr_refresh(<?php echo $reviewType?>);
+var data = $(this).serialize();
+re_loading('<?php echo $reviewBox?$reviewBox:'sf_review'?>');
+jQuery.ajax({type:'POST',dataType:'html',data:data,success:function(data, textStatus){jQuery('#<?php echo $reviewBox?$reviewBox:'sf_review'?>').html(data);sfr_refresh(<?php echo $reviewType?>)},url:'<?php echo url_for('sfReviewFront/send')?>'});

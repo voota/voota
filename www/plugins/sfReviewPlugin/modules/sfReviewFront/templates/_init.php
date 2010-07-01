@@ -2,7 +2,7 @@
   <div class="sf-review-positive">
 		<input type="radio" name="v" value="1" id="v-<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>-positive" />
 	  <label for="v-<?php echo $reviewBox ?>-positive">
-	    <?php echo image_tag('icoUp.gif', 'alt="yeah"') ?>
+		  	<img alt="yeah" src="/images/icoMiniUp.png" width="16" height="18" />
 		  <br />
 	    <?php echo __('A favor, yeah')?>
 	  </label>
@@ -11,7 +11,7 @@
 	<div class="sf-review-negative">
 		<input type="radio" name="v" value="-1" id="v-<?php echo isset($reviewBox)?$reviewBox:'sf_review' ?>-negative" />
 		<label for="v-<?php echo $reviewBox ?>-negative">
-	    <?php echo image_tag('icoDown.gif', 'alt="buu"') ?>
+		  	<img alt="buu" src="/images/icoMiniDown.png" width="16" height="18" />
 	    <br />
 	    <?php echo __('En contra, buu')?>
 	  </label>
