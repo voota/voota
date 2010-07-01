@@ -6,15 +6,14 @@
 
 	<p> 
   	  <?php echo format_number_choice('[0]No se han encontrado resultados para "%2%"|[1]%1% resultado encontrado buscando "%2%"|(1,+Inf]%1% resultados encontrados buscando "%2%"', 
-  	  		array('%1%' => format_number($results->getNbResults(), 'es_ES'), '%2%' => $q)
-  	  		, $results->getNbResults()) 
+  	  		array('%1%' => format_number($total, 'es_ES'), '%2%' => $q), $total) 
   	  ?>
 	</p>
 
-<?php if ( $results->getNbResults() > 0):?>
+<?php if ( $total > 0):?>
   <table border="0" cellpadding="0" cellspacing="0">
     <tbody>
-      <?php foreach($results->getResults() as $idx => $obj): ?>
+      <?php foreach($results as $idx => $obj): ?>
         <?php if ($obj instanceof Partido): ?>
 			<?php include_component_slot('partidoResult', array('obj' => $obj, 'q' => $q, 'ext' => $ext, 'counts' => $partidoCounts)) ?>
         <?php endif ?>
@@ -39,8 +38,8 @@
   </table>
 <?php endif ?>
 
-<?php if ( $results->haveToPaginate() ):?>
+<?php if ( intval($total / 15) > 1 ):?>
   <p class="pagination">
-    <?php include_partial('global/pagination_full', array('pager' => $results, 'url' => "@search?q=$q", 'page_var' => "page")) ?>
+    <?php include_partial('global/array_pager', array('results' => $results, 'total' => $total, 'url' => "@search?q=$q", 'page' => $page)) ?>
   </p>
 <?php endif ?>
