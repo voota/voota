@@ -90,7 +90,7 @@
           <?php echo image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"') ?>
   	    </td>
         <td class="name">
-          <?php echo link_to( $propuesta->getTitulo(), 'propuesta/show?id='.$propuesta->getVanity(), 'class="tooltip_propuesta" title="'.secureString(__('Sobre esta propuesta').'|'.__('Creada el %1%', array('%1%' => format_date($propuesta->getCreatedAt()))) .'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true)).'"') ?>
+          <?php echo link_to( $propuesta->getTitulo(), 'propuesta/show?id='.$propuesta->getVanity(), array('class' => 'tooltip_propuesta', 'title' => secureString(__('Sobre esta propuesta').'|'.__('Creada el %1%', array('%1%' => format_date($propuesta->getCreatedAt()))) .'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true)))) ?>
         </td>
         <td class="voto">
             <?php include_component_slot('quickvote', array('entity' => $propuesta)) ?>
