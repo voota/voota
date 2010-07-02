@@ -4,15 +4,17 @@
 
 <?php if ($reviewType): ?>
 	<div class="review-current">
-	  <p>
-	    <?php echo __('Tu voto')?>: <?php echo $reviewValue == 1?__('A favor'):__('En contra')?>
-		<br />
-	  	<?php echo jq_link_to_remote(__('Hacer cambios en tu voto'), array(
-	  	  'update' => $reviewBox?$reviewBox:'sf_review',
-	  	  'url'    => "@sf_review_form?t=$reviewType&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review'),
-	  	  'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
-	  	)) ?>	
-	  </p>
+	  <h5>
+	    <strong><?php echo __('Tu voto')?>:</strong> <?php echo $reviewValue == 1?__('A favor'):__('En contra')?>
+  		<br />
+  		<span class="sf-review-action">
+  	  	<?php echo jq_link_to_remote(__('Hacer cambios en tu voto'), array(
+  	  	  'update' => $reviewBox?$reviewBox:'sf_review',
+  	  	  'url'    => "@sf_review_form?t=$reviewType&e=$reviewEntityId&v=$reviewValue&b=".($reviewBox?$reviewBox:'sf_review'),
+  	  	  'before' => "re_loading('".($reviewBox?$reviewBox:'sf_review')."')"
+  	  	)) ?>
+  	  </span>
+	  </h5>
 	
 	  <p><?php echo review_text( $review ) ?></p>
 	</div>

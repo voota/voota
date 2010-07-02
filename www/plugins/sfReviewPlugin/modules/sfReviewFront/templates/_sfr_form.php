@@ -36,8 +36,9 @@ $(document).ready(function(){
 
 	<?php if ($reviewId != ''): ?>
 		<h5>
-		  <?php echo __('Tu opinión') ?>
-		  <span class="sf-review-cancel">
+		  <strong><?php echo __('Tu voto') ?></strong>
+		  <br />
+		  <span class="sf-review-action">
 		    <?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
 				    'update'   => $reviewBox?$reviewBox:'sf_review',
 				    'url'    => "@sf_review_init?i=$reviewId&e=$reviewEntityId&t=$reviewType".($reviewBox==''?'':"&b=$reviewBox"),
