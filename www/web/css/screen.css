@@ -47,6 +47,7 @@ strong.email { color: #2b56ff;}
 .entity-pagination a.back { padding-left: 40px;}
 .entity-pagination-top { padding: 0 0 40px 0;}
 .entity-pagination-bottom { padding: 40px 0 0 0;}
+#reviews_more { margin-right: 5px;}
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}

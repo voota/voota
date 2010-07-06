@@ -307,7 +307,7 @@ $.fn.reviews_pagination = function(options) {
   return $(this).each(function(){
     var area = $(this);
     var summary = $(opts.summaryTemplate);
-    var spinner = $('<img src="/images/spinner.gif" alt="..." style="display:none" />');
+    var spinner = $('<img src="/images/spinner-mini.gif" alt="..." style="display:none" />');
     var button = $('<button id="reviews_more">' + opts.buttonText + '</button>')
     var buttonContainer = $('<p></p>').append(button).append(spinner);
     
