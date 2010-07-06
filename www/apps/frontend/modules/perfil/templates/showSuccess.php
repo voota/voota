@@ -20,6 +20,11 @@
   
   <div id="sidebar">
     <?php include_partial('boxProfile', array('user' => $user)) ?>
+    
+    <div id="rss">
+      <?php // TODO: Poner URL del feed RSS del usuario ?>
+      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $user)) ?></a>
+    </div>
   </div>
   
   <?php if (!$sf_user->isAuthenticated()): ?>
