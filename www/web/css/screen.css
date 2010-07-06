@@ -530,7 +530,7 @@ table.rankings .negative-votes { text-align:right;}
 #sfReviewFront-list #content { width: 640px;}
 #sfReviewFront-list #ultimos-usuarios { margin-bottom: 40px;}
 #sfReviewFront-list #ultimos-usuarios h3 { padding-bottom: 10px;}
-#sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
+#sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 8px;}
 #sfReviewFront-list #ultimos-usuarios li { margin-bottom: 5px;}
 #sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
