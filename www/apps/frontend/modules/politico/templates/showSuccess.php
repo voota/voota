@@ -178,7 +178,7 @@
     <?php endif ?>
   </div>
   
-  <div id="sidebar">
+  <div id="sidebar">  
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">  
         <h3><?php echo __('Enlaces externos')?></h3>
@@ -203,6 +203,11 @@
         <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
   	    <?php include_partial('tuits', array('user' => $twitterUser)) ?>
       <?php endif ?>
+    </div>
+
+    <div id="rss">
+      <?php // TODO: Poner URL del feed RSS ?>
+      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $politico)) ?></a>
     </div>
 
     <div id="google-ads">

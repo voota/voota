@@ -433,6 +433,10 @@ table.rankings .negative-votes { text-align:right;}
 #general-search table tbody td { padding: 10px 0;}
 #general-search table .photo { text-align: right; width: 36px; padding-right: 10px;}
 
+/* RSS */
+#rss { margin-bottom: 40px; padding: 5px 0; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc;}
+#rss a { padding-left: 23px; background: transparent url(/images/rss.png) left center no-repeat;}
+
 /* Enlaces externos */
 #external-links { margin-bottom: 40px;}
 #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}

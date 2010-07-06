@@ -143,7 +143,7 @@
     <?php endif ?>
   </div>
 
-  <div id="sidebar">
+  <div id="sidebar">  
     <div id="politicos-mas-votados" class="entities-list-mini">
       <h3><?php echo __("Los más votados") ?></h3>
       <?php if ($politicos->getNbResults() > 0): ?>
@@ -181,6 +181,11 @@
         <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
   	    <?php include_partial('politico/tuits', array('user' => $twitterUser)) ?>
       <?php endif ?>
+    </div>
+
+    <div id="rss">
+      <?php // TODO: Poner URL del feed RSS del partido ?>
+      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $partido)) ?></a>
     </div>
 
     <div id="google-ads">

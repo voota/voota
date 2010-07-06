@@ -84,4 +84,9 @@
     <?php endforeach?>
     </ol>
   </div>
+  
+  <div id="rss">
+    <?php // TODO: Poner URL del feed RSS de los vootos ?>
+    <a href="#"><?php echo __('RSS de esta maravilla') ?></a>
+  </div>
 </div>
