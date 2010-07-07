@@ -47,6 +47,7 @@ strong.email { color: #2b56ff;}
 .entity-pagination a.back { padding-left: 40px;}
 .entity-pagination-top { padding: 0 0 40px 0;}
 .entity-pagination-bottom { padding: 40px 0 0 0;}
+#reviews_more { margin-right: 5px;}
 
 /* Layout básico */
 #header, #main, #footer { text-align: center;}
@@ -109,6 +110,7 @@ strong.email { color: #2b56ff;}
 .box-contact ul li.twitter { background: transparent url(/images/icoTwitter.png) left center no-repeat;}
 .box-contact ul li.facebook { background: transparent url(/images/icoFacebook.png) left center no-repeat;}
 .box-contact ul li.uservoice { background: transparent url(/images/uservoice.png) left center no-repeat;}
+.box-profile { margin-bottom: 40px;}
 .box-profile .box-inner { background-color: #fdffcd}
 .box-profile h3 { font-size: 16px;}
 .box-profile button, .box-propuestas button { width: 180px;}
@@ -433,6 +435,10 @@ table.rankings .negative-votes { text-align:right;}
 #general-search table tbody td { padding: 10px 0;}
 #general-search table .photo { text-align: right; width: 36px; padding-right: 10px;}
 
+/* RSS */
+#rss { margin-bottom: 40px; padding: 5px 0; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc;}
+#rss a { padding-left: 23px; background: transparent url(/images/rss.png) left center no-repeat;}
+
 /* Enlaces externos */
 #external-links { margin-bottom: 40px;}
 #external-links input[type="text"] { width: 213px; background-color: #ffffcc; border: 1px solid #809DB9;}
@@ -523,8 +529,9 @@ table.rankings .negative-votes { text-align:right;}
 #sfReviewFront-list h3.title { margin-bottom: 20px; font-weight: normal;}
 #sfReviewFront-list #filterForm select { font-size: 13px;}
 #sfReviewFront-list #content { width: 640px;}
+#sfReviewFront-list #ultimos-usuarios { margin-bottom: 40px;}
 #sfReviewFront-list #ultimos-usuarios h3 { padding-bottom: 10px;}
-#sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 3px;}
+#sfReviewFront-list #ultimos-usuarios img { width: 20px; height: 20px; padding-right: 8px;}
 #sfReviewFront-list #ultimos-usuarios li { margin-bottom: 5px;}
 #sfReviewFront-list .pagination { margin-top: 0; text-align: left;}
 
