@@ -11,5 +11,10 @@ class SfReviewForm extends BaseSfReviewForm
 {
   public function configure()
   {
+  	unset(
+  		$this['entity_id']
+  		, $this['value']
+  		, $this['sf_review_type_id']
+  	);
   }
 }
