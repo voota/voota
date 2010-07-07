@@ -243,17 +243,22 @@ function sparkline(id, label, data) {
 }
 
 jQuery.fn.tooltip_propuesta = function() {
-  $(this).each(function(){
-    var title = '<strong>' + $(this).attr('title').split('|')[0] + '</strong>';
-    var date = $(this).attr('title').split('|')[1];
-    var body = $(this).attr('title').split('|')[2];
-    $(this).qtip({
-      content: '<p>' + title + '</p><p>' + date + '</p><p>' + body + '</p>',
-      position: { corner: { tooltip: 'leftTop', target: 'center' } },
-      style: { name: 'light' }
+  if (!($.browser.msie && parseInt($.browser.version) < 8)) {
+    $(this).each(function(){
+      var title = '<strong>' + $(this).attr('title').split('|')[0] + '</strong>';
+      var date = $(this).attr('title').split('|')[1];
+      var body = $(this).attr('title').split('|')[2];
+      $(this).qtip({
+        content: '<p>' + title + '</p><p>' + date + '</p><p>' + body + '</p>',
+        position: {
+          corner: { tooltip: 'leftTop', target: 'rightTop' },
+          adjust: { screen: true, scroll: false, resize: false }
+        },
+        style: { name: 'light' }
+      });
+      $(this).attr('title', '');
     });
-    $(this).attr('title', '');
-  });
+  }
 }
 
 jQuery.fn.tooltip_politico_elecciones = function() {
@@ -271,7 +276,8 @@ jQuery.fn.tooltip_politico_elecciones = function() {
                  '<div class="negative_votes">' + negative_votes + '</div>' +
                '</div>',
       position: {
-        corner: { tooltip: 'bottomMiddle', target: 'topMiddle' }
+        corner: { tooltip: 'bottomMiddle', target: 'topMiddle' },
+        adjust: { screen: true, scroll: false, resize: false }
       },
       hide: { fixed: true, delay: 100, effect: { type: 'fade' } },
       style: {

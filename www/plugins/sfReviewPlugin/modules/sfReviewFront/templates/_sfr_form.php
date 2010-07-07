@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 	<?php if ($reviewId != ''): ?>
 		<h5>
-		  <strong><?php echo __('Tu voto') ?></strong>
+		  <strong><?php echo __('Tu voto')?>:</strong> <?php echo $reviewValue == 1?__('A favor'):__('En contra')?>
 		  <br />
 		  <span class="sf-review-action">
 		    <?php echo jq_link_to_remote(__('Dejarlo como estaba'), array(
