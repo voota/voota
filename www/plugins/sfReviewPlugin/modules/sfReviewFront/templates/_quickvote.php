@@ -23,6 +23,7 @@
 			<?php else: ?>
 		     	ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
 		    <?php endif ?>
+		    return false;
 	    });          
 		$("#<?php echo "qv_down_".$entity->getId()?>").click(function(){
 		  	<?php if($sf_user->isAuthenticated()):?>
@@ -30,6 +31,7 @@
 			<?php else: ?>
 		     	ejem('<?php echo url_for('sfGuardAuth/signin');?>', '');
 		    <?php endif ?>
+		    return false;
 		});
 	  });
 	//-->

@@ -63,9 +63,9 @@
     <?php $idx = 0;foreach ($politicosListaVoota as $politico): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
         <td class="position">
-        	<?php if (isset($politicosListaOficial[$idx]) || count($politicosListaOficial) == 0):?>
+        	<?php //if (isset($politicosListaOficial[$idx]) || count($politicosListaOficial) == 0):?>
         		<?php echo $idx+1 ?>.
-        	<?php endif?>
+        	<?php //endif?>
         </td>
         <td class="photo">
         	<?php if (isset($politicosListaOficial[$idx])):?>
