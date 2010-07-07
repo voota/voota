@@ -124,7 +124,7 @@
     <?php endif ?>
   </div>
   
-  <div id="sidebar">
+  <div id="sidebar">  
     <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
 
     <div id="report-error">
@@ -136,6 +136,11 @@
     </div>
   
     <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
+  
+    <div id="rss">
+      <?php // TODO: Poner URL del feed RSS de la propuesta ?>
+      <a href="#"><?php echo __('RSS de esta propuesta') ?></a>
+    </div>
   
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
