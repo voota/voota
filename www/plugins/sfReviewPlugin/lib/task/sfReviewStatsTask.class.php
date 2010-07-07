@@ -54,6 +54,7 @@ EOF;
 			"FROM %s r ".
 			"INNER JOIN %s s ON s.id = r.sf_review_status_id ".
 			"WHERE r.is_active = 1 ".
+			"AND r.sf_review_type_id is not null ".
 			"group by entity_id, sf_review_type_id, value ";
 	$query = sprintf($query, SfReviewPeer::TABLE_NAME, SfReviewStatusPeer::TABLE_NAME);
 	
