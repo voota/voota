@@ -26,7 +26,7 @@
 	  setCounter('#presen_counter', '#profile_presentacion', 280);
 	  facebookLoadUserName();
 	  <?php if($hasDeepUpdates): ?>
-	    facebookPublishStory({ body: '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>' });
+	    facebookPublishStory({ message: '<?php echo __('He hecho profundos cambios en mi perfil de Voota. ')?><?php echo $profileEditForm['presentacion']->getValue()?>' });
 	  <?php endif ?>
   });
   
