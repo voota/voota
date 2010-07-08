@@ -313,7 +313,7 @@ EOF;
 	    			$used[] = $geoLista->getGeo();
 	    			$this->writeToSitemap("elecciones-$culture", $controller->genUrl('eleccion/show?geo='.$geoLista->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
 	    		}
-	    		$this->writeToSitemap("elecciones-$culture", $controller->genUrl('lista/show?partido='.$geoLista->getPartido()->getAbreviatura().'&geo='.$geoLista->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
+	    		$this->writeToSitemap("elecciones-$culture", $controller->genUrl(($culture=='ca'?'llista':'lista').'/show?partido='.$geoLista->getPartido()->getAbreviatura().'&geo='.$geoLista->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
 	    		
 	    	}
 	    }
