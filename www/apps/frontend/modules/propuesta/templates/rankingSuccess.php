@@ -61,6 +61,14 @@
       		<?php echo image_tag($order=='nd'?'flechaDown.gif':'flechaUp.gif', $order=='nd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
       	<?php endif?>
       </th>
+      <th class="date">
+        <a href="<?php echo url_for("$route".(!preg_match("/\?/",$route)?'?':'&')."o=".($order=='fd'?'fa':'fd'))?>"
+        	title="<?php echo __('Ordenar por fecha: Las más recientes primero / las más antiguas primero') ?>" 
+        	rel="nofollow"><?php echo __('Fecha')?></a>
+      	<?php if (strpos($order, 'f') === 0):?>
+      		<?php echo image_tag($order=='fd'?'flechaDown.gif':'flechaUp.gif', $order=='fd'?'alt="'.__('descendente').'"':'alt="'.__('ascendente').'"') ?>
+      	<?php endif?>
+      </th>
     </tr>
   </thead>
 
@@ -78,6 +86,7 @@
       <td class="negative-votes">
       	<?php echo format_number($totalDown, 'es_ES')?>
       </td>
+      <td class="date"></td>
     </tr>
   </tfoot>
 
@@ -97,6 +106,9 @@
         </td>
         <td class="positive-votes"><?php echo sumu($propuesta)?></td>
         <td class="negative-votes"><?php echo sumd($propuesta)?></td>
+        <td class="date">
+          <?php echo format_date($propuesta->getCreatedAt()) ?>
+        </td>
       </tr>
     <?php endforeach ?>
   </tbody>  

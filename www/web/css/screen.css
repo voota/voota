@@ -407,9 +407,9 @@ table.rankings .negative-votes { text-align:right;}
 #propuesta-ranking table .photo { width: 36px; padding-left: 10px; padding-right: 10px;}
 #propuesta-ranking table .name { width: 300px; padding-right: 40px;}
 #propuesta-ranking table .voto { width: 110px;}
-#propuesta-ranking table .positive-votes { width: 140px;}
-#propuesta-ranking table .negative-votes { width: 140px; padding-right: 45px;}
-#propuesta-ranking table .date { width: 100px; padding-right: 45px;}
+#propuesta-ranking table .positive-votes { width: 100px;}
+#propuesta-ranking table .negative-votes { width: 100px; padding-right: 20px;}
+#propuesta-ranking table .date { text-align: right; width: 100px; padding-right: 20px;}
 #propuesta-ranking .search { float: right;}
 
 /* Lista electoral */
