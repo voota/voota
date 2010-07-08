@@ -145,7 +145,13 @@ class SfVoUtil
 	}	
 	
 	public static function fixVanityChars( $v ) {
-		return strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '--------------------------');
+		$ret = strtr($v, '.$&+,/:;=?@ "<>#%{}|\^~[]`', '------------------------');
+		
+		$ret = str_replace( Chr(10), '',  $ret);
+		$ret = str_replace( Chr(13), '',  $ret);
+		
+		
+		return $ret;
 	}
 
 	public static function myUcfirst( $str) {
@@ -205,6 +211,7 @@ class SfVoUtil
 		$userCulture = $culture?$culture:sfContext::getInstance()->getUser()->getCulture();		
 		
 		$textStart = (!$review->getCulture() || $review->getCulture() == $userCulture)?self::fixVanityChars(self::cutToLength($review->getText(), 60, '', true)):'';
+		
 		return ''.$review->getId(). ($textStart?'-':''). $textStart;
 	}
 }
