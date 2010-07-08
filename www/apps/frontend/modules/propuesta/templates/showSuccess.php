@@ -80,6 +80,7 @@
     <div id="description">
       <?php include_partial('descripcion', array('propuesta' => $propuesta)) ?>
       <?php include_partial('doc', array('propuesta' => $propuesta)) ?>
+      <?php include_partial('videos', array('propuesta' => $propuesta)) ?>
     </div>
 
     <div class="reviews">

@@ -580,6 +580,13 @@ table.rankings .negative-votes { text-align:right;}
 .negative-reviews { margin-left: 10%;}
 .review-new h5, .vote h5 { font-size: 13px; font-weight: normal;}
 
+/* Vídeos */
+.videos { margin: 0; padding: 0;}
+.videos li { list-style: none; width: 130px; margin-right: 20px; float: left;}
+.videos p { padding-bottom: 0 !important;}
+.videos .thumb { width: 120px; height: 90px; padding: 5px; border: 1px solid #cccccc; }
+.videos .thumb img { width: 120px; height: 90px; }
+
 /* Reglas nuevas */
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff;}
