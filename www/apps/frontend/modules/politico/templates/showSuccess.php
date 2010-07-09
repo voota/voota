@@ -118,6 +118,17 @@
       <div title="biografia" class="bio">
         <?php echo formatBio( ($politico->getsfGuardUser() && $politico->getsfGuardUser()->getProfile()->getPresentacion())?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
 
+        <?php if (true): // TODO: Si es candidato a una elección ?>
+          <p>
+            <?php echo __('Candidato por el %partido% a las %eleccion%',
+                       array(
+                         '%partido%' => link_to('PP', '@homepage'), // TODO: Sustituir nombre partido y enlace a página de partido
+                         '%eleccion%' => link_to('Elecciones Cataluña 2010', '@homepage') // TODO: Sustituir nombre elección y enlace a página de elección
+                        )) ?>
+            <?php echo link_to(image_tag('/images/proto/eleccion-thumb.png', 'alt="'. 'Elecciones Cataluña 2010' .'"'), '@homepage') // TODO: Sustituir ruta a imagen, nombre de elección y enlace a página de elección ?>
+          </p>
+        <?php endif ?>
+
         <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
           <p>
             <?php echo link_to(__('Hacer cambios en tu perfil'), '@usuario_edit') ?>
