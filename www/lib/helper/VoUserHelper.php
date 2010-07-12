@@ -72,6 +72,10 @@ function getAvatarFull( $user ) {
   else if ( $user && $user->getProfile()->getFacebookUid()){
 		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'size' => 'normal', 'facebook-logo' => 'true' ));
 	}
+	else {
+	  //$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/no-imago.png', array('alt' => fullName( $user ), 'width' => 180, 'height' => 240));
+	  $ret .= image_tag('/images/no-imago.png', array('alt' => fullName( $user ), 'width' => 180, 'height' => 240));
+	}
 
 	return $ret;
 }
