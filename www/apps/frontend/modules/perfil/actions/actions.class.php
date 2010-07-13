@@ -81,6 +81,7 @@ class perfilActions extends SfVoActions
   	
   	$c = new Criteria();
   	$c->add(PropuestaPeer::SF_GUARD_USER_ID, $this->getUser()->getGuardUser()->getId());
+  	$c->addDescendingOrderByColumn('created_at');
   	$this->propuestas = PropuestaPeer::doSelect( $c );
   	
   	if ($op == 'v' || $op == 'e'){
@@ -174,6 +175,7 @@ class perfilActions extends SfVoActions
   	
   	$c = new Criteria();
   	$c->add(PropuestaPeer::SF_GUARD_USER_ID, $userProfile->getUserId());
+  	$c->addDescendingOrderByColumn('created_at');
   	$this->propuestas = PropuestaPeer::doSelect( $c );
   	
     //$this->reviews = SfReviewManager::getReviewsByUser($this->user->getId(), $this->f);
