@@ -96,7 +96,7 @@
   	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?></td>
   	    <td class="position"><?php echo format_number($propuestasPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
-          <?php echo image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"') ?>
+          <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"'), 'propuesta/show?id='.$propuesta->getVanity()) ?>
   	    </td>
         <td class="name">
           <?php echo link_to( $propuesta->getTitulo(), 'propuesta/show?id='.$propuesta->getVanity(), array('class' => 'tooltip_propuesta', 'title' => secureString(__('Sobre esta propuesta').'|'.__('Creada el %1%', array('%1%' => format_date($propuesta->getCreatedAt()))) .'|'.cutToLength($propuesta->getDescripcion(), 200, '...', true)))) ?>

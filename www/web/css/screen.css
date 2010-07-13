@@ -7,6 +7,7 @@ img, a img { border: none; vertical-align: middle;}
 table { padding:0; margin:0; border-collapse: collapse;}
 a { color: #0000ee;}
 a:visited { color: #551a8b;}
+a img { text-decoration: none;}
 
 /* Encabezados */
 h1 { font-size: 52px; margin: 0; color: #2b56ff;}
@@ -67,7 +68,7 @@ strong.email { color: #2b56ff;}
 #logo a { color: #323232; text-decoration: none; font-weight: normal;}
 #slogan { font-size: 16px; font-weight: normal;}
 #user-links { position: absolute; top: 10px; right: 0; text-align: right;}
-#user-links img { padding-right: 10px; }
+#user-links a, #user-links span.separator { padding-left: 5px; }
 #user-links p { padding-bottom: 10px;}
 #user-links .fbconnect_login_button img { padding-right: 0;}
 #user-links #lo_fb_conn { padding-right: 10px;}

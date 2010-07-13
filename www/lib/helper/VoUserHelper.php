@@ -45,19 +45,19 @@ function fullNameForAttr( $user ) {
 }
 
 function getAvatar( $user, $width = 36, $height = 36) {
-  	$ret = "";
+  	$ret = '<a title="'.$user.'" href="'.url_for('@usuario?username='.$user->getProfile()->getVanity()).'">';
 
     if( $user && $user->getProfile()->getImagen() ){
     	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_s_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
     }
     else if ( $user && $user->getProfile()->getFacebookUid()){
-  		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'size' => 'square', 'facebook-logo' => 'true', 'width' => $width, 'height' => $height ));
+  		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'linked' => 'false', 'size' => 'square', 'facebook-logo' => 'true', 'width' => $width, 'height' => $height ));
   	}
   	else {
   		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => $width, 'height' => $height));
   	}
     
-  	
+  	$ret .= '</a>';
   	return $ret;
 }
 
@@ -70,7 +70,7 @@ function getAvatarFull( $user ) {
   	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user )));
   }
   else if ( $user && $user->getProfile()->getFacebookUid()){
-		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'size' => 'normal', 'facebook-logo' => 'true' ));
+		$ret .= jsWrite("fb:profile-pic", array('uid' => $user->getProfile()->getFacebookUid(), 'linked' => 'false', 'size' => 'normal', 'facebook-logo' => 'true' ));
 	}
 	else {
 	  //$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/no-imago.png', array('alt' => fullName( $user ), 'width' => 180, 'height' => 240));

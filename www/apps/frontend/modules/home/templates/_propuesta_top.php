@@ -1,6 +1,6 @@
 <li>
 	<div class="avatar">
-  	<?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.($p->getImagen()!=''?$p->getImagen():'p_unknown.png'), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $p)) .'"') ?>
+  	<?php echo link_to(image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.($p->getImagen()!=''?$p->getImagen():'p_unknown.png'), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $p)) .'"'), 'propuesta/show?id='.$p->getVanity()) ?>
   </div>
 	<h4 class="name">
 	  <?php echo link_to(sfVoUtil::secureString($p->getTitulo(), "&#39;"), 'propuesta/show?id='.$p->getVanity())?>

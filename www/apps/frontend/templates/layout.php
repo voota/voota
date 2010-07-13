@@ -119,10 +119,11 @@
               </span>
               <?php endif ?>
             <?php endif ?>
+
             <?php echo getAvatar( $sf_user->getGuardUser() )?>
 
             <?php echo link_to($sf_user->isAuthenticated()?fullName( $sf_user ):'', '@usuario_votos') ?>
-            ·
+            <span class="separator">·</span>
             <?php echo link_to(__('salir'), '@sf_guard_signout', array('id' => 'logout')) ?>
           </p>
         <?php end_slot('logged') ?>

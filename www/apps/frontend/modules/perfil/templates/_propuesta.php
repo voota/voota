@@ -1,6 +1,6 @@
 <li>
   <div class="photo">
-    <?php echo image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $propuesta->getTitulo())) .'"') ?>    
+    <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/propuestas/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $propuesta->getTitulo())) .'"'), 'propuesta/show?id='.$propuesta->getVanity()) ?>    
   </div>
   <div class="name">
     <strong><?php echo __('Propuesta:') ?></strong>

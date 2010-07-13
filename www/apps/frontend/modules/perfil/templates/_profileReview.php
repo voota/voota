@@ -5,9 +5,9 @@
 <li class="review">
 	<div class="photo">
 	  <?php if ($entity->getImagen()): ?>
-      <?php echo image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_'.$entity->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $entity)) .'"') ?>
+      <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_'.$entity->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' => $entity)) .'"'), $entity->getModule().'/show?id='.$entity->getVanity()) ?>
     <?php else: ?>
-      <?php echo image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_p_unknown.png', 'alt="'. __('No disponible').'"') ?>
+      <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$entity->getImagePath().'/cc_s_p_unknown.png', 'alt="'. __('No disponible').'"'), $entity->getModule().'/show?id='.$entity->getVanity()) ?>
     <?php endif ?>
   </div>
     

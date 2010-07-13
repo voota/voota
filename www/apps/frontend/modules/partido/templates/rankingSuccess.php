@@ -87,7 +87,7 @@
   	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?></td>
   	    <td class="position"><?php echo format_number($partidosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
-          <?php echo image_tag(S3Voota::getImagesUrl().'/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"') ?>
+          <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"'), 'partido/show?id='.$partido->getAbreviatura()) ?>
   	    </td>
         <td class="name">
           <?php echo link_to(	$partido->getNombre() . ' (' . $partido->getAbreviatura() . ')', 'partido/show?id='.$partido->getAbreviatura() ); ?>

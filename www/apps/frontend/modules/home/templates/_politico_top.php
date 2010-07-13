@@ -2,7 +2,7 @@
 
 <li>
 	<div class="avatar">
-  	<?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?>
+  	<?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'width="36" height="36" alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"'), 'politico/show?id='.$politico->getVanity()) ?>
   </div>
 	<h4 class="name"><?php echo link_to(cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 26), 'politico/show?id='.$politico->getVanity())?></h4>
   <div class="votes">
