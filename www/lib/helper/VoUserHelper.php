@@ -45,7 +45,9 @@ function fullNameForAttr( $user ) {
 }
 
 function getAvatar( $user, $width = 36, $height = 36) {
-  	$ret = '<a title="'.$user.'" href="'.url_for('@usuario?username='.$user->getProfile()->getVanity()).'">';
+    if ($user) { // FIXME: ¿Por qué a veces $user no es un objeto?
+      $ret = '<a title="'.$user.'" href="'.url_for('@usuario?username='.$user->getProfile()->getVanity()).'">'; 
+    }
 
     if( $user && $user->getProfile()->getImagen() ){
     	$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/cc_s_'.( $user->getProfile()->getImagen()), array('alt' => fullName( $user ), 'width' => 36, 'height' => 36));
@@ -56,8 +58,11 @@ function getAvatar( $user, $width = 36, $height = 36) {
   	else {
   		$ret .= image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => fullName( $user ), 'width' => $width, 'height' => $height));
   	}
-    
-  	$ret .= '</a>';
+ 
+    if ($user) { // FIXME: ¿Por qué a veces $user no es un objeto?
+      $ret .= '</a>';
+    }
+
   	return $ret;
 }
 
