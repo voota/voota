@@ -18,11 +18,6 @@
 		return true;
 	});	
   });
-  $(window).load(function(){
-    <?php foreach(($results = $partidosPager->getResults()) as $partido): ?>
-      <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?>
-    <?php endforeach ?>
-  });
 </script>
 
 <h2><?php echo $pageTitle ?></h2>
@@ -42,7 +37,6 @@
 <table class="rankings" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
-      <th class="ranking"></th>
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
@@ -66,7 +60,6 @@
 
   <tfoot>
     <tr>
-      <td class="ranking"></td>
       <td class="position"></td>
       <td class="photo"></td>
       <td class="name"></td>
@@ -82,9 +75,8 @@
   </tfoot>
 
   <tbody>
-    <?php foreach($results as $idx => $partido): ?>
+    <?php foreach($results = $partidosPager->getResults() as $idx => $partido): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
-  	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_'. $partido->getId())) ?></td>
   	    <td class="position"><?php echo format_number($partidosPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/partidos/cc_s_'.($partido->getImagen()!=''?$partido->getImagen():'p_unknown.png'), 'alt="'. __('Foto de %1%', array('%1%' => $partido)) .'"'), 'partido/show?id='.$partido->getAbreviatura()) ?>

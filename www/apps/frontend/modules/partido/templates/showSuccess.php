@@ -18,9 +18,6 @@
   
   $(window).load(function(){
     <?php include_component_slot('sparkline', array('reviewable' => $partido, 'id' => 'sparkline_pt_'.$partido->getId())) ?>
-    <?php foreach($politicos->getResults() as $politico): ?>
-	  		<?php include_component_slot('sparkline', array('reviewable' => $politico, 'id' => 'sparkline_'.$politico->getId())) ?>
-  	<?php endforeach?>
   });
 
   function sfr_refresh( type ){
@@ -149,7 +146,7 @@
       <?php if ($politicos->getNbResults() > 0): ?>
         <ul>
       	  <?php foreach ($politicos->getResults() as $politico): ?>
-    		    <?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+    		    <?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => true, 'showSparkline' => false)) ?>
       	  <?php endforeach ?>
         </ul>
       <?php else: ?>

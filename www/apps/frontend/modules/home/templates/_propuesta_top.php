@@ -6,7 +6,9 @@
 	  <?php echo link_to(sfVoUtil::secureString($p->getTitulo(), "&#39;"), 'propuesta/show?id='.$p->getVanity())?>
 	</h4>
   <div class="votes">
-		<?php include_partial('general/sparkline_box', array('reviewable' => $p, 'id' => 'sparkline_tpr_'.$p->getId())) ?>
+    <?php if ($showSparkline): ?>
+		  <?php include_partial('general/sparkline_box', array('reviewable' => $p, 'id' => 'sparkline_tpr_'.$p->getId())) ?>
+		<?php endif ?>
 		<span class="votes-count">
 				<?php if (sumu($p) > 0 && sumd($p) > 0): ?>
 					<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => sumu($p)),sumu($p))) ?>

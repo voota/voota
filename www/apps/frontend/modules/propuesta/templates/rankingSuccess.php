@@ -6,13 +6,7 @@
 
 <?php include_partial('sfReviewFront/dialog') ?>
 
-<script type="text/javascript">  
-  $(window).load(function(){
-    <?php foreach(($results = $propuestasPager->getResults()) as $propuesta): ?>
-      <?php include_component_slot('sparkline', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?>
-    <?php endforeach ?>
-  });
-  
+<script type="text/javascript">    
   $(document).ready(function(){
     $('.login-required_np').click(function(){
       <?php if (!$sf_user->isAuthenticated()): ?>
@@ -38,7 +32,6 @@
 <table class="rankings" cellpadding="0" cellspacing="0">
   <thead>
     <tr>
-      <th class="ranking"></th>
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Nombre')?></th>
@@ -74,7 +67,6 @@
 
   <tfoot>
     <tr>
-      <td class="ranking"></td>
       <td class="position"></td>
       <td class="photo"></td>
       <td class="name"></td>
@@ -91,9 +83,8 @@
   </tfoot>
 
   <tbody>
-    <?php foreach($results as $idx => $propuesta): ?>
+    <?php foreach($results = $propuestasPager->getResults() as $idx => $propuesta): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
-  	    <td class="ranking"><?php include_partial('general/sparkline_box', array('reviewable' => $propuesta, 'id' => 'sparkline_'. $propuesta->getId())) ?></td>
   	    <td class="position"><?php echo format_number($propuestasPager->getFirstIndice() + $idx, 'es_ES') ?>.</td>
   	    <td class="photo">
           <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$propuesta->getImagePath().'/cc_s_'.$propuesta->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $propuesta)) .'"'), 'propuesta/show?id='.$propuesta->getVanity()) ?>

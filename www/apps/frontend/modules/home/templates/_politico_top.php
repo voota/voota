@@ -6,7 +6,9 @@
   </div>
 	<h4 class="name"><?php echo link_to(cutToLength("".$politico->getNombre() ." ". $politico->getApellidos(), 26), 'politico/show?id='.$politico->getVanity())?></h4>
   <div class="votes">
-		<?php include_partial('general/sparkline_box', array('id' => $id)) ?>
+    <?php if ($showSparkline): ?>
+		  <?php include_partial('general/sparkline_box', array('id' => $id)) ?>
+		<?php endif ?>
 		<span class="votes-count">
 			<?php if (sumu($politico) > 0 && sumd($politico) > 0): ?>
 				<?php echo str_replace  (" ", "&nbsp;", format_number_choice('[0]0|[1]1 positivo|(1,+Inf]%1% positivos', array('%1%' => sumu($politico)),sumu($politico))) ?>

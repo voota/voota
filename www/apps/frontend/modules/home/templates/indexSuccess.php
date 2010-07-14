@@ -4,20 +4,20 @@
 <?php use_helper('VoUser') ?>
 
 <script type="text/javascript">
-  $(window).load(function(){
-    <?php foreach($reviewables as $reviewable): ?>
-	    <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
-	  <?php endforeach ?>
-	  <?php foreach($topPoliticos as $politico): ?>
-  		<?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'reviewable' => $politico)) ?>
-	  <?php endforeach?>
-    <?php foreach($partidosMasVotados as $partido): ?>
-  		<?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
-	  <?php endforeach?>
-    <?php foreach($propuestasMasVotadas as $p): ?>
-  		<?php include_component_slot('sparkline', array('id' => "sparkline_tpr_".$p->getId(), 'reviewable' => $p)) ?>
-	  <?php endforeach?>
-  });
+  // $(window).load(function(){
+  //   <?php foreach($reviewables as $reviewable): ?>
+  //      <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
+  //    <?php endforeach ?>
+  //    <?php foreach($topPoliticos as $politico): ?>
+  //    <?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'reviewable' => $politico)) ?>
+  //    <?php endforeach?>
+  //   <?php foreach($partidosMasVotados as $partido): ?>
+  //    <?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
+  //    <?php endforeach?>
+  //   <?php foreach($propuestasMasVotadas as $p): ?>
+  //    <?php include_component_slot('sparkline', array('id' => "sparkline_tpr_".$p->getId(), 'reviewable' => $p)) ?>
+  //    <?php endforeach?>
+  // });
 </script>
 
 <?php slot('header-extra') ?>
@@ -63,7 +63,7 @@
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
             <?php foreach($reviewables as $reviewable): ?>
-  	  			  <?php include_partial('reviewable_li', array('id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true)) ?>
+  	  			  <?php include_partial('reviewable_li', array('id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId(), 'reviewable' => $reviewable, 'showVotes' => true, 'showSparkline' => false)) ?>
   	        <?php endforeach?>
             <?php /* if(count($reviewables) < 6):?>
       	      <?php foreach($politicosMasVotadosUltimamenteCont as $politico): ?>
@@ -94,7 +94,7 @@
       <h3><?php echo __('Top 5 políticos')?></h3>
       <ol class="entities">
         <?php foreach($topPoliticos as $politico): ?>
-  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true)) ?>
+  			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true, 'showSparkline' => false)) ?>
       <?php endforeach?>
       </ol>
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
@@ -104,7 +104,7 @@
       <h3><?php echo __('Top 5 partidos')?></h3>
       <ol class="entities">
         <?php foreach($partidosMasVotados as $partido): ?>
-  	  	<?php include_partial('partido_top', array('partido' => $partido)) ?>
+  	  	<?php include_partial('partido_top', array('partido' => $partido, 'showSparkline' => false)) ?>
       <?php endforeach?>
       </ol>
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
@@ -114,7 +114,7 @@
       <h3><?php echo __('Top 5 propuestas')?></h3>
       <ol class="entities">
         <?php foreach($propuestasMasVotadas as $p): ?>
-  	  		<?php include_partial('propuesta_top', array('p' => $p)) ?>
+  	  		<?php include_partial('propuesta_top', array('p' => $p, 'showSparkline' => false)) ?>
       	<?php endforeach?>
       </ol>
       <p class="ranking-link"><strong><?php echo link_to(__('Ranking de propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
