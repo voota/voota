@@ -508,8 +508,8 @@ table.rankings .negative-votes { text-align:right;}
 #eleccion-show #resultados .politicos img { width: 20px; height: 20px;}
 #eleccion-show .tooltip-politico .nombre { margin-bottom: 5px;}
 #eleccion-show .tooltip-politico .photo { float: left; overflow: hidden;}
-#eleccion-show .tooltip-politico .positive_votes { margin-left: 45px; width: 100px; height: 18px; margin-bottom: 5px; text-align: left; background: transparent url(/images/icoMiniUp.png) right center no-repeat;}
-#eleccion-show .tooltip-politico .negative_votes { margin-left: 45px; width: 100px; height: 18px; text-align: left; background: transparent url(/images/icoMiniDown.png) right center no-repeat;}
+#eleccion-show .tooltip-politico .positive_votes { margin-left: 45px; width: 100px; height: 18px; margin-bottom: 5px; text-align: left;}
+#eleccion-show .tooltip-politico .negative_votes { margin-left: 45px; width: 100px; height: 18px; text-align: left;}
 
 /* Página de propuesta */
 #propuesta-show h2#name { margin-bottom: 5px;}
