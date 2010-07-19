@@ -17,15 +17,20 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://connect.facebook.net/es_ES/all.js"></script>
-  <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
-  <script type="text/javascript" src="/js/ajaxupload.js"></script>
-  <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
-  <script type="text/javascript" src="/sfReviewPlugin/js/jquery.hint.js"></script>
-  <script type="text/javascript" src="/js/jquery.qtip-1.0.min.js"></script>
-  <script type="text/javascript" src="/js/bluff/js-class.js"></script>
-  <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
-  <script type="text/javascript" src="/js/bluff/bluff.js"></script>
-  <script type="text/javascript" src="/js/bluff/custom.js"></script>
+  
+  <?php if (false): // TODO: Si estamos en producción ?>
+    <script type="text/javascript" src="/js/all.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
+  <?php else: ?>
+    <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
+    <script type="text/javascript" src="/js/ajaxupload.js"></script>
+    <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
+    <script type="text/javascript" src="/sfReviewPlugin/js/jquery.hint.js"></script>
+    <script type="text/javascript" src="/js/jquery.qtip-1.0.min.js"></script>
+    <script type="text/javascript" src="/js/bluff/js-class.js"></script>
+    <script type="text/javascript" src="/js/bluff/excanvas.js"></script>
+    <script type="text/javascript" src="/js/bluff/bluff.js"></script>
+    <script type="text/javascript" src="/js/bluff/custom.js"></script>
+  <?php endif ?>
 
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
