@@ -102,7 +102,12 @@
   	} 
   	?>
       <?php if ($fechaNacimiento != ''): ?>
-  	    <p><?php echo ($politico->getSexo()=='M')?__('Nacida el %1%', array('%1%' => format_date($fechaNacimiento, 'd'))):__('Nacido el %1%', array('%1%' => format_date($fechaNacimiento, 'd')))?></p>
+  	    <p>
+  	      <?php echo ($politico->getSexo()=='M')?__('Nacida el %1%', array('%1%' => format_date($fechaNacimiento, 'd'))):__('Nacido el %1%', array('%1%' => format_date($fechaNacimiento, 'd')))?>
+  	      <?php if ($politico->getLugarNacimiento()): ?>
+  	        <?php echo __('en %1%', array('%1%' => $politico->getLugarNacimiento())) ?>
+	        <?php endif ?>
+  	    </p>
       <?php endif ?>
 
       <?php if ($politico->getResidencia() != ''): ?>
