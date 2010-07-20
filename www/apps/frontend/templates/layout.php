@@ -11,6 +11,20 @@
   <?php include_http_metas() ?>
   <?php include_metas() ?>
   <link rel="shortcut icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />  
+  <style type="text/css">
+    <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
+      input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
+    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
+      input[type=submit], input[type=button], button { padding: 1px 10px 1px 10px; line-height: 13px; }
+    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
+      input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
+      .search button { margin-top: 1px; }
+    <?php endif ?>
+  </style>
+
   <!--[if lt IE 9]>
     <script type="text/javascript" src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
   <![endif]-->
@@ -32,23 +46,10 @@
     <script type="text/javascript" src="/js/bluff/custom.js"></script>
   <?php endif ?>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
-  <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />
-  
   <?php if($sf_request->getAttribute('rssFeed')): ?>
   <link rel="alternate" type="application/rss+xml" title="<?php echo $sf_request->getAttribute('rssTitle')?>" href="<?php echo url_for($sf_request->getAttribute('rssFeed')) ?>" />
   <?php endif ?>
-  
-  <style type="text/css">
-    <?php if (strstr($_SERVER["HTTP_USER_AGENT"], "AppleWebKit")): ?>
-      input[type=submit], input[type=button], button { padding: 3px 10px 3px 10px; line-height: 13px; }
-    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "Gecko")): ?>
-      input[type=submit], input[type=button], button { padding: 1px 10px 1px 10px; line-height: 13px; }
-    <?php elseif (strstr($_SERVER["HTTP_USER_AGENT"], "MSIE")): ?>
-      input[type=submit], input[type=button], button { padding: 3px 10px 0 10px; line-height: 12px; }
-      .search button { margin-top: 1px; }
-    <?php endif ?>
-  </style>
+
   <?php if ($sf_context->getModuleName() == 'home' && $sf_context->getActionName() == 'index'):?>
   	<link rel="image_src" href="http://images.voota.es/shots/s-home-<?php echo $sf_user->getCulture('es')?>.jpg" />
   <?php endif ?>
