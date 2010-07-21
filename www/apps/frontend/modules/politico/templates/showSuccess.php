@@ -118,18 +118,18 @@
       <div title="biografia" class="bio">
         <?php echo formatBio( ($politico->getsfGuardUser() && $politico->getsfGuardUser()->getProfile()->getPresentacion())?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
 
-        <?php if (true): // TODO: Si es candidato a una elección ?>
+        <?php foreach ( $listas as $politicoLista): ?>
           <p>
             <?php echo __('Candidato por el %partido% a las %eleccion%',
                        array(
-                         '%partido%' => link_to('PP', '@homepage'), // TODO: Sustituir nombre partido y enlace a página de partido
-                         '%eleccion%' => link_to('Elecciones Cataluña 2010', '@homepage') // TODO: Sustituir nombre elección y enlace a página de elección
+                         '%partido%' => link_to($politicoLista->getLista()->getPartido(), 'partido/show?id='.$politicoLista->getLista()->getPartido()->getAbreviatura()), 
+                         '%eleccion%' => link_to($politicoLista->getLista()->getConvocatoria()->getEleccion()->getNombre() . ' '. $politicoLista->getLista()->getConvocatoria()->getNombre(), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) 
                         )) ?>
-            <?php echo link_to(image_tag('/images/proto/eleccion-thumb.png', 'alt="'. 'Elecciones Cataluña 2010' .'"'), '@homepage') // TODO: Sustituir ruta a imagen, nombre de elección y enlace a página de elección ?>
+            <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $politicoLista->getLista()->getConvocatoria()->getImagen(), 'alt="'. $politicoLista->getLista()->getConvocatoria() .'"'), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) ?>
           </p>
-        <?php endif ?>
+        <?php endforeach ?>
 
-        <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()): //TODO: Cambiar true por "y es el usuario correspondiente al político" ?>
+        <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()):  ?>
           <p>
             <?php echo link_to(__('Hacer cambios en tu perfil'), '@usuario_edit') ?>
           </p>
@@ -139,7 +139,7 @@
             <?php echo link_to(__('¿Eres %nombre_politico%? Edita esta información', array('%nombre_politico%' => $politico)), 'politico/take?id='.$politico->getId()) ?>
           </p>
         	<?php else: ?>
-            <p><?php echo link_to(__('Ver su perfil en Voota'), "perfil/show?username=".$politico->getsfGuardUser()->getProfile()->getVanity()) // TODO: Enlazar con página de perfil del usuario asociado al político ?></p>
+            <p><?php echo link_to(__('Ver su perfil en Voota'), "perfil/show?username=".$politico->getsfGuardUser()->getProfile()->getVanity()) ?></p>
         	<?php endif ?>
         <?php endif ?>
       </div>
@@ -217,8 +217,7 @@
     </div>
 
     <div id="rss">
-      <?php // TODO: Poner URL del feed RSS ?>
-      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $politico)) ?></a>
+      <a href="<?php echo url_for('politico/feed?id='.$politico->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $politico)) ?></a>
     </div>
 
     <div id="google-ads">
