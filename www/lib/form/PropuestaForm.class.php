@@ -53,6 +53,8 @@ class PropuestaForm extends BasePropuestaForm
 	  
 	$this->validatorSchema['imagen_delete'] = new sfValidatorBoolean();
 	$this->validatorSchema['doc_delete'] = new sfValidatorBoolean();
+	$this->validatorSchema['url_video_1'] = new sfValidatorUrl(array('required' => false));
+	$this->validatorSchema['url_video_2'] = new sfValidatorUrl(array('required' => false));
 	
   }
   

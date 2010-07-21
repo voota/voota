@@ -103,3 +103,9 @@ function secureString( $str ){
  
     return $links;
   } 
+  
+function getYoutubeImageUrl( $str ) {
+	preg_match('/[?&]v=([^&]*)/', $str, $matches);
+	$code = $matches[1];
+	return "http://img.youtube.com/vi/$code/default.jpg";
+}

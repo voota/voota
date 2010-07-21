@@ -28,6 +28,10 @@ abstract class BasePropuestaForm extends BaseFormPropel
       'created_at'              => new sfWidgetFormDateTime(),
       'modified_at'             => new sfWidgetFormDateTime(),
       'vanity'                  => new sfWidgetFormInputText(),
+      'url_video_1'             => new sfWidgetFormInputText(),
+      'partido_video1_id'       => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'url_video_2'             => new sfWidgetFormInputText(),
+      'partido_video2_id'       => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'etiqueta_propuesta_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
     ));
 
@@ -46,6 +50,10 @@ abstract class BasePropuestaForm extends BaseFormPropel
       'created_at'              => new sfValidatorDateTime(array('required' => false)),
       'modified_at'             => new sfValidatorDateTime(array('required' => false)),
       'vanity'                  => new sfValidatorString(array('max_length' => 150)),
+      'url_video_1'             => new sfValidatorString(array('max_length' => 150, 'required' => false)),
+      'partido_video1_id'       => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
+      'url_video_2'             => new sfValidatorString(array('max_length' => 150, 'required' => false)),
+      'partido_video2_id'       => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
       'etiqueta_propuesta_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
     ));
 

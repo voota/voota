@@ -22,12 +22,17 @@ generator:
         display:
           "páginas": [_propuesta_view]
           "datos": [titulo,descripcion,culture,imagen,doc,sf_guard_user_id,is_active,vanity]
+          "vídeos": [url_video_1, partido_video1_id, url_video_2, partido_video2_id]
         fields:
           titulo:
             attributes: { style: "width: 500px;" }
           culture:
             attributes: { style: "width: 32px;" }
           vanity:
+            attributes: { style: "width: 500px;" }
+          url_video_1:
+            attributes: { style: "width: 500px;" }
+          url_video_2:
             attributes: { style: "width: 500px;" }
       edit:    ~
       new:     ~

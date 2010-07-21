@@ -1,20 +1,24 @@
+<?php use_helper('VoFormat') ?>
+
+<?php if($propuesta->getUrlVideo1()): ?>
 <ul class="videos">
   <li>
-    <p><?php echo __('La opinión del %name%:', array('%name%' => 'PP')) // TODO: Sustituir por abreviatura del partido ?></p>
+    <p><?php echo __('La opinión del %name%:', array('%name%' => $propuesta->getPartidoRelatedByPartidoVideo1Id() )) ?></p>
     <div class="thumb">
-      <a href="http://www.youtube.com/watch?v=1VFpJ_QSvhw"><?php // TODO: Sustituir por URL a vídeo ?>
-        <img src="http://img.youtube.com/vi/1VFpJ_QSvhw/default.jpg" alt="<?php echo __('La opinión del %name%:', array('%name%' => 'PP')) // TODO: Sustituir por nombre del partido ?>" /><?php // TODO: Sustituir por URL a thumbnail de vídeo ?>
+      <a href="<?php echo $propuesta->getUrlVideo1() ?>">
+        <img src="<?php echo getYoutubeImageUrl( $propuesta->getUrlVideo1() )?>" alt="<?php echo __('La opinión del %name%:', array('%name%' => $propuesta->getPartidoRelatedByPartidoVideo1Id()))  ?>" />
       </a>
     </div>
-    <p>(<a href="http://www.youtube.com/watch?v=1VFpJ_QSvhw">YouTube, 2:23min.</a>)</p><?php // TODO: Sustituir por URL a vídeo ?>
+    <p>(<a href="<?php echo $propuesta->getUrlVideo1() ?>">YouTube</a>)</p>
   </li>
   <li>
-    <p><?php echo __('La opinión del %name%:', array('%name%' => 'PSOE')) // TODO: Sustituir por abreviatura del partido ?></p>
+    <p><?php echo __('La opinión del %name%:', array('%name%' => $propuesta->getPartidoRelatedByPartidoVideo2Id())) ?></p>
     <div class="thumb">
-      <a href="http://www.youtube.com/watch?v=53Jq3lzBfBw"><?php // TODO: Sustituir por URL a vídeo ?>
-        <img src="http://img.youtube.com/vi/53Jq3lzBfBw/default.jpg" alt="<?php echo __('La opinión del %name%:', array('%name%' => 'PSOE')) // TODO: Sustituir por nombre del partido ?>" /><?php // TODO: Sustituir por URL a thumbnail de vídeo ?>
+      <a href="<?php echo $propuesta->getUrlVideo2() ?>">
+        <img src="<?php echo getYoutubeImageUrl( $propuesta->getUrlVideo2() )?>" alt="<?php echo __('La opinión del %name%:', array('%name%' => $propuesta->getPartidoRelatedByPartidoVideo2Id())) ?>" />
       </a>
     </div>
-    <p>(<a href="http://www.youtube.com/watch?v=53Jq3lzBfBw">YouTube, 2:23min.</a>)</p><?php // TODO: Sustituir por URL a vídeo, tiempo del vídeo ?>
+    <p>(<a href="<?php echo $propuesta->getUrlVideo2() ?>">YouTube</a>)</p>
   </li>
 </ul>
+<?php endif ?>
