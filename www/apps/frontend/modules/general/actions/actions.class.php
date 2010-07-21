@@ -128,6 +128,8 @@ class generalActions extends sfActions{
    	$this->page = $this->getRequestParameter('page', 1);
   	
    	$tag = $request->getParameter("tag", false);
+   	
+	$tag = str_replace("_2E_", ".", $tag);
    	if ($tag){
 	   	$this->q = "#$tag";
    	}
