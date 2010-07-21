@@ -3,7 +3,7 @@
 <?php if ($allTagsPager->getNbResults() > 0): ?>
     <?php foreach ($allTagsPager->getResults() as $etiqueta): ?>
       <li class="review">
-        <a href="<?php echo url_for('general/search?tag='.$etiqueta)?>"><?php echo $etiqueta  ?></a>
+        <a href="<?php echo url_for('general/search?tag='.armorTag( $etiqueta ))?>"><?php echo $etiqueta ?></a>
         <?php echo "(".$etiqueta->getCount().")" ?>
       </li>
     <?php endforeach ?>
