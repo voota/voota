@@ -3,7 +3,7 @@
 <?php echo __('
   <p>¡Hola %1%!</p>
   <p>Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace:</p>
-  <p>%2</p>
+  <p>%2%</p>
   <p>Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.</p>
   <p>¡Y nada más! Te damos la bienvenida a Voota ;-)</p>',
   array(
