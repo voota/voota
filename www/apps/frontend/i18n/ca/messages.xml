@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
 <xliff version="1.0">
-  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-07-01T14:54:07Z" product-name="messages">
+  <file source-language="ES" target-language="ca" datatype="plaintext" original="messages" date="2010-07-22T09:13:09Z" product-name="messages">
     <header/>
     <body>
       <trans-unit id="1" approved="yes">
@@ -3135,6 +3135,39 @@ actual)</target>
   &lt;p&gt;Este es el perfil de %nombreUsuario% en Voota:  %urlUsuario%&lt;/p&gt;
   &lt;p&gt;Esta es tu nueva página en Voota: %urlPolitico%&lt;/p&gt;
   &lt;p&gt;Si crees que este usuario está intentando usurpar tu identidad ponte en contacto con nosotros. Estaremos encantados de darte a ti el control sobre tu perfil: http://voota.es/contact&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="665">
+        <source>RSS de esta propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="666">
+        <source>La opinión del %name%:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="667">
+        <source>Ordenar por fecha: Las más recientes primero / las más antiguas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="668">
+        <source>RSS de %name%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="669">
+        <source>RSS de esta maravilla</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="670">
+        <source>
+  &lt;p&gt;¡Hola %1%!&lt;/p&gt;
+  &lt;p&gt;Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace:&lt;/p&gt;
+  &lt;p&gt;%2%&lt;/p&gt;
+  &lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+  &lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="671">
+        <source>Candidato por el %partido% a las %eleccion%</source>
         <target/>
       </trans-unit>
     </body>
