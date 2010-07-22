@@ -1,4 +1,5 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('VoFormat') ?>
 
 <?php if (count($myTags) > 0 || $allTagsPager->getNbResults() > 0): ?>
   <ul>
