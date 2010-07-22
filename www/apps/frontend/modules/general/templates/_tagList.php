@@ -1,4 +1,5 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('VoFormat') ?>
 
 <?php if ($allTagsPager->getNbResults() > 0): ?>
     <?php foreach ($allTagsPager->getResults() as $etiqueta): ?>
