@@ -32,11 +32,10 @@
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
   <script type="text/javascript" src="http://connect.facebook.net/es_ES/all.js"></script>
   
-  <?php if (false): // TODO: Si estamos en producción ?>
+  <?php if (sfConfig::get('sf_merged')):  ?>
     <script type="text/javascript" src="/js/all.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
   <?php else: ?>
     <script type="text/javascript" src="/js/voota.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
-    <script type="text/javascript" src="/js/ajaxupload.js"></script>
     <script type="text/javascript" src="/sfReviewPlugin/js/sf_review.js?<?php echo sfConfig::get('sf_ml') ?>"></script>
     <script type="text/javascript" src="/sfReviewPlugin/js/jquery.hint.js"></script>
     <script type="text/javascript" src="/js/jquery.qtip-1.0.min.js"></script>
@@ -45,6 +44,7 @@
     <script type="text/javascript" src="/js/bluff/bluff.js"></script>
     <script type="text/javascript" src="/js/bluff/custom.js"></script>
   <?php endif ?>
+  <script type="text/javascript" src="/js/ajaxupload.js"></script>
 
   <?php if($sf_request->getAttribute('rssFeed')): ?>
   <link rel="alternate" type="application/rss+xml" title="<?php echo $sf_request->getAttribute('rssTitle')?>" href="<?php echo url_for($sf_request->getAttribute('rssFeed')) ?>" />

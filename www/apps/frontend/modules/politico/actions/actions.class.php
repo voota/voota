@@ -533,6 +533,14 @@ class politicoActions extends sfActions
     // Feed
     $request->setAttribute('rssTitle',  $this->title. " Feed RSS");
     $request->setAttribute('rssFeed',  'politico/feed?id='.$this->politico->getVanity());
+    
+    $this->listas = false;
+    $c = new Criteria();
+    $c->add(PoliticoListaPeer::POLITICO_ID, $this->politico->getId());
+    $c->addJoin(PoliticoListaPeer::LISTA_ID, ListaPeer::ID);
+    $c->addJoin(ConvocatoriaPeer::ID, ListaPeer::CONVOCATORIA_ID);
+    $c->add(ConvocatoriaPeer::FECHA, time(), Criteria::GREATER_THAN);
+    $this->listas = PoliticoListaPeer::doSelect( $c );
   }
 
   public function executeFeed(sfWebRequest $request)

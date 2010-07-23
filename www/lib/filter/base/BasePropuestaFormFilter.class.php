@@ -25,6 +25,10 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'created_at'              => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'modified_at'             => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'vanity'                  => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'url_video_1'             => new sfWidgetFormFilterInput(),
+      'partido_video1_id'       => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'url_video_2'             => new sfWidgetFormFilterInput(),
+      'partido_video2_id'       => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'etiqueta_propuesta_list' => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
     ));
 
@@ -42,6 +46,10 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'created_at'              => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'modified_at'             => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'vanity'                  => new sfValidatorPass(array('required' => false)),
+      'url_video_1'             => new sfValidatorPass(array('required' => false)),
+      'partido_video1_id'       => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
+      'url_video_2'             => new sfValidatorPass(array('required' => false)),
+      'partido_video2_id'       => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
       'etiqueta_propuesta_list' => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
     ));
 
@@ -99,6 +107,10 @@ abstract class BasePropuestaFormFilter extends BaseFormFilterPropel
       'created_at'              => 'Date',
       'modified_at'             => 'Date',
       'vanity'                  => 'Text',
+      'url_video_1'             => 'Text',
+      'partido_video1_id'       => 'ForeignKey',
+      'url_video_2'             => 'Text',
+      'partido_video2_id'       => 'ForeignKey',
       'etiqueta_propuesta_list' => 'ManyKey',
     );
   }

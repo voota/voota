@@ -1,6 +1,11 @@
 <?php use_helper('Text') ?>
 
 <?php
+
+function armorTag($str) {
+	return str_replace(".", "_2E_", $str);
+}
+
 function v_simple_format_text($text, $options = array(), $ender = "")
 {
   $css = (isset($options['class'])) ? ' class="'.$options['class'].'"' : '';
@@ -103,3 +108,9 @@ function secureString( $str ){
  
     return $links;
   } 
+  
+function getYoutubeImageUrl( $str ) {
+	preg_match('/[?&]v=([^&]*)/', $str, $matches);
+	$code = $matches[1];
+	return "http://img.youtube.com/vi/$code/default.jpg";
+}

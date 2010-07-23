@@ -1,6 +1,6 @@
 prod:
   .settings:
-    ml: 1.9
+    merged: true
     ga_account_es: UA-10529881-1
     ga_account_ca: UA-10529881-3
     no_script_name:         true
@@ -13,6 +13,7 @@ prod:
 
 dev:
   .settings:
+    merged: false
     ga_account_es: UA-10529881-1
     ga_account_ca: UA-10529881-3
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
@@ -27,6 +28,7 @@ dev:
 
 test:
   .settings:
+    merged: true
     ga_account_es: UA-10529881-4
     ga_account_ca: UA-10529881-5
     cache:                  true
@@ -65,7 +67,7 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 2.1
+    ml: 2.2.5
     convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.

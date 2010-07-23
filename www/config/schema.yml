@@ -144,6 +144,10 @@ propel:
     created_at: { type: TIMESTAMP, required: false }
     modified_at: { type: TIMESTAMP, required: false }
     vanity: { type: VARCHAR, size: '150', required: true }
+    url_video_1: { type: VARCHAR, size: '150', required: false }
+    partido_video1_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    url_video_2: { type: VARCHAR, size: '150', required: false }
+    partido_video2_id: { type: INTEGER, size: '11', required: false, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     _indexes: { fk_propuesta_1: [sf_guard_user_id] }
     _uniques: { vanity_UNIQUE: [vanity], titulo_UNIQUE: [titulo] }
   politico:

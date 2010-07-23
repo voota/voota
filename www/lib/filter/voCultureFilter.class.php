@@ -18,7 +18,12 @@
  */
 class voCultureFilter extends sfGuardBasicSecurityFilter
 {
-	private static $domains = array('es' => 'es', 'cat' => 'ca'); 
+	private static $domains = array('es' => 'es', 'cat' => 'ca');
+	private static $cultures = array('es' => 'es', 'ca' => 'cat');
+
+	public static function getCultures(){
+		return self::$cultures;
+	}
 	
   public function execute ($filterChain)
   {

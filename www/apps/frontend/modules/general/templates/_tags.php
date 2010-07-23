@@ -1,10 +1,11 @@
 <?php use_helper('I18N') ?>
+<?php use_helper('VoFormat') ?>
 
 <?php if (count($myTags) > 0 || $allTagsPager->getNbResults() > 0): ?>
   <ul>
     <?php foreach ($myTags as $etiqueta): ?>
       <li class="review">
-        <a href="<?php echo url_for('general/search?tag='.$etiqueta)?>"><?php echo $etiqueta ?></a>
+        <a href="<?php echo url_for('general/search?tag='.armorTag( $etiqueta ))?>"><?php echo $etiqueta ?></a>
         <?php echo "(".$etiqueta->getCount().")" ?>
         <a href="#" class="remove" onclick="return removeTag(<?php echo $etiqueta->getId()?>)">X</a>
       </li>

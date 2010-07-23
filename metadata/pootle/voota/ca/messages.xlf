@@ -2932,7 +2932,7 @@ actual)</target>
         <source>Los partidos más votados en Voota</source>
         <target>Els partits més votats a Voota</target>
       </trans-unit>
-      <trans-unit id="654">
+      <trans-unit id="654" approved="yes">
         <source>
   &lt;p&gt;&amp;nbsp;&lt;/p&gt;
   &lt;p&gt;
@@ -2947,25 +2947,25 @@ actual)</target>
     Voota en Twitter: &lt;a href="http://twitter.com/voota"&gt;http://twitter.com/voota&lt;/a&gt;&lt;br /&gt;
     Voota en Facebook: &lt;a href="http://facebook.com/voota"&gt;http://facebook.com/voota&lt;/a&gt;&lt;br /&gt;
   &lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;&amp;nbsp;&lt;/p&gt; &lt;p&gt; Una abraçada, &lt;br /&gt; Comunitat Voota &lt;/p&gt; &lt;p&gt;--&lt;/p&gt; &lt;p&gt; La nostra web: &lt;a href="http://voota.cat/"&gt;http://voota.cat&lt;/a&gt;&lt;br /&gt; Blog de Voota: &lt;a href="http://blog.voota.cat/"&gt;http://blog.voota.cat&lt;/a&gt;&lt;br /&gt; Voota a Twitter: &lt;a href="http://twitter.com/vootacat"&gt;http://twitter.com/vootacat&lt;/a&gt;&lt;br /&gt; Voota a Facebook: &lt;a href="http://facebook.com/pages/Voota-CAT/117778274904311"&gt;http://facebook.com/pages/Voota-CAT/117778274904311&lt;/a&gt;&lt;br /&gt; &lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="655">
+      <trans-unit id="655" approved="yes">
         <source>
   &lt;p&gt;Hola %1%&lt;/p&gt;
   &lt;p&gt;%2% acaba de dejarte un mensaje tras pasar por tu perfil. Esto es lo que te dice: "%3%"&lt;/p&gt;
   &lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt;
   &lt;p&gt;Dejar de recibir estos avisos (simplemente pincha en este link): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;Hola %1%&lt;/p&gt; &lt;p&gt;%2% acaba de deixar-te un missatge després de passar pel teu perfil. Et diu això: "%3%"&lt;/p&gt; &lt;p&gt;Visita el perfil de %2%: &lt;a href="%4%"&gt;%4%&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Deixar de rebre aquests avisos (simplement fes click en aquest link): &lt;a href="%5%"&gt;%5%&lt;/a&gt;&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="656">
+      <trans-unit id="656" approved="yes">
         <source>A favor de</source>
-        <target/>
+        <target>A favor de</target>
       </trans-unit>
-      <trans-unit id="657">
+      <trans-unit id="657" approved="yes">
         <source>En contra de</source>
-        <target/>
+        <target>En contra de</target>
       </trans-unit>
-      <trans-unit id="658">
+      <trans-unit id="658" approved="yes">
         <source>
   &lt;p&gt;Hola %1%,&lt;/p&gt; 
   %saludo%
@@ -2985,9 +2985,9 @@ actual)</target>
     &lt;br /&gt;
     &lt;a href="%7%"&gt;%7%&lt;/a&gt;
   &lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;Hola %1%,&lt;/p&gt; %saludo% &lt;p&gt; Vas opinar això sobre %4%: &lt;br /&gt; "%5%" &lt;/p&gt;  &lt;p&gt; Veure el teu voot i els seus comentaris en estat natural: &lt;br /&gt; &lt;a href="%6%"&gt;%6%&lt;/a&gt; &lt;/p&gt; &lt;p&gt; Deixar de rebre aquests avisos (simplement fes click en aquest link): &lt;br /&gt; &lt;a href="%7%"&gt;%7%&lt;/a&gt; &lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="659">
+      <trans-unit id="659" approved="yes">
         <source>
   &lt;p&gt;Hola %1%,&lt;/p&gt;
   &lt;p&gt;Alguien, seguramente tú, ha solicitado darse de baja en la web &lt;a href="http://voota.es/"&gt;Voota.es&lt;/a&gt;.&lt;/p&gt;
@@ -2998,31 +2998,31 @@ actual)</target>
     Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.
   &lt;/p&gt;
   &lt;p&gt;Si no has sido tú quien ha solicitado darse de baja en Voota, te pedimos disculpas. Nada ni nadie va a acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;Hola %1%,&lt;/p&gt; &lt;p&gt;Algú, segurament tu, ha sol·licitat donar-se de baixa a la web &lt;a href="http://voota.cat/"&gt;Voota.cat&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;Abans d'esborrar-te ens agradaria que ens ho confirmessis per assegurar-nos que ets tu el que ha sol·licitat aquesta baixa. Només has de fer click sobre el següent enllaç:&lt;/p&gt;  &lt;p&gt; %2% &lt;br /&gt; Si no pots fer click sobre l'enllaç, copia'l i enganxa'l a la barra de direccions del teu navegador. &lt;/p&gt; &lt;p&gt;Si no has sigut tu qui ha sol·licitat donar-se de baixa a Voota, et demanem disculpes. Res ni ningú accedirà al teu compte, simplement esborra aquest mail.&lt;/p&gt; </target>
       </trans-unit>
-      <trans-unit id="660">
+      <trans-unit id="660" approved="yes">
         <source>Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si aún no la tienes, es el mejor momento, joven.</source>
-        <target/>
+        <target>Quiet! Per vootar necessites tenir un compte a Voota o a Facebook. Si encara no la tens, aquest és el millor mooment, jove.</target>
       </trans-unit>
-      <trans-unit id="661">
+      <trans-unit id="661" approved="yes">
         <source>
   &lt;p&gt;¡Hola %1%!&lt;/p&gt;
   &lt;p&gt;Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace:&lt;/p&gt;
   &lt;p&gt;%2&lt;/p&gt;
   &lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
   &lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;¡Hola %1%!&lt;/p&gt; &lt;p&gt;Dues senzilles frases per comentar-te que per acabar el teu registre a Voota necessitem que ens confirmis que ets tu. Només has de fer click sobre el següent enllaç:&lt;/p&gt;  &lt;p&gt;%2&lt;/p&gt; &lt;p&gt;Si no pots fer click sobre l'enllaç, copia'l i enganxa'l a la barra de direccions del teu navegador.&lt;/p&gt; &lt;p&gt;I res més, et donem la benvinguda a Voota! ;-)&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="662">
+      <trans-unit id="662" approved="yes">
         <source>
   &lt;p&gt;¡Hola %1%!&lt;/p&gt;
   &lt;p&gt; Alguien, seguramente tú, nos ha solicitado que te enviemos la contraseña que has olvidado. En el siguiente enlace podrás configurar dicha contraseña a tu gusto:&lt;/p&gt;
   &lt;p&gt;%2%&lt;/p&gt;
   &lt;p&gt;Si no puedes pinchar sobre el enlace, cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
   &lt;p&gt;Si no has sido tú quien ha solicitado el envío de tu contraseña, te pedimos disculpas. Nada ni nadie va acceder a tu cuenta, no te preocupes. Simplemente borra y olvida este email.&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;¡Hola %1%!&lt;/p&gt; &lt;p&gt;Algú, segurament tu, ha sol·licitat que t'enviem la contrassenya que has oblidat. Al següent enllaç podràs configurar-la al teu gust: &lt;/p&gt; &lt;p&gt;%2%&lt;/p&gt; &lt;p&gt;Si no pots fer click sobre l'enllaç, copia'l i enganxa'l a la barra de direccions del teu navegador.&lt;/p&gt; &lt;p&gt;Si no has sigut tu qui ha sol·licitat donar-se de baixa a Voota, et demanem disculpes. Res ni ningú accedirà al teu compte, simplement esborra aquest mail.&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="663">
+      <trans-unit id="663" approved="yes">
         <source>
   &lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
   &lt;p&gt;En primer lugar, queremos darte las gracias por animarte a participar como político en Voota. Nos hace mucha ilusión tenerte entre nosotros, de verdad.&lt;/p&gt;
@@ -3036,15 +3036,48 @@ actual)</target>
   &lt;p&gt;Esta es tu página de político en Voota:  %urlPolitico%&lt;/p&gt;
   &lt;p&gt;Si quieres volver al pasado, escríbenos y todo volverá a su situación inicial: http://voota.es/contact&lt;/p&gt;
   &lt;p&gt;Esperamos serte útiles.&lt;/p&gt;</source>
-        <target/>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt;  &lt;p&gt;En primer lloc, volem donar-te les gràcies per animar-te a participar com a polític a Voota. ens fa molta il·lusió tenir-te entre nosaltres, de veritat.&lt;/p&gt; &lt;p&gt;A partir d'ara podràs:&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Editar la informació que apareix al teu perfil (fotografia, bio, enllaços externs, etc.).&lt;/li&gt; &lt;li&gt;Respondre a les opinions que altres usuaris fan sobre tu.&lt;/li&gt; &lt;li&gt;Rebre notificacions quan tens una nova opinió.&lt;/li&gt; &lt;/ul&gt; &lt;p&gt;Aquesta és la teva pàgina d'usuari a Voota: %urlUsuario%&lt;/p&gt;  &lt;p&gt;Aquesta és la teva pàgina de polític a Voota: %urlPolitico%&lt;/p&gt; &lt;p&gt;Si vols tornar al passat, escriu-nos i tot tornarà a la seva situació inicial: http://voota.cat/contact&lt;/p&gt;  &lt;p&gt;Esperem ser-te d'utilitat.&lt;/p&gt;</target>
       </trans-unit>
-      <trans-unit id="664">
+      <trans-unit id="664" approved="yes">
         <source>
   &lt;p&gt;¡Hola %nombrePolitico%!&lt;/p&gt;
   &lt;p&gt;Queremos avisarte que a partir de ahora %nombreUsuario% podrá hacer cambios sobre tu perfil (biografía, fotografía, enlaces externos, etc.) y responder a las opiniones de otros usuarios sobre tu actividad política.&lt;/p&gt;
   &lt;p&gt;Este es el perfil de %nombreUsuario% en Voota:  %urlUsuario%&lt;/p&gt;
   &lt;p&gt;Esta es tu nueva página en Voota: %urlPolitico%&lt;/p&gt;
   &lt;p&gt;Si crees que este usuario está intentando usurpar tu identidad ponte en contacto con nosotros. Estaremos encantados de darte a ti el control sobre tu perfil: http://voota.es/contact&lt;/p&gt;</source>
+        <target>&lt;p&gt;Hola %nombrePolitico%!&lt;/p&gt;  &lt;p&gt;Volem avisar-te que, a partir d'ara, %nombreUsuario% podrà fer canvis del teu perfil (bio, fotografia, enllaços externs, etc.) i respondre a les opinions dels altres usuaris sobre la teva activitat política.&lt;/p&gt; &lt;p&gt;Aquest és el perfil de %nombreUsuario% a Voota: %urlUsuario%&lt;/p&gt; &lt;p&gt;Aquesta és la teva nova pàgina a Voota: %urlPolitico%&lt;/p&gt;  &lt;p&gt;Si creus que aquest usuari està intentant usurpar-te la identitat, posa't en contacte amb nosaltres. Estarem encantats de donar-te el control del teu perfil: http://voota.cat/contact&lt;/p&gt;</target>
+      </trans-unit>
+      <trans-unit id="665">
+        <source>RSS de esta propuesta</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="666">
+        <source>La opinión del %name%:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="667">
+        <source>Ordenar por fecha: Las más recientes primero / las más antiguas primero</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="668">
+        <source>RSS de %name%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="669">
+        <source>RSS de esta maravilla</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="670">
+        <source>
+  &lt;p&gt;¡Hola %1%!&lt;/p&gt;
+  &lt;p&gt;Dos simples frases para comentarte que para terminar tu registro en Voota necesitamos que nos confirmes que eres tú. Tan sólo tienes que pinchar sobre el siguiente enlace:&lt;/p&gt;
+  &lt;p&gt;%2%&lt;/p&gt;
+  &lt;p&gt;Si no puedes pinchar sobre el enlace cópialo y pégalo en la barra de dirección de tu navegador.&lt;/p&gt;
+  &lt;p&gt;¡Y nada más! Te damos la bienvenida a Voota ;-)&lt;/p&gt;</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="671">
+        <source>Candidato por el %partido% a las %eleccion%</source>
         <target/>
       </trans-unit>
     </body>

@@ -1,11 +1,15 @@
 <?php
 class sfRequestHostCultureRoute extends sfRoute
 {
+	private static $domains = array('es' => 'es', 'cat' => 'ca');
+	
 	private function getCulture( $context ){
 		$culture = false;
 		$user = sfContext::getInstance()->getUser();
-		if ($user)
-  			$culture = $user->getCulture();
+		if ($user){
+	    	$cultures = voCultureFilter::getCultures();
+  			$culture = $cultures[ $user->getCulture() ];
+		}
   		if (!$culture){
 	    	if (preg_match("/\.([a-z]+)$/", $context['host'], $matches)){
 	    		$culture = $matches[1];
