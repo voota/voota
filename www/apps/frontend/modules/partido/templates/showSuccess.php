@@ -181,8 +181,7 @@
     </div>
 
     <div id="rss">
-      <?php // TODO: Poner URL del feed RSS del partido ?>
-      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $partido)) ?></a>
+      <a href="<?php echo url_for('partido/feed?id='.$partido->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $partido)) ?></a>
     </div>
 
     <div id="google-ads">

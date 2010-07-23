@@ -139,8 +139,7 @@
     <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   
     <div id="rss">
-      <?php // TODO: Poner URL del feed RSS de la propuesta ?>
-      <a href="#"><?php echo __('RSS de esta propuesta') ?></a>
+      <a href="<?php echo url_for('propuesta/feed?id='.$propuesta->getVanity())?>"><?php echo __('RSS de esta propuesta') ?></a>
     </div>
   
     <div id="google-ads">

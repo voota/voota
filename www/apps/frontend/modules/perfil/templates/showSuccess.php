@@ -22,8 +22,7 @@
     <?php include_partial('boxProfile', array('user' => $user)) ?>
     
     <div id="rss">
-      <?php // TODO: Poner URL del feed RSS del usuario ?>
-      <a href="#"><?php echo __('RSS de %name%', array('%name%' => $user)) ?></a>
+      <a href="<?php echo url_for('perfil/feed?username='.$user->getProfile()->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $user)) ?></a>
     </div>
   </div>
   
@@ -85,7 +84,7 @@
   	  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => count($propuestas))) ?></h2>
 	    <ol>
 	    	<?php foreach ($propuestas as $propuesta):?>
-		      <?php include_partial('propuesta', array('propuesta' => $propuesta)) // TODO: Incluir una vez por propuesta, pasándole la propuesta ?>
+		      <?php include_partial('propuesta', array('propuesta' => $propuesta))  ?>
 	    	<?php endforeach ?>
 	    </ol>
     <?php endif ?>
