@@ -30,7 +30,7 @@
 	    <?php echo link_to(ago(strtotime( $activity->getDate() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($activity)) ?>.
   	<?php endif ?>
   	<?php if ($activity->getMode() == 2): ?>
-	  		<?php echo __('a %1% le han puesto la etiqueta "%2%"', array(
+	  		<?php echo __('A %1% le han puesto la etiqueta "%2%".', array(
 	  		'%1%' => "<a title='". sfVoUtil::secureString($activity->getEntity(), "&#39;") ."' href= \"". url_for($activity->getEntity()->getModule().'/show?id='.$activity->getEntity()->getVanity()) ."\">". sfVoUtil::cutToLength(sfVoUtil::secureString($activity->getEntity(), "&#39;"), 32, '...') ."</a>",
 	  		'%2%' => review_text( $activity ))) ?>
 	<?php endif ?>
