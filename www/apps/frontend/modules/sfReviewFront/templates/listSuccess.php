@@ -66,7 +66,8 @@
 <div id="content">
     <div class="reviews">
       <div id="tab-all-reviews">
-        <?php include_component_slot('reviews', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'culture' => $culture )) ?>
+        <?php //include_component_slot('reviews', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'culture' => $culture )) ?>
+        <?php include_component_slot('activities', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'culture' => $culture )) ?>
       </div>
     </div>
 </div>

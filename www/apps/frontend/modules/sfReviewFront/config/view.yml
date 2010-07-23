@@ -5,3 +5,5 @@ default:
     review_list_by_user:  [sfReviewFront, reviewListByUser]
     review_list_by_user:  [sfReviewFront, reviewListByUser]
     profileReview:  [perfil, profileReview]
+    activities:  [sfReviewFront, activities]
+    activity_for_list:  [sfReviewFront, activityForList]

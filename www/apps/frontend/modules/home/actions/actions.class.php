@@ -111,7 +111,7 @@ class homeActions extends sfActions{
   	// Ultimos comentarios
 	$filter = array();
 	$filter['culture'] = $culture;	
-  	$this->topReviews = SfReviewManager::getReviews($filter, 1, 5);
+  	//$this->topReviews = SfReviewManager::getReviews($filter, 1, 5);
   	
   	$this->activities = SfReviewManager::getActivities($filter, 1, 5);
   	

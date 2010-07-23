@@ -63,9 +63,9 @@
   <div class="block-inner">
     <h3><?php echo __('Últimos 5 vootos')?></h3>
     <ol class="sf-reviews-list-brief"> 
-      <?php foreach($topReviews as $review): ?>
+      <?php //foreach($topReviews as $review): ?>
       <?php //include_component_slot('review_for_list', array('review' => $review)) ?>
-      <?php endforeach ?>
+      <?php //endforeach ?>
       <?php foreach($activities as $activity): ?>
       	<?php include_component_slot('activity_for_list', array('activity' => $activity)) ?>
       <?php endforeach ?>
