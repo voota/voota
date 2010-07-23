@@ -3,23 +3,6 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoUser') ?>
 
-<script type="text/javascript">
-  // $(window).load(function(){
-  //   <?php foreach($reviewables as $reviewable): ?>
-  //      <?php include_component_slot('sparkline', array('reviewable' => $reviewable, 'id' => "sl_t6_". $reviewable->getType() ."_".$reviewable->getId())) ?>
-  //    <?php endforeach ?>
-  //    <?php foreach($topPoliticos as $politico): ?>
-  //    <?php include_component_slot('sparkline', array('id' => "sparkline_t_".$politico->getId(), 'reviewable' => $politico)) ?>
-  //    <?php endforeach?>
-  //   <?php foreach($partidosMasVotados as $partido): ?>
-  //    <?php include_component_slot('sparkline', array('id' => "sparkline_tp_".$partido->getId(), 'reviewable' => $partido)) ?>
-  //    <?php endforeach?>
-  //   <?php foreach($propuestasMasVotadas as $p): ?>
-  //    <?php include_component_slot('sparkline', array('id' => "sparkline_tpr_".$p->getId(), 'reviewable' => $p)) ?>
-  //    <?php endforeach?>
-  // });
-</script>
-
 <?php slot('header-extra') ?>
   <div id="contact-links">
     <ul>
@@ -81,7 +64,10 @@
     <h3><?php echo __('Últimos 5 vootos')?></h3>
     <ol class="sf-reviews-list-brief"> 
       <?php foreach($topReviews as $review): ?>
-      <?php include_component_slot('review_for_list', array('review' => $review)) ?>
+      <?php //include_component_slot('review_for_list', array('review' => $review)) ?>
+      <?php endforeach ?>
+      <?php foreach($activities as $activity): ?>
+      	<?php include_component_slot('activity_for_list', array('activity' => $activity)) ?>
       <?php endforeach ?>
     </ol>
     <p class="ranking-link"><strong><a href="<?php echo url_for('sfReviewFront/list')?>"><?php echo __('¡Tachán! Todos los vootos sobre partidos, políticos y propuestas') ?></a> (<?php echo format_number($totalUpReviews+$totalDownReviews, 'es_ES') ?>)</strong></p>

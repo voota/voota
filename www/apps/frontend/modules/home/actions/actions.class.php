@@ -113,6 +113,8 @@ class homeActions extends sfActions{
 	$filter['culture'] = $culture;	
   	$this->topReviews = SfReviewManager::getReviews($filter, 1, 5);
   	
+  	$this->activities = SfReviewManager::getActivities($filter, 1, 5);
+  	
   	// elecciones destacadas
  	$convocatoriaActiva = sfConfig::get('sf_convocatoria_activa');
   	$this->convocatoria = ConvocatoriaPeer::retrieveByPk($convocatoriaActiva);

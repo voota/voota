@@ -2,6 +2,10 @@
 
 class sfReviewFrontComponents extends sfReviewComponents
 {
+	public function executeActivityForList(){
+
+	}
+	
   public function executeSendStmt()
   {
   	if($this->reviewType == Politico::NUM_ENTITY){
