@@ -14,6 +14,7 @@ if [ $ENV -eq $TEST ] ; then
 		cd $DEST
 		ssh root@dummy.voota.es 'rm -rf /var/www/voota/www/cache/*'
         ssh root@dummy.voota.es 'cd /var/www/voota; git pull --rebase origin'
+        ssh root@dummy.voota.es 'cd /var/www/voota/www; php symfony mergeAssets'
         ;;
     prod)
 		cd $DEST
