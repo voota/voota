@@ -225,3 +225,18 @@
     </div><!-- end of google-ads -->
   </div>
 </div>
+
+<script type="text/javascript">
+	tracker.trackVisited(
+	'<?php echo $politico->getId() ?>',
+	'<?php echo $politico?>',
+	'<?php echo formatBio( $politico->getBio() )?>',
+	'<?php echo url_for('politico/show?id='.$politico->getVanity(), true)?>',
+	'<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>', 
+	'0',
+	{
+		'categoria': 'Político',
+		'partido': '<?php echo $politico->getPartido()?>'
+	}
+	);
+</script>

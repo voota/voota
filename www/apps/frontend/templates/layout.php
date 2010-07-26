@@ -59,6 +59,19 @@
   <?php if ($sf_context->getModuleName() == 'partido' && $sf_context->getActionName() == 'ranking'):?>
   	<link rel="image_src" href="http://images.voota.es/shots/s-ranking-part-<?php echo $sf_user->getCulture('es')?>.jpg" />
   <?php endif ?>
+<script type="text/javascript">
+	var bkHost = (("https:" == document.location.protocol) ? "https://static-ssl." : "http://static.");
+	document.write(
+	unescape("%3Cscript src='" +
+	bkHost + "blueknow.com/bk.js' " +
+	"type='text/javascript'%3E%3C/script%3E")
+	);
+</script>
+<script type="text/javascript">
+	var tracker = Blueknow.getTracker('BK-592072510504-1');
+</script>
+
+  
 </head>
 
 <body id="<?php echo $sf_context->getModuleName()."-". $sf_context->getActionName() ?>"> 
