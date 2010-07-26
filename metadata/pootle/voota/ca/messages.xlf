@@ -3080,6 +3080,14 @@ actual)</target>
         <source>Candidato por el %partido% a las %eleccion%</source>
         <target/>
       </trans-unit>
+      <trans-unit id="672">
+        <source>Mostrando {count} comentarios de {total}</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="673">
+        <source>Candidato a las %eleccion%</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
