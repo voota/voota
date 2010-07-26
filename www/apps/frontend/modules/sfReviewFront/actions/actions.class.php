@@ -385,5 +385,47 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	
 	$this->updateSums( $request );  	  	
   }
-
+  
+  public function executeFilteredActivities(sfWebRequest $request)
+  {
+  	$this->entityId = $request->getParameter("entityId");  	
+  	$this->value = $request->getParameter("value");  		
+  	$this->page = $request->getParameter("page");	
+  	$this->sfReviewType = $request->getParameter("sfReviewType");
+  	$this->filter = $request->getParameter("filter", false);
+  	$this->slot = $request->getParameter("slot", false);
+  	$this->userId = $request->getParameter("userId", false);
+  	
+  	// Estabamos vootando antes del login ?
+  	$sfr_status = $this->getUser()->getAttribute('sfr_status', false, 'sf_review');
+  	if ($sfr_status){
+  		$aSfrStatus = array();
+  		foreach ($sfr_status as $key => $value){
+  			$aSfrStatus[$key] = $value;
+  		}
+  		$this->sfr_status = $aSfrStatus;
+  		$request->setAttribute('sfr_status', $aSfrStatus);
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  	}
+  	else {
+  		$this->getUser()->setAttribute('sfr_status', false, 'sf_review');
+  		$this->sfr_status = false;
+  	}
+  	
+  	$c = new Criteria;
+  	if ($this->sfReviewType) {
+  		$c->add(SfReviewTypePeer::ID, $this->sfReviewType);
+  	}
+  	$reviewType = SfReviewTypePeer::doSelectOne( $c );
+  	if ($reviewType) {
+	  	$peer = $reviewType->getModel() .'Peer';
+	  	$c = new Criteria;
+	  	$c->add($peer::ID, $this->entityId);
+	  	$this->entity = $peer::doSelectOne( $c );
+  	} 
+  	
+	header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
+	header('Pragma: no-cache');
+  }
+  
 }

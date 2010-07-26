@@ -26,7 +26,7 @@
 	<script type="text/javascript" charset="utf-8">
 	  $(document).ready(function(){
 	    $('.reviews ol:first').reviews_pagination({
-	      url: "<?php echo url_for('sfReviewFront/filteredList') ?>",
+	      url: "<?php echo url_for('sfReviewFront/filteredActivities') ?>",
 	      total: <?php echo $count ?>,
 	      data: { <?php if(isset($entityId)):?>entityId: "<?php echo $entityId ?>",<?php endif?>
 	              <?php if(isset($value)):?>value: "<?php echo $value ?>",<?php endif?>
