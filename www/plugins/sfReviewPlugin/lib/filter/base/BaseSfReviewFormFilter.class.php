@@ -28,6 +28,7 @@ abstract class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'is_active'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'to_fb'               => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'source'              => new sfWidgetFormFilterInput(),
+      'anonymous'           => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -47,6 +48,7 @@ abstract class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'is_active'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'to_fb'               => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'source'              => new sfValidatorPass(array('required' => false)),
+      'anonymous'           => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_review_filters[%s]');
@@ -81,6 +83,7 @@ abstract class BaseSfReviewFormFilter extends BaseFormFilterPropel
       'is_active'           => 'Boolean',
       'to_fb'               => 'Boolean',
       'source'              => 'Text',
+      'anonymous'           => 'Boolean',
     );
   }
 }
