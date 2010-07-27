@@ -67,6 +67,7 @@ class BaseSfReviewManager
 	$criteria->add( $cultureCriterion );	
 	
 	$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $userId);
+	$criteria->add(SfReviewPeer::ANONYMOUS, false);
 	$criteria->addDescendingOrderByColumn("IFNULL(".SfReviewPeer::MODIFIED_AT.",".SfReviewPeer::CREATED_AT.")");
 	if( $f ){
 		if (preg_match('/\.0/', $f)){
@@ -137,12 +138,19 @@ class BaseSfReviewManager
 	  	if(isset($filter['culture'])){
 	  		$culture = $filter['culture'];
 	  	}
+	  	if(isset($filter['anonymous'])){
+	  		$anonymous = $filter['anonymous'];
+	  	}
 	  	if(isset($filter['userId'])){
 	  		$userId = $filter['userId'];
+	  		$anonymous = false;
 	  	}
-		
+  
 	  	if ($userId){
 			$criteria->add(SfReviewPeer::SF_GUARD_USER_ID , $userId);
+	  	}
+	  	if (isset($anonymous)){
+			$criteria->add(SfReviewPeer::ANONYMOUS, $anonymous);
 	  	}
 	  	if ($culture){
 	  		$criteria->add(SfReviewPeer::CULTURE, $culture);
@@ -311,8 +319,15 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0, $source = '' ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0, $source = '', $anonymous = '?' ){
   	$prevValue = false;
+  	
+  	if ($anonymous == '?'){
+  		$user = sfGuardUserPeer::retrieveByPK( $userId );
+  		if ($user){
+  			$anonymous = $user->getProfile()->getAnonymous();
+  		} 
+  	}
   		
   	if (!$entityId || !$value){  		
   		throw new Exception("Not enough parameters.");
@@ -367,6 +382,7 @@ class BaseSfReviewManager
   	$review->setCookie( sfContext::getInstance()->getRequest()->getCookie('symfony') );
 	$review->setCulture( sfContext::getInstance()->getUser()->getCulture() );
 	$review->setToFb( $fb );
+	$review->setAnonymous( $anonymous );
 	
   	try {
   		$review->save();

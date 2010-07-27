@@ -4,6 +4,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
 
 ALTER TABLE `voota`.`sf_review` ADD COLUMN `anonymous` TINYINT(4) NULL DEFAULT 0  AFTER `source` ;
+ALTER TABLE `voota`.`sf_guard_user_profile` DROP COLUMN `presentacion` , ADD COLUMN `anonymous` TINYINT(4) NULL DEFAULT 0  AFTER `fb_tip` ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

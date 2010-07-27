@@ -19,6 +19,7 @@ class Activity {
 	var $sf_review_status_id;
 	var $sf_review_status = false;
 	var $sf_review_id;
+	var $anonymous;
 
 	function getMode(){
 		return $this->mode;
@@ -79,5 +80,8 @@ class Activity {
 			$this->sf_review_status = SfReviewStatusPeer::retrieveByPk($this->sf_review_status_id);
 		}
 		return $this->sf_review_status;
+	}
+	function getAnonymous(){
+		return $this->anonymous;
 	}
 }

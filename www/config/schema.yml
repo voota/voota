@@ -243,6 +243,7 @@ propel:
     fb_publish_votos_otros: { type: boolean, required: true, default: 1 }
     fb_publish_cambios_perfil: { type: boolean, required: true, default: 1 } 
     fb_tip: { type: boolean, required: true, defaultValue: '1' }   
+    anonymous: { type: boolean, required: true, defaultValue: '0' }   
     _indexes: { fk_sf_guard_user_profile_user: [user_id] }
     _uniques: { uniq_sf_guard_user_profile_vanity: [vanity] }
     

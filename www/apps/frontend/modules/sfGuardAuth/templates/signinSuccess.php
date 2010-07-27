@@ -28,6 +28,13 @@
         </td>
       </tr>
       <tr>
+        <th><label for="registration_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label></th>
+        <td>
+          <?php echo $registrationform['anonymous']->render() ?>
+          <?php echo $registrationform['anonymous']->renderError() ?>
+        </td>
+      </tr>
+      <tr>
         <th><label for="registration_apellidos"><?php echo __('Apellidos') ?></label></th>
         <td>
           <?php echo $registrationform['apellidos']->render() ?>

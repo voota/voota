@@ -10,12 +10,20 @@
 <li class="review" id="<?php echo "sf_review_c_m".$activity->getId() ?>">
   <?php if ($activity->getMode() == 1): ?>
 	  <div class="review-avatar">
-	    <?php echo getAvatar( $activity->getsfGuardUser(), 19, 19 ) ?>
+		  <?php if(!$activity->getAnonymous()): ?>
+		    <?php echo getAvatar( $activity->getsfGuardUser() ) ?>
+		  <?php else: ?>
+		  	<?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => __('Vooto anónimo (está en su derecho)'), 'width' => 36, 'height' => 36)); ?>
+		  <?php endif ?>
 	  </div>
   <?php endif ?>
   <div class="review-name">
 	<?php if ($activity->getMode() == 1): ?>
-  		<a title='<?php echo $activity->getsfGuardUserId() ?>' href="<?php echo url_for('@usuario?username='.$activity->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo fullName( $activity->getsfGuardUser(), 15 ) ?></a>
+		<?php if(!$activity->getAnonymous()): ?>
+  			<a title='<?php echo $activity->getsfGuardUserId() ?>' href="<?php echo url_for('@usuario?username='.$activity->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo fullName( $activity->getsfGuardUser(), 15 ) ?></a>
+		<?php else: ?>
+  			<a href="#"><?php echo __('Vooto anónimo') ?></a> <?php echo __('(está en su derecho)')?>
+		<?php endif ?>
     <?php endif ?>
     <?php if ($activity->getMode() == 1): ?>
 	    <?php if ($activity->getValue() == -1): ?>

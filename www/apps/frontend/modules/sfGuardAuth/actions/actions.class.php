@@ -223,7 +223,6 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	
   	$this->registrationform = new RegistrationForm();
     $this->signinform = new SigninForm();
-
     if ($request->isMethod('post') && !$dialog){
     	// Register
     	if ($this->op == 'r') {
@@ -247,6 +246,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		     	$profile->setNombre($this->registrationform->getValue('nombre'));
 		      	$profile->setApellidos($this->registrationform->getValue('apellidos'));
 		      	$profile->setPresentacion($this->registrationform->getValue('presentacion'));
+		      	$profile->setAnonymous($this->registrationform->getValue('anonymous'));
 		      	$profile->setCodigo( util::generateUID() );
 			    /* Generar vanity */
 			    if ($profile->getVanity() == ''){
