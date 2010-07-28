@@ -594,8 +594,8 @@ table.rankings .negative-votes { text-align:right;}
 
 /* Navegación principal */
 #main-nav { position: absolute; bottom: 0; height: 50px; margin: 0; padding: 0;}
-#main-nav li { list-style: none; float: left; margin-right: 2px; width: 90px; height: 44px; padding: 3px; text-align: center; border: 1px solid #cdcdcd; background-color: #f4f4f4;}
-#main-nav li.active { font-weight: normal !important; background-color: #ffffff;}
+#main-nav li { list-style: none; float: left; margin-right: 2px; width: 90px; height: 42px; padding: 4px 0; text-align: center; background: transparent url(/images/main-nav-inactive.gif) top left no-repeat;}
+#main-nav li.active { font-weight: normal !important; background: transparent url(/images/main-nav-active.gif) top left no-repeat;}
 #main-nav li span.count { font-size: 11px;}
 
 /* Reglas nuevas */
