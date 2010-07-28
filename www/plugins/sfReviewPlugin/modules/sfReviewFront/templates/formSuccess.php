@@ -7,5 +7,6 @@
 	'reviewValue' => $reviewValue,
 	'reviewText' => $reviewText,
 	'reviewToFb' => $reviewId?$reviewToFb:false,
+	'anonReview' => $reviewId?$anonReview:false,
 	'cf' => isset($cf)?$cf:false
 )); ?>

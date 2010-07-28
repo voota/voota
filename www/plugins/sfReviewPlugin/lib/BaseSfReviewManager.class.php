@@ -321,8 +321,9 @@ class BaseSfReviewManager
   
   static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0, $source = '', $anonymous = '?' ){
   	$prevValue = false;
+  	$setAnonymous = !$anonymous || $anonymous == '?';
   	
-  	if ($anonymous == '?'){
+  	if (!$setAnonymous){
   		$user = sfGuardUserPeer::retrieveByPK( $userId );
   		if ($user){
   			$anonymous = $user->getProfile()->getAnonymous();
@@ -382,7 +383,9 @@ class BaseSfReviewManager
   	$review->setCookie( sfContext::getInstance()->getRequest()->getCookie('symfony') );
 	$review->setCulture( sfContext::getInstance()->getUser()->getCulture() );
 	$review->setToFb( $fb );
-	$review->setAnonymous( $anonymous );
+	echo ".". $setAnonymous;
+	if ($setAnonymous || $review->isNew())
+		$review->setAnonymous( $anonymous );
 	
   	try {
   		$review->save();

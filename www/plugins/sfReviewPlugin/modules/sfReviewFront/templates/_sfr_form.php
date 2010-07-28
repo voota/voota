@@ -105,24 +105,10 @@ $(document).ready(function(){
   
   <div class="sf-review-opciones">
     <p><a href="#" id="toggle_opciones"><?php echo __('Opciones') ?></a></p>
-    <div id="opciones" style="display: none">
+    <div id="opciones">
       <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
         <div>
-          <?php // TODO: Esto estaría mejor en un helper que calculase si debe estar 'checked' o no. También hace falta refactorizar ?>
-          <?php $fb_checked = false ?>
-          <?php if ($reviewId != ''): ?>
-      			<?php if ($reviewToFb): ?>
-    		    	<?php $fb_checked = true ?>
-    		    <?php endif ?>
-      		<?php elseif ($sf_user->getProfile()->getFacebookUid()): ?>
-    		    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
-    		    	<?php $fb_checked = true ?>
-    		    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
-    		    	<?php $fb_checked = true ?>
-    		    <?php endif ?>
-      		<?php endif ?>
-
-          <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" <?php echo $fb_checked ? 'checked="checked"' : '' ?> />
+		  <?php echo fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user)?>
           <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>">
             <?php echo __('Publicar en tu Facebook') ?>
             <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
@@ -131,6 +117,7 @@ $(document).ready(function(){
       <?php else: ?>
   	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
       <?php endif ?>
+      <?php /* ?>
       <div>
         <input type="checkbox" name="tw_publish" value="1" id="<?php echo "sf-review-tw-publish-$reviewBox" ?>" />
         <label for="<?php echo "sf-review-tw-publish-$reviewBox" ?>">
@@ -138,8 +125,9 @@ $(document).ready(function(){
           <img src="/images/icoTwitter.png" width="16" height="16" alt="Twitter" />
         </label>
       </div>
+      <?php */ ?>
       <div>
-        <input type="checkbox" name="anon_publish" value="1" id="<?php echo "sf-review-anon-publish-$reviewBox" ?>" />
+		  <?php echo anonCheckbox($reviewBox, $anonReview, $reviewId, $sf_user)?>        
         <label for="<?php echo "sf-review-anon-publish-$reviewBox" ?>"><?php echo __('Vooto anónimo') ?></label>
       </div>
     </div>

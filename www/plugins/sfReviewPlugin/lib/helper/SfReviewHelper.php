@@ -200,3 +200,32 @@ function ago($timestamp, $aprox = true){
    $text = sfContext::getInstance()->getI18N()->__("Hace %1% %2%", array('%1%' => $difference, '%2%' => $aPeriod));
    return $text;
 }
+
+function fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user){
+	$fb_checked = false;
+	if ($reviewId != '' && $reviewToFb) {
+		$fb_checked = true;
+	}
+	elseif ($sf_user->getProfile()->getFacebookUid()){
+		if (($sf_user->getProfile()->getFbPublishVotos() && $reviewType)
+				|| ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType)){
+			$fb_checked = true;
+		}
+	}
+      		
+      		
+	return "<input type=\"checkbox\" name=\"fb_publish\" value=\"1\" id=\sf-review-fb-publish-$reviewBox\"" . ($fb_checked?' checked="checked"' : '')." />";
+}
+
+
+function anonCheckbox($reviewBox, $anonReview, $reviewId, $sf_user){
+	$anon_checked = false;
+	if ($anon_checked != '' && $anonReview) {
+			$anon_checked = true;
+	}
+	else {
+		$anon_checked = $sf_user->getProfile()->getAnonymous();
+	}
+      		      		
+	return "<input type=\"checkbox\" name=\"anon_publish\" value=\"1\" id=\"sf-review-anon-publish-$reviewBox\"" . ($anon_checked?' checked="checked"' : '')." />";
+}

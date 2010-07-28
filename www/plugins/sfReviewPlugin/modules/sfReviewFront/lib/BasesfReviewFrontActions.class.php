@@ -179,6 +179,7 @@ class BasesfReviewFrontActions extends sfActions
 	  		$this->reviewText = $review->getText();
 	  		$this->reviewId = $review->getId();
 	  		$this->reviewToFb = $review->getToFb();
+	  		$this->anonReview = $review->getAnonymous();
 	  	}  	
   	}
    }
@@ -224,8 +225,10 @@ class BasesfReviewFrontActions extends sfActions
   	$t = $request->getParameter("t", false);
   	$e = $request->getParameter("e", false);
   	$v = $request->getParameter("v", false);
+  	
   	$review_text = $request->getParameter("review_text", false);
   	$fb_publish = $request->getParameter("fb_publish", 0);
+  	$anon_publish = $request->getParameter("anon_publish", 0);
   	
   	if (! $this->getUser()->isAuthenticated()) {
   		echo "error";die;
@@ -238,6 +241,7 @@ class BasesfReviewFrontActions extends sfActions
   		, false
   		, $fb_publish==1?1:0
   		, 'form'
+  		, $anon_publish==1?1:0
   	);
   	
   	if (!$t ){
