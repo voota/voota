@@ -2,6 +2,10 @@
 <?php use_helper('jQuery') ?>
 <?php use_helper('VoNotice') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'pro')) ?>
+<?php end_slot('menu') ?>
+
 <script type="text/javascript">
   <!--//
   $(document).ready(function() {

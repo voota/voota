@@ -20,22 +20,22 @@
         <li><h2><?php echo __('Opiniones sobre políticos, partidos y propuestas políticas en España.') ?></h2></li>
         <li><h2>
         	<?php echo __('%2%, de %4% personas, sobre ', array(
-        					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('%1% opiniones', array('%1%' => format_number($totalUpReviews+$totalDownReviews, 'es_ES')))."</a>",
+        					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('%1% opiniones', array('%1%' => format_number(SfVoCounter::countReviews(), 'es_ES')))."</a>",
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
                 			'%4%' => format_number($topTotalUsers, 'es_ES')
         	)) ?>
         	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>">
         	<?php echo __('%5% políticos', array(
-                			'%5%' => format_number($topTotalPoliticos, 'es_ES')
+                			'%5%' => format_number(SfVoCounter::countPoliticosReviewed(), 'es_ES')
         	)) ?></a>,
         	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>">
         	<?php echo __('%5% partidos', array(
-                			'%5%' => format_number($topTotalPartidos, 'es_ES')
+                			'%5%' => format_number(SfVoCounter::countPartidosReviewed(), 'es_ES')
         	)) ?></a>
         	<?php echo __('y')?>
         	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>">
         	<?php echo __('%5% propuestas', array(
-                			'%5%' => format_number($topTotalPropuestas, 'es_ES')
+                			'%5%' => format_number(SfVoCounter::countPropuestasReviewed(), 'es_ES')
         	)) ?></a>.
         				
         </h2></li>

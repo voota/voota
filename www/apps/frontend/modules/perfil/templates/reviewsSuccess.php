@@ -2,6 +2,10 @@
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'opi')) ?>
+<?php end_slot('menu') ?>
+
 <script type="text/javascript">
   <!--
   $(document).ready(function(){

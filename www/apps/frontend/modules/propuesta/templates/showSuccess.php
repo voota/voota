@@ -5,6 +5,10 @@
 <?php use_helper('Date') ?>
 <?php use_helper('Number') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'pro')) ?>
+<?php end_slot('menu') ?>
+
 <script type="text/javascript">
   <!--
   $(document).ready(function(){
