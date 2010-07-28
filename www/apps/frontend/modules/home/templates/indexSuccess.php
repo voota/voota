@@ -22,7 +22,7 @@
         	<?php echo __('%2%, de %4% personas, sobre ', array(
         					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('%1% opiniones', array('%1%' => format_number(SfVoCounter::countReviews(), 'es_ES')))."</a>",
         					//'%3%' => format_number($totalDownReviews, 'es_ES'),
-                			'%4%' => format_number($topTotalUsers, 'es_ES')
+                			'%4%' => format_number(SfVoCounter::countUsers(), 'es_ES')
         	)) ?>
         	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>">
         	<?php echo __('%5% políticos', array(

@@ -26,10 +26,7 @@ class homeActions extends sfActions{
   
   public function executeIndex(sfWebRequest $request) {
   	$culture = $this->getUser()->getCulture();
-  	
-  	$cuser = new Criteria();
-  	$cuser->add(sfGuardUserPeer::IS_ACTIVE, 1);
-  	
+  	  	
   	$cpos = new Criteria();
   	$cpos->add(SfReviewPeer::VALUE, 1);
   	$cpos->add(SfReviewPeer::IS_ACTIVE, 1);
@@ -41,8 +38,6 @@ class homeActions extends sfActions{
   	$cneg->add(SfReviewPeer::IS_ACTIVE, 1);
   	//$cneg->add(SfReviewPeer::CULTURE, $culture);
   	$this->totalDownReviews = SfReviewPeer::doCount($cneg);
-  	
-  	$this->topTotalUsers = sfGuardUserPeer::doCount($cuser);
 	
   	$exclude = "";
 	$this->reviewables = EntityManager::getTopEntities(6, $exclude, "WebEntity", true);

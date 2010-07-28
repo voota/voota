@@ -63,7 +63,7 @@
 
       <?php if (count($enlaces) > 0): ?>
         <div class="links">
-          <p><?php echo __('Más sobre %1%:', array('%1%' => $user))?></p>
+          <p><?php echo __('Más sobre %1%:', array('%1%' => fullName($user)))?></p>
           <ul>
             <?php foreach ($user->getEnlaces() as $enlace): ?>
             	<?php if ($enlace->getUrl() != ''): ?>
@@ -85,7 +85,7 @@
 
   <div class="propuestas">
     <?php if(count($propuestas) > 0): ?> 
-  	  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => count($propuestas))) ?></h2>
+  	  <h2><?php echo __('Las propuestas de %nombre% (%1%)', array('%nombre%' => fullName($user), '%1%' => count($propuestas))) ?></h2>
 	    <ol>
 	    	<?php foreach ($propuestas as $propuesta):?>
 		      <?php include_partial('propuesta', array('propuesta' => $propuesta))  ?>
@@ -95,7 +95,7 @@
   </div>
   
 	<div class="comments reviews">
-    <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => $user, '%1%' => $reviewsPager->getNbResults()))?></h2>
+    <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => fullName($user), '%1%' => $reviewsPager->getNbResults()))?></h2>
    	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
 	</div>
 </div>
