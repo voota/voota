@@ -4,7 +4,11 @@
 <?php use_helper('Date') ?>
 <?php use_helper('SfReview') ?>
 <?php use_helper('VoUser') ?>
-    
+   
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'ele')) ?>
+<?php end_slot('menu') ?>
+ 
 <script type="text/javascript">
   $(document).ready(function(){
     $('img.politico').tooltip_politico_elecciones();

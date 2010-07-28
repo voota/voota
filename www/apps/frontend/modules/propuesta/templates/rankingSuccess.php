@@ -4,6 +4,10 @@
 <?php use_helper('Date') ?>
 <?php use_helper('VoFormat') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'pro')) ?>
+<?php end_slot('menu') ?>
+
 <?php include_partial('sfReviewFront/dialog') ?>
 
 <script type="text/javascript">    

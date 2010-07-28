@@ -1,6 +1,10 @@
 <?php use_helper('I18N') ?>
 <?php use_helper('VoFormat') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'ele')) ?>
+<?php end_slot('menu') ?>
+
 <h2>
   <img src="/images/lista-oficial.png" alt="<?php echo __('Lista oficial del partido')?>" />
   <?php echo __('Lista oficial del partido')?>

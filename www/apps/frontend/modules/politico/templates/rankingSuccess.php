@@ -3,6 +3,10 @@
 <?php use_helper('Number') ?>
 <?php use_helper('VoFormat') ?>
  
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'pol')) ?>
+<?php end_slot('menu') ?>
+
 <script type="text/javascript">
   $(document).ready(function(){
 	  	$("input#ac_partido").autocomplete({

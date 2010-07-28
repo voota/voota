@@ -171,36 +171,9 @@
       <?php endif ?>
       
       <?php include_slot('header-extra') ?>
-      
-      <?php if (true): // TODO: A menos que se esté en la home ?>
-        <ul id="main-nav">
-          <li>
-            <a href="#"><?php echo __('Políticos') ?></a>
-            <br />
-            <span class="count"><?php echo "67.556" // TODO: Mostrar total de políticos, con separación de miles ?></span>
-          </li>
-          <li>
-            <a href="#"><?php echo __('Partidos') ?></a>
-            <br />
-            <span class="count"><?php echo "67.556" // TODO: Mostrar total de partidos, con separación de miles ?></span>
-          </li>
-          <li class="active">
-            <a href="#"><?php echo __('Propuestas') ?></a>
-            <br />
-            <span class="count"><?php echo "67.556" // TODO: Mostrar total de propuestas, con separación de miles ?></span>
-          </li>
-          <li>
-            <a href="#"><?php echo __('Opiniones') ?></a>
-            <br />
-            <span class="count"><?php echo "67.556" // TODO: Mostrar total de opiniones, con separación de miles ?></span>
-          </li>
-          <li>
-            <a href="#"><?php echo __('Elecciones') ?></a>
-            <br />
-            <span class="count"><?php echo "Sólo 1" // TODO: Mostrar total de elecciones, con separación de miles ?></span>
-          </li>
-        </ul>
-      <?php endif ?>
+
+<?php include_slot('menu') ?>
+	  
     </div>
   </div><!-- FIN HEADER -->
 

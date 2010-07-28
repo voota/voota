@@ -4,6 +4,10 @@
 <?php use_helper('VoSmartJS') ?>
 <?php use_helper('VoUser') ?>
 
+<?php slot('menu') ?>
+	<?php include_partial('global/menu', array('tab' => 'opi')) ?>
+<?php end_slot('menu') ?>
+
 <script type="text/javascript">
   $(document).ready(function(){
     $('#filterForm_f, #filterForm_text').change(function(){
