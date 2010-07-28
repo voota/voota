@@ -172,7 +172,7 @@
       
       <?php include_slot('header-extra') ?>
 
-<?php include_slot('menu') ?>
+      <?php include_slot('menu') ?>
 	  
     </div>
   </div><!-- FIN HEADER -->

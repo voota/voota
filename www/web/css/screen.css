@@ -51,10 +51,10 @@ strong.email { color: #2b56ff;}
 #reviews_more { margin-right: 5px;}
 
 /* Layout básico */
+body { background-repeat: repeat-x; background: transparent url(/images/bgBody.png) top center repeat-x}
 #header, #main, #footer { text-align: center;}
 #header-inner, #main-inner { text-align: left; margin: 0 auto; width: 960px; position: relative; overflow: hidden;}
-#header-inner { height: 140px;}
-#main { background-repeat: repeat-x; background: transparent url(/images/bgMain.gif) top center repeat-x}
+#header-inner { height: 150px;}
 #main-inner { padding: 20px 0;}
 #content { float: left; width: 100%;}
 #sidebar { float: right; width: 220px; margin-left: 50px; text-align: left}
@@ -73,7 +73,7 @@ strong.email { color: #2b56ff;}
 #user-links .fbconnect_login_button img { padding-right: 0;}
 #user-links #lo_fb_conn { padding-right: 10px;}
 #user-links #lo_fb_conn .close { font-size: 9px;}
-#header .search { position: absolute; bottom: 15px; right: 0; text-align: right;}
+#header .search { position: absolute; bottom: 25px; right: 0; text-align: right;}
 #contact-links ul { list-style: none; margin: 0; padding: 0; position: absolute; bottom: 20px; left: 0;}
 #contact-links ul li { float: left; padding: 0 50px 0 0;}
 #contact-links ul li a { padding-right: 20px;}
@@ -130,8 +130,9 @@ strong.email { color: #2b56ff;}
 .sf-review-action { font-size: 11px; font-weight: normal;}
 .sf-review-remove { padding-right: 10px;}
 .sf-review-remove span { margin-left: 10px;}
-.sf-review-submit { width: 215px; margin: 0 5px 10px 0; text-align: right;}
-.sf-review-submit input { margin: 0;}
+.sf-review-submit { width: 215px; margin: 0 5px 10px 0; }
+.sf-review-submit input { margin: 0; float: right;}
+.sf-review-opciones p { padding-bottom: 5px;}
 .sf-review-hands { float: left; margin: 20px 0 10px 0;}
 .sf-review-hands img, .sf-review-hands label { cursor: pointer;}
 .sf-review-positive, .sf-review-negative { float:left;}
@@ -273,9 +274,10 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-edit #facebook-connect li { margin-top: 10px;}
 #sfGuardAuth-edit #facebook-connect q { font-style: italic;}
 #sfGuardAuth-edit .notice { width: 503px;}
+#sfGuardAuth-edit .anonymous { text-align: right; padding-bottom: 0;}
 
 /* Comentarios y vootos */
-#perfil-reviews h2 { margin-top: 20px;}
+#perfil-reviews #main h2 { margin-top: 20px;}
 #perfil-reviews .comments { clear: both; padding-top: 40px;}
 .propuestas ol { list-style: none; margin: 0; padding: 0;}
 .propuestas li { list-style: none; margin: 0 0 20px 0; overflow: hidden; padding: 0 0 15px 0; border-bottom: 1px dotted #ddd; }
@@ -283,6 +285,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 .comments .photo { width: 36px; float:left;}
 .propuestas .name { width: 290px; padding: 5px 455px 5px 10px; float:left;}
 .comments .name { width: 335px; padding: 5px 10px; float:left;}
+.propuestas .date,
 .comments .date { font-size: 11px;}
 .comments .vote { width: 35px; float:left;}
 .comments .body { width: 390px; padding: 5px 10px; float:left;}
@@ -360,6 +363,7 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 #sfGuardAuth-signin #login  { float: right;}
 #sfGuardAuth-signin .submit input[type=submit] { width: 150px;}
 #sfGuardAuth-signin .legal { text-align: right;}
+#sfGuardAuth-signin .anonymous { text-align: right; padding-bottom: 0;}
 #sfGuardAuth-signin .notice { width: 95%;}
 #sfGuardAuth-signin #accounts-join-login { float: left; width: 350px; padding-right: 130px; background: transparent url(/images/login_separator.png) right center no-repeat;}
 #sfGuardAuth-signin #accounts-join-skip { float: left; width: 380px; padding-left: 100px; padding-top: 122px;}
@@ -589,8 +593,8 @@ table.rankings .negative-votes { text-align:right;}
 .videos .thumb img { width: 120px; height: 90px; }
 
 /* Navegación principal */
-#main-nav { position: absolute; bottom: 0; height: 40px; margin: 0; padding: 0;}
-#main-nav li { list-style: none; float: left; margin-right: 2px; width: 90px; height: 34px; padding: 3px; text-align: center; border: 1px solid #cdcdcd; background-color: #f4f4f4;}
+#main-nav { position: absolute; bottom: 0; height: 50px; margin: 0; padding: 0;}
+#main-nav li { list-style: none; float: left; margin-right: 2px; width: 90px; height: 44px; padding: 3px; text-align: center; border: 1px solid #cdcdcd; background-color: #f4f4f4;}
 #main-nav li.active { font-weight: normal !important; background-color: #ffffff;}
 #main-nav li span.count { font-size: 11px;}
 

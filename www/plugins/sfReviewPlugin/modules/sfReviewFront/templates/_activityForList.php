@@ -35,7 +35,7 @@
   	<?php endif ?>
   	<?php if ($activity->getMode() == 1): ?>
 	    <?php echo (!$activity->getType())?__('otro comentario sobre ') ." ":'' ?><a title='<?php echo sfVoUtil::secureString($activity->getEntity(), "&#39;") ?>' href="<?php echo url_for($activity->getEntity()->getModule().'/show?id='.$activity->getEntity()->getVanity())?>"><?php echo sfVoUtil::cutToLength(sfVoUtil::secureString($activity->getEntity(), "&#39;"), 32, '...')?></a>.
-	    <?php echo link_to(ago(strtotime( $activity->getDate() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($activity)) ?>.
+	    <span class="review-date"><?php echo link_to(ago(strtotime( $activity->getDate() )), 'sfReviewFront/show?id='.SfVoUtil::reviewPermalink($activity)) ?>.</span>
   	<?php endif ?>
   	<?php if ($activity->getMode() == 2): ?>
 	  		<?php echo __('A %1% le han puesto la etiqueta "%2%".', array(

@@ -76,17 +76,14 @@
           <td>
             <?php echo $profileEditForm['apellidos']->render(array('title' => __("(Opcional, pero ayuda)"))) ?>
             <?php echo $profileEditForm['apellidos']->renderError() ?>
+            <p class="anonymous">
+              <label for="profile_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label>
+              <?php echo $profileEditForm['anonymous']->render() ?>
+              <?php echo $profileEditForm['anonymous']->renderError() ?>
+            </p>
           </td>
         <td class="hints"></td>
         <?php endif ?>
-      </tr>
-      <tr>
-        <th><label for="profile_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label></th>
-          <td>
-            <?php echo $profileEditForm['anonymous']->render(array()) ?>
-            <?php echo $profileEditForm['anonymous']->renderError() ?>
-          </td>
-        <td class="hints"></td>
       </tr>
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>

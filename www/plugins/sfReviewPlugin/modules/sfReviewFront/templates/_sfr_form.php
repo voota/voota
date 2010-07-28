@@ -72,7 +72,8 @@ $(document).ready(function(){
   
   <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
 
-  <p class="sf-review-submit">
+  <div class="sf-review-submit">
+  	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />    
     <?php if ($reviewId != ''): ?>
   	  <?php if (!isset($cf) || !$cf): ?>
   	    <span class="sf-review-remove">
@@ -100,30 +101,55 @@ $(document).ready(function(){
   			</span>
   		<?php endif ?>
     <?php endif ?>
-  	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />
-  </p>
+  </div>
   
-  <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
-	  <p class="facebook-only sf-review-submit">
-	    <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
-	    <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>"><?php echo __('Publicar en mi Facebook') ?></label>
-	    <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>"
-		<?php if ($reviewId != ''): ?>
-			<?php if ($reviewToFb): ?>
-		    	checked="checked"
-		    <?php endif ?>
-		<?php elseif ($sf_user->getProfile()->getFacebookUid()): ?>
-		    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
-		    	checked="checked"
-		    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
-		    	checked="checked"
-		    <?php endif ?>
-		<?php endif ?>
-	    />
-	  </p>
-  <?php else: ?>
-	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
-  <?php endif ?>
+  <div class="sf-review-opciones">
+    <p><a href="#" id="toggle_opciones"><?php echo __('Opciones') ?></a></p>
+    <div id="opciones" style="display: none">
+      <?php if ($sf_user->getProfile()->getFacebookUid()): ?>
+        <div>
+          <?php // TODO: Esto estaría mejor en un helper que calculase si debe estar 'checked' o no. También hace falta refactorizar ?>
+          <?php $fb_checked = false ?>
+          <?php if ($reviewId != ''): ?>
+      			<?php if ($reviewToFb): ?>
+    		    	<?php $fb_checked = true ?>
+    		    <?php endif ?>
+      		<?php elseif ($sf_user->getProfile()->getFacebookUid()): ?>
+    		    <?php if ($sf_user->getProfile()->getFbPublishVotos() && $reviewType): ?>
+    		    	<?php $fb_checked = true ?>
+    		    <?php elseif ($sf_user->getProfile()->getFbPublishVotosOtros() && !$reviewType): ?>
+    		    	<?php $fb_checked = true ?>
+    		    <?php endif ?>
+      		<?php endif ?>
+
+          <input type="checkbox" name="fb_publish" value="1" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" <?php echo $fb_checked ? 'checked="checked"' : '' ?> />
+          <label for="<?php echo "sf-review-fb-publish-$reviewBox" ?>">
+            <?php echo __('Publicar en tu Facebook') ?>
+            <img src="/images/icoFacebook.png" width="16" height="16" alt="Facebook" />
+          </label>
+        </div>
+      <?php else: ?>
+  	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
+      <?php endif ?>
+      <div>
+        <input type="checkbox" name="tw_publish" value="1" id="<?php echo "sf-review-tw-publish-$reviewBox" ?>" />
+        <label for="<?php echo "sf-review-tw-publish-$reviewBox" ?>">
+          <?php echo __('Publicar en tu Twitter') ?>
+          <img src="/images/icoTwitter.png" width="16" height="16" alt="Twitter" />
+        </label>
+      </div>
+      <div>
+        <input type="checkbox" name="anon_publish" value="1" id="<?php echo "sf-review-anon-publish-$reviewBox" ?>" />
+        <label for="<?php echo "sf-review-anon-publish-$reviewBox" ?>"><?php echo __('Vooto anónimo') ?></label>
+      </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+      $('#toggle_opciones').click(function(){
+        $('#opciones').toggle();
+      });
+    </script>
+  </div>
+  
 </form>
 
 <?php endif //Si no redirect ?>
