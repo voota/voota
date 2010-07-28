@@ -588,6 +588,12 @@ table.rankings .negative-votes { text-align:right;}
 .videos .thumb { width: 120px; height: 90px; padding: 5px; border: 1px solid #cccccc; }
 .videos .thumb img { width: 120px; height: 90px; }
 
+/* Navegación principal */
+#main-nav { position: absolute; bottom: 0; height: 40px; margin: 0; padding: 0;}
+#main-nav li { list-style: none; float: left; margin-right: 2px; width: 90px; height: 34px; padding: 3px; text-align: center; border: 1px solid #cdcdcd; background-color: #f4f4f4;}
+#main-nav li.active { font-weight: normal !important; background-color: #ffffff;}
+#main-nav li span.count { font-size: 11px;}
+
 /* Reglas nuevas */
 
 #sfGuardAuth-remove #main h2 { color:#2b56ff;}
