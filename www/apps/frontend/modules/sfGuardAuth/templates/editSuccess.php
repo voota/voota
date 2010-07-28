@@ -68,7 +68,6 @@
       </tr>
       <tr>
         <th><label for="profile_apellidos"><?php echo __('Tus apellidos') ?></label></th>
-        <?php // TODO: Cambiar condición a "Si el usuario es un político" ?>
         <?php if ($politico): ?>
           <td class="politico">
             <?php echo $politico->getApellidos(); ?>
@@ -80,6 +79,14 @@
           </td>
         <td class="hints"></td>
         <?php endif ?>
+      </tr>
+      <tr>
+        <th><label for="profile_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label></th>
+          <td>
+            <?php echo $profileEditForm['anonymous']->render(array()) ?>
+            <?php echo $profileEditForm['anonymous']->renderError() ?>
+          </td>
+        <td class="hints"></td>
       </tr>
       <tr>
         <th><label for="profile_presentacion"><?php echo __('Presentación') ?></label></th>

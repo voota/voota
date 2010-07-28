@@ -39,6 +39,7 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'fb_publish_votos_otros'    => new sfWidgetFormInputCheckbox(),
       'fb_publish_cambios_perfil' => new sfWidgetFormInputCheckbox(),
       'fb_tip'                    => new sfWidgetFormInputCheckbox(),
+      'anonymous'                 => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -67,6 +68,7 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'fb_publish_votos_otros'    => new sfValidatorBoolean(),
       'fb_publish_cambios_perfil' => new sfValidatorBoolean(),
       'fb_tip'                    => new sfValidatorBoolean(),
+      'anonymous'                 => new sfValidatorBoolean(),
     ));
 
     $this->validatorSchema->setPostValidator(

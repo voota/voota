@@ -56,6 +56,7 @@ class SfReviewManager extends BaseSfReviewManager
 			, r.entity_id
 			, r.sf_review_status_id
 			, r.sf_review_id
+			, anonymous
 			FROM sf_review  r
 			WHERE is_active = 1
 			
@@ -72,6 +73,7 @@ class SfReviewManager extends BaseSfReviewManager
 			, (CASE WHEN ep.fecha IS NOT NULL THEN ep.politico_id WHEN epa.fecha IS NOT NULL THEN epa.partido_id WHEN epr.fecha IS NOT NULL THEN epr.propuesta_id END) entity_id
 			, 1 status_id
 			, null sf_review_id
+			, 0 anonymous
 			FROM etiqueta e
 			LEFT JOIN voota.etiqueta_politico ep on e.id = ep.etiqueta_id
 			LEFT JOIN voota.etiqueta_partido epa on e.id = epa.etiqueta_id

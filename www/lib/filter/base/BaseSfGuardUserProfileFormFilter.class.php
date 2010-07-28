@@ -36,6 +36,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fb_publish_cambios_perfil' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fb_tip'                    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'anonymous'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
     $this->setValidators(array(
@@ -63,6 +64,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fb_publish_cambios_perfil' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fb_tip'                    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'anonymous'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
     $this->widgetSchema->setNameFormat('sf_guard_user_profile_filters[%s]');
@@ -105,6 +107,7 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => 'Boolean',
       'fb_publish_cambios_perfil' => 'Boolean',
       'fb_tip'                    => 'Boolean',
+      'anonymous'                 => 'Boolean',
     );
   }
 }

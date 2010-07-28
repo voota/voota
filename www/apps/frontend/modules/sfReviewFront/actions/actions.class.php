@@ -101,11 +101,11 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$reviews = $reviewsPager->getResults();
   	
   	$description = 
-  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
+  		($reviews[0]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
-  		(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
+  		($reviews[1]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
-  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
+  		($reviews[2]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
   		"...";  	
   		
@@ -166,11 +166,11 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   	$reviews = $reviewsPager->getResults();
   	
   	$description = 
-  		(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile()).
+  		($reviews[0]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[0]->getSfGuardUser())?$reviews[0]->getSfGuardUser():$reviews[0]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[0]->getModifiedAt()?$reviews[0]->getModifiedAt():$reviews[0]->getCreatedAt() ))."), ".
-  		(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile()).
+  		($reviews[1]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[1]->getSfGuardUser())?$reviews[1]->getSfGuardUser():$reviews[1]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[1]->getModifiedAt()?$reviews[1]->getModifiedAt():$reviews[1]->getCreatedAt() ))."), ".
-  		(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile()).
+  		($reviews[2]->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):(trim($reviews[2]->getSfGuardUser())?$reviews[2]->getSfGuardUser():$reviews[2]->getSfGuardUser()->getProfile())).
   		" (".ago(strtotime( $reviews[2]->getModifiedAt()?$reviews[2]->getModifiedAt():$reviews[2]->getCreatedAt() ))."), ".
   		"...";  
   		
@@ -206,18 +206,21 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	    $entity = $peer::retrieveByPk( $tmpReview->getEntityId() );
 	    $entityText .= $entity;
 	    $item->setTitle(sfContext::getInstance()->getI18N()->__('%1%, voota %2% de %3%.', array(
-	    	'%1%' => $review->getSfGuardUser(), 
+	    	'%1%' => $review->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):$review->getSfGuardUser(), 
 	    	'%2%' => $review->getValue()==-1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
 	    	'%3%' => $entityText
 	    )));
 	    $item->setLink('sfReviewFront/show?id='.SfVoUtil::reviewPermalink($review));
-	    $item->setAuthorName($review->getSfGuardUser());
+	    if (!$review->getAnonymous())
+	    	$item->setAuthorName($review->getSfGuardUser());
 	    $item->setPubdate($review->getCreatedAt('U'));
 	    $item->setUniqueId($review->getId());
 	    
-	    $avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
+	    if (!$review->getAnonymous())
+	    	$avatar = S3Voota::getImagesUrl().'/usuarios/cc_s_'.$review->getSfGuardUser()->getProfile()->getImagen();
 	    $text = ($culture==$review->getCulture()|| !$review->getCulture())?$review->getText():'';
-	    $img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
+	    if (!$review->getAnonymous())
+	    	$img = $review->getSfGuardUser()->getProfile()->getImagen()?"<img src=\"$avatar\" alt =\"".$review->getSfGuardUser()."\" /> ":"";
 	    $content =  "$text"; 
 	    
 	    $item->setDescription( $content );
@@ -237,14 +240,14 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		}
 	  	$this->title = sfContext::getInstance()->getI18N()->__('Opinión de %1% sobre %2%'
 	  					, array(
-	  						'%1%' => $this->review->getSfGuardUser(), 
+	  						'%1%' => $this->review->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):$this->review->getSfGuardUser(), 
 	  						'%2%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario')
 	  					)
 	  	);
   	
   		$description = sfContext::getInstance()->getI18N()->__('Opinión de %1% sobre %2%. %3%'
 	  					, array(
-	  						'%1%' => $this->review->getSfGuardUser(), 
+	  						'%1%' => $this->review->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):$this->review->getSfGuardUser(), 
 	  						'%2%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario'),
 	  						'%3%' => $this->review->getText()?$this->review->getText():''
 	  					)
@@ -253,7 +256,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 	  	$description = sfContext::getInstance()->getI18N()->__("%1%publicado por %2% sobre %3% el %4%"
 	  					, array(
 	  						'%1%' => $this->review->getText()?(SfVoUtil::cutToLength($this->review->getText(), 60, '...', true).', '):'', 
-	  						'%2%' => $this->review->getSfGuardUser(),
+	  						'%2%' => $this->review->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo'):$this->review->getSfGuardUser(),
 	  						'%3%' => $entityText?$entityText:sfContext::getInstance()->getI18N()->__('Otro comentario'),
 	  						'%4%' => format_date( $this->review->getCreatedAt(), 'd' )
 	  					)

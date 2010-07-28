@@ -8,6 +8,7 @@ class RegistrationForm extends sfVoForm
       'op' => new sfWidgetFormInputHidden(),
       'username'   => new sfWidgetFormInputText(array()),
       'nombre'   => new sfWidgetFormInputText(array()),
+      'anonymous' => new sfWidgetFormInputCheckbox(array(), array()),
       'apellidos'   => new sfWidgetFormInputText(array()),
       'password' => new sfWidgetFormInputText(array('type' => 'password')),
       'accept' => new sfWidgetFormInputCheckbox(array(), array()),
@@ -22,7 +23,9 @@ class RegistrationForm extends sfVoForm
 	$this->setValidators(array(
       'op'    => new sfValidatorString(array('required' => false)),    
       'username'   => new sfValidatorEmail(array('required' => true), sfVoForm::getEmailMessages()),  
-      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
+      'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()), 
+      'anonymous'   => new sfValidatorString(array('required' => false), sfVoForm::getStringMessages()), 
+      'accept' => new sfValidatorBoolean(array('required' => true), sfVoForm::getRequiredMessages()),     
       'apellidos'   => new sfValidatorString(array('required' => false), sfVoForm::getStringMessages()),    
       'password'    => new sfValidatorPassword(array('required' => true), sfVoForm::getStringMessages()),
       'accept' => new sfValidatorBoolean(array('required' => true), sfVoForm::getRequiredMessages()),

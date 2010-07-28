@@ -54,7 +54,8 @@ class ProfileEditForm extends sfGuardUserAdminForm
 				
       'nombre'   => new sfWidgetFormInputText(array()),
 	  'apellidos'   => new sfWidgetFormInputText(array()),
-	  'apellidos'   => new sfWidgetFormInputText(array()),
+	  //'apellidos'   => new sfWidgetFormInputText(array()),
+      'anonymous' => new sfWidgetFormInputCheckbox(array(), array()),
 	  'presentacion'  => new sfWidgetFormTextarea(array()),
 	  'passwordNew'  => new sfWidgetFormInputText(array('type' => 'password')),
 	  'passwordBis'  => new sfWidgetFormInputText(array('type' => 'password')),
@@ -84,7 +85,8 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'fb_publish_cambios_perfil' => new sfValidatorBoolean(),
 	  
 	  'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
-      'apellidos'   => new sfValidatorString(array('required' => false)),    
+      'apellidos'   => new sfValidatorString(array('required' => false)), 
+      'anonymous'   => new sfValidatorString(array('required' => false), sfVoForm::getStringMessages()),   
       'presentacion'   => new sfValidatorStringCut(array("max_length" => 280, 'required' => false), sfVoForm::getStringMessages()),    
 	  'passwordNew'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),
       'passwordBis'    => new sfValidatorPassword(array('required' => false, ), sfVoForm::getStringMessages()),

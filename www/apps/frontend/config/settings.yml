@@ -67,7 +67,9 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 2.2.5
+    ml: 2.3
+    bknumber_es: BK-592072510504-1
+    bknumber_ca: BK-592072510504-2
     convocatoria_activa: 1
 #    # Optional features. Deactivating unused features boots performance a bit.
 #    use_database:           on        # Enable database manager. Set to off if you don't use a database.
