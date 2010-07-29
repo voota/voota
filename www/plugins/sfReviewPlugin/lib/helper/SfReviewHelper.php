@@ -203,8 +203,8 @@ function ago($timestamp, $aprox = true){
 
 function fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user){
 	$fb_checked = false;
-	if ($reviewId != '' && $reviewToFb) {
-		$fb_checked = true;
+	if ($reviewId != '') {
+		$fb_checked = $reviewToFb;
 	}
 	elseif ($sf_user->getProfile()->getFacebookUid()){
 		if (($sf_user->getProfile()->getFbPublishVotos() && $reviewType)
@@ -220,8 +220,8 @@ function fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user){
 
 function anonCheckbox($reviewBox, $anonReview, $reviewId, $sf_user){
 	$anon_checked = false;
-	if ($anon_checked != '' && $anonReview) {
-			$anon_checked = true;
+	if ($reviewId != '') {
+			$anon_checked = $anonReview;
 	}
 	else {
 		$anon_checked = $sf_user->getProfile()->getAnonymous();

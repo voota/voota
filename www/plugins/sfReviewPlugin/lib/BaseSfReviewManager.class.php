@@ -143,7 +143,8 @@ class BaseSfReviewManager
 	  	}
 	  	if(isset($filter['userId'])){
 	  		$userId = $filter['userId'];
-	  		$anonymous = false;
+	  		if ($userId)
+	  			$anonymous = false;
 	  	}
   
 	  	if ($userId){
@@ -319,11 +320,12 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = 0, $source = '', $anonymous = '?' ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = '?', $source = '', $anonymous = '?' ){
   	$prevValue = false;
-  	$setAnonymous = !$anonymous || $anonymous == '?';
+  	$guessAnonymous = ($anonymous && $anonymous == '?'?true:false);
+  	$guessFB = ($fb && $fb == '?'?true:false);
   	
-  	if (!$setAnonymous){
+  	if ($guessAnonymous){
   		$user = sfGuardUserPeer::retrieveByPK( $userId );
   		if ($user){
   			$anonymous = $user->getProfile()->getAnonymous();
@@ -382,10 +384,11 @@ class BaseSfReviewManager
   	$review->setIpAddress($_SERVER['REMOTE_ADDR']);
   	$review->setCookie( sfContext::getInstance()->getRequest()->getCookie('symfony') );
 	$review->setCulture( sfContext::getInstance()->getUser()->getCulture() );
-	$review->setToFb( $fb );
-	echo ".". $setAnonymous;
-	if ($setAnonymous || $review->isNew())
+	if (!$guessFB)
+		$review->setToFb( $fb );
+	if (!$guessAnonymous || $review->isNew()){
 		$review->setAnonymous( $anonymous );
+	}
 	
   	try {
   		$review->save();

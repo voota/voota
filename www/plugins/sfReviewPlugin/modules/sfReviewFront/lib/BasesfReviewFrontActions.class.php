@@ -168,8 +168,9 @@ class BasesfReviewFrontActions extends sfActions
 		  		, $this->reviewType, $this->reviewEntityId, $this->reviewValue, false
 		  		, false
 		  		, false
-		  		, 0
+		  		, '?'
 		  		, 'form'
+		  		, '?'
 		  	);
 	  	}
 	  	
