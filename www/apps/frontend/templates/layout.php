@@ -197,7 +197,7 @@
       <?php echo link_to(__('Financiación'), 'http://blog.voota.es/es/financiacion-voota', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Twitter'), __('http://twitter.com/Voota'), array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Facebook'), __('http://www.facebook.com/Voota'), array('class' => "enlacesPie")) ?>
-      <a href="#" onclick="UserVoice.Popin.show(uservoiceOptions);return false;"><?php echo __('Sugerencias')?></a>
+      <?php echo link_to(__('Sugerencias'), $sf_user->getCulture() == 'ca'?'http://vootacat.uservoice.com':'http://voota.uservoice.com', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Contactar'), '@contact', array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('Aviso legal'), __('http://blog.voota.es/es/aviso-legal'), array('class' => "enlacesPie")) ?>
       <?php echo link_to(__('API'), 'http://trac.voota.org/wiki/API', array('class' => "enlacesPie")) ?>
@@ -247,30 +247,30 @@
   <!-- FIN GOOGLE ANALYTICS -->
   
   <script type="text/javascript">
-    var uservoiceOptions = {
-      /* required */
-      key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
-      host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
-      forum: '42379',
-      showTab: true,  
-      /* optional */
-      alignment: 'right',
-      background_color:'#3366FF', 
-      text_color: 'white',
-      hover_color: '#06C',
-      lang: 'es'
-    };
-
-    function _loadUserVoice() {
-      var s = document.createElement('script');
-      s.setAttribute('type', 'text/javascript');
-      s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
-      document.getElementsByTagName('head')[0].appendChild(s);
-    }
-    
-    $(window).load(function(){
-      _loadUserVoice();
-    });
+    // var uservoiceOptions = {
+    //   /* required */
+    //   key: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat':'voota'?>",
+    //   host: "<?php echo $sf_user->getCulture() == 'ca'?'vootacat.uservoice.com':'voota.uservoice.com'?>", 
+    //   forum: '42379',
+    //   showTab: true,  
+    //   /* optional */
+    //   alignment: 'right',
+    //   background_color:'#3366FF', 
+    //   text_color: 'white',
+    //   hover_color: '#06C',
+    //   lang: 'es'
+    // };
+    // 
+    // function _loadUserVoice() {
+    //   var s = document.createElement('script');
+    //   s.setAttribute('type', 'text/javascript');
+    //   s.setAttribute('src', ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js");
+    //   document.getElementsByTagName('head')[0].appendChild(s);
+    // }
+    // 
+    // $(window).load(function(){
+    //   _loadUserVoice();
+    // });
   </script>
 
 </body>
