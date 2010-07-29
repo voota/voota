@@ -251,7 +251,14 @@ class BasesfReviewFrontActions extends sfActions
   	
   	$this->reviewText = strip_tags( $review_text );
   	
+  	$this->sendTasks( $request );
+  	
   	$this->forward('sfReviewFront', 'preview');  	
+  }
+  
+  public function sendTasks(sfWebRequest $request)
+  {  
+  
   }
   
   public function executeDelete(sfWebRequest $request){

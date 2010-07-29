@@ -339,10 +339,8 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
    	}
   }
 	
-  public function executeSend(sfWebRequest $request)
+  public function sendTasks(sfWebRequest $request)
   {  	
-  	parent::executeSend( $request );
-  	
 	$this->updateSums( $request );
 
 		// Enviar email
@@ -359,7 +357,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
 		  		$user->getProfile()->save();
 				$mailBody = $this->getPartial('reviewLeftMailBody', array(
 				  'nombre' => $user->getProfile()->getNombre()
-				  , 'usuario' => $this->getUser()->getProfile()->getNombre() . ' ' . $this->getUser()->getProfile()->getApellidos()
+				  , 'usuario' => $review->getAnonymous()?sfContext::getInstance()->getI18N()->__('anónimo (está en su derecho)'):($this->getUser()->getProfile()->getNombre() . ' ' . $this->getUser()->getProfile()->getApellidos())
 				  , 'entity' => $typeId == Propuesta::NUM_ENTITY?"\"$entity\"":$entity
 				  , 'texto_ori' => $review->getText()
 				  , 'comentario' => $request->getParameter('review_text')
