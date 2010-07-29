@@ -83,7 +83,7 @@
   			  <?php include_partial('politico_top', array('id' => "sparkline_t_".$politico->getId(), 'politico' => $politico, 'showVotes' => true, 'showSparkline' => false)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number($totalPoliticos, 'es_ES')?>)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de políticos'), 'politico/ranking')?> (<?php echo format_number(SfVoCounter::countPoliticos(), 'es_ES')?>)</strong></p>
     </div>
 
     <div id="top5-partidos" class="entities-list-mini">
@@ -93,7 +93,7 @@
   	  	<?php include_partial('partido_top', array('partido' => $partido, 'showSparkline' => false)) ?>
       <?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number($totalPartidos, 'es_ES')?>)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de partidos'), 'partido/ranking')?> (<?php echo format_number(SfVoCounter::countPartidos(), 'es_ES')?>)</strong></p>
     </div>
 
     <div id="top5-propuestas" class="entities-list-mini">
@@ -103,7 +103,7 @@
   	  		<?php include_partial('propuesta_top', array('p' => $p, 'showSparkline' => false)) ?>
       	<?php endforeach?>
       </ol>
-      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de propuestas'), 'propuesta/ranking')?> (<?php echo format_number($totalPropuestas, 'es_ES')?>)</strong></p>
+      <p class="ranking-link"><strong><?php echo link_to(__('Ranking de propuestas'), 'propuesta/ranking')?> (<?php echo format_number(SfVoCounter::countPropuestas(), 'es_ES')?>)</strong></p>
     </div>
   </div>
 </div>
