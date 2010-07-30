@@ -22,9 +22,9 @@ dev:
     api_consumer_key_es: 12zhPy8brdLEZwUbLPQ1A
     api_consumer_secret_es: 
 
-    api_key_es: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_key_es: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_secret_es: 
+    api_key_ca: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_key_ca: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_secret_ca: 
 test:
   apidemo:
     server_url: http://voota.es
