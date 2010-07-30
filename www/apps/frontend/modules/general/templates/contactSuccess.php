@@ -9,12 +9,12 @@
       <dt><label for="contact_nombre"><?php echo __('Tu nombre') ?>:</label></dt>
       <dd>
       	<?php echo $form['nombre']->renderError() ?>
-      	<?php echo $form['nombre']->render() ?> <span class="hints"><?php echo __('(Opcional)') ?></span></dd>
+      	<?php echo $form['nombre']->render(array('value' => $sf_user->isAuthenticated()?$sf_user->getGuardUser():'')) ?> <span class="hints"><?php echo __('(Opcional)') ?></span></dd>
       
       <dt><label for="contact_email">Email:</label></dt>
       <dd>
         <?php echo $form['email']->renderError() ?>
-      	<?php echo $form['email']->render() ?>
+      	<?php echo $form['email']->render(array('value' => $sf_user->isAuthenticated()?$sf_user->getGuardUser()->getUserName():'')) ?>
       </dd>
       
       <dt><label for="contact_tipo"><?php echo __('¿De qué se trata?') ?></label></dt>
