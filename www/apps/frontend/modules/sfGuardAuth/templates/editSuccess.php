@@ -182,6 +182,12 @@
         </td>
       </tr>
       <tr>
+        <th><label>Twitter Connect</label></th>
+        <td id="twitter-connect">
+          <?php include_partial('editTwSuccess', array('sf_user' => $sf_user, 'profileEditForm' => $profileEditForm, 'lastReview' => $lastReview, 'lastReviewOnReview' => $lastReviewOnReview)) ?>
+        </td>
+      </tr>
+      <tr>
         <th><label for="profile_passwordNew"><?php echo __('¿Nueva contraseña?') ?></label></th>
         <td>
           <?php echo $profileEditForm['passwordNew']->render() ?>
