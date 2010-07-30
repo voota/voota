@@ -15,7 +15,7 @@
 	    <span class="review-years">· <?php echo __('%1% años', array('%1%' => review_date_diff( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() )))?></span>
 	  <?php endif ?>
   <?php else: ?>
-  	<a href="#"><?php echo __('Vooto anónimo') ?></a> <?php echo __('(está en su derecho)')?>
+  	<?php echo __('Vooto anónimo') ?> <?php echo __('(está en su derecho)')?>
   <?php endif ?>
   
   

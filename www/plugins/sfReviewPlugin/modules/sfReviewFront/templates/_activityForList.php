@@ -22,7 +22,7 @@
 		<?php if(!$activity->getAnonymous()): ?>
   			<a title='<?php echo $activity->getsfGuardUserId() ?>' href="<?php echo url_for('@usuario?username='.$activity->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo fullName( $activity->getsfGuardUser(), 15 ) ?></a>
 		<?php else: ?>
-  			<a href="#"><?php echo __('Vooto anónimo') ?></a> <?php echo __('(está en su derecho)')?>
+  			<?php echo __('Vooto anónimo') ?> <?php echo __('(está en su derecho)')?>
 		<?php endif ?>
     <?php endif ?>
     <?php if ($activity->getMode() == 1): ?>
