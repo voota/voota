@@ -217,6 +217,22 @@ function fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user){
 	return "<input type=\"checkbox\" name=\"fb_publish\" value=\"1\" id=\sf-review-fb-publish-$reviewBox\"" . ($fb_checked?' checked="checked"' : '')." />";
 }
 
+function twCheckbox($reviewBox, $reviewToTw, $reviewId, $reviewType, $sf_user){
+	$tw_checked = false;
+	if ($reviewId != '') {
+		$tw_checked = $reviewToTw;
+	}
+	elseif ($sf_user->getProfile()->getFacebookUid()){
+		if (($sf_user->getProfile()->getTwPublishVotos() && $reviewType)
+				|| ($sf_user->getProfile()->getTwPublishVotosOtros() && !$reviewType)){
+			$tw_checked = true;
+		}
+	}
+      		
+      		
+	return "<input type=\"checkbox\" name=\"tw_publish\" value=\"1\" id=\sf-review-tw-publish-$reviewBox\"" . ($tw_checked?' checked="checked"' : '')." />";
+}
+
 
 function anonCheckbox($reviewBox, $anonReview, $reviewId, $sf_user){
 	$anon_checked = false;

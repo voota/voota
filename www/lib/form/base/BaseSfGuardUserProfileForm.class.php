@@ -39,6 +39,11 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'fb_publish_votos_otros'    => new sfWidgetFormInputCheckbox(),
       'fb_publish_cambios_perfil' => new sfWidgetFormInputCheckbox(),
       'fb_tip'                    => new sfWidgetFormInputCheckbox(),
+      'tw_publish_votos'          => new sfWidgetFormInputCheckbox(),
+      'tw_publish_votos_otros'    => new sfWidgetFormInputCheckbox(),
+      'tw_publish_cambios_perfil' => new sfWidgetFormInputCheckbox(),
+      'tw_oauth_token'            => new sfWidgetFormInputText(),
+      'tw_oauth_token_secret'     => new sfWidgetFormInputText(),
       'anonymous'                 => new sfWidgetFormInputCheckbox(),
     ));
 
@@ -68,6 +73,11 @@ abstract class BaseSfGuardUserProfileForm extends BaseFormPropel
       'fb_publish_votos_otros'    => new sfValidatorBoolean(),
       'fb_publish_cambios_perfil' => new sfValidatorBoolean(),
       'fb_tip'                    => new sfValidatorBoolean(),
+      'tw_publish_votos'          => new sfValidatorBoolean(),
+      'tw_publish_votos_otros'    => new sfValidatorBoolean(),
+      'tw_publish_cambios_perfil' => new sfValidatorBoolean(),
+      'tw_oauth_token'            => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'tw_oauth_token_secret'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'anonymous'                 => new sfValidatorBoolean(),
     ));
 

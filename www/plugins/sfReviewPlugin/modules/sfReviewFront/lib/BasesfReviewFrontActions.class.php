@@ -223,12 +223,15 @@ class BasesfReviewFrontActions extends sfActions
   	
   public function executeSend(sfWebRequest $request)
   {  	
+  	$culture = $this->getUser()->getCulture();
+  	
   	$t = $request->getParameter("t", false);
   	$e = $request->getParameter("e", false);
   	$v = $request->getParameter("v", false);
   	
   	$review_text = $request->getParameter("review_text", false);
   	$fb_publish = $request->getParameter("fb_publish", 0);
+  	$tw_publish = $request->getParameter("tw_publish", 0);
   	$anon_publish = $request->getParameter("anon_publish", 0);
   	
   	if (! $this->getUser()->isAuthenticated()) {
@@ -244,6 +247,27 @@ class BasesfReviewFrontActions extends sfActions
   		, 'form'
   		, $anon_publish==1?1:0
   	);
+  	
+  	if ($tw_publish) {
+  		$profile = $this->getUser()->getGuardUser()->getProfile();
+  		if (!$profile->getTwOauthToken() || !$profile->getTwOauthTokenSecret()){
+			$connection = new TwitterOAuth(sfConfig::get("app_twitter_api_consumer_key_$culture"), sfConfig::get("app_twitter_api_consumer_secret_$culture"));
+			$request_token = $connection->getRequestToken(sfContext::getInstance()->getController()->genUrl("sfGuardAuth/signin?op=tw", true));
+	  		switch ($connection->http_code) {
+			  case 200:
+			    /* Build authorize URL and redirect user to Twitter. */
+			    $twAuthUrl = $connection->getAuthorizeURL($request_token['oauth_token']);
+			    $request->setAttribute('twAuthUrl', $twAuthUrl);
+			    /*
+  				$this->redirect( $url );  	
+			    
+			    echo $url;die;
+			    header('Location: ' . $url); 
+			    break;
+			    */
+			}
+  		}
+  	}
   	
   	if (!$t ){
 		$this->getUser()->setAttribute('sfr_lastvoted_review_id', $e);

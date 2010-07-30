@@ -36,6 +36,11 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fb_publish_cambios_perfil' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'fb_tip'                    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tw_publish_votos'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tw_publish_votos_otros'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tw_publish_cambios_perfil' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'tw_oauth_token'            => new sfWidgetFormFilterInput(),
+      'tw_oauth_token_secret'     => new sfWidgetFormFilterInput(),
       'anonymous'                 => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
@@ -64,6 +69,11 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fb_publish_cambios_perfil' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'fb_tip'                    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tw_publish_votos'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tw_publish_votos_otros'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tw_publish_cambios_perfil' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'tw_oauth_token'            => new sfValidatorPass(array('required' => false)),
+      'tw_oauth_token_secret'     => new sfValidatorPass(array('required' => false)),
       'anonymous'                 => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
@@ -107,6 +117,11 @@ abstract class BaseSfGuardUserProfileFormFilter extends BaseFormFilterPropel
       'fb_publish_votos_otros'    => 'Boolean',
       'fb_publish_cambios_perfil' => 'Boolean',
       'fb_tip'                    => 'Boolean',
+      'tw_publish_votos'          => 'Boolean',
+      'tw_publish_votos_otros'    => 'Boolean',
+      'tw_publish_cambios_perfil' => 'Boolean',
+      'tw_oauth_token'            => 'Text',
+      'tw_oauth_token_secret'     => 'Text',
       'anonymous'                 => 'Boolean',
     );
   }

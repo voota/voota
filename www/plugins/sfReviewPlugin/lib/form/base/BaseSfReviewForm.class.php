@@ -32,6 +32,7 @@ abstract class BaseSfReviewForm extends BaseFormPropel
       'to_fb'               => new sfWidgetFormInputCheckbox(),
       'source'              => new sfWidgetFormInputText(),
       'anonymous'           => new sfWidgetFormInputCheckbox(),
+      'to_tw'               => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -53,6 +54,7 @@ abstract class BaseSfReviewForm extends BaseFormPropel
       'to_fb'               => new sfValidatorBoolean(),
       'source'              => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'anonymous'           => new sfValidatorBoolean(),
+      'to_tw'               => new sfValidatorBoolean(),
     ));
 
     $this->validatorSchema->setPostValidator(

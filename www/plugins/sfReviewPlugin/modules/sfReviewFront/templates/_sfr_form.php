@@ -116,6 +116,13 @@ $(document).ready(function(){
       <?php else: ?>
   	    <input type="hidden" name="fb_publish" value="0" id="<?php echo "sf-review-fb-publish-$reviewBox" ?>" />
       <?php endif ?>
+        <div>
+		  <?php echo twCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user)?>
+          <label for="<?php echo "sf-review-tw-publish-$reviewBox" ?>">
+            <?php echo __('Publicar en tu Twitter') ?>
+            <img src="/images/icoTwitter.png" width="16" height="16" alt="Twitter" />
+          </label>
+        </div>
       <?php /* ?>
       <div>
         <?php // TODO: Esto estaría mejor en un helper que calculase si debe estar 'checked' o no. También hace falta refactorizar ?>

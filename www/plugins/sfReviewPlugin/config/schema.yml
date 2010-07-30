@@ -21,6 +21,7 @@ propel:
     to_fb: { type: boolean, required: true, default: 0 }
     source: { type: VARCHAR, size: '64', required: false }
     anonymous: { type: boolean, required: true, default: 0 }
+    to_tw: { type: boolean, required: true, default: 0 }
     _indexes: { fk_sf_review_1: [sf_guard_user_id], fk_sf_review_2: [sf_review_type_id], fk_sf_review_3: [sf_review_status_id], fk_sf_review_4: [sf_review_id] }
     _uniques: { uniq_review: [entity_id, sf_guard_user_id, sf_review_type_id] }
   sf_review_attach:
