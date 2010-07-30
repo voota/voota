@@ -19,8 +19,3 @@
 	  <p><?php echo review_text( $review ) ?></p>
 	</div>
 <?php endif ?>
-
-
-<?php if ( $twAuthUrl = $sf_request->getAttribute('twAuthUrl', false) ): ?>
-	Cargando popup de auth twitter en <?php echo $twAuthUrl ?> 
-<?php endif ?>
