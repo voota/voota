@@ -214,7 +214,7 @@ function fbCheckbox($reviewBox, $reviewToFb, $reviewId, $reviewType, $sf_user){
 	}
       		
       		
-	return "<input type=\"checkbox\" name=\"fb_publish\" value=\"1\" id=\sf-review-fb-publish-$reviewBox\"" . ($fb_checked?' checked="checked"' : '')." />";
+	return "<input type=\"checkbox\" name=\"fb_publish\" value=\"1\" id=\"sf-review-fb-publish-$reviewBox\"" . ($fb_checked?' checked="checked"' : '')." />";
 }
 
 function twCheckbox($reviewBox, $reviewToTw, $reviewId, $reviewType, $sf_user){
@@ -230,7 +230,7 @@ function twCheckbox($reviewBox, $reviewToTw, $reviewId, $reviewType, $sf_user){
 	}
       		
       		
-	return "<input type=\"checkbox\" name=\"tw_publish\" value=\"1\" id=\sf-review-tw-publish-$reviewBox\"" . ($tw_checked?' checked="checked"' : '')." />";
+	return "<input type=\"checkbox\" name=\"tw_publish\" value=\"1\" id=\"sf-review-tw-publish-$reviewBox\"" . ($tw_checked?' checked="checked"' : '')." />";
 }
 
 
