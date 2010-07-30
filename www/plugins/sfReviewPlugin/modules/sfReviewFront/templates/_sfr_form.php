@@ -73,17 +73,16 @@ $(document).ready(function(){
   <p id="<?php echo "sf-review-counter_$reviewBox" ?>" class="sf-review-counter"></p>
 
   <div class="sf-review-submit">
-  	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  />    
-    <?php if (true)://( $twAuthUrl = $sf_request->getAttribute('twAuthUrl', false) ): ?>
+  	<input type="submit" value="<?php echo __('Enviar')?>" id="<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>"  /> 
+    <?php if (!$sf_user->getProfile()->getTwOauthToken() || !$sf_user->getProfile()->getTwOauthTokenSecret() || !TwitterManager::verify($sf_user)): ?>
       <script type="text/javascript" charset="utf-8">
         $('#<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>').click(function(){
           if ($('#<?php echo "sf-review-tw-publish-$reviewBox" ?>').is(':checked')) {
-            window.open('<?php echo "http://twitter.com" ?>', '<?php echo __("Autorizar a Voota en Twitter") ?>', 'width=800,height=500,menubar=yes,status=yes,location=yes,toolbar=no,scrollbars=no');
+            window.open('<?php echo url_for("sfReviewFront/sendTwitter") ?>', '<?php echo __("Autorizar a Voota en Twitter") ?>', 'width=800,height=500,menubar=yes,status=yes,location=yes,toolbar=no,scrollbars=no');
           }
         });
       </script>
     <?php endif ?>
-  	</script>
     <?php if ($reviewId != ''): ?>
   	  <?php if (!isset($cf) || !$cf): ?>
   	    <span class="sf-review-remove">

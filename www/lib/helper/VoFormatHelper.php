@@ -36,8 +36,8 @@ function getDateFromPlain( $str ) {
 	return mktime(0, 0, 0, substr($str,4,2), substr($str,6,2), substr($str,0,4));
 }
 
-function cutToLength($str, $length = 35) {
-	return SfVoUtil::cutToLength($str, $length);
+function cutToLength($str, $length = 35, $ext = '...', $fullWords = false) {
+	return SfVoUtil::cutToLength($str, $length, $ext, $fullWords);
 }
 
 
@@ -46,8 +46,10 @@ function highlightWords($str, $q) {
 	return SfVoUtil::highlightWords($str, $q);
 }
 
-function sq($str) {
+function sq($str, $includeDouble = false) {
 	$ret = str_replace("'", "\\'", $str);
+	if ($includeDouble)
+		$ret = str_replace("\"", "\\\"", $ret);
 	
 	return $ret;
 }

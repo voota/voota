@@ -493,6 +493,10 @@ sf_review_send:
   url:   /review/send
   param: { module: sfReviewFront, action: send }  
   
+sf_review_send_twitter:
+  url:   /review/sendTwitter
+  param: { module: sfReviewFront, action: sendTwitter }  
+  
 sf_review_init:
   url:   /review/init
   param: { module: sfReviewFront, action: init } 

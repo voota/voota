@@ -232,10 +232,12 @@
 </div>
 
 <script type="text/javascript">
+	var tracker = Blueknow.getTracker('<?php echo sfConfig::get("sf_bknumber_". $sf_user->getCulture()) ?>');
+
 	tracker.trackVisited(
 	'<?php echo $politico->getId() ?>',
 	'<?php echo $politico?>',
-	'<?php echo formatBio( $politico->getBio() )?>',
+	'<?php echo cutToLength(sq(formatBio( $politico->getBio() )), 255, '')?>',
 	'<?php echo url_for('politico/show?id='.$politico->getVanity(), true)?>',
 	'<?php echo S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen() ?>', 
 	'0',

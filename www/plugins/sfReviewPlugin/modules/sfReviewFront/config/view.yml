@@ -4,4 +4,6 @@ default:
     subreviews:  [sfReviewFront, subreviews]
     sendStmt:   [sfReviewFront, sendStmt]
     reviews:  [sfReviewFront, reviews]
+sendTwitterSuccess:
+  has_layout:     false
   

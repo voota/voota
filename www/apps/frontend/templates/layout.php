@@ -68,7 +68,6 @@
 	);
 </script>
 <script type="text/javascript">
-	var tracker = Blueknow.getTracker('<?php echo sfConfig::get("sf_bknumber_". $sf_user->getCulture()) ?>');
 </script>
 
   

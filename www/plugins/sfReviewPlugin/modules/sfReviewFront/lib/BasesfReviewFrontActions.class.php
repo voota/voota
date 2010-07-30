@@ -221,10 +221,37 @@ class BasesfReviewFrontActions extends sfActions
   }
   
   	
+  public function executeSendTwitter(sfWebRequest $request){
+  	$user = $this->getUser();
+  	$culture = $user->getCulture();
+  	$profile = $user->getGuardUser()->getProfile();
+  	$accessToken = $request->getParameter("oauth_verifier", false);
+  	
+  	// authorize
+	if ($accessToken){
+		TwitterManager::authorize($this->getUser(), $accessToken);
+	}
+  	if ($profile->getTwOauthToken() && $profile->getTwOauthTokenSecret()){
+  		if (!TwitterManager::verify($this->getUser()) ){
+	  		$this->redirect( TwitterManager::requestAuthorization($this->getUser()) );
+  			die;
+  		}
+  	}
+	// request auth
+	else {
+  		try {
+  			
+	  		$this->redirect( TwitterManager::requestAuthorization($this->getUser()) );
+  			die;
+  		}
+  		catch (Exception $e){
+  			die;
+  		}
+  	}
+  }
+  
   public function executeSend(sfWebRequest $request)
   {  	
-  	$culture = $this->getUser()->getCulture();
-  	
   	$t = $request->getParameter("t", false);
   	$e = $request->getParameter("e", false);
   	$v = $request->getParameter("v", false);
@@ -248,32 +275,15 @@ class BasesfReviewFrontActions extends sfActions
   		, $anon_publish==1?1:0
   	);
   	
-  	if ($tw_publish) {
-  		$profile = $this->getUser()->getGuardUser()->getProfile();
-  		if (!$profile->getTwOauthToken() || !$profile->getTwOauthTokenSecret()){
-			$connection = new TwitterOAuth(sfConfig::get("app_twitter_api_consumer_key_$culture"), sfConfig::get("app_twitter_api_consumer_secret_$culture"));
-			$request_token = $connection->getRequestToken(sfContext::getInstance()->getController()->genUrl("sfGuardAuth/signin?op=tw", true));
-	  		switch ($connection->http_code) {
-			  case 200:
-			    /* Build authorize URL and redirect user to Twitter. */
-			    $twAuthUrl = $connection->getAuthorizeURL($request_token['oauth_token']);
-			    $request->setAttribute('twAuthUrl', $twAuthUrl);
-			    /*
-  				$this->redirect( $url );  	
-			    
-			    echo $url;die;
-			    header('Location: ' . $url); 
-			    break;
-			    */
-			}
-  		}
-  	}
-  	
   	if (!$t ){
 		$this->getUser()->setAttribute('sfr_lastvoted_review_id', $e);
    	}
   	
   	$this->reviewText = strip_tags( $review_text );
+  	
+  	if($tw_publish && TwitterManager::verify( $this->getUser() )){
+  		TwitterManager::post( $this->getUser(), $review_text );
+  	}
   	
   	$this->sendTasks( $request );
   	
