@@ -153,15 +153,14 @@ function facebookLogoutAndRedirect(url, logout_url) {
 	});
 }
 
-function facebookDisconnectAccount(url) {
-  re_loading('facebook-connect');
+function twitterDisconnectAccount(url) {
+  re_loading('twitter-connect');
 	$.ajax({
 	  type     : 'POST',
 	  dataType : 'html',
 	  url      : url,
 	  success  : function(data, textStatus) {
-	    $('#facebook-connect').html(data);
-	    facebookParseXFBML();
+	    $('#twitter-connect').html(data);
 	  }
 	});
 }

@@ -16,15 +16,6 @@ dev:
     api_key_ca: e062773ea07dbdc1717e308ca335e314
     api_secret_ca: 
     api_id_ca: 110742152288170
-
-  twitter:
-    api_key_es: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_key_es: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_secret_es: 
-
-    api_key_ca: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_key_ca: 12zhPy8brdLEZwUbLPQ1A
-    api_consumer_secret_ca: 
 test:
   apidemo:
     server_url: http://voota.es
@@ -61,6 +52,20 @@ prod:
     api_id_ca: 114702875213134
 
 all:
+
+  twitter:
+    api_key_es: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_key_es: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_secret_es: 
+
+    api_key_ca: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_key_ca: 12zhPy8brdLEZwUbLPQ1A
+    api_consumer_secret_ca: 
+    
+  bitly:
+    login: voota
+    key: 
+    
   s3:
     AccessKey: AKIAJVRUU7UE2RN6DGMQ
     SecretKey: 

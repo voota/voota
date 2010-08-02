@@ -44,7 +44,7 @@ class TwitterManager {
   			return false;
   		}
   		
-  		return true;
+  		return $content;
   	}
   	
   	public static function authorize($user, $accessToken){  
@@ -69,5 +69,20 @@ class TwitterManager {
   		$connection = new TwitterOAuth(sfConfig::get("app_twitter_api_consumer_key_$culture"), sfConfig::get("app_twitter_api_consumer_secret_$culture"), $profile->getTwOauthToken(), $profile->getTwOauthTokenSecret());
   		
   		$connection->post('statuses/update', array('status' => $text));
+  	}
+  	
+  	public static function shorten($url){  
+  		$entityUrl = $url;
+  		
+  		$login = sfConfig::get("app_bitly_login");
+  		$key = sfConfig::get("app_bitly_key");
+  		$url = urlencode  (  $entityUrl  );
+  		$shortenerUrl = "http://api.bit.ly/v3/shorten?login=$login&apiKey=$key&longUrl=$url&format=json";
+  		$shorted = json_decode( file_get_contents( $shortenerUrl ) );
+  		if ($shorted->status_code == 200){
+  			$entityUrl = $shorted->data->url;
+  		}
+  		
+  		return $entityUrl;
   	}
 }

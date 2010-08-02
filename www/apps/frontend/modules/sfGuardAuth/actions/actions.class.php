@@ -452,6 +452,21 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 	} 
   }
   
+  public function executeEditTw(sfWebRequest $request)
+  {
+  	$op = $request->getParameter("op");
+  	
+  	$profile = $this->getUser()->getProfile();
+  	
+  	if ($this->getUser()->isAuthenticated() && $op == 'dis'){
+  		$profile->setTwOauthToken(null);
+  		$profile->setTwOauthTokenSecret(null);
+  		
+  		$profile->save();
+  	}
+
+  }
+  
   public function executeEdit(sfWebRequest $request)
   {    
 	$this->hasDeepUpdates = false;

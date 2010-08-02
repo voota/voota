@@ -340,19 +340,82 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   }
 	
   public function sendTasks(sfWebRequest $request)
-  {  	
+  {  	  	
+  	$tw_publish = $request->getParameter("tw_publish", 0);
+  	$t = $request->getParameter("t", false);
+  	$v = $request->getParameter("v", false);
+  	$e = $request->getParameter("e", false);
+  	$review_text = $request->getParameter("review_text", false);
+  	
 	$this->updateSums( $request );
-
-		// Enviar email
-	if($request->getParameter("t") == '') {
+	
+	if ($t){
+		$type = SfReviewTypePeer::retrieveByPk( $t );
+		$peer = $type->getModel(). "Peer";
+		$entity = call_user_func  ("$peer::retrieveByPk" , $e);		
+	}
+	else {
 	  	$review = SfReviewPeer::retrieveByPk($request->getParameter('e'));
+	  	if (($typeId = $review->getSfReviewTypeId())){
+	  		$type = SfReviewTypePeer::retrieveByPK( $typeId );
+	  		$peer = $type->getModule(). 'Peer';
+		  	$entity = call_user_func  ("$peer::retrieveByPk" , $review->getEntityId());
+	  	}		
+	}
+  
+  	$msg = "";
+  	if($tw_publish && TwitterManager::verify( $this->getUser() )){
+  		switch($t){
+  			case Politico::NUM_ENTITY:
+  				$entityUrl = sfContext::getInstance()->getController()->genUrl("politico/show?id=".$entity->getVanity(), true);
+  				
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto sobre político: "Vooto %1% de %2% en @Voota:  %3%."', array(
+  						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+  						'%2%' => $entity,
+  						'%3%' => TwitterManager::shorten($entityUrl)
+  					)
+  				);
+  				break;
+  			case Partido::NUM_ENTITY:
+  				$entityUrl = sfContext::getInstance()->getController()->genUrl("partido/show?id=".$entity->getAbreviatura(), true);
+  				
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto sobre partido: "Voto %1% del partido %2% en @Voota: %3%."', array(
+  						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+  						'%2%' => $entity->getAbreviatura(),
+  						'%3%' => TwitterManager::shorten($entityUrl)
+  					)
+  				);
+  				break;
+  			case Propuesta::NUM_ENTITY:
+  				$entityUrl = sfContext::getInstance()->getController()->genUrl("propuesta/show?id=".$entity->getVanity(), true);
+  				
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto sobre una propuesta: "%1% de la propuesta "%2%" en @Voota  %3%."', array(
+  						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+  						'%2%' => SfVoUtil::cutToLength($entity->getTitulo(), 60, '...', true),
+  						'%3%' => TwitterManager::shorten($entityUrl)
+  					)
+  				);
+  				break;
+  			case "":
+  				$entityUrl = sfContext::getInstance()->getController()->genUrl($type->getModule()."/show?id=".$entity->getVanity(), true);
+  				
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto sobre otra opinión: "Vooto %1% de una opinión sobre %2% en @Voota %3%."', array(
+  						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
+  						'%2%' => $entity,
+  						'%3%' => TwitterManager::shorten($entityUrl)
+  					)
+  				);
+  				break;
+  		}
+  		TwitterManager::post( $this->getUser(), $msg );
+  	}
+  	
+	// Enviar email
+	if(! $t) {
 	  	//echo $request->getParameter('i');
 	  	$user = $review->getsfGuardUser();
 	  	if ($user->getProfile()->getMailsComentarios()){
-		  	if (($typeId = $review->getSfReviewTypeId())){
-		  		$type = SfReviewTypePeer::retrieveByPK( $typeId );
-		  		$peer = $type->getModule(). 'Peer';
-			  	$entity = $peer::retrieveByPK( $review->getEntityId() );
+		  	if ($typeId){
 		  		$user->getProfile()->setCodigo( util::generateUID() );
 		  		$user->getProfile()->save();
 				$mailBody = $this->getPartial('reviewLeftMailBody', array(

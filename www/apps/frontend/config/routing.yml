@@ -450,6 +450,10 @@ usuario_edit:
 usuario_fb_edit:
   url: /user/editFB
   param: { module: sfGuardAuth, action: editFB }
+
+usuario_tw_edit:
+  url: /user/editTw
+  param: { module: sfGuardAuth, action: editTw }
   
 usuario_fb_confirm_merge:
   url: /user/confirmMerge

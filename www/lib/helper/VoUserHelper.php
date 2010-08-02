@@ -156,3 +156,11 @@ function changeCulture( $culture ){
 	return "http://$host$route";
 }
 
+function twName( $user ){
+	$data = TwitterManager::verify( $user );
+	$ret = "";
+	if ($data){
+		$ret = "".$data->name. " (@".$data->screen_name.")";
+	}
+	return $ret;
+}

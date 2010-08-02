@@ -258,7 +258,6 @@ class BasesfReviewFrontActions extends sfActions
   	
   	$review_text = $request->getParameter("review_text", false);
   	$fb_publish = $request->getParameter("fb_publish", 0);
-  	$tw_publish = $request->getParameter("tw_publish", 0);
   	$anon_publish = $request->getParameter("anon_publish", 0);
   	
   	if (! $this->getUser()->isAuthenticated()) {
@@ -280,10 +279,6 @@ class BasesfReviewFrontActions extends sfActions
    	}
   	
   	$this->reviewText = strip_tags( $review_text );
-  	
-  	if($tw_publish && TwitterManager::verify( $this->getUser() )){
-  		TwitterManager::post( $this->getUser(), $review_text );
-  	}
   	
   	$this->sendTasks( $request );
   	

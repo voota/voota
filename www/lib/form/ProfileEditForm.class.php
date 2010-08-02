@@ -52,6 +52,10 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'fb_publish_votos_otros' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
       'fb_publish_cambios_perfil' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
 				
+      'tw_publish_votos' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+      'tw_publish_votos_otros' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+      'tw_publish_cambios_perfil' => new sfWidgetVoFormInputCheckbox(array('value_attribute_value'=>'1')),
+				
       'nombre'   => new sfWidgetFormInputText(array()),
 	  'apellidos'   => new sfWidgetFormInputText(array()),
 	  //'apellidos'   => new sfWidgetFormInputText(array()),
@@ -83,6 +87,10 @@ class ProfileEditForm extends sfGuardUserAdminForm
       'fb_publish_votos' => new sfValidatorBoolean(),
       'fb_publish_votos_otros' => new sfValidatorBoolean(),
       'fb_publish_cambios_perfil' => new sfValidatorBoolean(),
+	  
+      'tw_publish_votos' => new sfValidatorBoolean(),
+      'tw_publish_votos_otros' => new sfValidatorBoolean(),
+      'tw_publish_cambios_perfil' => new sfValidatorBoolean(),
 	  
 	  'nombre'   => new sfValidatorString(array('required' => true), sfVoForm::getStringMessages()),      
       'apellidos'   => new sfValidatorString(array('required' => false)), 

@@ -5,7 +5,7 @@
 <?php if ($sf_user->isAuthenticated() && $sf_user->getProfile()->getTwOauthToken()): ?>
   <h3>
     <img src="/images/icoFacebookPref.png" alt="Twitter Connect" />
-    <?php echo __('Conectado a Twitter como:') ?> <strong>XXX</strong>
+    <?php echo __('Conectado a Twitter como:') ?> <strong><?php echo twName($sf_user)?></strong>
     (<a id="twitter-disconnect" href="#"><?php echo __('Desconectar') ?></a>)
     <script type="text/javascript">
       <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
