@@ -122,18 +122,18 @@ class SfVoCounter
 	}
 	
 	public static function countPropuestas() {
+		$user = sfContext::getInstance()->getUser();
+		$culture = $user->getCulture();
   		$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 		
 		if ($cache) {
-			$key=md5("propuestas_counter");
+			$key=md5("propuestas_counter_$culture");
 			$data = unserialize($cache->get($key));
 		}
 		else {
 			$data = false;
 		}
 		if (!$data){
-		 	$user = sfContext::getInstance()->getUser();
-		 	$culture = $user->getCulture();
 		  	$cpro = new Criteria();
 		  	$cpro->add(PropuestaPeer::IS_ACTIVE, TRUE);
 		  	//$cpro->add(SfReviewPeer::CULTURE, $culture);
