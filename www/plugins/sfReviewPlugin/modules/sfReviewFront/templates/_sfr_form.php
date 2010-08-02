@@ -86,7 +86,7 @@ $(document).ready(function(){
         }
         $('#<?php echo ($reviewBox?$reviewBox:'sf_review').'_button' ?>').click(function(){
           if ($('#<?php echo "sf-review-tw-publish-$reviewBox" ?>').is(':checked')) {
-            auth_window = window.open('<?php echo url_for("sfReviewFront/sendTwitter") ?>', '<?php echo __("Autorizar a Voota en Twitter") ?>', 'width=800,height=500,menubar=yes,status=yes,location=yes,toolbar=no,scrollbars=no');
+            auth_window = window.open('<?php echo url_for("sfReviewFront/sendTwitter") ?>', null, 'width=800,height=500,menubar=yes,status=yes,location=yes,toolbar=no,scrollbars=no,resizable=no');
             var check_fn = function() { check_if_twitter_auth_window_was_closed(auth_window); };
             setTimeout(check_fn, 200);
             return false;
