@@ -10,7 +10,7 @@
 			  $(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
 			  $('.reviews').tabs( "url" , <?php echo (isset($value) && $value)?$value==1?1:2:0?>, aUrl );
 			  $('.reviews').tabs( "load" , <?php echo (isset($value) && $value)?$value==1?1:2:0?> );
-			  facebookParseXFBML();
+			  //facebookParseXFBML();
 		  });
 	  });
 	  //-->
