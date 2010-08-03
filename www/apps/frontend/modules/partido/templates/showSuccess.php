@@ -82,7 +82,12 @@
     </div>
 
     <div id="description">
-        <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
+        <?php if ($partido->getPresentacion()): ?>
+          <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
+        <?php else: ?>
+          <?php echo __('Vaya, parece ser que no tenemos texto de presentación para este partido. Si sabes algo sobre este partido, ¿qué te parece si nos lo envías tú?') ?>
+          <?php echo link_to(__('Enviar información sobre este partido'), "@contact") ?>
+        <?php endif ?>
 
         <?php if($listas):?>
           <div id="elecciones">
