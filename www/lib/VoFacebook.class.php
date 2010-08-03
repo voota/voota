@@ -17,6 +17,16 @@ require_once(sfConfig::get('sf_lib_dir').'/facebook.php');
  * @author     Sergio Viteri
  */
 class VoFacebook {	
+	public static function getData( $anUid ) {
+		$url = "https://graph.facebook.com/$anUid";
+		
+  		$data = json_decode( file_get_contents( $url ) );
+  		if (isset($data->name)){
+  			return $data;
+  		}
+  		
+  		return false;
+	}
 	public static function getUid() {
 		$culture = sfContext::getInstance()->getUser()->getCulture();
 		$facebook_uid = false;
