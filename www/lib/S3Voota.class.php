@@ -15,6 +15,7 @@
  * @author     Sergio Viteri
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
+
 class S3Voota extends S3 {
 	const _BUCKET_ORI = 'sf_s3_bucket_originals';
 	const _BUCKET_PUB = 'sf_s3_bucket_public';
@@ -36,7 +37,16 @@ class S3Voota extends S3 {
 	}
 	
 	public static function getImagesUrl(){
-		return sfConfig::get(S3Voota::_IMAGES_URL); 
+		global $idx;
+		
+		if (!isset($idx))
+			$idx = 0;
+		
+		$imagesUrlArray = explode(",", sfConfig::get(S3Voota::_IMAGES_URL));
+		if ($idx == count($imagesUrlArray))
+			$idx = 0;
+			
+		return $imagesUrlArray[ $idx++ ];
 	}
 	
 	public function __construct() {

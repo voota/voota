@@ -8,7 +8,7 @@ prod:
     logging_enabled:        false
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          images.voota.es
-    images_url:          http://images.voota.es
+    images_url:          http://images.voota.es,http://images2.voota.es,http://images3.voota.es
     sphinx_server: ip-10-226-242-49.eu-west-1.compute.internal
 
 dev:
@@ -23,7 +23,7 @@ dev:
     etag:                   false
     s3_bucket_originals:       imagesvoota-ori-dummy
     s3_bucket_public:          images.voota.es
-    images_url:          http://images.voota.es
+    images_url:          http://images.voota.es,http://images2.voota.es,http://images3.voota.es
     sphinx_server: localhost
 
 test:
@@ -37,7 +37,7 @@ test:
     #etag:                   false
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          images.voota.es
-    images_url:          http://images.voota.es
+    images_url:          http://images.voota.es,http://images2.voota.es,http://images3.voota.es
     sphinx_server: localhost
 
 all:
