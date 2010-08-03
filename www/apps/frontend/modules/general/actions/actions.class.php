@@ -271,6 +271,8 @@ class generalActions extends sfActions{
   public function executeNewtag(sfWebRequest $request)
   {
   	$texto = $request->getParameter('texto', false);
+  	if ($texto)
+  		$texto = trim($texto);
   	$id = $request->getParameter('entity', false);
   	$type = $request->getParameter('type', false);
 
