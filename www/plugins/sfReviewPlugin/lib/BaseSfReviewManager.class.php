@@ -320,10 +320,11 @@ class BaseSfReviewManager
    	return SfReviewPeer::doSelectOne( $c ); 	
   }
   
-  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = '?', $source = '', $anonymous = '?' ){
+  static public function postReview( $userId, $typeId, $entityId, $value, $text = false, $entity = false, $rm = false, $fb = '?', $source = '', $anonymous = '?', $tw = '?' ){
   	$prevValue = false;
   	$guessAnonymous = ($anonymous && $anonymous == '?'?true:false);
   	$guessFB = ($fb && $fb == '?'?true:false);
+  	$guessTW = ($tw && $tw == '?'?true:false);
   	
   	if ($guessAnonymous){
   		$user = sfGuardUserPeer::retrieveByPK( $userId );
@@ -386,6 +387,8 @@ class BaseSfReviewManager
 	$review->setCulture( sfContext::getInstance()->getUser()->getCulture() );
 	if (!$guessFB)
 		$review->setToFb( $fb );
+	if (!$guessTW)
+		$review->setToTw( $tw );
 	if (!$guessAnonymous || $review->isNew()){
 		$review->setAnonymous( $anonymous );
 	}
