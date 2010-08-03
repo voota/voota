@@ -12,7 +12,7 @@
   				    $('.spinner').hide();
   				    $('.sf-reviews-list-brief').append(data);
   				    $('#page').val(parseInt($('#page').val()) + 1)
-  				    facebookParseXFBML();
+  				    //facebookParseXFBML();
   				  },
   					url: "<?php echo url_for('sfReviewFront/listPage') ?>",
   					beforeSend: function(){ $('.spinner').show() }

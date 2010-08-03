@@ -67,9 +67,6 @@
 	"type='text/javascript'%3E%3C/script%3E")
 	);
 </script>
-<script type="text/javascript">
-</script>
-
   
 </head>
 

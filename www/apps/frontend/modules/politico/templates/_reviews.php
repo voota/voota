@@ -25,8 +25,8 @@
   <?php if ($pager->haveToPaginate() && $pager->getLastPage() > $pager->getPage()): ?>
       <?php echo jq_form_remote_tag(array(
     	'update'   => "more_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD),
-    	'url'      => "@politico_more_comments",
-        'complete'	   => "facebookParseXFBML()"
+    	'url'      => "@politico_more_comments" //,
+      //'complete'	   => "facebookParseXFBML()"
 		),
         array('id' => "frm_".($t==1?'positives':'negatives')."_".($t==1?$pageU:$pageD)
       )) ?>

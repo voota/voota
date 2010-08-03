@@ -210,7 +210,7 @@ class SfVoCounter
   		$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 		
 		if ($cache) {
-			$key=md5("reviews_counter");
+			$key=md5("users_counter");
 			$data = unserialize($cache->get($key));
 		}
 		else {

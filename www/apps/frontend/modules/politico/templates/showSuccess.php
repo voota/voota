@@ -15,7 +15,9 @@
   $(document).ready(function(){
     $('.reviews').tabs({
     	<?php if($sf_user->isAuthenticated() && $sfr_status && $sfr_status['tab']):?>selected: <?php echo $sfr_status['tab'] ?>,<?php $sf_user->setAttribute('sfr_status', $sfr_status, 'sf_review');?><?php endif ?>
-    	load: function() { facebookParseXFBML(); }
+    	load: function() {
+    	  //facebookParseXFBML();
+    	}
 	});
   });
   
@@ -29,7 +31,7 @@
 	$(this).parent().append('<img src="/css/ui-voota/images/ui-anim_basic_16x16.gif" alt="..." />');
 	$('.reviews').tabs( "url" , 0, aUrl );
 	$('.reviews').tabs( "load" , 0 );
-	facebookParseXFBML();
+	//facebookParseXFBML();
   }
   //-->
 </script>

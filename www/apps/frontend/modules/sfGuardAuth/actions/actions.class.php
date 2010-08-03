@@ -40,6 +40,11 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
         
         if ($op == 'fb'){
         	$this->getUser()->getProfile()->setFacebookUid( VoFacebook::getUid() );
+        	if (!$this->getUser()->getProfile()->getNombre()){
+        		$data = VoFacebook::getData($this->getUser()->getProfile()->getFacebookUid());
+        		$this->getUser()->getProfile()->setNombre($data->first_name);
+        		$this->getUser()->getProfile()->setApellidos($data->last_name);
+        	}
         	$this->getUser()->getProfile()->save();
         }
         $this->redirect($signinUrl);
@@ -195,7 +200,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 			$voProfile = $sfGuardUser->getProfile();
 		    $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
 		    $voProfile->setFacebookUid($facebook_uid);
-    
+            if (!$voProfile->getNombre()){
+        		$data = VoFacebook::getData($voProfile->getFacebookUid());
+        		$voProfile->setNombre($data->first_name);
+        		$voProfile->setApellidos($data->last_name);
+        	}
+		    
 		    $c2 = new Criteria();
 		    $c2->add(SfGuardUserProfilePeer::VANITY, "$vanityUrl%", Criteria::LIKE);
 		    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
