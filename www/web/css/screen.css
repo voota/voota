@@ -189,6 +189,9 @@ textarea { border: 1px solid #809DB9; font-family: Georgia, "Times New Roman", T
 .facebook-only img { vertical-align: text-bottom;}
 .hints { padding: 5px 0;}
 input[type=submit].login_or_register { width: 200px; font-size: 12px;}
+a.facebook-button { display: inline-block; line-height: 22px; color: #fff; text-decoration: none; background: transparent url(/images/boton_facebook_left.png) left top no-repeat; padding: 0 0 0 25px !important;}
+a.facebook-button span { display: inline-block; line-height: 15px; background: transparent url(/images/boton_facebook_right.png) right top no-repeat; padding: 4px 5px 3px 0 !important;}
+a.facebook-button:visited { color: #fff;}
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}

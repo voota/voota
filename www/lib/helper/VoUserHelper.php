@@ -97,9 +97,8 @@ function vo_facebook_connect_ajax_button($box, $func_name) {
 }
 
 function vo_facebook_connect_associate_button($text = '', $box = 'facebook-connect') {
-  $func = 'facebookAssociate("'. url_for('@usuario_fb_edit?op=con&box='.$box). '", "'.$box.'")';
-  #return "<a id='fbc_button_c' onclick=\"return $func\" href='#'>".  ($text?$text:image_tag('/sfFacebookConnectPlugin/images/fb_light_medium_short.gif', 'alt="Facebook Connect"')) . "</a>";
-  return jsWrite('fb:login-button', array('id' => 'fbc_button_c', 'v' => 2, 'size' => 'medium', 'perms' => 'publish_stream', 'onlogin' => $func), __('Sincronizar Voota con Facebook'));
+  $func = 'facebookAssociate(\''. url_for('@usuario_fb_edit?op=con&box='.$box). '\', \''.$box.'\')';
+  return '<a href="javascript:'.$func.'" class="facebook-button"><span>'.__('Sincronizar Voota con Facebook').'</span></a>';
 }
 
 function isPolitico($user){
