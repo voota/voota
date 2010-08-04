@@ -187,16 +187,26 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   	$dialog = $request->getParameter('dialog', false);
   	/* IF FB CONNECT */
 	if ($this->op == 'fbc' && $facebook_uid = VoFacebook::getUid()){
+		//echo "FBC";die;
 		$c = new Criteria();
 		$c->addJoin(SfGuardUserProfilePeer::USER_ID, SfGuardUserPeer::ID);
 		$c->add(SfGuardUserProfilePeer::FACEBOOK_UID, $facebook_uid);
 		$sfGuardUser = SfGuardUserPeer::doSelectOne( $c );
 
     	if (!$sfGuardUser instanceof sfGuardUser) {
-    		$sfGuardUser = new sfGuardUser();
-   			$sfGuardUser->setUsername('Facebook_'.$facebook_uid);
-    		
+    		// Comprobación de que no existe ya el usuario con ese username (bug #734)
+    		$c = new Criteria();
+    		$c->add(sfGuardUserPeer::USERNAME, 'Facebook_'.$facebook_uid);
+    		$existingUser = sfGuardUserPeer::doSelectOne( $c );    		
+    		if ($existingUser){
+		   		$existingUser->setUsername('Facebook_'.$facebook_uid.'-'.time());
+		   		$existingUser->save();
+    		}
+
+	   		$sfGuardUser = new sfGuardUser();
+	   		$sfGuardUser->setUsername('Facebook_'.$facebook_uid);
       		$sfGuardUser->save();
+    		
 			$voProfile = $sfGuardUser->getProfile();
 		    $vanityUrl = SfVoUtil::encodeVanity('Facebook_'.$facebook_uid) ;
 		    $voProfile->setFacebookUid($facebook_uid);
@@ -211,7 +221,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
 		    $usuariosLikeMe = SfGuardUserProfilePeer::doSelect( $c2 );
 		    $counter = 0;
 		    foreach ($usuariosLikeMe as $usuarioLikeMe){
-		    	$counter++;
+		    	if (preg_match("/^Facebook_$facebook_uid-([0-9]*)/i", $usuarioLikeMe->getVanity(), $matches)){
+		    		$curIdx = $matches[1];
+		    		if ($curIdx > $counter)
+		    			$counter = $curIdx+1;
+		    	}
+		    	else{
+		    		$counter++;
+		    	}
 		    }
 		    $voProfile->setVanity( "$vanityUrl". ($counter==0?'':"-$counter") );
 		    $voProfile->setMailsComentarios( 0 );
