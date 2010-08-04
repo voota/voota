@@ -112,7 +112,7 @@
         <?php slot('not_logged') ?>
           <p><?php echo link_to(__('Login/Registrarse'), 'sfGuardAuth/signin') ?> </p>
   	      <p>
-  	        <?php echo jsWrite('fb:login-button', array('v' => 2, 'size' => 'medium', 'perms' => 'publish_stream'), __('Entrar con Facebook')) ?>
+  	        <a href="javascript:facebookLogin('<?php echo url_for('sfGuardAuth/signin?op=fbc') ?>')" class="facebook-button"><span><?php echo __('Entrar con Facebook') ?></span></a>
   	      </p>
         <?php end_slot('not_logged') ?>
 

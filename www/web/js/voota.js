@@ -100,29 +100,8 @@ function facebookRequirePermission(options) {
   );
 }
 
-function facebookRequireLogin(options) {
-  FB.getLoginStatus(function(response) {
-    if (response.session) {
-      options.success();
-    } else {
-      FB.login(function(response) {
-        facebookRequireLogin(options);
-      }, {perms:'publish_stream'});
-    }
-  });
-  return false;
-}
-
-function facebookNotifyLoginToBackend(url) {
-	document.location = url;
-}
-
-function facebookLogin() {
-  facebookRequireLogin({
-    success: function() {
-      facebookNotifyLoginToBackend();
-    }
-  });
+function facebookLogin(url) {
+  FB.login(function(response) { window.location = url; }, { perms:'publish_stream' });
   return false;
 }
 
@@ -193,14 +172,12 @@ function facebookLoadPreferences(url, box) {
 }
 
 function facebookAssociate(url, box) {
-	$(function() {
-	  facebookRequireLogin({
-      success: function() {
-	      facebookLoadPreferences(url, box);
-      }
-	  })
-	});
-	return false;
+  FB.login(function(response) {
+    if (response.session) {
+      facebookLoadPreferences(url, box);
+    }
+  }, { perms:'publish_stream' });
+  return false;
 }
 
 function loadAjax(url, box){
