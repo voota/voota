@@ -51,7 +51,7 @@
   </ul>
 <?php else: ?>
   <h3>
-    <img src="/images/icoTwitter.png" alt="Facebook Connect" />
+    <img src="/images/icoTwitterPref.png" alt="Facebook Connect" />
     <?php echo __('Sincroniza Voota con Twitter') ?>
   </h3>
   <p><?php echo __('Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.') ?></p>
