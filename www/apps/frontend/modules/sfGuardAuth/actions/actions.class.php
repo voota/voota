@@ -482,6 +482,7 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   public function executeEditTw(sfWebRequest $request)
   {
   	$op = $request->getParameter("op");
+	$sfGuardUser = $this->getUser()->getGuardUser();
   	
   	$profile = $this->getUser()->getProfile();
   	
@@ -490,6 +491,14 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
   		$profile->setTwOauthTokenSecret(null);
   		
   		$profile->save();
+  	}
+  	if ($this->getUser()->isAuthenticated()){
+		$formData = sfGuardUserPeer::retrieveByPk($this->getUser()->getGuardUser()->getId());	
+		$this->profileEditForm = new ProfileEditForm( $formData );
+		if (isset($sfGuardUser)){
+		   	$this->lastReview = SfReviewManager::getLastReviewByUserId( $sfGuardUser->getId() );
+		   	$this->lastReviewOnReview = SfReviewManager::getLastReviewOnReviewByUserId( $sfGuardUser->getId() );
+		}
   	}
 
   }

@@ -51,7 +51,7 @@
   </ul>
 <?php else: ?>
   <h3>
-    <img src="/images/icoTwitterPref.png" alt="Facebook Connect" />
+    <img src="/images/icoTwitterPref.png" alt="Twitter Connect" />
     <?php echo __('Sincroniza Voota con Twitter') ?>
   </h3>
   <p><?php echo __('Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.') ?></p>
@@ -60,7 +60,7 @@
   <script type="text/javascript" charset="utf-8">
     function check_if_twitter_auth_window_was_closed(auth_window) {
       if (auth_window.closed) {
-        twitterLoadPreferences('/', 'twitter-connect'); // TODO: Sustituir primer argumento por URL de carga de preferencias
+        twitterLoadPreferences('<?php echo url_for('sfGuardAuth/editTw')?>', 'twitter-connect'); // TODO: Sustituir primer argumento por URL de carga de preferencias
       } else {
         var check_fn = function() { check_if_twitter_auth_window_was_closed(auth_window); };
         setTimeout(check_fn, 200);

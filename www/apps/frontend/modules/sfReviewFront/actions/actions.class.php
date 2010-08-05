@@ -369,7 +369,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   			case Politico::NUM_ENTITY:
   				$entityUrl = sfContext::getInstance()->getController()->genUrl("politico/show?id=".$entity->getVanity(), true);
   				
-  				$msg = sfContext::getInstance()->getI18N()->__('Voto  %1% de %2% en @Voota:  %3%.', array(
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto  %1% de %2% en @Voota:  %3%', array(
   						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
   						'%2%' => $entity,
   						'%3%' => TwitterManager::shorten($entityUrl)
@@ -379,7 +379,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   			case Partido::NUM_ENTITY:
   				$entityUrl = sfContext::getInstance()->getController()->genUrl("partido/show?id=".$entity->getAbreviatura(), true);
   				
-  				$msg = sfContext::getInstance()->getI18N()->__('Voto %1% del partido %2% en @Voota: %3%.', array(
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto %1% del partido %2% en @Voota: %3%', array(
   						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
   						'%2%' => $entity->getAbreviatura(),
   						'%3%' => TwitterManager::shorten($entityUrl)
@@ -389,7 +389,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   			case Propuesta::NUM_ENTITY:
   				$entityUrl = sfContext::getInstance()->getController()->genUrl("propuesta/show?id=".$entity->getVanity(), true);
   				
-  				$msg = sfContext::getInstance()->getI18N()->__('Voto %1% de la propuesta "%2%" en @Voota: %3%.', array(
+  				$msg = sfContext::getInstance()->getI18N()->__('Voto %1% de la propuesta "%2%" en @Voota: %3%', array(
   						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
   						'%2%' => SfVoUtil::cutToLength($entity->getTitulo(), 60, '...', true),
   						'%3%' => TwitterManager::shorten($entityUrl)
@@ -399,7 +399,7 @@ class sfReviewFrontActions extends BasesfReviewFrontActions
   			case "":
   				$entityUrl = sfContext::getInstance()->getController()->genUrl($type->getModule()."/show?id=".$entity->getVanity(), true);
   				
-  				$msg = sfContext::getInstance()->getI18N()->__('Vooto %1% de una opinión sobre %2% en @Voota: %3%.', array(
+  				$msg = sfContext::getInstance()->getI18N()->__('Vooto %1% de una opinión sobre %2% en @Voota: %3%', array(
   						'%1%' => $v == -1?sfContext::getInstance()->getI18N()->__('en contra'):sfContext::getInstance()->getI18N()->__('a favor'),
   						'%2%' => $entity,
   						'%3%' => TwitterManager::shorten($entityUrl)
