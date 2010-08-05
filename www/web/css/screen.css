@@ -192,6 +192,9 @@ input[type=submit].login_or_register { width: 200px; font-size: 12px;}
 a.facebook-button { display: inline-block; line-height: 22px; color: #fff; text-decoration: none; background: transparent url(/images/boton_facebook_left.png) left top no-repeat; padding: 0 0 0 25px !important;}
 a.facebook-button span { display: inline-block; line-height: 15px; background: transparent url(/images/boton_facebook_right.png) right top no-repeat; padding: 4px 5px 3px 0 !important;}
 a.facebook-button:visited { color: #fff;}
+a.twitter-button { display: inline-block; line-height: 22px; color: #e6f5fa; text-decoration: none; background: transparent url(/images/boton_twitter_left.png) left top no-repeat; padding: 0 0 0 25px !important;}
+a.twitter-button span { display: inline-block; line-height: 15px; background: transparent url(/images/boton_twitter_right.png) right top no-repeat; padding: 4px 5px 3px 0 !important;}
+a.twitter-button:visited { color: #e6f5fa;}
 
 /* Páginas de error (404 y 500) */
 #error #main-inner { padding-bottom: 0; margin-bottom: 0;}
@@ -270,12 +273,18 @@ a.facebook-button:visited { color: #fff;}
 #sfGuardAuth-edit #bajaConfirmDiv a.confirm { color: #ff0000;}
 #sfGuardAuth-edit #bajaConfirmDiv .email { color: #ff0000; font-weight: bold;}
 #sfGuardAuth-edit #sidebar { position: absolute; right: 0; width: 250px;}
-#sfGuardAuth-edit #facebook-connect h3 { padding-bottom: 10px; font-weight: normal; font-size: 16px;}
-#sfGuardAuth-edit #facebook-connect img { vertical-align: text-bottom; padding-right: 5px;}
-#sfGuardAuth-edit #facebook-connect p { padding-bottom: 10px;}
-#sfGuardAuth-edit #facebook-connect ul { margin: 0; padding: 0; list-style: none;}
-#sfGuardAuth-edit #facebook-connect li { margin-top: 10px;}
-#sfGuardAuth-edit #facebook-connect q { font-style: italic;}
+#sfGuardAuth-edit #facebook-connect h3,
+#sfGuardAuth-edit #twitter-connect h3 { padding-bottom: 10px; font-weight: normal; font-size: 16px;}
+#sfGuardAuth-edit #facebook-connect img,
+#sfGuardAuth-edit #twitter-connect img { vertical-align: text-bottom; padding-right: 5px;}
+#sfGuardAuth-edit #facebook-connect p,
+#sfGuardAuth-edit #twitter-connect p { padding-bottom: 10px;}
+#sfGuardAuth-edit #facebook-connect ul,
+#sfGuardAuth-edit #twitter-connect ul { margin: 0; padding: 0; list-style: none;}
+#sfGuardAuth-edit #facebook-connect li,
+#sfGuardAuth-edit #twitter-connect li { margin-top: 10px;}
+#sfGuardAuth-edit #facebook-connect q,
+#sfGuardAuth-edit #twitter-connect q { font-style: italic;}
 #sfGuardAuth-edit .notice { width: 503px;}
 #sfGuardAuth-edit .anonymous { text-align: right; padding-bottom: 0;}
 
