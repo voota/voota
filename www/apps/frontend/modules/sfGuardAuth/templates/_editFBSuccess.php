@@ -58,7 +58,7 @@
   </ul>
 <?php else: ?>
   <h3>
-    <img src="/images/icoFacebook.png" alt="Facebook Connect" />
+    <img src="/images/icoFacebookPref.png" alt="Facebook Connect" />
     <?php echo __('Sincroniza Voota con Facebook') ?>
   </h3>
   <p><?php echo __('Sincronizando tu perfil de Voota con Facebook tus contactos podrán seguir sus Vootos y opiniones en tu muro.') ?></p>

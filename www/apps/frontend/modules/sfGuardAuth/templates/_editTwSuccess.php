@@ -4,24 +4,17 @@
 
 <?php if ($sf_user->isAuthenticated() && $sf_user->getProfile()->getTwOauthToken()): ?>
   <h3>
-    <img src="/images/icoFacebookPref.png" alt="Twitter Connect" />
-    <?php echo __('Conectado a Twitter como:') ?> <strong><?php echo twName($sf_user)?></strong>
+    <img src="/images/icoTwitterPref.png" alt="Twitter Connect" />
+    <?php echo __('Conectado a Twitter') ?>
     (<a id="twitter-disconnect" href="#"><?php echo __('Desconectar') ?></a>)
     <script type="text/javascript">
-      <?php if (SfVoUtil::isCanonicalVootaUser($sf_user->getGuardUser())): ?>
-  	    $('#twitter-disconnect').click(function() {
-  	      twitterDisconnectAccount('<?php echo url_for('@usuario_tw_edit?op=dis') ?>');
-  	      return false;
-  	    });
-      <?php else: ?>
-        $('#twitter-disconnect').click(function() {
-  	      twitterLogoutAndRedirect('<?php echo url_for('@usuario_tw_edit?op=dis') ?>', '<?php echo url_for('@homepage') ?>');
-  	      return false;
-  	    });
-      <?php endif ?>
+	    $('#twitter-disconnect').click(function() {
+	      twitterDisconnectAccount('<?php echo url_for('@usuario_tw_edit?op=dis') ?>');
+	      return false;
+	    });
     </script>
   </h3>
-  <p><?php echo __('Actualizar tu muro de Twitter:') ?></p>
+  <p><?php echo __('Publicar en Twitter:') ?></p>
   <ul>
     <li>
       <p>
@@ -56,4 +49,13 @@
       </p>
     </li>
   </ul>
+<?php else: ?>
+  <h3>
+    <img src="/images/icoTwitter.png" alt="Facebook Connect" />
+    <?php echo __('Sincroniza Voota con Twitter') ?>
+  </h3>
+  <p><?php echo __('Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.') ?></p>
+  <p><?php echo __('¿Te animas? Sólo tienes que pinchar sobre el siguiente botón:') ?></p>
+  <a href="javascript:twitterAssociate('<?php echo url_for('sfGuardAuth/signin?op=twt') ?>')" class="twitter-button"><span><?php echo __('Sincronizar con Twitter') ?></span></a>
+  <p></p>
 <?php endif ?>
