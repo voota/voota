@@ -144,6 +144,19 @@ function twitterDisconnectAccount(url) {
 	});
 }
 
+function twitterLoadPreferences(url, box) {
+  re_loading(box);
+	$.ajax({
+	  type     : 'POST',
+	  dataType : 'html',
+	  url      : url,
+	  success  : function(data, textStatus) {
+	    $('#' + box).html(data);
+	  }
+	});
+	return false;
+}
+
 function facebookLoadPreferences(url, box) {
   re_loading(box);
 	$.ajax({

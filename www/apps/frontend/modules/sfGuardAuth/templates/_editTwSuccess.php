@@ -56,6 +56,22 @@
   </h3>
   <p><?php echo __('Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.') ?></p>
   <p><?php echo __('¿Te animas? Sólo tienes que pinchar sobre el siguiente botón:') ?></p>
-  <a href="javascript:twitterAssociate('<?php echo url_for('sfGuardAuth/signin?op=twt') ?>')" class="twitter-button"><span><?php echo __('Sincronizar con Twitter') ?></span></a>
+  <a id="twitter_sync" href="javascript:twitterAssociate('<?php echo url_for('sfGuardAuth/signin?op=twt') ?>')" class="twitter-button"><span><?php echo __('Sincronizar con Twitter') ?></span></a>
+  <script type="text/javascript" charset="utf-8">
+    function check_if_twitter_auth_window_was_closed(auth_window) {
+      if (auth_window.closed) {
+        twitterLoadPreferences('/', 'twitter-connect'); // TODO: Sustituir primer argumento por URL de carga de preferencias
+      } else {
+        var check_fn = function() { check_if_twitter_auth_window_was_closed(auth_window); };
+        setTimeout(check_fn, 200);
+      }
+    }
+    $('#twitter_sync').click(function(){
+      auth_window = window.open('<?php echo url_for("sfReviewFront/sendTwitter") ?>', null, 'width=800,height=500,menubar=yes,status=yes,location=yes,toolbar=no,scrollbars=no,resizable=no');
+      var check_fn = function() { check_if_twitter_auth_window_was_closed(auth_window); };
+      setTimeout(check_fn, 200);
+      return false;
+    });
+  </script>
   <p></p>
 <?php endif ?>
