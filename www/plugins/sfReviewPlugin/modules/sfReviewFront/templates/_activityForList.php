@@ -13,7 +13,7 @@
 		  <?php if(!$activity->getAnonymous()): ?>
 		    <?php echo getAvatar( $activity->getsfGuardUser() ) ?>
 		  <?php else: ?>
-		  	<?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => __('Vooto anónimo (está en su derecho)'), 'width' => 36, 'height' => 36)); ?>
+		  	<?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => __('Vooto secreto (está en su derecho)'), 'width' => 36, 'height' => 36)); ?>
 		  <?php endif ?>
 	  </div>
   <?php endif ?>
@@ -22,7 +22,7 @@
 		<?php if(!$activity->getAnonymous()): ?>
   			<a title='<?php echo $activity->getsfGuardUserId() ?>' href="<?php echo url_for('@usuario?username='.$activity->getsfGuardUser()->getProfile()->getVanity())?>"><?php echo fullName( $activity->getsfGuardUser(), 15 ) ?></a>
 		<?php else: ?>
-  			<?php echo __('Vooto anónimo') ?> <?php echo __('(está en su derecho)')?>
+  			<?php echo __('Vooto secreto') ?> <?php echo __('(está en su derecho)')?>
 		<?php endif ?>
     <?php endif ?>
     <?php if ($activity->getMode() == 1): ?>

@@ -77,7 +77,7 @@
             <?php echo $profileEditForm['apellidos']->render(array('title' => __("(Opcional, pero ayuda)"))) ?>
             <?php echo $profileEditForm['apellidos']->renderError() ?>
             <p class="anonymous">
-              <label for="profile_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label>
+              <label for="profile_anonymous"><?php echo __('Vooto secreto (estás en tu derecho)') ?></label>
               <?php echo $profileEditForm['anonymous']->render() ?>
               <?php echo $profileEditForm['anonymous']->renderError() ?>
             </p>

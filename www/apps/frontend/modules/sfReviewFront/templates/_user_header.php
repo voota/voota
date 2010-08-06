@@ -4,7 +4,7 @@
   <?php if(!$review->getAnonymous()): ?>
     <?php echo getAvatar( $review->getsfGuardUser() ) ?>
   <?php else: ?>
-  	<?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => __('Vooto anónimo (está en su derecho)'), 'width' => 36, 'height' => 36)); ?>
+  	<?php echo image_tag(S3Voota::getImagesUrl().'/usuarios/v.png', array('alt' => __('Vooto secreto (está en su derecho)'), 'width' => 36, 'height' => 36)); ?>
   <?php endif ?>
 </div>
 <h4 class="review-name">
@@ -15,7 +15,7 @@
 	    <span class="review-years">· <?php echo __('%1% años', array('%1%' => review_date_diff( $review->getsfGuardUser()->getProfile()->getFechaNacimiento() )))?></span>
 	  <?php endif ?>
   <?php else: ?>
-  	<?php echo __('Vooto anónimo') ?> <?php echo __('(está en su derecho)')?>
+  	<?php echo __('Vooto secreto') ?> <?php echo __('(está en su derecho)')?>
   <?php endif ?>
   
   

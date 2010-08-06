@@ -33,7 +33,7 @@
           <?php echo $registrationform['apellidos']->render() ?>
           <?php echo $registrationform['apellidos']->renderError() ?>
           <p class="anonymous">
-            <label for="registration_anonymous"><?php echo __('Vooto anónimo (estás en tu derecho)') ?></label>
+            <label for="registration_anonymous"><?php echo __('Vooto secreto (estás en tu derecho)') ?></label>
             <?php echo $registrationform['anonymous']->render() ?>
             <?php echo $registrationform['anonymous']->renderError() ?>
           </p>

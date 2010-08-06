@@ -145,7 +145,7 @@ $(document).ready(function(){
         </div>
       <div>
 		  <?php echo anonCheckbox($reviewBox, $anonReview, $reviewId, $sf_user)?>        
-        <label for="<?php echo "sf-review-anon-publish-$reviewBox" ?>"><?php echo __('Vooto anónimo') ?></label>
+        <label for="<?php echo "sf-review-anon-publish-$reviewBox" ?>"><?php echo __('Vooto secreto') ?></label>
       </div>
     </div>
   </div>
