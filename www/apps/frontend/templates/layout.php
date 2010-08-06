@@ -11,7 +11,6 @@
   <?php include_http_metas() ?>
   <?php include_metas() ?>
   <link rel="shortcut icon" href="/favicon.ico" />
-
   <link rel="stylesheet" type="text/css" media="screen" href="/css/ui-voota/jquery-ui-1.8.custom.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="/css/screen.css?<?php echo sfConfig::get('sf_ml') ?>" />  
   <style type="text/css">
