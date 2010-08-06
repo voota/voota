@@ -98,7 +98,7 @@ function vo_facebook_connect_ajax_button($box, $func_name) {
 
 function vo_facebook_connect_associate_button($text = '', $box = 'facebook-connect') {
   $func = 'facebookAssociate(\''. url_for('@usuario_fb_edit?op=con&box='.$box). '\', \''.$box.'\')';
-  return '<a href="javascript:'.$func.'" class="facebook-button"><span>'.__('Sincronizar Voota con Facebook').'</span></a>';
+  return '<a href="#" onclick="javascript:'.$func.'" class="facebook-button"><span>'.__('Sincronizar Voota con Facebook').'</span></a>';
 }
 
 function isPolitico($user){

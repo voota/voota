@@ -95,7 +95,7 @@
       <tr class="facebook-login">
         <th><label><?php echo __('Otra opción...') ?></label></th>
         <td>
-          <a href="javascript:facebookLogin('<?php echo url_for('sfGuardAuth/signin?op=fbc') ?>')" class="facebook-button"><span><?php echo __('Entrar con Facebook') ?></span></a>
+          <a href="#" onclick="javascript:facebookLogin('<?php echo url_for('sfGuardAuth/signin?op=fbc') ?>')" class="facebook-button"><span><?php echo __('Entrar con Facebook') ?></span></a>
         </td>
       </tr>
     </table>
