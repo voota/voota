@@ -145,6 +145,7 @@
     <?php include_partial('general/boxPropuestas', array('propuestasCount' => $propuestasCount)) ?>
   
     <div id="rss">
+      <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('propuesta/feed?id='.$propuesta->getVanity())?>"><?php echo __('RSS de esta propuesta') ?></a>
     </div>
   

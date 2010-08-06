@@ -26,6 +26,7 @@
     <?php include_partial('boxProfile', array('user' => $user)) ?>
     
     <div id="rss">
+      <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('perfil/feed?username='.$user->getProfile()->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $user)) ?></a>
     </div>
   </div>

@@ -454,7 +454,6 @@ table.rankings .negative-votes { text-align:right;}
 
 /* RSS */
 #rss { margin-bottom: 40px; padding: 5px 0; border-top: 1px dotted #cccccc; border-bottom: 1px dotted #cccccc;}
-#rss a { padding-left: 23px; background: transparent url(/images/rss.png) left top no-repeat;}
 
 /* Enlaces externos */
 #external-links { margin-bottom: 40px;}

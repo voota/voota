@@ -90,6 +90,7 @@
   </div>
   
   <div id="rss">
+    <img src="/images/rss.png" alt="RSS" />
     <a href="<?php echo url_for($sf_request->getAttribute('rssFeed'))?>"><?php echo __('RSS de esta maravilla') ?></a>
   </div>
 </div>

@@ -192,6 +192,7 @@
     </div>
 
     <div id="rss">
+      <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('partido/feed?id='.$partido->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $partido)) ?></a>
     </div>
 
