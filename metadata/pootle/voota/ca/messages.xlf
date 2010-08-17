@@ -3088,6 +3088,114 @@ actual)</target>
         <source>Candidato a las %eleccion%</source>
         <target>Candidat a les %eleccion%</target>
       </trans-unit>
+      <trans-unit id="674">
+        <source>Políticos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="675">
+        <source>Partidos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="676">
+        <source>Propuestas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="677">
+        <source>Opiniones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="678">
+        <source>Elecciones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="679">
+        <source>Sólo 1</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="680">
+        <source>anónimo</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="681">
+        <source>Voto  %1% de %2% en @Voota:  %3%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="682">
+        <source>Voto %1% del partido %2% en @Voota: %3%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="683">
+        <source>Voto %1% de la propuesta "%2%" en @Voota: %3%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="684">
+        <source>Vooto %1% de una opinión sobre %2% en @Voota: %3%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="685">
+        <source>anónimo (está en su derecho)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="686">
+        <source>Vooto secreto (está en su derecho)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="687">
+        <source>Vooto secreto</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="688">
+        <source>(está en su derecho)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="689">
+        <source>Vaya, parece ser que no tenemos texto de presentación para este partido. Si sabes algo sobre este partido, ¿qué te parece si nos lo envías tú?</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="690">
+        <source>Enviar información sobre este partido</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="691">
+        <source>Conectado a Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="692">
+        <source>Publicar en Twitter:</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="693">
+        <source>Sincroniza Voota con Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="694">
+        <source>Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="695">
+        <source>Sincronizar con Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="696">
+        <source>Vooto secreto (estás en tu derecho)</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="697">
+        <source>Nacida</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="698">
+        <source>Nacido</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="699">
+        <source> el %1%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="700">
+        <source> en %1%</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>
