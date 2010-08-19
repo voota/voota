@@ -25,7 +25,6 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       'is_super_admin'                => new sfWidgetFormInputCheckbox(),
       'sf_guard_user_permission_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardPermission')),
       'sf_guard_user_group_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardGroup')),
-      'etiqueta_sf_guard_user_list'   => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'etiqueta_politico_list'        => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'etiqueta_partido_list'         => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'etiqueta_propuesta_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
@@ -43,7 +42,6 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       'is_super_admin'                => new sfValidatorBoolean(),
       'sf_guard_user_permission_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardPermission', 'required' => false)),
       'sf_guard_user_group_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardGroup', 'required' => false)),
-      'etiqueta_sf_guard_user_list'   => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'etiqueta_politico_list'        => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'etiqueta_partido_list'         => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'etiqueta_propuesta_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
@@ -92,17 +90,6 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
       $this->setDefault('sf_guard_user_group_list', $values);
     }
 
-    if (isset($this->widgetSchema['etiqueta_sf_guard_user_list']))
-    {
-      $values = array();
-      foreach ($this->object->getEtiquetaSfGuardUsers() as $obj)
-      {
-        $values[] = $obj->getEtiquetaId();
-      }
-
-      $this->setDefault('etiqueta_sf_guard_user_list', $values);
-    }
-
     if (isset($this->widgetSchema['etiqueta_politico_list']))
     {
       $values = array();
@@ -144,7 +131,6 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
 
     $this->savesfGuardUserPermissionList($con);
     $this->savesfGuardUserGroupList($con);
-    $this->saveEtiquetaSfGuardUserList($con);
     $this->saveEtiquetaPoliticoList($con);
     $this->saveEtiquetaPartidoList($con);
     $this->saveEtiquetaPropuestaList($con);
@@ -215,41 +201,6 @@ abstract class BasesfGuardUserForm extends BaseFormPropel
         $obj = new sfGuardUserGroup();
         $obj->setUserId($this->object->getPrimaryKey());
         $obj->setGroupId($value);
-        $obj->save();
-      }
-    }
-  }
-
-  public function saveEtiquetaSfGuardUserList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['etiqueta_sf_guard_user_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(EtiquetaSfGuardUserPeer::SF_GUARD_USER_ID, $this->object->getPrimaryKey());
-    EtiquetaSfGuardUserPeer::doDelete($c, $con);
-
-    $values = $this->getValue('etiqueta_sf_guard_user_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new EtiquetaSfGuardUser();
-        $obj->setSfGuardUserId($this->object->getPrimaryKey());
-        $obj->setEtiquetaId($value);
         $obj->save();
       }
     }
