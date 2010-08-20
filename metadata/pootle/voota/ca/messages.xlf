@@ -3190,11 +3190,11 @@ actual)</target>
       </trans-unit>
       <trans-unit id="699" approved="yes">
         <source> el %1%</source>
-        <target>el %1%</target>
+        <target> el %1%</target>
       </trans-unit>
       <trans-unit id="700" approved="yes">
         <source> en %1%</source>
-        <target>a %1%</target>
+        <target> a %1%</target>
       </trans-unit>
     </body>
   </file>
