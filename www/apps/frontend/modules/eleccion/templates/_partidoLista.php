@@ -10,7 +10,7 @@
     <td class="escanos"><?php echo $numEscanyos ?></td>
     <td class="politicos">
     	<?php $idx=0;foreach($politicos as $politico):$idx++; ?>
-    	  <?php if($idx < ($numEscanyos+1)):?>
+    	  <?php if($idx < ($numEscanyos+1) && $idx <= 20):?>
     	    <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'id="politico_'.$politico->getId().'" class="politico" width="36" height="36" alt="'. $politico .'"'), 'politico/show?id='.$politico->getVanity()) ?>
           <script type="text/javascript">
             $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo $politico ?>')
