@@ -85,8 +85,10 @@
         <?php if ($partido->getPresentacion()): ?>
           <?php echo formatPresentacion( $partido->getPresentacion() ) ?>
         <?php else: ?>
-          <?php echo __('Vaya, parece ser que no tenemos texto de presentación para este partido. Si sabes algo sobre este partido, ¿qué te parece si nos lo envías tú?') ?>
-          <?php echo link_to(__('Enviar información sobre este partido'), "@contact") ?>
+          <p>
+            <?php echo __('Vaya, parece ser que no tenemos texto de presentación para este partido. Si sabes algo sobre este partido, ¿qué te parece si nos lo envías tú?') ?>
+            <?php echo link_to(__('Enviar información sobre este partido'), "@contact") ?>
+          </p>
         <?php endif ?>
 
         <?php if($listas):?>
