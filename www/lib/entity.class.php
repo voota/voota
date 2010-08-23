@@ -38,7 +38,8 @@ class Entity {
   		$this->id = $entity->getId();
   		$this->name = $entity->__toString();
   		$peer = $entity->getPeer();
-  		$this->type = $peer::TABLE_NAME;
+  		$tableMap = call_user_func_array(array($entity->getPeer(), 'getTableMap'), array());
+  		$this->type = $tableMap->getName();
   		$this->positives = $entity->getSumu();
   		$this->negatives = $entity->getSumd();
   		$this->image = self::IMAGE_PATH . $entity->getImagePath() . "/cc_" . $entity->getImagen();

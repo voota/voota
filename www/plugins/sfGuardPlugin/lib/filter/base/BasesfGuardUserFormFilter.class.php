@@ -22,7 +22,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'is_super_admin'                => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'sf_guard_user_permission_list' => new sfWidgetFormPropelChoice(array('model' => 'sfGuardPermission', 'add_empty' => true)),
       'sf_guard_user_group_list'      => new sfWidgetFormPropelChoice(array('model' => 'sfGuardGroup', 'add_empty' => true)),
-      'etiqueta_sf_guard_user_list'   => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
       'etiqueta_politico_list'        => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
       'etiqueta_partido_list'         => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
       'etiqueta_propuesta_list'       => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
@@ -39,7 +38,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'is_super_admin'                => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'sf_guard_user_permission_list' => new sfValidatorPropelChoice(array('model' => 'sfGuardPermission', 'required' => false)),
       'sf_guard_user_group_list'      => new sfValidatorPropelChoice(array('model' => 'sfGuardGroup', 'required' => false)),
-      'etiqueta_sf_guard_user_list'   => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
       'etiqueta_politico_list'        => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
       'etiqueta_partido_list'         => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
       'etiqueta_propuesta_list'       => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
@@ -97,31 +95,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
     foreach ($values as $value)
     {
       $criterion->addOr($criteria->getNewCriterion(sfGuardUserGroupPeer::GROUP_ID, $value));
-    }
-
-    $criteria->add($criterion);
-  }
-
-  public function addEtiquetaSfGuardUserListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(EtiquetaSfGuardUserPeer::SF_GUARD_USER_ID, sfGuardUserPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $value));
     }
 
     $criteria->add($criterion);
@@ -221,7 +194,6 @@ abstract class BasesfGuardUserFormFilter extends BaseFormFilterPropel
       'is_super_admin'                => 'Boolean',
       'sf_guard_user_permission_list' => 'ManyKey',
       'sf_guard_user_group_list'      => 'ManyKey',
-      'etiqueta_sf_guard_user_list'   => 'ManyKey',
       'etiqueta_politico_list'        => 'ManyKey',
       'etiqueta_partido_list'         => 'ManyKey',
       'etiqueta_propuesta_list'       => 'ManyKey',

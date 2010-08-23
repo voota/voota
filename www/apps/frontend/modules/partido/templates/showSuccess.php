@@ -102,7 +102,7 @@
           </div>
         <?php endif ?>
         
-        <?php if ($politicos->getNbResults() > 0): ?>
+        <?php if (count($instituciones) > 0): ?>
           <p id="instituciones">
             <strong>Instituciones:</strong>
             <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>

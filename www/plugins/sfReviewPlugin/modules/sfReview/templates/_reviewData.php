@@ -14,6 +14,7 @@
 <tr><td>modified at:</td><td><?php echo $form->getObject()->getModifiedAt() ?></td></tr> 
 <tr><td>is active:</td><td><?php echo $form->getObject()->getIsActive() ?></td></tr> 
 <tr><td>sent to Facebook:</td><td><?php echo $form->getObject()->getToFb() ?></td></tr> 
+<tr><td>sent to Twitter:</td><td><?php echo $form->getObject()->getToTw() ?></td></tr> 
 <tr><td>source:</td><td><?php echo $form->getObject()->getSource() ?></td></tr> 
 </table>
 

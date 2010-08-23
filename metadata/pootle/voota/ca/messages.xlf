@@ -3088,6 +3088,114 @@ actual)</target>
         <source>Candidato a las %eleccion%</source>
         <target>Candidat a les %eleccion%</target>
       </trans-unit>
+      <trans-unit id="674" approved="yes">
+        <source>Políticos</source>
+        <target>Polítics</target>
+      </trans-unit>
+      <trans-unit id="675" approved="yes">
+        <source>Partidos</source>
+        <target>Partits</target>
+      </trans-unit>
+      <trans-unit id="676" approved="yes">
+        <source>Propuestas</source>
+        <target>Propostes</target>
+      </trans-unit>
+      <trans-unit id="677" approved="yes">
+        <source>Opiniones</source>
+        <target>Opinions</target>
+      </trans-unit>
+      <trans-unit id="678" approved="yes">
+        <source>Elecciones</source>
+        <target>Eleccions</target>
+      </trans-unit>
+      <trans-unit id="679" approved="yes">
+        <source>Sólo 1</source>
+        <target>Només 1</target>
+      </trans-unit>
+      <trans-unit id="680" approved="yes">
+        <source>anónimo</source>
+        <target>anònim</target>
+      </trans-unit>
+      <trans-unit id="681" approved="yes">
+        <source>Voto  %1% de %2% en @Voota:  %3%</source>
+        <target>Voto %1% del partit %2% a @Vootacat: %3%</target>
+      </trans-unit>
+      <trans-unit id="682" approved="yes">
+        <source>Voto %1% del partido %2% en @Voota: %3%</source>
+        <target>Voto %1% del partit %2% a @Vootacat: %3%</target>
+      </trans-unit>
+      <trans-unit id="683" approved="yes">
+        <source>Voto %1% de la propuesta "%2%" en @Voota: %3%</source>
+        <target>Voto %1% de la proposta "%2%" a @Vootacat: %3%</target>
+      </trans-unit>
+      <trans-unit id="684" approved="yes">
+        <source>Vooto %1% de una opinión sobre %2% en @Voota: %3%</source>
+        <target>Voto %1% d'una opinió sobre %2% a @Vootacat: %3%</target>
+      </trans-unit>
+      <trans-unit id="685" approved="yes">
+        <source>anónimo (está en su derecho)</source>
+        <target>anònim (està en el seu dret)</target>
+      </trans-unit>
+      <trans-unit id="686" approved="yes">
+        <source>Vooto secreto (está en su derecho)</source>
+        <target>Voot secret (està en el seu dret)</target>
+      </trans-unit>
+      <trans-unit id="687" approved="yes">
+        <source>Vooto secreto</source>
+        <target>Voot secret</target>
+      </trans-unit>
+      <trans-unit id="688" approved="yes">
+        <source>(está en su derecho)</source>
+        <target>(està en el seu dret)</target>
+      </trans-unit>
+      <trans-unit id="689" approved="yes">
+        <source>Vaya, parece ser que no tenemos texto de presentación para este partido. Si sabes algo sobre este partido, ¿qué te parece si nos lo envías tú?</source>
+        <target>Vaja, sembla que no tenim text de presentació per a aquest partit. Si saps quelcom sobre aquest partit, què et sembla si ens ho envies tu?</target>
+      </trans-unit>
+      <trans-unit id="690" approved="yes">
+        <source>Enviar información sobre este partido</source>
+        <target>Enviar informació sobre aquest partit</target>
+      </trans-unit>
+      <trans-unit id="691" approved="yes">
+        <source>Conectado a Twitter</source>
+        <target>Connectat a Twitter</target>
+      </trans-unit>
+      <trans-unit id="692" approved="yes">
+        <source>Publicar en Twitter:</source>
+        <target>Publicar a Twitter:</target>
+      </trans-unit>
+      <trans-unit id="693" approved="yes">
+        <source>Sincroniza Voota con Twitter</source>
+        <target>Sincronitza Voota amb Twitter</target>
+      </trans-unit>
+      <trans-unit id="694" approved="yes">
+        <source>Sincronizando tu perfil de Voota con Twitter tus contactos podrán seguir tus Vootos y opiniones en tu muro.</source>
+        <target>Sincronitzant el teu perfil de Voota amb Twitter els teus followers podran seguir els teus voots i opinions.</target>
+      </trans-unit>
+      <trans-unit id="695" approved="yes">
+        <source>Sincronizar con Twitter</source>
+        <target>Sincronitzar amb Twitter</target>
+      </trans-unit>
+      <trans-unit id="696" approved="yes">
+        <source>Vooto secreto (estás en tu derecho)</source>
+        <target>Voot secret (estàs en el teu dret)</target>
+      </trans-unit>
+      <trans-unit id="697" approved="yes">
+        <source>Nacida</source>
+        <target>Nascuda</target>
+      </trans-unit>
+      <trans-unit id="698" approved="yes">
+        <source>Nacido</source>
+        <target>Nascut</target>
+      </trans-unit>
+      <trans-unit id="699" approved="yes">
+        <source> el %1%</source>
+        <target> el %1%</target>
+      </trans-unit>
+      <trans-unit id="700" approved="yes">
+        <source> en %1%</source>
+        <target> a %1%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -14,23 +14,21 @@ abstract class BaseEtiquetaForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'id'                          => new sfWidgetFormInputHidden(),
-      'texto'                       => new sfWidgetFormInputText(),
-      'culture'                     => new sfWidgetFormInputHidden(),
-      'etiqueta_sf_guard_user_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'sfGuardUser')),
-      'etiqueta_politico_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
-      'etiqueta_partido_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
-      'etiqueta_propuesta_list'     => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Propuesta')),
+      'id'                      => new sfWidgetFormInputHidden(),
+      'texto'                   => new sfWidgetFormInputText(),
+      'culture'                 => new sfWidgetFormInputHidden(),
+      'etiqueta_politico_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
+      'etiqueta_partido_list'   => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
+      'etiqueta_propuesta_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Propuesta')),
     ));
 
     $this->setValidators(array(
-      'id'                          => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'id', 'required' => false)),
-      'texto'                       => new sfValidatorString(array('max_length' => 45, 'required' => false)),
-      'culture'                     => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'culture', 'required' => false)),
-      'etiqueta_sf_guard_user_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'sfGuardUser', 'required' => false)),
-      'etiqueta_politico_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
-      'etiqueta_partido_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Partido', 'required' => false)),
-      'etiqueta_propuesta_list'     => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Propuesta', 'required' => false)),
+      'id'                      => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'id', 'required' => false)),
+      'texto'                   => new sfValidatorString(array('max_length' => 45, 'required' => false)),
+      'culture'                 => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'column' => 'culture', 'required' => false)),
+      'etiqueta_politico_list'  => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
+      'etiqueta_partido_list'   => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Partido', 'required' => false)),
+      'etiqueta_propuesta_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Propuesta', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('etiqueta[%s]');
@@ -49,17 +47,6 @@ abstract class BaseEtiquetaForm extends BaseFormPropel
   public function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();
-
-    if (isset($this->widgetSchema['etiqueta_sf_guard_user_list']))
-    {
-      $values = array();
-      foreach ($this->object->getEtiquetaSfGuardUsers() as $obj)
-      {
-        $values[] = $obj->getSfGuardUserId();
-      }
-
-      $this->setDefault('etiqueta_sf_guard_user_list', $values);
-    }
 
     if (isset($this->widgetSchema['etiqueta_politico_list']))
     {
@@ -100,45 +87,9 @@ abstract class BaseEtiquetaForm extends BaseFormPropel
   {
     parent::doSave($con);
 
-    $this->saveEtiquetaSfGuardUserList($con);
     $this->saveEtiquetaPoliticoList($con);
     $this->saveEtiquetaPartidoList($con);
     $this->saveEtiquetaPropuestaList($con);
-  }
-
-  public function saveEtiquetaSfGuardUserList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['etiqueta_sf_guard_user_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(EtiquetaSfGuardUserPeer::ETIQUETA_ID, $this->object->getPrimaryKey());
-    EtiquetaSfGuardUserPeer::doDelete($c, $con);
-
-    $values = $this->getValue('etiqueta_sf_guard_user_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new EtiquetaSfGuardUser();
-        $obj->setEtiquetaId($this->object->getPrimaryKey());
-        $obj->setSfGuardUserId($value);
-        $obj->save();
-      }
-    }
   }
 
   public function saveEtiquetaPoliticoList($con = null)
