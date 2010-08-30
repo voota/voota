@@ -5,7 +5,7 @@
 
 <?php echo showNotices( $sf_user ) ?>
 <?php if ($sf_request->getParameter("dialog") == 1): ?>
-	<p class='warning'><?php echo __('Quieto parao. Para Vootar necesitas tener una cuenta en Voota, o en Facebook. Si aún no la tienes, es el mejor momento, joven.') ?></p>
+	<p class='warning'><?php echo __('¿Nuevo por aquí? Necesitas tener una cuenta Voota (o en Facebook) para continuar. Tu vooto será público o secreto, como gustes.') ?></p>
 <?php endif ?>
 
 <div id="signup">

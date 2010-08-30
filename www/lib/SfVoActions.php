@@ -22,7 +22,7 @@ class SfVoActions extends sfActions
   		$this->getUser()->setFlash('notice_type', 'warning', true);
 	    $this->getUser()->setFlash(
 	    	'notice', 
-			sfContext::getInstance()->getI18N()->__('Quieto parao. Para esto necesitas tener una cuenta en Voota. Si no tienes cuenta aun, este es el mejor momento!', array(), 'notices')
+			sfContext::getInstance()->getI18N()->__('¿Nuevo por aquí? Necesitas tener una cuenta Voota (o en Facebook) para continuar. Tu vooto será público o secreto, como gustes.', array())
 			, true
 		);
   		$this->getUser()->setAttribute('url_back', sfContext::getInstance()->getRouting()->getCurrentInternalUri(), 'vo/redir');
