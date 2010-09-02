@@ -3118,7 +3118,7 @@ actual)</target>
       </trans-unit>
       <trans-unit id="681" approved="yes">
         <source>Voto  %1% de %2% en @Voota:  %3%</source>
-        <target>Voto %1% del partit %2% a @Vootacat: %3%</target>
+        <target>Voto %1% de %2% a @Vootacat: %3%</target>
       </trans-unit>
       <trans-unit id="682" approved="yes">
         <source>Voto %1% del partido %2% en @Voota: %3%</source>
@@ -3190,11 +3190,39 @@ actual)</target>
       </trans-unit>
       <trans-unit id="699" approved="yes">
         <source> el %1%</source>
-        <target> el %1%</target>
+        <target>el %1%</target>
       </trans-unit>
       <trans-unit id="700" approved="yes">
         <source> en %1%</source>
-        <target> a %1%</target>
+        <target>a %1%</target>
+      </trans-unit>
+      <trans-unit id="701">
+        <source>¿Nuevo por aquí? Necesitas tener una cuenta Voota (o en Facebook) para continuar. Tu vooto será público o secreto, como gustes.</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="702">
+        <source>Publicar en tu Facebook</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="703">
+        <source>Publicar en tu Twitter</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="704">
+        <source>A %1% le han puesto la etiqueta "%2%".</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="705">
+        <source>otro comentario sobre </source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="706">
+        <source>voota en contra de</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="707">
+        <source>voota a favor de</source>
+        <target/>
       </trans-unit>
     </body>
   </file>
