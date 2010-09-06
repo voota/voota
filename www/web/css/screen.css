@@ -471,7 +471,7 @@ table.rankings .negative-votes { text-align:right;}
 /* Página de político - partido - propuesta */
 .entity-page #content { width: 680px;}
 .entity-page #sidebar { width: 220px; margin-left: 50px;}
-.entity-page h2#name .rank { font-size: 11px;}
+.entity-page h2#name .rank { font-size: 13px;}
 .entity-page #photo { width: 220px; float: left;}
 .entity-page #photo .vote { padding-top: 40px;}
 .entity-page .vote { padding-top: 40px; padding-bottom: 20px; clear: left;}
