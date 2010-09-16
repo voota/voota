@@ -39,7 +39,7 @@
   	<?php endif ?>
   	<?php if ($activity->getMode() == 2): ?>
 	  		<?php echo __('A %1% le han puesto la etiqueta "%2%".', array(
-	  		'%1%' => "<a title='". sfVoUtil::secureString($activity->getEntity(), "&#39;") ."' href= \"". url_for($activity->getEntity()->getModule().'/show?id='.$activity->getEntity()->getVanity()) ."\">". sfVoUtil::cutToLength(sfVoUtil::secureString($activity->getEntity(), "&#39;"), 32, '...') ."</a>" . ($activity->getEntity()->getType()==Politico::NUM_ENTITY?" (".$activity->getEntity()->getPartido().")":''),
+	  		'%1%' => "<a title='". sfVoUtil::secureString($activity->getEntity(), "&#39;") ."' href= \"". url_for($activity->getEntity()->getModule().'/show?id='.$activity->getEntity()->getVanity()) ."\">". sfVoUtil::cutToLength(sfVoUtil::secureString($activity->getEntity(), "&#39;"), 32, '...') ."</a>" . ($activity->getEntity()->getType()==Politico::NUM_ENTITY && $activity->getEntity()->getPartido()?" (".$activity->getEntity()->getPartido().")":''),
 	  		'%2%' => review_text( $activity ))) ?>
 	<?php endif ?>
   </div>
