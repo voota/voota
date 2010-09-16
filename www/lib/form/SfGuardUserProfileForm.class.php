@@ -29,7 +29,21 @@ class SfGuardUserProfileForm extends BaseSfGuardUserProfileForm
     unset(
     	$this['created_at']
     	, $this['imagen']
-    	, $this['codigo']
+    	, $this['codigo'],
+      $this['fb_publish_votos'],
+      $this['fb_publish_votos_otros'],
+      $this['fb_publish_cambios_perfil'],
+      $this['fb_tip'],
+      $this['anonymous'],
+      $this['tw_publish_votos'],
+      $this['tw_publish_votos_otros'],
+      $this['tw_publish_cambios_perfil'],
+      $this['tw_oauth_token'],
+      $this['tw_oauth_token_secret'],
+      $this['username'],
+      $this['facebook_uid'],
+      $this['email'],
+      $this['email_hash']
 	);
   }
   

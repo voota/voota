@@ -176,7 +176,7 @@ class politicoActions extends sfActions
     $this->politico_list = PoliticoPeer::doSelect(new Criteria());
   }
   
-  private function generateRankingUrl ($partido, $institucion, $p = '', $i = ''){
+  private function generateRankingUrl ($partido, $institucion, $p = '', $i = '', $page = false){
   	$p_url = "";
   	$i_url = "";
   	$culture = $this->getUser()->getCulture();
@@ -198,6 +198,7 @@ class politicoActions extends sfActions
   	if ($p_url == "" && $i_url == ""){
   		// Todos. Sin filtro
   		$url = "politico/ranking";
+  		$noparam = true;
   	}
   	else if ($p_url != "" && $i_url != ""){
   		// Filtro por partido e institucion
@@ -212,6 +213,10 @@ class politicoActions extends sfActions
   		$url = "politico/ranking?partido=all&institucion=$i_url";
   	}
   	
+  	if ($page && $page > 1){
+  		$url .= ($noparam?'?':'&')."page=$page";
+  	}
+  	
   	return $url;
   }
   
@@ -222,6 +227,10 @@ class politicoActions extends sfActions
   	$culture = $this->getUser()->getCulture("es");
   	$partido = $request->getParameter("partido", false);
   	$institucion = $request->getParameter("institucion", false);
+  	if ($institucion === ALL_FORM_VALUE){
+  		$redir = true;
+  		$institucion = false;
+  	}
 
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
@@ -248,8 +257,8 @@ class politicoActions extends sfActions
   	$this->partido = ALL_FORM_VALUE;
   	$this->institucion = ALL_FORM_VALUE;
   	
-  	if ($p != '' || $i != ''){
-	  	$url = $this->generateRankingUrl ($partido, $institucion, $p, $i);
+  	if ($p != '' || $i != '' || $redir){
+	  	$url = $this->generateRankingUrl ($partido, $institucion, $p, $i, $page);
 	   	$this->redirect( $url );
   	}
   	$this->partidoAC = '';

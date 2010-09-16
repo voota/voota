@@ -18,7 +18,8 @@ class sfGuardUserAdminForm extends BasesfGuardUserForm
       $this['last_login'],
       $this['created_at'],
       $this['salt'],
-      $this['algorithm']
+      $this['algorithm'],
+      $this['username']
     );
 
     $this->widgetSchema['sf_guard_user_group_list']->setLabel('Groups');

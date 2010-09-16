@@ -11,13 +11,17 @@
   </div>
 
   <div class="founders">
-    <h3><?php echo __('Equipo fundador de Voota')?></h3>
+    <h3><?php echo __('Equipo Voota')?> <span class="by-order">(<?php echo __('por riguroso orden de incorporación')?>)</span></h3>
 
     <ul>
-      <?php include_partial('socioabout', array('socio' => $users[2])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[1])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[5])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[22])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[2])) ?> <?php /* frans */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[1])) ?> <?php /* sergio */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[5])) ?> <?php /* 6a */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[22])) ?> <?php /* maria */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[4])) ?> <?php /* jayopla */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[31])) ?> <?php /* pol */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[180])) ?> <?php /* carlos */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[738])) ?> <?php /* jacobo */ ?>
     </ul>
   </div>
 
@@ -25,14 +29,10 @@
     <h3><?php echo __('Otra gente muy implicada en el proyecto')?></h3>
 
     <ul>
-      <?php include_partial('socioabout', array('socio' => $users[4])) ?>
       <?php //include_partial('socioabout', array('socio' => $users[7])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[31])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[180])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[9])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[738])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[27])) ?>
-      <?php include_partial('socioabout', array('socio' => $users[447])) ?>
+      <?php include_partial('socioabout', array('socio' => $users[9])) ?> <?php /* marta */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[27])) ?> <?php /* furilo */ ?>
+      <?php include_partial('socioabout', array('socio' => $users[447])) ?> <?php /* oconnor */ ?>
     </ul>
   </div>
 

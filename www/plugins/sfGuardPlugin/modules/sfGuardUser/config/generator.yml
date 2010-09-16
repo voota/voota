@@ -18,7 +18,6 @@ generator:
         
       fields:
         password_again: { label: "Password (again)" }
-        username: { label: "email" }
 
       list:
         title:   User list
@@ -26,7 +25,7 @@ generator:
 
       filter:
         class: sfGuardUserFormFilter
-        display: [nombre,apellidos,username,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
+        display: [nombre,apellidos,created_at,last_login,is_active,is_super_admin,sf_guard_user_group_list,sf_guard_user_permission_list]
         fields:
           politico_institucion_list:
             label: Institucion
@@ -39,13 +38,11 @@ generator:
           "Permisos y grupos": [is_active, is_super_admin, sf_guard_user_group_list, sf_guard_user_permission_list]
         fields:
           password_again: { label: "Password (again)" }
-          username: { label: "email" }
       fields:
-        username: { label: "Email" }
         presentacion:
           attributes: { style: "width: 90%; height:50px" }
       edit:
-        title: Editing User "%%username%%"
+        title: Editing User "%%id%%"
 
       new:
         title: New User
