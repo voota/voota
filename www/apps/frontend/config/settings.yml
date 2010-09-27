@@ -5,7 +5,8 @@ prod:
     ga_account_ca: UA-10529881-3
     no_script_name:         true
     cache:                  true
-    logging_enabled:        false
+    logging_enabled:        true
+    web_debug:              false
     s3_bucket_originals:       imagesvoota-ori
     s3_bucket_public:          images.voota.es
     images_url:          http://images.voota.es,http://images2.voota.es,http://images3.voota.es

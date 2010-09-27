@@ -7,7 +7,9 @@
       <li class="review">
         <a href="<?php echo url_for('general/search?tag='.armorTag( $etiqueta ))?>"><?php echo $etiqueta ?></a>
         <?php echo "(".$etiqueta->getCount().")" ?>
-        <a href="#" class="remove" onclick="return removeTag(<?php echo $etiqueta->getId()?>)">X</a>
+        <?php if (TagManager::isMine($etiqueta, $entity)): ?>
+        	<a href="#" class="remove" onclick="return removeTag(<?php echo $etiqueta->getId()?>)">X</a>        	
+        <?php endif?>
       </li>
     <?php endforeach ?>
     

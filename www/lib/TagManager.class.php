@@ -17,21 +17,24 @@
  */
 
 class TagManager {	
-  	public static function removeTag($id, $e, $type){  	
+  	public static function removeTag($id, $e, $type){  //$etiqueta_id, $entity_id, $culture, $sf_guard_user_id	
   		$user = sfContext::getInstance()->getUser();
-
+  		$logger = sfContext::getInstance()->getLogger();
+  		$logger->err("(etiqueta_id, entity_id, type, culture, sfguarduser_id) $id, $e, $type, ".$user->getCulture().", ". $user->getGuardUser()->getId());
+  		
   		if($user->isAuthenticated() && $id){			
 	  		if ($type == Politico::NUM_ENTITY){
-		  	$etiqueta = EtiquetaPoliticoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
+		  		$etiqueta = EtiquetaPoliticoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
 	  		}
 	  		else if ($type == Partido::NUM_ENTITY){
-		  	$etiqueta = EtiquetaPartidoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
-	  				
+		  		$etiqueta = EtiquetaPartidoPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());	  				
 	  		}
 	  		else if ($type == Propuesta::NUM_ENTITY){
-		  	$etiqueta = EtiquetaPropuestaPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());
-	  				
+		  		$etiqueta = EtiquetaPropuestaPeer::retrieveByPK($id, $e, $user->getCulture(), $user->getGuardUser()->getId());	  				
 	  		}
+	  		
+	  		//print_r($etiqueta);die;
+	  		
 		  	$etiqueta->delete();
   		}
   	}
@@ -149,6 +152,7 @@ class TagManager {
 	  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
 	  			$query .= " WHERE ep.propuesta_id = ?";
 	  		}  		 	
+	  		
 	  		if ($entity->getType() == Politico::NUM_ENTITY){
 	  			$query .= " AND e.id IN (SELECT etiqueta_id FROM etiqueta_politico WHERE sf_guard_user_id = ?)"; 
 	  		}
@@ -230,4 +234,22 @@ class TagManager {
 	  	
 		return $pager;
  	}  	
+ 	
+  	
+  	public static function isMine($etiqueta, $entity)
+  	{
+  		$user = sfContext::getInstance()->getUser();
+  		  			
+  		if ($entity->getType() == Politico::NUM_ENTITY){
+	  		$ep = EtiquetaPoliticoPeer::retrieveByPK($etiqueta->getId(), $entity->getId(), $user->getCulture(), $user->getGuardUser()->getId());
+  		}
+  		else if ($entity->getType() == Partido::NUM_ENTITY){
+	  		$ep = EtiquetaPartidoPeer::retrieveByPK($etiqueta->getId(), $entity->getId(), $user->getCulture(), $user->getGuardUser()->getId());	  				
+  		}
+  		else if ($entity->getType() == Propuesta::NUM_ENTITY){
+	  		$ep = EtiquetaPropuestaPeer::retrieveByPK($etiqueta->getId(), $entity->getId(), $user->getCulture(), $user->getGuardUser()->getId());	  				
+  		}
+		
+		return true;
+  	}
 }

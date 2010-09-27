@@ -227,6 +227,7 @@ class politicoActions extends sfActions
   	$culture = $this->getUser()->getCulture("es");
   	$partido = $request->getParameter("partido", false);
   	$institucion = $request->getParameter("institucion", false);
+  	$redir = false;
   	if ($institucion === ALL_FORM_VALUE){
   		$redir = true;
   		$institucion = false;

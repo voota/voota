@@ -255,7 +255,7 @@
 	'0',
 	{
 		'categoria': 'Político',
-		'partido': '<?php echo $politico->getPartido()?>'
+		'partido': '<?php echo sq($politico->getPartido())?>'
 	}
 	);
 </script>
