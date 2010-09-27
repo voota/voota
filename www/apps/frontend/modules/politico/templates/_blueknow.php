@@ -25,6 +25,20 @@ document.write(unescape("%3Cscript src='"
 </ul>
 
 
+<!-- Blueknow Recommender widget footer including Powered by Blueknow -->
+<div id="blueknow-footer">
+  <!-- Powered by Blueknow -->
+  <div>
+    <div>
+   <a href="http://www.blueknow.com" rel="nofollow" style="font-size: 12px; color: #666666; text-decoration:none;">
+        <img id="bk-logo" alt="Powered by Blueknow" align="left" width="18" style="border:none; margin-right: 5px;">
+             <span style="line-height:17px;">Powered by Blueknow</span>
+       </a>
+    </div>
+  </div>
+  <script type="text/javascript">document.getElementById("bk-logo").src = bkrHost + "blueknow.com/logo.png";</script>
+</div>
+
 <!-- Blueknow Recommender call -->
 <script type="text/javascript">
 /* Blueknow Recommender success callback function for rendering recommended items */
