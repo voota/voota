@@ -25,7 +25,8 @@ class PartidoForm extends BasePartidoForm
   		, $this['created_at']
   		, $this['partido_id']   
   		, $this['sumu']   
-  		, $this['sumd']    		  		
+  		, $this['sumd']    		  
+  		, $this['etiqueta_partido_list']		
   	);
     
     

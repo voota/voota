@@ -18,6 +18,7 @@ class PropuestaForm extends BasePropuestaForm
   		, $this['modified_at']
   		, $this['doc']
   		, $this['doc_size']
+  		, $this['etiqueta_propuesta_list']
   	);
     $this->widgetSchema['descripcion'] = new sfWidgetFormTextarea(array(), array('style' => "width: 500px; height:200px"));
     $this->widgetSchema['imagen'] = new sfWidgetFormInputFileEditable(array(
