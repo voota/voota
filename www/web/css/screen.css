@@ -620,5 +620,5 @@ table.rankings .negative-votes { text-align:right;}
 
 div.bk-img { float: left;padding-right:6px; }
 div.bk-name { height: 36px; }
-.bk-row { padding-top:32px; }
+.bk-row { padding-top: 16px; }
 .bk-header { display: none; clear: both; }

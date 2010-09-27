@@ -208,7 +208,7 @@
   <div id="sidebar">  
       <div id="external-links">   
         <h3><?php echo __('Otra gente')?></h3>
-			<?php include_partial('blueknow') ?>
+			<?php include_partial('blueknow', array('id' => $politico->getId())) ?>
 	  </div> 
   
   

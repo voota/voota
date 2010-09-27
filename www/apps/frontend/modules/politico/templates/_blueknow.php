@@ -74,5 +74,5 @@ function processError(message) {
 /* Create a new Blueknow Recommender instance using your assigned BK number */
 var rec = new Blueknow.Recommender("<?php echo sfConfig::get("sf_bknumber_". $sf_user->getCulture()) ?>");
 /* Perform Blueknow Recommender call. */
-rec.item2item("Ficha de producto", "product-id", { recommendations: 4 });
+rec.item2item("<?php echo __('Ficha de político')?>", "<?php echo $id?>", { recommendations: 4 });
 </script>
