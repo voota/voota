@@ -617,3 +617,8 @@ table.rankings .negative-votes { text-align:right;}
 .quickvote_hand { text-align: right; width:2.2em; float:left;}
 .left_hand { margin:0px 25px 0px -12px;}
 .by-order { font-weight:normal; }
+
+div.bk-img { float: left;padding-right:6px; }
+div.bk-name { height: 36px; }
+.bk-row { padding-top:32px; }
+.bk-header { display: none; clear: both; }

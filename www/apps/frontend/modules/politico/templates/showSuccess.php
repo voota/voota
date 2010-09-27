@@ -206,6 +206,12 @@
   </div>
   
   <div id="sidebar">  
+      <div id="external-links">   
+        <h3><?php echo __('Otra gente')?></h3>
+			<?php include_partial('blueknow') ?>
+	  </div> 
+  
+  
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">  
         <h3><?php echo __('Enlaces externos')?></h3>
@@ -259,3 +265,5 @@
 	}
 	);
 </script>
+
+
