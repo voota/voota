@@ -1,0 +1,26 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Circunscripcion
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Circunscripcion
+    plural:                Circunscripcions
+    route_prefix:          circunscripcion
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+          escanyos:
+            label: Escaños
+      list:
+        title:   Circunscripciones
+        display: [id,geo,escanyos]
+      filter:  ~
+      form:
+        display: [id,geo_id,escanyos]
+      edit:    ~
+      new:     ~
