@@ -10,6 +10,39 @@
  */
 class ListaForm extends BaseListaForm
 {
+  public function setup()
+  {
+    parent::setup();
+    
+    $this->setWidgets(array(
+      'id'                  => new sfWidgetFormInputHidden(),
+      'partido_id'          => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => false)),
+      'convocatoria_id'     => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => false)),
+      'circunscripcion_id'  => new sfWidgetFormPropelChoice(array('model' => 'Circunscripcion', 'add_empty' => false)),
+      'created_at'          => new sfWidgetFormDateTime(),
+      'politico_lista_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
+      'partido_lista_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
+    ));
+
+    $this->setValidators(array(
+      'id'                  => new sfValidatorPropelChoice(array('model' => 'Lista', 'column' => 'id', 'required' => false)),
+      'partido_id'          => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id')),
+      'convocatoria_id'     => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'column' => 'id')),
+      'circunscripcion_id'  => new sfValidatorPropelChoice(array('model' => 'Circunscripcion', 'column' => 'id', 'required' => false)),
+      'created_at'          => new sfValidatorDateTime(array('required' => false)),
+      'politico_lista_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
+      'partido_lista_list'  => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Partido', 'required' => false)),
+    ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'Lista', 'column' => array('partido_id', 'convocatoria_id', 'circunscripcion_id')))
+    );
+
+    $this->widgetSchema->setNameFormat('lista[%s]');
+
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+  }
   public function configure()
   {
   	unset(

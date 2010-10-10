@@ -37,7 +37,8 @@ Administraci&oacute;n
 	Sistema de <strong>elecciones:</strong>
 	<?php echo link_to('elecciones', 'eleccion/index') ?> 
 	<?php echo link_to('convocatorias', 'convocatoria/index') ?> 
-	<?php echo link_to('listas', 'lista/index') ?></span> 
+	<?php echo link_to('listas', 'lista/index') ?>
+	<?php echo link_to('circunscripciones', 'circunscripcion/index') ?></span>
 <?php } ?>
 	| <?php echo link_to('salir', '@sf_guard_signout') ?>
 </div>

@@ -14,7 +14,6 @@ abstract class BaseListaFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'partido_id'          => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
       'convocatoria_id'     => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => true)),
-      'geo_id'              => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
       'created_at'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'politico_lista_list' => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => true)),
       'partido_lista_list'  => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
@@ -23,7 +22,6 @@ abstract class BaseListaFormFilter extends BaseFormFilterPropel
     $this->setValidators(array(
       'partido_id'          => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Partido', 'column' => 'id')),
       'convocatoria_id'     => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Convocatoria', 'column' => 'id')),
-      'geo_id'              => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
       'created_at'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'politico_lista_list' => new sfValidatorPropelChoice(array('model' => 'Politico', 'required' => false)),
       'partido_lista_list'  => new sfValidatorPropelChoice(array('model' => 'Partido', 'required' => false)),
@@ -97,7 +95,7 @@ abstract class BaseListaFormFilter extends BaseFormFilterPropel
       'id'                  => 'Number',
       'partido_id'          => 'ForeignKey',
       'convocatoria_id'     => 'ForeignKey',
-      'geo_id'              => 'ForeignKey',
+      'circunscripcion_id'  => 'ForeignKey',
       'created_at'          => 'Date',
       'politico_lista_list' => 'ManyKey',
       'partido_lista_list'  => 'ManyKey',

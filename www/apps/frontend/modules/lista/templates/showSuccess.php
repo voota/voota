@@ -41,7 +41,7 @@
       <th class="name"><?php echo __('Lo que dice la calle') ?></th>
       <th class="voto"><?php echo __('Voto múltiple')?></th>
       <th class="positive-votes">
-        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo()->getNombre().
+        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getCircunscripcion()->getGeo()->getNombre().
         		($order=='pd'?"&o=pa":''))?>" 
         	rel="nofollow" 
         	title="<?php echo secureString(__('Ordenar por votos positivos: Los más votados primero / los menos votados primero')) ?>"><?php echo __('Votos +') ?></a>
@@ -51,7 +51,7 @@
       	<?php endif ?>
       </th>
       <th class="negative-votes">
-        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo()->getNombre().
+        <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getCircunscripcion()->getGeo()->getNombre().
         		($order=='nd'?"&o=na":'&o=nd'))?>" 
         	rel="nofollow" 
         	title="<?php echo secureString(__('Ordenar por votos negativos: Los más votados primero / los menos votados primero')) ?>"><?php echo __('Votos -') ?></a>

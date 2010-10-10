@@ -17,7 +17,7 @@ abstract class BaseListaForm extends BaseFormPropel
       'id'                  => new sfWidgetFormInputHidden(),
       'partido_id'          => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => false)),
       'convocatoria_id'     => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => false)),
-      'geo_id'              => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => false)),
+      'circunscripcion_id'  => new sfWidgetFormInputHidden(),
       'created_at'          => new sfWidgetFormDateTime(),
       'politico_lista_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
       'partido_lista_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
@@ -27,14 +27,14 @@ abstract class BaseListaForm extends BaseFormPropel
       'id'                  => new sfValidatorPropelChoice(array('model' => 'Lista', 'column' => 'id', 'required' => false)),
       'partido_id'          => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id')),
       'convocatoria_id'     => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'column' => 'id')),
-      'geo_id'              => new sfValidatorPropelChoice(array('model' => 'Geo', 'column' => 'id')),
+      'circunscripcion_id'  => new sfValidatorPropelChoice(array('model' => 'Circunscripcion', 'column' => 'id', 'required' => false)),
       'created_at'          => new sfValidatorDateTime(array('required' => false)),
       'politico_lista_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Politico', 'required' => false)),
       'partido_lista_list'  => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Partido', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorPropelUnique(array('model' => 'Lista', 'column' => array('partido_id', 'convocatoria_id', 'geo_id')))
+      new sfValidatorPropelUnique(array('model' => 'Lista', 'column' => array('partido_id', 'convocatoria_id', 'circunscripcion_id')))
     );
 
     $this->widgetSchema->setNameFormat('lista[%s]');

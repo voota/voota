@@ -18,7 +18,7 @@
             $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', '<?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumu()?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?> <?php echo __('a favor') ?>');
             $("#<?php echo "politico_". $politico->getId()?>").data('negative_votes', '<?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumd()?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?> <?php echo __('en contra') ?>');
           </script>
-        <?php endif ?>
+          <?php endif ?>
   		<?php endforeach ?>
       <?php if($numEscanyos > 20): ?>
     		<?php echo __('(y %1% más)', array('%1%' => $numEscanyos - 20))?>

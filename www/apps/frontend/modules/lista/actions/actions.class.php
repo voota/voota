@@ -24,7 +24,8 @@ class listaActions extends sfActions
   	$order = $request->getParameter("o", "");	
 	
   	$c = new Criteria();
-  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
   	$c->addJoin(ListaPeer::PARTIDO_ID, PartidoPeer::ID);
   	$c->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);
   	$c->addJoin(ConvocatoriaPeer::ELECCION_ID, EleccionPeer::ID);
@@ -39,7 +40,8 @@ class listaActions extends sfActions
   	  	
     // Geos
   	$c = new Criteria();
-  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->lista->getConvocatoria()->getId());
   	$c->add(ListaPeer::PARTIDO_ID, $this->lista->getPartido()->getId());
   	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
@@ -119,13 +121,13 @@ class listaActions extends sfActions
   		'%1%' => $this->lista->getPartido(), 
   		'%2%' => $this->lista->getConvocatoria()->getEleccion()->getNombre(), 
   		'%3%' => $this->lista->getConvocatoria()->getNombre(), 
-  		'%4%' => $this->lista->getGeo()
+  		'%4%' => $this->lista->getCircunscripcion()->getGeo()
   	));  	
   	$this->response->setTitle( $this->title ); 
   	
   	$description = sfContext::getInstance()->getI18N()->__("Lista oficial del partido vs Lo que dice la calle: %1%, circunscripcón de %2%, %3% %4%", array(
   		'%1%' => $this->lista->getPartido()->getNombre(), 
-  		'%2%' => $this->lista->getGeo(),
+  		'%2%' => $this->lista->getCircunscripcion()->getGeo(),
   		'%3%' => $this->lista->getConvocatoria()->getEleccion()->getNombre(), 
   		'%4%' => $this->lista->getConvocatoria()->getNombre(), 
   	));  	

@@ -364,7 +364,8 @@ class partidoActions extends sfActions
  	$c = new Criteria();
  	$c->add(ListaPeer::PARTIDO_ID, $this->partido->getId());
  	$c->add(ListaPeer::CONVOCATORIA_ID, $convocatoriaActiva);
- 	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
  	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
 	$this->listas = ListaPeer::doSelect( $c );
   	

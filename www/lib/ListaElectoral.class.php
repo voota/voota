@@ -50,7 +50,8 @@ class ListaElectoral
 			INNER JOIN politico_lista pl ON pl.politico_id = p.id
 			INNER JOIN lista l ON l.id = pl.lista_id ";		
 		if ($geoName){
-			$query .= "INNER JOIN geo g ON g.id = l.geo_id ";
+			$query .= "INNER JOIN circunscripcion c ON c.id = l.circunscripcion_id ";
+			$query .= "INNER JOIN geo g ON g.id = c.geo_id ";
 		}
 		$query .= "LEFT JOIN (SELECT entity_id, MAX(IFNULL(r.modified_at, r.created_at)) last_date FROM sf_review r WHERE r.value = 1 AND r.sf_review_type_id = 1 GROUP BY entity_id, sf_review_type_id) r ON (r.entity_id = p.id) ";
 			
@@ -62,7 +63,7 @@ class ListaElectoral
 			$query .= "AND g.nombre = ? ";
 		}			
 		$query .= "ORDER BY p.sumu DESC, p.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
-		
+  				
 		$connection = Propel::getConnection();
 		$statement = $connection->prepare($query);
 		$idx = 1;
@@ -96,7 +97,8 @@ class ListaElectoral
 				($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() > $lastDate) ||
 				($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() == $lastDate && $politico->getApellidos() > $apellidos) 
 				){
-				$this->numEscanyos++;
+					//echo "(".$politico->getApellidos().",".$politico->getSumu().",".$politico->getSumd().",".$politico->getLastDate().")";
+					$this->numEscanyos++;
 			}
 		}
   	}

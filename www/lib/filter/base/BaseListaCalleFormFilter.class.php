@@ -12,13 +12,13 @@ abstract class BaseListaCalleFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'min_sumu'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'min_sumd'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'sumu'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'sumd'               => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'min_sumu'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'min_sumd'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'sumu'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'sumd'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('lista_calle_filters[%s]');
@@ -36,12 +36,12 @@ abstract class BaseListaCalleFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'convocatoria_id' => 'ForeignKey',
-      'partido_id'      => 'ForeignKey',
-      'geo_id'          => 'ForeignKey',
-      'politico_id'     => 'ForeignKey',
-      'min_sumu'        => 'Number',
-      'min_sumd'        => 'Number',
+      'convocatoria_id'    => 'ForeignKey',
+      'partido_id'         => 'ForeignKey',
+      'politico_id'        => 'ForeignKey',
+      'circunscripcion_id' => 'ForeignKey',
+      'sumu'               => 'Number',
+      'sumd'               => 'Number',
     );
   }
 }

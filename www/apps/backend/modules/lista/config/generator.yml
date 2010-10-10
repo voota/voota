@@ -16,7 +16,7 @@ generator:
       display: ~
       form:
         display:
-          "Datos de la lista": [partido_id,convocatoria_id,geo_id]
+          "Datos de la lista": [partido_id,convocatoria_id,circunscripcion_id]
           "Politicos": [_lista]
       filter:
         display: [convocatoria_id]
@@ -27,4 +27,4 @@ generator:
         title:   Nueva lista
       list:
         title:   Listas por partido y elecci&oacute;n
-        display: [id,_partido,_eleccion,geo]
+        display: [id,_partido,_eleccion,circunscripcion]

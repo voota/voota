@@ -1,3 +1,12 @@
+circunscripcion:
+  class: sfPropelRouteCollection
+  options:
+    model:                Circunscripcion
+    module:               circunscripcion
+    prefix_path:          /circunscripcion
+    column:               id
+    with_wildcard_routes: true
+
 convocatoria:
   class: sfPropelRouteCollection
   options:

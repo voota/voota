@@ -97,7 +97,7 @@
             <ul>
               <?php foreach($listas as $lista):?>
         	   <?php if(!$lista->getConvocatoria()->getClosedAt()):?>
-                <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
+                <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getCircunscripcion()->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getCircunscripcion()->getGeo())) ?></a></li>
                <?php endif ?>
               <?php endforeach ?>
             </ul>

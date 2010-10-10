@@ -68,7 +68,8 @@ class Convocatoria extends BaseConvocatoria {
   	
     // Geos
   	$c = new Criteria();
-  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
   	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
   	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
   	$c->setDistinct();
@@ -82,20 +83,22 @@ class Convocatoria extends BaseConvocatoria {
   	// Minimo de votos necesario para obtener escaño
   	$listas = $this->getListas();
   	if($geoName){
-  		$numEscanyos = count($listas[0]->getPoliticoListas());
-  		// TODO: Tomar número de escaños correcto
-  		/*
-  		 Actualmente toma el número de escaños de una lista cualquiera.
-  		 Hay que tomar el numero de escaños oficial. Ticket #788
-  		 */
+	  	$c = new Criteria();
+	  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+	  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
+	  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
+	  	$c->add(GeoPeer::NOMBRE, $geoName);
+	  	//$this->geos = GeoPeer::doSelect( $c );
+	  	$circu = CircunscripcionPeer::doSelectOne( $c );
+  		$numEscanyos = $circu->getEscanyos();
   	}
   	else {
   		$numEscanyos = 0;
-  		$geoCounted = array();
+  		$circuCounted = array();
   		foreach($listas as $lista){
-  			if(!in_array($lista->getGeo()->getId(), $geoCounted)){
-  				$geoCounted[] = $lista->getGeo()->getId();
-  				$numEscanyos += count($lista->getPoliticoListas());
+  			if(!in_array($lista->getCircunscripcion()->getId(), $circuCounted)){
+  				$circuCounted[] = $lista->getCircunscripcion()->getId();
+  				$numEscanyos += $lista->getCircunscripcion()->getEscanyos();
   			}
   		}
   	}
