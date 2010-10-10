@@ -150,10 +150,12 @@ class SfVoCounter
 	}
 	
 	public static function countPropuestasReviewed() {
+		$user = sfContext::getInstance()->getUser();
+		$culture = $user->getCulture();
   		$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 		
 		if ($cache) {
-			$key=md5("propuestas_reviewes_counter");
+			$key=md5("propuestas_reviewes_counter_$culture");
 			$data = unserialize($cache->get($key));
 		}
 		else {
