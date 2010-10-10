@@ -54,13 +54,13 @@
       </thead>
       <tbody>
         <?php foreach ($partidos as $partido): ?>
-            <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd)) ?>
+            <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd, 'lastDate' => $lastDate, 'apellidos' => $apellidos)) ?>
         <?php endforeach ?>
       </tbody>
       <tfoot>
         <tr>
           <td class="partido"><?php echo __('Total') ?></td>
-          <td class="escanos"><?php echo $totalEscanyos // TODO: Total escaños ?></td>
+          <td class="escanos"><?php echo $totalEscanyos ?></td>
         </tr>
       </tfoot>
     </table>

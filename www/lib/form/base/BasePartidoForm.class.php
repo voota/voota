@@ -24,6 +24,7 @@ abstract class BasePartidoForm extends BaseFormPropel
       'sumd'                  => new sfWidgetFormInputText(),
       'is_active'             => new sfWidgetFormInputCheckbox(),
       'is_main'               => new sfWidgetFormInputCheckbox(),
+      'lista_calle_list'      => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Convocatoria')),
       'etiqueta_partido_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'partido_lista_list'    => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Lista')),
     ));
@@ -39,6 +40,7 @@ abstract class BasePartidoForm extends BaseFormPropel
       'sumd'                  => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'is_active'             => new sfValidatorBoolean(),
       'is_main'               => new sfValidatorBoolean(),
+      'lista_calle_list'      => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Convocatoria', 'required' => false)),
       'etiqueta_partido_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'partido_lista_list'    => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Lista', 'required' => false)),
     ));
@@ -73,6 +75,17 @@ abstract class BasePartidoForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
+    if (isset($this->widgetSchema['lista_calle_list']))
+    {
+      $values = array();
+      foreach ($this->object->getListaCalles() as $obj)
+      {
+        $values[] = $obj->getConvocatoriaId();
+      }
+
+      $this->setDefault('lista_calle_list', $values);
+    }
+
     if (isset($this->widgetSchema['etiqueta_partido_list']))
     {
       $values = array();
@@ -101,8 +114,44 @@ abstract class BasePartidoForm extends BaseFormPropel
   {
     parent::doSave($con);
 
+    $this->saveListaCalleList($con);
     $this->saveEtiquetaPartidoList($con);
     $this->savePartidoListaList($con);
+  }
+
+  public function saveListaCalleList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['lista_calle_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(ListaCallePeer::PARTIDO_ID, $this->object->getPrimaryKey());
+    ListaCallePeer::doDelete($c, $con);
+
+    $values = $this->getValue('lista_calle_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new ListaCalle();
+        $obj->setPartidoId($this->object->getPrimaryKey());
+        $obj->setConvocatoriaId($value);
+        $obj->save();
+      }
+    }
   }
 
   public function saveEtiquetaPartidoList($con = null)

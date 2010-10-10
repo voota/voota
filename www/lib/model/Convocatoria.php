@@ -24,4 +24,136 @@ class Convocatoria extends BaseConvocatoria {
   {
     return $this->getEleccion(). " " .$this->getNombre();    
   }
+  
+  public function closeGeo($res, $geo = false){
+  	foreach($res['partidos'] as $partido){
+		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geo?$geo->getNombre():false);
+		$politicos = $listaElectoral->getPoliticos();
+		foreach($politicos as $politico){
+			$listaCalle = new ListaCalle();
+			$listaCalle->setConvocatoria($this);
+			$listaCalle->setPartido($partido);
+			if ($geo)
+				$listaCalle->setGeo($geo);
+			$listaCalle->setPolitico($politico);
+			$listaCalle->setSumu($politico->getSumu());
+			$listaCalle->setSumd($politico->getSumd());
+			$listaCalle->save();
+		}				
+  	}
+  }
+
+  public function close(){
+  	$res = $this->getResults();
+  	foreach ($res['geos'] as $geo){
+  		$this->closeGeo( $res, $geo );
+  	}
+  	$this->closeGeo( $res, 0 );
+  }
+  
+  public function reopen(){
+  	$c = new Criteria();
+  	$c->add(ListaCallePeer::CONVOCATORIA_ID, $this->getId());
+  	ListaCallePeer::doDelete($c);
+  }
+  
+  public function getResults($geoName = false){
+  	$res = array();
+  	  	
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::PARTIDO_ID, PartidoPeer::ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
+  	$c->setDistinct();
+  	$res['partidos'] = PartidoPeer::doSelect( $c );
+  	
+    // Geos
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
+  	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
+  	$c->setDistinct();
+  	//$this->geos = GeoPeer::doSelect( $c );
+  	$res['geos'] = GeoPeer::doSelect( $c );
+  	
+  	$instituciones = $this->getEleccion()->getEleccionInstitucions();
+  	//$this->institucionName = $instituciones[0]->getInstitucion();
+  	$res['institucionName'] = $instituciones[0]->getInstitucion();
+  	
+  	// Minimo de votos necesario para obtener escaño
+  	$listas = $this->getListas();
+  	if($geoName){
+  		$numEscanyos = count($listas[0]->getPoliticoListas());
+  		// TODO: Tomar número de escaños correcto
+  		/*
+  		 Actualmente toma el número de escaños de una lista cualquiera.
+  		 Hay que tomar el numero de escaños oficial. Ticket #788
+  		 */
+  	}
+  	else {
+  		$numEscanyos = 0;
+  		$geoCounted = array();
+  		foreach($listas as $lista){
+  			if(!in_array($lista->getGeo()->getId(), $geoCounted)){
+  				$geoCounted[] = $lista->getGeo()->getId();
+  				$numEscanyos += count($lista->getPoliticoListas());
+  			}
+  		}
+  	}
+  	
+  	$listaElectoral = new ListaElectoral($this->getId(), false, $geoName);
+  	$politicos = $listaElectoral->getPoliticos();
+  	/*
+  	$c = new Criteria();
+  	$c->addJoin(ListaPeer::ID, PoliticoListaPeer::LISTA_ID);
+  	$c->addJoin(PoliticoPeer::ID, PoliticoListaPeer::POLITICO_ID);
+  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
+  	if($geoName){
+  		$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
+  		$c->add(GeoPeer::NOMBRE, $geoName);
+  	}
+  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);  	
+  	$politicos = PoliticoPeer::doSelect( $c );
+  	*/
+  	
+  	$idx = 0;
+  	//$this->minSumu = 0;
+  	$res['minSumu'] = 0;
+  	//$this->minSumd = 0;
+  	$res['minSumd'] = 0;
+  	$res['lastDate'] = null;
+  	$res['apellidos'] = '';
+  	$res['nombre'] = '';
+  	foreach ($politicos as $politico){
+  		$idx++;
+  		if ($idx == ($numEscanyos + 1)){
+  			$res['minSumu'] = $politico->getSumu();
+  			$res['minSumd'] = $politico->getSumd();
+		  	$res['lastDate'] = $politico->getLastDate();
+		  	$res['apellidos'] = $politico->getApellidos();
+		  	$res['nombre'] = $politico->getNombre();
+  		}
+  	}
+    	
+  	// Ordenar por escaños
+  	$idx = 0;
+  	//$this->totalEscanyos = 0;
+  	$res['totalEscanyos'] = 0;
+  	foreach($res['partidos'] as $partido){
+  		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geoName);
+  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
+  		$res['totalEscanyos'] += $escanyos;
+  		for ($j=0;$j<$idx;$j++){
+  			$listaElectoral2 = new ListaElectoral($this->getId(), $res['partidos'][$j]->getId(), $geoName);
+  			if ($listaElectoral2->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']) < $escanyos){
+  				$partidoTmp = clone $res['partidos'][$idx];
+  				$res['partidos'][$idx] = $res['partidos'][$j];
+  				$res['partidos'][$j] = $partidoTmp;
+  			}
+  		}
+  		$idx ++;
+  	}
+  	
+  	return $res;
+  }
 } // Convocatoria

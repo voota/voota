@@ -22,6 +22,10 @@ propel:
     fecha: { type: DATE, required: true }
     created_at: { type: TIMESTAMP, required: false }
     imagen: { type: VARCHAR, size: '50', required: false }
+    closed_at: { type: TIMESTAMP, required: false }
+    total_escanyos: { type: INTEGER, size: '11', required: false }
+    min_sumu: { type: INTEGER, size: '11', required: false }
+    min_sumd: { type: INTEGER, size: '11', required: false }
     _uniques: { nombre_unique: [eleccion_id,nombre] }
   convocatoria_i18n:
     _attributes: { phpName: ConvocatoriaI18n }
@@ -284,7 +288,15 @@ propel:
     sf_guard_user_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: sf_guard_user, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     fecha: { type: TIMESTAMP, required: false }
     _indexes: { fk_etiqueta_propuesta_1: [etiqueta_id, culture], fk_etiqueta_propuesta_2: [propuesta_id], fk_etiqueta_propuesta_3: [sf_guard_user_id] }
-    
+  lista_calle:
+    _attributes: { phpName: ListaCalle }
+    convocatoria_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    geo_id: { type: INTEGER, size: '11', primaryKey: true, required: false, foreignTable: geo, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    sumu: { type: INTEGER, size: '11', required: true }
+    sumd: { type: INTEGER, size: '11', required: true }
+    _indexes: { fk_lista_calle_1: [convocatoria_id], fk_lista_calle_2: [partido_id], fk_lista_calle_3: [geo_id], fk_lista_calle_4: [politico_id] }
     
     
     

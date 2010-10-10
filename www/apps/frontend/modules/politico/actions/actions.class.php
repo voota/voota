@@ -529,7 +529,11 @@ class politicoActions extends sfActions
     }
     
     $this->twitterUser = FALSE;
-    foreach ($this->activeEnlaces as $enlace){
+    foreach ($this->activeEnlaces as $enlace){    	if (preg_match("/twitter\.com\/#!\/(.*)$/is", $enlace->getUrl(), $matches)){
+    		$this->twitterUser = $matches[1];
+    		break;
+    	}
+    	
     	if (preg_match("/twitter\.com\/(.*)$/is", $enlace->getUrl(), $matches)){
     		$this->twitterUser = $matches[1];
     		break;

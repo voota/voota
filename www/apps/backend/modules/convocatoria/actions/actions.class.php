@@ -15,7 +15,19 @@ class convocatoriaActions extends autoConvocatoriaActions
 {
 	public function executeUpdate(sfWebRequest $request)
   	{
-  		parent::executeUpdate( $request );
+	    $this->Convocatoria = $this->getRoute()->getObject();
+	    $this->form = $this->configuration->getForm($this->Convocatoria);
+	
+	    $this->form->bind($request->getParameter($this->form->getName()), $request->getFiles($this->form->getName()));
+  	
+    	if(! $this->Convocatoria->getClosedAt() && $this->form->getValue('closed_at')){
+  			$this->Convocatoria->close();
+    	}
+    	if($this->Convocatoria->getClosedAt() && !$this->form->getValue('closed_at')){
+  			$this->Convocatoria->reopen();
+    	}
+	    $this->processForm($request, $this->form);
+	    
   		if($this->form->getValue('imagen_delete') == "on"){
 			$this->form->getObject()->setImagen( null );
 		}

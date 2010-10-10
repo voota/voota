@@ -6,7 +6,7 @@
 
 	<p> 
   	  <?php echo format_number_choice('[0]No se han encontrado resultados para "%2%"|[1]%1% resultado encontrado buscando "%2%"|(1,+Inf]%1% resultados encontrados buscando "%2%"', 
-  	  		array('%1%' => format_number($total, 'es_ES'), '%2%' => $q), $total) 
+  	  		array('%1%' => format_number($total, 'es_ES'), '%2%' => strip_tags( $q )), $total) 
   	  ?>
 	</p>
 

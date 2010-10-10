@@ -90,8 +90,8 @@
         <td class="voto">
           <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
-        <td class="positive-votes"><?php echo $politico->getSumu() ?></td>
-        <td class="negative-votes"><?php echo $politico->getSumd() ?></td>
+        <td class="positive-votes"><?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumu()?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?></td>
+        <td class="negative-votes"><?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumd()?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?></td>
       </tr>
     <?php $idx++;endforeach ?>
   </tbody>

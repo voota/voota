@@ -12,6 +12,7 @@ class GeoForm extends BaseGeoForm
 {
   public function configure()
   {
-  	unset($this['created_at']);
+  	unset($this['created_at'],
+  		$this['lista_calle_list']);
   }
 }

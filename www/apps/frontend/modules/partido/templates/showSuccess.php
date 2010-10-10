@@ -91,12 +91,14 @@
           </p>
         <?php endif ?>
 
-        <?php if($listas):?>
+        <?php if($listas && !$convocatoria->getClosedAt()):?>
           <div id="elecciones">
             <h3><?php echo $convocatoria->getEleccion()->getNombre() ?> <?php echo $convocatoria->getNombre() ?></h3>
             <ul>
               <?php foreach($listas as $lista):?>
+        	   <?php if(!$lista->getConvocatoria()->getClosedAt()):?>
                 <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getGeo())?>"><?php echo __('Lista en %1% &raquo;', array('%1%' => $lista->getGeo())) ?></a></li>
+               <?php endif ?>
               <?php endforeach ?>
             </ul>
           </div>

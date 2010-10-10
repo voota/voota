@@ -15,8 +15,8 @@
           <script type="text/javascript">
             $("#<?php echo "politico_". $politico->getId()?>").data('nombre', '<?php echo $politico ?>')
             $("#<?php echo "politico_". $politico->getId()?>").data('url', '<?php echo url_for('politico/show?id='.$politico->getVanity()) ?>')
-            $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', '<?php echo $politico->getSumu() ?> <?php echo __('a favor') ?>');
-            $("#<?php echo "politico_". $politico->getId()?>").data('negative_votes', '<?php echo $politico->getSumd() ?> <?php echo __('en contra') ?>');
+            $("#<?php echo "politico_". $politico->getId()?>").data('positive_votes', '<?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumu()?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?> <?php echo __('a favor') ?>');
+            $("#<?php echo "politico_". $politico->getId()?>").data('negative_votes', '<?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); echo $lc[0]->getSumd()?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?> <?php echo __('en contra') ?>');
           </script>
         <?php endif ?>
   		<?php endforeach ?>

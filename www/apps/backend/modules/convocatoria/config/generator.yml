@@ -19,11 +19,13 @@ generator:
       filter:  ~
       form:    
         display:
-          "Datos generales": [id,nombre,eleccion_id,fecha,imagen]
+          "Datos generales": [id,nombre,eleccion_id,fecha,imagen,closed_at]
           "Traducibles": [es,ca]
           "Enlaces": []
         fields:
           fecha:
             label: Fecha<br />(mm/dd/aaaa)
+          closed_at:
+            label: Cerrado en <br />(mm/dd/aaaa hh:mm)
       edit:    ~
       new:     ~

@@ -12,7 +12,11 @@ class ConvocatoriaForm extends BaseConvocatoriaForm
   public function configure()
   {
   	unset(
-  		$this['created_at']
+  		$this['created_at'],
+  		$this['total_escanyos'],
+  		$this['min_sumu'],
+  		$this['min_sumd'],
+  		$this['lista_calle_list']
   	);
   	
     $this->embedI18n(array('es', 'ca'));

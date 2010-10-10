@@ -135,6 +135,7 @@
         <?php echo formatBio( ($politico->getsfGuardUser() && $politico->getsfGuardUser()->getProfile()->getPresentacion())?$politico->getsfGuardUser()->getProfile()->getPresentacion():$politico->getBio() ) ?>
 
         <?php foreach ( $listas as $politicoLista): ?>
+         <?php if(!$politicoLista->getLista()->getConvocatoria()->getClosedAt()):?>
           <p>
             <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $politicoLista->getLista()->getConvocatoria()->getImagen(), 'alt="'. $politicoLista->getLista()->getConvocatoria() .'"'), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) ?>
             <?php echo __('Candidato a las %eleccion%',
@@ -143,6 +144,7 @@
                          '%eleccion%' => link_to($politicoLista->getLista()->getConvocatoria()->getEleccion()->getNombre() . ' '. $politicoLista->getLista()->getConvocatoria()->getNombre(), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) 
                         )) ?>
           </p>
+         <?php endif ?>
         <?php endforeach ?>
 
         <?php if ($sf_user->isAuthenticated() && $politico->getSfGuardUserId() && $politico->getSfGuardUserId() == $sf_user->getGuardUser()->getId()):  ?>

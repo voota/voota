@@ -149,7 +149,7 @@
       <div class="search">
         <form method="get" action="<?php echo url_for('@search')?>">
           <fieldset>
-            <input type="text" name="q" id="q" value="<?php echo $sf_request->getAttribute('q') ?>" />
+            <input type="text" name="q" id="q" value="<?php echo strip_tags( $sf_request->getAttribute('q') ) ?>" />
     	      <button type="submit"><?php echo __('Buscar') ?></button>
           </fieldset>
         </form>

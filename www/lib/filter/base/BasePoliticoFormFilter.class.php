@@ -36,6 +36,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('model' => 'Lista', 'add_empty' => true)),
       'etiqueta_politico_list'    => new sfWidgetFormPropelChoice(array('model' => 'Etiqueta', 'add_empty' => true)),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('model' => 'Institucion', 'add_empty' => true)),
+      'lista_calle_list'          => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -63,6 +64,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'politico_lista_list'       => new sfValidatorPropelChoice(array('model' => 'Lista', 'required' => false)),
       'etiqueta_politico_list'    => new sfValidatorPropelChoice(array('model' => 'Etiqueta', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('model' => 'Institucion', 'required' => false)),
+      'lista_calle_list'          => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('politico_filters[%s]');
@@ -147,6 +149,31 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
     $criteria->add($criterion);
   }
 
+  public function addListaCalleListColumnCriteria(Criteria $criteria, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $criteria->addJoin(ListaCallePeer::POLITICO_ID, PoliticoPeer::ID);
+
+    $value = array_pop($values);
+    $criterion = $criteria->getNewCriterion(ListaCallePeer::CONVOCATORIA_ID, $value);
+
+    foreach ($values as $value)
+    {
+      $criterion->addOr($criteria->getNewCriterion(ListaCallePeer::CONVOCATORIA_ID, $value));
+    }
+
+    $criteria->add($criterion);
+  }
+
   public function getModelName()
   {
     return 'Politico';
@@ -180,6 +207,7 @@ abstract class BasePoliticoFormFilter extends BaseFormFilterPropel
       'politico_lista_list'       => 'ManyKey',
       'etiqueta_politico_list'    => 'ManyKey',
       'politico_institucion_list' => 'ManyKey',
+      'lista_calle_list'          => 'ManyKey',
     );
   }
 }

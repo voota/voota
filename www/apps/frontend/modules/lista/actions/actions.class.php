@@ -51,31 +51,61 @@ class listaActions extends sfActions
   	
   	// Lista Voota
   	$c = new Criteria();
-  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
-  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
-	/* Orden de resultados
-  	 * pa: positivos ascendente
-  	 * pd: positivos descendente
-  	 * na: negativos ascendente
-  	 * nd: negativos descendente
-  	 */	
-	$this->order = $order?$order:'pd';		  	
-  	if ($this->order == "pa"){
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+  	$c->add(ConvocatoriaPeer::NOMBRE, $convocatoria);
+  	$this->convocatoria = ConvocatoriaPeer::doSelectOne( $c );
+
+  	if ($this->convocatoria->getClosedAt()){
+	  	$c = new Criteria();
+	  	$c->addJoin(ListaCallePeer::POLITICO_ID, PoliticoPeer::ID);
+	  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+	  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
+	  	
+		$this->order = $order?$order:'pd';		  	
+	  	if ($this->order == "pa"){
+	  		$c->addAscendingOrderByColumn(ListaCallePeer::SUMU);
+	  	}
+	  	else if ($this->order == "pd") {
+	  		$c->addDescendingOrderByColumn(ListaCallePeer::SUMU);
+	  		$c->addAscendingOrderByColumn(ListaCallePeer::SUMD);
+	  	}
+	  	else if ($this->order == "na"){
+	  		$c->addAscendingOrderByColumn(ListaCallePeer::SUMD);
+	  	}
+	  	else if ($this->order == "nd") {
+	  		$c->addDescendingOrderByColumn(ListaCallePeer::SUMD);
+	  		$c->addAscendingOrderByColumn(ListaCallePeer::SUMU);
+	  	}
+	  	$c->setDistinct();
+	  	$this->politicosListaVoota = PoliticoPeer::doSelect( $c );
   	}
-  	else if ($this->order == "pd") {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+  	else {
+	  	$c = new Criteria();
+	  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+	  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
+		/* Orden de resultados
+	  	 * pa: positivos ascendente
+	  	 * pd: positivos descendente
+	  	 * na: negativos ascendente
+	  	 * nd: negativos descendente
+	  	 */	
+		$this->order = $order?$order:'pd';		  	
+	  	if ($this->order == "pa"){
+	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+	  	}
+	  	else if ($this->order == "pd") {
+	  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+	  	}
+	  	else if ($this->order == "na"){
+	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+	  	}
+	  	else if ($this->order == "nd") {
+	  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
+	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
+	  	}
+	  	$this->politicosListaVoota = PoliticoPeer::doSelect( $c );
   	}
-  	else if ($this->order == "na"){
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
-  	}
-  	else if ($this->order == "nd") {
-  		$c->addDescendingOrderByColumn(PoliticoPeer::SUMD);
-  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
-  	}
-  	$this->politicosListaVoota = PoliticoPeer::doSelect( $c );
-  	
+	  	
   	// Lista oficial
   	$c = new Criteria();
   	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
