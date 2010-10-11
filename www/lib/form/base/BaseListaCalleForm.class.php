@@ -14,22 +14,28 @@ abstract class BaseListaCalleForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'convocatoria_id'    => new sfWidgetFormInputHidden(),
-      'partido_id'         => new sfWidgetFormInputHidden(),
-      'politico_id'        => new sfWidgetFormInputHidden(),
-      'circunscripcion_id' => new sfWidgetFormInputHidden(),
+      'id'                 => new sfWidgetFormInputHidden(),
+      'convocatoria_id'    => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => false)),
+      'partido_id'         => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => false)),
+      'politico_id'        => new sfWidgetFormPropelChoice(array('model' => 'Politico', 'add_empty' => false)),
+      'circunscripcion_id' => new sfWidgetFormPropelChoice(array('model' => 'Circunscripcion', 'add_empty' => true)),
       'sumu'               => new sfWidgetFormInputText(),
       'sumd'               => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'convocatoria_id'    => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'column' => 'id', 'required' => false)),
-      'partido_id'         => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id', 'required' => false)),
-      'politico_id'        => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id', 'required' => false)),
+      'id'                 => new sfValidatorPropelChoice(array('model' => 'ListaCalle', 'column' => 'id', 'required' => false)),
+      'convocatoria_id'    => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'column' => 'id')),
+      'partido_id'         => new sfValidatorPropelChoice(array('model' => 'Partido', 'column' => 'id')),
+      'politico_id'        => new sfValidatorPropelChoice(array('model' => 'Politico', 'column' => 'id')),
       'circunscripcion_id' => new sfValidatorPropelChoice(array('model' => 'Circunscripcion', 'column' => 'id', 'required' => false)),
       'sumu'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
       'sumd'               => new sfValidatorInteger(array('min' => -2147483648, 'max' => 2147483647)),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorPropelUnique(array('model' => 'ListaCalle', 'column' => array('convocatoria_id', 'partido_id', 'politico_id', 'circunscripcion_id')))
+    );
 
     $this->widgetSchema->setNameFormat('lista_calle[%s]');
 

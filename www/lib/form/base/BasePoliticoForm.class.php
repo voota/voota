@@ -39,7 +39,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
       'politico_lista_list'       => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Lista')),
       'etiqueta_politico_list'    => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Etiqueta')),
       'politico_institucion_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Institucion')),
-      'lista_calle_list'          => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Convocatoria')),
     ));
 
     $this->setValidators(array(
@@ -68,7 +67,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
       'politico_lista_list'       => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Lista', 'required' => false)),
       'etiqueta_politico_list'    => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Etiqueta', 'required' => false)),
       'politico_institucion_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Institucion', 'required' => false)),
-      'lista_calle_list'          => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Convocatoria', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -134,17 +132,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
       $this->setDefault('politico_institucion_list', $values);
     }
 
-    if (isset($this->widgetSchema['lista_calle_list']))
-    {
-      $values = array();
-      foreach ($this->object->getListaCalles() as $obj)
-      {
-        $values[] = $obj->getConvocatoriaId();
-      }
-
-      $this->setDefault('lista_calle_list', $values);
-    }
-
   }
 
   protected function doSave($con = null)
@@ -154,7 +141,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
     $this->savePoliticoListaList($con);
     $this->saveEtiquetaPoliticoList($con);
     $this->savePoliticoInstitucionList($con);
-    $this->saveListaCalleList($con);
   }
 
   public function savePoliticoListaList($con = null)
@@ -257,41 +243,6 @@ abstract class BasePoliticoForm extends BaseFormPropel
         $obj = new PoliticoInstitucion();
         $obj->setPoliticoId($this->object->getPrimaryKey());
         $obj->setInstitucionId($value);
-        $obj->save();
-      }
-    }
-  }
-
-  public function saveListaCalleList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['lista_calle_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(ListaCallePeer::POLITICO_ID, $this->object->getPrimaryKey());
-    ListaCallePeer::doDelete($c, $con);
-
-    $values = $this->getValue('lista_calle_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new ListaCalle();
-        $obj->setPoliticoId($this->object->getPrimaryKey());
-        $obj->setConvocatoriaId($value);
         $obj->save();
       }
     }

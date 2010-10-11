@@ -12,29 +12,27 @@ abstract class BaseConvocatoriaFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'eleccion_id'      => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
-      'nombre'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'fecha'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
-      'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'imagen'           => new sfWidgetFormFilterInput(),
-      'closed_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'total_escanyos'   => new sfWidgetFormFilterInput(),
-      'min_sumu'         => new sfWidgetFormFilterInput(),
-      'min_sumd'         => new sfWidgetFormFilterInput(),
-      'lista_calle_list' => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => true)),
+      'eleccion_id'    => new sfWidgetFormPropelChoice(array('model' => 'Eleccion', 'add_empty' => true)),
+      'nombre'         => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'fecha'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'created_at'     => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'imagen'         => new sfWidgetFormFilterInput(),
+      'closed_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'total_escanyos' => new sfWidgetFormFilterInput(),
+      'min_sumu'       => new sfWidgetFormFilterInput(),
+      'min_sumd'       => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'eleccion_id'      => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Eleccion', 'column' => 'id')),
-      'nombre'           => new sfValidatorPass(array('required' => false)),
-      'fecha'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'created_at'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'imagen'           => new sfValidatorPass(array('required' => false)),
-      'closed_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'total_escanyos'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'min_sumu'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'min_sumd'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'lista_calle_list' => new sfValidatorPropelChoice(array('model' => 'Partido', 'required' => false)),
+      'eleccion_id'    => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Eleccion', 'column' => 'id')),
+      'nombre'         => new sfValidatorPass(array('required' => false)),
+      'fecha'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'created_at'     => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'imagen'         => new sfValidatorPass(array('required' => false)),
+      'closed_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
+      'total_escanyos' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'min_sumu'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'min_sumd'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('convocatoria_filters[%s]');
@@ -42,31 +40,6 @@ abstract class BaseConvocatoriaFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addListaCalleListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(ListaCallePeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(ListaCallePeer::PARTIDO_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(ListaCallePeer::PARTIDO_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function getModelName()
@@ -77,17 +50,16 @@ abstract class BaseConvocatoriaFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'               => 'Number',
-      'eleccion_id'      => 'ForeignKey',
-      'nombre'           => 'Text',
-      'fecha'            => 'Date',
-      'created_at'       => 'Date',
-      'imagen'           => 'Text',
-      'closed_at'        => 'Date',
-      'total_escanyos'   => 'Number',
-      'min_sumu'         => 'Number',
-      'min_sumd'         => 'Number',
-      'lista_calle_list' => 'ManyKey',
+      'id'             => 'Number',
+      'eleccion_id'    => 'ForeignKey',
+      'nombre'         => 'Text',
+      'fecha'          => 'Date',
+      'created_at'     => 'Date',
+      'imagen'         => 'Text',
+      'closed_at'      => 'Date',
+      'total_escanyos' => 'Number',
+      'min_sumu'       => 'Number',
+      'min_sumd'       => 'Number',
     );
   }
 }

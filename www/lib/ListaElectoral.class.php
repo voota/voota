@@ -15,36 +15,39 @@ class ListaElectoral
   	$this->convocatoria = ConvocatoriaPeer::retrieveByPK($convocatoria_id);
 
   	if ($this->convocatoria->getClosedAt()){
-	 	$c = new Criteria();
-		$c->addJoin(PoliticoPeer::ID, ListaCallePeer::POLITICO_ID);
-		$c->add(ListaCallePeer::CONVOCATORIA_ID, $convocatoria_id);
-		$c->add(ListaCallePeer::PARTIDO_ID, $partido_id);
+		$query = "SELECT DISTINCT p.id, p.vanity, p.nombre, p.apellidos, p.imagen, l.sumu, l.sumd, r.last_date lastDate
+			FROM politico p
+			INNER JOIN lista_calle l ON l.politico_id = p.id ";		
 		if ($geoName){
-			$c->addJoin(GeoPeer::ID, ListaCallePeer::GEO_ID);
-			$c->add(GeoPeer::NOMBRE, $geoName);
+			$query .= "INNER JOIN circunscripcion c ON c.id = l.circunscripcion_id ";
+			$query .= "INNER JOIN geo g ON g.id = c.geo_id ";
 		}
-	  	$c->addDescendingOrderByColumn(ListaCallePeer::SUMU);
-	  	$c->addAscendingOrderByColumn(ListaCallePeer::SUMD);
-		$c->setDistinct();
-		$this->politicos = PoliticoPeer::doSelect( $c );	
+		$query .= "LEFT JOIN (SELECT entity_id, MAX(IFNULL(r.modified_at, r.created_at)) last_date FROM sf_review r WHERE r.value = 1 AND r.sf_review_type_id = 1 GROUP BY entity_id, sf_review_type_id) r ON (r.entity_id = p.id) ";
+			
+		$query .= "WHERE l.convocatoria_id = ? ";
+		if ($partido_id){
+			$query .= "AND l.partido_id = ? ";
+		}
+		if ($geoName){
+			$query .= "AND g.nombre = ? ";
+		}			
+		$query .= "ORDER BY p.sumu DESC, p.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+  				
+		$connection = Propel::getConnection();
+		$statement = $connection->prepare($query);
+		$idx = 1;
+		$statement->bindValue($idx++, $convocatoria_id);
+		if ($partido_id){
+			$statement->bindValue($idx++, $partido_id);
+		}
+		if ($geoName){
+			$statement->bindValue($idx++, $geoName);
+		}			
+		$statement->execute();
+		
+		$this->politicos = $statement->fetchAll(PDO::FETCH_CLASS, 'Candidato');
   	}
   	else {
-		/*
-	 	$c = new Criteria();
-		$c->addJoin(PoliticoPeer::ID, PoliticoListaPeer::POLITICO_ID);
-		$c->addJoin(PoliticoListaPeer::LISTA_ID, ListaPeer::ID);
-		$c->add(ListaPeer::CONVOCATORIA_ID, $convocatoria_id);
-		$c->add(ListaPeer::PARTIDO_ID, $partido_id);
-		if ($geoName){
-			$c->addJoin(GeoPeer::ID, ListaPeer::GEO_ID);
-			$c->add(GeoPeer::NOMBRE, $geoName);
-		}
-	  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-	  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);
-		$c->setDistinct();
-		$this->politicos = PoliticoPeer::doSelect( $c );	
-		 */
-
 		$query = "SELECT DISTINCT p.*, r.last_date lastDate
 			FROM politico p
 			INNER JOIN politico_lista pl ON pl.politico_id = p.id

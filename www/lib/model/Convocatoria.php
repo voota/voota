@@ -25,17 +25,17 @@ class Convocatoria extends BaseConvocatoria {
     return $this->getEleccion(). " " .$this->getNombre();    
   }
   
-  public function closeGeo($res, $geo = false){
+  public function closeGeo($res, $circu = false){
   	foreach($res['partidos'] as $partido){
-		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geo?$geo->getNombre():false);
+		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $circu?$circu->getGeo()->getNombre():false);
 		$politicos = $listaElectoral->getPoliticos();
 		foreach($politicos as $politico){
 			$listaCalle = new ListaCalle();
 			$listaCalle->setConvocatoria($this);
 			$listaCalle->setPartido($partido);
-			if ($geo)
-				$listaCalle->setGeo($geo);
-			$listaCalle->setPolitico($politico);
+			if ($circu)
+				$listaCalle->setCircunscripcion($circu);
+			$listaCalle->setPoliticoId($politico->getId());
 			$listaCalle->setSumu($politico->getSumu());
 			$listaCalle->setSumd($politico->getSumd());
 			$listaCalle->save();
@@ -45,10 +45,10 @@ class Convocatoria extends BaseConvocatoria {
 
   public function close(){
   	$res = $this->getResults();
-  	foreach ($res['geos'] as $geo){
-  		$this->closeGeo( $res, $geo );
+  	foreach ($res['circus'] as $circu){
+  		$this->closeGeo( $res, $circu );
   	}
-  	$this->closeGeo( $res, 0 );
+  	$this->closeGeo( $res );
   }
   
   public function reopen(){
@@ -66,7 +66,7 @@ class Convocatoria extends BaseConvocatoria {
   	$c->setDistinct();
   	$res['partidos'] = PartidoPeer::doSelect( $c );
   	
-    // Geos
+    // Circus
   	$c = new Criteria();
   	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
   	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
@@ -74,7 +74,7 @@ class Convocatoria extends BaseConvocatoria {
   	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
   	$c->setDistinct();
   	//$this->geos = GeoPeer::doSelect( $c );
-  	$res['geos'] = GeoPeer::doSelect( $c );
+  	$res['circus'] = CircunscripcionPeer::doSelect( $c );
   	
   	$instituciones = $this->getEleccion()->getEleccionInstitucions();
   	//$this->institucionName = $instituciones[0]->getInstitucion();
@@ -105,19 +105,6 @@ class Convocatoria extends BaseConvocatoria {
   	
   	$listaElectoral = new ListaElectoral($this->getId(), false, $geoName);
   	$politicos = $listaElectoral->getPoliticos();
-  	/*
-  	$c = new Criteria();
-  	$c->addJoin(ListaPeer::ID, PoliticoListaPeer::LISTA_ID);
-  	$c->addJoin(PoliticoPeer::ID, PoliticoListaPeer::POLITICO_ID);
-  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->getId());
-  	if($geoName){
-  		$c->addJoin(ListaPeer::GEO_ID, GeoPeer::ID);
-  		$c->add(GeoPeer::NOMBRE, $geoName);
-  	}
-  	$c->addDescendingOrderByColumn(PoliticoPeer::SUMU);
-  	$c->addAscendingOrderByColumn(PoliticoPeer::SUMD);  	
-  	$politicos = PoliticoPeer::doSelect( $c );
-  	*/
   	
   	$idx = 0;
   	//$this->minSumu = 0;

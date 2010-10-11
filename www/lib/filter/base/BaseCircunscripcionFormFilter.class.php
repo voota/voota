@@ -12,15 +12,13 @@ abstract class BaseCircunscripcionFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'geo_id'           => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
-      'escanyos'         => new sfWidgetFormFilterInput(),
-      'lista_calle_list' => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => true)),
+      'geo_id'   => new sfWidgetFormPropelChoice(array('model' => 'Geo', 'add_empty' => true)),
+      'escanyos' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'geo_id'           => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
-      'escanyos'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'lista_calle_list' => new sfValidatorPropelChoice(array('model' => 'Convocatoria', 'required' => false)),
+      'geo_id'   => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Geo', 'column' => 'id')),
+      'escanyos' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('circunscripcion_filters[%s]');
@@ -28,31 +26,6 @@ abstract class BaseCircunscripcionFormFilter extends BaseFormFilterPropel
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
-  }
-
-  public function addListaCalleListColumnCriteria(Criteria $criteria, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $criteria->addJoin(ListaCallePeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
-
-    $value = array_pop($values);
-    $criterion = $criteria->getNewCriterion(ListaCallePeer::CONVOCATORIA_ID, $value);
-
-    foreach ($values as $value)
-    {
-      $criterion->addOr($criteria->getNewCriterion(ListaCallePeer::CONVOCATORIA_ID, $value));
-    }
-
-    $criteria->add($criterion);
   }
 
   public function getModelName()
@@ -63,10 +36,9 @@ abstract class BaseCircunscripcionFormFilter extends BaseFormFilterPropel
   public function getFields()
   {
     return array(
-      'id'               => 'Number',
-      'geo_id'           => 'ForeignKey',
-      'escanyos'         => 'Number',
-      'lista_calle_list' => 'ManyKey',
+      'id'       => 'Number',
+      'geo_id'   => 'ForeignKey',
+      'escanyos' => 'Number',
     );
   }
 }

@@ -95,7 +95,7 @@ propel:
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
     partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     convocatoria_id: { type: INTEGER, size: '11', required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    circunscripcion_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: circunscripcion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    circunscripcion_id: { type: INTEGER, size: '11', primaryKey: false, required: true, foreignTable: circunscripcion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     created_at: { type: TIMESTAMP, required: false }
     _indexes: { fk_l_partido: [partido_id], fk_l_eleccion: [eleccion_id] }
     _uniques: { uniq_lista: [partido_id,convocatoria_id,circunscripcion_id] }
@@ -290,13 +290,15 @@ propel:
     _indexes: { fk_etiqueta_propuesta_1: [etiqueta_id, culture], fk_etiqueta_propuesta_2: [propuesta_id], fk_etiqueta_propuesta_3: [sf_guard_user_id] }
   lista_calle:
     _attributes: { phpName: ListaCalle }
-    convocatoria_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    partido_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    politico_id: { type: INTEGER, size: '11', primaryKey: true, required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
-    circunscripcion_id: { type: INTEGER, size: '11', primaryKey: true, required: false, foreignTable: circunscripcion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    convocatoria_id: { type: INTEGER, size: '11', required: true, foreignTable: convocatoria, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    partido_id: { type: INTEGER, size: '11', required: true, foreignTable: partido, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    politico_id: { type: INTEGER, size: '11', required: true, foreignTable: politico, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    circunscripcion_id: { type: INTEGER, size: '11', required: false, foreignTable: circunscripcion, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
     sumu: { type: INTEGER, size: '11', required: true }
     sumd: { type: INTEGER, size: '11', required: true }
     _indexes: { fk_lista_calle_1: [convocatoria_id], fk_lista_calle_2: [partido_id], fk_lista_calle_3: [politico_id], fk_lista_calle_5: [circunscripcion_id] }
+    _uniques: { index6: [convocatoria_id,partido_id,politico_id,circunscripcion_id] }
   circunscripcion:
     _attributes: { phpName: Circunscripcion }
     id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }

@@ -111,6 +111,18 @@ ALTER TABLE `voota`.`lista`
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 
+ALTER TABLE `voota`.`lista_calle` ADD COLUMN `id` INT(11) NOT NULL AUTO_INCREMENT  FIRST 
+, ADD UNIQUE INDEX `index6` (`convocatoria_id` ASC, `partido_id` ASC, `politico_id` ASC, `circunscripcion_id` ASC) 
+, DROP PRIMARY KEY 
+, ADD PRIMARY KEY (`id`) ;
+
+ALTER TABLE `voota`.`lista_calle` CHANGE COLUMN `circunscripcion_id` `circunscripcion_id` INT(11) NULL DEFAULT NULL  , 
+  ADD CONSTRAINT `fk_lista_calle_5`
+  FOREIGN KEY (`circunscripcion_id` )
+  REFERENCES `voota`.`circunscripcion` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

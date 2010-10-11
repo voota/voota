@@ -35,11 +35,11 @@
         <?php else:?>
         	<li><span><?php echo $institucionName ?></span></li>
         <?php endif ?>
-        <?php foreach ($geos as $geo):?>
-          <?php if($geoName && $geo->getNombre() == $geoName):?>
-  	      <li><span><?php echo $geo->getNombre()?></span></li>
+        <?php foreach ($circus as $circu):?>
+          <?php if($geoName && $circu->getGeo()->getNombre() == $geoName):?>
+  	      <li><span><?php echo $circu->getGeo()->getNombre()?></span></li>
           <?php else:?>
-  	      <li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
+  	      <li><a href="<?php echo url_for('eleccion/show?convocatoria='.$convocatoria->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&geo='.$circu->getGeo()->getNombre())?>"><?php echo $circu->getGeo()->getNombre()?></a></li>
           <?php endif ?>
         <?php endforeach ?>
       </ul>

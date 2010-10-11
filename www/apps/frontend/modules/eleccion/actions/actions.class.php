@@ -49,7 +49,7 @@ class eleccionActions extends sfActions
     $this->lastDate = $ret['lastDate'];
     $this->apellidos = $ret['apellidos'];
     $this->institucionName = $ret['institucionName'];
-    $this->geos = $ret['geos'];
+    $this->circus = $ret['circus'];
 
   	
   	// Metas
