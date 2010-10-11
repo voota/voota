@@ -56,13 +56,14 @@ class listaActions extends sfActions
   	$c->add(ConvocatoriaPeer::NOMBRE, $convocatoria);
   	$this->convocatoria = ConvocatoriaPeer::doSelectOne( $c );
 
+	$this->order = $order?$order:'pd';		  	
+  		/*
   	if ($this->convocatoria->getClosedAt()){
 	  	$c = new Criteria();
 	  	$c->addJoin(ListaCallePeer::POLITICO_ID, PoliticoPeer::ID);
 	  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
 	  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
 	  	
-		$this->order = $order?$order:'pd';		  	
 	  	if ($this->order == "pa"){
 	  		$c->addAscendingOrderByColumn(ListaCallePeer::SUMU);
 	  	}
@@ -84,13 +85,6 @@ class listaActions extends sfActions
 	  	$c = new Criteria();
 	  	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
 	  	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
-		/* Orden de resultados
-	  	 * pa: positivos ascendente
-	  	 * pd: positivos descendente
-	  	 * na: negativos ascendente
-	  	 * nd: negativos descendente
-	  	 */	
-		$this->order = $order?$order:'pd';		  	
 	  	if ($this->order == "pa"){
 	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
 	  	}
@@ -106,8 +100,12 @@ class listaActions extends sfActions
 	  		$c->addAscendingOrderByColumn(PoliticoPeer::SUMU);
 	  	}
 	  	$this->politicosListaVoota = PoliticoPeer::doSelect( $c );
-  	}
 	  	
+  	}
+	  	*/
+	$listaElectoral = new ListaElectoral($this->lista->getConvocatoriaId(), $this->lista->getPartidoId(), $this->lista->getCircunscripcion()->getGeo()->getNombre());
+	$this->politicosListaVoota = $listaElectoral->getPoliticos();
+  	
   	// Lista oficial
   	$c = new Criteria();
   	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);

@@ -57,7 +57,7 @@ class Convocatoria extends BaseConvocatoria {
   	ListaCallePeer::doDelete($c);
   }
   
-  public function getResults($geoName = false){
+  public function getResults($geoName = false, $sorted = true){
   	$res = array();
   	  	
   	$c = new Criteria();
@@ -124,24 +124,25 @@ class Convocatoria extends BaseConvocatoria {
 		  	$res['nombre'] = $politico->getNombre();
   		}
   	}
-    	
+   
   	// Ordenar por escaños
-  	$idx = 0;
-  	//$this->totalEscanyos = 0;
-  	$res['totalEscanyos'] = 0;
-  	foreach($res['partidos'] as $partido){
-  		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geoName);
-  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
-  		$res['totalEscanyos'] += $escanyos;
-  		for ($j=0;$j<$idx;$j++){
-  			$listaElectoral2 = new ListaElectoral($this->getId(), $res['partidos'][$j]->getId(), $geoName);
-  			if ($listaElectoral2->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']) < $escanyos){
-  				$partidoTmp = clone $res['partidos'][$idx];
-  				$res['partidos'][$idx] = $res['partidos'][$j];
-  				$res['partidos'][$j] = $partidoTmp;
-  			}
-  		}
-  		$idx ++;
+  	if ($sorted){
+	  	$idx = 0;
+	  	$res['totalEscanyos'] = 0;
+	  	foreach($res['partidos'] as $partido){
+	  		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geoName);
+	  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
+	  		$res['totalEscanyos'] += $escanyos;
+	  		for ($j=0;$j<$idx;$j++){
+	  			$listaElectoral2 = new ListaElectoral($this->getId(), $res['partidos'][$j]->getId(), $geoName);
+	  			if ($listaElectoral2->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']) < $escanyos){
+	  				$partidoTmp = clone $res['partidos'][$idx];
+	  				$res['partidos'][$idx] = $res['partidos'][$j];
+	  				$res['partidos'][$j] = $partidoTmp;
+	  			}
+	  		}
+	  		$idx ++;
+	  	}
   	}
   	
   	return $res;

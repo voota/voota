@@ -12,6 +12,9 @@ class ListaElectoral
 {
   public function __construct($convocatoria_id, $partido_id, $geoName)
   {
+  	$this->geoName = $geoName;
+  	$this->convocatoriaId = $convocatoria_id;
+  	$this->partidoId = $partido_id;
   	$this->convocatoria = ConvocatoriaPeer::retrieveByPK($convocatoria_id);
 
   	if ($this->convocatoria->getClosedAt()){
@@ -90,21 +93,61 @@ class ListaElectoral
   }
   
   public function getEscanyos($minSumu, $minSumd, $lastDate, $apellidos) {
-  	//echo "($minSumu, $minSumd, $lastDate, $apellidos)";
-  	if (!$this->numEscanyos) {
-		$this->numEscanyos = 0;
-		foreach($this->politicos as $politico){
-			if (
-				$politico->getSumu() > $minSumu || 
-				($politico->getSumu() == $minSumu && $politico->getSumd() < $minSumd) ||
-				($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() > $lastDate) ||
-				($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() == $lastDate && $politico->getApellidos() > $apellidos) 
-				){
-					//echo "(".$politico->getApellidos().",".$politico->getSumu().",".$politico->getSumd().",".$politico->getLastDate().")";
-					$this->numEscanyos++;
-			}
+  	$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
+	
+	if ($cache) {
+		
+		$key=md5("Escanyos_". $this->convocatoriaId ."-". $this->partidoId ."-". $this->geoName ."");
+		$data = unserialize($cache->get($key));
+	}
+	else {
+		$data = false;
+	}
+	if (!$data){
+		  if ($this->geoName){
+		  	if (!$this->numEscanyos) {
+				$this->numEscanyos = 0;
+				foreach($this->politicos as $politico){
+					if (
+						$politico->getSumu() > $minSumu || 
+						($politico->getSumu() == $minSumu && $politico->getSumd() < $minSumd) ||
+						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() > $lastDate) ||
+						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() == $lastDate && $politico->getApellidos() > $apellidos) 
+						){
+							//echo "(".$politico->getApellidos().",".$politico->getSumu().",".$politico->getSumd().",".$politico->getLastDate().")";
+							$this->numEscanyos++;
+					}
+				}
+		  	}
+	  	}
+	  	else {  		
+		    // Circus
+		  	$c = new Criteria();
+		  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+		  	$c->addJoin(CircunscripcionPeer::GEO_ID, GeoPeer::ID);
+		  	$c->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoriaId);
+		  	$c->addAscendingOrderByColumn(GeoPeer::NOMBRE);
+		  	$c->setDistinct();
+		  	$circus = CircunscripcionPeer::doSelect( $c );
+			$this->numEscanyos = 0;
+		  	foreach ($circus as $circu){	  		
+				$listaElectoral = new ListaElectoral($this->convocatoriaId, $this->partidoId, $circu->getGeo()->getNombre());
+				$res = $this->convocatoria->getResults($circu->getGeo()->getNombre(), false);
+				$sum = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
+				$this->numEscanyos += $sum;
+		  	}
+	  	}		
+	  	
+	  	$data = $this->numEscanyos;
+	  	
+		if ($cache) {
+			$cache->set($key, serialize($data), 3600);
 		}
-  	}
+	}
+	
+	return $data;
+		
+
   		
   	return $this->numEscanyos;
   }
