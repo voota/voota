@@ -3224,6 +3224,26 @@ actual)</target>
         <source>voota a favor de</source>
         <target/>
       </trans-unit>
+      <trans-unit id="708">
+        <source>Equipo Voota</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="709">
+        <source>por riguroso orden de incorporación</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="710">
+        <source>[0] y %1% votos negativos|[1] y 1 voto negativo|(1,+Inf] y %1% votos negativos</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="711">
+        <source>Otra gente</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="712">
+        <source>Ficha de político</source>
+        <target/>
+      </trans-unit>
     </body>
   </file>
 </xliff>

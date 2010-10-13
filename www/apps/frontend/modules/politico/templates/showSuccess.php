@@ -207,13 +207,7 @@
     <?php endif ?>
   </div>
   
-  <div id="sidebar">  
-      <div id="external-links">   
-        <h3><?php echo __('Otra gente')?></h3>
-			<?php include_partial('blueknow', array('id' => $politico->getId())) ?>
-	  </div> 
-  
-  
+  <div id="sidebar">
     <?php if(count($activeEnlaces) > 0): ?>
       <div id="external-links">  
         <h3><?php echo __('Enlaces externos')?></h3>
@@ -224,26 +218,34 @@
         </ul>
       </div>
     <?php endif ?>
-
-    <div id="report-error">
-      <?php include_partial('global/report_error', array('entity' => $politico)) ?>
-    </div>
-
+    
     <div id="etiquetas">
     	<?php include_partial('global/etiquetas', array('entity' => $politico)) ?>
     </div>
+      
+      <div id="external-links">   
+        <h3><?php echo __('Otra gente')?></h3>
+			<?php include_partial('blueknow', array('id' => $politico->getId())) ?>
+	  </div> 
 
     <div id="twitter">
       <?php if($twitterUser):?>
         <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
   	    <?php include_partial('tuits', array('user' => $twitterUser)) ?>
       <?php endif ?>
-    </div>
+    </div>  
 
     <div id="rss">
       <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('politico/feed?id='.$politico->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $politico)) ?></a>
     </div>
+    
+    <div id="report-error">
+      <?php include_partial('global/report_error', array('entity' => $politico)) ?>
+    </div>
+
+
+
 
     <div id="google-ads">
       <?php // if (!$sf_user->isAuthenticated()) include_partial('google_ads') ?>
