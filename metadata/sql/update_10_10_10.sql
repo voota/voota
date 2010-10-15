@@ -106,7 +106,7 @@ ALTER TABLE `voota`.`lista` DROP COLUMN `geo_id` , CHANGE COLUMN `circunscripcio
 
 #-----
 ALTER TABLE `voota`.`lista` 
-  ADD CONSTRAINT `fk_lista_2`
+  ADD CONSTRAINT `fk_lista_22`
   FOREIGN KEY (`circunscripcion_id` )
   REFERENCES `voota`.`circunscripcion` (`id` )
   ON DELETE NO ACTION
@@ -119,7 +119,7 @@ ALTER TABLE `voota`.`lista_calle` ADD COLUMN `id` INT(11) NOT NULL AUTO_INCREMEN
 
 #----
 ALTER TABLE `voota`.`lista_calle` CHANGE COLUMN `circunscripcion_id` `circunscripcion_id` INT(11) NULL DEFAULT NULL  , 
-  ADD CONSTRAINT `fk_lista_calle_5`
+  ADD CONSTRAINT `fk_lista_calle_55`
   FOREIGN KEY (`circunscripcion_id` )
   REFERENCES `voota`.`circunscripcion` (`id` )
   ON DELETE NO ACTION
