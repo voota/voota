@@ -191,7 +191,7 @@
     
     <div id="twitter">
       <?php if($twitterUser):?>
-        <h3><?php echo __('Últimos comentarios en Twitter')?></h3>
+        <h3><?php echo __('Comentarios en Twitter')?></h3>
   	    <?php include_partial('politico/tuits', array('user' => $twitterUser)) ?>
       <?php endif ?>
     </div>
