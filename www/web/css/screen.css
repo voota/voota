@@ -495,6 +495,7 @@ table.rankings .negative-votes { text-align:right;}
 #partido-show #elecciones ul li { list-style: none; margin-bottom: 5px;}
 #partido-show #elecciones p { margin: 20px 0;}
 #partido-show #politicos-mas-votados h3 { padding-bottom: 5px;}
+#partido-show #politicos-mas-votados li { height: 55px }
 #partido-show .entities-list-mini ul li { width: 220px; margin: 0;}
 #partido-show .active { text-decoration: none; color: #333333; font-weight: bold;}
 

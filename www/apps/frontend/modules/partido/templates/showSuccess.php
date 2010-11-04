@@ -158,7 +158,7 @@
 
   <div id="sidebar">  
     <div id="politicos-mas-votados" class="entities-list-mini">
-      <h3><?php echo __("Los más votados") ?></h3>
+      <h3><?php echo __("Top 5 políticos") ?></h3>
       <?php if ($politicos->getNbResults() > 0): ?>
         <ul>
       	  <?php foreach ($politicos->getResults() as $politico): ?>
