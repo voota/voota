@@ -22,6 +22,7 @@
   <ul>
     <?php foreach ($geos as $geo):?>
       <?php if($geoName && $geo->getNombre() == $geoName):?>
+        <?php $curGeo = $geo; ?>
         <li><span><?php echo $geo->getNombre()?></span></li>
       <?php else:?>
 	      <li><a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$geo->getNombre())?>"><?php echo $geo->getNombre()?></a></li>
@@ -91,8 +92,8 @@
           <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
         </td>
         <td class="positive-votes">
-          <?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); foreach ($lc as $lc1){echo $lc1->getSumu();}?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?></td>
-        <td class="negative-votes"><?php if ($convocatoria->getClosedAt()):?><?php $lc = $politico->getListaCalles(); foreach ($lc as $lc1){echo $lc1->getSumd();}?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?></td>
+          <?php if ($convocatoria->getClosedAt()):?><?php echo $politico->getLCSumu($curGeo) ?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?></td>
+        <td class="negative-votes"><?php if ($convocatoria->getClosedAt()):?><?php echo $politico->getLCSumd($curGeo) ?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?></td>
       </tr>
     <?php $idx++;endforeach ?>
   </tbody>

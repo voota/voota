@@ -102,4 +102,38 @@ class Politico extends BasePolitico implements reviewable
   {
     return $this->getBio();
   }
+  
+  var $lista = NULL;
+  public function getLCSumu($curGeo = false){
+  	$criteria = new Criteria; 
+	$criteria->add(ListaCallePeer::POLITICO_ID, $this->id);
+	if ($curGeo){
+		$circus = $curGeo->getCircunscripcions();
+		$criteria->add(ListaCallePeer::CIRCUNSCRIPCION_ID, $circus[0]->getId());
+	}
+	
+	$this->lista = ListaCallePeer::doSelect($criteria);
+		
+	if (count($this->lista)>0){
+		return $this->lista[0]->getSumu();
+	}
+	
+	return 0;
+  }
+  public function getLCSumd($curGeo = false){
+  	$criteria = new Criteria; 
+	$criteria->add(ListaCallePeer::POLITICO_ID, $this->id);
+	if ($curGeo){
+		$circus = $curGeo->getCircunscripcions();
+		$criteria->add(ListaCallePeer::CIRCUNSCRIPCION_ID, $circus[0]->getId());
+	}
+		
+	$this->lista = ListaCallePeer::doSelect($criteria);
+		
+	if (count($this->lista)>0){
+		return $this->lista[0]->getSumd();
+	}
+	
+	return 0;
+  }
 }
