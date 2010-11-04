@@ -235,6 +235,9 @@ class politicoActions extends sfActions
 
   	$page = $request->getParameter("page", "");
 	$order = $request->getParameter("o", "");	
+
+	$this->forward404Unless( !($order && $order != 'pd' && $order != 'pa' && $order != 'nd' && $order != 'na') );
+
 	if ($order == 'pd' || $page == '1' || (!$institucion && $partido == ALL_URL_STRING)){
 		$qs = ''; 
 		foreach($request->getParameterHolder()->getAll() as $key => $value){

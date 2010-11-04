@@ -301,19 +301,18 @@ EOF;
 			    $this->writeToSitemap("partido-ranking-$culture", $controller->genUrl("partido/ranking?institucion=".$insti->getVanity()."&page=$idx", true), $culture);
 	   		}
    		}
-    	
 	    // **************** elecciones **********************
 	    $c = new Criteria();
 	    $convocatorias = ConvocatoriaPeer::doSelect( $c );
 	    foreach ($convocatorias as $convocatoria){
 	    	$this->writeToSitemap("elecciones-$culture", $controller->genUrl('eleccion/show?vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
 	    	$used = array();
-	    	foreach ($convocatoria->getListasJoinGeo() as $geoLista){
-	    		if (!in_array($geoLista->getGeo(), $used)){
-	    			$used[] = $geoLista->getGeo();
-	    			$this->writeToSitemap("elecciones-$culture", $controller->genUrl('eleccion/show?geo='.$geoLista->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
+	    	foreach ($convocatoria->getListasJoinCircunscripcion() as $geoLista){
+	    		if (!in_array($geoLista->getCircunscripcion()->getGeo(), $used)){
+	    			$used[] = $geoLista->getCircunscripcion()->getGeo();
+	    			$this->writeToSitemap("elecciones-$culture", $controller->genUrl('eleccion/show?geo='.$geoLista->getCircunscripcion()->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
 	    		}
-	    		$this->writeToSitemap("elecciones-$culture", $controller->genUrl('lista/show?partido='.$geoLista->getPartido()->getAbreviatura().'&geo='.$geoLista->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
+	    		$this->writeToSitemap("elecciones-$culture", $controller->genUrl('lista/show?partido='.$geoLista->getPartido()->getAbreviatura().'&geo='.$geoLista->getCircunscripcion()->getGeo()->getNombre().'&vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre(), true), $culture);
 	    		
 	    	}
 	    }

@@ -49,6 +49,7 @@
     <?php include_partial('general/sparkline_box', array('reviewable' => $partido, 'id' => 'sparkline_pt_'.$partido->getId())) ?>    
     <span class="rank">
       <?php echo format_number_choice('[0]%1% votos positivos|[1]1 voto positivo|(1,+Inf]%1% votos positivos', array('%1%' => $partido->getSumu()), $partido->getSumu()) ?>
+      <?php echo format_number_choice('[0] y %1% votos negativos|[1] y 1 voto negativo|(1,+Inf] y %1% votos negativos', array('%1%' => $partido->getSumd()), $partido->getSumd()) ?>
     </span>
   </h2>
 
