@@ -65,8 +65,10 @@ class Activity {
 			else{
 				$this->aReview = SfReviewPeer::retrieveByPk($this->sf_review_id);
 				//$this->aReview = $this->review->getSfReviewRelatedBySfReviewId();
-				$peer = $this->aReview->getSfReviewType()->getModel(). 'Peer';
-				$this->entity = call_user_func("$peer::retrieveByPk", $this->aReview->getEntityId());
+				if ($this->aReview){
+					$peer = $this->aReview->getSfReviewType()->getModel(). 'Peer';
+					$this->entity = call_user_func("$peer::retrieveByPk", $this->aReview->getEntityId());
+				}
 			}
 		}
 		

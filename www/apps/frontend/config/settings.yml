@@ -68,7 +68,7 @@ all:
 #    module_disabled_action: disabled  # A module disabled in the module.yml
 #
   .settings:
-    ml: 10.10b
+    ml: 10.11
     bknumber_es: BK-592072510504-1
     bknumber_ca: BK-592072510504-2
     convocatoria_activa: 1

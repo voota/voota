@@ -58,7 +58,10 @@ class SfReviewManager extends BaseSfReviewManager
 			, r.sf_review_id
 			, anonymous
 			FROM sf_review  r
-			WHERE is_active = 1
+			WHERE is_active = 1 ";
+		
+		if ($type_id != "null"){
+			$query .= "
 			
 			UNION
 			
@@ -77,9 +80,11 @@ class SfReviewManager extends BaseSfReviewManager
 			FROM etiqueta e
 			LEFT JOIN voota.etiqueta_politico ep on e.id = ep.etiqueta_id
 			LEFT JOIN voota.etiqueta_partido epa on e.id = epa.etiqueta_id
-			LEFT JOIN voota.etiqueta_propuesta epr on e.id = epr.etiqueta_id
-			) actividad
-		";	
+			LEFT JOIN voota.etiqueta_propuesta epr on e.id = epr.etiqueta_id ";	
+		}
+		
+		$query .= " ) actividad ";
+		
 		$query .= " WHERE 1 = 1 ";	
 	
 		if ($entity_id){

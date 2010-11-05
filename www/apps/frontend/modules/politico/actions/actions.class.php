@@ -376,7 +376,7 @@ class politicoActions extends sfActions
   	else {
   		$description .= ", " . sfContext::getInstance()->getI18N()->__('todos los partidos');
   	}
-  	if ($this->institucion != '0') {
+  	if ($aInstitucion && $aInstitucion->getGeo() && $this->institucion != '0') {
   		$description .= ", " . $aInstitucion->getNombre()." (". $aInstitucion->getGeo()->getNombre() .", España)";
    	}
    	
