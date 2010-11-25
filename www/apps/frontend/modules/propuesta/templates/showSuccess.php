@@ -133,10 +133,6 @@
   
   <div id="sidebar">  
     <?php include_partial('enlaces', array('activeEnlaces' => $activeEnlaces, 'propuesta' => $propuesta)) ?>
-
-    <div id="report-error">
-      <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
-    </div>
   
     <div id="etiquetas">
       <?php include_partial('global/etiquetas', array('entity' => $propuesta)) ?>
@@ -147,6 +143,10 @@
     <div id="rss">
       <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('propuesta/feed?id='.$propuesta->getVanity())?>"><?php echo __('RSS de esta propuesta') ?></a>
+    </div>
+
+    <div id="report-error">
+      <?php include_partial('global/report_error', array('entity' => $propuesta)) ?>
     </div>
   
     <div id="google-ads">

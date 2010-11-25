@@ -1,5 +1,7 @@
 <?php use_helper('I18N') ?>
 
+<h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => fullName($user), '%1%' => $reviewsPager->getNbResults()))?></h2>
+
 <?php if ($reviewsPager->getPage() == 1):?>
 
 <script type="text/javascript">

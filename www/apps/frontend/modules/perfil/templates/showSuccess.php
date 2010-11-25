@@ -96,7 +96,6 @@
   </div>
   
 	<div class="comments reviews">
-    <h2 id="profile_comments_header"><?php echo __('Los comentarios de %nombre% (%1%)', array('%nombre%' => fullName($user), '%1%' => $reviewsPager->getNbResults()))?></h2>
    	<?php include_component_slot('review_list_by_user', array( 'page' => 1, 'sfReviewType' => $sfReviewType, 'filter' => $text, 'user' => $user, 'userId' => $user->getId() )) ?>
 	</div>
 </div>

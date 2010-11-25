@@ -180,10 +180,6 @@
         </ul>
       </div>
     <?php endif ?>
-
-    <div id="report-error">
-      <?php include_partial('global/report_error', array('entity' => $partido)) ?>
-    </div>
     
     <div id="etiquetas">
       <?php include_partial('global/etiquetas', array('entity' => $partido)) ?>
@@ -199,6 +195,10 @@
     <div id="rss">
       <img src="/images/rss.png" alt="RSS" />
       <a href="<?php echo url_for('partido/feed?id='.$partido->getVanity())?>"><?php echo __('RSS de %name%', array('%name%' => $partido)) ?></a>
+    </div>
+
+    <div id="report-error">
+      <?php include_partial('global/report_error', array('entity' => $partido)) ?>
     </div>
 
     <div id="google-ads">

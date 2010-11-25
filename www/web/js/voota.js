@@ -81,7 +81,7 @@ function institutions_to_short() {
 
 // Facebook
 function facebookParseXFBML(selector) {
-  //FB.XFBML.parse(selector);
+	FB.XFBML.parse(selector);
 }
 
 function facebookRequirePermission(options) {
