@@ -34,7 +34,7 @@ class ListaElectoral
 		if ($geoName){
 			$query .= "AND g.nombre = ? ";
 		}			
-		$query .= "ORDER BY p.sumu DESC, p.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+		$query .= "ORDER BY l.sumu DESC, l.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
   				
 		$connection = Propel::getConnection();
 		$statement = $connection->prepare($query);

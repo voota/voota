@@ -40,7 +40,7 @@
       <th class="position"></th>
       <th class="photo"></th>
       <th class="name"><?php echo __('Lo que dice la calle') ?></th>
-      <th class="voto"><?php echo __('Voto múltiple')?></th>
+      <?php if (!$convocatoria->getClosedAt()):?><th class="voto"><?php echo __('Voto múltiple')?></th><?php endif ?>
       <th class="positive-votes">
         <a href="<?php echo url_for('lista/show?partido='.$lista->getPartido()->getAbreviatura().'&convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity().'&geo='.$lista->getCircunscripcion()->getGeo()->getNombre().
         		($order=='pd'?"&o=pa":''))?>" 
@@ -88,9 +88,9 @@
         <td class="position"><?php echo $idx+1 ?>.</td>
         <td class="photo"><?php echo image_tag(S3Voota::getImagesUrl().'/'.$politico->getImagePath().'/cc_s_'.$politico->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $politico)) .'"') ?></td>
         <td class="name"><a href="<?php echo url_for('politico/show?id='.$politico->getVanity())?>"><?php echo $politico ?></a></td>
-        <td class="voto">
+        <?php if (!$convocatoria->getClosedAt()):?><td class="voto">
           <?php include_component_slot('quickvote', array('entity' => $politico)) ?>
-        </td>
+        </td><?php endif ?>
         <td class="positive-votes">
           <?php if ($convocatoria->getClosedAt()):?><?php echo $politico->getLCSumu($curGeo) ?><?php else: ?><?php echo $politico->getSumu() ?><?php endif ?></td>
         <td class="negative-votes"><?php if ($convocatoria->getClosedAt()):?><?php echo $politico->getLCSumd($curGeo) ?><?php else: ?><?php echo $politico->getSumd() ?><?php endif ?></td>
