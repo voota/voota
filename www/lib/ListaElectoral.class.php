@@ -20,8 +20,7 @@ class ListaElectoral
   	if ($this->convocatoria->getClosedAt()){
 		$query = "SELECT DISTINCT p.id, p.vanity, p.nombre, p.apellidos, p.imagen, l.sumu, l.sumd, r.last_date lastDate, p.sf_guard_user_id
 			FROM politico p
-			INNER JOIN sf_guard_user u ON u.id = p.sf_guard_user_id
-			INNER JOIN sf_guard_user_profile up ON u.id = up.id
+			LEFT JOIN sf_guard_user u ON u.id = p.sf_guard_user_id
 			INNER JOIN lista_calle l ON l.politico_id = p.id ";		
 		if ($geoName){
 			$query .= "INNER JOIN circunscripcion c ON c.id = l.circunscripcion_id ";

@@ -131,7 +131,7 @@ class Convocatoria extends BaseConvocatoria {
 	  	$res['totalEscanyos'] = 0;
 	  	foreach($res['partidos'] as $partido){
 	  		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $geoName);
-	  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
+	  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);;
 	  		$res['totalEscanyos'] += $escanyos;
 	  		for ($j=0;$j<$idx;$j++){
 	  			$listaElectoral2 = new ListaElectoral($this->getId(), $res['partidos'][$j]->getId(), $geoName);
