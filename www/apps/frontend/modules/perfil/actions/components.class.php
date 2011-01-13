@@ -6,6 +6,7 @@ class perfilComponents extends sfReviewComponents
   	$type = $this->review->getSfReviewTypeId();
   	if ( $type ){
   		$peer = $this->review->getSfReviewType()->getModel() . 'Peer';
+  		echo $type." ".$this->review->getEntityId()."<hr />";
   		$this->entity = $peer::retrieveByPK($this->review->getEntityId());
   	}
   	elseif($this->review->getSfReviewRelatedBySfReviewId()) {
