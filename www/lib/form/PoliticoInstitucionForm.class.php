@@ -22,6 +22,7 @@ class PoliticoInstitucionForm extends BasePoliticoInstitucionForm
   	unset(
   		$this['fecha_inicio']
   		, $this['fecha_fin']
+  		, $this['cargo']
   		//, $this['sf_guard_user_profile_id']
   	);
   	
@@ -38,7 +39,7 @@ class PoliticoInstitucionForm extends BasePoliticoInstitucionForm
       'url'   => $this->getOption('url')
     )
   ));
-	$this->widgetSchema['cargo'] = new sfWidgetFormSelect(array('choices' => self::$cargos));
+	//$this->widgetSchema['cargo'] = new sfWidgetFormSelect(array('choices' => self::$cargos));
   	
   }
 }
