@@ -394,6 +394,8 @@ class politicoActions extends sfActions
   {  	  	  	
   	$vanity = $request->getParameter('id');
   	$s = $request->getParameter('s', 0);
+  	$f = $request->getParameter('f', 'none');
+  	$F = $request->getParameter('F', 'none');
   	
   	$culture = $this->getUser()->getCulture();
   	
@@ -402,6 +404,9 @@ class politicoActions extends sfActions
   	$c->add(PoliticoPeer::VANITY, $vanity, Criteria::EQUAL);
   	$politico = PoliticoPeer::doSelectOne( $c );
   	$this->forward404Unless( $politico );
+
+  	if ($f != 'none' || $F != 'none')
+		$this->redirect('politico/show?id='.$politico->getVanity(), 301);
   	
   	$this->partido = $request->getParameter("partido");
   	$this->institucion = $request->getParameter("institucion");
