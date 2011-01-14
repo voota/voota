@@ -10,7 +10,7 @@
 
 class ListaElectoral
 {
-  public function __construct($convocatoria_id, $partido_id, $geoName)
+  public function __construct($convocatoria_id, $partido_id, $geoName, $order = "pd")
   {
   	$this->geoName = $geoName;
   	$this->convocatoriaId = $convocatoria_id;
@@ -35,7 +35,21 @@ class ListaElectoral
 		if ($geoName){
 			$query .= "AND g.nombre = ? ";
 		}			
-		$query .= "ORDER BY l.sumu DESC, l.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+		
+		switch ( $order ){
+			case 'pa':
+				$query .= "ORDER BY l.sumu ASC, l.sumd DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'pd':
+				$query .= "ORDER BY l.sumu DESC, l.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'na':
+				$query .= "ORDER BY l.sumd ASC, l.sumu DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'nd':
+				$query .= "ORDER BY l.sumd DESC, l.sumu ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+		}
   				
 		$connection = Propel::getConnection();
 		$statement = $connection->prepare($query);
@@ -69,7 +83,21 @@ class ListaElectoral
 		if ($geoName){
 			$query .= "AND g.nombre = ? ";
 		}			
-		$query .= "ORDER BY p.sumu DESC, p.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+		
+		switch ( $order ){
+			case 'pa':
+				$query .= "ORDER BY l.sumu ASC, l.sumd DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'pd':
+				$query .= "ORDER BY l.sumu DESC, l.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'na':
+				$query .= "ORDER BY l.sumd ASC, l.sumu DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+			case 'nd':
+				$query .= "ORDER BY l.sumd DESC, l.sumu ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				break;
+		}
   				
 		$connection = Propel::getConnection();
 		$statement = $connection->prepare($query);

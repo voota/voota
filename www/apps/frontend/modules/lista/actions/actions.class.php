@@ -103,7 +103,7 @@ class listaActions extends sfActions
 	  	
   	}
 	  	*/
-	$listaElectoral = new ListaElectoral($this->lista->getConvocatoriaId(), $this->lista->getPartidoId(), $this->lista->getCircunscripcion()->getGeo()->getNombre());
+	$listaElectoral = new ListaElectoral($this->lista->getConvocatoriaId(), $this->lista->getPartidoId(), $this->lista->getCircunscripcion()->getGeo()->getNombre(), $this->order);
 	$this->politicosListaVoota = $listaElectoral->getPoliticos();
   	
   	// Lista oficial
