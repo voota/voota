@@ -1,0 +1,1 @@
+<?php echo $sf_review->getAnonymous()?'voto secreto':$sf_review->getSfGuardUser() ?>	
