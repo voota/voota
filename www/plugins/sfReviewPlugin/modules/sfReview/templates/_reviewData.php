@@ -5,7 +5,7 @@
 <?php echo link_to($entityText, "$type/edit?id=".$entityId) ?>
 </td></tr> 
 <tr><td>user:</td><td>
-<?php echo link_to($form->getObject()->getSfGuardUser(), "sfGuardUser/edit?id=".$form->getObject()->getSfGuardUser()->getId()) ?>
+<?php echo $form->getObject()->getAnonymous()?'voto secreto':link_to($form->getObject()->getSfGuardUser(), "sfGuardUser/edit?id=".$form->getObject()->getSfGuardUser()->getId()) ?>
 </td></tr> 
 <tr><td>text:</td><td><?php echo $form->getObject()->getText() ?></td></tr> 
 <tr><td>ip address:</td><td><?php echo $form->getObject()->getIpAddress() ?></td></tr> 
