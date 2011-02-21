@@ -10,6 +10,31 @@
 
 class ListaElectoral
 {
+   public static function getInstance($convocatoria_id, $partido_id, $geoName, $order = "pd") 
+   {   	   	
+   	$key = "ListaElectoral_$convocatoria_id-$partido_id-$geoName-$order";
+   
+    $cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
+	
+	if ($cache) {
+		$key=md5($key);
+		$data = unserialize($cache->get($key));
+	}
+	else {
+		$data = false;
+	}
+	
+	if (!$data){
+		$data = new self($convocatoria_id, $partido_id, $geoName, $order);
+	
+		if ($cache) {
+			$cache->set($key, serialize($data), 3600);
+		}
+	}
+	
+	return $data;	  
+   } 
+   
   public function __construct($convocatoria_id, $partido_id, $geoName, $order = "pd")
   {
   	$this->geoName = $geoName;
@@ -86,16 +111,16 @@ class ListaElectoral
 		
 		switch ( $order ){
 			case 'pa':
-				$query .= "ORDER BY l.sumu ASC, l.sumd DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				$query .= "ORDER BY p.sumu ASC, p.sumd DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
 				break;
 			case 'pd':
-				$query .= "ORDER BY l.sumu DESC, l.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				$query .= "ORDER BY p.sumu DESC, p.sumd ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
 				break;
 			case 'na':
-				$query .= "ORDER BY l.sumd ASC, l.sumu DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				$query .= "ORDER BY p.sumd ASC, p.sumu DESC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
 				break;
 			case 'nd':
-				$query .= "ORDER BY l.sumd DESC, l.sumu ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
+				$query .= "ORDER BY p.sumd DESC, p.sumu ASC, r.last_date DESC, p.apellidos ASC, p.nombre ASC;";
 				break;
 		}
   				
@@ -112,6 +137,7 @@ class ListaElectoral
 		$statement->execute();
 		
 		$this->politicos = $statement->fetchAll(PDO::FETCH_CLASS, 'Candidato');
+  	//echo (time()-$initTime). "-5 ($convocatoria_id , $partido_id , $geoName , $order)<br>";
   	}
   					
 	$this->numEscanyos = false;

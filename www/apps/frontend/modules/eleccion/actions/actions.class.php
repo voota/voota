@@ -50,7 +50,7 @@ class eleccionActions extends sfActions
     $this->apellidos = $ret['apellidos'];
     $this->institucionName = $ret['institucionName'];
     $this->circus = $ret['circus'];
-
+    
   	
   	// Metas
   	$this->title = ($this->geoName?$this->geoName.': ':'') . $this->convocatoria->getEleccion()->getNombre() ." ". $this->convocatoria->getNombre();  	
