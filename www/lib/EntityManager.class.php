@@ -20,6 +20,51 @@ class EntityManager {
 	const PAGE_SIZE = 20;
 	const MAX_PAGES = 10;
   
+  	public static function getConvocatorias($culture, $page = 1, $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
+  	{
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("elecciones_$partido-$institucion-$culture-$page-$order");
+  			$data = $cache->get($key);
+	  	}
+	  	else {
+	  		$data = false;
+	  	}
+  		if ($data){
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
+  		}
+  		else {  		
+		  	$c = new Criteria();
+		  	
+		  	$pager = new sfPropelPager('Convocatoria', $limit);
+		  	$c->addJoin(EleccionPeer::ID, ConvocatoriaPeer::ELECCION_ID);
+		  	$c->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);
+		  	$c->addDescendingOrderByColumn(ConvocatoriaPeer::FECHA);	
+			$c->addJoin(
+				array(EleccionPeer::ID, EleccionI18nPeer::CULTURE),
+				array (EleccionI18nPeer::ID, "'$culture'")
+				, Criteria::INNER_JOIN
+			);
+		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE);
+		  	
+			$c->setDistinct();
+  			
+		    
+		    $pager->setCriteria($c);
+		    $pager->setPage( $page );
+		    $pager->init();		    
+		    
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager));
+	  			$cache->set("$key-totalUp",serialize($totalUp));
+	  			$cache->set("$key-totalDown",serialize($totalDown));
+	  		}
+	    	return $pager;
+  		}
+  	}  
+  	
   	public static function getPoliticos($partido, $institucion, $culture, $page = 1, $order = "pd", $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
   	{
 	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();

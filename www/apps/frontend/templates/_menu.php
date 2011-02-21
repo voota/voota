@@ -22,8 +22,8 @@
       <span class="count"><?php echo format_number(SfVoCounter::countReviews(), 'es_ES') ?></span>
     </li>
     <li<?php echo $tab=='ele'?' class="active"':''?>>
-      <a href="<?php echo url_for('eleccion/show?vanity=cat&convocatoria=2010')?>"><?php echo __('Elecciones') ?></a>
+      <a href="<?php echo url_for('eleccion/list')?>"><?php echo __('Elecciones') ?></a>
       <br />
-      <span class="count"><?php echo __('Sólo 1') ?></span>
+      <span class="count"><?php echo format_number(SfVoCounter::countElecciones(), 'es_ES') ?></span>
 	</li>
 </ul>

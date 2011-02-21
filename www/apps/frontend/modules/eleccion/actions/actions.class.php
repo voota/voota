@@ -61,5 +61,21 @@ class eleccionActions extends sfActions
   		'%3%' => $this->geoName?' '.$this->geoName:''
   	));  	
     $this->response->addMeta('Description', $description);
+  } 
+  
+  public function executeList(sfWebRequest $request)
+  {
+  	$culture = $this->getUser()->getCulture("es");
+  	$page = $request->getParameter("page", "");
+  	$this->route = "eleccion/list";
+  	
+  	
+  	$this->pager = EntityManager::getConvocatorias($culture, $page, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
+  	
+  	// Metas
+  	$this->title = sfContext::getInstance()->getI18N()->__('Elecciones en España');	
+  	$this->response->setTitle( $this->title );  	
+  	$description = sfContext::getInstance()->getI18N()->__("Acceso a las candidaturas y listas de las próximas elecciones municipales, autonómicas, generales o europeas en España");  	
+    $this->response->addMeta('Description', $description);
   }
 }

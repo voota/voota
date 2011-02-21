@@ -1,4 +1,20 @@
 # default rules
+        
+### ELECCIONES ###
+    
+eleccion_es:
+  url: /elecciones
+  param: { module: eleccion, action: list }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: es
+    
+eleccion_ca:
+  url: /eleccions
+  param: { module: eleccion, action: list }
+  class:  sfRequestHostCultureRoute
+  requirements:
+    sf_host_culture: cat
 
 ### OPINIONES ###
 

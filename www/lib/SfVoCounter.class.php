@@ -17,6 +17,29 @@
  */
 class SfVoCounter
 {
+	public static function countElecciones() {
+  		$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
+		
+		if ($cache) {
+			$key=md5("elecciones_counter");
+			$data = unserialize($cache->get($key));
+		}
+		else {
+			$data = false;
+		}
+		if (!$data){
+		  	$cele = new Criteria();
+		  	$cele->setDistinct();		  	
+		  	$data = EleccionPeer::doCount($cele);
+			
+			if ($cache) {
+				$cache->set($key, serialize($data), 3600);
+			}
+		}
+		
+		return $data;
+	}
+	
 	public static function countPoliticos() {
   		$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 		
