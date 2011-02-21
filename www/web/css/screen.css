@@ -627,3 +627,7 @@ div.bk-name { height: 36px; }
 
 #eleccion-list h2 {margin: 0}
 #eleccion-list div.filter {margin: 6px 0 16px 0;}
+#eleccion-list table .photo { width: 10%; padding-right: 10px;}
+#eleccion-list table .name { width: 50%;}
+#eleccion-list table .lists { width: 20%; text-align: right; padding-right: 80px;}
+#eleccion-list table .date { width: 20%;}

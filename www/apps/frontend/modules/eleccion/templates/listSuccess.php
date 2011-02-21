@@ -24,8 +24,8 @@
     <tr>
       <th class="position"></th>
       <th class="name"><?php echo __('Nombre')?></th>
-      <th class="name"><?php echo __('Nº de listas')?></th>
-      <th class="name"><?php echo __('Fecha de elección')?></th>
+      <th class="lists"><?php echo __('Nº de listas')?></th>
+      <th class="date"><?php echo __('Fecha de elección')?></th>
     </tr>
   </thead>
 
@@ -34,16 +34,16 @@
     <?php foreach($results = $pager->getResults() as $idx => $convocatoria): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="photo">
-          <?php // echo link_to(image_tag(S3Voota::getImagesUrl().'/'.$convocatoria->getImagePath().'/cc_s_'.$convocatoria->getImagen(), 'alt="'. __('Foto de %1%', array('%1%' => $convocatoria)) .'"'), 'politico/show?id='.$convocatoria->getVanity()) ?>
+          <?php echo image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $convocatoria->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
   	    </td>
         <td class="name">
           <?php echo link_to(	cutToLength("".$convocatoria->getEleccion()->getNombre()." ".$convocatoria->getNombre() , 105), 'eleccion/show?vanity='. $convocatoria->getEleccion()->getVanity() .'&convocatoria='.$convocatoria->getNombre()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
           ) ?>
         </td>
-        <td class="name">
+        <td class="lists">
          <?php echo count($convocatoria->getListas()) ?>
         </td>
-        <td class="name">
+        <td class="date">
          <?php echo format_date($convocatoria->getFecha(), 'd/M/y') ?><?php if($convocatoria->getClosedAt()):?> <?php echo __('(finalizada)')?><?php endif ?>
         </td>
       </tr>
