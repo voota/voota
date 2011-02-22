@@ -173,11 +173,11 @@ class generalActions extends sfActions{
 			}
 		}
 		else {
-			$cl->SetFieldWeights(array('abreviatura_partido' => 5, 'nombre' => 5, 'apellidos' => 5, 'alias' => 5, 'titulo' => 5, 'nombre_insti' => 8));
+			$cl->SetFieldWeights(array('abreviatura_partido' => 5, 'nombre' => 5, 'apellidos' => 5, 'alias' => 5, 'titulo' => 5, 'nombre_insti' => 8, 'nombre_ele' => 7));
 			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 1 * votes/max_votes )" );
-			$indexes = "politico_$culture, partido_$culture,propuesta_$culture, institucion_$culture, usuario";
+			$indexes = "politico_$culture, partido_$culture,propuesta_$culture, institucion_$culture, usuario, eleccion_$culture";
 			$this->res = $cl->Query ( $needle, $indexes );
-			if ( $this->res!==false ){
+						if ( $this->res!==false ){
 				$this->total = $this->res['total']; 
 				$this->totalFound = $this->res['total_found']; 
 				$cl->SetLimits ( ($this->page-1) * $this->limit, $this->limit );
@@ -220,6 +220,9 @@ class generalActions extends sfActions{
 						break;
 					case 102:
 						$resultsArray[] = SfGuardUserPeer::retrieveByPK($match['id']);
+						break;
+					case 103:
+						$resultsArray[] = ConvocatoriaPeer::retrieveByPK($match['id']);
 						break;
 				}
 			}	

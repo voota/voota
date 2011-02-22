@@ -6,11 +6,11 @@
 
 	<p> 
   	  <?php echo format_number_choice('[0]No se han encontrado resultados para "%2%"|[1]%1% resultado encontrado buscando "%2%"|(1,+Inf]%1% resultados encontrados buscando "%2%"', 
-  	  		array('%1%' => format_number($total, 'es_ES'), '%2%' => strip_tags( $q )), $total) 
+  	  		array('%1%' => format_number(!isset($total)?0:$total, 'es_ES'), '%2%' => strip_tags( $q )), !isset($total)?0:$total) 
   	  ?>
 	</p>
 
-<?php if ( $total > 0):?>
+<?php if (isset($total) && $total > 0):?>
   <table border="0" cellpadding="0" cellspacing="0">
     <tbody>
       <?php foreach($results as $idx => $obj): ?>
@@ -32,13 +32,17 @@
         <?php if ($obj instanceof sfGuardUser): ?>
 			<?php include_component_slot('usuarioResult', array('obj' => $obj, 'q' => $q)) ?>
         <?php endif ?>
+        
+        <?php if ($obj instanceof Convocatoria): ?>
+			<?php include_component_slot('convocatoriaResult', array('obj' => $obj, 'q' => $q)) ?>
+        <?php endif ?>
       <?php endforeach ?>
       
     </tbody>
   </table>
 <?php endif ?>
 
-<?php if ( intval($total / 15) > 1 ):?>
+<?php if ( intval(!isset($total)?0:$total / 15) > 1 ):?>
   <p class="pagination">
     <?php include_partial('global/array_pager', array('results' => $results, 'total' => $total, 'url' => "@search?q=$q", 'page' => $page)) ?>
   </p>

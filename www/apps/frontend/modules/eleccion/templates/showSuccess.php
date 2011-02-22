@@ -21,7 +21,7 @@
 
   <div id="content">
     <div title="<?php echo secureString($convocatoria->getEleccion()->getNombre()) ?>" id="photo">
-    	<?php echo image_tag(S3Voota::getImagesUrl().'/elecciones/cc_'. $convocatoria->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
+    	<?php echo !$convocatoria->getImagen()?'':image_tag(S3Voota::getImagesUrl().'/elecciones/cc_'. $convocatoria->getImagen(), 'alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
     </div>
     
     <div title="info" id="description">

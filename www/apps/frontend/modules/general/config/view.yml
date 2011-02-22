@@ -5,6 +5,7 @@ default:
     partidoResult:  [general, partidoResult]
     institucionResult:  [general, institucionResult]
     usuarioResult:  [general, usuarioResult]
+    convocatoriaResult:  [general, convocatoriaResult]
     tags:  [general, tags]
     tagList:  [general, tagList]
     

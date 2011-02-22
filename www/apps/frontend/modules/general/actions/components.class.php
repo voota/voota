@@ -151,6 +151,10 @@ class generalComponents extends sfComponents
   	$this->quote = SfVoUtil::highlightWords($this->quote, $this->q);
   }
   
+  public function executeConvocatoriaResult(){
+  	
+  }
+  
   public function executeSparkline(){
 	$query = "SELECT year(date) year, month(date) month, IFNULL(MAX(r.sum), 0) AS sum
 				FROM sf_review_type_entity  r
