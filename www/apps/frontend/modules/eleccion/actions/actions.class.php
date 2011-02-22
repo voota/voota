@@ -67,6 +67,8 @@ class eleccionActions extends sfActions
   {
   	$culture = $this->getUser()->getCulture("es");
   	$page = $request->getParameter("page", "");
+  	$this->autonomicas = $request->getParameter("a", false);
+  	$this->municipales = $request->getParameter("m", false);
   	$this->route = "eleccion/list";
   	
   	

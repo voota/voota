@@ -10,11 +10,17 @@
 
 <h2><?php echo $title ?></h2>
 <div class="filter">
- <?php echo __('Todas las elecciones')?> 
+ <?php if($autonomicas || $municipales): ?><a href="<?php echo url_for("eleccion/list") ?>"><?php endif ?>
+  <?php echo __('Todas las elecciones')?>
+ <?php if($autonomicas || $municipales): ?></a><?php endif ?>
  · 
- <a href="#"><?php echo __('Sólo las autonómicas')?></a>
+ <?php if(!$autonomicas): ?><a href="<?php echo url_for("eleccion/list?a=1") ?>"><?php endif ?>
+  <?php echo __('Sólo las autonómicas')?>
+ <?php if(!$autonomicas): ?></a><?php endif ?>
  ·
- <a href="#"><?php echo __('Sólo las municipales')?></a>
+ <?php if(!$municipales): ?><a href="<?php echo url_for("eleccion/list?m=1") ?>"><?php endif ?>
+  <?php echo __('Sólo las municipales')?>
+ <?php if(!$autonomicas): ?></a><?php endif ?>
 </div>
 
 
@@ -31,8 +37,9 @@
 
 
   <tbody>
-    <?php foreach($results = $pager->getResults() as $idx => $convocatoria): ?>
-     <?php foreach ($convocatoria->getEleccion()->getEleccionInstitucions() as $eleccionInstuticion):?>
+   <?php foreach($results = $pager->getResults() as $idx => $convocatoria): ?>
+    <?php foreach ($convocatoria->getEleccion()->getEleccionInstitucions() as $eleccionInstuticion):?>
+     <?php if((!$autonomicas || $eleccionInstuticion->getInstitucion()->getGeo()->getGeoRelatedByGeoId()->getId() == 1) && (!$municipales || $eleccionInstuticion->getInstitucion()->getGeo()->getGeoRelatedByGeoId()->getGeoRelatedByGeoId()->getId() == 1)): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="photo">
           <?php echo !$convocatoria->getImagen()?'':image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $convocatoria->getImagen(), ' width="36" height="36" alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
@@ -48,8 +55,9 @@
          <?php echo format_date($convocatoria->getFecha(), 'd/M/y') ?><?php if($convocatoria->getClosedAt()):?> <?php echo __('(finalizada)')?><?php endif ?>
         </td>
       </tr>
-     <?php endforeach ?>
+     <?php endif ?>
     <?php endforeach ?>
+   <?php endforeach ?>
   </tbody>
 <?php /* ?>
 <?php */ ?>
