@@ -23,7 +23,6 @@ class ListaElectoral
 	else {
 		$data = false;
 	}
-	
 	if (!$data){
 		$data = new self($convocatoria_id, $partido_id, $geoName, $order);
 	
@@ -151,14 +150,16 @@ class ListaElectoral
   	$cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 	
 	if ($cache) {
-		
-		$key=md5("Escanyos_". $this->convocatoriaId ."-". $this->partidoId ."-". $this->geoName ."");
+		$aKey = "Escanyos_". $this->convocatoriaId ."-". $this->partidoId ."-". $this->geoName ."-$minSumu-$minSumd-$lastDate-$apellidos";
+		$key=md5( $aKey );
 		$data = unserialize($cache->get($key));
 	}
 	else {
 		$data = false;
 	}
+	
 	if (!$data){
+		//echo "($aKey-$key)";
 		  if ($this->geoName){
 		  	if (!$this->numEscanyos) {
 				$this->numEscanyos = 0;
@@ -175,7 +176,7 @@ class ListaElectoral
 				}
 		  	}
 	  	}
-	  	else {  		
+	  	else { 
 		    // Circus
 		  	$c = new Criteria();
 		  	$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
@@ -196,14 +197,10 @@ class ListaElectoral
 	  	$data = $this->numEscanyos;
 	  	
 		if ($cache) {
-			$cache->set($key, serialize($data), 3600);
+			$cache->set($key, serialize($data?$data:"zero"), 3600);
 		}
 	}
 	
-	return $data;
-		
-
-  		
-  	return $this->numEscanyos;
+	return $data == "zero"?0:$data;
   }
 }	  

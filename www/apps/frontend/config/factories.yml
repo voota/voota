@@ -48,19 +48,13 @@ test:
       cache_key_use_host_name:    true
 dev:
   view_cache:
-    class: sfMemcacheCache
+    class: sfFileCache
     param:
-      lifetime:                  86400 #24h
-      prefix:                    vo
-      servers:
-        server_01:
-          host: localhost
-          post: 11211
-  view_cache_manager:
-    class: sfViewCacheManager
-    param:
-      cache_key_use_vary_headers: true
-      cache_key_use_host_name:    true
+      automatic_cleaning_factor: 0
+      cache_dir:                 %SF_TEMPLATE_CACHE_DIR%
+      lifetime:                  86400
+      prefix:                    %SF_APP_DIR%/template
+
 
 all:
   routing:

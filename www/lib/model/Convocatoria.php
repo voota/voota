@@ -27,7 +27,7 @@ class Convocatoria extends BaseConvocatoria {
   
   public function closeGeo($res, $circu = false){
   	foreach($res['partidos'] as $partido){
-		$listaElectoral = new ListaElectoral($this->getId(), $partido->getId(), $circu?$circu->getGeo()->getNombre():false);
+		$listaElectoral = ListaElectoral::getInstance($this->getId(), $partido->getId(), $circu?$circu->getGeo()->getNombre():false);
 		$politicos = $listaElectoral->getPoliticos();
 		foreach($politicos as $politico){
 			$listaCalle = new ListaCalle();
@@ -58,12 +58,12 @@ class Convocatoria extends BaseConvocatoria {
   }
   
   public function getResults($geoName = false, $sorted = true){ 	
-   	$key = "Convocatoria_".$this->getId()."-$geoName-$sorted";
+   	$aKey = "Convocatoria_".$this->getId()."-$geoName-$sorted";
    
     $cache = sfcontext::getInstance()->getViewCacheManager()?sfcontext::getInstance()->getViewCacheManager()->getCache():false;
 	
 	if ($cache) {
-		$key=md5($key);
+		$key=md5($aKey);
 		$data = unserialize($cache->get($key));
 	}
 	else {
@@ -147,7 +147,7 @@ class Convocatoria extends BaseConvocatoria {
 		  		$escanyos = $listaElectoral->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']);
 		  		$res['totalEscanyos'] += $escanyos;
 		  		for ($j=0;$j<$idx;$j++){
-		  			$listaElectoral2 = new ListaElectoral($this->getId(), $res['partidos'][$j]->getId(), $geoName);
+		  			$listaElectoral2 = ListaElectoral::getInstance($this->getId(), $res['partidos'][$j]->getId(), $geoName);
 		  			if ($listaElectoral2->getEscanyos($res['minSumu'], $res['minSumd'], $res['lastDate'], $res['apellidos']) < $escanyos){
 		  				$partidoTmp = clone $res['partidos'][$idx];
 		  				$res['partidos'][$idx] = $res['partidos'][$j];
@@ -161,10 +161,10 @@ class Convocatoria extends BaseConvocatoria {
 	
 		if ($cache) {
 			$n = rand(0, 100);
-			$cache->set($key, serialize($data), 3600*$n/100);
+			$cache->set($key, serialize($data?$data:"zero"), 3600*$n/100);
 		}
 	}
   	
-  	return $data;
+  	return $data == "zero"?0:$data;
   }
 } // Convocatoria
