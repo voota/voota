@@ -20,7 +20,7 @@
  ·
  <?php if(!$municipales): ?><a href="<?php echo url_for("eleccion/list?m=1") ?>"><?php endif ?>
   <?php echo __('Sólo las municipales')?>
- <?php if(!$autonomicas): ?></a><?php endif ?>
+ <?php if(!$municipales): ?></a><?php endif ?>
 </div>
 
 
@@ -45,7 +45,7 @@
           <?php echo !$convocatoria->getImagen()?'':image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $convocatoria->getImagen(), ' width="36" height="36" alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
   	    </td>
         <td class="name">
-          <?php echo link_to(	cutToLength($eleccionInstuticion->getInstitucion()->getNombre(). " (" .$convocatoria->getEleccion()->getNombre()." ".$convocatoria->getNombre() .")" , 105), 'eleccion/show?vanity='. $convocatoria->getEleccion()->getVanity() .'&convocatoria='.$convocatoria->getNombre()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
+          <?php echo link_to(	cutToLength($eleccionInstuticion->getInstitucion()->getGeo()->getNombre(). " (" .$convocatoria->getEleccion()->getNombre()." ".$convocatoria->getNombre() .")" , 105), 'eleccion/show?vanity='. $convocatoria->getEleccion()->getVanity() .'&convocatoria='.$convocatoria->getNombre()//. ($partido == 'all'?'':"&partido=$partido"). ($institucion == '0'?'':"&institucion=$institucion")
           ) ?>
         </td>
         <td class="lists">
