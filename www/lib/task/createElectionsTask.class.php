@@ -51,8 +51,19 @@ EOF;
     $c->add(InstitucionI18nPeer::NOMBRE, 'Ayuntamiento%', Criteria::LIKE);
     $c->add(InstitucionI18nPeer::CULTURE, 'es');
 
-    $instituciones = InstitucionI18nPeer::doSelect( $c );
-    foreach ($instituciones as $institucion){
+    $pager = new sfPropelPager('InstitucionI18n', 100);
+    
+	$pager->setCriteria($c);
+	$pageNum = 0; 
+
+	do {
+	  $pageNum++;
+	  echo "\nBlock no. $pageNum \n";
+	  $pager->setPage( $pageNum );
+	  $pager->init();	
+		
+      $instituciones = $pager->getResults();
+      foreach ($instituciones as $institucion){
 	    $geo = GeoPeer::retrieveByPK($institucion->getInstitucion()->getGeoId());
 	    if ($geo) {
 	    	echo ".";
@@ -120,8 +131,9 @@ EOF;
 	    	$circu->save();
 	    	
 	    }    		
-    }
-    
+      }
+  
+	} while(!$pager->isLastPage());
     
   }
 }
