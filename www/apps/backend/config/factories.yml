@@ -1,6 +1,6 @@
 prod:
   logger:
-    class:   sfMemcacheCache
+    class:   sfAggregateLogger
     param:
       level:   err
       loggers: ~
