@@ -17,8 +17,22 @@ class ListaForm extends BaseListaForm
     $this->setWidgets(array(
       'id'                  => new sfWidgetFormInputHidden(),
       'partido_id'          => new sfWidgetFormPropelChoice(array('model' => 'Partido', 'add_empty' => false)),
-      'convocatoria_id'     => new sfWidgetFormPropelChoice(array('model' => 'Convocatoria', 'add_empty' => false)),
-      'circunscripcion_id'  => new sfWidgetFormPropelChoice(array('model' => 'Circunscripcion', 'add_empty' => false)),
+      'convocatoria_id'     => new sfWidgetFormChoice(array(
+	    'choices'          => array(),
+	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+	    'renderer_options' => array(
+	      'model' => 'Convocatoria',
+	      'url'   => $this->getOption('url_co')
+	    )
+	  )),
+      'circunscripcion_id'  => new sfWidgetFormChoice(array(
+	    'choices'          => array(),
+	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+	    'renderer_options' => array(
+	      'model' => 'Circunscripcion',
+	      'url'   => $this->getOption('url_ci')
+	    )
+	  )),
       'created_at'          => new sfWidgetFormDateTime(),
       'politico_lista_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Politico')),
       'partido_lista_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Partido')),
@@ -56,6 +70,24 @@ class ListaForm extends BaseListaForm
 	    'renderer_options' => array(
 	      'model' => 'Politico',
 	      'url'   => $this->getOption('url')
+	    )
+	));
+  	  
+	$this->widgetSchema['convocatoria_id'] = new sfWidgetFormChoice(array(
+	    'choices'          => array(),
+	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+	    'renderer_options' => array(
+	      'model' => 'Convocatoria',
+	      'url'   => $this->getOption('url_co')
+	    )
+	));
+  	  	
+	$this->widgetSchema['circunscripcion_id'] = new sfWidgetFormChoice(array(
+	    'choices'          => array(),
+	    'renderer_class'   => 'sfWidgetFormPropelJQueryAutocompleter',
+	    'renderer_options' => array(
+	      'model' => 'Circunscripcion',
+	      'url'   => $this->getOption('url_ci')
 	    )
 	));
 	

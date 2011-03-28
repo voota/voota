@@ -26,13 +26,27 @@ class listaActions extends autoListaActions
 	  $politicos = PoliticoPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
 	  return $this->renderText(json_encode($politicos));
 	}
+	public function executeAutoCompleteCo($request)
+	{
+	  $this->getResponse()->setContentType('application/json');
+	  $convocatorias = ConvocatoriaPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
+	  return $this->renderText(json_encode($convocatorias));
+	}
+	public function executeAutoCompleteCi($request)
+	{
+	  $this->getResponse()->setContentType('application/json');
+	  $circunscripciones = CircunscripcionPeer::retrieveForAutoSelect($request->getParameter('q'), $request->getParameter('limit'));
+	  return $this->renderText(json_encode($circunscripciones));
+	}
 	
 	public function executeEdit(sfWebRequest $request) {
 		//$this->configuration->setEnlaces($this->getRoute()->getObject()->getEnlaces());		
 		$this->configuration->setPoliticos($this->getRoute()->getObject()->getPoliticoListas());		
 		
 		parent::executeEdit( $request );
-		$this->form->setOption('url', $this->getController()->genUrl('lista/autoComplete'));	
+		$this->form->setOption('url', $this->getController()->genUrl('lista/autoComplete'));
+		$this->form->setOption('url_co', $this->getController()->genUrl('lista/autoCompleteCo'));	
+		$this->form->setOption('url_ci', $this->getController()->genUrl('lista/autoCompleteCi'));	
 		$this->form->configure();
 	}
 	

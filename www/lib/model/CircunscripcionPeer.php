@@ -20,4 +20,32 @@ require 'lib/model/om/BaseCircunscripcionPeer.php';
  */
 class CircunscripcionPeer extends BaseCircunscripcionPeer {
 
+	static public function retrieveForAutoSelect($q, $limit)
+	{
+	  	$criteria = new Criteria();
+		$pieces = explode(" ", $q);
+		$criterions = array();
+		$idx = 0;
+		$criteria->addJoin(GeoPeer::ID, CircunscripcionPeer::GEO_ID);
+		
+		
+		foreach ($pieces as $piece){			
+			sfContext::getInstance()->getLogger()->debug("A SEARCH PIECE $piece");
+			$criterions[$idx] = $criteria->getNewCriterion(GeoPeer:: NOMBRE, '%'.$piece.'%', Criteria::LIKE);
+		  	$criteria->addAnd( $criterions[$idx] );
+		  	$idx++;	
+		}
+	
+	  $criteria->addAscendingOrderByColumn(GeoPeer::NOMBRE);
+	  $criteria->setLimit($limit);
+	 
+	  $circunscripciones = array();
+	  foreach (CircunscripcionPeer::doSelect($criteria) as $circunscripcion)
+	  {
+	    $circunscripciones[$circunscripcion->getId()] = (string) $circunscripcion;
+	  }
+	 
+	  return $circunscripciones;
+	}
+	
 } // CircunscripcionPeer

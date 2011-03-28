@@ -20,4 +20,30 @@ require 'lib/model/om/BaseConvocatoriaPeer.php';
  */
 class ConvocatoriaPeer extends BaseConvocatoriaPeer {
 
+	static public function retrieveForAutoSelect($q, $limit)
+	{
+	  	$criteria = new Criteria();
+		$pieces = explode(" ", $q);
+		$criterions = array();
+		$idx = 0;
+		$criteria->addJoin(ConvocatoriaPeer::ELECCION_ID, EleccionI18nPeer::ID);
+		
+		foreach ($pieces as $piece){			
+			sfContext::getInstance()->getLogger()->debug("A SEARCH PIECE $piece");
+			$criterions[$idx] = $criteria->getNewCriterion(EleccionI18nPeer::NOMBRE_CORTO, '%'.$piece.'%', Criteria::LIKE);
+		  	$criteria->addAnd( $criterions[$idx] );
+		  	$idx++;	
+		}
+	
+	  $criteria->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE_CORTO);
+	  $criteria->setLimit($limit);
+	 
+	  $convocatorias = array();
+	  foreach (ConvocatoriaPeer::doSelect($criteria) as $convocatoria)
+	  {
+	    $convocatorias[$convocatoria->getId()] = (string) $convocatoria;
+	  }
+	 
+	  return $convocatorias;
+	}
 } // ConvocatoriaPeer
