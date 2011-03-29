@@ -50,6 +50,13 @@ class listaActions extends autoListaActions
 		$this->form->configure();
 	}
 	
+	public function executeNew(sfWebRequest $request) {
+		parent::executeNew( $request );
+		$this->form->setOption('url_co', $this->getController()->genUrl('lista/autoCompleteCo'));	
+		$this->form->setOption('url_ci', $this->getController()->genUrl('lista/autoCompleteCi'));	
+		$this->form->configure();
+	}
+	
 	public function executeDeleteInstitucion(sfWebRequest $request) {
 	  $politico = PoliticoListaPeer::retrieveByPK($request->getParameter('idi'), $request->getParameter('idm'));
 	  $politico->delete();
