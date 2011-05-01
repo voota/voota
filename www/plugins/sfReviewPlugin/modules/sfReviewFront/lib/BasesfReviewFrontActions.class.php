@@ -26,13 +26,14 @@ class BasesfReviewFrontActions extends sfActions
   	$id = $request->getParameter("id");
   	
   	$this->review = SfReviewPeer::retrieveByPK( $id );
+  	// Mmovido aqui para fix de #848
+  	$this->forward404Unless( $this->review );
+  	
   	if (($goodVanity = SfVoUtil::reviewPermalink($this->review)) != $id){
   		//echo "$goodVanity == $id"; 
   		$this->redirect('sfReviewFront/show?id='.$goodVanity, 301);
   	}
-  	  	
-  	$this->forward404Unless( $this->review );
-  	
+  	  	  	
   	if ($this->review->getSfReviewTypeId()) {
 	  	$c = new Criteria;
 	  	$c->add(SfReviewTypePeer::ID, $this->review->getSfReviewTypeId());

@@ -48,7 +48,7 @@ test:
       cache_key_use_host_name:    true
 dev:
   view_cache:
-    class: sfFileCache
+    class: sfNoCache
     param:
       automatic_cleaning_factor: 0
       cache_dir:                 %SF_TEMPLATE_CACHE_DIR%

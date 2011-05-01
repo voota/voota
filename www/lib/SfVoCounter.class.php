@@ -30,6 +30,8 @@ class SfVoCounter
 		if (!$data){
 		  	$cele = new Criteria();
 		  	$cele->setDistinct();		  	
+		  	$cele->addJoin(EleccionPeer::ID, ConvocatoriaPeer::ELECCION_ID);
+		  	$cele->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);		  	
 		  	$data = EleccionPeer::doCount($cele);
 			
 			if ($cache) {
