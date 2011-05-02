@@ -84,7 +84,7 @@ EOF;
    			$c->addJoin(ConvocatoriaPeer::ELECCION_ID, EleccionPeer::ID);
    			$c->addJoin(EleccionInstitucionPeer::ELECCION_ID, EleccionPeer::ID);
    			$c->addJoin(InstitucionPeer::ID, EleccionInstitucionPeer::INSTITUCION_ID);
-   			$c->addJoin(InstitucionPeer::GEO_ID, $aGeo->getId());
+   			$c->add(InstitucionPeer::GEO_ID, $aGeo->getId());
    			
 			$convocatoria = ConvocatoriaPeer::doSelectOne($c);	
 			if (!$convocatoria){

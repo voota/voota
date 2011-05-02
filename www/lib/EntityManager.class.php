@@ -40,13 +40,14 @@ class EntityManager {
 		  	
 		  	$pager = new sfPropelPager('Convocatoria', $limit);
 		  	$c->addJoin(EleccionPeer::ID, ConvocatoriaPeer::ELECCION_ID);
-		  	$c->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);
-		  	$c->addDescendingOrderByColumn(ConvocatoriaPeer::FECHA);	
+		  	$c->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);	
 			$c->addJoin(
 				array(EleccionPeer::ID, EleccionI18nPeer::CULTURE),
 				array (EleccionI18nPeer::ID, "'$culture'")
 				, Criteria::INNER_JOIN
 			);
+		  	$c->addDescendingOrderByColumn(ConvocatoriaPeer::FECHA);
+		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE);
 			if ($municipales){
 			   	$c->addAlias('muni','geo');			
 			   	$c->addAlias('prov','geo');			   	

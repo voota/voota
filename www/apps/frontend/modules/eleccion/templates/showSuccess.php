@@ -28,6 +28,7 @@
       <?php echo formatPresentacion( $convocatoria->getDescripcion() ) ?>
     </div><!-- end of description -->
 
+<?php if (count($circus) > 1):?>
     <div class="selector-convocatoria">
       <ul>
         <?php if($geoName):?>
@@ -44,6 +45,7 @@
         <?php endforeach ?>
       </ul>
     </div>
+<?php endif ?>
 
     <table id="resultados">
       <thead>
@@ -54,7 +56,7 @@
       </thead>
       <tbody>
         <?php foreach ($partidos as $partido): ?>
-            <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => $geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd, 'lastDate' => $lastDate, 'apellidos' => $apellidos)) ?>
+            <?php include_component_slot('partido_lista', array('partido' => $partido, 'convocatoria' => $convocatoria, 'geoName' => (count($circus) == 1)?$circus[0]->getGeo()->getNombre():$geoName, 'minSumu' => $minSumu, 'minSumd' => $minSumd, 'lastDate' => $lastDate, 'apellidos' => $apellidos)) ?>
         <?php endforeach ?>
       </tbody>
       <tfoot>

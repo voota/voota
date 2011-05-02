@@ -3230,8 +3230,65 @@ actual)</target>
       </trans-unit>
       <trans-unit id="713">
         <source>Comentarios en Twitter</source>
-        <target/>
+        <target>Comentaris a Twitter</target>
       </trans-unit>
+      <trans-unit id="714">
+        <source>Lo que se dice sobre los políticos, partidos y propuestas políticas en España (ya llevamos %1% opiniones).</source>
+        <target>El que es diu sobre els polítics, partits i propostes polítiques a Espanya (ja portem %1% opinions).</target>
+      </trans-unit>
+      <trans-unit id="715">
+        <source>¿Y tu qué piensas?</source>
+        <target>I tu què penses?</target>
+      </trans-unit>
+      <trans-unit id="716">
+        <source>Elecciones en España</source>
+        <target>Eleccions a Espanya</target>
+      </trans-unit>
+      <trans-unit id="717">
+        <source>Acceso a las candidaturas y listas de las próximas elecciones municipales, autonómicas, generales o europeas en España</source>
+        <target>Accés a les candidatures i llistes de les pròximes eleccions municipals, autonòmiques, generals o europees a Espanya</target>
+      </trans-unit>
+      <trans-unit id="718">
+        <source>Todas las elecciones</source>
+        <target>Totes les eleccions</target>
+      </trans-unit>
+      <trans-unit id="719">
+        <source>Sólo las autonómicas</source>
+        <target>Només les autonòmiques</target>
+      </trans-unit>
+      <trans-unit id="720">
+        <source>Sólo las municipales</source>
+        <target>Només les municipals</target>
+      </trans-unit>
+      <trans-unit id="721">
+        <source>Nº de listas</source>
+        <target>Nombre de llistes</target>
+      </trans-unit>
+      <trans-unit id="722">
+        <source>Fecha de elección</source>
+        <target>Data d'elecció</target>
+      </trans-unit>
+      <trans-unit id="723">
+        <source>(finalizada)</source>
+        <target>(finalitzada)</target>
+      </trans-unit>
+      <trans-unit id="724">
+        <source>Opina sobre políticos</source>
+        <target>Opina sobre polítics</target>
+      </trans-unit>
+      <trans-unit id="725">
+        <source>opina sobre partidos</source>
+        <target>opina sobre partits</target>
+      </trans-unit>
+      <trans-unit id="726">
+        <source>opina sobre propuestas</source>
+        <target>opina sobre propostes</target>
+      </trans-unit>
+      <trans-unit id="727">
+        <source>vota en las elecciones</source>
+        <target>vota en les eleccions</target>
+      </trans-unit>
+    </body>
     </body>
   </file>
 </xliff>

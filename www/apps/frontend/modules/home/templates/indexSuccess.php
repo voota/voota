@@ -17,31 +17,12 @@
   <div class="block-inner">
 
       <ul>
-        <li><h2><?php echo __('Opiniones sobre políticos, partidos y propuestas políticas en España.') ?></h2></li>
-        <li><h2>
-        	<?php echo __('%2%, de %4% personas, sobre ', array(
-        					'%2%' => "<a href=\"".url_for('sfReviewFront/list')."\">".__('%1% opiniones', array('%1%' => format_number(SfVoCounter::countReviews(), 'es_ES')))."</a>",
-        					//'%3%' => format_number($totalDownReviews, 'es_ES'),
-                			'%4%' => format_number(SfVoCounter::countUsers(), 'es_ES')
-        	)) ?>
-        	<a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>">
-        	<?php echo __('%5% políticos', array(
-                			'%5%' => format_number(SfVoCounter::countPoliticosReviewed(), 'es_ES')
-        	)) ?></a>,
-        	<a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>">
-        	<?php echo __('%5% partidos', array(
-                			'%5%' => format_number(SfVoCounter::countPartidosReviewed(), 'es_ES')
-        	)) ?></a>
-        	<?php echo __('y')?>
-        	<a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>">
-        	<?php echo __('%5% propuestas', array(
-                			'%5%' => format_number(SfVoCounter::countPropuestasReviewed(), 'es_ES')
-        	)) ?></a>.
-        				
-        </h2></li>
-        <?php if( $convocatoria && !$convocatoria->getClosedAt() ):?>
-          <li><h2><?php echo __('Lo que se cuece en las ') ?> <a href="<?php echo url_for('eleccion/show?vanity='.$convocatoria->getEleccion()->getVanity().'&convocatoria=' . $convocatoria->getNombre())?>"><?php echo $convocatoria->getEleccion()->getNombre()?> <?php echo $convocatoria->getNombre()?></a>.</h2></li>
-        <?php endif ?>
+        <li><h2><?php echo __('Lo que se dice sobre los políticos, partidos y propuestas políticas en España (ya llevamos %1% opiniones).', array('%1%' => format_number(SfVoCounter::countReviews(), 'es_ES'))) ?></h2></li>
+        <li><h2><?php echo __('¿Y tu qué piensas?')?>
+        <a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>"><?php echo __('Opina sobre políticos')?></a>,
+        <a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>"><?php echo __('opina sobre partidos')?></a>,
+        <a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>"><?php echo __('opina sobre propuestas')?></a>
+        o <a href="<?php echo url_for('eleccion/list') ?>" title="<?php echo __('Elecciones') ?>"><?php echo __('vota en las elecciones')?></a>.</h2></li>
         <li class="lo-mas-votado">
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>
           <ol class="entities">
