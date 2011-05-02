@@ -71,8 +71,10 @@ EOF;
 			$c = new Criteria();
 			$c->add(PartidoPeer::ABREVIATURA, $data[5]);
 			$partido = PartidoPeer::doSelectOne($c);
-			if (!$partido)
+			if (!$partido){
 				echo "Not found: (". $data[5].")\n";
+				continue;
+			}
 				
 			$c = new Criteria();
 			$c->add(CircunscripcionPeer::GEO_ID, $aGeo->getId());

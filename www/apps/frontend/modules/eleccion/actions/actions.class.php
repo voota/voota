@@ -72,7 +72,7 @@ class eleccionActions extends sfActions
   	$this->route = "eleccion/list";
   	
   	
-  	$this->pager = EntityManager::getConvocatorias($culture, $page, EntityManager::PAGE_SIZE, &$totalUp, &$totalDown);
+  	$this->pager = EntityManager::getConvocatorias($culture, $page, EntityManager::PAGE_SIZE, $this->autonomicas, $this->municipales, &$totalUp, &$totalDown);
   	
   	// Metas
   	$this->title = sfContext::getInstance()->getI18N()->__('Elecciones en España');	

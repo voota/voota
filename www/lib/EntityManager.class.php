@@ -20,7 +20,7 @@ class EntityManager {
 	const PAGE_SIZE = 20;
 	const MAX_PAGES = 10;
   
-  	public static function getConvocatorias($culture, $page = 1, $limit = self::PAGE_SIZE, &$totalUp = false, &$totalDown = false)
+  	public static function getConvocatorias($culture, $page = 1, $limit = self::PAGE_SIZE, $autonomicas, $municipales, &$totalUp = false, &$totalDown = false)
   	{
 	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
 	  	if ($cache != null) {
@@ -47,6 +47,26 @@ class EntityManager {
 				array (EleccionI18nPeer::ID, "'$culture'")
 				, Criteria::INNER_JOIN
 			);
+			if ($municipales){
+			   	$c->addAlias('muni','geo');			
+			   	$c->addAlias('prov','geo');			   	
+				
+		  		$c->addJoin(EleccionPeer::ID, EleccionInstitucionPeer::ELECCION_ID);
+		  		$c->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+		  		$c->addJoin('muni.ID', InstitucionPeer::GEO_ID);
+		  		$c->addJoin('muni.GEO_ID', 'prov.ID');
+		  		
+		  		$c->add('prov.CODIGO', null, Criteria::ISNOTNULL);
+			}
+			if ($autonomicas){
+			   	$c->addAlias('auton','geo');			
+				
+		  		$c->addJoin(EleccionPeer::ID, EleccionInstitucionPeer::ELECCION_ID);
+		  		$c->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+		  		$c->addJoin(GeoPeer::ID, InstitucionPeer::GEO_ID);
+		  		
+		  		$c->add(GeoPeer::GEO_ID, 1);
+			}
 		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE);
 		  	
 			$c->setDistinct();

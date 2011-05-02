@@ -39,7 +39,6 @@
   <tbody>
    <?php foreach($results = $pager->getResults() as $idx => $convocatoria): ?>
     <?php foreach ($convocatoria->getEleccion()->getEleccionInstitucions() as $eleccionInstuticion):?>
-     <?php if((!$autonomicas || $eleccionInstuticion->getInstitucion()->getGeo()->getGeoRelatedByGeoId()->getId() == 1) && (!$municipales || $eleccionInstuticion->getInstitucion()->getGeo()->getGeoRelatedByGeoId()->getGeoRelatedByGeoId()->getId() == 1)): ?>
       <tr class="<?php echo fmod($idx, 2) ? 'even' : 'odd' ?>">
   	    <td class="photo">
           <?php echo !$convocatoria->getImagen()?'':image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $convocatoria->getImagen(), ' width="36" height="36" alt="'. __('Imagen de %1%', array('%1%' =>  $convocatoria->getEleccion()->getNombre())) .'"') ?>
@@ -55,7 +54,6 @@
          <?php echo format_date($convocatoria->getFecha(), 'd/M/y') ?><?php if($convocatoria->getClosedAt()):?> <?php echo __('(finalizada)')?><?php endif ?>
         </td>
       </tr>
-     <?php endif ?>
     <?php endforeach ?>
    <?php endforeach ?>
   </tbody>
@@ -64,5 +62,5 @@
 </table>
 
 <p class="pagination">
-  <?php include_partial('global/pagination_full', array('pager' => $pager, 'url' => "$route", 'page_var' => "page")) ?>
+  <?php include_partial('global/pagination_full', array('pager' => $pager, 'url' => "$route".($autonomicas?'?a=1':'').($municipales?'?m=1':''), 'page_var' => "page")) ?>
 </p>
