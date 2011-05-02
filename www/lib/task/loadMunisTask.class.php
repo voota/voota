@@ -84,7 +84,10 @@ EOF;
    			$c->addJoin(InstitucionPeer::ID, EleccionInstitucionPeer::INSTITUCION_ID);
    			$c->addJoin(InstitucionPeer::GEO_ID, $aGeo->getId());
    			
-			$convocatoria = ConvocatoriaPeer::doSelectOne($c);						
+			$convocatoria = ConvocatoriaPeer::doSelectOne($c);	
+			if (!$convocatoria){
+				echo "Convocatoria not found: ($geo)\n";
+			}					
 			
 			$c = new Criteria();
 			$c->add(ListaPeer::CONVOCATORIA_ID, $convocatoria->getId());
