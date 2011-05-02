@@ -87,6 +87,7 @@ EOF;
 			$convocatoria = ConvocatoriaPeer::doSelectOne($c);	
 			if (!$convocatoria){
 				echo "Convocatoria not found: ($geo)\n";
+				continue;
 			}					
 			
 			$c = new Criteria();
