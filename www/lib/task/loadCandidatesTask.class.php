@@ -54,9 +54,32 @@ EOF;
 			$data = explode(";", "$line");
 			
 			
-	    	$criteria = new Criteria();
-	    	$criteria->add(ListaPeer::ID, $data[5]);
-	    	$lista = ListaPeer::doSelectOne($criteria);
+			$c = new Criteria();
+			$c->add(PartidoPeer::ABREVIATURA, $data[5]);
+			$partido = PartidoPeer::doSelectOne($c);
+			if (!$partido){
+				echo "Not found: (". $data[5].")\n";
+				continue;
+			}
+	    	
+			
+			$circu = CircunscripcionPeer::retrieveByPK($data[4]);
+			$convocatoria = ConvocatoriaPeer::retrieveByPK($data[3]);
+			
+			$c = new Criteria();
+			$c->add(ListaPeer::CONVOCATORIA_ID, $data[3]);
+			$c->add(ListaPeer::CIRCUNSCRIPCION_ID, $data[4]);
+			$c->add(ListaPeer::PARTIDO_ID, $partido->getId());
+			$lista = ListaPeer::doSelectOne($c);
+			
+			if (!$lista){
+				$lista = new Lista();
+				$lista->setPartido($partido);
+				$lista->setCircunscripcion($circu);
+				$lista->setConvocatoria($convocatoria);
+				$lista->save();
+				echo "Created lista ($partido, $circu)\n";
+			}
 	    	
 			$politicos = false;
 		    $c = new Criteria();
@@ -77,7 +100,18 @@ EOF;
 		    	
 		    	$politico->setNombre(($nombre));
 		    	$politico->setApellidos(($apellidos));
-		    	$politico->setPartido($lista->getPartido());
+		    	if ($data[7] != '1'){
+		    		if (trim($data[10]) != ''){
+						$c = new Criteria();
+						$c->add(PartidoPeer::ABREVIATURA, $data[5]);
+						$partido = PartidoPeer::doSelectOne($c);
+						if ($partido)
+			    			$politico->setPartido($partido);
+		    		}
+		    		else {
+			    		$politico->setPartido($lista->getPartido());
+		    		}
+		    	}
 		    	$politico->setSexo($data[1]=="hombre"?'H':'M');
 		    	$politico->save();
 		    	$politicoI18n = new PoliticoI18n();
@@ -101,7 +135,8 @@ EOF;
 		    else {
 		    	echo "Ya estaba.\n";
 		    }
-		    $pl->setOrden($data[0]);
+		    if ($data[6] != '1')
+		    	$pl->setOrden($data[0]);
 		    $pl->save();
 		    
 		    //echo $data[2];
