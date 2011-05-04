@@ -3288,6 +3288,18 @@ actual)</target>
         <source>vota en las elecciones</source>
         <target>vota en les eleccions</target>
       </trans-unit>
+      <trans-unit id="728">
+        <source>sobre políticos</source>
+        <target>sobre polítics</target>
+      </trans-unit>
+      <trans-unit id="729">
+        <source>sobre partidos</source>
+        <target>sobre partits</target>
+      </trans-unit>
+      <trans-unit id="730">
+        <source>sobre propuestas</source>
+        <target>sobre propostes</target>
+      </trans-unit>
     </body>
     </body>
   </file>

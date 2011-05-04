@@ -47,7 +47,7 @@ class EntityManager {
 				, Criteria::INNER_JOIN
 			);
 		  	$c->addDescendingOrderByColumn(ConvocatoriaPeer::FECHA);
-		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE);
+		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE_CORTO);
 			if ($municipales){
 			   	$c->addAlias('muni','geo');			
 			   	$c->addAlias('prov','geo');			   	

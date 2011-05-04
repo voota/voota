@@ -19,9 +19,9 @@
       <ul>
         <li><h2><?php echo __('Lo que se dice sobre los políticos, partidos y propuestas políticas en España (ya llevamos %1% opiniones).', array('%1%' => format_number(SfVoCounter::countReviews(), 'es_ES'))) ?></h2></li>
         <li><h2><?php echo __('¿Y tu qué piensas?')?>
-        <a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>"><?php echo __('Opina sobre políticos')?></a>,
-        <a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>"><?php echo __('opina sobre partidos')?></a>,
-        <a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>"><?php echo __('opina sobre propuestas')?></a>
+        <a href="<?php echo url_for('politico/ranking') ?>" title="<?php echo __('Ranking de políticos') ?>"><?php echo __('sobre políticos')?></a>,
+        <a href="<?php echo url_for('partido/ranking') ?>" title="<?php echo __('Ranking de partidos') ?>"><?php echo __('sobre partidos')?></a>,
+        <a href="<?php echo url_for('propuesta/ranking') ?>" title="<?php echo __('Ranking de propuestas') ?>"><?php echo __('sobre propuestas')?></a>
         o <a href="<?php echo url_for('eleccion/list') ?>" title="<?php echo __('Elecciones') ?>"><?php echo __('vota en las elecciones')?></a>.</h2></li>
         <li class="lo-mas-votado">
           <h2><?php echo __('Lo más votado de esta semana:') ?></h2>

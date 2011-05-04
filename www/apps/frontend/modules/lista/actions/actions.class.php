@@ -111,6 +111,7 @@ class listaActions extends sfActions
   	$c->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
   	$c->add(PoliticoListaPeer::LISTA_ID, $this->lista->getId());
   	$c->add(PoliticoListaPeer::ORDEN, null, Criteria::ISNOTNULL);
+  	$c->add(PoliticoListaPeer::ORDEN, 0, Criteria::GREATER_THAN);
   	$c->addAscendingOrderByColumn(PoliticoListaPeer::ORDEN);
   	$this->politicosListaOficial = PoliticoPeer::doSelect( $c );
 	

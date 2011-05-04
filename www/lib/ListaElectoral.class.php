@@ -167,8 +167,8 @@ class ListaElectoral
 					if (
 						$politico->getSumu() > $minSumu || 
 						($politico->getSumu() == $minSumu && $politico->getSumd() < $minSumd) ||
-						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() > $lastDate) ||
-						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() == $lastDate && $politico->getApellidos() > $apellidos) 
+						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() > $lastDate && $minSumu != 0) ||
+						($politico->getSumu() == $minSumu && $politico->getSumd() == $minSumd && $politico->getLastDate() == $lastDate && $politico->getApellidos() > $apellidos && $minSumu != 0) 
 						){
 							//echo "(".$politico->getApellidos().",".$politico->getSumu().",".$politico->getSumd().",".$politico->getLastDate().")";
 							$this->numEscanyos++;

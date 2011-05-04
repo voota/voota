@@ -18,6 +18,7 @@
   <a href="<?php echo url_for('eleccion/show?convocatoria='.$lista->getConvocatoria()->getNombre().'&vanity='.$lista->getConvocatoria()->getEleccion()->getVanity())?>"><?php echo $lista->getConvocatoria()->getEleccion()->getNombre()?> <?php echo $lista->getConvocatoria()->getNombre() ?></a>
 </p>
 
+<?php if(count($geos) > 1):?>
 <div class="selector-convocatoria">
   <ul>
     <?php foreach ($geos as $geo):?>
@@ -30,6 +31,7 @@
     <?php endforeach ?>
   </ul>
 </div>
+<?php endif ?>
 
 <table>
   <thead>
