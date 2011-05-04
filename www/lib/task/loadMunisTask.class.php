@@ -72,8 +72,13 @@ EOF;
 			$c->add(PartidoPeer::ABREVIATURA, $data[5]);
 			$partido = PartidoPeer::doSelectOne($c);
 			if (!$partido){
-				echo "Not found: (". $data[5].")\n";
-				continue;
+				$partido = new Partido();
+				$partido->setAbreviatura($data[5]);
+				$partido->setIsActive(true);
+				$partido->setNombre($data[5],'es');
+				$partido->setNombre($data[5],'ca');
+				$partido->save();
+				echo "Created partido ($partido)\n";
 			}
 				
 			$c = new Criteria();
@@ -127,7 +132,18 @@ EOF;
 		    	
 		    	$politico->setNombre(($nombre));
 		    	$politico->setApellidos(($apellidos));
-		    	$politico->setPartido($lista->getPartido());
+		    	if ($data[7] != '1'){
+		    		if (trim($data[10]) != ''){
+						$c = new Criteria();
+						$c->add(PartidoPeer::ABREVIATURA, $data[5]);
+						$partido = PartidoPeer::doSelectOne($c);
+						if ($partido)
+			    			$politico->setPartido($partido);
+		    		}
+		    		else {
+			    		$politico->setPartido($lista->getPartido());
+		    		}
+		    	}
 		    	$politico->setSexo($data[1]=="hombre"?'H':'M');
 		    	$politico->save();
 		    	$politicoI18n = new PoliticoI18n();
