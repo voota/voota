@@ -165,7 +165,7 @@ body { background-repeat: repeat-x; background: transparent url(/images/bgBody.p
 .entities-list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
 
 /* Selector de convocatoria */
-.selector-convocatoria { clear: left; padding: 20px 0 0 25px;}
+.selector-convocatoria { clear: left; padding: 20px 0 0 25px; width: 900em;}
 .selector-convocatoria ul { float: left; height: 45px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; margin: 0; padding: 0;}
 .selector-convocatoria li { list-style: none; float: left;}
 .selector-convocatoria li a,
