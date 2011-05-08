@@ -101,7 +101,7 @@ EOF;
 		    	$politico->setNombre(($nombre));
 		    	$politico->setApellidos(($apellidos));
 		    	if ($data[7] != '1'){
-		    		if (trim($data[10]) != ''){
+		    		if (count($data) > 10 && trim($data[10]) != ''){
 						$c = new Criteria();
 						$c->add(PartidoPeer::ABREVIATURA, $data[5]);
 						$partido = PartidoPeer::doSelectOne($c);
@@ -112,7 +112,8 @@ EOF;
 			    		$politico->setPartido($lista->getPartido());
 		    		}
 		    	}
-		    	$politico->setSexo($data[1]=="hombre"?'H':'M');
+		    	if ($data[1] && trim($data[1]) != '')
+		    		$politico->setSexo($data[1]=="hombre"?'H':'M');
 		    	$politico->save();
 		    	$politicoI18n = new PoliticoI18n();
 		    	$politicoI18n->setPolitico($politico);
