@@ -64,7 +64,7 @@ EOF;
 				}
 			}
 			if (!$aGeo) {
-				echo 'Not found: (' . $data[3] . ")\n";
+				echo 'Geo not found: (' . $data[3] . ")\n";
 				continue;
 			}
 			

@@ -173,7 +173,7 @@ class generalActions extends sfActions{
 			}
 		}
 		else {
-			$cl->SetFieldWeights(array('abreviatura_partido' => 5, 'nombre' => 5, 'apellidos' => 5, 'alias' => 5, 'titulo' => 5, 'nombre_insti' => 8, 'nombre_ele' => 7));
+			$cl->SetFieldWeights(array('abreviatura_partido' => 5, 'nombre' => 5, 'apellidos' => 5, 'alias' => 5, 'titulo' => 5, 'nombre_insti' => 8, 'nombre_ele' => 9));
 			$cl->SetSortMode ( SPH_SORT_EXPR, "@weight + ( 1 * votes/max_votes )" );
 			$indexes = "politico_$culture, partido_$culture,propuesta_$culture, institucion_$culture, usuario, eleccion_$culture";
 			$this->res = $cl->Query ( $needle, $indexes );

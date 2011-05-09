@@ -137,11 +137,13 @@
         <?php foreach ( $politico->getPoliticoListas() as $politicoLista): ?>
          <?php if(!$politicoLista->getLista()->getConvocatoria()->getClosedAt()):?>
           <p>
+          <?php if($politicoLista->getLista()->getConvocatoria()->getImagen()):?>
             <?php echo link_to(image_tag(S3Voota::getImagesUrl().'/elecciones/cc_s_'. $politicoLista->getLista()->getConvocatoria()->getImagen(), 'alt="'. $politicoLista->getLista()->getConvocatoria() .'"'), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) ?>
-            <?php echo __('Candidato a las %eleccion%',
+          <?php endif ?>
+            <?php echo __('Candidato por %partido% a las %eleccion%',
                        array(
                          '%partido%' => link_to($politicoLista->getLista()->getPartido(), 'partido/show?id='.$politicoLista->getLista()->getPartido()->getAbreviatura()), 
-                         '%eleccion%' => link_to($politicoLista->getLista()->getConvocatoria()->getEleccion()->getNombre() . ' '. $politicoLista->getLista()->getConvocatoria()->getNombre(), 'eleccion/show?vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) 
+                         '%eleccion%' => link_to($politicoLista->getLista()->getConvocatoria()->getEleccion()->getNombre() . ' '. $politicoLista->getLista()->getConvocatoria()->getNombre(), 'lista/show?geo='.$politicoLista->getLista()->getCircunscripcion()->getGeo().'&partido='.$politicoLista->getLista()->getPartido()->getAbreviatura().'&vanity='.$politicoLista->getLista()->getConvocatoria()->getEleccion()->getVanity().'&convocatoria='.$politicoLista->getLista()->getConvocatoria()->getNombre()) 
                         )) ?>
           </p>
          <?php endif ?>
