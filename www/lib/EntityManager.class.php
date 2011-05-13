@@ -20,6 +20,85 @@ class EntityManager {
 	const PAGE_SIZE = 20;
 	const MAX_PAGES = 10;
   
+  	public static function getListas($culture, $page = 1, $limit = self::PAGE_SIZE, $autonomicas, $municipales, $partido, &$totalUp = false, &$totalDown = false)
+  	{
+	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();
+	  	if ($cache != null) {
+  			$key=md5("listas_$partido-$institucion-$culture-$page-$order");
+  			$data = $cache->get($key);
+	  	}
+	  	else {
+	  		$data = false;
+	  	}
+  		if ($data){
+  			$totalUp = unserialize($cache->get("$key-totalUp"));
+  			$totalDown = unserialize($cache->get("$key-totalDown"));	
+  			return unserialize($cache->get("$key"));  		
+  		}
+  		else {  		
+		  	$c = new Criteria();
+		  	
+		  	$pager = new sfPropelPager('Lista', $limit);
+		  	
+		  	#$pager = new sfPropelPager('Convocatoria', $limit);
+		  	$c->addJoin(ListaPeer::CONVOCATORIA_ID, ConvocatoriaPeer::ID);
+		  	$c->addJoin(EleccionPeer::ID, ConvocatoriaPeer::ELECCION_ID);
+			$c->addJoin(
+				array(EleccionPeer::ID, EleccionI18nPeer::CULTURE),
+				array (EleccionI18nPeer::ID, "'$culture'")
+				, Criteria::INNER_JOIN
+			);
+		  	$c->addDescendingOrderByColumn(ConvocatoriaPeer::FECHA);
+		  	#$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE_CORTO);
+			if ($municipales){
+			   	$c->addAlias('muni','geo');			
+			   	$c->addAlias('prov','geo');			   	
+				
+		  		$c->addJoin(EleccionPeer::ID, EleccionInstitucionPeer::ELECCION_ID);
+		  		$c->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+		  		$c->addJoin('muni.ID', InstitucionPeer::GEO_ID);
+		  		$c->addJoin('muni.GEO_ID', 'prov.ID');
+		  		
+		  		$c->add('prov.CODIGO', null, Criteria::ISNOTNULL);
+			}
+		  	$c->addAscendingOrderByColumn(PartidoPeer::ABREVIATURA);
+		  	$c->addAscendingOrderByColumn(EleccionI18nPeer::NOMBRE_CORTO);
+			if ($autonomicas){
+			   	$c->addAlias('auton','geo');			
+				
+		  		$c->addJoin(EleccionPeer::ID, EleccionInstitucionPeer::ELECCION_ID);
+		  		$c->addJoin(EleccionInstitucionPeer::INSTITUCION_ID, InstitucionPeer::ID);
+		  		$c->addJoin(GeoPeer::ID, InstitucionPeer::GEO_ID);
+		  		
+		  		
+			   	$c->addAlias('circu','geo');		   	
+				
+		  		$c->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+		  		$c->addJoin(CircunscripcionPeer::GEO_ID, 'circu.ID');
+		  		$c->addAscendingOrderByColumn('circu.NOMBRE');
+		  		
+		  		$c->add(GeoPeer::GEO_ID, 1);
+			}
+		  	$c->addJoin(ListaPeer::PARTIDO_ID, PartidoPeer::ID);	
+			if ($partido){
+				$c->add(PartidoPeer::ABREVIATURA, $partido);
+			}
+		  	
+			$c->setDistinct();
+  			
+		    
+		    $pager->setCriteria($c);
+		    $pager->setPage( $page );
+		    $pager->init();		    
+		    
+	  		if ($cache != null) {
+	  			$cache->set($key,serialize($pager));
+	  			$cache->set("$key-totalUp",serialize($totalUp));
+	  			$cache->set("$key-totalDown",serialize($totalDown));
+	  		}
+	    	return $pager;
+  		}
+  	}    
   	public static function getConvocatorias($culture, $page = 1, $limit = self::PAGE_SIZE, $autonomicas, $municipales, &$totalUp = false, &$totalDown = false)
   	{
 	  	$cache = null;//sfcontext::getInstance()->getViewCacheManager()->getCache();

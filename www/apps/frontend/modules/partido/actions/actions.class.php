@@ -346,6 +346,29 @@ class partidoActions extends sfActions
   	$c->setDistinct();
   	$c->addAscendingOrderByColumn(InstitucionPeer::ORDEN);
   	$this->instituciones = InstitucionPeer::doSelect($c);
+  	
+  	// Lista de listas
+	$this->listasGenerales = false;
+	$this->listasAutonomicas = false;
+	$this->listasMunicipales = false;
+  	foreach($this->partido->getListas() as $lista){
+  		//$lista->getCircunscripcion()->getGeo()
+  		foreach ($lista->getConvocatoria()->getEleccion()->getEleccionInstitucions() as $insti){
+  			$geo = $insti->getInstitucion()->getGeo();
+  			if ($geo->getId() == 1){
+				$this->listasGenerales = true;
+			}  		
+			elseif ($geo->getGeoRelatedByGeoId()->getId() == 1){
+				$this->listasAutonomicas = true;
+			}  		
+			elseif ($geo->getGeoRelatedByGeoId()->getGeoRelatedByGeoId()->getId() == 1){
+			}  		
+			elseif ($geo->getGeoRelatedByGeoId()->getGeoRelatedByGeoId()->getGeoRelatedByGeoId()->getId() == 1){
+				$this->listasMunicipales = true;
+			}  		
+  		}
+  	}
+  	
     
   	$this->pageTitle = $this->partido->getNombre() . " (". $this->partido->getAbreviatura().")";
   	$this->title = $this->pageTitle . ' - Voota';

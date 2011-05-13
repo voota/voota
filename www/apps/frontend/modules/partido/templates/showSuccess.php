@@ -107,9 +107,29 @@
         
         <?php if (count($instituciones) > 0): ?>
           <p id="instituciones">
-            <strong>Instituciones:</strong>
+            <strong><?php echo __('Instituciones')?>:</strong>
             <?php include_partial('global/institucionList', array('instituciones' => $instituciones, 'partido' => $partido->getAbreviatura(), 'institucion' => $institucion)) ?>
           </p>
+        <?php endif ?>
+        <?php if ($listasGenerales || $listasAutonomicas || $listasMunicipales): ?>
+          <p id="listas">
+            <strong><?php echo __('Listas electorales') ?>:</strong>
+          </p>
+        	<?php if ($listasGenerales): ?>
+          <p>
+        	  <a href="<?php echo url_for('lista/list')?>"><?php echo __('Listas en las elecciones generales')?> &raquo;</a>
+          </p>
+        	<?php endif ?>
+        	<?php if ($listasAutonomicas): ?>
+          <p>
+        	  <a href="<?php echo url_for('lista/list?a=1&partido='.$partido->getAbreviatura())?>"><?php echo __('Listas en las elecciones autonómicas')?> &raquo;</a>
+          </p>
+        	<?php endif ?>
+        	<?php if ($listasMunicipales): ?>
+          <p>
+        	  <a href="<?php echo url_for('lista/list?m=1&partido='.$partido->getAbreviatura())?>"><?php echo __('Listas en las elecciones municipales')?> &raquo;</a>
+          </p>
+        	<?php endif ?>
         <?php endif ?>
     </div><!-- end of description -->
 

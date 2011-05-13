@@ -133,4 +133,46 @@ class listaActions extends sfActions
   		
     $this->response->addMeta('Description', $description); 
   }
+  
+  public function executeList(sfWebRequest $request)
+  {
+  	$culture = $this->getUser()->getCulture("es");
+  	$page = $request->getParameter("page", "");
+  	$this->autonomicas = $request->getParameter("a", false);
+  	$this->municipales = $request->getParameter("m", false);
+  	$this->partido = $request->getParameter("partido", false);
+  	if ($this->partido){
+	  	$c = new Criteria();
+	  	$c->add(PartidoPeer::ABREVIATURA, $this->partido);
+	  	$partido = PartidoPeer::doSelectOne($c);
+  	}
+  	$this->route = "lista/list";
+  	
+  	
+  	#$this->pager = EntityManager::getConvocatorias($culture, $page, 100, $this->autonomicas, $this->municipales, &$totalUp, &$totalDown);
+  	$this->pager = EntityManager::getListas($culture, $page, 100, $this->autonomicas, $this->municipales, $this->partido, &$totalUp, &$totalDown);
+  	
+  	$o = false;
+  	if($this->autonomicas)
+  		$o = EntityManager::getListas($culture, $page, 100, false, 1, $this->partido, &$totalUp, &$totalDown);
+  	if($this->municipales)
+  		$o = EntityManager::getListas($culture, $page, 100, 1, false, $this->partido, &$totalUp, &$totalDown);
+
+  	$this->hide = ($o && $o->getNbResults() == 0);
+  	
+  	// Metas
+  	$this->title = sfContext::getInstance()->getI18N()->__("Listas%partido% a las elecciones%tipo%%pag%", array(
+  		'%partido%' => $this->partido?" de $this->partido":'',
+  		'%tipo%' => $this->municipales?" municipales":($this->autonomicas?" autonómicas":''),
+  		'%pag%' => ($page && $page > 1)?", pág. $page":'',  	
+   	));	
+  	$this->response->setTitle( $this->title );  	
+  	
+  	$description = sfContext::getInstance()->getI18N()->__("Candidaturas y listas%partido% a las elecciones%tipo%%pag%", array(
+  		'%partido%' => $this->partido?" de ".$partido->getNombre()." (".$this->partido.")":'',
+  		'%tipo%' => $this->municipales?" municipales":($this->autonomicas?" autonómicas":''),
+  		'%pag%' => ($page && $page > 1)?", pág. $page":'',  	
+   	));	 	
+    $this->response->addMeta('Description', $description);
+  }
 }
