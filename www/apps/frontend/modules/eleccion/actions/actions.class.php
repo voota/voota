@@ -51,6 +51,20 @@ class eleccionActions extends sfActions
     $this->institucionName = $ret['institucionName'];
     $this->circus = $ret['circus'];
     
+    // Politicos
+    $criteria = new Criteria();
+    $criteria->addJoin(PoliticoListaPeer::POLITICO_ID, PoliticoPeer::ID);
+    $criteria->addJoin(PoliticoListaPeer::LISTA_ID, ListaPeer::ID);
+    $criteria->add(ListaPeer::CONVOCATORIA_ID, $this->convocatoria->getId());
+    if ($this->geoName){
+    	$criteria->addJoin(ListaPeer::CIRCUNSCRIPCION_ID, CircunscripcionPeer::ID);
+    	$criteria->addJoin(CircunscripcionPeer::GEO_ID,GeoPeer::ID);
+    	$criteria->add(GeoPeer::NOMBRE, $this->geoName);
+    }
+	$criteria->addDescendingOrderByColumn(PoliticoPeer::SUMU);
+	$criteria->addAscendingOrderByColumn(PoliticoPeer::SUMD);
+	$criteria->setLimit(5);
+	$this->topPoliticos = PoliticoPeer::doSelect($criteria);
   	
   	// Metas
   	$this->title = ($this->geoName?$this->geoName.': ':'') . $this->convocatoria->getEleccion()->getNombre() ." ". $this->convocatoria->getNombre();  	

@@ -48,7 +48,7 @@ test:
       cache_key_use_host_name:    true
 dev:
   view_cache:
-    class: sfNoCache
+    class: sfFileCache
     param:
       lifetime:                  86400 #24h
       prefix:                    vo

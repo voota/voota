@@ -165,7 +165,7 @@ body { background-repeat: repeat-x; background: transparent url(/images/bgBody.p
 .entities-list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
 
 /* Selector de convocatoria */
-.selector-convocatoria { clear: left; padding: 20px 0 0 25px; width: 900em;}
+.selector-convocatoria { clear: left; padding: 20px 0 0 0px; width: 900em; float:left}
 .selector-convocatoria ul { float: left; height: 45px; background-color: #fdffcd; border: 1px solid #9a9a9a; border-bottom: none; margin: 0; padding: 0;}
 .selector-convocatoria li { list-style: none; float: left;}
 .selector-convocatoria li a,
@@ -516,8 +516,16 @@ table.rankings .negative-votes { text-align:right;}
 #sfReviewFront-show .subreviews .review-name { font-size: 13px;}
 
 /* Página de elección */
+
+#eleccion-show .entities-list-mini {float:left;margin-top: 20px;width:232px;border-right: 1px dotted #ccc; margin-right:32px}
+#eleccion-show .entities-list-mini ul li {
+margin-bottom: 0px;
+overflow: hidden;
+height: 54px;
+}
+.es-results {float:left;width:200px;}
 #eleccion-show #content { float: left; width: 690px;}
-#eleccion-show #resultados { width: 690px;}
+#eleccion-show #resultados { width: 690px;float:left}
 #eleccion-show #resultados td { padding: 5px 0;}
 #eleccion-show #resultados { overflow: hidden; float: left; clear: left; margin-top: 20px;}
 #eleccion-show #resultados .partido { width: 100px; text-align: right; padding-right: 20px;}
