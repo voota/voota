@@ -162,7 +162,7 @@ body { background-repeat: repeat-x; background: transparent url(/images/bgBody.p
 .entities-list-mini ul li { margin-bottom: 20px; overflow: hidden; height: 80px;}
 .entities-list-mini ul li .avatar { float: left;}
 .entities-list-mini ul li .name { margin-left: 45px; font-weight: normal;}
-.entities-list-mini ul li .votes { margin: 10px 0 0 45px; padding: 0;}
+.entities-list-mini ul li .votes { margin: 0px 0 0 45px; padding: 0;}
 
 /* Selector de convocatoria */
 .selector-convocatoria { clear: left; padding: 20px 0 0 0px; width: 900em; float:left}
@@ -223,7 +223,7 @@ a.twitter-button:visited { color: #e6f5fa;}
 #home-index ol.entities li { margin: 0 30px 20px 0; height: 80px; font-weight: normal; overflow: hidden;}
 #home-index ol.entities li .avatar { float: left;}
 #home-index ol.entities li .name { margin-left: 45px; font-weight: normal;}
-#home-index ol.entities li .votes { margin: 10px 0 0 45px; padding: 0;}
+#home-index ol.entities li .votes { margin: 0px 0 0 45px; padding: 0;}
 #home-index #summary ol.entities { padding: 20px 0 20px 0; overflow: hidden;}
 #home-index #summary ol.entities li { width: 255px; margin-right: 60px;float: left;}
 #home-index .search { clear: left; padding: 0; margin-top: 20px; overflow: hidden;}
@@ -517,7 +517,9 @@ table.rankings .negative-votes { text-align:right;}
 
 /* Página de elección */
 
-#eleccion-show .entities-list-mini {float:left;margin-top: 20px;width:232px;border-right: 1px dotted #ccc; margin-right:32px}
+#eleccion-show .entities-list-mini h3{font-size: 13px}
+#eleccion-show .entities-list-mini {float:left;margin-top: 20px;width:232px; margin-right:32px}
+#eleccion-show .entities-list-mini ul {border-right: 1px dotted #ccc;}
 #eleccion-show .entities-list-mini ul li {
 margin-bottom: 0px;
 overflow: hidden;
@@ -535,6 +537,7 @@ height: 54px;
 #eleccion-show .tooltip-politico .photo { float: left; overflow: hidden;}
 #eleccion-show .tooltip-politico .positive_votes { margin-left: 45px; width: 100px; height: 18px; margin-bottom: 5px; text-align: left;}
 #eleccion-show .tooltip-politico .negative_votes { margin-left: 45px; width: 100px; height: 18px; text-align: left;}
+.ele-block {float:left; width:960px}
 
 /* Página de propuesta */
 #propuesta-show h2#name { margin-bottom: 5px;}

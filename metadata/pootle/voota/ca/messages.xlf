@@ -3300,6 +3300,50 @@ actual)</target>
         <source>sobre propuestas</source>
         <target>sobre propostes</target>
       </trans-unit>
+      <trans-unit id="731">
+        <source>Listas%partido% a las elecciones%tipo%%pag%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="732">
+        <source>Candidaturas y listas%partido% a las elecciones%tipo%%pag%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="733">
+        <source>Todas las listas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="734">
+        <source>de</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="735">
+        <source>Instituciones</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="736">
+        <source>Listas electorales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="737">
+        <source>Listas en las elecciones generales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="738">
+        <source>Listas en las elecciones autonómicas</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="739">
+        <source>Listas en las elecciones municipales</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="740">
+        <source>Candidato por %partido% a las %eleccion%</source>
+        <target/>
+      </trans-unit>
+      <trans-unit id="741">
+        <source>Top 5 por %1%</source>
+        <target/>
+      </trans-unit>
     </body>
     </body>
   </file>

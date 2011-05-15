@@ -48,7 +48,7 @@
 <?php endif ?>
 
 
-
+<div class="ele-block">
 <div id="politicos-mas-votados" class="entities-list-mini">
       <h3><?php echo __('Top 5 por %1%', array('%1%' => $geoName?$geoName:$institucionName))?></h3>
               <ul>
@@ -56,10 +56,8 @@
     		    <?php include_partial('home/politico_top', array('id' => "sparkline_".$politico->getId(), 'politico' => $politico, 'showVotes' => false, 'showSparkline' => false)) ?>
 <?php endforeach;?>
       	          </ul>
-          </div>
+</div>
           
-          
-
 <div class="es-results">
     <table id="resultados">
       <thead>
@@ -81,6 +79,8 @@
       </tfoot>
     </table>
 </div>
+</div>
+
   </div>
 
   <div id="sidebar">
