@@ -171,6 +171,26 @@
 	  
     </div>
   </div><!-- FIN HEADER -->
+      
+      <?php if( $sf_request->getAttribute("cultureWarn") ):?>
+       <?php if( $sf_user->getCulture() == 'ca' ):?>
+        <div id="ie6">
+          <h3>Tenemos una versión Voota en español</h3>
+          <p>Si no entiendes muy bien el catalán queremos que sepas que también existe una versión de Voota en español (lo hemos adivinado por el idioma de tu navegador, no te asustes :) Para cambiar a la versión española de Voota simplemente pásate por el siguiente enlace:</p>
+
+          <p><?php echo link_to('Versión en español de Voota', changeCulture('es')) ?></p>
+          <p class="close"><a href="#" onclick="$('#ie6').hide();">Cerrar</a></p>
+        </div>
+       <?php elseif( $sf_user->getCulture() == 'es' ):?>
+        <div id="ie6">
+          <h3>Tenim una versió Voota en català</h3>
+          <p>Si no entens molt bé l'espanyol volem que sàpigues que també existeix una versió de Voota en català (ho hem endevinat per l'idioma del navegador, no t'espantis:) Per canviar a la versió en català de Voota simplement passa't pel següent enllaç:</p>
+
+          <p><?php echo link_to('Versió en català de Voota', changeCulture('ca')) ?></p>
+          <p class="close"><a href="#" onclick="$('#ie6').hide();">Tancar</a></p>
+        </div>
+       <?php endif ?>
+      <?php endif ?>
 
   <!-- MAIN -->
   <div id="main">

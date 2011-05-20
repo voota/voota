@@ -30,6 +30,17 @@ class voBrowserFilter extends sfFilter
 		}
 	}
 	
+	$culture = $user->getCulture();
+	$acceptLangs = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	
+	if ( !stristr($acceptLangs, $culture) && (stristr($acceptLangs, 'es') || stristr($acceptLangs, 'ca'))){
+		$cultureWarn = $user->getAttribute("cultureWarn");
+		if ($cultureWarn !== 'shown'){
+			$user->setAttribute("cultureWarn", 'shown');
+  			$request->setAttribute("cultureWarn", true);
+		}
+	}
+	
   	// Execute next filter
     $filterChain->execute();  	
   }
