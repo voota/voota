@@ -66,6 +66,7 @@ class politicoActions extends sfActions
   	$rCriterion = $c->getNewCriterion(InstitucionI18nPeer::NOMBRE_CORTO, "%$term%", Criteria::LIKE);
 	$rCriterion->addOr($c->getNewCriterion(InstitucionI18nPeer::NOMBRE, "%$term%", Criteria::LIKE));
 	$c->add( $rCriterion );
+	$c->add( InstitucionPeer::DISABLED, false );
 	$instituciones = InstitucionPeer::doSelect( $c );
 
 	$res = '[';	
